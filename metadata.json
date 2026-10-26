@@ -1,0 +1,6 @@
+{
+  "name": "GeekTabs Dashboard",
+  "description": "A minimalist, aesthetic productivity dashboard with immersive wallpapers, smart widgets, and integrated search.",
+  "requestFramePermissions": ["geolocation", "display-capture"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

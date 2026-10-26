@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "GeekTabs",
+  "version": "1.0.0",
+  "description": "A minimalist, aesthetic productivity dashboard with live browser extension management.",
+  "permissions": [
+    "management",
+    "storage"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "action": {
+    "default_title": "GeekTabs"
+  }
+}

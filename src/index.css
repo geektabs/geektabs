@@ -1,0 +1,3324 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer base {
+  body {
+    background: #e2f2fc;
+    @apply transition-colors duration-500 overflow-x-hidden select-none;
+  }
+  
+  .dark {
+    color-scheme: dark;
+  }
+  
+  .light {
+    color-scheme: light;
+  }
+}
+
+.immersive-bg {
+  background: radial-gradient(circle at 20% 20%, #1e293b 0%, #0c0d12 100%), 
+              radial-gradient(circle at 80% 80%, #312e81 0%, transparent 50%);
+}
+
+.light .immersive-bg {
+  background: #ffffff;
+}
+
+/* GeekTabs Refined Components */
+
+.word-color {
+  @apply transition-colors duration-500;
+}
+
+.dark .word-color {
+  color: #ffffff;
+}
+
+.light .word-color {
+  color: #111111;
+}
+
+[data-has-custom-text="true"] .word-color,
+[data-has-custom-text="true"] svg.word-color {
+  color: var(--custom-page-text-color) !important;
+}
+
+/* Ensure no text-shadow inside card structures under any circumstances, even when text color changes */
+.GeekTabs-card,
+.GeekTabs-card *,
+.GeekTabs-card .word-color,
+.GeekTabs-card svg.word-color,
+[data-has-custom-text="true"] .GeekTabs-card,
+[data-has-custom-text="true"] .GeekTabs-card *,
+[data-has-custom-text="true"] .GeekTabs-card .word-color,
+[data-has-custom-text="true"] .GeekTabs-card svg.word-color,
+[data-has-custom-text="true"].photo-mode .GeekTabs-card,
+[data-has-custom-text="true"].photo-mode .GeekTabs-card *,
+[data-has-custom-text="true"].photo-mode .GeekTabs-card .word-color,
+[data-has-custom-text="true"].photo-mode .GeekTabs-card svg.word-color {
+  text-shadow: none !important;
+}
+
+/* Live Vision Preview Text - Always shows the exact selected text color */
+.preview-vision-box,
+.preview-vision-box *,
+.preview-live-text,
+.preview-clock-display,
+.GeekTabs-card .preview-vision-box *,
+.card-style-white .GeekTabs-card .preview-vision-box *,
+.card-style-white .GeekTabs-card .preview-clock-display,
+.card-style-dark-glass .GeekTabs-card .preview-vision-box *,
+.card-style-dark-glass .GeekTabs-card .preview-clock-display {
+  color: var(--preview-live-text-color, inherit) !important;
+}
+
+.light .opacity-10 { opacity: 0.65 !important; }
+.light .opacity-20 { opacity: 0.7 !important; }
+.light .opacity-30 { opacity: 0.8 !important; }
+.light .opacity-40 { opacity: 0.85 !important; }
+.light .opacity-50 { opacity: 0.9 !important; }
+.light .opacity-60 { opacity: 0.95 !important; }
+.light .opacity-70 { opacity: 0.95 !important; }
+.light .text-black\/20 { color: rgba(15,23,42,0.7) !important; }
+.light .text-black\/30 { color: rgba(15,23,42,0.8) !important; }
+.light .text-black\/40 { color: rgba(15,23,42,0.9) !important; }
+.light .text-black\/50 { color: rgba(15,23,42,0.92) !important; }
+.light .text-gray-400 { color: #334155 !important; }
+.light .text-gray-500 { color: #1e293b !important; }
+.light .text-neutral-400 { color: #334155 !important; }
+.light .text-neutral-500 { color: #1e293b !important; }
+.light .text-neutral-600 { color: #0f172a !important; }
+
+.light .q-icon {
+  mix-blend-mode: multiply;
+}
+
+.photo-mode,
+.photo-mode *,
+.photo-mode form,
+.photo-mode input,
+.photo-mode button,
+.photo-mode button *,
+.photo-mode a,
+.photo-mode a *,
+.photo-mode .top-menu-bar,
+.photo-mode .top-menu-bar *,
+.top-menu-bar,
+.top-menu-bar * {
+  text-shadow: none !important;
+}
+
+.GeekTabs-card h1,
+.GeekTabs-card h2,
+.GeekTabs-card h3 {
+  background: linear-gradient(to right, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.dark svg.word-color {
+  color: #ffffff;
+}
+
+/* TipTap Editor Styles */
+.prose-mirror p {
+  margin-bottom: 1rem;
+}
+.prose-mirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.prose-mirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.prose-mirror li p {
+  margin-bottom: 0.5rem;
+}
+
+
+.light svg.word-color {
+  color: #1f1f1f;
+}
+
+/* Pastel Web Cards - Styled to match colorful pastel aesthetic from reference */
+.GeekTabs-card {
+  @apply transition-all duration-300;
+  background: linear-gradient(135deg, #e4effb 0%, #ebecfc 50%, #f4eafd 100%) !important;
+  border: 1.5px solid #c7d2fe !important;
+  box-shadow: 0 8px 25px -4px rgba(99, 102, 241, 0.15), 0 2px 8px -1px rgba(0, 0, 0, 0.04) !important;
+  color: #0f172a !important;
+}
+
+.card-pastel-sky {
+  background: linear-gradient(135deg, #dcf0fa 0%, #cae7f9 100%) !important;
+  border: 1.5px solid #91ccf9 !important;
+  box-shadow: 0 10px 25px -4px rgba(56, 189, 248, 0.22), 0 2px 8px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-pastel-white {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04) !important;
+  color: #0f172a !important;
+}
+
+.card-pastel-blue {
+  background: linear-gradient(135deg, #daf0fd 0%, #c8e6fc 100%) !important;
+  border: 1.5px solid #8ecbf9 !important;
+  box-shadow: 0 10px 25px -4px rgba(14, 165, 233, 0.22), 0 2px 8px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-pastel-orange {
+  background: linear-gradient(135deg, #fff1e5 0%, #fee4cf 100%) !important;
+  border: 1.5px solid #fdba74 !important;
+  box-shadow: 0 10px 25px -4px rgba(249, 115, 22, 0.22), 0 2px 8px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-pastel-lavender {
+  background: linear-gradient(135deg, #e5e8fb 0%, #dcdff8 100%) !important;
+  border: 1.5px solid #b2bbf7 !important;
+  box-shadow: 0 10px 25px -4px rgba(99, 102, 241, 0.22), 0 2px 8px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-pastel-lilac {
+  background: linear-gradient(135deg, #f1e4fb 0%, #e7d5f8 100%) !important;
+  border: 1.5px solid #d5b7f5 !important;
+  box-shadow: 0 10px 25px -4px rgba(168, 85, 247, 0.22), 0 2px 8px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.dark .GeekTabs-card {
+  background: #1c1c1e !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  color: #ffffff !important;
+}
+
+.dark .card-pastel-blue,
+.dark .card-pastel-orange,
+.dark .card-pastel-white,
+.dark .card-pastel-lavender,
+.dark .card-pastel-lilac,
+.dark .card-pastel-sky {
+  background: #1c1c1e !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Ensure no text-shadow glow or multiply layout inside card structures */
+.GeekTabs-card,
+.GeekTabs-card * {
+  text-shadow: none !important;
+}
+
+.dark .GeekTabs-card,
+.dark .GeekTabs-card * {
+  text-shadow: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.card-style-dark-glass .GeekTabs-card,
+.card-style-dark-glass .GeekTabs-card * {
+  text-shadow: none !important;
+}
+
+.card-style-dark-glass .GeekTabs-card {
+  background: rgba(20, 20, 25, 0.72) !important;
+  backdrop-filter: blur(24px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* Deeper dark transparent layout for inner nested cards under dark mode with card-style-dark-glass */
+.dark.card-style-dark-glass .GeekTabs-card .bg-slate-50,
+.dark.card-style-dark-glass .GeekTabs-card .bg-slate-100,
+.dark.card-style-dark-glass .GeekTabs-card .bg-slate-200,
+.dark.card-style-dark-glass .GeekTabs-card .bg-black\/5,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/20,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.04\],
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.08\],
+.dark.card-style-dark-glass .GeekTabs-card .bg-sky-500\/10,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-sky-500\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-slate-50,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-slate-100,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-slate-200,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-black\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/20,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.04\],
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.08\],
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-sky-500\/10,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-sky-500\/5 {
+  background-color: rgba(2, 6, 23, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Calculator buttons and display under dark card-style-dark-glass to match other nested small cards */
+.dark.card-style-dark-glass .GeekTabs-card button.bg-white\/80,
+.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80,
+.dark.card-style-dark-glass .GeekTabs-card button.bg-black\/5,
+.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white\/80,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-black\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80 {
+  background-color: rgba(2, 6, 23, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card button.bg-white\/80:hover,
+.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
+.dark.card-style-dark-glass .GeekTabs-card button.bg-black\/5:hover,
+.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80:hover,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white\/80:hover,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-black\/5:hover,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80:hover {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+}
+
+/* Map IPv4 and IPv6 display panels in IP Address tab to match the sub-cards in dark card-style-dark-glass */
+.dark.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-blue-500\/5,
+.dark.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5,
+.dark.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5.to-pink-500\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-blue-500\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5.to-pink-500\/5 {
+  background: rgba(2, 6, 23, 0.65) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Transform solid white copy buttons to translucent glass buttons in dark card-style-dark-glass */
+.dark.card-style-dark-glass .GeekTabs-card button.bg-white,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+.dark.card-style-dark-glass .GeekTabs-card button.bg-white:hover,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Text legibility normalization under card-style-dark-glass cards */
+.card-style-dark-glass .text-black\/60,
+.card-style-dark-glass .dark\:text-white\/60,
+.card-style-dark-glass .GeekTabs-card .text-black\/60,
+.card-style-dark-glass .GeekTabs-card .dark\:text-white\/60 {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.dark.card-style-dark-glass .text-black\/80,
+.dark.card-style-dark-glass .dark\:text-white\/80,
+.dark.card-style-dark-glass .GeekTabs-card .text-black\/80,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-white\/80,
+[data-bg-light="false"].card-style-dark-glass .text-black\/80,
+[data-bg-light="false"].card-style-dark-glass .dark\:text-white\/80,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-black\/80,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:text-white\/80 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark.card-style-dark-glass .text-black\/85,
+.dark.card-style-dark-glass .dark\:text-white\/85,
+.dark.card-style-dark-glass .GeekTabs-card .text-black\/85,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-white\/85,
+[data-bg-light="false"].card-style-dark-glass .text-black\/85,
+[data-bg-light="false"].card-style-dark-glass .dark\:text-white\/85,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-black\/85,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:text-white\/85 {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Ensure list steps inside BrowserTab and all ol/li/span lists are readable white in dark card-style-dark-glass */
+.dark.card-style-dark-glass .GeekTabs-card ol,
+.dark.card-style-dark-glass .GeekTabs-card li,
+.dark.card-style-dark-glass .GeekTabs-card li span,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card ol,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card li,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card li span {
+  color: #ffffff !important;
+}
+
+/* Ensure form/dialogs in dark card-style-dark-glass (like TodoList Add Task composer form) match other sub-cards exactly */
+.dark.card-style-dark-glass .GeekTabs-card form.bg-white,
+.dark.card-style-dark-glass .GeekTabs-card form.dark\:bg-\[\#18191e\],
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card form.bg-white,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card form.dark\:bg-\[\#18191e\] {
+  background-color: rgba(2, 6, 23, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Inputs and placeholders inside dark card-style-dark-glass to ensure high legibility and usability */
+.dark.card-style-dark-glass .GeekTabs-card input,
+.dark.card-style-dark-glass .GeekTabs-card textarea,
+.dark.card-style-dark-glass .GeekTabs-card select,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card input,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card textarea,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card select {
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card input::placeholder,
+.dark.card-style-dark-glass .GeekTabs-card textarea::placeholder,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card input::placeholder,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Ensure card headers are solid crisp white under dark theme */
+.dark .GeekTabs-card h1,
+.dark .GeekTabs-card h2,
+.dark .GeekTabs-card h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: #ffffff !important;
+}
+
+/* Text and SVG normalization inside dark cards */
+.dark .GeekTabs-card .word-color,
+.dark .GeekTabs-card svg.word-color {
+  color: #ffffff !important;
+}
+
+.dark .GeekTabs-card .dark\:text-white {
+  color: #ffffff !important;
+}
+
+.dark .GeekTabs-card .dark\:text-white\/40,
+.dark .GeekTabs-card .dark\:text-slate-400,
+.dark .GeekTabs-card .text-slate-400,
+.dark .GeekTabs-card .text-gray-400,
+.dark .GeekTabs-card .text-neutral-400,
+.dark .GeekTabs-card .text-zinc-400 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark .GeekTabs-card .dark\:text-white\/60,
+.dark .GeekTabs-card .dark\:text-slate-300,
+.dark .GeekTabs-card .text-slate-500,
+.dark .GeekTabs-card .text-gray-500,
+.dark .GeekTabs-card .text-neutral-500,
+.dark .GeekTabs-card .text-zinc-500 {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.dark .GeekTabs-card .dark\:text-white\/10,
+.dark .GeekTabs-card .dark\:text-white\/20,
+.dark .GeekTabs-card .dark\:text-white\/30,
+.dark .GeekTabs-card .dark\:text-white\/50,
+.dark .GeekTabs-card .dark\:text-white\/70,
+.dark .GeekTabs-card .dark\:text-white\/80,
+.dark .GeekTabs-card .dark\:text-white\/90,
+.dark .GeekTabs-card .dark\:text-slate-200,
+.dark .GeekTabs-card .text-slate-900,
+.dark .GeekTabs-card .text-slate-800,
+.dark .GeekTabs-card .text-slate-700,
+.dark .GeekTabs-card .text-slate-600,
+.dark .GeekTabs-card .text-gray-900,
+.dark .GeekTabs-card .text-gray-800,
+.dark .GeekTabs-card .text-gray-700,
+.dark .GeekTabs-card .text-gray-600,
+.dark .GeekTabs-card .text-neutral-900,
+.dark .GeekTabs-card .text-neutral-800,
+.dark .GeekTabs-card .text-neutral-700,
+.dark .GeekTabs-card .text-neutral-600,
+.dark .GeekTabs-card .text-zinc-900,
+.dark .GeekTabs-card .text-zinc-800,
+.dark .GeekTabs-card .text-zinc-700,
+.dark .GeekTabs-card .text-zinc-600 {
+  color: #ffffff !important;
+}
+
+.dark .GeekTabs-card .dark\:bg-white\/5,
+.dark .GeekTabs-card .bg-slate-50,
+.dark .GeekTabs-card .bg-slate-100 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .GeekTabs-card .dark\:bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.dark .GeekTabs-card .dark\:border-white\/10,
+.dark .GeekTabs-card .border-slate-200,
+.dark .GeekTabs-card .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.dark .GeekTabs-card .dark\:hover\:bg-white\/5:hover {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.dark .GeekTabs-card .dark\:hover\:bg-white\/10:hover {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Input, Textareas, Options styling inside dark cards */
+.dark .GeekTabs-card input,
+.dark .GeekTabs-card textarea,
+.dark .GeekTabs-card select {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+.dark .GeekTabs-card input::placeholder,
+.dark .GeekTabs-card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.dark .GeekTabs-card .text-white,
+.dark .GeekTabs-card .dark\:text-slate-100,
+.dark .GeekTabs-card .dark\:text-slate-200,
+.dark .GeekTabs-card .dark\:text-slate-300,
+.dark .GeekTabs-card .dark\:text-slate-400,
+.dark .GeekTabs-card .dark\:text-neutral-100,
+.dark .GeekTabs-card .dark\:text-neutral-200,
+.dark .GeekTabs-card .dark\:text-neutral-300,
+.dark .GeekTabs-card .dark\:text-neutral-400,
+.dark .GeekTabs-card .dark\:text-gray-100,
+.dark .GeekTabs-card .dark\:text-gray-200,
+.dark .GeekTabs-card .dark\:text-zinc-100,
+.dark .GeekTabs-card .dark\:text-zinc-200 {
+  color: #ffffff !important;
+}
+
+.light .GeekTabs-card {
+  /* Inherited from above */
+}
+
+.GeekTabs-card:hover {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(60,64,67,0.1), 0 4px 12px rgba(60,64,67,0.05) !important;
+}
+
+.dark .GeekTabs-card:hover {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+.card-style-white .GeekTabs-card:hover {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(60,64,67,0.1), 0 4px 12px rgba(60,64,67,0.05) !important;
+}
+
+.card-style-dark-glass .GeekTabs-card:hover {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* Custom buttons */
+.GeekTabs-btn {
+  @apply transition-all duration-300;
+  @apply backdrop-blur-xl border border-black/10 dark:border-white/10;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark mode semi-transparent */
+  color: #ffffff;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.light .GeekTabs-btn {
+  background-color: rgba(255, 255, 255, 0.5); /* Light mode semi-transparent */
+  color: #333333;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.GeekTabs-btn:hover {
+  @apply border-black/20 dark:border-white/20;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.light .GeekTabs-btn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Custom Scrollbar for Widgets */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-black/10 dark:bg-white/10;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-black/20 dark:bg-white/20;
+}
+
+/* ==========================================
+   CUSTOM WEB-CARD DISPLAY MODES
+   ========================================== */
+
+/* Mode 1: Colorful Pastel Web-Card Display (Matching Uploaded Design) */
+.card-style-white .GeekTabs-card {
+  background: linear-gradient(135deg, #d8effc 0%, #e4e8fc 50%, #f1e4fb 100%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1.5px solid #aab7f8 !important;
+  box-shadow: 0 10px 28px -4px rgba(99, 102, 241, 0.2), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+  color: #0f172a !important;
+}
+
+.card-style-white .card-pastel-sky {
+  background: linear-gradient(145deg, #d8f1fc 0%, #c6e9fb 100%) !important;
+  border: 1.5px solid #8ecbf9 !important;
+  box-shadow: 0 12px 28px -4px rgba(56, 189, 248, 0.25), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .card-pastel-white {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04) !important;
+  color: #0f172a !important;
+}
+
+.card-style-white .card-pastel-blue {
+  background: linear-gradient(145deg, #d4f0fc 0%, #c2e6fa 100%) !important;
+  border: 1.5px solid #7eccf8 !important;
+  box-shadow: 0 12px 28px -4px rgba(14, 165, 233, 0.25), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .card-pastel-orange {
+  background: linear-gradient(145deg, #fff2e7 0%, #fee3ce 100%) !important;
+  border: 1.5px solid #fdba74 !important;
+  box-shadow: 0 12px 28px -4px rgba(249, 115, 22, 0.25), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .card-pastel-lavender {
+  background: linear-gradient(145deg, #eaedfd 0%, #dde1fc 100%) !important;
+  border: 1.5px solid #b2bcf7 !important;
+  box-shadow: 0 12px 28px -4px rgba(99, 102, 241, 0.25), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .card-pastel-lilac {
+  background: linear-gradient(145deg, #f7ebfd 0%, #ecdbfb 100%) !important;
+  border: 1.5px solid #d9b8f6 !important;
+  box-shadow: 0 12px 28px -4px rgba(168, 85, 247, 0.25), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .GeekTabs-card h1,
+.card-style-white .GeekTabs-card h2,
+.card-style-white .GeekTabs-card h3,
+.card-style-white .GeekTabs-card h4,
+.card-style-white .GeekTabs-card h5,
+.card-style-white .GeekTabs-card h6 {
+  color: #1f1f1f !important;
+}
+
+.card-style-white .GeekTabs-card .word-color,
+.card-style-white .GeekTabs-card svg.word-color {
+  color: #1f1f1f !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:text-white,
+.card-style-white .GeekTabs-card .text-white {
+  color: #1f1f1f !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:text-white\/40,
+.card-style-white .GeekTabs-card .dark\:text-slate-400,
+.card-style-white .GeekTabs-card .text-slate-400,
+.card-style-white .GeekTabs-card .text-gray-400,
+.card-style-white .GeekTabs-card .text-neutral-400,
+.card-style-white .GeekTabs-card .text-zinc-400 {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:text-white\/60,
+.card-style-white .GeekTabs-card .dark\:text-slate-300,
+.card-style-white .GeekTabs-card .text-slate-500,
+.card-style-white .GeekTabs-card .text-gray-500,
+.card-style-white .GeekTabs-card .text-neutral-500,
+.card-style-white .GeekTabs-card .text-zinc-500 {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:text-white\/10,
+.card-style-white .GeekTabs-card .dark\:text-white\/20,
+.card-style-white .GeekTabs-card .dark\:text-white\/30,
+.card-style-white .GeekTabs-card .dark\:text-white\/50,
+.card-style-white .GeekTabs-card .dark\:text-white\/70,
+.card-style-white .GeekTabs-card .dark\:text-white\/80,
+.card-style-white .GeekTabs-card .dark\:text-white\/90,
+.card-style-white .GeekTabs-card .dark\:text-slate-200,
+.card-style-white .GeekTabs-card .text-slate-900,
+.card-style-white .GeekTabs-card .text-slate-800,
+.card-style-white .GeekTabs-card .text-slate-700,
+.card-style-white .GeekTabs-card .text-slate-600,
+.card-style-white .GeekTabs-card .text-gray-900,
+.card-style-white .GeekTabs-card .text-gray-800,
+.card-style-white .GeekTabs-card .text-gray-700,
+.card-style-white .GeekTabs-card .text-gray-600,
+.card-style-white .GeekTabs-card .text-neutral-900,
+.card-style-white .GeekTabs-card .text-neutral-800,
+.card-style-white .GeekTabs-card .text-neutral-700,
+.card-style-white .GeekTabs-card .text-neutral-600,
+.card-style-white .GeekTabs-card .text-zinc-900,
+.card-style-white .GeekTabs-card .text-zinc-800,
+.card-style-white .GeekTabs-card .text-zinc-700,
+.card-style-white .GeekTabs-card .text-zinc-600 {
+  color: #1f1f1f !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:bg-white\/5,
+.card-style-white .GeekTabs-card .bg-slate-50,
+.card-style-white .GeekTabs-card .bg-slate-100 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:border-white\/10,
+.card-style-white .GeekTabs-card .border-slate-200,
+.card-style-white .GeekTabs-card .border-slate-300 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:hover\:bg-white\/5:hover {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:hover\:bg-white\/10:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-style-white .GeekTabs-card input,
+.card-style-white .GeekTabs-card textarea,
+.card-style-white .GeekTabs-card select {
+  color: #1f1f1f !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-style-white .GeekTabs-card input::placeholder,
+.card-style-white .GeekTabs-card textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.card-style-white .GeekTabs-card .dark\:text-slate-100,
+.card-style-white .GeekTabs-card .dark\:text-slate-200,
+.card-style-white .GeekTabs-card .dark\:text-slate-300,
+.card-style-white .GeekTabs-card .dark\:text-slate-400,
+.card-style-white .GeekTabs-card .dark\:text-neutral-100,
+.card-style-white .GeekTabs-card .dark\:text-neutral-200,
+.card-style-white .GeekTabs-card .dark\:text-neutral-300,
+.card-style-white .GeekTabs-card .dark\:text-neutral-400,
+.card-style-white .GeekTabs-card .dark\:text-gray-100,
+.card-style-white .GeekTabs-card .dark\:text-gray-200,
+.card-style-white .GeekTabs-card .dark\:text-zinc-100,
+.card-style-white .GeekTabs-card .dark\:text-zinc-200 {
+  color: #1f1f1f !important;
+}
+
+.card-style-white .GeekTabs-card ol,
+.card-style-white .GeekTabs-card li,
+.card-style-white .GeekTabs-card li span {
+  color: #1f1f1f !important;
+}
+
+/* Override default bookmark backgrounds when card style is white */
+.card-style-white .bg-white.dark\:bg-\[\#202025\],
+.card-style-white .dark\:bg-\[\#202025\],
+.card-style-white .bg-white.dark\:bg-\[\#202020\],
+.card-style-white .dark\:bg-\[\#202020\],
+.card-style-white .bg-white\/40.dark\:bg-\[\#1e1f25\]\/40 {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #1f1f1f !important;
+}
+.card-style-white .bg-white.dark\:bg-\[\#202025\] span,
+.card-style-white .bg-white.dark\:bg-\[\#202025\] div,
+.card-style-white .dark\:bg-\[\#202025\] span,
+.card-style-white .dark\:bg-\[\#202025\] div,
+.card-style-white .bg-white.dark\:bg-\[\#202020\] span,
+.card-style-white .bg-white.dark\:bg-\[\#202020\] div,
+.card-style-white .dark\:bg-\[\#202020\] span,
+.card-style-white .dark\:bg-\[\#202020\] div {
+  color: #1f1f1f !important;
+}
+
+/* Mode 2: Transparent Glass Background & High-Contrast Readability Across Themes */
+
+/* --- DARK BACKGROUNDS: White text and ambient shadow for dark themes --- */
+.dark.card-style-dark-glass .GeekTabs-card,
+.dark .card-style-dark-glass .GeekTabs-card,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card,
+[data-bg-light="false"] .card-style-dark-glass .GeekTabs-card {
+  background: rgba(18, 22, 34, 0.32) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .weather-huawei-style,
+.dark .card-style-dark-glass .weather-huawei-style,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style,
+[data-bg-light="false"] .card-style-dark-glass .weather-huawei-style {
+  background: rgba(18, 22, 34, 0.38) !important;
+  background-color: rgba(18, 22, 34, 0.38) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .weather-subcard,
+.dark .card-style-dark-glass .weather-subcard,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard,
+[data-bg-light="false"] .card-style-dark-glass .weather-subcard {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .weather-subcard:hover,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card h1,
+.dark.card-style-dark-glass .GeekTabs-card h2,
+.dark.card-style-dark-glass .GeekTabs-card h3,
+.dark.card-style-dark-glass .GeekTabs-card h4,
+.dark.card-style-dark-glass .GeekTabs-card h5,
+.dark.card-style-dark-glass .GeekTabs-card h6,
+.dark.card-style-dark-glass .weather-huawei-style h1,
+.dark.card-style-dark-glass .weather-huawei-style h2,
+.dark.card-style-dark-glass .weather-huawei-style h3,
+.dark.card-style-dark-glass .weather-huawei-style h4,
+.dark.card-style-dark-glass .weather-huawei-style h5,
+.dark.card-style-dark-glass .weather-huawei-style h6,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card h1,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card h2,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card h3,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style h1,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style h2,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style h3 {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65), 0 0 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .word-color,
+.dark.card-style-dark-glass .GeekTabs-card svg.word-color,
+.dark.card-style-dark-glass .weather-huawei-style .word-color,
+.dark.card-style-dark-glass .weather-huawei-style svg.word-color,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .word-color,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style .word-color {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .text-white,
+.dark.card-style-dark-glass .weather-huawei-style .text-white,
+.dark.card-style-dark-glass .weather-subcard .text-white,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-white,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style .text-white,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard .text-white {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .text-black,
+.dark.card-style-dark-glass .GeekTabs-card .text-slate-900,
+.dark.card-style-dark-glass .GeekTabs-card .text-slate-800,
+.dark.card-style-dark-glass .GeekTabs-card .text-slate-700,
+.dark.card-style-dark-glass .GeekTabs-card .text-slate-600,
+.dark.card-style-dark-glass .GeekTabs-card .text-gray-900,
+.dark.card-style-dark-glass .GeekTabs-card .text-neutral-900,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-black,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-slate-900,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-slate-800 {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-white\/40,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-slate-400,
+.dark.card-style-dark-glass .GeekTabs-card .text-slate-400,
+.dark.card-style-dark-glass .GeekTabs-card .text-gray-400,
+.dark.card-style-dark-glass .GeekTabs-card .text-neutral-400,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:text-white\/40,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-slate-400 {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-white\/60,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-slate-300,
+.dark.card-style-dark-glass .GeekTabs-card .text-slate-500,
+.dark.card-style-dark-glass .GeekTabs-card .text-gray-500,
+.dark.card-style-dark-glass .GeekTabs-card .text-neutral-500,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .text-slate-500 {
+  color: rgba(255, 255, 255, 0.88) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark.card-style-dark-glass .weather-huawei-style p,
+.dark.card-style-dark-glass .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+.dark.card-style-dark-glass .weather-subcard p,
+.dark.card-style-dark-glass .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style p,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard p {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55) !important;
+}
+
+.dark.card-style-dark-glass .weather-huawei-style button,
+.dark.card-style-dark-glass .weather-huawei-style .text-slate-400,
+.dark.card-style-dark-glass .weather-subcard button,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style button,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard button {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.dark.card-style-dark-glass .weather-huawei-style button:hover,
+.dark.card-style-dark-glass .weather-subcard button:hover,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style button:hover,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard button:hover {
+  color: #ffffff !important;
+}
+
+/* Red accent indicators */
+.weather-huawei-style .bg-\[\#c8102e\] {
+  background-color: #c8102e !important;
+}
+
+.weather-huawei-style svg.text-\[\#c8102e\],
+.weather-subcard svg.text-\[\#c8102e\] {
+  color: #c8102e !important;
+}
+
+/* =========================================================================
+   LIGHT BACKGROUNDS: Crystal Glass Style with High-Contrast Legible Dark Text
+   Applies to default background (pastel-waves), decorated white (white-clean),
+   and all light solid/gradient backgrounds similar to white.
+   ========================================================================= */
+
+/* Translucent Glass Card on Light Backgrounds with Light Blue Edge */
+[data-bg-light="true"].card-style-dark-glass .GeekTabs-card,
+[data-bg-light="true"] .card-style-dark-glass .GeekTabs-card,
+[data-bg-light="true"].card-style-dark-glass .webcard-light-grey-bg,
+[data-bg-light="true"].card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg {
+  background: rgba(255, 255, 255, 0.48) !important;
+  background-color: rgba(255, 255, 255, 0.48) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 16px 40px -8px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
+  color: #6143f7 !important;
+}
+
+/* Base Headings on Light Backgrounds - Blue matching Setting Color #6143f7 */
+[data-bg-light="true"] .GeekTabs-card h1,
+[data-bg-light="true"] .GeekTabs-card h2,
+[data-bg-light="true"] .GeekTabs-card h3,
+[data-bg-light="true"] .GeekTabs-card h4,
+[data-bg-light="true"] .GeekTabs-card h5,
+[data-bg-light="true"] .GeekTabs-card h6,
+[data-bg-light="true"] .weather-huawei-style h1,
+[data-bg-light="true"] .weather-huawei-style h2,
+[data-bg-light="true"] .weather-huawei-style h3,
+[data-bg-light="true"] .weather-huawei-style h4,
+[data-bg-light="true"] .weather-subcard h1,
+[data-bg-light="true"] .weather-subcard h2,
+[data-bg-light="true"] .weather-subcard h3,
+.light .GeekTabs-card h1,
+.light .GeekTabs-card h2,
+.light .GeekTabs-card h3,
+.light .GeekTabs-card h4,
+.light .weather-huawei-style h1,
+.light .weather-huawei-style h2,
+.light .weather-huawei-style h3,
+.light .weather-subcard h1,
+.light .weather-subcard h2,
+.light .weather-subcard h3 {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+  font-weight: 800 !important;
+}
+
+/* Home Page Clock & Greeting on Light Backgrounds - Blue matching Setting Color #6143f7 */
+[data-bg-light="true"] .word-color,
+[data-bg-light="true"] svg.word-color,
+.light .word-color,
+.light svg.word-color {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Primary text colors on light backgrounds - Blue matching Setting Color #6143f7 */
+[data-bg-light="true"] .GeekTabs-card .text-black,
+[data-bg-light="true"] .GeekTabs-card .text-slate-900,
+[data-bg-light="true"] .GeekTabs-card .text-slate-800,
+[data-bg-light="true"] .GeekTabs-card .text-gray-900,
+[data-bg-light="true"] .GeekTabs-card .text-neutral-900,
+[data-bg-light="true"] .GeekTabs-card .text-zinc-900,
+[data-bg-light="true"] .weather-huawei-style .text-black,
+[data-bg-light="true"] .weather-huawei-style .text-slate-900,
+[data-bg-light="true"] .weather-huawei-style .text-slate-800,
+[data-bg-light="true"] .weather-subcard .text-black,
+[data-bg-light="true"] .weather-subcard .text-slate-900,
+[data-bg-light="true"] .weather-subcard .text-slate-800,
+.light .GeekTabs-card .text-black,
+.light .GeekTabs-card .text-slate-900,
+.light .GeekTabs-card .text-slate-800,
+.light .weather-huawei-style .text-black,
+.light .weather-huawei-style .text-slate-900,
+.light .weather-huawei-style .text-slate-800,
+.light .weather-subcard .text-black,
+.light .weather-subcard .text-slate-900,
+.light .weather-subcard .text-slate-800 {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Body copy, descriptions & secondary text - #6143f7 */
+[data-bg-light="true"] .GeekTabs-card p:not(.daily-card-content-text),
+[data-bg-light="true"] .GeekTabs-card .text-slate-700,
+[data-bg-light="true"] .GeekTabs-card .text-slate-600,
+[data-bg-light="true"] .GeekTabs-card .text-gray-700,
+[data-bg-light="true"] .GeekTabs-card .text-neutral-700,
+[data-bg-light="true"] .GeekTabs-card .text-black\/60,
+[data-bg-light="true"] .weather-huawei-style p:not(.daily-card-content-text),
+[data-bg-light="true"] .weather-subcard p:not(.weather-card-item-text),
+.light .GeekTabs-card p:not(.daily-card-content-text),
+.light .GeekTabs-card .text-black\/60,
+.light .weather-huawei-style p:not(.daily-card-content-text),
+.light .weather-subcard p:not(.weather-card-item-text) {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Sub-labels, uppercase hints, and muted text */
+[data-bg-light="true"] .GeekTabs-card p.text-black\/40,
+[data-bg-light="true"] .GeekTabs-card .text-black\/40,
+[data-bg-light="true"] .GeekTabs-card .dark\:text-white\/40,
+[data-bg-light="true"] .GeekTabs-card .dark\:text-slate-400,
+[data-bg-light="true"] .GeekTabs-card .text-slate-500,
+[data-bg-light="true"] .GeekTabs-card .text-slate-400,
+[data-bg-light="true"] .GeekTabs-card .text-gray-500,
+[data-bg-light="true"] .GeekTabs-card .text-gray-400,
+[data-bg-light="true"] .GeekTabs-card .text-neutral-500,
+[data-bg-light="true"] .GeekTabs-card .text-neutral-400,
+[data-bg-light="true"] .weather-huawei-style .text-slate-400,
+[data-bg-light="true"] .weather-huawei-style .text-slate-500,
+[data-bg-light="true"] .weather-huawei-style .dark\:text-slate-400,
+[data-bg-light="true"] .weather-subcard .text-slate-400,
+[data-bg-light="true"] .weather-subcard .text-slate-500,
+[data-bg-light="true"] .weather-subcard .dark\:text-slate-400,
+.light .GeekTabs-card .text-black\/40,
+.light .GeekTabs-card .dark\:text-white\/40,
+.light .weather-huawei-style .text-slate-400,
+.light .weather-subcard .text-slate-400 {
+  color: #7c5dfa !important;
+  text-shadow: none !important;
+}
+
+/* Buttons and clickable triggers in weather cards on light backgrounds */
+[data-bg-light="true"] .weather-huawei-style button,
+[data-bg-light="true"] .weather-subcard button,
+.light .weather-huawei-style button,
+.light .weather-subcard button {
+  color: #6143f7 !important;
+}
+
+[data-bg-light="true"] .weather-huawei-style button:hover,
+[data-bg-light="true"] .weather-subcard button:hover,
+.light .weather-huawei-style button:hover,
+.light .weather-subcard button:hover {
+  color: #4f32e6 !important;
+}
+
+/* Section titles / labels (e.g. CUSTOM BOARD NAME, LANGUAGE SELECTION) */
+[data-bg-light="true"] .GeekTabs-card label:not(.bg-indigo-500):not(.bg-indigo-600):not(.settings-backup-import-btn):not([class*="cursor-pointer"]),
+[data-bg-light="true"] .GeekTabs-card .text-indigo-600,
+[data-bg-light="true"] .GeekTabs-card .dark\:text-indigo-400,
+.light .GeekTabs-card label:not(.bg-indigo-500):not(.bg-indigo-600):not(.settings-backup-import-btn):not([class*="cursor-pointer"]) {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+  font-weight: 800 !important;
+}
+
+/* Neutral spans, list items, and descriptions */
+[data-bg-light="true"] .GeekTabs-card span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-indigo"]):not([class*="text-violet"]):not([class*="text-emerald"]):not([class*="text-green"]):not([class*="text-white"]):not(.settings-option-selected *):not(.settings-nav-active-btn *):not(.settings-nav-active-label):not(.settings-nav-active-icon):not([class*="settings-nav-active"]):not(.browser-nav-active-btn *):not(.browser-nav-active-label):not([class*="browser-nav-active"]):not(.custom-hex-apply-btn *):not(.custom-hex-btn-text),
+[data-bg-light="true"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-indigo"]):not([class*="text-violet"]):not([class*="text-emerald"]):not([class*="text-green"]):not([class*="text-white"]):not(.settings-option-selected *),
+[data-bg-light="true"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-indigo"]):not([class*="text-violet"]):not([class*="text-emerald"]):not([class*="text-green"]):not([class*="text-white"]):not(.settings-option-selected *),
+.light .GeekTabs-card span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-indigo"]):not([class*="text-violet"]):not([class*="text-emerald"]):not([class*="text-green"]):not([class*="text-white"]):not(.settings-option-selected *):not(.settings-nav-active-btn *):not(.settings-nav-active-label):not(.settings-nav-active-icon):not([class*="settings-nav-active"]):not(.browser-nav-active-btn *):not(.browser-nav-active-label):not([class*="browser-nav-active"]):not(.custom-hex-apply-btn *):not(.custom-hex-btn-text),
+.light .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-indigo"]):not([class*="text-violet"]):not([class*="text-emerald"]):not([class*="text-green"]):not([class*="text-white"]):not(.settings-option-selected *),
+.light .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-indigo"]):not([class*="text-violet"]):not([class*="text-emerald"]):not([class*="text-green"]):not([class*="text-white"]):not(.settings-option-selected *) {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Inputs, Textareas, Selects on light backgrounds */
+[data-bg-light="true"] .GeekTabs-card input,
+[data-bg-light="true"] .GeekTabs-card textarea,
+[data-bg-light="true"] .GeekTabs-card select,
+.light .GeekTabs-card input,
+.light .GeekTabs-card textarea,
+.light .GeekTabs-card select {
+  color: #6143f7 !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(147, 197, 253, 0.6) !important;
+}
+
+[data-bg-light="true"] .GeekTabs-card input::placeholder,
+[data-bg-light="true"] .GeekTabs-card textarea::placeholder,
+.light .GeekTabs-card input::placeholder,
+.light .GeekTabs-card textarea::placeholder {
+  color: #c4b5fd !important;
+}
+
+/* Calculator buttons, display, and numbers on light backgrounds */
+[data-bg-light="true"] .calculator-tab-card,
+[data-bg-light="true"] .calculator-tab-card *,
+[data-bg-light="true"] .calculator-tab-card .word-color,
+[data-bg-light="true"] .calculator-btn:not(.calculator-equals-btn),
+[data-bg-light="true"] .calculator-btn:not(.calculator-equals-btn) *,
+[data-bg-light="true"] .calculator-display-main,
+[data-bg-light="true"] .calculator-display-history,
+.light .calculator-tab-card,
+.light .calculator-tab-card *,
+.light .calculator-btn:not(.calculator-equals-btn),
+.light .calculator-btn:not(.calculator-equals-btn) * {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+[data-bg-light="true"] .calculator-btn:not(.calculator-equals-btn),
+.light .calculator-btn:not(.calculator-equals-btn) {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+}
+
+[data-bg-light="true"] .calculator-btn:not(.calculator-equals-btn):hover,
+.light .calculator-btn:not(.calculator-equals-btn):hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(96, 165, 250, 0.75) !important;
+}
+
+/* Speed Test on light backgrounds */
+[data-bg-light="true"] .speedtest-tab-card,
+[data-bg-light="true"] .speedtest-tab-card h1,
+[data-bg-light="true"] .speedtest-tab-card h2,
+[data-bg-light="true"] .speedtest-tab-card h3,
+[data-bg-light="true"] .speedtest-tab-card p,
+[data-bg-light="true"] .speedtest-tab-card span:not(.speedtest-btn-text),
+[data-bg-light="true"] .speedtest-tab-card div:not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-action-button):not(.speedtest-action-button *),
+[data-bg-light="true"] .speedtest-tab-card .word-color,
+.light .speedtest-tab-card,
+.light .speedtest-tab-card h1,
+.light .speedtest-tab-card h2,
+.light .speedtest-tab-card h3,
+.light .speedtest-tab-card p,
+.light .speedtest-tab-card span:not(.speedtest-btn-text) {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+[data-bg-light="true"] .speedtest-tab-card .opacity-40,
+[data-bg-light="true"] .speedtest-tab-card .opacity-50,
+[data-bg-light="true"] .speedtest-tab-card .opacity-60,
+.light .speedtest-tab-card .opacity-40,
+.light .speedtest-tab-card .opacity-50,
+.light .speedtest-tab-card .opacity-60 {
+  color: #7c5dfa !important;
+  opacity: 1 !important;
+}
+
+/* IP Address on light backgrounds */
+[data-bg-light="true"] .ipaddress-tab-card,
+[data-bg-light="true"] .ipaddress-tab-card h1,
+[data-bg-light="true"] .ipaddress-tab-card h2,
+[data-bg-light="true"] .ipaddress-tab-card h3,
+[data-bg-light="true"] .ipaddress-tab-card p,
+[data-bg-light="true"] .ipaddress-tab-card span,
+[data-bg-light="true"] .ipaddress-tab-card div,
+[data-bg-light="true"] .ipaddress-tab-card .word-color,
+.light .ipaddress-tab-card,
+.light .ipaddress-tab-card h1,
+.light .ipaddress-tab-card h2,
+.light .ipaddress-tab-card h3,
+.light .ipaddress-tab-card p,
+.light .ipaddress-tab-card span {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+[data-bg-light="true"] .ipaddress-tab-card .opacity-40,
+[data-bg-light="true"] .ipaddress-tab-card .opacity-50,
+[data-bg-light="true"] .ipaddress-tab-card .opacity-60,
+[data-bg-light="true"] .ipaddress-tab-card .opacity-70,
+.light .ipaddress-tab-card .opacity-40,
+.light .ipaddress-tab-card .opacity-50,
+.light .ipaddress-tab-card .opacity-60,
+.light .ipaddress-tab-card .opacity-70 {
+  color: #7c5dfa !important;
+  opacity: 1 !important;
+}
+
+/* Bookmarks on light backgrounds with Light Blue Edge */
+[data-bg-light="true"] .bookmark-webcard,
+.light .bookmark-webcard {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.8) !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08), inset 0 1px 1px rgba(224, 242, 254, 0.95) !important;
+  color: #6143f7 !important;
+}
+
+[data-bg-light="true"] .bookmark-webcard:hover,
+.light .bookmark-webcard:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(96, 165, 250, 0.95) !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15), inset 0 1px 1px #ffffff !important;
+}
+
+[data-bg-light="true"] .bookmark-webcard *:not(.bookmark-link-title),
+.light .bookmark-webcard *:not(.bookmark-link-title) {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+[data-bg-light="true"] .bookmark-cat-pill:not(.bg-indigo-500),
+.light .bookmark-cat-pill:not(.bg-indigo-500) {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+[data-bg-light="true"] .bookmark-cat-pill:not(.bg-indigo-500):hover,
+.light .bookmark-cat-pill:not(.bg-indigo-500):hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(96, 165, 250, 0.7) !important;
+}
+
+[data-bg-light="true"] .bookmark-cat-pill:not(.bg-indigo-500) *,
+.light .bookmark-cat-pill:not(.bg-indigo-500) * {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Custom text color support: explicitly overrides default when custom color is set in Text tab */
+[data-has-custom-text="true"] .word-color,
+[data-has-custom-text="true"] svg.word-color,
+[data-has-custom-text="true"] .GeekTabs-card .word-color,
+[data-has-custom-text="true"] .GeekTabs-card svg.word-color,
+[data-has-custom-text="true"] .weather-huawei-style .word-color,
+[data-has-custom-text="true"] .weather-huawei-style svg.word-color,
+[data-has-custom-text="true"] .weather-subcard .word-color,
+[data-has-custom-text="true"] .weather-subcard svg.word-color {
+  color: var(--custom-page-text-color) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5,
+.dark.card-style-dark-glass .GeekTabs-card .bg-slate-50,
+.dark.card-style-dark-glass .GeekTabs-card .bg-slate-100,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .dark\:border-white\/10,
+.dark.card-style-dark-glass .GeekTabs-card .border-slate-200,
+.dark.card-style-dark-glass .GeekTabs-card .border-slate-300,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card input,
+.dark.card-style-dark-glass .GeekTabs-card textarea,
+.dark.card-style-dark-glass .GeekTabs-card select,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card input,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card textarea,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card select {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card select option,
+.dark.card-style-dark-glass select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card input::placeholder,
+.dark.card-style-dark-glass .GeekTabs-card textarea::placeholder,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card input::placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-slate-100,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-slate-200,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-slate-300,
+.dark.card-style-dark-glass .GeekTabs-card .dark\:text-slate-400,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:text-slate-100 {
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card ol,
+.dark.card-style-dark-glass .GeekTabs-card li,
+.dark.card-style-dark-glass .GeekTabs-card li span,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card li {
+  color: #ffffff !important;
+}
+
+/* Bookmark cards on dark backgrounds */
+.dark.card-style-dark-glass .bookmark-webcard,
+[data-bg-light="false"].card-style-dark-glass .bookmark-webcard {
+  background: rgba(18, 22, 34, 0.32) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .bookmark-webcard:hover,
+[data-bg-light="false"].card-style-dark-glass .bookmark-webcard:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.36) !important;
+  box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500),
+[data-bg-light="false"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500) {
+  background: rgba(10, 14, 26, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.dark.card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
+[data-bg-light="false"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover {
+  background: rgba(18, 24, 40, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .bookmark-webcard *,
+.dark.card-style-dark-glass .bookmark-cat-pill *,
+[data-bg-light="false"].card-style-dark-glass .bookmark-webcard * {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+@media (max-width: 767px) {
+  .bookmark-add-cat-btn {
+    width: var(--standard-cat-width, 180px) !important;
+    height: 38px !important;
+  }
+}
+
+/* Settings: Text Tab on dark backgrounds */
+.dark.card-style-dark-glass .text-tab-card,
+[data-bg-light="false"].card-style-dark-glass .text-tab-card {
+  background: rgba(18, 22, 34, 0.32) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .text-tab-card h3,
+.dark.card-style-dark-glass .text-tab-card h4,
+[data-bg-light="false"].card-style-dark-glass .text-tab-card h3 {
+  color: #ffffff !important;
+}
+
+/* Settings: Themes Tab on dark backgrounds */
+.dark.card-style-dark-glass .themes-tab-card,
+[data-bg-light="false"].card-style-dark-glass .themes-tab-card {
+  background: rgba(18, 22, 34, 0.32) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .themes-tab-card h3,
+.dark.card-style-dark-glass .themes-tab-card h4,
+[data-bg-light="false"].card-style-dark-glass .themes-tab-card h3 {
+  color: #ffffff !important;
+}
+
+/* Settings: Themes Tab & Text Tab on light/default backgrounds with transparent glass style */
+[data-bg-light="true"].card-style-dark-glass .themes-tab-card,
+[data-bg-light="true"] .card-style-dark-glass .themes-tab-card,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card {
+  background: rgba(255, 255, 255, 0.48) !important;
+  background-color: rgba(255, 255, 255, 0.48) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 16px 40px -8px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
+  color: #6143f7 !important;
+}
+
+[data-bg-light="true"].card-style-dark-glass .themes-tab-card h3,
+[data-bg-light="true"].card-style-dark-glass .themes-tab-card h4,
+[data-bg-light="true"].card-style-dark-glass .themes-tab-card p,
+[data-bg-light="true"] .card-style-dark-glass .themes-tab-card h3,
+[data-bg-light="true"] .card-style-dark-glass .themes-tab-card h4,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card h3,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card h4,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card p,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card h3,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card h4 {
+  color: #6143f7 !important;
+}
+
+/* Settings outer card when on color or text tab under transparent glass mode and default light backgrounds */
+.settings-color-text-glass-bg,
+[data-bg-light="true"].card-style-dark-glass .settings-color-text-glass-bg,
+[data-bg-light="true"] .card-style-dark-glass .settings-color-text-glass-bg {
+  background: rgba(255, 255, 255, 0.48) !important;
+  background-color: rgba(255, 255, 255, 0.48) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 16px 40px -8px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
+}
+
+/* Settings sidebar: active menu button styled in purple with white text & icon */
+.settings-nav-active-btn,
+.settings-nav-active-btn *,
+.settings-nav-active-btn span,
+.settings-nav-active-btn svg,
+.settings-nav-active-label,
+.settings-nav-active-icon,
+.card-style-white .settings-nav-active-btn,
+.card-style-white .settings-nav-active-btn *,
+.card-style-white .settings-nav-active-btn span,
+.card-style-white .settings-nav-active-btn svg,
+.card-style-white .settings-nav-active-label,
+.card-style-white .settings-nav-active-icon,
+.card-style-white .GeekTabs-card .settings-nav-active-btn,
+.card-style-white .GeekTabs-card .settings-nav-active-btn *,
+.card-style-white .GeekTabs-card .settings-nav-active-btn span,
+.card-style-white .GeekTabs-card .settings-nav-active-btn svg,
+.card-style-white .GeekTabs-card .settings-nav-active-label,
+.card-style-white .GeekTabs-card .settings-nav-active-icon,
+.card-style-dark-glass .settings-nav-active-btn,
+.card-style-dark-glass .settings-nav-active-btn *,
+.card-style-dark-glass .settings-nav-active-btn span,
+.card-style-dark-glass .settings-nav-active-btn svg,
+.card-style-dark-glass .settings-nav-active-label,
+.card-style-dark-glass .settings-nav-active-icon,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-btn,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-btn *,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-btn span,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-btn svg,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-label,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-icon,
+[data-bg-light="true"] .settings-nav-active-btn,
+[data-bg-light="true"] .settings-nav-active-btn *,
+[data-bg-light="true"] .settings-nav-active-btn span,
+[data-bg-light="true"] .settings-nav-active-btn svg,
+[data-bg-light="true"] .settings-nav-active-label,
+[data-bg-light="true"] .settings-nav-active-icon,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn *,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn span,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn svg,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-label,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-icon,
+[data-bg-light="true"] .webcard-light-grey-bg .settings-nav-active-btn,
+[data-bg-light="true"] .webcard-light-grey-bg .settings-nav-active-btn *,
+[data-bg-light="true"] .webcard-light-grey-bg .settings-nav-active-btn span,
+[data-bg-light="true"] .webcard-light-grey-bg .settings-nav-active-btn svg,
+[data-bg-light="true"] .webcard-light-grey-bg .settings-nav-active-label,
+[data-bg-light="true"] .webcard-light-grey-bg .settings-nav-active-icon,
+.light .settings-nav-active-btn,
+.light .settings-nav-active-btn *,
+.light .settings-nav-active-btn span,
+.light .settings-nav-active-btn svg,
+.light .settings-nav-active-label,
+.light .settings-nav-active-icon,
+.dark .settings-nav-active-btn,
+.dark .settings-nav-active-btn * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  background-color: #6143f7 !important;
+  border-color: #6143f7 !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35) !important;
+}
+
+.settings-nav-active-btn:hover,
+.settings-nav-active-btn:hover *,
+.settings-nav-active-btn:hover span,
+.settings-nav-active-btn:hover svg,
+.card-style-white .GeekTabs-card .settings-nav-active-btn:hover,
+.card-style-white .GeekTabs-card .settings-nav-active-btn:hover *,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-btn:hover,
+.card-style-dark-glass .GeekTabs-card .settings-nav-active-btn:hover * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  background-color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+}
+
+/* Ensure Save and Import buttons with bg-indigo-500 retain white text & icon */
+.card-style-white .GeekTabs-card button.bg-indigo-500,
+.card-style-white .GeekTabs-card button.bg-indigo-500 *,
+.card-style-white .GeekTabs-card label.bg-indigo-500,
+.card-style-white .GeekTabs-card label.bg-indigo-500 *,
+.card-style-white .GeekTabs-card .settings-backup-import-btn,
+.card-style-white .GeekTabs-card .settings-backup-import-btn *,
+.card-style-dark-glass .GeekTabs-card button.bg-indigo-500,
+.card-style-dark-glass .GeekTabs-card button.bg-indigo-500 *,
+.card-style-dark-glass .GeekTabs-card label.bg-indigo-500,
+.card-style-dark-glass .GeekTabs-card label.bg-indigo-500 *,
+.card-style-dark-glass .GeekTabs-card .settings-backup-import-btn,
+.card-style-dark-glass .GeekTabs-card .settings-backup-import-btn *,
+[data-bg-light="true"] .GeekTabs-card button.bg-indigo-500,
+[data-bg-light="true"] .GeekTabs-card button.bg-indigo-500 *,
+[data-bg-light="true"] .GeekTabs-card label.bg-indigo-500,
+[data-bg-light="true"] .GeekTabs-card label.bg-indigo-500 *,
+[data-bg-light="true"] .GeekTabs-card .settings-backup-import-btn,
+[data-bg-light="true"] .GeekTabs-card .settings-backup-import-btn * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Settings Wallpaper tab: Upload File and Add via URL cards - High-contrast visible borders and text */
+.wallpaper-upload-card {
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 1rem !important;
+  transition: all 0.25s ease-in-out !important;
+}
+
+/* Light Mode / Light Backgrounds: Crisp colored dashed frame, light background, dark legible text */
+.wallpaper-upload-card.wallpaper-upload-file-card,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-file-card,
+.light .wallpaper-upload-card.wallpaper-upload-file-card,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-file-card {
+  border: 2px dashed rgba(99, 102, 241, 0.65) !important;
+  border-color: rgba(99, 102, 241, 0.65) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 8px -2px rgba(99, 102, 241, 0.15) !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-file-card:hover,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-file-card:hover,
+.light .wallpaper-upload-card.wallpaper-upload-file-card:hover,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-file-card:hover {
+  border-color: #4f46e5 !important;
+  background-color: #f5f7ff !important;
+  background: #f5f7ff !important;
+  box-shadow: 0 4px 14px -2px rgba(99, 102, 241, 0.25) !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon-box,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon-box,
+.light .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon-box,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon-box {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+  border: 1px solid rgba(99, 102, 241, 0.28) !important;
+  color: #4f46e5 !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon,
+.light .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon {
+  color: #4f46e5 !important;
+  stroke: #4f46e5 !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-text,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-text,
+.light .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-text,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-text {
+  color: #1e1b4b !important;
+  -webkit-text-fill-color: #1e1b4b !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  opacity: 1 !important;
+}
+
+/* URL Card in Light Mode */
+.wallpaper-upload-card.wallpaper-upload-url-card,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-url-card,
+.light .wallpaper-upload-card.wallpaper-upload-url-card,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-url-card {
+  border: 2px dashed rgba(168, 85, 247, 0.65) !important;
+  border-color: rgba(168, 85, 247, 0.65) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 8px -2px rgba(168, 85, 247, 0.15) !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-url-card:hover,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-url-card:hover,
+.light .wallpaper-upload-card.wallpaper-upload-url-card:hover,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-url-card:hover {
+  border-color: #9333ea !important;
+  background-color: #faf5ff !important;
+  background: #faf5ff !important;
+  box-shadow: 0 4px 14px -2px rgba(168, 85, 247, 0.25) !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon-box,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon-box,
+.light .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon-box,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon-box {
+  background-color: rgba(168, 85, 247, 0.12) !important;
+  border: 1px solid rgba(168, 85, 247, 0.28) !important;
+  color: #9333ea !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon,
+.light .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon {
+  color: #9333ea !important;
+  stroke: #9333ea !important;
+}
+
+.wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-text,
+[data-bg-light="true"] .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-text,
+.light .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-text,
+.card-style-white .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-text {
+  color: #3b0764 !important;
+  -webkit-text-fill-color: #3b0764 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  opacity: 1 !important;
+}
+
+/* Dark Mode Overrides: luminous glowing borders, dark translucent bg, white text */
+.dark .wallpaper-upload-card.wallpaper-upload-file-card,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-file-card {
+  border: 2px dashed rgba(97, 67, 247, 0.65) !important;
+  border-color: rgba(97, 67, 247, 0.65) !important;
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  background: rgba(99, 102, 241, 0.08) !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-file-card:hover,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-file-card:hover {
+  border-color: rgba(165, 180, 252, 0.95) !important;
+  background-color: rgba(99, 102, 241, 0.16) !important;
+  background: rgba(99, 102, 241, 0.16) !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon-box,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon-box {
+  background-color: rgba(99, 102, 241, 0.25) !important;
+  border: 1px solid rgba(165, 180, 252, 0.4) !important;
+  color: #a5b4fc !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-icon {
+  color: #a5b4fc !important;
+  stroke: #a5b4fc !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-text,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-file-card .wallpaper-upload-text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-url-card,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-url-card {
+  border: 2px dashed rgba(192, 132, 252, 0.65) !important;
+  border-color: rgba(192, 132, 252, 0.65) !important;
+  background-color: rgba(168, 85, 247, 0.08) !important;
+  background: rgba(168, 85, 247, 0.08) !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-url-card:hover,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-url-card:hover {
+  border-color: rgba(216, 180, 254, 0.95) !important;
+  background-color: rgba(168, 85, 247, 0.16) !important;
+  background: rgba(168, 85, 247, 0.16) !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon-box,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon-box {
+  background-color: rgba(168, 85, 247, 0.25) !important;
+  border: 1px solid rgba(216, 180, 254, 0.4) !important;
+  color: #d8b4fe !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-icon {
+  color: #d8b4fe !important;
+  stroke: #d8b4fe !important;
+}
+
+.dark .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-text,
+[data-bg-light="false"] .wallpaper-upload-card.wallpaper-upload-url-card .wallpaper-upload-text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
+
+/* Settings General tab: Dropdowns on dark background */
+.dark.card-style-dark-glass .settings-dropdown,
+[data-bg-light="false"].card-style-dark-glass .settings-dropdown {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+}
+
+.dark.card-style-dark-glass .settings-dropdown-menu,
+[data-bg-light="false"].card-style-dark-glass .settings-dropdown-menu {
+  background-color: rgba(15, 23, 42, 0.88) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark.card-style-dark-glass .settings-dropdown-menu button,
+[data-bg-light="false"].card-style-dark-glass .settings-dropdown-menu button {
+  color: #ffffff !important;
+}
+
+/* White card mode overrides for dropdown menu */
+.card-style-white .GeekTabs-card .settings-dropdown-menu {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-style-white .GeekTabs-card .settings-dropdown-menu button {
+  color: #1f1f1f !important;
+}
+
+.card-style-white .GeekTabs-card .settings-dropdown-menu button:hover {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+
+.card-style-white .GeekTabs-card .settings-dropdown-menu button.settings-option-selected,
+.card-style-white .GeekTabs-card .settings-dropdown-menu button.settings-option-selected * {
+  background-color: #6143f7 !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .settings-input,
+[data-bg-light="false"].card-style-dark-glass .settings-input {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+/* Calculator: dark backgrounds */
+.dark.card-style-dark-glass .calculator-tab-card,
+.dark.card-style-dark-glass .calculator-tab-card *,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark.card-style-dark-glass .calculator-btn:not(.calculator-equals-btn),
+[data-bg-light="false"].card-style-dark-glass .calculator-btn:not(.calculator-equals-btn) {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+}
+
+.dark.card-style-dark-glass .calculator-btn:not(.calculator-equals-btn):hover,
+[data-bg-light="false"].card-style-dark-glass .calculator-btn:not(.calculator-equals-btn):hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  color: #ffffff !important;
+}
+
+/* Speed Test: dark backgrounds */
+.dark.card-style-dark-glass .speedtest-tab-card,
+.dark.card-style-dark-glass .speedtest-tab-card *,
+[data-bg-light="false"].card-style-dark-glass .speedtest-tab-card,
+[data-bg-light="false"].card-style-dark-glass .speedtest-tab-card * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* IP Address: dark backgrounds */
+.dark.card-style-dark-glass .ipaddress-tab-card,
+.dark.card-style-dark-glass .ipaddress-tab-card *,
+[data-bg-light="false"].card-style-dark-glass .ipaddress-tab-card,
+[data-bg-light="false"].card-style-dark-glass .ipaddress-tab-card * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Calendar: fix text unclear issue, make sure all number and text has NO shadow, and text color is black */
+.calendar-container,
+.calendar-container *,
+.calendar-container p,
+.calendar-container span,
+.calendar-container div,
+.calendar-container h1,
+.calendar-container h2,
+.calendar-container h3,
+.calendar-container h4,
+.calendar-container select,
+.calendar-container option,
+.calendar-container input,
+.calendar-container .word-color,
+.calendar-container svg.word-color,
+.calendar-container .calendar-weekday-header,
+.light .calendar-weekday-header,
+.light .calendar-container,
+.light .calendar-container *,
+.dark .calendar-container,
+.dark .calendar-container *,
+.card-style-white .calendar-container,
+.card-style-white .calendar-container *,
+.card-style-dark-glass .calendar-container,
+.card-style-dark-glass .calendar-container * {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-has-custom-text="true"] .calendar-container,
+[data-has-custom-text="true"] .calendar-container *,
+[data-has-custom-text="true"].photo-mode .calendar-container,
+[data-has-custom-text="true"].photo-mode .calendar-container * {
+  color: var(--custom-page-text-color, #6143f7) !important;
+}
+
+.calendar-container .calendar-weekday-header,
+.calendar-container .calendar-weekday-header * {
+  color: #6143f7 !important;
+  opacity: 0.95 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+}
+
+.calendar-container .calendar-year-display,
+.calendar-container .calendar-year-display * {
+  color: #6143f7 !important;
+  text-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.calendar-container button.bg-indigo-500,
+.calendar-container button.bg-indigo-500 *,
+.calendar-container button.bg-indigo-500 svg,
+.calendar-container .btn-primary,
+.calendar-container .btn-primary *,
+.calendar-container .btn-primary svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  text-shadow: none !important;
+}
+
+.calendar-container .calendar-year-display {
+  font-size: 2.25rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: #6143f7 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+@media (min-width: 640px) {
+  .calendar-container .calendar-year-display {
+    font-size: 3rem !important;
+    line-height: 1 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .calendar-container .calendar-year-display {
+    font-size: 3.5rem !important;
+    line-height: 1 !important;
+  }
+}
+
+/* Specific overrides to guarantee white button text in Speed Test page under ALL modes */
+.speedtest-tab-card button,
+.speedtest-tab-card button *,
+.speedtest-tab-card button span,
+.speedtest-btn-text,
+.speedtest-center-circle,
+.speedtest-center-circle *,
+.speedtest-center-circle button,
+.speedtest-center-circle button *,
+.speedtest-center-circle button span,
+.speedtest-action-button,
+.speedtest-action-button *,
+.speedtest-action-button span,
+[data-bg-light="true"] .speedtest-tab-card button,
+[data-bg-light="true"] .speedtest-tab-card button *,
+[data-bg-light="true"] .speedtest-tab-card button span,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-btn-text,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-center-circle,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-center-circle *,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-center-circle span,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-action-button,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-action-button *,
+[data-bg-light="true"] .speedtest-tab-card .speedtest-action-button span,
+.card-style-white .speedtest-tab-card button,
+.card-style-white .speedtest-tab-card button *,
+.card-style-white .speedtest-tab-card button span,
+.card-style-white .speedtest-center-circle,
+.card-style-white .speedtest-center-circle *,
+.card-style-white .speedtest-center-circle button,
+.card-style-white .speedtest-center-circle button *,
+.card-style-white .speedtest-center-circle button span,
+.card-style-white .speedtest-btn-text,
+.card-style-white .speedtest-action-button,
+.card-style-white .speedtest-action-button *,
+.card-style-white .speedtest-action-button span,
+.card-style-white .GeekTabs-card .speedtest-center-circle,
+.card-style-white .GeekTabs-card .speedtest-center-circle *,
+.card-style-white .GeekTabs-card .speedtest-action-button,
+.card-style-white .GeekTabs-card .speedtest-action-button *,
+.light .speedtest-tab-card button,
+.light .speedtest-tab-card button *,
+.light .speedtest-tab-card button span,
+.light .speedtest-tab-card .speedtest-btn-text,
+.light .speedtest-tab-card .speedtest-center-circle,
+.light .speedtest-tab-card .speedtest-center-circle *,
+.light .speedtest-tab-card .speedtest-center-circle span,
+.light .speedtest-tab-card .speedtest-action-button,
+.light .speedtest-tab-card .speedtest-action-button *,
+.light .speedtest-tab-card .speedtest-action-button span {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.speedtest-center-circle .text-purple-400,
+.card-style-white .speedtest-center-circle .text-purple-400 {
+  color: #c084fc !important;
+}
+
+.speedtest-center-circle .text-indigo-400,
+.card-style-white .speedtest-center-circle .text-indigo-400 {
+  color: #6143f7 !important;
+}
+
+.speedtest-center-circle .text-neutral-400,
+.card-style-white .speedtest-center-circle .text-neutral-400 {
+  color: #a3a3a3 !important;
+}
+
+/* Ensure category tabs and plus button in wallpaper white-mode are fully opaque solid white, matching the icon cards */
+.photo-mode.card-style-white button.bg-white.dark\:bg-\[\#202025\]:not(.bg-indigo-500) {
+  opacity: 1 !important;
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #1f1f1f !important;
+}
+
+.photo-mode.card-style-white button.bg-white.dark\:bg-\[\#202025\]:not(.bg-indigo-500):hover {
+  background-color: #f4f4f5 !important;
+}
+
+.photo-mode.card-style-white button.bg-white.dark\:bg-\[\#202025\]:not(.bg-indigo-500) * {
+  color: #1f1f1f !important;
+}
+
+.photo-mode.card-style-white button.border-dashed {
+  opacity: 1 !important;
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: #1f1f1f !important;
+}
+
+.photo-mode.card-style-white button.border-dashed:hover {
+  background-color: #f4f4f5 !important;
+  border-color: #3b82f6 !important;
+  color: #3b82f6 !important;
+}
+
+.photo-mode.card-style-white button.border-dashed * {
+  color: inherit !important;
+}
+
+/* Calendar weekday header text color - always crisp black with no shadow */
+.calendar-weekday-header,
+.card-style-white .GeekTabs-card .calendar-weekday-header,
+.card-style-dark-glass .GeekTabs-card .calendar-weekday-header,
+.light .calendar-weekday-header {
+  color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Wallpaper card category tag badge and overlay controls - always solid white text & icons */
+.wallpaper-card-badge,
+.wallpaper-card-badge *,
+.GeekTabs-card .wallpaper-card-badge,
+.GeekTabs-card .wallpaper-card-badge *,
+.card-style-white .GeekTabs-card .wallpaper-card-badge,
+.card-style-white .GeekTabs-card .wallpaper-card-badge *,
+.card-style-dark-glass .GeekTabs-card .wallpaper-card-badge,
+.card-style-dark-glass .GeekTabs-card .wallpaper-card-badge * {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Weather Widget & Daily Cards - Translucent Glass Aesthetic with Light Blue Crystal Edge (半透明与浅蓝玻璃质感边缘) */
+.weather-huawei-style {
+  background: rgba(255, 255, 255, 0.42) !important;
+  background-color: rgba(255, 255, 255, 0.42) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 10px 32px -4px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
+}
+
+.dark .weather-huawei-style {
+  background: rgba(18, 22, 34, 0.48) !important;
+  background-color: rgba(18, 22, 34, 0.48) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.45) !important;
+  box-shadow: 
+    0 0 0 1px rgba(147, 197, 253, 0.2),
+    inset 0 1.5px 1px 0 rgba(191, 219, 254, 0.35),
+    inset 0 0 16px 0 rgba(147, 197, 253, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.card-style-white .weather-huawei-style {
+  background: rgba(255, 255, 255, 0.55) !important;
+  background-color: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 14px 0 rgba(191, 219, 254, 0.25),
+    0 10px 32px -4px rgba(59, 130, 246, 0.12) !important;
+}
+
+.dark.card-style-dark-glass .weather-huawei-style,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style {
+  background: rgba(18, 22, 34, 0.38) !important;
+  background-color: rgba(18, 22, 34, 0.38) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.45) !important;
+  box-shadow: 
+    0 0 0 1px rgba(147, 197, 253, 0.2),
+    inset 0 1.5px 1px 0 rgba(191, 219, 254, 0.35),
+    inset 0 0 18px 0 rgba(147, 197, 253, 0.08),
+    0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-bg-light="true"].card-style-dark-glass .weather-huawei-style,
+[data-bg-light="true"] .card-style-dark-glass .weather-huawei-style {
+  background: rgba(255, 255, 255, 0.45) !important;
+  background-color: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 16px 40px -8px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
+}
+
+.weather-subcard {
+  background: rgba(255, 255, 255, 0.52) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.7) !important;
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(224, 242, 254, 0.9),
+    0 2px 10px rgba(59, 130, 246, 0.06) !important;
+}
+
+.weather-subcard:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(96, 165, 250, 0.85) !important;
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(224, 242, 254, 1),
+    0 4px 16px rgba(59, 130, 246, 0.12) !important;
+}
+
+.dark .weather-subcard {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.35) !important;
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark .weather-subcard:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(147, 197, 253, 0.5) !important;
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.card-style-white .weather-subcard {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.7) !important;
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(224, 242, 254, 0.9),
+    0 2px 10px rgba(59, 130, 246, 0.06) !important;
+}
+
+.dark.card-style-dark-glass .weather-subcard,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.35) !important;
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    0 4px 16px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+.dark.card-style-dark-glass .weather-subcard:hover,
+[data-bg-light="false"].card-style-dark-glass .weather-subcard:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(147, 197, 253, 0.55) !important;
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.4),
+    0 6px 20px 0 rgba(0, 0, 0, 0.16) !important;
+}
+
+[data-bg-light="true"].card-style-dark-glass .weather-subcard,
+[data-bg-light="true"] .card-style-dark-glass .weather-subcard {
+  background: rgba(255, 255, 255, 0.52) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.7) !important;
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(224, 242, 254, 0.9),
+    0 4px 16px rgba(59, 130, 246, 0.06) !important;
+}
+
+[data-bg-light="true"].card-style-dark-glass .weather-subcard:hover,
+[data-bg-light="true"] .card-style-dark-glass .weather-subcard:hover {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(96, 165, 250, 0.9) !important;
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(224, 242, 254, 1),
+    0 6px 20px rgba(59, 130, 246, 0.12) !important;
+}
+
+/* Squircle icon badges in daily cards with Light Blue Edge */
+.weather-huawei-style .w-11.rounded-2xl,
+.weather-huawei-style .w-12.rounded-2xl,
+.daily-card-icon-badge {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(147, 197, 253, 0.7) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(224, 242, 254, 0.95) !important;
+}
+
+.dark .weather-huawei-style .w-11.rounded-2xl,
+.dark .weather-huawei-style .w-12.rounded-2xl,
+.dark .daily-card-icon-badge,
+.dark.card-style-dark-glass .weather-huawei-style .w-11.rounded-2xl,
+.dark.card-style-dark-glass .weather-huawei-style .w-12.rounded-2xl,
+.dark.card-style-dark-glass .daily-card-icon-badge,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style .w-11.rounded-2xl,
+[data-bg-light="false"].card-style-dark-glass .weather-huawei-style .w-12.rounded-2xl,
+[data-bg-light="false"].card-style-dark-glass .daily-card-icon-badge {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(147, 197, 253, 0.35) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Title section color backgrounds for daily cards (Tips: light green, Humor: light orange, Quote: light yellow) */
+.daily-title-green {
+  background-color: rgba(34, 197, 94, 0.16) !important;
+}
+.dark .daily-title-green,
+.dark.card-style-dark-glass .daily-title-green,
+[data-bg-light="false"] .daily-title-green {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+}
+
+.daily-title-orange {
+  background-color: rgba(249, 115, 22, 0.16) !important;
+}
+.dark .daily-title-orange,
+.dark.card-style-dark-glass .daily-title-orange,
+[data-bg-light="false"] .daily-title-orange {
+  background-color: rgba(249, 115, 22, 0.22) !important;
+}
+
+.daily-title-yellow {
+  background-color: rgba(234, 179, 8, 0.18) !important;
+}
+.dark .daily-title-yellow,
+.dark.card-style-dark-glass .daily-title-yellow,
+[data-bg-light="false"] .daily-title-yellow {
+  background-color: rgba(234, 179, 8, 0.24) !important;
+}
+
+/* Full straight divider line splitting title and contents in the 3 daily web cards from left to right */
+.daily-card-divider,
+.daily-card-title-section {
+  border: 0 !important;
+  border-bottom: 1.5px solid rgba(147, 197, 253, 0.65) !important;
+  width: 100% !important;
+}
+
+.card-style-white .daily-card-divider,
+.card-style-white .daily-card-title-section {
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.09) !important;
+}
+
+.dark .daily-card-divider,
+.dark .daily-card-title-section,
+.dark.card-style-dark-glass .daily-card-divider,
+.dark.card-style-dark-glass .daily-card-title-section,
+[data-bg-light="false"] .daily-card-divider,
+[data-bg-light="false"] .daily-card-title-section {
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-bg-light="true"].card-style-dark-glass .daily-card-divider,
+[data-bg-light="true"].card-style-dark-glass .daily-card-title-section,
+[data-bg-light="true"] .card-style-dark-glass .daily-card-divider,
+[data-bg-light="true"] .card-style-dark-glass .daily-card-title-section {
+  border-bottom: 1.5px solid rgba(147, 197, 253, 0.55) !important;
+}
+
+/* Light grey container backgrounds for To-Do, Notes, Calendar, Calculator, IP Address, Speed Test, Settings with Light Blue Edge */
+.webcard-light-grey-bg,
+.GeekTabs-card.webcard-light-grey-bg {
+  background: #f8fafc !important; /* very light grey (slate-50) */
+  background-color: #f8fafc !important;
+  background-image: none !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.8) !important;
+  border-color: rgba(147, 197, 253, 0.8) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.45),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    0 10px 30px -5px rgba(59, 130, 246, 0.08) !important;
+}
+
+.dark .webcard-light-grey-bg,
+.dark .GeekTabs-card.webcard-light-grey-bg {
+  background: rgba(255, 255, 255, 0.05) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  background-image: none !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.35) !important;
+  border-color: rgba(147, 197, 253, 0.35) !important;
+}
+
+.dark.card-style-dark-glass .webcard-light-grey-bg,
+.dark.card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
+[data-bg-light="false"].card-style-dark-glass .webcard-light-grey-bg,
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg {
+  background: rgba(255, 255, 255, 0.08) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  background-image: none !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.4) !important;
+  border-color: rgba(147, 197, 253, 0.4) !important;
+}
+
+.card-style-white .webcard-light-grey-bg,
+.card-style-white .GeekTabs-card.webcard-light-grey-bg {
+  background: #f1f5f9 !important;
+  background-color: #f1f5f9 !important;
+  background-image: none !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.8) !important;
+  border-color: rgba(147, 197, 253, 0.8) !important;
+}
+
+/* Global enforce light blue edge on all GeekTabs webcards */
+.GeekTabs-card {
+  border-color: rgba(147, 197, 253, 0.85) !important;
+}
+
+/* =========================================================================
+   LIGHT GREY WEBCARD STYLING FOR CALENDAR, TO-DO, AND NOTES PAGES
+   Applies when on light background (default pastel-waves, white-clean, etc.)
+   with transparent glass style or standard style.
+   ========================================================================= */
+
+/* Outer webcard background when webcard-light-grey-bg is applied on light backgrounds */
+[data-bg-light="true"] .webcard-light-grey-bg,
+[data-bg-light="true"].card-style-dark-glass .webcard-light-grey-bg,
+[data-bg-light="true"] .card-style-dark-glass .webcard-light-grey-bg,
+.light .webcard-light-grey-bg,
+.light.card-style-dark-glass .webcard-light-grey-bg,
+.light .card-style-dark-glass .webcard-light-grey-bg {
+  background: rgba(241, 245, 249, 0.75) !important; /* light grey translucent glass */
+  background-color: rgba(241, 245, 249, 0.75) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 
+    0 0 0 1px rgba(186, 230, 253, 0.55),
+    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 16px 40px -8px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
+  color: #6143f7 !important;
+}
+
+/* 1. CALENDAR: Light Grey Day Cells, Arrow Buttons, Select Dropdowns, World Clocks, Diff Bar */
+[data-bg-light="true"] .calendar-container .calendar-day-btn,
+.light .calendar-container .calendar-day-btn,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-day-btn,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-day-btn {
+  background-color: #f1f5f9 !important; /* light grey (slate-100) */
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #6143f7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-bg-light="true"] .calendar-container .calendar-day-btn:hover,
+.light .calendar-container .calendar-day-btn:hover,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-day-btn:hover,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-day-btn:hover {
+  background-color: #e2e8f0 !important; /* slightly deeper light grey on hover */
+  background: #e2e8f0 !important;
+  border-color: rgba(147, 197, 253, 0.8) !important;
+}
+
+[data-bg-light="true"] .calendar-container .calendar-day-btn span,
+.light .calendar-container .calendar-day-btn span,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-day-btn span,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-day-btn span {
+  color: #6143f7 !important;
+}
+
+/* Calendar month navigation buttons (< and >) */
+[data-bg-light="true"] .calendar-container .calendar-nav-arrow,
+.light .calendar-container .calendar-nav-arrow,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-nav-arrow,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-nav-arrow {
+  background-color: #f1f5f9 !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #6143f7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-bg-light="true"] .calendar-container .calendar-nav-arrow:hover,
+.light .calendar-container .calendar-nav-arrow:hover,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-nav-arrow:hover,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-nav-arrow:hover {
+  background-color: #e2e8f0 !important;
+  background: #e2e8f0 !important;
+  border-color: rgba(147, 197, 253, 0.8) !important;
+  color: #4f32e6 !important;
+}
+
+/* Calendar Country Select dropdowns */
+[data-bg-light="true"] .calendar-container .world-dates-select,
+.light .calendar-container .world-dates-select,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .world-dates-select,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .world-dates-select {
+  background-color: #f1f5f9 !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #6143f7 !important;
+}
+
+[data-bg-light="true"] .calendar-container .world-dates-select option,
+.light .calendar-container .world-dates-select option {
+  background-color: #ffffff !important;
+  color: #6143f7 !important;
+}
+
+/* Calendar World Clocks cards */
+[data-bg-light="true"] .calendar-container .world-clock-card,
+.light .calendar-container .world-clock-card,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .world-clock-card,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .world-clock-card {
+  background-color: #f1f5f9 !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #6143f7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-bg-light="true"] .calendar-container .world-clock-card *,
+.light .calendar-container .world-clock-card * {
+  color: #6143f7 !important;
+}
+
+/* Calendar World Dates Difference Pill */
+[data-bg-light="true"] .calendar-container .world-dates-diff-pill,
+.light .calendar-container .world-dates-diff-pill,
+[data-bg-light="true"].card-style-dark-glass .calendar-container .world-dates-diff-pill,
+[data-bg-light="true"] .card-style-dark-glass .calendar-container .world-dates-diff-pill {
+  background-color: #f1f5f9 !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #6143f7 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-bg-light="true"] .calendar-container .world-dates-diff-pill *,
+.light .calendar-container .world-dates-diff-pill * {
+  color: #6143f7 !important;
+}
+
+/* 2. TO-DO: Light Grey Left Sidebar and Inner Controls */
+[data-bg-light="true"] .todolist-tab-container .todo-sidebar,
+.light .todolist-tab-container .todo-sidebar,
+[data-bg-light="true"].card-style-dark-glass .todolist-tab-container .todo-sidebar,
+[data-bg-light="true"] .card-style-dark-glass .todolist-tab-container .todo-sidebar {
+  background-color: #f1f5f9 !important; /* light grey (slate-100) */
+  background: #f1f5f9 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .todolist-tab-container .todo-sidebar > div,
+.light .todolist-tab-container .todo-sidebar > div {
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15),
+.light .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15) {
+  color: #6143f7 !important;
+}
+
+[data-bg-light="true"] .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover,
+.light .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover {
+  background-color: #e2e8f0 !important;
+  color: #4f32e6 !important;
+}
+
+/* 3. NOTES: Light Grey Sections Panel and Pages Panel */
+[data-bg-light="true"] .notes-tab-container .notes-sections-panel,
+.light .notes-tab-container .notes-sections-panel,
+[data-bg-light="true"].card-style-dark-glass .notes-tab-container .notes-sections-panel,
+[data-bg-light="true"] .card-style-dark-glass .notes-tab-container .notes-sections-panel {
+  background-color: #f1f5f9 !important; /* light grey */
+  background: #f1f5f9 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .notes-tab-container .notes-sections-panel > div,
+.light .notes-tab-container .notes-sections-panel > div {
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .notes-tab-container .notes-sections-panel [class*="group"]:not(.bg-indigo-500\/15),
+.light .notes-tab-container .notes-sections-panel [class*="group"]:not(.bg-indigo-500\/15) {
+  color: #6143f7 !important;
+}
+
+[data-bg-light="true"] .notes-tab-container .notes-sections-panel [class*="group"]:not(.bg-indigo-500\/15):hover,
+.light .notes-tab-container .notes-sections-panel [class*="group"]:not(.bg-indigo-500\/15):hover {
+  background-color: #e2e8f0 !important;
+  color: #4f32e6 !important;
+}
+
+[data-bg-light="true"] .notes-tab-container .notes-pages-panel,
+.light .notes-tab-container .notes-pages-panel,
+[data-bg-light="true"].card-style-dark-glass .notes-tab-container .notes-pages-panel,
+[data-bg-light="true"] .card-style-dark-glass .notes-tab-container .notes-pages-panel {
+  background-color: #f8fafc !important; /* slate-50 light grey */
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .notes-tab-container .notes-pages-panel > div,
+.light .notes-tab-container .notes-pages-panel > div {
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .notes-tab-container .notes-pages-panel input,
+.light .notes-tab-container .notes-pages-panel input {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #6143f7 !important;
+}
+
+/* General fallback for any .bg-black/5 nested inside GeekTabs-card on light backgrounds */
+[data-bg-light="true"] .GeekTabs-card .bg-black\/5,
+.light .GeekTabs-card .bg-black\/5,
+[data-bg-light="true"].card-style-dark-glass .GeekTabs-card .bg-black\/5,
+[data-bg-light="true"] .card-style-dark-glass .GeekTabs-card .bg-black\/5 {
+  background-color: #f1f5f9 !important;
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-bg-light="true"] .GeekTabs-card .bg-black\/5:hover,
+.light .GeekTabs-card .bg-black\/5:hover,
+[data-bg-light="true"].card-style-dark-glass .GeekTabs-card .bg-black\/5:hover,
+[data-bg-light="true"] .card-style-dark-glass .GeekTabs-card .bg-black\/5:hover {
+  background-color: #e2e8f0 !important;
+  background: #e2e8f0 !important;
+}
+
+/* =========================================================================
+   SETTINGS PAGE: ACTIVE MENU TAB LABEL & ICON MUST BE WHITE
+   Applies to BOTH White card style (.card-style-white) and 
+   Transparent glass card style (.card-style-dark-glass)
+   ========================================================================= */
+.settings-nav-btn.settings-nav-active-btn,
+.settings-nav-btn.settings-nav-active-btn *,
+.settings-nav-btn.settings-nav-active-btn span,
+.settings-nav-btn.settings-nav-active-btn svg,
+.settings-nav-active-btn,
+.settings-nav-active-btn *,
+.settings-nav-active-btn span,
+.settings-nav-active-btn svg,
+.settings-nav-active-label,
+.settings-nav-active-icon,
+.card-style-white .settings-nav-active-btn,
+.card-style-white .settings-nav-active-btn *,
+.card-style-white .settings-nav-active-btn span,
+.card-style-white .settings-nav-active-btn svg,
+.card-style-white .settings-nav-active-label,
+.card-style-white .settings-nav-active-icon,
+.card-style-dark-glass .settings-nav-active-btn,
+.card-style-dark-glass .settings-nav-active-btn *,
+.card-style-dark-glass .settings-nav-active-btn span,
+.card-style-dark-glass .settings-nav-active-btn svg,
+.card-style-dark-glass .settings-nav-active-label,
+.card-style-dark-glass .settings-nav-active-icon,
+.GeekTabs-card .settings-nav-active-btn,
+.GeekTabs-card .settings-nav-active-btn *,
+.GeekTabs-card .settings-nav-active-btn span,
+.GeekTabs-card .settings-nav-active-btn svg,
+.GeekTabs-card .settings-nav-active-label,
+.GeekTabs-card .settings-nav-active-icon,
+.webcard-light-grey-bg .settings-nav-active-btn,
+.webcard-light-grey-bg .settings-nav-active-btn *,
+.webcard-light-grey-bg .settings-nav-active-btn span,
+.webcard-light-grey-bg .settings-nav-active-btn svg,
+.webcard-light-grey-bg .settings-nav-active-label,
+.webcard-light-grey-bg .settings-nav-active-icon,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn *,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn span,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-btn svg,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-label,
+[data-bg-light="true"] .GeekTabs-card .settings-nav-active-icon {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* =========================================================================
+   SETTINGS PAGE: DATA BACKUP & RESTORE POINT IMPORT BUTTON TEXT & ICON MUST BE WHITE
+   Applies to BOTH White card style (.card-style-white) and 
+   Transparent glass card style (.card-style-dark-glass)
+   ========================================================================= */
+.settings-backup-import-btn,
+.settings-backup-import-btn *,
+.settings-backup-import-btn span,
+.settings-backup-import-btn svg,
+label.settings-backup-import-btn,
+label.settings-backup-import-btn *,
+label.settings-backup-import-btn span,
+label.settings-backup-import-btn svg,
+.card-style-white .settings-backup-import-btn,
+.card-style-white .settings-backup-import-btn *,
+.card-style-white .settings-backup-import-btn span,
+.card-style-white .settings-backup-import-btn svg,
+.card-style-dark-glass .settings-backup-import-btn,
+.card-style-dark-glass .settings-backup-import-btn *,
+.card-style-dark-glass .settings-backup-import-btn span,
+.card-style-dark-glass .settings-backup-import-btn svg,
+.GeekTabs-card .settings-backup-import-btn,
+.GeekTabs-card .settings-backup-import-btn *,
+.GeekTabs-card .settings-backup-import-btn span,
+.GeekTabs-card .settings-backup-import-btn svg,
+.webcard-light-grey-bg .settings-backup-import-btn,
+.webcard-light-grey-bg .settings-backup-import-btn *,
+.webcard-light-grey-bg .settings-backup-import-btn span,
+.webcard-light-grey-bg .settings-backup-import-btn svg,
+[data-bg-light="true"] .GeekTabs-card .settings-backup-import-btn,
+[data-bg-light="true"] .GeekTabs-card .settings-backup-import-btn *,
+[data-bg-light="true"] .GeekTabs-card .settings-backup-import-btn span,
+[data-bg-light="true"] .GeekTabs-card .settings-backup-import-btn svg,
+[data-bg-light="false"] .GeekTabs-card .settings-backup-import-btn,
+[data-bg-light="false"] .GeekTabs-card .settings-backup-import-btn * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* =========================================================================
+   SETTINGS BROWSER TAB:
+   1. Active/highlighted browser button text & icon MUST BE WHITE (#ffffff)
+   2. URL field text, Subheading, and numbered steps list MUST BE PURPLE (#6143f7)
+   Applies to BOTH White card style (.card-style-white) and 
+   Transparent glass card style (.card-style-dark-glass)
+   ========================================================================= */
+.browser-nav-active-btn,
+.browser-nav-active-btn *,
+.browser-nav-active-btn span,
+.browser-nav-active-label,
+.card-style-white .browser-nav-active-btn,
+.card-style-white .browser-nav-active-btn *,
+.card-style-white .browser-nav-active-btn span,
+.card-style-white .browser-nav-active-label,
+.card-style-dark-glass .browser-nav-active-btn,
+.card-style-dark-glass .browser-nav-active-btn *,
+.card-style-dark-glass .browser-nav-active-btn span,
+.card-style-dark-glass .browser-nav-active-label,
+.GeekTabs-card .browser-nav-active-btn,
+.GeekTabs-card .browser-nav-active-btn *,
+.GeekTabs-card .browser-nav-active-btn span,
+.GeekTabs-card .browser-nav-active-label,
+[data-bg-light="true"] .GeekTabs-card .browser-nav-active-btn,
+[data-bg-light="true"] .GeekTabs-card .browser-nav-active-btn *,
+[data-bg-light="true"] .GeekTabs-card .browser-nav-active-btn span,
+[data-bg-light="true"] .GeekTabs-card .browser-nav-active-label {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* URL Field, Subheading title, and numbered list steps in Purple #6143f7 */
+.browser-url-input,
+.card-style-white .browser-url-input,
+.card-style-dark-glass .browser-url-input,
+.GeekTabs-card .browser-url-input,
+[data-bg-light="true"] .GeekTabs-card .browser-url-input,
+.browser-guide-subheading,
+.card-style-white .browser-guide-subheading,
+.card-style-dark-glass .browser-guide-subheading,
+.GeekTabs-card .browser-guide-subheading,
+[data-bg-light="true"] .GeekTabs-card .browser-guide-subheading,
+.browser-steps-list,
+.browser-steps-list *,
+.browser-steps-list li,
+.browser-steps-list li span,
+.card-style-white .browser-steps-list,
+.card-style-white .browser-steps-list *,
+.card-style-white .browser-steps-list li,
+.card-style-white .browser-steps-list li span,
+.card-style-dark-glass .browser-steps-list,
+.card-style-dark-glass .browser-steps-list *,
+.card-style-dark-glass .browser-steps-list li,
+.card-style-dark-glass .browser-steps-list li span,
+.GeekTabs-card .browser-steps-list,
+.GeekTabs-card .browser-steps-list *,
+.GeekTabs-card .browser-steps-list li,
+.GeekTabs-card .browser-steps-list li span,
+[data-bg-light="true"] .GeekTabs-card .browser-steps-list,
+[data-bg-light="true"] .GeekTabs-card .browser-steps-list *,
+[data-bg-light="true"] .GeekTabs-card .browser-steps-list li,
+[data-bg-light="true"] .GeekTabs-card .browser-steps-list li span {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+/* =========================================================================
+   SETTINGS TEXT TAB:
+   Custom Hex Color button text and icon MUST BE WHITE (#ffffff)
+   Applies to BOTH White card style (.card-style-white) and 
+   Transparent glass card style (.card-style-dark-glass)
+   ========================================================================= */
+.custom-hex-apply-btn,
+.custom-hex-apply-btn *,
+.custom-hex-apply-btn span,
+.custom-hex-apply-btn svg,
+.custom-hex-btn-text,
+.custom-hex-btn-icon,
+button.custom-hex-apply-btn,
+button.custom-hex-apply-btn *,
+button.custom-hex-apply-btn span,
+button.custom-hex-apply-btn svg,
+.card-style-white .custom-hex-apply-btn,
+.card-style-white .custom-hex-apply-btn *,
+.card-style-white .custom-hex-apply-btn span,
+.card-style-white .custom-hex-apply-btn svg,
+.card-style-white .custom-hex-btn-text,
+.card-style-white .custom-hex-btn-icon,
+.card-style-dark-glass .custom-hex-apply-btn,
+.card-style-dark-glass .custom-hex-apply-btn *,
+.card-style-dark-glass .custom-hex-apply-btn span,
+.card-style-dark-glass .custom-hex-apply-btn svg,
+.card-style-dark-glass .custom-hex-btn-text,
+.card-style-dark-glass .custom-hex-btn-icon,
+.text-tab-card .custom-hex-apply-btn,
+.text-tab-card .custom-hex-apply-btn *,
+.text-tab-card .custom-hex-apply-btn span,
+.text-tab-card .custom-hex-apply-btn svg,
+.text-tab-card .custom-hex-btn-text,
+.text-tab-card .custom-hex-btn-icon,
+.GeekTabs-card .custom-hex-apply-btn,
+.GeekTabs-card .custom-hex-apply-btn *,
+.GeekTabs-card .custom-hex-apply-btn span,
+.GeekTabs-card .custom-hex-apply-btn svg,
+.GeekTabs-card .custom-hex-btn-text,
+.GeekTabs-card .custom-hex-btn-icon,
+.webcard-light-grey-bg .custom-hex-apply-btn,
+.webcard-light-grey-bg .custom-hex-apply-btn *,
+.webcard-light-grey-bg .custom-hex-apply-btn span,
+.webcard-light-grey-bg .custom-hex-apply-btn svg,
+[data-bg-light="true"] .GeekTabs-card .custom-hex-apply-btn,
+[data-bg-light="true"] .GeekTabs-card .custom-hex-apply-btn *,
+[data-bg-light="true"] .GeekTabs-card .custom-hex-apply-btn span,
+[data-bg-light="true"] .GeekTabs-card .custom-hex-apply-btn svg,
+[data-bg-light="true"] .text-tab-card .custom-hex-apply-btn,
+[data-bg-light="true"] .text-tab-card .custom-hex-apply-btn *,
+[data-bg-light="true"] .text-tab-card .custom-hex-apply-btn span,
+[data-bg-light="true"] .text-tab-card .custom-hex-apply-btn svg,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card .custom-hex-apply-btn,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card .custom-hex-apply-btn *,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card .custom-hex-apply-btn span,
+[data-bg-light="true"].card-style-dark-glass .text-tab-card .custom-hex-apply-btn svg,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card .custom-hex-apply-btn,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card .custom-hex-apply-btn *,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card .custom-hex-apply-btn span,
+[data-bg-light="true"] .card-style-dark-glass .text-tab-card .custom-hex-apply-btn svg,
+.card-style-white .text-tab-card .custom-hex-apply-btn,
+.card-style-white .text-tab-card .custom-hex-apply-btn *,
+.card-style-white .text-tab-card .custom-hex-apply-btn span,
+.card-style-white .text-tab-card .custom-hex-apply-btn svg,
+[data-bg-light="false"] .GeekTabs-card .custom-hex-apply-btn,
+[data-bg-light="false"] .GeekTabs-card .custom-hex-apply-btn *,
+.custom-hex-apply-btn:hover,
+.custom-hex-apply-btn:hover *,
+.custom-hex-apply-btn:hover span,
+.custom-hex-apply-btn:hover svg,
+.custom-hex-apply-btn:active,
+.custom-hex-apply-btn:active *,
+.custom-hex-apply-btn:active span,
+.custom-hex-apply-btn:active svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* =========================================================================
+   DEFAULT WHITE BACKGROUND: BLUE AND PURPLE MIXING TEXT COLOR
+   Applies when on the default white background (theme: white-clean)
+   for each page EXCEPT Bookmark (links) and Settings (settings) pages.
+   ========================================================================= */
+
+/* 1. HOME PAGE: Welcome greeting & Clock time & date match Weather card 'weather' text color (Blue & Purple Mixing Gradient) */
+.welcome-greeting-display,
+.clock-time-display,
+.clock-date-display,
+[data-tab="home"] .welcome-greeting-display,
+[data-tab="home"] .clock-time-display,
+[data-tab="home"] .clock-date-display,
+[data-active-tab="home"] .welcome-greeting-display,
+[data-active-tab="home"] .clock-time-display,
+[data-active-tab="home"] .clock-date-display,
+[data-default-white-bg="true"] .welcome-greeting-display,
+[data-default-white-bg="true"] .clock-time-display,
+[data-default-white-bg="true"] .clock-date-display,
+[data-default-white-bg="true"] [data-tab="home"] .welcome-greeting-display,
+[data-default-white-bg="true"] [data-tab="home"] .clock-time-display,
+[data-default-white-bg="true"] [data-tab="home"] .clock-date-display,
+[data-default-white-bg="true"][data-active-tab="home"] .welcome-greeting-display,
+[data-default-white-bg="true"][data-active-tab="home"] .clock-time-display,
+[data-default-white-bg="true"][data-active-tab="home"] .clock-date-display,
+.light .welcome-greeting-display,
+.light .clock-time-display,
+.light .clock-date-display,
+.dark .welcome-greeting-display,
+.dark .clock-time-display,
+.dark .clock-date-display,
+[data-bg-light="true"] .welcome-greeting-display,
+[data-bg-light="true"] .clock-time-display,
+[data-bg-light="true"] .clock-date-display,
+[data-bg-light="false"] .welcome-greeting-display,
+[data-bg-light="false"] .clock-time-display,
+[data-bg-light="false"] .clock-date-display,
+.weather-huawei-style h1,
+.weather-huawei-style h2,
+.weather-huawei-style h3,
+[data-default-white-bg="true"] .weather-huawei-style h1,
+[data-default-white-bg="true"] .weather-huawei-style h2,
+[data-default-white-bg="true"] .weather-huawei-style h3,
+.dark .weather-huawei-style h2,
+.light .weather-huawei-style h2,
+[data-bg-light="true"] .weather-huawei-style h2,
+[data-bg-light="false"] .weather-huawei-style h2 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  color: #6143f7 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+[data-has-custom-text="true"] .welcome-greeting-display,
+[data-has-custom-text="true"] .clock-time-display,
+[data-has-custom-text="true"] .clock-date-display,
+[data-has-custom-text="true"] [data-tab="home"] .welcome-greeting-display,
+[data-has-custom-text="true"] [data-tab="home"] .clock-time-display,
+[data-has-custom-text="true"] [data-tab="home"] .clock-date-display {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: var(--custom-page-text-color) !important;
+  -webkit-text-fill-color: var(--custom-page-text-color) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.clock-time-display,
+.clock-date-display {
+  width: fit-content !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Home Page: Horoscope & Week progress text (highlighted in red rectangle) MUST BE SOLID BLACK */
+.horoscope-info-section,
+.horoscope-info-section p,
+.horoscope-line-text,
+[data-default-white-bg="true"] .horoscope-info-section,
+[data-default-white-bg="true"] .horoscope-info-section p,
+[data-default-white-bg="true"] .horoscope-line-text,
+[data-default-white-bg="true"] [data-tab="home"] .horoscope-info-section p {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+/* Home Page Webcards: All text inside Weather, Tips, Humor, and Quote webcards MUST BE BLACK except the titles */
+[data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-tab="home"] .weather-subcard p,
+[data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-active-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-active-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-active-tab="home"] .weather-subcard p,
+[data-active-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-default-white-bg="true"] [data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-default-white-bg="true"] [data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-default-white-bg="true"] [data-tab="home"] .weather-subcard p,
+[data-default-white-bg="true"] [data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-default-white-bg="true"][data-active-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-default-white-bg="true"][data-active-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-default-white-bg="true"][data-active-tab="home"] .weather-subcard p,
+[data-default-white-bg="true"][data-active-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-bg-light="true"] [data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-bg-light="true"] [data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-bg-light="true"] [data-tab="home"] .weather-subcard p,
+[data-bg-light="true"] [data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+[data-default-white-bg="true"] [data-tab="home"] .footer-copyright-text,
+[data-default-white-bg="true"][data-active-tab="home"] footer p {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* 2. HEADINGS ON ALL NON-EXEMPT PAGES (Home, Calendar, To-Do, Calculator, Notes, IP, Speed Test) */
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card h1,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card h2,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card h3,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style h1,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style h2,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style h3,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard h1,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard h2,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard h3,
+[data-default-white-bg="true"] [data-tab="calendar"] h1,
+[data-default-white-bg="true"] [data-tab="calendar"] h2,
+[data-default-white-bg="true"] [data-tab="calendar"] .calendar-year-display,
+[data-default-white-bg="true"] [data-tab="todo"] h1,
+[data-default-white-bg="true"] [data-tab="notes"] h1,
+[data-default-white-bg="true"] [data-tab="ip"] h1,
+[data-default-white-bg="true"] [data-tab="speed"] h1:not(.speedtest-analyzer-title) {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Calculator: Top 0 display matches other numbers (#) on the page */
+.calculator-display-main,
+[data-default-white-bg="true"] .calculator-display-main,
+[data-default-white-bg="true"] [data-tab="calculator"] .calculator-display-main {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* Calendar: Navigation arrows (< and >) match the calendar page text color */
+.calendar-nav-arrow,
+.calendar-nav-arrow *,
+.calendar-nav-arrow svg,
+[data-default-white-bg="true"] .calendar-nav-arrow,
+[data-default-white-bg="true"] .calendar-nav-arrow *,
+[data-default-white-bg="true"] .calendar-nav-arrow svg,
+[data-bg-light="true"] .calendar-container .calendar-nav-arrow,
+[data-bg-light="true"] .calendar-container .calendar-nav-arrow *,
+[data-bg-light="true"] .calendar-container .calendar-nav-arrow svg {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+/* Calendar: Logo and logo button container match the calendar text color */
+.calendar-header-logo-container,
+[data-default-white-bg="true"] .calendar-header-logo-container,
+[data-bg-light="true"] .calendar-container .calendar-header-logo-container {
+  background-color: rgba(97, 67, 247, 0.12) !important;
+  border-color: rgba(97, 67, 247, 0.25) !important;
+}
+
+.calendar-header-logo-icon,
+.calendar-header-logo-icon svg,
+.calendar-header-logo-container svg,
+.calendar-header-logo-container .calendar-header-logo-icon,
+[data-default-white-bg="true"] .calendar-header-logo-icon,
+[data-default-white-bg="true"] .calendar-header-logo-container svg,
+[data-bg-light="true"] .calendar-container .calendar-header-logo-icon,
+[data-bg-light="true"] .calendar-container .calendar-header-logo-container svg {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  fill: rgba(97, 67, 247, 0.12) !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+.calendar-empty-icon,
+.calendar-empty-icon svg,
+[data-default-white-bg="true"] .calendar-empty-icon,
+[data-bg-light="true"] .calendar-container .calendar-empty-icon {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  fill: rgba(97, 67, 247, 0.12) !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+/* Calendar: World Dates web card logo & title match the calendar text color (#6143f7) */
+.world-dates-logo,
+.world-dates-logo svg,
+[data-default-white-bg="true"] .world-dates-logo,
+[data-default-white-bg="true"] .world-dates-logo svg,
+[data-bg-light="true"] .calendar-container .world-dates-logo,
+[data-bg-light="true"] .calendar-container .world-dates-logo svg,
+.calendar-container .world-dates-logo,
+.calendar-container .world-dates-logo svg,
+.dark .world-dates-logo,
+.dark .world-dates-logo svg {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+.world-dates-title,
+[data-default-white-bg="true"] .world-dates-title,
+[data-bg-light="true"] .calendar-container .world-dates-title,
+.calendar-container .world-dates-title,
+.dark .world-dates-title {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* 3. WEATHER TEMPERATURE DIGITS IN BLUE & PURPLE MIXING GRADIENT */
+[data-default-white-bg="true"] .weather-huawei-style .text-3xl,
+[data-default-white-bg="true"] .weather-huawei-style .text-4xl {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  color: #6143f7 !important;
+}
+
+/* 4. REPLACE ANY DEFAULT WHITE TEXT ON NON-EXEMPT PAGES WITH BLUE & PURPLE MIXING COLOR */
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .text-white:not(h1):not(h2):not(h3):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.bookmark-webcard *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .dark\:text-white:not(h1):not(h2):not(h3):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.bookmark-webcard *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style .text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style .dark\:text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard .text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard .dark\:text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-container .text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-container .dark\:text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container .text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container .dark\:text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calculator-tab-card .text-white:not(.calculator-equals-btn *):not(.calculator-equals-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calculator-tab-card .dark\:text-white:not(.calculator-equals-btn *):not(.calculator-equals-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .notes-tab-container .text-white:not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .notes-tab-container .dark\:text-white:not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .ipaddress-tab-card .text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .ipaddress-tab-card .dark\:text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .text-white:not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .dark\:text-white:not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text) {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+/* 5. PRIMARY TEXT & BODY TEXT IN BLUE & PURPLE MIXING COLOR ON NON-EXEMPT PAGES */
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card p:not(.clock-date-display):not(.daily-card-content-text),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style p:not(.daily-card-content-text),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard p:not(.weather-card-item-text),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-container p,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-weekday-header,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-day-btn span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calculator-display-history,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calculator-btn:not(.calculator-equals-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .ipaddress-tab-card p,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card p,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card span:not(.speedtest-btn-text):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .notes-tab-container p,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container p {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  text-shadow: none !important;
+}
+
+/* 6. SPANS, LABELS & ICONS IN BLUE & PURPLE MIXING COLOR ON NON-EXEMPT PAGES */
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.bookmark-webcard *):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]):not(.text-3xl):not(.text-4xl),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]) {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+/* Secondary / muted text in gentle blue-purple tone */
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .opacity-40,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .opacity-50,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .opacity-60,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .opacity-70,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .opacity-75 {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+}
+
+/* Calculator: Equals button MUST ALWAYS BE WHITE */
+.calculator-equals-btn,
+.calculator-equals-btn *,
+button.calculator-equals-btn,
+[data-default-white-bg="true"] .calculator-equals-btn,
+[data-default-white-bg="true"] .calculator-equals-btn *,
+[data-default-white-bg="true"] button.calculator-equals-btn {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Notes: Create Page button text MUST ALWAYS BE WHITE */
+.notes-create-page-btn,
+.notes-create-page-btn *,
+.notes-create-page-btn span,
+button.notes-create-page-btn,
+button.notes-create-page-btn span,
+[data-default-white-bg="true"] .notes-create-page-btn,
+[data-default-white-bg="true"] .notes-create-page-btn *,
+[data-default-white-bg="true"] .notes-create-page-btn span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* IP Address: Highlighted texts MUST BE BLACK */
+.ipaddress-tab-card p,
+.ipaddress-tab-card .word-color,
+[data-default-white-bg="true"] .ipaddress-tab-card p,
+[data-default-white-bg="true"] .ipaddress-tab-card .word-color,
+[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-indigo"]):not([class*="bg-green"]):not([class*="bg-orange"]),
+[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card button,
+[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card button *,
+[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card .font-mono,
+[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card div.text-xs {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Speed Test: Center circular test button (START / begin test / live digits) & action button text MUST BE PURE WHITE */
+.speedtest-center-circle,
+.speedtest-center-circle *,
+.speedtest-center-circle button,
+.speedtest-center-circle button *,
+.speedtest-center-circle button span,
+.speedtest-center-circle span,
+.speedtest-start-btn,
+.speedtest-start-btn *,
+.speedtest-start-btn span,
+.speedtest-start-button,
+.speedtest-start-button *,
+.speedtest-start-button span,
+.speedtest-btn-text,
+button .speedtest-btn-text,
+.speedtest-action-button,
+.speedtest-action-button *,
+.speedtest-action-button span,
+[data-default-white-bg="true"] .speedtest-center-circle,
+[data-default-white-bg="true"] .speedtest-center-circle *,
+[data-default-white-bg="true"] .speedtest-center-circle button,
+[data-default-white-bg="true"] .speedtest-center-circle button *,
+[data-default-white-bg="true"] .speedtest-center-circle span,
+[data-default-white-bg="true"] .speedtest-start-btn,
+[data-default-white-bg="true"] .speedtest-start-btn *,
+[data-default-white-bg="true"] .speedtest-start-btn span,
+[data-default-white-bg="true"] .speedtest-start-button,
+[data-default-white-bg="true"] .speedtest-start-button *,
+[data-default-white-bg="true"] .speedtest-start-button span,
+[data-default-white-bg="true"] .speedtest-btn-text,
+[data-default-white-bg="true"] button .speedtest-btn-text,
+[data-default-white-bg="true"] .speedtest-action-button,
+[data-default-white-bg="true"] .speedtest-action-button *,
+[data-default-white-bg="true"] .speedtest-action-button span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-center-circle,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-center-circle *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-center-circle button,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-center-circle button *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-center-circle span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-start-btn,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-start-btn *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-start-btn span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-start-button,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-start-button *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-start-button span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-btn-text,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-action-button,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-action-button *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .speedtest-tab-card .speedtest-action-button span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-center-circle,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-center-circle *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-center-circle button,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-center-circle button *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-center-circle span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-start-btn,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-start-btn *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-start-btn span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-start-button,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-start-button *,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-start-button span,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-btn-text,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-action-button,
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .speedtest-action-button * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Speed Test: Title 'Network Performance Analyzer' MUST BE BLACK */
+.speedtest-analyzer-title,
+h1.speedtest-analyzer-title,
+[data-default-white-bg="true"] .speedtest-analyzer-title,
+[data-default-white-bg="true"] [data-tab="speed"] .speedtest-analyzer-title,
+[data-default-white-bg="true"][data-active-tab="speed"] .speedtest-analyzer-title,
+[data-bg-light="true"] .speedtest-analyzer-title,
+[data-bg-light="true"] [data-tab="speed"] .speedtest-analyzer-title {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Speed Test: Right side highlighted metrics MUST BE BLACK */
+.speedtest-metric-val,
+.speedtest-metric-unit,
+[data-default-white-bg="true"] .speedtest-metric-val,
+[data-default-white-bg="true"] .speedtest-metric-unit,
+[data-default-white-bg="true"] .speedtest-tab-card .lg\:col-span-4 .speedtest-metric-val,
+[data-default-white-bg="true"] .speedtest-tab-card .lg\:col-span-4 .speedtest-metric-unit,
+[data-default-white-bg="true"] .speedtest-tab-card .lg\:col-span-4 .text-4xl,
+[data-default-white-bg="true"] .speedtest-tab-card .lg\:col-span-4 .text-2xl {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* 7. ENSURE EXEMPTION: BOOKMARK AND SETTINGS PAGES ARE PRESERVED UNTOUCHED */
+[data-active-tab="links"] .bookmark-webcard,
+[data-active-tab="links"] .bookmark-webcard *,
+[data-tab="links"] .bookmark-webcard,
+[data-tab="links"] .bookmark-webcard *,
+[data-active-tab="settings"] .GeekTabs-card,
+[data-active-tab="settings"] .GeekTabs-card *,
+[data-tab="settings"] .GeekTabs-card,
+[data-tab="settings"] .GeekTabs-card * {
+  /* Kept exactly as configured in Bookmark and Settings */
+}
+
+/* Home Page 3 Daily Webcards (Tips, Humor, Quote): Content text MUST BE SOLID BLACK */
+.daily-card-content-text,
+p.daily-card-content-text,
+div.daily-card-content-text,
+span.daily-card-content-text,
+.weather-huawei-style .daily-card-content-text,
+[data-default-white-bg="true"] .weather-huawei-style .daily-card-content-text,
+[data-default-white-bg="true"] [data-tab="home"] .daily-card-content-text,
+[data-default-white-bg="true"][data-active-tab="home"] .daily-card-content-text,
+[data-bg-light="true"] .daily-card-content-text,
+.dark .daily-card-content-text,
+.light .daily-card-content-text {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Bookmark Page: All Web Card names/titles MUST BE SOLID BLACK (#000000) */
+.bookmark-link-title,
+span.bookmark-link-title,
+.bookmark-webcard .bookmark-link-title,
+[data-active-tab="links"] .bookmark-webcard .bookmark-link-title,
+[data-tab="links"] .bookmark-webcard .bookmark-link-title,
+[data-default-white-bg="true"] .bookmark-webcard .bookmark-link-title,
+[data-bg-light="true"] .bookmark-webcard .bookmark-link-title,
+.light .bookmark-webcard .bookmark-link-title,
+.dark .bookmark-webcard .bookmark-link-title {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Weather Hourly & Daily Subcards: 12 Weather Cards text MUST BE SOLID BLACK (#000000) */
+.weather-card-item-text,
+p.weather-card-item-text,
+span.weather-card-item-text,
+.weather-subcard .weather-card-item-text,
+.weather-subcard p,
+[data-default-white-bg="true"] .weather-subcard p,
+[data-default-white-bg="true"] [data-tab="home"] .weather-subcard p,
+[data-default-white-bg="true"][data-active-tab="home"] .weather-subcard p,
+[data-bg-light="true"] .weather-subcard p,
+.light .weather-subcard p,
+.dark .weather-subcard p {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+

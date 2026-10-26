@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeekTabs Dashboard</title>
+    <meta name="description" content="A minimalist, aesthetic productivity dashboard with immersive wallpapers, smart widgets, and integrated search." />
+    <meta property="og:title" content="GeekTabs Dashboard" />
+    <meta property="og:description" content="A minimalist, aesthetic productivity dashboard with immersive wallpapers, smart widgets, and integrated search." />
+    <script>
+      (function() {
+        var originalFetch = window.fetch;
+        var currentFetch = originalFetch;
+        try {
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() { return currentFetch; },
+            set: function(val) { currentFetch = val; }
+          });
+        } catch (e) {
+          console.warn('Unable to patch window.fetch:', e);
+        }
+        if (typeof globalThis !== 'undefined' && globalThis !== window) {
+          try {
+            Object.defineProperty(globalThis, 'fetch', {
+              configurable: true,
+              enumerable: true,
+              get: function() { return currentFetch; },
+              set: function(val) { currentFetch = val; }
+            });
+          } catch (e) {
+            console.warn('Unable to patch globalThis.fetch:', e);
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "def-nature-1",
+    "title": "Misty Alpine Lake",
+    "category": "Nature",
+    "url": "https://images.unsplash.com/photo-1506744626753-dba37c25a1f1?q=80&w=2070"
+  },
+  {
+    "id": "def-nature-2",
+    "title": "Sunlit Mountain Peaks",
+    "category": "Nature",
+    "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"
+  },
+  {
+    "id": "def-nature-3",
+    "title": "Deep Autumn Forest",
+    "category": "Nature",
+    "url": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2070"
+  },
+  {
+    "id": "def-abstract-1",
+    "title": "Chromatic Liquid Wave",
+    "category": "Abstract",
+    "url": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=2070"
+  },
+  {
+    "id": "def-abstract-2",
+    "title": "Neon Iridescent Flow",
+    "category": "Abstract",
+    "url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064"
+  },
+  {
+    "id": "def-abstract-3",
+    "title": "Minimal Gradient Waves",
+    "category": "Abstract",
+    "url": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=2070"
+  },
+  {
+    "id": "def-science-1",
+    "title": "Earth From Orbit",
+    "category": "Science",
+    "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072"
+  },
+  {
+    "id": "def-science-2",
+    "title": "Cosmic Deep Space Nebula",
+    "category": "Science",
+    "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2070"
+  },
+  {
+    "id": "def-architecture-1",
+    "title": "Futuristic Glass Facade",
+    "category": "Architecture",
+    "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
+  },
+  {
+    "id": "def-architecture-2",
+    "title": "Spiral Geometric Spiral",
+    "category": "Architecture",
+    "url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069"
+  },
+  {
+    "id": "def-creation-1",
+    "title": "Creative Studio Workspace",
+    "category": "Creation",
+    "url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=2074"
+  },
+  {
+    "id": "def-creation-2",
+    "title": "Vibrant Powder Explosion",
+    "category": "Creation",
+    "url": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=2070"
+  },
+  {
+    "id": "def-holiday-1",
+    "title": "Festive Golden Glow",
+    "category": "Holiday",
+    "url": "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=2069"
+  },
+  {
+    "id": "def-holiday-2",
+    "title": "Warm Cozy Winter Lights",
+    "category": "Holiday",
+    "url": "https://images.unsplash.com/photo-1543258103-a62bdc069871?q=80&w=2069"
+  },
+  {
+    "id": "def-animal-1",
+    "title": "Majestic Snow Leopard",
+    "category": "Animal",
+    "url": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=2070"
+  },
+  {
+    "id": "def-animal-2",
+    "title": "Wild Eagle in Flight",
+    "category": "Animal",
+    "url": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?q=80&w=2070"
+  }
+]
