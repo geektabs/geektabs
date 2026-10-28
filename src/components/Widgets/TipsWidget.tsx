@@ -151,7 +151,6 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
       >
         <p 
           className="daily-card-content-text text-xs sm:text-[13px] md:text-sm font-normal leading-relaxed line-clamp-4 select-text"
-          style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
         >
           {tip}
         </p>

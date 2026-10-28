@@ -1581,8 +1581,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                   {renderBookmarkBrandIcon(link)}
                 </div>
                 <span 
-                  className="bookmark-link-title text-black dark:text-black font-medium text-xs sm:text-sm truncate text-left flex-1 select-none"
-                  style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
+                  className="bookmark-link-title font-medium text-xs sm:text-sm truncate text-left flex-1 select-none"
                 >
                   {link.title}
                 </span>
@@ -1605,8 +1604,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                 <Plus size={22} className="text-indigo-500 transition-transform group-hover:rotate-90 duration-300" />
               </div>
               <span 
-                className="bookmark-link-title text-black dark:text-black font-medium text-xs sm:text-sm truncate text-left flex-1 select-none"
-                style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
+                className="bookmark-link-title font-medium text-xs sm:text-sm truncate text-left flex-1 select-none"
               >
                 {LINKS_T[language]?.addBookmark || LINKS_T.English.addBookmark}
               </span>

@@ -1176,7 +1176,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
             >
               <div className="flex items-start gap-2 min-w-0 flex-1">
                 <MapPin size={14} className="text-[#c8102e] dark:text-red-500 shrink-0 mt-0.5 group-hover/loc:scale-110 transition-transform" />
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 break-words whitespace-normal leading-snug">
+                <span className="weather-location-text text-[11px] font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 break-words whitespace-normal leading-snug">
                   {location}
                 </span>
               </div>
@@ -1212,30 +1212,26 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                     {/* Bottom Row: Day Label, Date & High/Low Temp */}
                     <div className="pt-2">
                       <p 
-                        className="text-xs sm:text-[13px] font-bold text-black dark:text-black leading-tight truncate select-text"
-                        style={{ color: '#000000' }}
+                        className="weather-card-item-text text-xs sm:text-[13px] font-bold leading-tight truncate select-text"
                       >
                         {dayItem.time}
                       </p>
                       {dayItem.date && (
                         <p 
-                          className="text-[10px] sm:text-[11px] font-semibold text-black dark:text-black tracking-tight leading-tight mt-0.5 truncate select-text"
-                          style={{ color: '#000000' }}
+                          className="weather-card-item-text text-[10px] sm:text-[11px] font-semibold tracking-tight leading-tight mt-0.5 truncate select-text"
                         >
                           {dayItem.date}
                         </p>
                       )}
                       <div className="flex items-baseline gap-1 mt-1 leading-none">
                         <span 
-                          className="text-xs sm:text-[13px] font-extrabold text-black dark:text-black select-text"
-                          style={{ color: '#000000' }}
+                          className="weather-card-item-text text-xs sm:text-[13px] font-extrabold select-text"
                         >
                           {dayItem.maxTemp !== undefined ? dayItem.maxTemp : dayItem.temp}°
                         </span>
                         {dayItem.minTemp !== undefined && (
                           <span 
-                            className="text-[11px] font-bold text-black dark:text-black select-text"
-                            style={{ color: '#000000' }}
+                            className="weather-card-item-text text-[11px] font-bold select-text"
                           >
                             {dayItem.minTemp}°
                           </span>
@@ -1271,14 +1267,12 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                     {/* Bottom Row: Label & Temp */}
                     <div className="pt-2">
                       <p 
-                        className="weather-card-item-text text-xs sm:text-[13px] font-bold text-black dark:text-black leading-tight truncate select-text"
-                        style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
+                        className="weather-card-item-text text-xs sm:text-[13px] font-bold leading-tight truncate select-text"
                       >
                         {hr.time === 'Now' ? dictionary.now : hr.time}
                       </p>
                       <p 
-                        className="weather-card-item-text text-xs sm:text-[13px] font-extrabold text-black dark:text-black mt-0.5 leading-none select-text"
-                        style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
+                        className="weather-card-item-text text-xs sm:text-[13px] font-extrabold mt-0.5 leading-none select-text"
                       >
                         {hr.temp}°
                       </p>

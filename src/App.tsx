@@ -195,11 +195,13 @@ export default function App() {
 
   return (
     <div 
-      className={`relative min-h-screen font-sans transition-colors duration-500 ${isDarkMode && !isDefaultLightBg ? 'dark text-white' : 'light'} ${isPhoto ? 'photo-mode' : ''} ${cardBgMode === 'dark-glass' ? 'card-style-dark-glass' : 'card-style-white'} ${theme === 'light-grey' || theme === 'light-slate' ? 'bg-[#f8fafc]' : theme === 'white-clean' ? 'bg-white' : (theme === 'pastel-waves' || theme === 'mix-neonpurple') ? 'bg-[#d8f0fa]' : ''}`}
+      className={`relative min-h-screen font-sans transition-colors duration-500 ${isDarkMode ? 'dark text-white' : 'light'} ${isPhoto ? 'photo-mode' : ''} ${cardBgMode === 'dark-glass' ? 'card-style-dark-glass' : 'card-style-white'} ${theme === 'light-grey' || theme === 'light-slate' ? 'bg-[#f8fafc]' : theme === 'white-clean' ? 'bg-white' : (theme === 'pastel-waves' || theme === 'mix-neonpurple') ? 'bg-[#d8f0fa]' : ''}`}
       style={hasCustomTextColor ? ({ '--custom-page-text-color': textColor } as React.CSSProperties) : undefined}
       data-has-custom-text={hasCustomTextColor ? 'true' : 'false'}
       data-custom-text-light={isTextColorLight ? 'true' : 'false'}
       data-bg-light={!isDarkMode || isDefaultLightBg ? 'true' : 'false'}
+      data-dark-mode={isDarkMode ? 'true' : 'false'}
+      data-card-bg-mode={cardBgMode}
       data-default-white-bg={theme === 'white-clean' ? 'true' : 'false'}
       data-default-light-grey-bg={theme === 'light-grey' || theme === 'light-slate' ? 'true' : 'false'}
       data-active-tab={activeTab}
@@ -273,7 +275,7 @@ export default function App() {
               {/* Home Page Footer */}
               <footer className="w-full max-w-6xl mx-auto text-center pb-28 pt-8 sm:pt-10 mb-2 select-none flex flex-col items-center justify-center gap-1">
                 <p className="text-xs sm:text-sm font-medium tracking-wide word-color opacity-75">
-                  © 2026 Geektabs All Rights
+                  © 2026 Geektabs All Rights Reserved.
                 </p>
                 <p className="text-xs sm:text-sm font-medium tracking-wide word-color opacity-75">
                   Powered and secured by Geektabs.

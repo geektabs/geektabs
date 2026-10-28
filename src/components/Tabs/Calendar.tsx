@@ -568,19 +568,19 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
           <div className="hidden sm:flex items-center gap-2 shrink-0">
             <button
               onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
-              className="calendar-nav-arrow p-3 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 text-[#6143f7] dark:text-[#6143f7] flex items-center justify-center cursor-pointer"
+              className="calendar-nav-arrow p-3 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/5 dark:border-white/15 flex items-center justify-center cursor-pointer"
               title="Previous month"
               aria-label="Previous Month"
             >
-              <ChevronLeft size={20} className="text-[#6143f7] stroke-[#6143f7]" />
+              <ChevronLeft size={20} />
             </button>
             <button
               onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
-              className="calendar-nav-arrow p-3 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 text-[#6143f7] dark:text-[#6143f7] flex items-center justify-center cursor-pointer"
+              className="calendar-nav-arrow p-3 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
               title="Next month"
               aria-label="Next Month"
             >
-              <ChevronRight size={20} className="text-[#6143f7] stroke-[#6143f7]" />
+              <ChevronRight size={20} />
             </button>
           </div>
         </div>
@@ -589,20 +589,20 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
         <div className="flex sm:hidden items-center justify-between mb-5 px-1">
           <button
             onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
-            className="calendar-nav-arrow p-2.5 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 text-[#6143f7] dark:text-[#6143f7] flex items-center justify-center cursor-pointer"
+            className="calendar-nav-arrow p-2.5 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
             title="Previous month"
             aria-label="Previous Month"
           >
-            <ChevronLeft size={20} className="text-[#6143f7] stroke-[#6143f7]" />
+            <ChevronLeft size={20} />
           </button>
           <div className="h-px bg-black/10 dark:bg-white/15 flex-1 mx-4" />
           <button
             onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
-            className="calendar-nav-arrow p-2.5 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 text-[#6143f7] dark:text-[#6143f7] flex items-center justify-center cursor-pointer"
+            className="calendar-nav-arrow p-2.5 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-2xl transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
             title="Next month"
             aria-label="Next Month"
           >
-            <ChevronRight size={20} className="text-[#6143f7] stroke-[#6143f7]" />
+            <ChevronRight size={20} />
           </button>
         </div>
 

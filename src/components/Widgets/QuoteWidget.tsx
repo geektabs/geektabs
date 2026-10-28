@@ -144,7 +144,6 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
         <div className="my-auto py-1">
           <p 
             className="daily-card-content-text text-xs sm:text-[13px] md:text-sm font-normal leading-relaxed italic line-clamp-3 select-text"
-            style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
           >
             {data?.quote}
           </p>
@@ -152,8 +151,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
 
         <div className="pt-2 border-t border-black/5 dark:border-white/5 mt-1">
           <p 
-            className="daily-card-content-text text-[11px] font-bold uppercase tracking-wider leading-snug line-clamp-1 select-text"
-            style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
+            className="daily-card-content-text quote-author text-[11px] font-bold uppercase tracking-wider leading-snug line-clamp-1 select-text opacity-90"
           >
             &mdash; {data?.author}
           </p>

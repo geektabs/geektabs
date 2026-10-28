@@ -271,28 +271,28 @@
 }
 
 /* Calculator buttons and display under dark card-style-dark-glass to match other nested small cards */
-.dark.card-style-dark-glass .GeekTabs-card button.bg-white\/80,
-.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80,
-.dark.card-style-dark-glass .GeekTabs-card button.bg-black\/5,
-.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white\/80,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-black\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80 {
+.dark.card-style-dark-glass .calculator-tab-card button.bg-white\/80,
+.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80,
+.dark.card-style-dark-glass .calculator-tab-card button.bg-black\/5,
+.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-white\/80,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-black\/5,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80 {
   background-color: rgba(2, 6, 23, 0.65) !important;
   border: 1px solid rgba(255, 255, 255, 0.26) !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
   color: #ffffff !important;
 }
 
-.dark.card-style-dark-glass .GeekTabs-card button.bg-white\/80:hover,
-.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
-.dark.card-style-dark-glass .GeekTabs-card button.bg-black\/5:hover,
-.dark.card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80:hover,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white\/80:hover,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-black\/5:hover,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.dark\:bg-\[\#202020\]\/80:hover {
+.dark.card-style-dark-glass .calculator-tab-card button.bg-white\/80:hover,
+.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
+.dark.card-style-dark-glass .calculator-tab-card button.bg-black\/5:hover,
+.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80:hover,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-white\/80:hover,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-black\/5:hover,
+[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80:hover {
   background-color: rgba(15, 23, 42, 0.8) !important;
 }
 
@@ -2019,15 +2019,20 @@
   color: inherit !important;
 }
 
-/* Calendar weekday header text color - always crisp black with no shadow */
-.calendar-weekday-header,
-.card-style-white .GeekTabs-card .calendar-weekday-header,
-.card-style-dark-glass .GeekTabs-card .calendar-weekday-header,
-.light .calendar-weekday-header {
+/* Calendar weekday header text color: Black only in card-style-white in light mode, White in dark-glass or dark mode */
+.card-style-white:not(.dark) .calendar-weekday-header,
+.light:not(.card-style-dark-glass) .calendar-weekday-header {
   color: #000000 !important;
   opacity: 1 !important;
   text-shadow: none !important;
   filter: none !important;
+}
+
+.card-style-dark-glass .calendar-weekday-header,
+.dark .calendar-weekday-header {
+  color: #ffffff !important;
+  opacity: 0.9 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Wallpaper card category tag badge and overlay controls - always solid white text & icons */
@@ -2872,14 +2877,13 @@ button.custom-hex-apply-btn svg,
   margin-right: auto !important;
 }
 
-/* Home Page: Horoscope & Week progress text (highlighted in red rectangle) MUST BE SOLID BLACK */
-.horoscope-info-section,
-.horoscope-info-section p,
-.horoscope-line-text,
-[data-default-white-bg="true"] .horoscope-info-section,
-[data-default-white-bg="true"] .horoscope-info-section p,
-[data-default-white-bg="true"] .horoscope-line-text,
-[data-default-white-bg="true"] [data-tab="home"] .horoscope-info-section p {
+/* Home Page: Horoscope & Week progress text */
+.card-style-white .horoscope-info-section,
+.card-style-white .horoscope-info-section p,
+.card-style-white .horoscope-line-text,
+[data-card-bg-mode="white"] .horoscope-info-section,
+[data-card-bg-mode="white"] .horoscope-info-section p,
+[data-card-bg-mode="white"] .horoscope-line-text {
   background: none !important;
   -webkit-background-clip: initial !important;
   background-clip: initial !important;
@@ -2890,27 +2894,39 @@ button.custom-hex-apply-btn svg,
   text-shadow: none !important;
 }
 
-/* Home Page Webcards: All text inside Weather, Tips, Humor, and Quote webcards MUST BE BLACK except the titles */
-[data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
-[data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-[data-tab="home"] .weather-subcard p,
-[data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
-[data-active-tab="home"] .weather-huawei-style p:not(h2):not(h1),
-[data-active-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-[data-active-tab="home"] .weather-subcard p,
-[data-active-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
-[data-default-white-bg="true"] [data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
-[data-default-white-bg="true"] [data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-[data-default-white-bg="true"] [data-tab="home"] .weather-subcard p,
-[data-default-white-bg="true"] [data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
-[data-default-white-bg="true"][data-active-tab="home"] .weather-huawei-style p:not(h2):not(h1),
-[data-default-white-bg="true"][data-active-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-[data-default-white-bg="true"][data-active-tab="home"] .weather-subcard p,
-[data-default-white-bg="true"][data-active-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
-[data-bg-light="true"] [data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
-[data-bg-light="true"] [data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-[data-bg-light="true"] [data-tab="home"] .weather-subcard p,
-[data-bg-light="true"] [data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]) {
+.card-style-dark-glass .horoscope-info-section,
+.card-style-dark-glass .horoscope-info-section p,
+.card-style-dark-glass .horoscope-line-text,
+[data-card-bg-mode="dark-glass"] .horoscope-info-section,
+[data-card-bg-mode="dark-glass"] .horoscope-info-section p,
+[data-card-bg-mode="dark-glass"] .horoscope-line-text {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Home Page Webcards: All text inside Weather, Tips, Humor, and Quote webcards is BLACK in White Card style */
+.card-style-white [data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+.card-style-white [data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+.card-style-white [data-tab="home"] .weather-subcard p,
+.card-style-white [data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+.card-style-white [data-active-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+.card-style-white [data-active-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+.card-style-white [data-active-tab="home"] .weather-subcard p,
+.card-style-white [data-active-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-card-bg-mode="white"] [data-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-card-bg-mode="white"] [data-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-card-bg-mode="white"] [data-tab="home"] .weather-subcard p,
+[data-card-bg-mode="white"] [data-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-card-bg-mode="white"] [data-active-tab="home"] .weather-huawei-style p:not(h2):not(h1),
+[data-card-bg-mode="white"] [data-active-tab="home"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-card-bg-mode="white"] [data-active-tab="home"] .weather-subcard p,
+[data-card-bg-mode="white"] [data-active-tab="home"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]) {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
   opacity: 1 !important;
@@ -2961,16 +2977,10 @@ button.custom-hex-apply-btn svg,
   text-shadow: none !important;
 }
 
-/* Calendar: Navigation arrows (< and >) match the calendar page text color */
-.calendar-nav-arrow,
-.calendar-nav-arrow *,
-.calendar-nav-arrow svg,
+/* Calendar: Navigation arrows (< and >) match the calendar page text color on default white background */
 [data-default-white-bg="true"] .calendar-nav-arrow,
 [data-default-white-bg="true"] .calendar-nav-arrow *,
-[data-default-white-bg="true"] .calendar-nav-arrow svg,
-[data-bg-light="true"] .calendar-container .calendar-nav-arrow,
-[data-bg-light="true"] .calendar-container .calendar-nav-arrow *,
-[data-bg-light="true"] .calendar-container .calendar-nav-arrow svg {
+[data-default-white-bg="true"] .calendar-nav-arrow svg {
   color: #6143f7 !important;
   stroke: #6143f7 !important;
   -webkit-text-fill-color: #6143f7 !important;
@@ -3133,16 +3143,21 @@ button.notes-create-page-btn span,
   stroke: #ffffff !important;
 }
 
-/* IP Address: Highlighted texts MUST BE BLACK */
-.ipaddress-tab-card p,
-.ipaddress-tab-card .word-color,
-[data-default-white-bg="true"] .ipaddress-tab-card p,
-[data-default-white-bg="true"] .ipaddress-tab-card .word-color,
-[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-indigo"]):not([class*="bg-green"]):not([class*="bg-orange"]),
-[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card button,
-[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card button *,
-[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card .font-mono,
-[data-default-white-bg="true"] .ipaddress-tab-card .GeekTabs-card div.text-xs {
+/* IP Address: Content texts Solid Black in White Card Style */
+.card-style-white .ipaddress-tab-card p,
+.card-style-white .ipaddress-tab-card .word-color,
+.card-style-white .ipaddress-tab-card .ipaddress-page-title,
+.card-style-white .ipaddress-tab-card .ipaddress-page-subtitle,
+[data-card-bg-mode="white"] .ipaddress-tab-card p,
+[data-card-bg-mode="white"] .ipaddress-tab-card .word-color,
+[data-card-bg-mode="white"] .ipaddress-tab-card .ipaddress-page-title,
+[data-card-bg-mode="white"] .ipaddress-tab-card .ipaddress-page-subtitle,
+.card-style-white .ipaddress-tab-card .GeekTabs-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-indigo"]):not([class*="bg-green"]):not([class*="bg-orange"]),
+[data-card-bg-mode="white"] .ipaddress-tab-card .GeekTabs-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-indigo"]):not([class*="bg-green"]):not([class*="bg-orange"]),
+.card-style-white .ipaddress-tab-card .GeekTabs-card .font-mono,
+[data-card-bg-mode="white"] .ipaddress-tab-card .GeekTabs-card .font-mono,
+.card-style-white .ipaddress-tab-card .GeekTabs-card div.text-xs,
+[data-card-bg-mode="white"] .ipaddress-tab-card .GeekTabs-card div.text-xs {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
   opacity: 1 !important;
@@ -3260,57 +3275,299 @@ h1.speedtest-analyzer-title,
   /* Kept exactly as configured in Bookmark and Settings */
 }
 
-/* Home Page 3 Daily Webcards (Tips, Humor, Quote): Content text MUST BE SOLID BLACK */
-.daily-card-content-text,
-p.daily-card-content-text,
-div.daily-card-content-text,
-span.daily-card-content-text,
-.weather-huawei-style .daily-card-content-text,
-[data-default-white-bg="true"] .weather-huawei-style .daily-card-content-text,
-[data-default-white-bg="true"] [data-tab="home"] .daily-card-content-text,
-[data-default-white-bg="true"][data-active-tab="home"] .daily-card-content-text,
-[data-bg-light="true"] .daily-card-content-text,
-.dark .daily-card-content-text,
-.light .daily-card-content-text {
+/* =========================================================================
+   WEBCARD TEXT COLOR SYSTEM
+   Strict separation based on Card Background Setting:
+   1. "Transparent Glass Style" (.card-style-dark-glass / [data-card-bg-mode="dark-glass"]):
+      ALL webcard texts across ALL pages are SOLID PURE WHITE (#ffffff).
+   2. "White Background" Card Style (.card-style-white / [data-card-bg-mode="white"]):
+      ALL webcard texts across ALL pages MUST BE SOLID PURE BLACK (#000000).
+   ========================================================================= */
+
+/* --- 1. TRANSPARENT GLASS STYLE: ALL WEBCARDS TEXT IS WHITE (ALL PAGES) --- */
+.card-style-dark-glass .daily-card-content-text,
+[data-card-bg-mode="dark-glass"] .daily-card-content-text,
+.card-style-dark-glass p.daily-card-content-text,
+[data-card-bg-mode="dark-glass"] p.daily-card-content-text,
+.card-style-dark-glass div.daily-card-content-text,
+[data-card-bg-mode="dark-glass"] div.daily-card-content-text,
+.card-style-dark-glass span.daily-card-content-text,
+[data-card-bg-mode="dark-glass"] span.daily-card-content-text,
+.card-style-dark-glass .quote-author,
+[data-card-bg-mode="dark-glass"] .quote-author,
+.card-style-dark-glass .weather-card-item-text,
+[data-card-bg-mode="dark-glass"] .weather-card-item-text,
+.card-style-dark-glass p.weather-card-item-text,
+[data-card-bg-mode="dark-glass"] p.weather-card-item-text,
+.card-style-dark-glass span.weather-card-item-text,
+[data-card-bg-mode="dark-glass"] span.weather-card-item-text,
+.card-style-dark-glass .weather-subcard p,
+[data-card-bg-mode="dark-glass"] .weather-subcard p,
+.card-style-dark-glass .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-card-bg-mode="dark-glass"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+.card-style-dark-glass .weather-subcard .weather-location-text,
+[data-card-bg-mode="dark-glass"] .weather-subcard .weather-location-text,
+.card-style-dark-glass .weather-location-text,
+[data-card-bg-mode="dark-glass"] .weather-location-text,
+.card-style-dark-glass .weather-huawei-style p:not(h2):not(h1),
+[data-card-bg-mode="dark-glass"] .weather-huawei-style p:not(h2):not(h1),
+.card-style-dark-glass .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-card-bg-mode="dark-glass"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+.card-style-dark-glass .horoscope-info-section p,
+[data-card-bg-mode="dark-glass"] .horoscope-info-section p,
+.card-style-dark-glass .horoscope-line-text,
+[data-card-bg-mode="dark-glass"] .horoscope-line-text,
+.card-style-dark-glass .bookmark-link-title,
+[data-card-bg-mode="dark-glass"] .bookmark-link-title,
+.card-style-dark-glass .bookmark-webcard .bookmark-link-title,
+[data-card-bg-mode="dark-glass"] .bookmark-webcard .bookmark-link-title,
+.card-style-dark-glass .bookmark-webcard p,
+[data-card-bg-mode="dark-glass"] .bookmark-webcard p,
+.card-style-dark-glass .bookmark-webcard span,
+[data-card-bg-mode="dark-glass"] .bookmark-webcard span,
+.card-style-dark-glass .calendar-container .calendar-day-btn span,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn span,
+.card-style-dark-glass .calendar-container .calendar-day-btn p,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn p,
+.card-style-dark-glass .calendar-container .world-clock-card *,
+[data-card-bg-mode="dark-glass"] .calendar-container .world-clock-card *,
+.card-style-dark-glass .calendar-container .world-dates-select,
+[data-card-bg-mode="dark-glass"] .calendar-container .world-dates-select,
+.card-style-dark-glass .calendar-container .world-dates-diff-pill *,
+[data-card-bg-mode="dark-glass"] .calendar-container .world-dates-diff-pill *,
+.card-style-dark-glass .todolist-tab-container p,
+[data-card-bg-mode="dark-glass"] .todolist-tab-container p,
+.card-style-dark-glass .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
+[data-card-bg-mode="dark-glass"] .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
+.card-style-dark-glass .notes-tab-container p,
+[data-card-bg-mode="dark-glass"] .notes-tab-container p,
+.card-style-dark-glass .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
+[data-card-bg-mode="dark-glass"] .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
+.card-style-dark-glass .calculator-tab-card p,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card p,
+.card-style-dark-glass .calculator-tab-card span,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card span,
+.card-style-dark-glass .speedtest-analyzer-title,
+[data-card-bg-mode="dark-glass"] .speedtest-analyzer-title,
+.card-style-dark-glass .speedtest-metric-val,
+[data-card-bg-mode="dark-glass"] .speedtest-metric-val,
+.card-style-dark-glass .speedtest-metric-unit,
+[data-card-bg-mode="dark-glass"] .speedtest-metric-unit,
+.card-style-dark-glass .ipaddress-tab-card h1,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card h1,
+.card-style-dark-glass .ipaddress-page-title,
+[data-card-bg-mode="dark-glass"] .ipaddress-page-title,
+.card-style-dark-glass .ipaddress-page-subtitle,
+[data-card-bg-mode="dark-glass"] .ipaddress-page-subtitle,
+.card-style-dark-glass .ipaddress-tab-card p,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card p,
+.card-style-dark-glass .ipaddress-tab-card .word-color,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card .word-color,
+.card-style-dark-glass .ipaddress-tab-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-"]),
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-"]),
+.card-style-dark-glass .ipaddress-tab-card .font-mono,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card .font-mono,
+.card-style-dark-glass .settings-tab-card p,
+[data-card-bg-mode="dark-glass"] .settings-tab-card p,
+.card-style-dark-glass .settings-tab-card label,
+[data-card-bg-mode="dark-glass"] .settings-tab-card label,
+.card-style-dark-glass footer p,
+[data-card-bg-mode="dark-glass"] footer p {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-nav-arrow,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 1rem !important;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-nav-arrow:hover,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-nav-arrow svg,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.card-style-dark-glass .ipaddress-tab-card .ipaddress-btn-reidentify,
+.card-style-dark-glass .ipaddress-tab-card .ipaddress-badge-secured,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card .ipaddress-btn-reidentify,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card .ipaddress-badge-secured {
+  background: rgba(255, 255, 255, 0.05) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.card-style-dark-glass .ipaddress-tab-card .ipaddress-btn-reidentify:hover,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card .ipaddress-btn-reidentify:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* =========================================================================
+   2. "WHITE BACKGROUND" CARD STYLE (ALL PAGES): SOLID PURE BLACK TEXT (#000000)
+   When the user selects "白色背景" card style, all webcard texts across ALL
+   pages MUST be solid pure black, regardless of dark mode or wallpaper.
+   ========================================================================= */
+
+.card-style-white .daily-card-content-text,
+[data-card-bg-mode="white"] .daily-card-content-text,
+.card-style-white p.daily-card-content-text,
+[data-card-bg-mode="white"] p.daily-card-content-text,
+.card-style-white div.daily-card-content-text,
+[data-card-bg-mode="white"] div.daily-card-content-text,
+.card-style-white span.daily-card-content-text,
+[data-card-bg-mode="white"] span.daily-card-content-text,
+.card-style-white .quote-author,
+[data-card-bg-mode="white"] .quote-author,
+.card-style-white .weather-card-item-text,
+[data-card-bg-mode="white"] .weather-card-item-text,
+.card-style-white p.weather-card-item-text,
+[data-card-bg-mode="white"] p.weather-card-item-text,
+.card-style-white span.weather-card-item-text,
+[data-card-bg-mode="white"] span.weather-card-item-text,
+.card-style-white .weather-subcard p,
+[data-card-bg-mode="white"] .weather-subcard p,
+.card-style-white .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+[data-card-bg-mode="white"] .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]),
+.card-style-white .weather-location-text,
+[data-card-bg-mode="white"] .weather-location-text,
+.card-style-white .weather-huawei-style p:not(h2):not(h1),
+[data-card-bg-mode="white"] .weather-huawei-style p:not(h2):not(h1),
+.card-style-white .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+[data-card-bg-mode="white"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
+.card-style-white .horoscope-info-section p,
+[data-card-bg-mode="white"] .horoscope-info-section p,
+.card-style-white .horoscope-line-text,
+[data-card-bg-mode="white"] .horoscope-line-text,
+.card-style-white .bookmark-link-title,
+[data-card-bg-mode="white"] .bookmark-link-title,
+.card-style-white .bookmark-webcard .bookmark-link-title,
+[data-card-bg-mode="white"] .bookmark-webcard .bookmark-link-title,
+.card-style-white .bookmark-webcard p,
+[data-card-bg-mode="white"] .bookmark-webcard p,
+.card-style-white .bookmark-webcard span,
+[data-card-bg-mode="white"] .bookmark-webcard span,
+.card-style-white .calendar-container .calendar-day-btn span,
+[data-card-bg-mode="white"] .calendar-container .calendar-day-btn span,
+.card-style-white .calendar-container .calendar-day-btn p,
+[data-card-bg-mode="white"] .calendar-container .calendar-day-btn p,
+.card-style-white .calendar-weekday-header,
+[data-card-bg-mode="white"] .calendar-weekday-header,
+.card-style-white .calendar-container .world-clock-card *,
+[data-card-bg-mode="white"] .calendar-container .world-clock-card *,
+.card-style-white .calendar-container .world-dates-select,
+[data-card-bg-mode="white"] .calendar-container .world-dates-select,
+.card-style-white .calendar-container .world-dates-diff-pill *,
+[data-card-bg-mode="white"] .calendar-container .world-dates-diff-pill *,
+.card-style-white .todolist-tab-container p,
+[data-card-bg-mode="white"] .todolist-tab-container p,
+.card-style-white .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
+[data-card-bg-mode="white"] .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
+.card-style-white .notes-tab-container p,
+[data-card-bg-mode="white"] .notes-tab-container p,
+.card-style-white .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
+[data-card-bg-mode="white"] .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
+.card-style-white .calculator-tab-card p,
+[data-card-bg-mode="white"] .calculator-tab-card p,
+.card-style-white .calculator-tab-card span:not(.calculator-equals-btn *):not(.calculator-equals-btn),
+[data-card-bg-mode="white"] .calculator-tab-card span:not(.calculator-equals-btn *):not(.calculator-equals-btn),
+.card-style-white .calculator-btn:not(.calculator-equals-btn),
+[data-card-bg-mode="white"] .calculator-btn:not(.calculator-equals-btn),
+.card-style-white .speedtest-analyzer-title,
+[data-card-bg-mode="white"] .speedtest-analyzer-title,
+.card-style-white .speedtest-metric-val,
+[data-card-bg-mode="white"] .speedtest-metric-val,
+.card-style-white .speedtest-metric-unit,
+[data-card-bg-mode="white"] .speedtest-metric-unit,
+.card-style-white .speedtest-tab-card p,
+[data-card-bg-mode="white"] .speedtest-tab-card p,
+.card-style-white .ipaddress-tab-card h1,
+[data-card-bg-mode="white"] .ipaddress-tab-card h1,
+.card-style-white .ipaddress-page-title,
+[data-card-bg-mode="white"] .ipaddress-page-title,
+.card-style-white .ipaddress-page-subtitle,
+[data-card-bg-mode="white"] .ipaddress-page-subtitle,
+.card-style-white .ipaddress-tab-card p,
+[data-card-bg-mode="white"] .ipaddress-tab-card p,
+.card-style-white .ipaddress-tab-card .word-color,
+[data-card-bg-mode="white"] .ipaddress-tab-card .word-color,
+.card-style-white .ipaddress-tab-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-"]),
+[data-card-bg-mode="white"] .ipaddress-tab-card span:not(.text-indigo-500):not(.text-purple-500):not(.text-green-500):not(.text-orange-500):not([class*="bg-"]),
+.card-style-white .ipaddress-tab-card .font-mono,
+[data-card-bg-mode="white"] .ipaddress-tab-card .font-mono,
+.card-style-white .settings-tab-card p,
+[data-card-bg-mode="white"] .settings-tab-card p,
+.card-style-white .settings-tab-card label,
+[data-card-bg-mode="white"] .settings-tab-card label {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
   opacity: 1 !important;
   text-shadow: none !important;
 }
 
-/* Bookmark Page: All Web Card names/titles MUST BE SOLID BLACK (#000000) */
-.bookmark-link-title,
-span.bookmark-link-title,
-.bookmark-webcard .bookmark-link-title,
-[data-active-tab="links"] .bookmark-webcard .bookmark-link-title,
-[data-tab="links"] .bookmark-webcard .bookmark-link-title,
-[data-default-white-bg="true"] .bookmark-webcard .bookmark-link-title,
-[data-bg-light="true"] .bookmark-webcard .bookmark-link-title,
-.light .bookmark-webcard .bookmark-link-title,
-.dark .bookmark-webcard .bookmark-link-title {
+.card-style-white .calendar-container .calendar-nav-arrow,
+[data-card-bg-mode="white"] .calendar-container .calendar-nav-arrow {
+  background: rgba(0, 0, 0, 0.05) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: 1rem !important;
   color: #000000 !important;
+  stroke: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
-/* Weather Hourly & Daily Subcards: 12 Weather Cards text MUST BE SOLID BLACK (#000000) */
-.weather-card-item-text,
-p.weather-card-item-text,
-span.weather-card-item-text,
-.weather-subcard .weather-card-item-text,
-.weather-subcard p,
-[data-default-white-bg="true"] .weather-subcard p,
-[data-default-white-bg="true"] [data-tab="home"] .weather-subcard p,
-[data-default-white-bg="true"][data-active-tab="home"] .weather-subcard p,
-[data-bg-light="true"] .weather-subcard p,
-.light .weather-subcard p,
-.dark .weather-subcard p {
+.card-style-white .calendar-container .calendar-nav-arrow:hover,
+[data-card-bg-mode="white"] .calendar-container .calendar-nav-arrow:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-style-white .calendar-container .calendar-nav-arrow svg,
+[data-card-bg-mode="white"] .calendar-container .calendar-nav-arrow svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.card-style-white .ipaddress-tab-card .ipaddress-btn-reidentify,
+.card-style-white .ipaddress-tab-card .ipaddress-badge-secured,
+[data-card-bg-mode="white"] .ipaddress-tab-card .ipaddress-btn-reidentify,
+[data-card-bg-mode="white"] .ipaddress-tab-card .ipaddress-badge-secured {
+  background: rgba(0, 0, 0, 0.05) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: 0.5rem !important;
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
+  box-shadow: none !important;
 }
+
+.card-style-white .ipaddress-tab-card .ipaddress-btn-reidentify:hover,
+[data-card-bg-mode="white"] .ipaddress-tab-card .ipaddress-btn-reidentify:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
 
 
 

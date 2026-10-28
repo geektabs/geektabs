@@ -338,8 +338,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
             <span className="text-xs uppercase font-extrabold tracking-widest text-purple-500">{d.broadband}</span>
           </div>
           <h1 
-            className="speedtest-analyzer-title text-3xl font-black tracking-tight text-black dark:text-black"
-            style={{ color: '#000000', WebkitTextFillColor: '#000000' }}
+            className="speedtest-analyzer-title text-3xl font-black tracking-tight"
           >
             {d.analyzer}
           </h1>

@@ -111,10 +111,10 @@ export default function HoroscopeInfo({ language = 'English' }: HoroscopeInfoPro
 
   return (
     <div className="w-full max-w-4xl mx-auto my-4 sm:my-5 text-center select-none flex flex-col items-center justify-center gap-1.5 sm:gap-2 px-4 transition-all horoscope-info-section">
-      <p className="text-sm sm:text-base md:text-lg font-semibold tracking-normal text-black dark:text-black horoscope-line-text leading-snug drop-shadow-xs">
+      <p className="text-sm sm:text-base md:text-lg font-semibold tracking-normal horoscope-line-text leading-snug drop-shadow-xs">
         {line1}
       </p>
-      <p className="text-sm sm:text-base md:text-lg font-semibold tracking-normal text-black dark:text-black horoscope-line-text leading-snug drop-shadow-xs">
+      <p className="text-sm sm:text-base md:text-lg font-semibold tracking-normal horoscope-line-text leading-snug drop-shadow-xs">
         {line2}
       </p>
     </div>

@@ -507,10 +507,10 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
           <Globe size={18} className="text-indigo-500 animate-pulse" />
           <span className="text-xs uppercase font-extrabold tracking-widest text-indigo-500">{d.identifier}</span>
         </div>
-        <h1 className="text-3xl font-black tracking-tight word-color">
+        <h1 className="text-3xl font-black tracking-tight word-color ipaddress-page-title">
           {d.title}
         </h1>
-        <p className="text-sm word-color opacity-50 mt-1 font-medium">{d.subtitle}</p>
+        <p className="text-sm word-color opacity-50 mt-1 font-medium ipaddress-page-subtitle">{d.subtitle}</p>
       </div>
 
       {isLoadingIp ? (
@@ -650,7 +650,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
               </div>
               
-              <div className="mt-6 flex items-center gap-1.5 px-3 py-1 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-lg pointer-events-none self-start">
+              <div className="ipaddress-badge-secured mt-6 flex items-center gap-1.5 px-3 py-1 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-lg pointer-events-none self-start">
                 <Shield size={12} className="text-indigo-500" />
                 <span className="text-[9px] font-mono uppercase font-bold tracking-wider word-color opacity-70">{d.secured}</span>
               </div>
@@ -684,11 +684,12 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
               </div>
 
               <button
+                type="button"
                 onClick={fetchIp}
-                className="mt-6 flex items-center gap-2 px-4 py-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 rounded-xl word-color font-bold text-xs transition-colors self-start cursor-pointer"
+                className="ipaddress-btn-reidentify mt-6 flex items-center gap-1.5 px-3 py-1 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 rounded-lg word-color font-mono uppercase font-bold text-[9px] tracking-wider transition-colors self-start cursor-pointer active:scale-95"
               >
-                <RefreshCw size={12} className={isLoadingIp ? "animate-spin" : ""} />
-                {d.reidentify}
+                <RefreshCw size={12} className={`text-purple-500 ${isLoadingIp ? "animate-spin" : ""}`} />
+                <span>{d.reidentify}</span>
               </button>
             </div>
 
