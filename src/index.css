@@ -2063,7 +2063,8 @@
     0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
 }
 
-.dark .weather-huawei-style {
+.card-style-dark-glass .weather-huawei-style,
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-huawei-style {
   background: rgba(18, 22, 34, 0.48) !important;
   background-color: rgba(18, 22, 34, 0.48) !important;
   backdrop-filter: blur(24px) saturate(190%) !important;
@@ -2077,17 +2078,18 @@
     0 2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
-.card-style-white .weather-huawei-style {
-  background: rgba(255, 255, 255, 0.55) !important;
-  background-color: rgba(255, 255, 255, 0.55) !important;
-  backdrop-filter: blur(24px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
-  box-shadow: 
-    0 0 0 1px rgba(186, 230, 253, 0.55),
-    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
-    inset 0 0 14px 0 rgba(191, 219, 254, 0.25),
-    0 10px 32px -4px rgba(59, 130, 246, 0.12) !important;
+.card-style-white .weather-huawei-style,
+[data-card-bg-mode="white"] .weather-huawei-style,
+.dark.card-style-white .weather-huawei-style,
+.dark [data-card-bg-mode="white"] .weather-huawei-style,
+.card-style-white [data-tab="home"] .weather-huawei-style,
+[data-card-bg-mode="white"] [data-tab="home"] .weather-huawei-style {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04) !important;
 }
 
 .dark.card-style-dark-glass .weather-huawei-style,
@@ -2137,7 +2139,8 @@
     0 4px 16px rgba(59, 130, 246, 0.12) !important;
 }
 
-.dark .weather-subcard {
+.card-style-dark-glass .weather-subcard,
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-subcard {
   background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(16px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
@@ -2147,7 +2150,8 @@
     0 2px 10px rgba(0, 0, 0, 0.2) !important;
 }
 
-.dark .weather-subcard:hover {
+.card-style-dark-glass .weather-subcard:hover,
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-subcard:hover {
   background: rgba(255, 255, 255, 0.14) !important;
   border-color: rgba(147, 197, 253, 0.5) !important;
   box-shadow: 
@@ -2155,14 +2159,27 @@
     0 4px 16px rgba(0, 0, 0, 0.25) !important;
 }
 
-.card-style-white .weather-subcard {
-  background: rgba(255, 255, 255, 0.65) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  border: 1px solid rgba(147, 197, 253, 0.7) !important;
-  box-shadow: 
-    inset 0 1px 1px 0 rgba(224, 242, 254, 0.9),
-    0 2px 10px rgba(59, 130, 246, 0.06) !important;
+.card-style-white .weather-subcard,
+[data-card-bg-mode="white"] .weather-subcard,
+.dark.card-style-white .weather-subcard,
+.dark [data-card-bg-mode="white"] .weather-subcard,
+.card-style-white [data-tab="home"] .weather-subcard,
+[data-card-bg-mode="white"] [data-tab="home"] .weather-subcard {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.card-style-white .weather-subcard:hover,
+[data-card-bg-mode="white"] .weather-subcard:hover,
+.dark.card-style-white .weather-subcard:hover,
+.dark [data-card-bg-mode="white"] .weather-subcard:hover {
+  background: #f8fafc !important;
+  background-color: #f8fafc !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
 }
 
 .dark.card-style-dark-glass .weather-subcard,
@@ -2236,27 +2253,45 @@
 .daily-title-green {
   background-color: rgba(34, 197, 94, 0.16) !important;
 }
-.dark .daily-title-green,
+.card-style-white .daily-title-green,
+[data-card-bg-mode="white"] .daily-title-green,
+.dark.card-style-white .daily-title-green,
+.dark [data-card-bg-mode="white"] .daily-title-green {
+  background-color: #eaf7ee !important;
+}
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-green,
 .dark.card-style-dark-glass .daily-title-green,
-[data-bg-light="false"] .daily-title-green {
+[data-bg-light="false"].card-style-dark-glass .daily-title-green {
   background-color: rgba(16, 185, 129, 0.22) !important;
 }
 
 .daily-title-orange {
   background-color: rgba(249, 115, 22, 0.16) !important;
 }
-.dark .daily-title-orange,
+.card-style-white .daily-title-orange,
+[data-card-bg-mode="white"] .daily-title-orange,
+.dark.card-style-white .daily-title-orange,
+.dark [data-card-bg-mode="white"] .daily-title-orange {
+  background-color: #fef0e6 !important;
+}
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-orange,
 .dark.card-style-dark-glass .daily-title-orange,
-[data-bg-light="false"] .daily-title-orange {
+[data-bg-light="false"].card-style-dark-glass .daily-title-orange {
   background-color: rgba(249, 115, 22, 0.22) !important;
 }
 
 .daily-title-yellow {
   background-color: rgba(234, 179, 8, 0.18) !important;
 }
-.dark .daily-title-yellow,
+.card-style-white .daily-title-yellow,
+[data-card-bg-mode="white"] .daily-title-yellow,
+.dark.card-style-white .daily-title-yellow,
+.dark [data-card-bg-mode="white"] .daily-title-yellow {
+  background-color: #fef9e7 !important;
+}
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-yellow,
 .dark.card-style-dark-glass .daily-title-yellow,
-[data-bg-light="false"] .daily-title-yellow {
+[data-bg-light="false"].card-style-dark-glass .daily-title-yellow {
   background-color: rgba(234, 179, 8, 0.24) !important;
 }
 
@@ -2878,22 +2913,19 @@ button.custom-hex-apply-btn svg,
 }
 
 /* Home Page: Horoscope & Week progress text */
-.card-style-white .horoscope-info-section,
-.card-style-white .horoscope-info-section p,
-.card-style-white .horoscope-line-text,
-[data-card-bg-mode="white"] .horoscope-info-section,
-[data-card-bg-mode="white"] .horoscope-info-section p,
-[data-card-bg-mode="white"] .horoscope-line-text {
-  background: none !important;
-  -webkit-background-clip: initial !important;
-  background-clip: initial !important;
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-  opacity: 1 !important;
-  font-weight: 600 !important;
-  text-shadow: none !important;
-}
-
+/* On dark backgrounds, dark mode, or wallpapers (photo-mode): text MUST BE WHITE */
+.dark .horoscope-info-section,
+.dark .horoscope-info-section p,
+.dark .horoscope-line-text,
+.photo-mode .horoscope-info-section,
+.photo-mode .horoscope-info-section p,
+.photo-mode .horoscope-line-text,
+[data-bg-light="false"] .horoscope-info-section,
+[data-bg-light="false"] .horoscope-info-section p,
+[data-bg-light="false"] .horoscope-line-text,
+[data-dark-mode="true"] .horoscope-info-section,
+[data-dark-mode="true"] .horoscope-info-section p,
+[data-dark-mode="true"] .horoscope-line-text,
 .card-style-dark-glass .horoscope-info-section,
 .card-style-dark-glass .horoscope-info-section p,
 .card-style-dark-glass .horoscope-line-text,
@@ -2907,7 +2939,30 @@ button.custom-hex-apply-btn svg,
   -webkit-text-fill-color: #ffffff !important;
   opacity: 1 !important;
   font-weight: 600 !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75) !important;
+}
+
+/* On light backgrounds without photo wallpaper: text is black for high contrast */
+[data-bg-light="true"]:not(.photo-mode):not(.card-style-dark-glass) .horoscope-info-section,
+[data-bg-light="true"]:not(.photo-mode):not(.card-style-dark-glass) .horoscope-info-section p,
+[data-bg-light="true"]:not(.photo-mode):not(.card-style-dark-glass) .horoscope-line-text,
+.light:not(.photo-mode):not(.card-style-dark-glass) .horoscope-info-section p,
+.light:not(.photo-mode):not(.card-style-dark-glass) .horoscope-line-text {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+[data-has-custom-text="true"] .horoscope-info-section,
+[data-has-custom-text="true"] .horoscope-info-section p,
+[data-has-custom-text="true"] .horoscope-line-text {
+  color: var(--custom-page-text-color) !important;
+  -webkit-text-fill-color: var(--custom-page-text-color) !important;
 }
 
 /* Home Page Webcards: All text inside Weather, Tips, Humor, and Quote webcards is BLACK in White Card style */
@@ -3454,11 +3509,7 @@ h1.speedtest-analyzer-title,
 .card-style-white .weather-huawei-style p:not(h2):not(h1),
 [data-card-bg-mode="white"] .weather-huawei-style p:not(h2):not(h1),
 .card-style-white .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-[data-card-bg-mode="white"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
-.card-style-white .horoscope-info-section p,
-[data-card-bg-mode="white"] .horoscope-info-section p,
-.card-style-white .horoscope-line-text,
-[data-card-bg-mode="white"] .horoscope-line-text,
+  [data-card-bg-mode="white"] .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not(.text-3xl):not(.text-4xl),
 .card-style-white .bookmark-link-title,
 [data-card-bg-mode="white"] .bookmark-link-title,
 .card-style-white .bookmark-webcard .bookmark-link-title,
@@ -3566,6 +3617,125 @@ h1.speedtest-analyzer-title,
 [data-card-bg-mode="white"] .ipaddress-tab-card .ipaddress-btn-reidentify:hover {
   background: rgba(0, 0, 0, 0.1) !important;
   background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* =========================================================================
+   HOME PAGE WEBCARDS BACKGROUND IN "WHITE BACKGROUND" CARD STYLE:
+   100% Solid Opaque Pure White (#ffffff), NON-TRANSPARENT, exactly matching
+   the Bookmark page's webcard background setting (see bookmark_66d223cb.jpg).
+   No wallpaper tinting, no blur/glass transparency.
+   ========================================================================= */
+
+.card-style-white .weather-huawei-style,
+[data-card-bg-mode="white"] .weather-huawei-style,
+.dark.card-style-white .weather-huawei-style,
+.dark [data-card-bg-mode="white"] .weather-huawei-style,
+.card-style-white [data-tab="home"] .weather-huawei-style,
+[data-card-bg-mode="white"] [data-tab="home"] .weather-huawei-style {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04) !important;
+}
+
+/* Home Weather subcards and location badge: Solid white, non-transparent */
+.card-style-white .weather-subcard,
+[data-card-bg-mode="white"] .weather-subcard,
+.dark.card-style-white .weather-subcard,
+.dark [data-card-bg-mode="white"] .weather-subcard,
+.card-style-white [data-tab="home"] .weather-subcard,
+[data-card-bg-mode="white"] [data-tab="home"] .weather-subcard {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-style-white .weather-subcard:hover,
+[data-card-bg-mode="white"] .weather-subcard:hover,
+.dark.card-style-white .weather-subcard:hover,
+.dark [data-card-bg-mode="white"] .weather-subcard:hover {
+  background: #f8fafc !important;
+  background-color: #f8fafc !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Home Daily Cards title headers: Solid opaque pastels (no wallpaper bleed-through) */
+.card-style-white .daily-title-green,
+[data-card-bg-mode="white"] .daily-title-green,
+.dark.card-style-white .daily-title-green,
+.dark [data-card-bg-mode="white"] .daily-title-green {
+  background: #eaf7ee !important;
+  background-color: #eaf7ee !important;
+}
+
+.card-style-white .daily-title-yellow,
+[data-card-bg-mode="white"] .daily-title-yellow,
+.dark.card-style-white .daily-title-yellow,
+.dark [data-card-bg-mode="white"] .daily-title-yellow {
+  background: #fef9e7 !important;
+  background-color: #fef9e7 !important;
+}
+
+.card-style-white .daily-title-orange,
+[data-card-bg-mode="white"] .daily-title-orange,
+.dark.card-style-white .daily-title-orange,
+.dark [data-card-bg-mode="white"] .daily-title-orange {
+  background: #fef0e6 !important;
+  background-color: #fef0e6 !important;
+}
+
+/* Home Daily Cards icon badges and dividers: Solid white, non-transparent */
+.card-style-white .daily-card-icon-badge,
+[data-card-bg-mode="white"] .daily-card-icon-badge,
+.dark.card-style-white .daily-card-icon-badge,
+.dark [data-card-bg-mode="white"] .daily-card-icon-badge {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-style-white .daily-card-divider,
+[data-card-bg-mode="white"] .daily-card-divider,
+.dark.card-style-white .daily-card-divider,
+.dark [data-card-bg-mode="white"] .daily-card-divider {
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =========================================================================
+   HOROSCOPE & WEEK PROGRESS DISPLAY ON DARK BACKGROUNDS & WALLPAPERS:
+   When background is dark (isDarkMode, data-dark-mode, data-bg-light="false")
+   or when using a wallpaper (photo-mode), the horoscope text MUST BE WHITE.
+   ========================================================================= */
+.dark .horoscope-info-section p,
+.dark .horoscope-line-text,
+.photo-mode .horoscope-info-section p,
+.photo-mode .horoscope-line-text,
+[data-bg-light="false"] .horoscope-info-section p,
+[data-bg-light="false"] .horoscope-line-text,
+[data-dark-mode="true"] .horoscope-info-section p,
+[data-dark-mode="true"] .horoscope-line-text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75) !important;
+  opacity: 1 !important;
+}
+
+/* Notes page: Workspace text must always be white */
+.notes-workspace-text,
+.notes-tab-container .notes-workspace-text,
+.card-style-white .notes-workspace-text,
+.card-style-dark-glass .notes-workspace-text,
+[data-card-bg-mode="white"] .notes-workspace-text,
+[data-card-bg-mode="dark-glass"] .notes-workspace-text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 

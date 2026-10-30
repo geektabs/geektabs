@@ -344,7 +344,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         <div className="flex items-center gap-3">
           <Layers size={22} className="text-indigo-500 fill-indigo-500/10" />
           <h1 className="text-xl font-bold tracking-tight uppercase word-color">
-            OneNote <span className="text-indigo-500 font-black">Workspace</span>
+            OneNote <span className="notes-workspace-text text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>Workspace</span>
           </h1>
         </div>
       </div>
