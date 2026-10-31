@@ -2392,106 +2392,122 @@
     0 6px 20px rgba(59, 130, 246, 0.12) !important;
 }
 
-/* Squircle icon badges in daily cards with Light Blue Edge */
+/* Squircle icon badges in daily cards: Solid pristine white with subtle border and shadow */
 .weather-huawei-style .w-11.rounded-2xl,
 .weather-huawei-style .w-12.rounded-2xl,
-.daily-card-icon-badge {
-  background: rgba(255, 255, 255, 0.65) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(147, 197, 253, 0.7) !important;
-  box-shadow: inset 0 1px 1px 0 rgba(224, 242, 254, 0.95) !important;
-}
-
-.dark .weather-huawei-style .w-11.rounded-2xl,
-.dark .weather-huawei-style .w-12.rounded-2xl,
+.daily-card-icon-badge,
+.card-style-white .daily-card-icon-badge,
+.card-style-dark-glass .daily-card-icon-badge,
 .dark .daily-card-icon-badge,
-.dark.card-style-dark-glass .weather-huawei-style .w-11.rounded-2xl,
-.dark.card-style-dark-glass .weather-huawei-style .w-12.rounded-2xl,
 .dark.card-style-dark-glass .daily-card-icon-badge,
-[data-bg-light="false"].card-style-dark-glass .weather-huawei-style .w-11.rounded-2xl,
-[data-bg-light="false"].card-style-dark-glass .weather-huawei-style .w-12.rounded-2xl,
 [data-bg-light="false"].card-style-dark-glass .daily-card-icon-badge {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(147, 197, 253, 0.35) !important;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3) !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), inset 0 1px 1px #ffffff !important;
 }
 
-/* Title section color backgrounds for daily cards (Tips: light green, Humor: light orange, Quote: light yellow) */
-.daily-title-green {
-  background-color: rgba(34, 197, 94, 0.16) !important;
-}
+/* High-end glassmorphic horizontal gradient headers for daily cards matching reference glass format (Tips: Green, Humor: Yellow, Quote: Peach Coral) */
+.daily-title-green,
 .card-style-white .daily-title-green,
 [data-card-bg-mode="white"] .daily-title-green,
 .dark.card-style-white .daily-title-green,
-.dark [data-card-bg-mode="white"] .daily-title-green {
-  background-color: #eaf7ee !important;
-}
+.dark [data-card-bg-mode="white"] .daily-title-green,
+.card-style-dark-glass .daily-title-green,
+[data-card-bg-mode="dark-glass"] .daily-title-green,
 .dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-green,
 .dark.card-style-dark-glass .daily-title-green,
-[data-bg-light="false"].card-style-dark-glass .daily-title-green {
-  background-color: rgba(16, 185, 129, 0.22) !important;
+[data-bg-light="false"].card-style-dark-glass .daily-title-green,
+[data-bg-light="true"].card-style-dark-glass .daily-title-green {
+  background: linear-gradient(90deg, rgba(167, 243, 208, 0.72) 0%, rgba(110, 231, 183, 0.62) 50%, rgba(52, 211, 153, 0.58) 100%), rgba(255, 255, 255, 0.40) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.85), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.25), 0 4px 16px -2px rgba(16, 185, 129, 0.15) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.45) !important;
 }
 
-.daily-title-orange {
-  background-color: rgba(249, 115, 22, 0.16) !important;
-}
-.card-style-white .daily-title-orange,
-[data-card-bg-mode="white"] .daily-title-orange,
-.dark.card-style-white .daily-title-orange,
-.dark [data-card-bg-mode="white"] .daily-title-orange {
-  background-color: #fef0e6 !important;
-}
-.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-orange,
-.dark.card-style-dark-glass .daily-title-orange,
-[data-bg-light="false"].card-style-dark-glass .daily-title-orange {
-  background-color: rgba(249, 115, 22, 0.22) !important;
-}
-
-.daily-title-yellow {
-  background-color: rgba(234, 179, 8, 0.18) !important;
-}
+.daily-title-yellow,
 .card-style-white .daily-title-yellow,
 [data-card-bg-mode="white"] .daily-title-yellow,
 .dark.card-style-white .daily-title-yellow,
-.dark [data-card-bg-mode="white"] .daily-title-yellow {
-  background-color: #fef9e7 !important;
-}
+.dark [data-card-bg-mode="white"] .daily-title-yellow,
+.card-style-dark-glass .daily-title-yellow,
+[data-card-bg-mode="dark-glass"] .daily-title-yellow,
 .dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-yellow,
 .dark.card-style-dark-glass .daily-title-yellow,
-[data-bg-light="false"].card-style-dark-glass .daily-title-yellow {
-  background-color: rgba(234, 179, 8, 0.24) !important;
+[data-bg-light="false"].card-style-dark-glass .daily-title-yellow,
+[data-bg-light="true"].card-style-dark-glass .daily-title-yellow {
+  background: linear-gradient(90deg, rgba(254, 240, 138, 0.75) 0%, rgba(253, 224, 71, 0.65) 50%, rgba(251, 191, 36, 0.58) 100%), rgba(255, 255, 255, 0.40) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.85), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.25), 0 4px 16px -2px rgba(245, 158, 11, 0.15) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.45) !important;
 }
 
-/* Full straight divider line splitting title and contents in the 3 daily web cards from left to right */
+.daily-title-orange,
+.card-style-white .daily-title-orange,
+[data-card-bg-mode="white"] .daily-title-orange,
+.dark.card-style-white .daily-title-orange,
+.dark [data-card-bg-mode="white"] .daily-title-orange,
+.card-style-dark-glass .daily-title-orange,
+[data-card-bg-mode="dark-glass"] .daily-title-orange,
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .daily-title-orange,
+.dark.card-style-dark-glass .daily-title-orange,
+[data-bg-light="false"].card-style-dark-glass .daily-title-orange,
+[data-bg-light="true"].card-style-dark-glass .daily-title-orange {
+  /* Pure peach-orange only (桃橙单色系), no pink/rose mixed colors */
+  background: linear-gradient(90deg, rgba(254, 215, 170, 0.78) 0%, rgba(253, 186, 116, 0.70) 50%, rgba(251, 146, 60, 0.62) 100%), rgba(255, 255, 255, 0.40) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.85), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.25), 0 4px 16px -2px rgba(249, 115, 22, 0.15) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Crystal divider line separating title and contents in daily cards */
 .daily-card-divider,
 .daily-card-title-section {
   border: 0 !important;
-  border-bottom: 1.5px solid rgba(147, 197, 253, 0.65) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.45) !important;
   width: 100% !important;
 }
 
 .card-style-white .daily-card-divider,
 .card-style-white .daily-card-title-section {
-  border-bottom: 1.5px solid rgba(0, 0, 0, 0.09) !important;
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.08) !important;
 }
 
-.dark .daily-card-divider,
-.dark .daily-card-title-section,
-.dark.card-style-dark-glass .daily-card-divider,
-.dark.card-style-dark-glass .daily-card-title-section,
-[data-bg-light="false"] .daily-card-divider,
-[data-bg-light="false"] .daily-card-title-section {
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+/* Titles inside daily cards: Razor-sharp high-contrast rich purple with NO blur */
+.daily-card-title-section h2,
+.daily-title-green h2,
+.daily-title-yellow h2,
+.daily-title-orange h2,
+.weather-huawei-style .daily-card-title-section h2 {
+  color: #6143f7 !important;
+  -webkit-text-fill-color: #6143f7 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.015em !important;
+  text-shadow: none !important; /* Strictly no shadow to ensure crystal-clear sharp text without blur */
+  filter: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  transform: translateZ(0);
+  opacity: 1 !important;
 }
 
-[data-bg-light="true"].card-style-dark-glass .daily-card-divider,
-[data-bg-light="true"].card-style-dark-glass .daily-card-title-section,
-[data-bg-light="true"] .card-style-dark-glass .daily-card-divider,
-[data-bg-light="true"] .card-style-dark-glass .daily-card-title-section {
-  border-bottom: 1.5px solid rgba(147, 197, 253, 0.55) !important;
+/* Refresh buttons in daily cards: Rich purple with smooth hover state */
+.daily-card-title-section button,
+.weather-huawei-style .daily-card-title-section button {
+  color: #6143f7 !important;
+  opacity: 0.8 !important;
+}
+
+.daily-card-title-section button:hover,
+.weather-huawei-style .daily-card-title-section button:hover {
+  opacity: 1 !important;
+  color: #c8102e !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Light grey container backgrounds for To-Do, Notes, Calendar, Calculator, IP Address, Speed Test, Settings with Light Blue Edge */
@@ -3834,29 +3850,32 @@ h1.speedtest-analyzer-title,
   border-color: rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Home Daily Cards title headers: Solid opaque pastels (no wallpaper bleed-through) */
+/* Home Daily Cards title headers: Luminous horizontal frosted glass gradient matching reference format */
 .card-style-white .daily-title-green,
 [data-card-bg-mode="white"] .daily-title-green,
 .dark.card-style-white .daily-title-green,
-.dark [data-card-bg-mode="white"] .daily-title-green {
-  background: #eaf7ee !important;
-  background-color: #eaf7ee !important;
+.dark [data-card-bg-mode="white"] .daily-title-green,
+.card-style-dark-glass .daily-title-green,
+[data-card-bg-mode="dark-glass"] .daily-title-green {
+  background: linear-gradient(90deg, rgba(167, 243, 208, 0.72) 0%, rgba(110, 231, 183, 0.62) 50%, rgba(52, 211, 153, 0.58) 100%), rgba(255, 255, 255, 0.40) !important;
 }
 
 .card-style-white .daily-title-yellow,
 [data-card-bg-mode="white"] .daily-title-yellow,
 .dark.card-style-white .daily-title-yellow,
-.dark [data-card-bg-mode="white"] .daily-title-yellow {
-  background: #fef9e7 !important;
-  background-color: #fef9e7 !important;
+.dark [data-card-bg-mode="white"] .daily-title-yellow,
+.card-style-dark-glass .daily-title-yellow,
+[data-card-bg-mode="dark-glass"] .daily-title-yellow {
+  background: linear-gradient(90deg, rgba(254, 240, 138, 0.75) 0%, rgba(253, 224, 71, 0.65) 50%, rgba(251, 191, 36, 0.58) 100%), rgba(255, 255, 255, 0.40) !important;
 }
 
 .card-style-white .daily-title-orange,
 [data-card-bg-mode="white"] .daily-title-orange,
 .dark.card-style-white .daily-title-orange,
-.dark [data-card-bg-mode="white"] .daily-title-orange {
-  background: #fef0e6 !important;
-  background-color: #fef0e6 !important;
+.dark [data-card-bg-mode="white"] .daily-title-orange,
+.card-style-dark-glass .daily-title-orange,
+[data-card-bg-mode="dark-glass"] .daily-title-orange {
+  background: linear-gradient(90deg, rgba(254, 215, 170, 0.78) 0%, rgba(253, 186, 116, 0.70) 50%, rgba(251, 146, 60, 0.62) 100%), rgba(255, 255, 255, 0.40) !important;
 }
 
 /* Home Daily Cards icon badges and dividers: Solid white, non-transparent */
