@@ -122,7 +122,8 @@ const DEFAULT_CATEGORIES: Category[] = [
       { id: 'mu14', title: 'Veoh', url: 'https://www.veoh.com', description: 'Internet television and video service for watching movies, shows, and user videos.' },
       { id: 'mu15', title: 'Vimeo', url: 'https://vimeo.com', description: 'High-quality video hosting, creative sharing, and live streaming platform.' },
       { id: 'mu16', title: 'Beatport', url: 'https://www.beatport.com', description: 'The world\'s leading electronic music store and streaming service for DJs and producers.' },
-      { id: 'mu17', title: 'Soundtify', url: 'https://soundtify.dpdns.org/', description: 'Music streaming and audio sharing platform.' }
+      { id: 'mu17', title: 'Soundtify', url: 'https://soundtify.dpdns.org/', description: 'Music streaming and audio sharing platform.' },
+      { id: 'mu18', title: 'AlphaWibes', url: 'https://alphawibes.com/', description: 'Music studio producing acoustic, relaxation, vocal, and themed audio tracks.' }
     ]
   },
   {
@@ -458,6 +459,9 @@ const LINKS_T: Record<string, Record<string, string>> = {
 const getFavicon = (url: string) => {
   try {
     const domain = new URL(url).hostname;
+    if (domain.includes('alphawibes.com') || domain.includes('alphawibes')) {
+      return '/assets/alphawibes.png';
+    }
     return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${encodeURIComponent('https://' + domain)}&size=256`;
   } catch (e) {
     return null;
@@ -687,6 +691,24 @@ const renderBookmarkBrandIcon = (link: Link) => {
         onError={(e) => {
           const target = e.currentTarget;
           const fallback = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="120" fill="%23512feb"/><circle cx="180" cy="210" r="36" fill="white"/><circle cx="332" cy="210" r="36" fill="white"/><path d="M150 320 Q256 430 362 320" stroke="white" stroke-width="36" stroke-linecap="round" fill="none"/></svg>';
+          if (target.src !== fallback) {
+            target.src = fallback;
+          }
+        }}
+      />
+    );
+  }
+
+  // AlphaWibes (Official Logo - https://alphawibes.com/)
+  if (title === 'alphawibes' || title.includes('alphawibes') || url.includes('alphawibes.com') || url.includes('alphawibes')) {
+    return (
+      <img
+        src="/assets/alphawibes.png"
+        alt="AlphaWibes"
+        className="w-7 h-7 md:w-8 md:h-8 rounded-full object-cover transition-all group-hover:scale-110 duration-300 shadow-xs"
+        onError={(e) => {
+          const target = e.currentTarget;
+          const fallback = 'https://yt3.googleusercontent.com/ejpfYo_hnfR20Uae_DmyvTH5kH01q5gEMtFFhNKbopGq9EJYLbW37mhLsthhhsOlnCNHaFZPgA=s500-c-k-c0x00ffffff-no-rj';
           if (target.src !== fallback) {
             target.src = fallback;
           }

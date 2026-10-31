@@ -5,7 +5,6 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { RotateCcw, Sparkles, Palette, X } from 'lucide-react';
 import Wallpaper, { WALLPAPERS, SOLIDS_MAP, GRADIENTS_MAP } from './components/Wallpaper/Wallpaper';
 import Clock from './components/Clock/Clock';
 import SearchBar from './components/Search/SearchBar';
@@ -41,7 +40,6 @@ export default function App() {
   const [language, setLanguage] = useLocalStorage('GeekTabs-language', 'English');
   const [cardBgMode, setCardBgMode] = useLocalStorage<'white' | 'dark-glass'>('GeekTabs-card-bg-mode', 'white');
   const [textColor, setTextColor] = useLocalStorage('GeekTabs-text-color', 'default');
-  const [dismissRestorePill, setDismissRestorePill] = useLocalStorage('GeekTabs-dismiss-restore-pill', false);
 
   // Initialize Default Light Grey background and restore points
   React.useEffect(() => {
@@ -401,62 +399,6 @@ export default function App() {
           )}
         </AnimatePresence>
       </main>
-
-      {/* Non-intrusive Floating Restore Point Switcher Pill */}
-      <AnimatePresence>
-        {!dismissRestorePill && (theme === 'pastel-waves' || theme === 'mix-neonpurple' || theme === 'light-grey' || theme === 'light-slate' || theme === 'white-clean') && (
-          <motion.aside
-            aria-label="Theme switcher"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-20 left-4 sm:left-6 z-40"
-          >
-            <div className="flex items-center gap-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-black/10 dark:border-white/15 px-3 py-1.5 rounded-full shadow-lg shadow-black/5 text-xs">
-              {(theme === 'pastel-waves' || theme === 'mix-neonpurple') ? (
-                <>
-                  <span className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200 pl-1">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    Pastel Waves
-                  </span>
-                  <span className="text-black/20 dark:text-white/20">|</span>
-                  <button
-                    onClick={() => setTheme('light-grey')}
-                    className="flex items-center gap-1 px-2.5 py-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-full font-bold text-[11px] text-slate-700 dark:text-slate-300 transition-colors cursor-pointer border border-slate-200"
-                    title="Switch to Light Grey background"
-                  >
-                    <Sparkles size={12} className="text-slate-500" />
-                    Light Grey
-                  </button>
-                </>
-              ) : (
-                <>
-                  <span className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200 pl-1">
-                    <span className="w-2.5 h-2.5 rounded-full bg-slate-100 border border-slate-300 shadow-xs" />
-                    {theme === 'white-clean' ? 'White Background' : 'Light Grey (Default)'}
-                  </span>
-                  <span className="text-black/20 dark:text-white/20">|</span>
-                  <button
-                    onClick={() => setTheme('mix-neonpurple')}
-                    className="flex items-center gap-1 px-2.5 py-1 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 rounded-full font-bold text-[11px] text-indigo-600 dark:text-indigo-400 transition-colors cursor-pointer"
-                    title="Switch to Pastel Waves background"
-                  >
-                    <Palette size={12} />
-                    Pastel Waves
-                  </button>
-                </>
-              )}
-              <button
-                onClick={() => setDismissRestorePill(true)}
-                className="p-1 text-black/40 hover:text-black/80 dark:text-white/40 dark:hover:text-white/80 transition-colors rounded-full cursor-pointer ml-0.5"
-                title="Dismiss quick switcher"
-              >
-                <X size={12} />
-              </button>
-            </div>
-          </motion.aside>
-        )}
-      </AnimatePresence>
 
       <Dock
         activeTab={activeTab}

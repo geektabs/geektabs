@@ -314,71 +314,6 @@ const TODO_T: Record<string, Record<string, string>> = {
   }
 };
 
-const getInitialTasks = (lang: string): Task[] => {
-  switch (lang) {
-    case 'Chinese':
-      return [
-        { id: 'init-1', text: '设计新的工作区', completed: false, project: 'Work', priority: 1, description: '在GeekTabs中设计OneNote和Todoist布局。' },
-        { id: 'init-2', text: '购买食品杂货', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: '规划下一次度假', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'Korean':
-      return [
-        { id: 'init-1', text: '새 작업 공간 디자인', completed: false, project: 'Work', priority: 1, description: 'GeekTabs에서 원노트 및 투두이스트 레이아웃 만들기.' },
-        { id: 'init-2', text: '식료품 주문', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: '다음 휴가 계획', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'Spanish':
-      return [
-        { id: 'init-1', text: 'Diseñar nuevo espacio de trabajo', completed: false, project: 'Work', priority: 1, description: 'Crear diseños de OneNote y Todoist en GeekTabs.' },
-        { id: 'init-2', text: 'Comprar comestibles', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Planificar las próximas vacaciones', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'French':
-      return [
-        { id: 'init-1', text: 'Concevoir un nouvel espace de travail', completed: false, project: 'Work', priority: 1, description: 'Créer des mises en page OneNote et Todoist dans GeekTabs.' },
-        { id: 'init-2', text: 'Commander des courses', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Planifier les prochaines vacances', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'German':
-      return [
-        { id: 'init-1', text: 'Neuen Workspace entwerfen', completed: false, project: 'Work', priority: 1, description: 'OneNote- und Todoist-Layouts in GeekTabs erstellen.' },
-        { id: 'init-2', text: 'Lebensmittel bestellen', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Nächsten Urlaub planen', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'Japanese':
-      return [
-        { id: 'init-1', text: '新しいワークスペースの設計', completed: false, project: 'Work', priority: 1, description: 'GeekTabsでOneNoteとTodoistのレイアウトを作成する。' },
-        { id: 'init-2', text: '食料品の注文', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: '次の休暇の計画', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'Italian':
-      return [
-        { id: 'init-1', text: 'Progetta il nuovo spazio di lavoro', completed: false, project: 'Work', priority: 1, description: 'Crea layout OneNote e Todoist in GeekTabs.' },
-        { id: 'init-2', text: 'Ordina la spesa', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Pianifica la prossima vacanza', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'Russian':
-      return [
-        { id: 'init-1', text: 'Разработать новое рабочее пространство', completed: false, project: 'Work', priority: 1, description: 'Создать макеты OneNote и Todoist в GeekTabs.' },
-        { id: 'init-2', text: 'Заказать продукты', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Спланировать следующий отпуск', completed: true, project: 'Personal', priority: 2 }
-      ];
-    case 'Luxembourgish':
-      return [
-        { id: 'init-1', text: 'Neien Workspace entwéckelen', completed: false, project: 'Work', priority: 1, description: 'Layouts fir OneNote an Todoist an GeekTabs erstellen.' },
-        { id: 'init-2', text: 'Liewensmëttel bestellen', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Nächst Vakanz plangen', completed: true, project: 'Personal', priority: 2 }
-      ];
-    default:
-      return [
-        { id: 'init-1', text: 'Design new Workspace', completed: false, project: 'Work', priority: 1, description: 'Craft OneNote and Todoist layouts in GeekTabs.' },
-        { id: 'init-2', text: 'Order groceries', completed: false, project: 'Personal', priority: 3 },
-        { id: 'init-3', text: 'Plan next vacation', completed: true, project: 'Personal', priority: 2 }
-      ];
-  }
-};
-
 const getProjectName = (id: string, lang: string) => {
   const dictionary = TODO_T[lang] || TODO_T['English'];
   switch (id) {
@@ -391,17 +326,20 @@ const getProjectName = (id: string, lang: string) => {
 };
 
 export default function TodoListTab({ language = 'English' }: TodoListProps) {
-  const [tasks, setTasks] = useLocalStorage<Task[]>('GeekTabs-tasks', [
-    { id: 'init-1', text: 'Design new Workspace', completed: false, project: 'Work', priority: 1, description: 'Craft OneNote and Todoist layouts in GeekTabs.' },
-    { id: 'init-2', text: 'Order groceries', completed: false, project: 'Personal', priority: 3 },
-    { id: 'init-3', text: 'Plan next vacation', completed: true, project: 'Personal', priority: 2 }
-  ]);
+  const [tasks, setTasks] = useLocalStorage<Task[]>('GeekTabs-tasks', []);
   const [currentProject, setCurrentProject] = useState('Inbox');
   const [mobileView, setMobileView] = useState<'sidebar' | 'tasks'>('tasks');
   const [isAdding, setIsAdding] = useState(false);
   const [newTaskText, setNewTaskText] = useState('');
   const [newTaskDesc, setNewTaskDesc] = useState('');
   const [newTaskPriority, setNewTaskPriority] = useState<1 | 2 | 3 | 4>(4);
+
+  // Automatically purge legacy default sample tasks (e.g., init-1, init-2, init-3) from storage
+  useEffect(() => {
+    if (tasks.some(t => t.id && t.id.startsWith('init-'))) {
+      setTasks(prev => prev.filter(t => !t.id || !t.id.startsWith('init-')));
+    }
+  }, [tasks, setTasks]);
 
   const [confirmDeleteTask, setConfirmDeleteTask] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
