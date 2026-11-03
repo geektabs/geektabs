@@ -615,10 +615,10 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
         {/* Steps List */}
         <div className="bg-black/5 dark:bg-white/5 rounded-2xl p-4 sm:p-6 border border-black/5 dark:border-white/5">
           <div className="flex items-center gap-2 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-black/5 dark:border-white/5">
-            <Globe size={15} className="text-[#6143f7] shrink-0" style={{ color: '#6143f7' }} />
+            <Globe size={15} className="browser-guide-globe text-[#6143f7] shrink-0" style={{ color: '#6143f7', filter: 'none', textShadow: 'none' }} />
             <h4 
               className="browser-guide-subheading text-xs font-black uppercase tracking-wider text-[#6143f7]"
-              style={{ color: '#6143f7' }}
+              style={{ color: '#6143f7', textShadow: 'none', filter: 'none' }}
             >
               {(guides[activeBrowser] || browserGuides['English'][activeBrowser])?.title}
             </h4>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wifi, RefreshCw, Server, ShieldCheck, Activity, ChevronRight, Gauge, Database, Disc, Tv, Gamepad2, Users, ArrowDownUp, CheckCircle2, Zap } from 'lucide-react';
+import { RefreshCw, Server, Gauge } from 'lucide-react';
 
 export interface SpeedTestTabProps {
   language?: string;
@@ -643,10 +643,10 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
               <span className="text-xs font-mono font-medium word-color opacity-40">CARRIER RX</span>
             </div>
             <div className="flex items-baseline gap-1.5">
-              <span className="speedtest-metric-val text-4xl md:text-5xl font-black tracking-tighter font-mono text-black dark:text-black">
+              <span className="speedtest-metric-val text-4xl md:text-5xl font-black tracking-tighter font-mono word-color">
                 {speed || '0.00'}
               </span>
-              <span className="speedtest-metric-unit text-sm font-black text-black dark:text-black">Mbps</span>
+              <span className="speedtest-metric-unit text-sm font-black word-color">Mbps</span>
             </div>
           </div>
 
@@ -661,10 +661,10 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
               <span className="text-xs font-mono font-medium word-color opacity-40">CARRIER TX</span>
             </div>
             <div className="flex items-baseline gap-1.5">
-              <span className="speedtest-metric-val text-4xl md:text-5xl font-black tracking-tighter font-mono text-black dark:text-black">
+              <span className="speedtest-metric-val text-4xl md:text-5xl font-black tracking-tighter font-mono word-color">
                 {uploadSpeed || '0.00'}
               </span>
-              <span className="speedtest-metric-unit text-sm font-black text-black dark:text-black">Mbps</span>
+              <span className="speedtest-metric-unit text-sm font-black word-color">Mbps</span>
             </div>
           </div>
 
@@ -675,14 +675,14 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
               
               <div className="flex flex-col">
                 <span className="text-[10px] font-mono opacity-50 word-color">{d.latency}</span>
-                <span className="speedtest-metric-val text-2xl font-extrabold tracking-tight font-mono text-black dark:text-black mt-1">
+                <span className="speedtest-metric-val text-2xl font-extrabold tracking-tight font-mono word-color mt-1">
                   {latency !== null ? `${latency} ms` : '--'}
                 </span>
               </div>
 
               <div className="flex flex-col">
                 <span className="text-[10px] font-mono opacity-50 word-color">{d.jitter}</span>
-                <span className="speedtest-metric-val text-2xl font-extrabold tracking-tight font-mono text-black dark:text-black mt-1">
+                <span className="speedtest-metric-val text-2xl font-extrabold tracking-tight font-mono word-color mt-1">
                   {jitter !== null ? `${jitter} ms` : '--'}
                 </span>
               </div>
@@ -709,75 +709,6 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
 
         </div>
 
-      </div>
-
-      {/* Service Readiness & Real-Time Performance Ratings Webcard */}
-      <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl mt-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-black/5 dark:border-white/5">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-purple-500/10 text-purple-500 shrink-0">
-              <Zap size={20} />
-            </div>
-            <div>
-              <h3 className="text-sm md:text-base font-extrabold tracking-tight word-color">{d.serviceReadiness}</h3>
-              <p className="text-xs opacity-50 word-color mt-0.5">{d.serviceSubtitle}</p>
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold self-start sm:self-auto shrink-0">
-            <CheckCircle2 size={13} />
-            <span>{d.broadbandGrade}</span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* 1: 4K / 8K Video Streaming */}
-          <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider opacity-60 word-color">{d.streaming4k}</span>
-              <Tv size={15} className="text-indigo-500" />
-            </div>
-            <div className="text-base font-black word-color flex items-center gap-1.5">
-              <span>{parseFloat(speed || '0') > 50 ? '4K / 8K Ultra HD' : parseFloat(speed || '0') > 20 ? '1080p FHD' : '720p HD'}</span>
-            </div>
-            <span className="text-[10px] font-mono opacity-50 word-color mt-1">{d.streamingDesc}</span>
-          </div>
-
-          {/* 2: Online & Cloud Gaming */}
-          <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider opacity-60 word-color">{d.cloudGaming}</span>
-              <Gamepad2 size={15} className="text-purple-500" />
-            </div>
-            <div className="text-base font-black word-color flex items-center gap-1.5">
-              <span>{latency !== null && latency < 35 ? d.gamingExcellent : latency !== null && latency < 70 ? d.gamingGood : d.gamingAverage}</span>
-            </div>
-            <span className="text-[10px] font-mono opacity-50 word-color mt-1">{latency !== null ? `${latency} ms ${d.latencyTag}` : d.gamingDesc}</span>
-          </div>
-
-          {/* 3: Video Conferencing */}
-          <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider opacity-60 word-color">{d.videoConference}</span>
-              <Users size={15} className="text-blue-500" />
-            </div>
-            <div className="text-base font-black word-color flex items-center gap-1.5">
-              <span>{d.conferenceGrade}</span>
-            </div>
-            <span className="text-[10px] font-mono opacity-50 word-color mt-1">{d.conferenceDesc}</span>
-          </div>
-
-          {/* 4: Large File Transfer & Cloud Backup */}
-          <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider opacity-60 word-color">{d.cloudBackup}</span>
-              <ArrowDownUp size={15} className="text-emerald-500" />
-            </div>
-            <div className="text-base font-black word-color flex items-center gap-1.5">
-              <span>{parseFloat(uploadSpeed || '0') > 30 ? d.backupFast : parseFloat(uploadSpeed || '0') > 10 ? d.backupStandard : d.backupBasic}</span>
-            </div>
-            <span className="text-[10px] font-mono opacity-50 word-color mt-1">{d.backupDesc}</span>
-          </div>
-        </div>
       </div>
 
     </div>

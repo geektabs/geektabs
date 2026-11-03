@@ -234,91 +234,118 @@
   text-shadow: none !important;
 }
 
-.card-style-dark-glass .GeekTabs-card {
-  background: rgba(20, 20, 25, 0.72) !important;
-  backdrop-filter: blur(24px) saturate(170%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28) !important;
-}
-
-/* Deeper dark transparent layout for inner nested cards under dark mode with card-style-dark-glass */
-.dark.card-style-dark-glass .GeekTabs-card .bg-slate-50,
-.dark.card-style-dark-glass .GeekTabs-card .bg-slate-100,
-.dark.card-style-dark-glass .GeekTabs-card .bg-slate-200,
-.dark.card-style-dark-glass .GeekTabs-card .bg-black\/5,
-.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5,
-.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10,
-.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/20,
-.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.04\],
-.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.08\],
-.dark.card-style-dark-glass .GeekTabs-card .bg-sky-500\/10,
-.dark.card-style-dark-glass .GeekTabs-card .dark\:bg-sky-500\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-slate-50,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-slate-100,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-slate-200,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-black\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/20,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.04\],
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.08\],
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-sky-500\/10,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .dark\:bg-sky-500\/5 {
-  background-color: rgba(2, 6, 23, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.26) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
-}
-
-/* Calculator buttons and display under dark card-style-dark-glass to match other nested small cards */
-.dark.card-style-dark-glass .calculator-tab-card button.bg-white\/80,
-.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80,
-.dark.card-style-dark-glass .calculator-tab-card button.bg-black\/5,
-.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-white\/80,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-black\/5,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80 {
-  background-color: rgba(2, 6, 23, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.26) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
+.card-style-dark-glass .GeekTabs-card,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.15) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.65),
+    0 20px 48px -8px rgba(0, 0, 0, 0.32),
+    0 2px 8px 0 rgba(0, 0, 0, 0.10) !important;
   color: #ffffff !important;
 }
 
-.dark.card-style-dark-glass .calculator-tab-card button.bg-white\/80:hover,
-.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
-.dark.card-style-dark-glass .calculator-tab-card button.bg-black\/5:hover,
-.dark.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80:hover,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-white\/80:hover,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.bg-black\/5:hover,
-[data-bg-light="false"].card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80:hover {
-  background-color: rgba(15, 23, 42, 0.8) !important;
+/* Luminous frosted glass for inner nested cards and panels under card-style-dark-glass */
+.card-style-dark-glass .GeekTabs-card .bg-slate-50,
+.card-style-dark-glass .GeekTabs-card .bg-slate-100,
+.card-style-dark-glass .GeekTabs-card .bg-slate-200,
+.card-style-dark-glass .GeekTabs-card .bg-black\/5,
+.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/5,
+.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/10,
+.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/20,
+.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.04\],
+.card-style-dark-glass .GeekTabs-card .dark\:bg-white\/\[0\.08\],
+.card-style-dark-glass .GeekTabs-card .bg-sky-500\/10,
+.card-style-dark-glass .GeekTabs-card .dark\:bg-sky-500\/5,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-slate-50,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-slate-100,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-slate-200,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-black\/5,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .dark\:bg-white\/5,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .dark\:bg-white\/10,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .dark\:bg-white\/20,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .dark\:bg-white\/\[0\.04\],
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .dark\:bg-white\/\[0\.08\],
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-sky-500\/10,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .dark\:bg-sky-500\/5 {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Map IPv4 and IPv6 display panels in IP Address tab to match the sub-cards in dark card-style-dark-glass */
-.dark.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-blue-500\/5,
-.dark.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5,
-.dark.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5.to-pink-500\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-blue-500\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5.to-pink-500\/5 {
-  background: rgba(2, 6, 23, 0.65) !important;
+/* Calculator buttons and display under card-style-dark-glass matching reference calculator_113957f7.jpg */
+.card-style-dark-glass .calculator-tab-card button.bg-white\/80,
+.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80,
+.card-style-dark-glass .calculator-tab-card button.bg-black\/5,
+.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80,
+.card-style-dark-glass .calculator-tab-card .calculator-btn:not(.calculator-equals-btn),
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.bg-white\/80,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.bg-black\/5,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.dark\:bg-\[\#202020\]\/80,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calculator-btn:not(.calculator-equals-btn) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.14) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.38) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.10) !important;
+  color: #ffffff !important;
+}
+
+.card-style-dark-glass .calculator-tab-card button.bg-white\/80:hover,
+.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
+.card-style-dark-glass .calculator-tab-card button.bg-black\/5:hover,
+.card-style-dark-glass .calculator-tab-card button.dark\:bg-\[\#202020\]\/80:hover,
+.card-style-dark-glass .calculator-tab-card .calculator-btn:not(.calculator-equals-btn):hover,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.bg-white\/80:hover,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.dark\:bg-\[\#3b3b3b\]\/80:hover,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.bg-black\/5:hover,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card button.dark\:bg-\[\#202020\]\/80:hover,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calculator-btn:not(.calculator-equals-btn):hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.22) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.30) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Map IPv4 and IPv6 display panels in IP Address tab to match frosted glass style */
+.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-blue-500\/5,
+.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5,
+.card-style-dark-glass .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5.to-pink-500\/5,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-gradient-to-r.from-blue-500\/5,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card .bg-gradient-to-r.from-purple-500\/5.to-pink-500\/5 {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
   background-image: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.26) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22) !important;
-}
-
-/* Transform solid white copy buttons to translucent glass buttons in dark card-style-dark-glass */
-.dark.card-style-dark-glass .GeekTabs-card button.bg-white,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white {
-  background-color: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.12) !important;
   color: #ffffff !important;
 }
-.dark.card-style-dark-glass .GeekTabs-card button.bg-white:hover,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card button.bg-white:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+
+/* Transform solid white copy buttons to translucent glass buttons in card-style-dark-glass */
+.card-style-dark-glass .GeekTabs-card button.bg-white,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card button.bg-white {
+  background: rgba(255, 255, 255, 0.18) !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  color: #ffffff !important;
+}
+.card-style-dark-glass .GeekTabs-card button.bg-white:hover,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card button.bg-white:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  background-color: rgba(255, 255, 255, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.50) !important;
 }
 
 /* Text legibility normalization under card-style-dark-glass cards */
@@ -819,15 +846,9 @@
 .dark.card-style-dark-glass .GeekTabs-card h1,
 .dark.card-style-dark-glass .GeekTabs-card h2,
 .dark.card-style-dark-glass .GeekTabs-card h3,
-.dark.card-style-dark-glass .GeekTabs-card h4,
-.dark.card-style-dark-glass .GeekTabs-card h5,
-.dark.card-style-dark-glass .GeekTabs-card h6,
 .dark.card-style-dark-glass .weather-huawei-style h1,
 .dark.card-style-dark-glass .weather-huawei-style h2,
 .dark.card-style-dark-glass .weather-huawei-style h3,
-.dark.card-style-dark-glass .weather-huawei-style h4,
-.dark.card-style-dark-glass .weather-huawei-style h5,
-.dark.card-style-dark-glass .weather-huawei-style h6,
 [data-bg-light="false"].card-style-dark-glass .GeekTabs-card h1,
 [data-bg-light="false"].card-style-dark-glass .GeekTabs-card h2,
 [data-bg-light="false"].card-style-dark-glass .GeekTabs-card h3,
@@ -835,7 +856,20 @@
 [data-bg-light="false"].card-style-dark-glass .weather-huawei-style h2,
 [data-bg-light="false"].card-style-dark-glass .weather-huawei-style h3 {
   color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65), 0 0 12px rgba(0, 0, 0, 0.35) !important;
+  text-shadow: none !important;
+}
+
+.dark.card-style-dark-glass .GeekTabs-card h4,
+.dark.card-style-dark-glass .GeekTabs-card h5,
+.dark.card-style-dark-glass .GeekTabs-card h6,
+.dark.card-style-dark-glass .weather-huawei-style h4,
+.dark.card-style-dark-glass .weather-huawei-style h5,
+.dark.card-style-dark-glass .weather-huawei-style h6,
+.browser-guide-subheading,
+.card-style-dark-glass .browser-guide-subheading,
+[data-card-bg-mode="dark-glass"] .browser-guide-subheading {
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .dark.card-style-dark-glass .GeekTabs-card .word-color,
@@ -1316,48 +1350,57 @@
   color: #ffffff !important;
 }
 
-/* Bookmark cards on dark backgrounds */
+/* Bookmark cards on dark backgrounds matching frosted glass aesthetic */
 .dark.card-style-dark-glass .bookmark-webcard,
-[data-bg-light="false"].card-style-dark-glass .bookmark-webcard {
-  background: rgba(18, 22, 34, 0.32) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18) !important;
+[data-bg-light="false"].card-style-dark-glass .bookmark-webcard,
+[data-card-bg-mode="dark-glass"] .bookmark-webcard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.14) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.60), 0 8px 28px 0 rgba(0, 0, 0, 0.22), 0 2px 8px 0 rgba(0, 0, 0, 0.08) !important;
   color: #ffffff !important;
 }
 
 .dark.card-style-dark-glass .bookmark-webcard:hover,
-[data-bg-light="false"].card-style-dark-glass .bookmark-webcard:hover {
-  background: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.36) !important;
-  box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.28) !important;
+[data-bg-light="false"].card-style-dark-glass .bookmark-webcard:hover,
+[data-card-bg-mode="dark-glass"] .bookmark-webcard:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.22) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.30) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.70), 0 12px 36px 0 rgba(0, 0, 0, 0.3), 0 4px 12px 0 rgba(0, 0, 0, 0.12) !important;
   color: #ffffff !important;
 }
 
 .dark.card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500),
-[data-bg-light="false"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500) {
-  background: rgba(10, 14, 26, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+[data-bg-light="false"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500),
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.45), 0 4px 16px 0 rgba(0, 0, 0, 0.20) !important;
   color: #ffffff !important;
   opacity: 1 !important;
 }
 
 .dark.card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
-[data-bg-light="false"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover {
-  background: rgba(18, 24, 40, 0.8) !important;
-  border-color: rgba(255, 255, 255, 0.38) !important;
+[data-bg-light="false"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500):hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.18) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
   color: #ffffff !important;
 }
 
 .dark.card-style-dark-glass .bookmark-webcard *,
 .dark.card-style-dark-glass .bookmark-cat-pill *,
-[data-bg-light="false"].card-style-dark-glass .bookmark-webcard * {
+[data-bg-light="false"].card-style-dark-glass .bookmark-webcard *,
+[data-card-bg-mode="dark-glass"] .bookmark-webcard *,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill * {
   color: #ffffff !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 @media (max-width: 767px) {
@@ -2039,13 +2082,13 @@
 .photo-mode [data-card-bg-mode="dark-glass"] .bookmark-webcard,
 .dark:not(.card-style-white):not([data-card-bg-mode="white"]) [data-tab="links"] .bookmark-webcard,
 .dark:not(.card-style-white):not([data-card-bg-mode="white"]) [data-active-tab="links"] .bookmark-webcard {
-  background: rgba(255, 255, 255, 0.1) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.14) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.38) !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.60), 0 8px 28px 0 rgba(0, 0, 0, 0.22), 0 2px 8px 0 rgba(0, 0, 0, 0.08) !important;
   color: #ffffff !important;
 }
 
@@ -2057,9 +2100,10 @@
 [data-bg-light="false"] [data-card-bg-mode="dark-glass"] .bookmark-webcard:hover,
 .photo-mode.card-style-dark-glass .bookmark-webcard:hover,
 .photo-mode [data-card-bg-mode="dark-glass"] .bookmark-webcard:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.32) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.22) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.30) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.70), 0 12px 36px 0 rgba(0, 0, 0, 0.3), 0 4px 12px 0 rgba(0, 0, 0, 0.12) !important;
   color: #ffffff !important;
 }
 
@@ -2073,7 +2117,7 @@
 .photo-mode [data-card-bg-mode="dark-glass"] .bookmark-webcard .bookmark-link-title {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 /* Category pills in Transparent Glass Style */
@@ -2094,14 +2138,15 @@
 [data-bg-light="false"] [data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn,
 .photo-mode.card-style-dark-glass .bookmark-add-cat-btn,
 .photo-mode [data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn {
-  background: rgba(255, 255, 255, 0.1) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.45), 0 4px 16px 0 rgba(0, 0, 0, 0.20) !important;
   color: #ffffff !important;
-  opacity: 0.9 !important;
+  opacity: 1 !important;
 }
 
 .card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
@@ -2120,11 +2165,10 @@
 [data-bg-light="false"] [data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn:hover,
 .photo-mode.card-style-dark-glass .bookmark-add-cat-btn:hover,
 .photo-mode [data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.32) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.18) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.26) !important;
+  border-color: rgba(255, 255, 255, 0.48) !important;
   color: #ffffff !important;
-  opacity: 1 !important;
 }
 
 .card-style-dark-glass .bookmark-cat-pill span,
@@ -2239,14 +2283,21 @@
 [data-bg-light="false"].card-style-dark-glass .weather-huawei-style,
 [data-bg-light="false"] [data-card-bg-mode="dark-glass"] .weather-huawei-style,
 .photo-mode.card-style-dark-glass .weather-huawei-style,
-.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-huawei-style {
-  background: rgba(255, 255, 255, 0.08) !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(24px) saturate(170%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.4) !important;
-  border-color: rgba(147, 197, 253, 0.4) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28) !important;
+[data-bg-light="true"].card-style-dark-glass .weather-huawei-style,
+[data-bg-light="true"] [data-card-bg-mode="dark-glass"] .weather-huawei-style,
+[data-bg-light="true"] .card-style-dark-glass .weather-huawei-style {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.15) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
+  border-color: rgba(255, 255, 255, 0.40) !important;
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.65),
+    0 20px 48px -8px rgba(0, 0, 0, 0.32),
+    0 2px 8px 0 rgba(0, 0, 0, 0.10) !important;
+  border-radius: 2rem !important;
+  color: #ffffff !important;
 }
 
 .card-style-white .weather-huawei-style,
@@ -2261,22 +2312,6 @@
   -webkit-backdrop-filter: none !important;
   border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: 0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04) !important;
-}
-
-[data-bg-light="true"].card-style-dark-glass .weather-huawei-style,
-[data-bg-light="true"] [data-card-bg-mode="dark-glass"] .weather-huawei-style,
-[data-bg-light="true"] .card-style-dark-glass .weather-huawei-style {
-  background: rgba(241, 245, 249, 0.75) !important;
-  background-color: rgba(241, 245, 249, 0.75) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
-  box-shadow: 
-    0 0 0 1px rgba(186, 230, 253, 0.55),
-    inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
-    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
-    0 16px 40px -8px rgba(59, 130, 246, 0.12),
-    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
 }
 
 .weather-subcard {
@@ -2304,14 +2339,16 @@
 [data-bg-light="false"].card-style-dark-glass .weather-subcard,
 [data-bg-light="false"] [data-card-bg-mode="dark-glass"] .weather-subcard,
 .photo-mode.card-style-dark-glass .weather-subcard,
-.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-subcard {
-  background: rgba(255, 255, 255, 0.1) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) !important;
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-subcard,
+[data-bg-light="true"].card-style-dark-glass .weather-subcard,
+[data-bg-light="true"] .card-style-dark-glass .weather-subcard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.10) !important;
   color: #ffffff !important;
 }
 
@@ -2322,10 +2359,12 @@
 [data-bg-light="false"].card-style-dark-glass .weather-subcard:hover,
 [data-bg-light="false"] [data-card-bg-mode="dark-glass"] .weather-subcard:hover,
 .photo-mode.card-style-dark-glass .weather-subcard:hover,
-.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-subcard:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.32) !important;
+.dark:not(.card-style-white):not([data-card-bg-mode="white"]) .weather-subcard:hover,
+[data-bg-light="true"].card-style-dark-glass .weather-subcard:hover,
+[data-bg-light="true"] .card-style-dark-glass .weather-subcard:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.18) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
   color: #ffffff !important;
 }
 
@@ -2533,15 +2572,30 @@
   border-color: rgba(147, 197, 253, 0.35) !important;
 }
 
+.card-style-dark-glass .webcard-light-grey-bg,
+.card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
+[data-card-bg-mode="dark-glass"] .webcard-light-grey-bg,
+[data-card-bg-mode="dark-glass"] .GeekTabs-card.webcard-light-grey-bg,
 .dark.card-style-dark-glass .webcard-light-grey-bg,
 .dark.card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
 [data-bg-light="false"].card-style-dark-glass .webcard-light-grey-bg,
-[data-bg-light="false"].card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg {
-  background: rgba(255, 255, 255, 0.08) !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  background-image: none !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.4) !important;
-  border-color: rgba(147, 197, 253, 0.4) !important;
+[data-bg-light="false"].card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
+[data-bg-light="true"].card-style-dark-glass .webcard-light-grey-bg,
+[data-bg-light="true"] .card-style-dark-glass .webcard-light-grey-bg,
+.photo-mode.card-style-dark-glass .webcard-light-grey-bg,
+.photo-mode.card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.15) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
+  border-color: rgba(255, 255, 255, 0.40) !important;
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.65),
+    0 20px 48px -8px rgba(0, 0, 0, 0.32),
+    0 2px 8px 0 rgba(0, 0, 0, 0.10) !important;
+  border-radius: 2rem !important;
+  color: #ffffff !important;
 }
 
 .card-style-white .webcard-light-grey-bg,
@@ -2561,16 +2615,12 @@
 /* =========================================================================
    LIGHT GREY WEBCARD STYLING FOR CALENDAR, TO-DO, AND NOTES PAGES
    Applies when on light background (default pastel-waves, white-clean, etc.)
-   with transparent glass style or standard style.
+   with standard style.
    ========================================================================= */
 
 /* Outer webcard background when webcard-light-grey-bg is applied on light backgrounds */
-[data-bg-light="true"] .webcard-light-grey-bg,
-[data-bg-light="true"].card-style-dark-glass .webcard-light-grey-bg,
-[data-bg-light="true"] .card-style-dark-glass .webcard-light-grey-bg,
-.light .webcard-light-grey-bg,
-.light.card-style-dark-glass .webcard-light-grey-bg,
-.light .card-style-dark-glass .webcard-light-grey-bg {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .webcard-light-grey-bg,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .webcard-light-grey-bg {
   background: rgba(241, 245, 249, 0.75) !important; /* light grey translucent glass */
   background-color: rgba(241, 245, 249, 0.75) !important;
   backdrop-filter: blur(28px) saturate(190%) !important;
@@ -2585,11 +2635,32 @@
   color: #6143f7 !important;
 }
 
-/* 1. CALENDAR: Light Grey Day Cells, Arrow Buttons, Select Dropdowns, World Clocks, Diff Bar */
-[data-bg-light="true"] .calendar-container .calendar-day-btn,
-.light .calendar-container .calendar-day-btn,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-day-btn,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-day-btn {
+/* 1. CALENDAR: Day Cells, Arrow Buttons, Select Dropdowns, World Clocks, Diff Bar */
+.card-style-dark-glass .calendar-container .calendar-day-btn,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.45) !important;
+  color: #ffffff !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-day-btn:hover,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.18) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  color: #ffffff !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-day-btn span,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn span {
+  color: #ffffff !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-day-btn,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-day-btn {
   background-color: #f1f5f9 !important; /* light grey (slate-100) */
   background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
@@ -2597,27 +2668,36 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
-[data-bg-light="true"] .calendar-container .calendar-day-btn:hover,
-.light .calendar-container .calendar-day-btn:hover,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-day-btn:hover,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-day-btn:hover {
-  background-color: #e2e8f0 !important; /* slightly deeper light grey on hover */
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-day-btn:hover,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-day-btn:hover {
+  background-color: #e2e8f0 !important;
   background: #e2e8f0 !important;
   border-color: rgba(147, 197, 253, 0.8) !important;
 }
 
-[data-bg-light="true"] .calendar-container .calendar-day-btn span,
-.light .calendar-container .calendar-day-btn span,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-day-btn span,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-day-btn span {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-day-btn span,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-day-btn span {
   color: #6143f7 !important;
 }
 
 /* Calendar month navigation buttons (< and >) */
-[data-bg-light="true"] .calendar-container .calendar-nav-arrow,
-.light .calendar-container .calendar-nav-arrow,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-nav-arrow,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-nav-arrow {
+.card-style-dark-glass .calendar-container .calendar-nav-arrow,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow {
+  background: rgba(255, 255, 255, 0.18) !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-nav-arrow:hover,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.30) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-nav-arrow,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-nav-arrow {
   background-color: #f1f5f9 !important;
   background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
@@ -2625,10 +2705,8 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
-[data-bg-light="true"] .calendar-container .calendar-nav-arrow:hover,
-.light .calendar-container .calendar-nav-arrow:hover,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .calendar-nav-arrow:hover,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .calendar-nav-arrow:hover {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-nav-arrow:hover,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .calendar-nav-arrow:hover {
   background-color: #e2e8f0 !important;
   background: #e2e8f0 !important;
   border-color: rgba(147, 197, 253, 0.8) !important;
@@ -2636,10 +2714,18 @@
 }
 
 /* Calendar Country Select dropdowns */
-[data-bg-light="true"] .calendar-container .world-dates-select,
-.light .calendar-container .world-dates-select,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .world-dates-select,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .world-dates-select {
+.card-style-dark-glass .calendar-container .world-dates-select,
+[data-card-bg-mode="dark-glass"] .calendar-container .world-dates-select {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  color: #ffffff !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-dates-select,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-dates-select {
   background-color: #f1f5f9 !important;
   background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
@@ -2653,10 +2739,18 @@
 }
 
 /* Calendar World Clocks cards */
-[data-bg-light="true"] .calendar-container .world-clock-card,
-.light .calendar-container .world-clock-card,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .world-clock-card,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .world-clock-card {
+.card-style-dark-glass .calendar-container .world-clock-card,
+[data-card-bg-mode="dark-glass"] .calendar-container .world-clock-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  color: #ffffff !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-clock-card,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-clock-card {
   background-color: #f1f5f9 !important;
   background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
@@ -2664,16 +2758,22 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
-[data-bg-light="true"] .calendar-container .world-clock-card *,
-.light .calendar-container .world-clock-card * {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-clock-card *,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-clock-card * {
   color: #6143f7 !important;
 }
 
 /* Calendar World Dates Difference Pill */
-[data-bg-light="true"] .calendar-container .world-dates-diff-pill,
-.light .calendar-container .world-dates-diff-pill,
-[data-bg-light="true"].card-style-dark-glass .calendar-container .world-dates-diff-pill,
-[data-bg-light="true"] .card-style-dark-glass .calendar-container .world-dates-diff-pill {
+.card-style-dark-glass .calendar-container .world-dates-diff-pill,
+[data-card-bg-mode="dark-glass"] .calendar-container .world-dates-diff-pill {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  color: #ffffff !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-dates-diff-pill,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-dates-diff-pill {
   background-color: #f1f5f9 !important;
   background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
@@ -2681,16 +2781,27 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
-[data-bg-light="true"] .calendar-container .world-dates-diff-pill *,
-.light .calendar-container .world-dates-diff-pill * {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-dates-diff-pill *,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .calendar-container .world-dates-diff-pill * {
   color: #6143f7 !important;
 }
 
-/* 2. TO-DO: Light Grey Left Sidebar and Inner Controls */
-[data-bg-light="true"] .todolist-tab-container .todo-sidebar,
-.light .todolist-tab-container .todo-sidebar,
-[data-bg-light="true"].card-style-dark-glass .todolist-tab-container .todo-sidebar,
-[data-bg-light="true"] .card-style-dark-glass .todolist-tab-container .todo-sidebar {
+/* 2. TO-DO: Left Sidebar and Inner Controls */
+.card-style-dark-glass .todolist-tab-container .todo-sidebar,
+[data-card-bg-mode="dark-glass"] .todolist-tab-container .todo-sidebar {
+  background: rgba(255, 255, 255, 0.10) !important;
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.card-style-dark-glass .todolist-tab-container .todo-sidebar nav button,
+[data-card-bg-mode="dark-glass"] .todolist-tab-container .todo-sidebar nav button {
+  color: #ffffff !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar {
   background-color: #f1f5f9 !important; /* light grey (slate-100) */
   background: #f1f5f9 !important;
   border-right: 1px solid #e2e8f0 !important;
@@ -2702,22 +2813,36 @@
   border-color: #e2e8f0 !important;
 }
 
-[data-bg-light="true"] .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15),
-.light .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15) {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15),
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15) {
   color: #6143f7 !important;
 }
 
-[data-bg-light="true"] .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover,
-.light .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover {
   background-color: #e2e8f0 !important;
   color: #4f32e6 !important;
 }
 
-/* 3. NOTES: Light Grey Sections Panel and Pages Panel */
-[data-bg-light="true"] .notes-tab-container .notes-sections-panel,
-.light .notes-tab-container .notes-sections-panel,
-[data-bg-light="true"].card-style-dark-glass .notes-tab-container .notes-sections-panel,
-[data-bg-light="true"] .card-style-dark-glass .notes-tab-container .notes-sections-panel {
+/* 3. NOTES: Sections Panel and Pages Panel */
+.card-style-dark-glass .notes-tab-container .notes-sections-panel,
+[data-card-bg-mode="dark-glass"] .notes-tab-container .notes-sections-panel {
+  background: rgba(255, 255, 255, 0.10) !important;
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.card-style-dark-glass .notes-tab-container .notes-pages-panel,
+[data-card-bg-mode="dark-glass"] .notes-tab-container .notes-pages-panel {
+  background: rgba(255, 255, 255, 0.06) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .notes-tab-container .notes-sections-panel,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .notes-tab-container .notes-sections-panel {
   background-color: #f1f5f9 !important; /* light grey */
   background: #f1f5f9 !important;
   border-right: 1px solid #e2e8f0 !important;
@@ -2912,10 +3037,17 @@ label.settings-backup-import-btn svg,
 .GeekTabs-card .browser-url-input,
 [data-bg-light="true"] .GeekTabs-card .browser-url-input,
 .browser-guide-subheading,
+.browser-guide-subheading *,
+h4.browser-guide-subheading,
 .card-style-white .browser-guide-subheading,
 .card-style-dark-glass .browser-guide-subheading,
+[data-card-bg-mode="dark-glass"] .browser-guide-subheading,
+[data-card-bg-mode="white"] .browser-guide-subheading,
+.dark .browser-guide-subheading,
+.photo-mode .browser-guide-subheading,
 .GeekTabs-card .browser-guide-subheading,
 [data-bg-light="true"] .GeekTabs-card .browser-guide-subheading,
+.browser-guide-globe,
 .browser-steps-list,
 .browser-steps-list *,
 .browser-steps-list li,
@@ -2938,6 +3070,10 @@ label.settings-backup-import-btn svg,
 [data-bg-light="true"] .GeekTabs-card .browser-steps-list li span {
   color: #6143f7 !important;
   -webkit-text-fill-color: #6143f7 !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
 /* =========================================================================
