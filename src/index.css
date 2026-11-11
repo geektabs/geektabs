@@ -2549,35 +2549,62 @@
   background-color: rgba(0, 0, 0, 0.06) !important;
 }
 
-/* Light grey container backgrounds for To-Do, Notes, Calendar, Calculator, IP Address, Speed Test, Settings with Light Blue Edge */
+/* =========================================================================
+   WEBCARDS (CALENDAR, CALCULATOR, IP ADDRESS, SPEED TEST):
+   Exact same translucent glass background & light blue crystal edge as Weather Widget
+   ========================================================================= */
 .webcard-light-grey-bg,
-.GeekTabs-card.webcard-light-grey-bg {
-  background: #f8fafc !important; /* very light grey (slate-50) */
-  background-color: #f8fafc !important;
-  background-image: none !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.8) !important;
-  border-color: rgba(147, 197, 253, 0.8) !important;
+.GeekTabs-card.webcard-light-grey-bg,
+.calendar-container .GeekTabs-card,
+.calculator-tab-card,
+.ipaddress-tab-card .GeekTabs-card,
+.speedtest-tab-card .GeekTabs-card {
+  background: rgba(255, 255, 255, 0.42) !important;
+  background-color: rgba(255, 255, 255, 0.42) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  border-color: rgba(147, 197, 253, 0.85) !important;
   box-shadow: 
-    0 0 0 1px rgba(186, 230, 253, 0.45),
+    0 0 0 1px rgba(186, 230, 253, 0.55),
     inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
-    0 10px 30px -5px rgba(59, 130, 246, 0.08) !important;
+    inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
+    0 10px 32px -4px rgba(59, 130, 246, 0.12),
+    0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
 }
 
 .dark .webcard-light-grey-bg,
-.dark .GeekTabs-card.webcard-light-grey-bg {
-  background: rgba(255, 255, 255, 0.05) !important;
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  background-image: none !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.35) !important;
-  border-color: rgba(147, 197, 253, 0.35) !important;
+.dark .GeekTabs-card.webcard-light-grey-bg,
+.dark .calendar-container .GeekTabs-card,
+.dark .calculator-tab-card,
+.dark .ipaddress-tab-card .GeekTabs-card,
+.dark .speedtest-tab-card .GeekTabs-card {
+  background: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1.5px solid rgba(147, 197, 253, 0.45) !important;
+  border-color: rgba(147, 197, 253, 0.45) !important;
 }
 
 .card-style-dark-glass .webcard-light-grey-bg,
 .card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
+.card-style-dark-glass .calendar-container .GeekTabs-card,
+.card-style-dark-glass .calculator-tab-card,
+.card-style-dark-glass .ipaddress-tab-card .GeekTabs-card,
+.card-style-dark-glass .speedtest-tab-card .GeekTabs-card,
 [data-card-bg-mode="dark-glass"] .webcard-light-grey-bg,
 [data-card-bg-mode="dark-glass"] .GeekTabs-card.webcard-light-grey-bg,
+[data-card-bg-mode="dark-glass"] .calendar-container .GeekTabs-card,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card,
+[data-card-bg-mode="dark-glass"] .ipaddress-tab-card .GeekTabs-card,
+[data-card-bg-mode="dark-glass"] .speedtest-tab-card .GeekTabs-card,
 .dark.card-style-dark-glass .webcard-light-grey-bg,
 .dark.card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
+.dark.card-style-dark-glass .calendar-container .GeekTabs-card,
+.dark.card-style-dark-glass .calculator-tab-card,
+.dark.card-style-dark-glass .ipaddress-tab-card .GeekTabs-card,
+.dark.card-style-dark-glass .speedtest-tab-card .GeekTabs-card,
 [data-bg-light="false"].card-style-dark-glass .webcard-light-grey-bg,
 [data-bg-light="false"].card-style-dark-glass .GeekTabs-card.webcard-light-grey-bg,
 [data-bg-light="true"].card-style-dark-glass .webcard-light-grey-bg,
@@ -2595,16 +2622,27 @@
     0 20px 48px -8px rgba(0, 0, 0, 0.32),
     0 2px 8px 0 rgba(0, 0, 0, 0.10) !important;
   border-radius: 2rem !important;
-  color: #ffffff !important;
 }
 
 .card-style-white .webcard-light-grey-bg,
-.card-style-white .GeekTabs-card.webcard-light-grey-bg {
-  background: #f1f5f9 !important;
-  background-color: #f1f5f9 !important;
-  background-image: none !important;
-  border: 1.5px solid rgba(147, 197, 253, 0.8) !important;
-  border-color: rgba(147, 197, 253, 0.8) !important;
+.card-style-white .GeekTabs-card.webcard-light-grey-bg,
+.card-style-white .calendar-container .GeekTabs-card,
+.card-style-white .calculator-tab-card,
+.card-style-white .ipaddress-tab-card .GeekTabs-card,
+.card-style-white .speedtest-tab-card .GeekTabs-card,
+[data-card-bg-mode="white"] .webcard-light-grey-bg,
+[data-card-bg-mode="white"] .GeekTabs-card.webcard-light-grey-bg,
+[data-card-bg-mode="white"] .calendar-container .GeekTabs-card,
+[data-card-bg-mode="white"] .calculator-tab-card,
+[data-card-bg-mode="white"] .ipaddress-tab-card .GeekTabs-card,
+[data-card-bg-mode="white"] .speedtest-tab-card .GeekTabs-card {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04) !important;
 }
 
 /* Global enforce light blue edge on all GeekTabs webcards */
@@ -2612,27 +2650,21 @@
   border-color: rgba(147, 197, 253, 0.85) !important;
 }
 
-/* =========================================================================
-   LIGHT GREY WEBCARD STYLING FOR CALENDAR, TO-DO, AND NOTES PAGES
-   Applies when on light background (default pastel-waves, white-clean, etc.)
-   with standard style.
-   ========================================================================= */
-
 /* Outer webcard background when webcard-light-grey-bg is applied on light backgrounds */
 [data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .webcard-light-grey-bg,
 .light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .webcard-light-grey-bg {
-  background: rgba(241, 245, 249, 0.75) !important; /* light grey translucent glass */
-  background-color: rgba(241, 245, 249, 0.75) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  background: rgba(255, 255, 255, 0.42) !important;
+  background-color: rgba(255, 255, 255, 0.42) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
   border: 1.5px solid rgba(147, 197, 253, 0.85) !important;
+  border-color: rgba(147, 197, 253, 0.85) !important;
   box-shadow: 
     0 0 0 1px rgba(186, 230, 253, 0.55),
     inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95),
     inset 0 0 16px 0 rgba(191, 219, 254, 0.25),
-    0 16px 40px -8px rgba(59, 130, 246, 0.12),
+    0 10px 32px -4px rgba(59, 130, 246, 0.12),
     0 2px 8px -2px rgba(59, 130, 246, 0.05) !important;
-  color: #6143f7 !important;
 }
 
 /* 1. CALENDAR: Day Cells, Arrow Buttons, Select Dropdowns, World Clocks, Diff Bar */
@@ -2813,13 +2845,13 @@
   border-color: #e2e8f0 !important;
 }
 
-[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15),
-.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15) {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):not(.bg-\[\#4f46e5\]\/15),
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):not(.bg-\[\#4f46e5\]\/15) {
   color: #6143f7 !important;
 }
 
-[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover,
-.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):hover {
+[data-bg-light="true"]:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):not(.bg-\[\#4f46e5\]\/15):hover,
+.light:not(.card-style-dark-glass):not([data-card-bg-mode="dark-glass"]) .todolist-tab-container .todo-sidebar nav button:not(.bg-sky-500\/15):not(.bg-\[\#4f46e5\]\/15):hover {
   background-color: #e2e8f0 !important;
   color: #4f32e6 !important;
 }
@@ -3435,16 +3467,16 @@ button.custom-hex-apply-btn svg,
 }
 
 /* 4. REPLACE ANY DEFAULT WHITE TEXT ON NON-EXEMPT PAGES WITH BLUE & PURPLE MIXING COLOR */
-[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .text-white:not(h1):not(h2):not(h3):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.bookmark-webcard *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn),
-[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .dark\:text-white:not(h1):not(h2):not(h3):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.bookmark-webcard *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .text-white:not(h1):not(h2):not(h3):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.bookmark-webcard *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card .dark\:text-white:not(h1):not(h2):not(h3):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.bookmark-webcard *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style .text-white:not(h1):not(h2):not(h3),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style .dark\:text-white:not(h1):not(h2):not(h3),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard .text-white:not(h1):not(h2):not(h3),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard .dark\:text-white:not(h1):not(h2):not(h3),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-container .text-white:not(h1):not(h2):not(h3),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calendar-container .dark\:text-white:not(h1):not(h2):not(h3),
-[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container .text-white:not(h1):not(h2):not(h3),
-[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container .dark\:text-white:not(h1):not(h2):not(h3),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container .text-white:not(h1):not(h2):not(h3):not(.todolist-action-btn *):not(.todolist-action-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .todolist-tab-container .dark\:text-white:not(h1):not(h2):not(h3):not(.todolist-action-btn *):not(.todolist-action-btn),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calculator-tab-card .text-white:not(.calculator-equals-btn *):not(.calculator-equals-btn),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .calculator-tab-card .dark\:text-white:not(.calculator-equals-btn *):not(.calculator-equals-btn),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .notes-tab-container .text-white:not(.notes-create-page-btn *):not(.notes-create-page-btn),
@@ -3477,7 +3509,7 @@ button.custom-hex-apply-btn svg,
 }
 
 /* 6. SPANS, LABELS & ICONS IN BLUE & PURPLE MIXING COLOR ON NON-EXEMPT PAGES */
-[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.bookmark-webcard *):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn),
+[data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .GeekTabs-card span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]):not(.welcome-greeting-display):not(.clock-time-display):not(.clock-date-display):not(.bookmark-webcard *):not(.settings-nav-active-btn *):not(.settings-backup-import-btn *):not(.custom-hex-apply-btn *):not(.speedtest-center-circle *):not(.speedtest-start-btn *):not(.speedtest-start-btn):not(.speedtest-start-button *):not(.speedtest-start-button):not(.speedtest-action-button *):not(.speedtest-action-button):not(.speedtest-btn-text):not(.calculator-equals-btn *):not(.calculator-equals-btn):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-huawei-style span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]):not(.text-3xl):not(.text-4xl),
 [data-default-white-bg="true"]:not([data-active-tab="links"]):not([data-active-tab="settings"]) .weather-subcard span:not([class*="text-amber"]):not([class*="text-sky"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-green"]) {
   color: #6143f7 !important;
@@ -3506,7 +3538,7 @@ button.calculator-equals-btn,
   stroke: #ffffff !important;
 }
 
-/* Notes: Create Page button text MUST ALWAYS BE WHITE */
+/* Notes & To-Do: Primary Action button text MUST ALWAYS BE WHITE */
 .notes-create-page-btn,
 .notes-create-page-btn *,
 .notes-create-page-btn span,
@@ -3514,7 +3546,15 @@ button.notes-create-page-btn,
 button.notes-create-page-btn span,
 [data-default-white-bg="true"] .notes-create-page-btn,
 [data-default-white-bg="true"] .notes-create-page-btn *,
-[data-default-white-bg="true"] .notes-create-page-btn span {
+[data-default-white-bg="true"] .notes-create-page-btn span,
+.todolist-action-btn,
+.todolist-action-btn *,
+.todolist-action-btn span,
+button.todolist-action-btn,
+button.todolist-action-btn span,
+[data-default-white-bg="true"] .todolist-action-btn,
+[data-default-white-bg="true"] .todolist-action-btn *,
+[data-default-white-bg="true"] .todolist-action-btn span {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
   stroke: #ffffff !important;
@@ -3714,12 +3754,12 @@ h1.speedtest-analyzer-title,
 [data-card-bg-mode="dark-glass"] .calendar-container .world-dates-diff-pill *,
 .card-style-dark-glass .todolist-tab-container p,
 [data-card-bg-mode="dark-glass"] .todolist-tab-container p,
-.card-style-dark-glass .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
-[data-card-bg-mode="dark-glass"] .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
+.card-style-dark-glass .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn):not(button *),
+[data-card-bg-mode="dark-glass"] .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn):not(button *),
 .card-style-dark-glass .notes-tab-container p,
 [data-card-bg-mode="dark-glass"] .notes-tab-container p,
-.card-style-dark-glass .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
-[data-card-bg-mode="dark-glass"] .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
+.card-style-dark-glass .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(button *),
+[data-card-bg-mode="dark-glass"] .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(button *),
 .card-style-dark-glass .calculator-tab-card p,
 [data-card-bg-mode="dark-glass"] .calculator-tab-card p,
 .card-style-dark-glass .calculator-tab-card span,
@@ -3854,12 +3894,12 @@ h1.speedtest-analyzer-title,
 [data-card-bg-mode="white"] .calendar-container .world-dates-diff-pill *,
 .card-style-white .todolist-tab-container p,
 [data-card-bg-mode="white"] .todolist-tab-container p,
-.card-style-white .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
-[data-card-bg-mode="white"] .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]),
+.card-style-white .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn):not(button *),
+[data-card-bg-mode="white"] .todolist-tab-container span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-red"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-indigo"]):not(.todolist-action-btn *):not(.todolist-action-btn):not(.todolist-cancel-btn *):not(.todolist-cancel-btn):not(button *),
 .card-style-white .notes-tab-container p,
 [data-card-bg-mode="white"] .notes-tab-container p,
-.card-style-white .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
-[data-card-bg-mode="white"] .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]),
+.card-style-white .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(button *),
+[data-card-bg-mode="white"] .notes-tab-container span:not([class*="bg-"]):not([class*="text-indigo"]):not([class*="text-emerald"]):not(.notes-create-page-btn *):not(.notes-create-page-btn):not(button *),
 .card-style-white .calculator-tab-card p,
 [data-card-bg-mode="white"] .calculator-tab-card p,
 .card-style-white .calculator-tab-card span:not(.calculator-equals-btn *):not(.calculator-equals-btn),
@@ -4062,6 +4102,89 @@ h1.speedtest-analyzer-title,
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
+
+/* =========================================================================
+   TO-DO & NOTES: PERMANENT WHITE BUTTON TEXT ENFORCEMENT
+   Guarantees that all button labels, icons, and nested text on To-Do and Notes
+   remain solid pure white (#ffffff) across ALL themes, wallpaper modes,
+   and card background styles (including White background mode).
+   ========================================================================= */
+.todolist-action-btn,
+.todolist-action-btn *,
+.todolist-action-btn span,
+.todolist-action-btn svg,
+button.todolist-action-btn,
+button.todolist-action-btn *,
+button.todolist-action-btn span,
+button.todolist-action-btn svg,
+.notes-create-page-btn,
+.notes-create-page-btn *,
+.notes-create-page-btn span,
+.notes-create-page-btn svg,
+button.notes-create-page-btn,
+button.notes-create-page-btn *,
+button.notes-create-page-btn span,
+button.notes-create-page-btn svg,
+.todolist-cancel-btn,
+.todolist-cancel-btn *,
+.todolist-cancel-btn span,
+button.todolist-cancel-btn,
+button.todolist-cancel-btn span,
+.todolist-tab-container .todolist-action-btn,
+.todolist-tab-container .todolist-action-btn *,
+.todolist-tab-container .todolist-action-btn span,
+.todolist-tab-container button.todolist-action-btn,
+.todolist-tab-container button.todolist-action-btn *,
+.todolist-tab-container button.todolist-action-btn span,
+.notes-tab-container .notes-create-page-btn,
+.notes-tab-container .notes-create-page-btn *,
+.notes-tab-container .notes-create-page-btn span,
+.notes-tab-container button.notes-create-page-btn,
+.notes-tab-container button.notes-create-page-btn *,
+.notes-tab-container button.notes-create-page-btn span,
+.card-style-white .todolist-tab-container .todolist-action-btn,
+.card-style-white .todolist-tab-container .todolist-action-btn *,
+.card-style-white .todolist-tab-container .todolist-action-btn span,
+.card-style-white .todolist-tab-container button.todolist-action-btn,
+.card-style-white .todolist-tab-container button.todolist-action-btn *,
+.card-style-white .todolist-tab-container button.todolist-action-btn span,
+[data-card-bg-mode="white"] .todolist-tab-container .todolist-action-btn,
+[data-card-bg-mode="white"] .todolist-tab-container .todolist-action-btn *,
+[data-card-bg-mode="white"] .todolist-tab-container .todolist-action-btn span,
+[data-card-bg-mode="white"] .todolist-tab-container button.todolist-action-btn,
+[data-card-bg-mode="white"] .todolist-tab-container button.todolist-action-btn *,
+[data-card-bg-mode="white"] .todolist-tab-container button.todolist-action-btn span,
+.card-style-white .notes-tab-container .notes-create-page-btn,
+.card-style-white .notes-tab-container .notes-create-page-btn *,
+.card-style-white .notes-tab-container .notes-create-page-btn span,
+.card-style-white .notes-tab-container button.notes-create-page-btn,
+.card-style-white .notes-tab-container button.notes-create-page-btn *,
+.card-style-white .notes-tab-container button.notes-create-page-btn span,
+[data-card-bg-mode="white"] .notes-tab-container .notes-create-page-btn,
+[data-card-bg-mode="white"] .notes-tab-container .notes-create-page-btn *,
+[data-card-bg-mode="white"] .notes-tab-container .notes-create-page-btn span,
+[data-card-bg-mode="white"] .notes-tab-container button.notes-create-page-btn,
+[data-card-bg-mode="white"] .notes-tab-container button.notes-create-page-btn *,
+[data-card-bg-mode="white"] .notes-tab-container button.notes-create-page-btn span,
+.card-style-white .todolist-tab-container .todolist-cancel-btn,
+.card-style-white .todolist-tab-container .todolist-cancel-btn *,
+[data-card-bg-mode="white"] .todolist-tab-container .todolist-cancel-btn,
+[data-card-bg-mode="white"] .todolist-tab-container .todolist-cancel-btn * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Note content text font style: Arial */
+.prose-mirror,
+.ProseMirror,
+.notes-tab-container .ProseMirror,
+.notes-tab-container .ProseMirror *,
+.notes-tab-container .prose-mirror,
+.notes-tab-container .prose-mirror * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Trash2, Search, Edit3, ChevronLeft, Calendar as CalendarIcon, FolderOpen, Layers, FileText, ChevronRight, LayoutGrid } from 'lucide-react';
+import { Plus, Trash2, Search, X, Layers, FileText, ChevronRight, Menu } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import TipTapEditor from './TipTapEditor';
 
@@ -19,14 +19,14 @@ interface Note {
 }
 
 const DEFAULT_SECTIONS: Section[] = [
-  { id: 'sec-quick', name: 'Quick Notes', color: '#0ea5e9' },    // Light Blue
+  { id: 'sec-quick', name: 'Quick Notes', color: '#4f46e5' },    // Royal Indigo
   { id: 'sec-ideas', name: 'Creative Ideas', color: '#10b981' },  // Emerald
   { id: 'sec-personal', name: 'Personal Log', color: '#3b82f6' }, // Blue
   { id: 'sec-work', name: 'Work Log', color: '#8b5cf6' }         // Purple
 ];
 
 const SECTION_COLORS = [
-  '#0ea5e9', '#2563eb', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'
+  '#4f46e5', '#2563eb', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'
 ];
 
 export interface NotesTabProps {
@@ -35,164 +35,174 @@ export interface NotesTabProps {
 
 const NOTES_T: Record<string, Record<string, string>> = {
   English: {
-    cancel: 'Cancel',
-    create: 'Create',
+    cancel: 'CANCEL',
+    create: 'CREATE',
     activeSpaces: 'active spaces',
-    sheetsList: 'Sheets List',
-    filterSheets: 'Filter sheets...',
-    noPageEntries: 'No Page entries',
-    untitledPage: 'Untitled Page',
+    sheetsList: 'Notes & Sheets',
+    filterSheets: 'Filter notes...',
+    noPageEntries: 'No notes in this section',
+    untitledPage: 'Untitled Note',
     noAdditionalText: 'No additional text',
-    addNewPage: 'Add New Page',
-    oneNoteWorkspace: 'OneNote Workspace',
-    enterPageTitle: 'Enter Page Title',
-    noNotebook: 'No Notebook',
-    createNotesDesc: 'Create notes, organize folder tabs, and build formatted workspace sheets.',
-    createPage: 'Create Page'
+    addNewPage: 'CREATE NOTE',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Enter Note Title...',
+    noNotebook: 'No Note Selected',
+    createNotesDesc: 'Create notes, organize folders, and build formatted workspace sheets.',
+    createPage: 'CREATE NOTE',
+    sections: 'Sections'
   },
   Spanish: {
-    cancel: 'Cancelar',
-    create: 'Crear',
+    cancel: 'CANCELAR',
+    create: 'CREAR',
     activeSpaces: 'espacios activos',
-    sheetsList: 'Lista de hojas',
-    filterSheets: 'Filtrar hojas...',
-    noPageEntries: 'Sin entradas de página',
-    untitledPage: 'Página sin título',
+    sheetsList: 'Notas y Hojas',
+    filterSheets: 'Filtrar notas...',
+    noPageEntries: 'Sin notas en esta sección',
+    untitledPage: 'Nota sin título',
     noAdditionalText: 'Sin texto adicional',
-    addNewPage: 'Agregar nueva página',
-    oneNoteWorkspace: 'Espacio de OneNote',
-    enterPageTitle: 'Introducir título',
-    noNotebook: 'Sin bloc de notas',
+    addNewPage: 'CREAR NOTA',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Introducir título...',
+    noNotebook: 'Ninguna nota seleccionada',
     createNotesDesc: 'Crea notas, organiza carpetas y diseña hojas de trabajo con formato.',
-    createPage: 'Crear página'
+    createPage: 'CREAR NOTA',
+    sections: 'Secciones'
   },
   French: {
-    cancel: 'Annuler',
-    create: 'Créer',
+    cancel: 'ANNULER',
+    create: 'CRÉER',
     activeSpaces: 'espaces actifs',
-    sheetsList: 'Liste des pages',
-    filterSheets: 'Filtrer les pages...',
-    noPageEntries: 'Aucune page',
-    untitledPage: 'Page sans titre',
+    sheetsList: 'Notes & Feuilles',
+    filterSheets: 'Filtrer les notes...',
+    noPageEntries: 'Aucune note dans cette section',
+    untitledPage: 'Note sans titre',
     noAdditionalText: 'Aucun texte supplémentaire',
-    addNewPage: 'Ajouter une nouvelle page',
-    oneNoteWorkspace: 'Espace OneNote',
-    enterPageTitle: 'Saisir le titre de la page',
-    noNotebook: 'Aucun bloc-notes',
-    createNotesDesc: 'Créez des notes, organisez les onglets et concevez des feuilles de travail.',
-    createPage: 'Créer une page'
+    addNewPage: 'CRÉER UNE NOTE',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Saisir le titre...',
+    noNotebook: 'Aucune note sélectionnée',
+    createNotesDesc: 'Créez des notes, organisez les dossiers et concevez des feuilles de travail.',
+    createPage: 'CRÉER UNE NOTE',
+    sections: 'Sections'
   },
   German: {
-    cancel: 'Abbrechen',
-    create: 'Erstellen',
+    cancel: 'ABBRECHEN',
+    create: 'ERSTELLEN',
     activeSpaces: 'aktive Bereiche',
-    sheetsList: 'Seitenliste',
-    filterSheets: 'Seiten filtern...',
-    noPageEntries: 'Keine Einträge',
-    untitledPage: 'Unbenannte Seite',
+    sheetsList: 'Notizen & Seiten',
+    filterSheets: 'Notizen filtern...',
+    noPageEntries: 'Keine Notizen in diesem Bereich',
+    untitledPage: 'Unbenannte Notiz',
     noAdditionalText: 'Kein weiterer Text',
-    addNewPage: 'Neue Seite hinzufügen',
-    oneNoteWorkspace: 'OneNote-Arbeitsbereich',
-    enterPageTitle: 'Seitentitel eingeben',
-    noNotebook: 'Kein Notizbuch',
-    createNotesDesc: 'Erstellen Sie Notizen, organisieren Sie Ordner-Tabs und strukturieren Sie Arbeitsblätter.',
-    createPage: 'Seite erstellen'
+    addNewPage: 'NOTIZ ERSTELLEN',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Notiztitel eingeben...',
+    noNotebook: 'Keine Notiz ausgewählt',
+    createNotesDesc: 'Erstellen Sie Notizen, organisiere Sie Ordner und strukturieren Sie Arbeitsblätter.',
+    createPage: 'NOTIZ ERSTELLEN',
+    sections: 'Bereiche'
   },
   Chinese: {
     cancel: '取消',
     create: '创建',
     activeSpaces: '个活跃分区',
-    sheetsList: '页面清单',
-    filterSheets: '过滤筛选页面...',
-    noPageEntries: '暂无页面条目',
-    untitledPage: '无标题页面',
+    sheetsList: '笔记与文档',
+    filterSheets: '搜索过滤笔记...',
+    noPageEntries: '当前分区暂无笔记',
+    untitledPage: '无标题笔记',
     noAdditionalText: '暂无附加文本',
-    addNewPage: '添加新页面',
-    oneNoteWorkspace: 'OneNote 笔记本空间',
-    enterPageTitle: '输入页面标题',
-    noNotebook: '暂无笔记本页面',
-    createNotesDesc: '在此记录您的灵感日记、策划方案 or 个人备忘，多分区随心整理。',
-    createPage: '创建首个页面'
+    addNewPage: '创建笔记',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: '输入笔记标题...',
+    noNotebook: '未选择任何笔记',
+    createNotesDesc: '在此记录您的灵感日记、策划方案或个人备忘，分区随心整理。',
+    createPage: '创建笔记',
+    sections: '分区'
   },
   Japanese: {
     cancel: 'キャンセル',
     create: '作成',
     activeSpaces: '個のアクティブ領域',
-    sheetsList: 'ページ一覧',
-    filterSheets: 'ページを絞り込む...',
-    noPageEntries: 'ページがありません',
-    untitledPage: '無題のページ',
+    sheetsList: 'ノート一覧',
+    filterSheets: 'ノートを絞り込む...',
+    noPageEntries: 'このセクションにノートがありません',
+    untitledPage: '無題のノート',
     noAdditionalText: '追加テキストなし',
-    addNewPage: '新規ページを追加',
-    oneNoteWorkspace: 'OneNote ワークスペース',
-    enterPageTitle: 'ページタイトルを入力',
-    noNotebook: 'ノートブックがありません',
-    createNotesDesc: 'ノートを作成し、フォルダータブを整理し、フォーマットされたシートを構築します。',
-    createPage: 'ページを作成'
+    addNewPage: 'ノートを作成',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'ノートタイトルを入力...',
+    noNotebook: 'ノートが選択されていません',
+    createNotesDesc: 'ノートを作成し、フォルダーを整理し、フォーマットされたシートを構築します。',
+    createPage: 'ノートを作成',
+    sections: 'セクション'
   },
   Korean: {
     cancel: '취소',
     create: '생성',
     activeSpaces: '개의 활성 공간',
-    sheetsList: '시트 목록',
-    filterSheets: '시트 필터링...',
-    noPageEntries: '페이지가 없습니다',
-    untitledPage: '제목 없는 페이지',
+    sheetsList: '노트 목록',
+    filterSheets: '노트 필터링...',
+    noPageEntries: '이 섹션에 노트가 없습니다',
+    untitledPage: '제목 없는 노트',
     noAdditionalText: '추가 텍스트 없음',
-    addNewPage: '새 페이지 추가',
-    oneNoteWorkspace: 'OneNote 작업 공간',
-    enterPageTitle: '페이지 제목 입력',
-    noNotebook: '노트가 없습니다',
+    addNewPage: '노트 만들기',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: '노트 제목 입력...',
+    noNotebook: '선택된 노트가 없습니다',
     createNotesDesc: '메모를 작성하고 폴더 탭을 구성하며 시트를 편집해보세요.',
-    createPage: '페이지 만들기'
+    createPage: '노트 만들기',
+    sections: '섹션'
   },
   Italian: {
-    cancel: 'Annulla',
-    create: 'Crea',
+    cancel: 'ANNULLA',
+    create: 'CREA',
     activeSpaces: 'spazi attivi',
-    sheetsList: 'Elenco fogli',
-    filterSheets: 'Filtra fogli...',
-    noPageEntries: 'Nessun foglio',
-    untitledPage: 'Pagina senza titolo',
+    sheetsList: 'Note ed Elenco',
+    filterSheets: 'Filtra note...',
+    noPageEntries: 'Nessuna nota in questa sezione',
+    untitledPage: 'Nota senza titolo',
     noAdditionalText: 'Nessun testo aggiuntivo',
-    addNewPage: 'Aggiungi nuova pagina',
-    oneNoteWorkspace: 'Spazio OneNote',
-    enterPageTitle: 'Inserisci titolo pagina',
-    noNotebook: 'Nessun taccuino',
+    addNewPage: 'CREA NOTA',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Inserisci titolo nota...',
+    noNotebook: 'Nessuna nota selezionata',
     createNotesDesc: 'Crea note, organizza schede e costruisci fogli di lavoro formattati.',
-    createPage: 'Crea pagina'
+    createPage: 'CREA NOTA',
+    sections: 'Sezioni'
   },
   Russian: {
-    cancel: 'Отмена',
-    create: 'Создать',
+    cancel: 'ОТМЕНА',
+    create: 'СОЗДАТЬ',
     activeSpaces: 'активных областей',
-    sheetsList: 'Список страниц',
-    filterSheets: 'Фильтр страниц...',
-    noPageEntries: 'Нет страниц',
-    untitledPage: 'Страница без названия',
+    sheetsList: 'Заметки и страницы',
+    filterSheets: 'Фильтр заметок...',
+    noPageEntries: 'В этом разделе нет заметок',
+    untitledPage: 'Заметка без названия',
     noAdditionalText: 'Нет дополнительного текста',
-    addNewPage: 'Добавить новую страницу',
-    oneNoteWorkspace: 'Пространство OneNote',
-    enterPageTitle: 'Введите название страницы',
-    noNotebook: 'Нет записей',
+    addNewPage: 'СОЗДАТЬ ЗАМЕТКУ',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Введите название заметки...',
+    noNotebook: 'Заметка не выбрана',
     createNotesDesc: 'Создавайте заметки, упорядочивайте вкладки папок и форматируйте рабочие листы.',
-    createPage: 'Создать страницу'
+    createPage: 'СОЗДАТЬ ЗАМЕТКУ',
+    sections: 'Разделы'
   },
   Luxembourgish: {
-    cancel: 'Ofbriechen',
-    create: 'Erstellen',
+    cancel: 'OFBRIECHEN',
+    create: 'ERSTELLEN',
     activeSpaces: 'aktiv Beräicher',
-    sheetsList: 'Säitelëscht',
-    filterSheets: 'Säite filteren...',
-    noPageEntries: 'Keng Säiten',
-    untitledPage: 'Onbenannte Säit',
+    sheetsList: 'Notizen a Lëscht',
+    filterSheets: 'Notize filteren...',
+    noPageEntries: 'Keng Notizen an dësem Beräich',
+    untitledPage: 'Onbenannte Notiz',
     noAdditionalText: 'Keen zousätzlechen Text',
-    addNewPage: 'Nei Säit derbäisetzen',
-    oneNoteWorkspace: 'OneNote Aarbechtsberäich',
-    enterPageTitle: 'Säitentitel aginn',
-    noNotebook: 'Keen Notizbuch',
+    addNewPage: 'NOTIZ ERSTELLEN',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Notizentitel aginn...',
+    noNotebook: 'Keng Notiz ausgewielt',
     createNotesDesc: 'Erstellt Notizen, organiséiert Ordneren an designt formatéiert Blieder.',
-    createPage: 'Säit erstellen'
+    createPage: 'NOTIZ ERSTELLEN',
+    sections: 'Beräicher'
   }
 };
 
@@ -202,7 +212,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   const [sections, setSections] = useLocalStorage<Section[]>('GeekTabs-one-sections', DEFAULT_SECTIONS);
   const [notes, setNotes] = useLocalStorage<Note[]>('GeekTabs-one-notes', []);
 
-  // One-time upgrade: if user has old "Work Project" folder, rename to "Work Log" and ensure all 4 default folders exist in order
+  // One-time upgrade: ensure all 4 default folders exist in order
   useEffect(() => {
     let updated = false;
     const newSecs = sections.map(sec => {
@@ -213,7 +223,6 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
       return sec;
     });
 
-    // If any of the four default folders are missing, add them
     DEFAULT_SECTIONS.forEach(defSec => {
       if (!newSecs.some(s => s.name.toLowerCase() === defSec.name.toLowerCase() || s.id === defSec.id)) {
         newSecs.push(defSec);
@@ -231,20 +240,8 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   
   const [newSectionName, setNewSectionName] = useState('');
   const [isCreatingSection, setIsCreatingSection] = useState(false);
-  
   const [searchQuery, setSearchQuery] = useState('');
-  const [isMobileView, setIsMobileView] = useState(false);
-  const [mobileSubView, setMobileSubView] = useState<'sections' | 'pages' | 'editor'>('sections');
-
-  useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 1024;
-      setIsMobileView(mobile);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Ensure activeSectionId fallback exists
   const activeSectionExists = sections.some(s => s.id === activeSectionId);
@@ -272,7 +269,6 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     setActiveSectionId(newSec.id);
     setNewSectionName('');
     setIsCreatingSection(false);
-    if (isMobileView) setMobileSubView('pages');
   };
 
   const handleDeleteSection = (id: string, e: React.MouseEvent) => {
@@ -283,8 +279,6 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     }
     const filtered = sections.filter(s => s.id !== id);
     setSections(filtered);
-    
-    // Delete orphan notes or move them
     setNotes(notes.filter(n => n.sectionId !== id));
     
     if (activeSectionId === id) {
@@ -302,7 +296,6 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     };
     setNotes([newNote, ...notes]);
     setActiveNoteId(newNote.id);
-    if (isMobileView) setMobileSubView('editor');
   };
 
   const handleDeleteNote = (id: string, e?: React.MouseEvent) => {
@@ -332,308 +325,334 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
 
   const formatDate = (ts: number) => {
     const d = new Date(ts);
-    return `${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })} at ${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    return `${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} at ${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
   };
 
   const currentSectionInfo = sections.find(s => s.id === currentSectionId);
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col gap-6 relative z-10 p-0 sm:p-4">
-      {/* Brand Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-black/5 dark:border-white/5">
-        <div className="flex items-center gap-3">
-          <Layers size={22} className="text-indigo-500 fill-indigo-500/10" />
-          <h1 className="text-xl font-bold tracking-tight uppercase word-color">
-            OneNote <span className="notes-workspace-text text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>Workspace</span>
-          </h1>
+    <div className="notes-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 backdrop-blur-2xl bg-white/70 dark:bg-[#0c1017]/80 text-slate-800 dark:text-slate-100">
+      
+      {/* Mobile Backdrop */}
+      {mobileSidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* LEFT SIDEBAR (Gemini Chat Style) */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-80 md:w-80 md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0 h-full flex flex-col border-r border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+          mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
+        }`}
+      >
+        {/* Header with Title & Action Button */}
+        <div className="p-5 border-b border-black/10 dark:border-white/10 flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-[#4f46e5] to-[#7c3aed] flex items-center justify-center text-white shadow-md shadow-[#4f46e5]/25">
+                <Layers size={17} strokeWidth={2.4} />
+              </div>
+              <div>
+                <h1 className="text-sm font-black tracking-tight uppercase text-slate-900 dark:text-white">
+                  NOTE WORKSPACE
+                </h1>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setMobileSidebarOpen(false)}
+              className="md:hidden p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Primary Action Button: CREATE NOTE Matching Reference Design */}
+          <button
+            type="button"
+            onClick={() => {
+              handleCreateNote();
+              setMobileSidebarOpen(false);
+            }}
+            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+            className="notes-create-page-btn w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-all cursor-pointer active:scale-98 select-none"
+          >
+            <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
+            <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
+          </button>
         </div>
-      </div>
 
-      {/* Main Container - Card-less Split pane layout */}
-      <div className="notes-tab-container w-full h-[620px] lg:h-[700px] flex gap-1 GeekTabs-card webcard-light-grey-bg rounded-[2rem] overflow-hidden transition-all">
-        
-        {/* PANEL 1: SECTIONS LIST (OneNote Column #1) */}
-        {(!isMobileView || mobileSubView === 'sections') && (
-          <div className="notes-sections-panel w-full lg:w-60 h-full flex flex-col bg-black/5 dark:bg-white/5 border-r border-black/5 dark:border-white/5 relative z-10">
-            {/* Header */}
-            <div className="p-4 border-b border-black/5 dark:border-white/5 flex items-center justify-between">
-              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500">Sections Portfolio</span>
-              <button 
-                onClick={() => setIsCreatingSection(!isCreatingSection)}
-                className="p-1.5 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors"
-                title="Add Section"
+        {/* Section / Folder Chips Selector - Exactly 2 options per line */}
+        <div className="px-4 pt-3 pb-2 border-b border-black/5 dark:border-white/5 flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/40">
+              {dictionary.sections}
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsCreatingSection(!isCreatingSection)}
+              className="p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 dark:text-white/50 hover:text-[#4f46e5] cursor-pointer text-xs flex items-center gap-1 font-bold"
+              title="Add Section"
+            >
+              <Plus size={12} strokeWidth={2.5} />
+              <span className="text-[10px] font-bold">New</span>
+            </button>
+          </div>
+
+          {/* New Section Inline Creator */}
+          <AnimatePresence>
+            {isCreatingSection && (
+              <motion.form
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                onSubmit={handleCreateSection}
+                className="overflow-hidden flex flex-col gap-2 pt-1 pb-2"
               >
-                <Plus size={14} />
-              </button>
-            </div>
-
-            {/* Custom Section Creator */}
-            <AnimatePresence>
-              {isCreatingSection && (
-                <motion.form 
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  onSubmit={handleCreateSection}
-                  className="p-3 bg-black/5 dark:bg-white/5 border-b border-black/5 dark:border-white/5 overflow-hidden flex flex-col gap-2"
-                >
-                  <input
-                    autoFocus
-                    type="text"
-                    value={newSectionName}
-                    onChange={(e) => setNewSectionName(e.target.value)}
-                    placeholder="New section name..."
-                    className="w-full bg-white dark:bg-[#18191e] border border-black/10 dark:border-white/10 rounded-lg px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                  />
-                  <div className="flex gap-2 justify-end">
-                    <button 
-                      type="button" 
-                      onClick={() => setIsCreatingSection(false)}
-                      className="px-2.5 py-1 text-[10px] font-bold text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-100"
-                    >
-                      {dictionary.cancel}
-                    </button>
-                    <button 
-                      type="submit" 
-                      disabled={!newSectionName.trim()}
-                      className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-[10px] font-bold transition-shadow disabled:opacity-45"
-                    >
-                      {dictionary.create}
-                    </button>
-                  </div>
-                </motion.form>
-              )}
-            </AnimatePresence>
-
-            {/* Notebook Section Navigation List */}
-            <div className="flex-1 overflow-y-auto p-2.5 space-y-1 scrollbar-none">
-              {sections.map((sec) => {
-                const count = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id).length;
-                const active = currentSectionId === sec.id;
-                return (
-                  <div
-                    key={sec.id}
-                    onClick={() => {
-                      setActiveSectionId(sec.id);
-                      const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
-                      if (secNotes.length > 0) {
-                        setActiveNoteId(secNotes[0].id);
-                      } else {
-                        setActiveNoteId(null);
-                      }
-                      if (isMobileView) setMobileSubView('pages');
-                    }}
-                    className={`group w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all font-semibold text-xs leading-normal relative cursor-pointer select-none ${
-                      active 
-                        ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold border border-transparent' 
-                        : 'text-slate-700 dark:text-white/60 hover:text-indigo-500 hover:bg-indigo-500/5'
-                    }`}
+                <input
+                  autoFocus
+                  type="text"
+                  value={newSectionName}
+                  onChange={(e) => setNewSectionName(e.target.value)}
+                  placeholder="Section name..."
+                  className="w-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-xl px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] text-slate-900 dark:text-white"
+                />
+                <div className="flex gap-1.5 justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setIsCreatingSection(false)}
+                    style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                    className="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-black/20 dark:bg-white/10 hover:bg-black/30 dark:hover:bg-white/20 !text-white text-white cursor-pointer"
                   >
-                    {/* Left vertical color indicator tag characteristic of OneNote */}
-                    <div className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-r-md transition-colors" style={{ backgroundColor: sec.color }} />
-                    
-                    <div className="flex items-center gap-2 pl-1.5 min-w-0 pr-2">
-                       <FolderOpen size={14} className="opacity-70 flex-shrink-0" />
-                      <span className="truncate">{sec.name}</span>
-                    </div>
+                    <span className="!text-white text-white font-bold" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.cancel}</span>
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={!newSectionName.trim()}
+                    style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                    className="notes-create-page-btn px-3 py-1 bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white rounded-xl text-[10px] font-black uppercase tracking-wider transition-shadow disabled:opacity-45 cursor-pointer shadow-sm shadow-[#4f46e5]/25"
+                  >
+                    <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.create}</span>
+                  </button>
+                </div>
+              </motion.form>
+            )}
+          </AnimatePresence>
 
-                    <div className="flex items-center gap-1">
-                      {active && sections.length > 1 && (
-                        <button
-                          onClick={(e) => handleDeleteSection(sec.id, e)}
-                          className="opacity-0 group-hover:opacity-100 p-0.5 hover:bg-black/5 dark:hover:bg-white/5 hover:text-red-500 rounded transition-all"
-                          title="Delete area"
-                        >
-                          <Trash2 size={12} />
-                        </button>
-                      )}
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-black/5 dark:bg-white/5 opacity-55 font-black">{count}</span>
-                    </div>
-                  </div>
-                );
-              })}
+          {/* Sections Grid - Exactly 2 options per line */}
+          <div className="grid grid-cols-2 gap-2 pt-1 pb-1">
+            {sections.map((sec) => {
+              const active = currentSectionId === sec.id;
+              return (
+                <button
+                  key={sec.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveSectionId(sec.id);
+                    const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
+                    setActiveNoteId(secNotes[0]?.id || null);
+                  }}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer border select-none min-w-0 ${
+                    active
+                      ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-2xs'
+                      : 'bg-black/5 dark:bg-white/5 border-transparent text-slate-600 dark:text-white/60 hover:text-slate-900 hover:dark:text-white hover:bg-black/10 dark:hover:bg-white/10'
+                  }`}
+                  title={sec.name}
+                >
+                  <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
+                  <span className="truncate">{sec.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="p-3 border-b border-black/5 dark:border-white/5">
+          <div className="relative">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-400" size={13} />
+            <input
+              type="text"
+              placeholder={dictionary.filterSheets}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-8 pr-3 py-1.5 bg-black/5 dark:bg-white/5 text-xs text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] placeholder-slate-400 dark:placeholder-white/40"
+            />
+          </div>
+        </div>
+
+        {/* Note Pages List in Section */}
+        <div className="flex-1 overflow-y-auto p-2.5 space-y-1 scrollbar-thin">
+          <div className="px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/35">
+            {dictionary.sheetsList}
+          </div>
+
+          {filteredNotes.length === 0 ? (
+            <div className="p-6 text-center text-xs font-semibold text-slate-400 dark:text-white/40 select-none">
+              {dictionary.noPageEntries}
             </div>
+          ) : (
+            filteredNotes.map((note) => {
+              const active = activeNoteId === note.id;
+              return (
+                <div
+                  key={note.id}
+                  onClick={() => {
+                    setActiveNoteId(note.id);
+                    setMobileSidebarOpen(false);
+                  }}
+                  className={`group relative w-full flex flex-col p-3 rounded-xl cursor-pointer text-left transition-all border ${
+                    active
+                      ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-xs'
+                      : 'hover:bg-black/5 dark:hover:bg-white/5 border-transparent text-slate-700 dark:text-white/70'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-bold text-xs truncate leading-snug">
+                      {note.title.trim() || dictionary.untitledPage}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={(e) => handleDeleteNote(note.id, e)}
+                      className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded transition-all shrink-0 cursor-pointer"
+                      title="Delete note"
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-400 dark:text-white/35 mt-1.5 flex items-center gap-1">
+                    {formatDate(note.updatedAt)}
+                  </span>
+                </div>
+              );
+            })
+          )}
+        </div>
 
-            {/* Footer with summary */}
-            <div className="p-3.5 border-t border-black/5 dark:border-white/5 text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold text-center select-none">
-              {sections.length} {dictionary.activeSpaces}
+        {/* Sidebar Footer */}
+        <div className="p-4 border-t border-black/10 dark:border-white/10 text-xs font-semibold text-slate-500 dark:text-white/45 flex items-center justify-between select-none">
+          <span className="text-[11px] uppercase tracking-wider font-bold">
+            {filteredNotes.length} {dictionary.sheetsList}
+          </span>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5">
+            {currentSectionInfo?.name}
+          </span>
+        </div>
+      </aside>
+
+      {/* RIGHT CONTENT EDITOR PANE */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-transparent">
+        
+        {/* Workspace Top Header Bar */}
+        <header className="h-16 px-6 sm:px-8 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0 bg-white/40 dark:bg-black/20 backdrop-blur-md">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Mobile Hamburger to trigger Sidebar */}
+            <button
+              type="button"
+              onClick={() => setMobileSidebarOpen(true)}
+              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-700 dark:text-white transition-colors cursor-pointer"
+              title="Open Navigation"
+            >
+              <Menu size={20} />
+            </button>
+
+            {/* Breadcrumb path */}
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-white/60 truncate">
+              <span className="text-[#4f46e5] dark:text-indigo-400 uppercase tracking-wider text-[11px]">
+                {dictionary.oneNoteWorkspace}
+              </span>
+              <ChevronRight size={13} className="shrink-0 opacity-40" />
+              <span className="truncate">{currentSectionInfo?.name}</span>
+              {activeNote && (
+                <>
+                  <ChevronRight size={13} className="shrink-0 opacity-40" />
+                  <span className="text-slate-900 dark:text-white truncate font-extrabold">
+                    {activeNote.title || dictionary.untitledPage}
+                  </span>
+                </>
+              )}
             </div>
           </div>
-        )}
 
-        {/* PANEL 2: PAGES LIST IN SECTION (OneNote Column #2) */}
-        {(!isMobileView || mobileSubView === 'pages') && (
-          <div className="notes-pages-panel w-full lg:w-64 h-full flex flex-col bg-black/5 dark:bg-[#18191e]/35 border-r border-black/5 dark:border-white/5 relative z-10">
-            {/* Header metadata */}
-            <div className="p-4 border-b border-black/5 dark:border-white/5">
-              <div className="flex items-center justify-between mb-3">
-                {isMobileView && (
-                  <button 
-                    onClick={() => setMobileSubView('sections')} 
-                    className="flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400"
-                  >
-                    <ChevronLeft size={16} /> Portfolio
-                  </button>
-                )}
-                <span className="text-[10px] font-black uppercase tracking-widest opacity-45">{dictionary.sheetsList}</span>
-                <button 
-                  onClick={handleCreateNote}
-                  className="p-1.5 rounded-lg bg-indigo-500 text-white hover:bg-indigo-600 transition-colors"
-                  title="Add Page"
+          <div className="flex items-center gap-2 shrink-0">
+            {activeNote && (
+              <>
+                <span className="text-[10px] font-mono opacity-50 text-slate-700 dark:text-white hidden lg:inline-block">
+                  {formatDate(activeNote.updatedAt)}
+                </span>
+                <button
+                  type="button"
+                  onClick={(e) => handleDeleteNote(activeNote.id, e)}
+                  className="p-2 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 rounded-xl transition-colors cursor-pointer"
+                  title="Delete note"
                 >
-                  <Plus size={13} />
+                  <Trash2 size={16} />
                 </button>
-              </div>
+              </>
+            )}
+            <button
+              type="button"
+              onClick={handleCreateNote}
+              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+              className="notes-create-page-btn flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-[#4f46e5]/35 cursor-pointer active:scale-98 select-none"
+            >
+              <Plus size={14} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
+              <span className="hidden sm:inline !text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
+            </button>
+          </div>
+        </header>
 
-              {/* Search in Section Bar */}
-              <div className="relative">
-                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500" size={12} />
+        {/* Main Writing Canvas */}
+        <main className="flex-1 flex flex-col h-full overflow-hidden min-w-0">
+          {activeNote ? (
+            <div className="flex-1 flex flex-col h-full px-6 sm:px-12 lg:px-16 py-6 sm:py-8 overflow-hidden">
+              
+              {/* Note Title Input with Modern Underline */}
+              <div className="relative mb-5 shrink-0">
                 <input
                   type="text"
-                  placeholder={dictionary.filterSheets}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-3 py-1.5 bg-black/5 dark:bg-white/5 text-xs rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="w-full text-2xl sm:text-3xl font-black bg-transparent outline-none pb-2 text-slate-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 tracking-tight"
+                  value={activeNote.title}
+                  onChange={(e) => updateNote(activeNote.id, { title: e.target.value })}
+                  placeholder={dictionary.enterPageTitle}
+                />
+                <div className="h-[2px] w-full bg-linear-to-r from-[#4f46e5] to-[#7c3aed] rounded-full opacity-60" />
+              </div>
+
+              {/* Rich TipTap Editor filling the canvas */}
+              <div className="flex-1 overflow-hidden flex flex-col">
+                <TipTapEditor
+                  key={activeNote.id}
+                  content={activeNote.content}
+                  onChange={(content) => updateNote(activeNote.id, { content })}
                 />
               </div>
             </div>
-
-            {/* Note pages inside Section */}
-            <div className="flex-1 overflow-y-auto p-2 scrollbar-none space-y-1">
-              {filteredNotes.length === 0 ? (
-                <div className="p-8 text-center text-[10px] font-bold uppercase tracking-wider text-slate-700 dark:text-white/60 select-none">
-                  {dictionary.noPageEntries}
-                </div>
-              ) : (
-                filteredNotes.map(note => {
-                  const active = activeNoteId === note.id;
-                  const plainText = note.content ? note.content.replace(/<[^>]*>?/gm, '').trim() : '';
-                  return (
-                    <button
-                      key={note.id}
-                      onClick={() => {
-                        setActiveNoteId(note.id);
-                        if (isMobileView) setMobileSubView('editor');
-                      }}
-                      className={`w-full flex flex-col p-3 rounded-xl cursor-pointer text-left transition-all ${
-                        active 
-                          ? 'bg-indigo-500/10 dark:bg-white/10 border-l border-l-indigo-500' 
-                          : 'hover:bg-black/5 dark:hover:bg-white/5 border-l border-l-transparent'
-                      }`}
-                    >
-                      <div className="font-bold text-xs text-slate-850 dark:text-white/90 line-clamp-1 mb-1 relative pr-4 w-full">
-                        {note.title.trim() || dictionary.untitledPage}
-                      </div>
-                      <div className="text-[10px] text-slate-600 dark:text-white/40 truncate w-full font-medium">
-                        {plainText || dictionary.noAdditionalText}
-                      </div>
-                      <span className="text-[8px] opacity-35 mt-1 font-mono">{formatDate(note.updatedAt)}</span>
-                    </button>
-                  );
-                })
-              )}
+          ) : (
+            <div className="flex-1 flex flex-col items-center justify-center text-center p-8 select-none">
+              <div className="w-16 h-16 rounded-2xl bg-[#4f46e5]/10 flex items-center justify-center text-[#4f46e5] mb-4">
+                <FileText size={32} strokeWidth={1.5} />
+              </div>
+              <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 dark:text-white mb-1">
+                {dictionary.noNotebook}
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-white/50 max-w-xs mb-4">
+                {dictionary.createNotesDesc}
+              </p>
+              <button
+                type="button"
+                onClick={handleCreateNote}
+                style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                className="notes-create-page-btn px-6 py-2.5 bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white text-xs font-black uppercase tracking-wider rounded-2xl transition-all shadow-md shadow-[#4f46e5]/35 active:scale-98 cursor-pointer select-none"
+              >
+                <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.createPage}</span>
+              </button>
             </div>
-
-            {/* Footer with Action */}
-            <button
-              onClick={handleCreateNote}
-              className="p-3 border-t border-black/5 dark:border-white/5 text-[10px] font-bold uppercase tracking-widest text-[#4f46e5] dark:text-indigo-400 hover:bg-indigo-500/5 flex items-center justify-center gap-1.5 transition-colors shrink-0"
-            >
-              <Plus size={14} /> {dictionary.addNewPage}
-            </button>
-          </div>
-        )}
-
-        {/* PANEL 3: WRITING CANVAS (OneNote Column #3) */}
-        {(!isMobileView || mobileSubView === 'editor') && (
-          <div className="flex-1 h-full flex flex-col bg-white/[0.02] dark:bg-black/[0.04] relative z-10 min-w-0">
-            {activeNote ? (
-              <div className="flex-1 flex flex-col h-full overflow-hidden">
-                {/* Editor Header Navigation Controls */}
-                <div className="p-4 border-b border-black/5 dark:border-white/5 flex items-center justify-between px-6 shrink-0 bg-transparent">
-                  <div>
-                    {isMobileView && (
-                      <button 
-                        onClick={() => setMobileSubView('pages')} 
-                        className="flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400"
-                      >
-                        <ChevronLeft size={16} /> Pages
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <span className="text-[9px] font-mono opacity-50 text-slate-700 dark:text-white hidden sm:inline-block">
-                      {formatDate(activeNote.updatedAt)}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <button 
-                        onClick={(e) => handleDeleteNote(activeNote.id, e)} 
-                        className="p-2 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 rounded-lg transition-colors"
-                        title="Delete page"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                      <button 
-                        onClick={handleCreateNote} 
-                        className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-500 rounded-lg transition-colors"
-                        title="New page"
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Editor Writing Area */}
-                <div className="flex-1 flex flex-col px-6 sm:px-10 py-6 overflow-hidden">
-                  {/* Notebook path indicator block */}
-                  <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400/80 mb-3 select-none">
-                    <span>{dictionary.oneNoteWorkspace}</span>
-                    <ChevronRight size={10} />
-                    <span>{currentSectionInfo?.name}</span>
-                  </div>
-
-                  {/* Note Title Input with Classic OneNote Bold Title Line */}
-                  <div className="relative mb-6">
-                    <input 
-                      type="text"
-                      className="w-full text-2xl sm:text-3xl font-black bg-transparent outline-none pb-2 text-slate-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-700 tracking-tight"
-                      value={activeNote.title}
-                      onChange={(e) => updateNote(activeNote.id, { title: e.target.value })}
-                      placeholder={dictionary.enterPageTitle}
-                    />
-                    <div className="absolute bottom-0 inset-x-0 h-[1.5px] bg-[#2563eb]" />
-                  </div>
-
-                  {/* Rich Tiptap Canvas */}
-                  <div className="flex-1 overflow-hidden flex flex-col">
-                    <TipTapEditor
-                      key={activeNote.id}
-                      content={activeNote.content}
-                      onChange={(content) => updateNote(activeNote.id, { content })}
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 select-none webcard-light-grey-bg rounded-2xl transition-colors">
-                <FileText strokeWidth={1} size={48} className="text-indigo-500 mb-4" />
-                <h3 className="font-bold text-sm uppercase tracking-wider text-slate-800 dark:text-white mb-1">{dictionary.noNotebook}</h3>
-                <p className="text-xs text-slate-600 dark:text-white/60 max-w-xs">
-                  {dictionary.createNotesDesc}
-                </p>
-                <button
-                  onClick={handleCreateNote}
-                  style={{ color: '#ffffff' }}
-                  className="notes-create-page-btn mt-4 px-5 py-2.5 bg-indigo-600 !text-white hover:bg-indigo-700 text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-md shadow-indigo-500/20 active:scale-95 cursor-pointer"
-                >
-                  <span className="!text-white" style={{ color: '#ffffff' }}>{dictionary.createPage}</span>
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+          )}
+        </main>
 
       </div>
     </div>

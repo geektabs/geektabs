@@ -222,7 +222,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
 
   return (
     <div className="flex justify-center items-center h-full w-full max-w-[320px] md:max-w-3xl mx-auto pb-20">
-      <div className="w-full rounded-2xl GeekTabs-card webcard-light-grey-bg calculator-tab-card p-1 overflow-hidden flex flex-col md:flex-row h-[560px]">
+      <div className="w-full rounded-2xl GeekTabs-card weather-huawei-style webcard-light-grey-bg calculator-tab-card p-1 overflow-hidden flex flex-col md:flex-row h-[560px]">
         
         {/* Calculator section */}
         <div className="flex-1 flex flex-col h-full">

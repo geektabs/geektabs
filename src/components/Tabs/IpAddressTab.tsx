@@ -612,7 +612,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
   return (
     <div className="w-full max-w-5xl mx-auto ipaddress-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
       {/* Global IP Identifier Webcard Header */}
-      <div className="w-full GeekTabs-card webcard-light-grey-bg rounded-3xl p-6 sm:p-8 flex flex-col justify-center text-left">
+      <div className="w-full GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-6 sm:p-8 flex flex-col justify-center text-left">
         <div className="flex items-center gap-2 mb-1.5">
           <Globe size={18} className="text-indigo-500 animate-pulse" />
           <span className="text-xs uppercase font-extrabold tracking-widest text-indigo-500">{d.identifier}</span>
@@ -624,7 +624,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
       </div>
 
       {isLoadingIp ? (
-        <div className="flex flex-col items-center justify-center min-h-[350px] GeekTabs-card webcard-light-grey-bg rounded-3xl p-8">
+        <div className="flex flex-col items-center justify-center min-h-[350px] GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-8">
           <div className="w-12 h-12 border-4 border-t-indigo-500 border-black/10 dark:border-white/10 rounded-full animate-spin mb-4" />
           <p className="word-color font-mono text-sm uppercase tracking-widest opacity-60">{d.resolving}</p>
         </div>
@@ -635,7 +635,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
           <div className="w-full flex flex-col gap-6">
             
             {/* IPv4 Display Panel */}
-            <div className="w-full GeekTabs-card webcard-light-grey-bg rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between">
+            <div className="w-full GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between">
               <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none -mt-32 -mr-32" />
               
               <div className="relative z-10 flex flex-col gap-4">
@@ -682,7 +682,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
             </div>
 
             {/* IPv6 Display Panel */}
-            <div className="w-full GeekTabs-card webcard-light-grey-bg rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between">
+            <div className="w-full GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between">
               <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none -mt-32 -mr-32" />
               
               <div className="relative z-10 flex flex-col gap-4">

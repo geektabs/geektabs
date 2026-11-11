@@ -64,7 +64,8 @@ export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
     content,
     editorProps: {
       attributes: {
-        class: 'prose-mirror focus:outline-none min-h-[200px] text-lg leading-relaxed',
+        class: 'prose-mirror focus:outline-none min-h-[200px] text-lg leading-relaxed font-sans',
+        style: 'font-family: Arial, Helvetica, sans-serif;',
       },
     },
     onUpdate: ({ editor }) => {
@@ -87,9 +88,9 @@ export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
   }, [content, editor]);
 
   return (
-    <div className="flex flex-col flex-1 overflow-hidden font-serif mt-2">
+    <div className="flex flex-col flex-1 overflow-hidden font-sans mt-2" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <MenuBar editor={editor} />
-      <div className="flex-1 overflow-y-auto pb-4">
+      <div className="flex-1 overflow-y-auto pb-4" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
         <EditorContent editor={editor} />
       </div>
     </div>

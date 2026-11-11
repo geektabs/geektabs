@@ -191,6 +191,8 @@ export default function App() {
   const isDefaultLightBg = theme === 'light-grey' || theme === 'light-slate' || theme === 'white-clean';
   const isExemptPage = activeTab === 'links' || activeTab === 'settings';
 
+  const isFullPageTab = activeTab === 'todo' || activeTab === 'notes' || activeTab === 'settings';
+
   return (
     <div 
       className={`relative min-h-screen font-sans transition-colors duration-500 ${isDarkMode ? 'dark text-white' : 'light'} ${isPhoto ? 'photo-mode' : ''} ${cardBgMode === 'dark-glass' ? 'card-style-dark-glass' : 'card-style-white'} ${theme === 'light-grey' || theme === 'light-slate' ? 'bg-[#f8fafc]' : theme === 'white-clean' ? 'bg-white' : (theme === 'pastel-waves' || theme === 'mix-neonpurple') ? 'bg-[#d8f0fa]' : ''}`}
@@ -207,7 +209,14 @@ export default function App() {
     >
       <Wallpaper currentTheme={theme} isDarkMode={isDarkMode} />
 
-      <main className="relative z-10 container mx-auto px-4 sm:px-6 min-h-screen flex flex-col items-center" data-active-tab={activeTab}>
+      <main 
+        className={
+          isFullPageTab 
+            ? "fixed top-14 bottom-0 left-0 right-0 z-10 flex flex-col overflow-hidden" 
+            : "relative z-10 container mx-auto px-4 sm:px-6 min-h-screen flex flex-col items-center"
+        } 
+        data-active-tab={activeTab}
+      >
         <AnimatePresence mode="wait">
           {activeTab === 'home' && (
             <motion.div
@@ -312,10 +321,11 @@ export default function App() {
             <motion.div
               key="todo"
               data-tab="todo"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              className="w-full max-w-6xl pt-36 pb-32"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="w-full h-full flex flex-col overflow-hidden"
             >
               <TodoListTab language={language} />
             </motion.div>
@@ -338,10 +348,11 @@ export default function App() {
             <motion.div
               key="notes"
               data-tab="notes"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              className="w-full max-w-6xl pt-36 pb-32"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="w-full h-full flex flex-col overflow-hidden"
             >
               <NotesTab language={language} />
             </motion.div>
@@ -377,10 +388,11 @@ export default function App() {
             <motion.div
               key="settings"
               data-tab="settings"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              className="w-full max-w-6xl pt-36 pb-32"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="w-full h-full flex flex-col overflow-hidden"
             >
               <SettingsTab 
                 currentTheme={theme}

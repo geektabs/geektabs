@@ -552,7 +552,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     <div className="calendar-container flex flex-col lg:flex-row gap-6 lg:gap-8 max-w-6xl mx-auto w-full px-4 sm:px-6">
       
       {/* Calendar Section (Full Calendar) */}
-      <div className="w-full lg:flex-[1.6] xl:flex-[2] GeekTabs-card webcard-light-grey-bg rounded-3xl sm:rounded-[3rem] p-5 sm:p-8 md:p-10">
+      <div className="w-full lg:flex-[1.6] xl:flex-[2] GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl sm:rounded-[3rem] p-5 sm:p-8 md:p-10">
         <div className="flex items-center justify-between mb-4 md:mb-8 gap-3">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <div className="calendar-header-logo-container w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/15 rounded-2xl flex items-center justify-center border border-blue-500/30 shrink-0">
@@ -657,7 +657,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
       <div className="w-full lg:w-80 xl:w-96 flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-col gap-6 items-stretch">
         
         {/* World Dates Widget */}
-        <div className="GeekTabs-card webcard-light-grey-bg rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-6 flex flex-col gap-4">
+        <div className="GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-6 flex flex-col gap-4">
           <div className="flex items-center gap-2 mb-1">
             <Globe size={18} className="world-dates-logo text-[#6143f7] dark:text-[#6143f7] shrink-0 opacity-90" strokeWidth={2} />
             <h3 className="world-dates-title text-sm font-bold uppercase tracking-widest text-[#6143f7] dark:text-[#6143f7]">
@@ -721,7 +721,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
         </div>
 
         {/* Selected Date Events & Reminders */}
-        <div className="flex-1 GeekTabs-card webcard-light-grey-bg rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-6 flex flex-col min-h-[300px]">
+        <div className="flex-1 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-6 flex flex-col min-h-[300px]">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-indigo-500/20 border border-indigo-500/30 rounded-xl flex items-center justify-center shrink-0">

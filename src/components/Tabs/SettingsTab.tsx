@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings as SettingsIcon, Palette, Image as ImageIcon, Layout, Check, Trash2, Info, Globe, Compass, Download, RotateCcw, Type, Sparkles, ChevronDown, CloudSun } from 'lucide-react';
+import { Settings as SettingsIcon, Palette, Image as ImageIcon, Layout, Check, Trash2, Globe, Compass, Download, RotateCcw, Type, ChevronDown, CloudSun, Menu, X, Info } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import ThemesTab from './ThemesTab';
 import WallpapersTab from './WallpapersTab';
@@ -8,7 +8,6 @@ import BrowserTab from './BrowserTab';
 import WeatherSettingsTab from './WeatherSettingsTab';
 import { motion, AnimatePresence } from 'motion/react';
 import ConfirmModal from '../ConfirmModal';
-
 import { t } from '../../i18n';
 
 export interface SettingsTabProps {
@@ -252,138 +251,138 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     save: "저장",
     saved: "저장됨",
     languageSelection: "언어 선택",
-    langDesc: "위젯 및 제어 컨트롤에 적용할 선호 언어를 선택하세요.",
+    langDesc: "위젯 및 제어판에 사용할 선호 언어를 선택하세요.",
     cardStyle: "카드 배경 스타일",
-    cardDesc: "모든 페이지 웹 카드의 배경색과 표시 스타일을 설정합니다.",
-    whiteBg: "흰색 배경 (기본값)",
-    darkGlass: "투명 글래스 스타일",
+    cardDesc: "클래식 화이트 카드 또는 깊이감 있는 투명 유리 스타일 중 선택하세요.",
+    whiteBg: "흰색 배경 (기본)",
+    darkGlass: "투명 유리 스타일",
     dataBackup: "데이터 백업 및 복원 (복원 지점)",
-    dataDesc: "모든 북마크, 할 일 목록, 개인 노트를 JSON 파일로 내보내거나, 이전에 저장한 백업 파일을 불러와서 데이터를 완전히 복원합니다.",
+    dataDesc: "북마크, 할 일 목록, 메모 데이터를 JSON 파일로 내보내거나, 이전에 저장한 백업 파일을 가져와 완전히 복원하세요.",
     exportBackup: "백업 내보내기 (복원 지점 생성)",
-    importBackup: "백업 불러오기 (해당 지점으로 복원)",
-    resetTitle: "기본값으로 리셋",
-    resetDesc: "전체 대시보드를 초기 기본 설정으로 되돌립니다. 사용자 정의 테마, 배경화면, 북마크, 작업 및 메모가 모두 영구적으로 삭제됩니다!",
-    resetButton: "리셋 및 모든 데이터 소거",
+    importBackup: "백업 가져오기 (지점으로 복원)",
+    resetTitle: "기본값으로 초기화",
+    resetDesc: "대시보드 전체를 공장 초기 상태로 되돌립니다. 사용자 지정 테마, 배경화면, 북마크, 할 일 및 메모가 모두 영구적으로 삭제됩니다!",
+    resetButton: "초기화 및 모든 데이터 지우기",
     aboutTitle: "소개",
-    aboutDesc: "우리의 이야기 발견하기",
+    aboutDesc: "우리의 이야기",
     aboutWelcome: "GeekTabs에 오신 것을 환영합니다",
-    aboutText1: "GeekTabs는 평범한 '새 탭' 페이지를 아름답고 개인화되며 고도로 기능적인 대시보드로 바꾼다는 단순한 사명으로 만들어졌습니다. 우리는 디지털 환경이 사용자의 생산성과 창의성에 깊은 영향을 미친다고 믿습니다.",
-    aboutText2: "깔끔한 디자인, 세심한 기능, 광범위한 맞춤 설정에 집중한 GeekTabs는 웹 전반에 걸친 사용자의 여정 바로 시작점에 자리하고 있습니다. 매일의 영감이 필요하든, 작업을 구성할 장소가 필요하든, 차분함을 유지해줄 우아한 시계가 필요하든 모두 준비되어 있습니다.",
+    aboutText1: "GeekTabs는 평범한 '새 탭' 페이지를 아름답고 개성 넘치며 기능적인 대시보드로 탈바꿈시키겠다는 단순한 목표로 제작되었습니다.",
+    aboutText2: "깔끔한 디자인과 정성 어린 기능, 폭넓은 커스터마이징을 통해 웹 여정의 시작을 함께합니다.",
     supportContact: "지원 및 문의",
-    restoreSuccess: "백업이 성공적으로 복원되었습니다! 페이지가 곧 새로고침됩니다.",
+    restoreSuccess: "백업이 성공적으로 복원되었습니다! 페이지가 새로고침됩니다.",
     invalidBackup: "유효하지 않은 백업 파일입니다.",
-    failParse: "백업 파일 구문 분석에 실패했습니다.",
-    modalTitle: "모든 데이터를 리셋하시겠습니까?",
-    modalMessage: "이 작업은 되돌릴 수 없습니다. 모든 사용자 정의 설정, 북마크, 할 일 목록 및 노트가 영구적으로 삭제됩니다. 리셋 후 페이지가 새로고침됩니다.",
-    modalConfirm: "리셋 확인",
+    failParse: "백업 파일 파싱에 실패했습니다.",
+    modalTitle: "모든 데이터를 초기화하시겠습니까?",
+    modalMessage: "이 작업은 되돌릴 수 없습니다. 모든 사용자 지정 설정, 북마크, 할 일 목록 및 메모가 영구적으로 삭제됩니다.",
+    modalConfirm: "초기화 확인",
     modalCancel: "취소"
   },
   Italian: {
     title: "IMPOSTAZIONI",
     generalSettings: "Impostazioni Generali",
     managePreferences: "Gestisci preferenze di base",
-    customBoardName: "Nome Lavagna Personalizzato",
-    boardNameDesc: "Questo nome verrà visualizzato como una firma elegante del marchio sulla home page. Per impostazione predefinita viene mostrato un saluto basato sull'orario (Buongiorno / Buon Pomeriggio / Buonasera).",
+    customBoardName: "Nome Bacheca Personalizzato",
+    boardNameDesc: "Questo nome verrà mostrato come firma elegante sulla home page.",
     defaultPlaceholder: "Predefinito: ",
     save: "Salva",
     saved: "Salvato",
     languageSelection: "Selezione Lingua",
-    langDesc: "Scegli la tua lingua preferita per widget e controlli.",
-    cardStyle: "Stile Sfondo Carta",
-    cardDesc: "Scegli il colore di sfondo e lo stile per tutte le schede della pagina.",
+    langDesc: "Scegli la lingua preferita per widget e controlli.",
+    cardStyle: "Stile Sfondo Scheda",
+    cardDesc: "Scegli lo stile di sfondo per tutte le schede.",
     whiteBg: "Sfondo Bianco (Predefinito)",
     darkGlass: "Stile Vetro Trasparente",
-    dataBackup: "Backup e Ripristino dei Dati",
-    dataDesc: "Esporta i segnalibri, i compiti e le note in un file JSON o importa un backup salvato in precedenza per ripristinare completamente i dati.",
-    exportBackup: "Esporta Backup (Crea Punto di Ripristino)",
-    importBackup: "Importa Backup (Ripristina al Punto)",
+    dataBackup: "Backup e Ripristino Dati",
+    dataDesc: "Esporta o importa i tuoi dati in un file JSON.",
+    exportBackup: "Esporta Backup",
+    importBackup: "Importa Backup",
     resetTitle: "Ripristina Predefiniti",
-    resetDesc: "Ripristina l'intero dashboard alle impostazioni di fabbrica originali. Questo eliminerà definitivamente tutti i temi personalizzati, gli sfondi, i segnalibri, i compiti e le note!",
-    resetButton: "Ripristina e Cancella Tutti i Dati",
+    resetDesc: "Ripristina tutte le impostazioni originali di fabbrica.",
+    resetButton: "Ripristina e Cancella Dati",
     aboutTitle: "Chi Siamo",
     aboutDesc: "Scopri la nostra storia",
-    aboutWelcome: "Benvenuto su GeekTabs",
-    aboutText1: "GeekTabs è stato creato con una missione semplice: trasformare la banale pagina di \"nuova scheda\" in un cruscotto bello, personalizzato e altamente funzionale. Crediamo che il tuo ambiente digitale influenzi profondamente la tua produttività e creatività.",
-    aboutText2: "Con particolare attenzione al design pulito, alle funzionalità pensate e a un'ampia personalizzazione, GeekTabs si trova proprio all'inizio del tuo viaggio sul web. Che tu abbia bisogno di una dose quotidiana di ispirazione, di un posto per organizzare i tuoi compiti o semplicemente di un orologio elegante per tenerti ancorato a terra, siamo qui per te.",
-    supportContact: "Supporto & Contatti",
+    aboutWelcome: "Benvenuti su GeekTabs",
+    aboutText1: "GeekTabs è stato creato per trasformare la nuova scheda in una bacheca moderna e funzionale.",
+    aboutText2: "Design pulito e ampia personalizzazione.",
+    supportContact: "Supporto e Contatti",
     restoreSuccess: "Backup ripristinato con successo! La pagina verrà ricaricata.",
     invalidBackup: "File di backup non valido.",
     failParse: "Impossibile analizzare il file di backup.",
     modalTitle: "Ripristinare tutti i dati?",
-    modalMessage: "Questa azione è irreversibile. Questo eliminerà definitivamente tutte le tue impostazioni personalizzate, i segnalibri, i compiti e le note. La pagina verrà ricaricata dopo il ripristino.",
-    modalConfirm: "Conferma",
+    modalMessage: "Questa operazione è irreversibile.",
+    modalConfirm: "Conferma Ripristino",
     modalCancel: "Annulla"
   },
   Russian: {
     title: "НАСТРОЙКИ",
-    generalSettings: "Общие настройки",
-    managePreferences: "Управление базовыми предпочтениями",
-    customBoardName: "Пользовательское имя доски",
-    boardNameDesc: "Это имя будет отображаться как элегантная подпись бренда на главной странице. По умолчанию используется приветствие по времени суток (Доброе утро / Добрый день / Добрый вечер).",
+    generalSettings: "Основные настройки",
+    managePreferences: "Управление основными параметрами",
+    customBoardName: "Название панели",
+    boardNameDesc: "Это имя будет отображаться в качестве элегантной подписи на главной странице.",
     defaultPlaceholder: "По умолчанию: ",
     save: "Сохранить",
     saved: "Сохранено",
     languageSelection: "Выбор языка",
-    langDesc: "Выберите предпочтительный язык для виджетов и элементов управления.",
-    cardStyle: "Стиль фона карточки",
-    cardDesc: "Выберите цвет фона и стиль для всех карточек страницы.",
+    langDesc: "Выберите предпочитаемый язык интерфейса.",
+    cardStyle: "Стиль фона карточек",
+    cardDesc: "Выберите стиль фона для всех карточек.",
     whiteBg: "Белый фон (По умолчанию)",
     darkGlass: "Стиль прозрачного стекла",
     dataBackup: "Резервное копирование и восстановление",
-    dataDesc: "Экспортируйте ваши закладки, задачи и личные заметки в файл JSON или импортируйте ранее сохраненную копию, чтобы полностью восстановить данные.",
-    exportBackup: "Экспортировать бэкап (Создать точку восстановления)",
-    importBackup: "Импортировать бэкап (Восстановить точку)",
-    resetTitle: "Сбросить по умолчанию",
-    resetDesc: "Сбросить всю панель обратно к заводским настройкам. Это навсегда удалит все ваши темы, обои, закладки, задачи и заметки!",
-    resetButton: "Сбросить и очистить все данные",
+    dataDesc: "Экспортируйте или импортируйте данные в формате JSON.",
+    exportBackup: "Экспорт резервной копии",
+    importBackup: "Импорт резервной копии",
+    resetTitle: "Сброс к настройкам по умолчанию",
+    resetDesc: "Сбросить всю панель к исходным заводским настройкам.",
+    resetButton: "Сбросить и удалить данные",
     aboutTitle: "О нас",
     aboutDesc: "Узнайте нашу историю",
     aboutWelcome: "Добро пожаловать в GeekTabs",
-    aboutText1: "GeekTabs был создан с простой миссией: превратить обычную страницу «новой вкладки» в красивую, персонализированную и функциональную панель инструментов. Мы верим, что цифровое окружение глубоко влияет на вашу продуктивность и творчество.",
-    aboutText2: "Сочетая чистый дизайн, продуманные функции и широкие возможности кастомизации, GeekTabs находится в самом начале вашего пути по Сети. Нужна ли вам ежедневная доза вдохновения, список для организации задач или просто элегантные часы – мы готовы вам помочь.",
+    aboutText1: "GeekTabs создан для превращения страницы новой вкладки в стильную и полезную панель.",
+    aboutText2: "Лаконичный дизайн и гибкие настройки.",
     supportContact: "Поддержка и контакты",
-    restoreSuccess: "Резервная копия успешно восстановлена! Страница будет перезагружена.",
-    invalidBackup: "Недопустимый файл резервной копии.",
-    failParse: "Не удалось проанализировать файл резервной копии.",
+    restoreSuccess: "Резервная копия успешно восстановлена!",
+    invalidBackup: "Неверный файл резервной копии.",
+    failParse: "Ошибка при чтении файла.",
     modalTitle: "Сбросить все данные?",
-    modalMessage: "Это действие необратимо. Это навсегда удалит все ваши пользовательские настройки, закладки, задачи и заметки. Страница перезагрузится после сброса.",
-    modalConfirm: "Сбросить",
+    modalMessage: "Это действие необратимо.",
+    modalConfirm: "Подтвердить сброс",
     modalCancel: "Отмена"
   },
   Luxembourgish: {
-    title: "ASTELLUNGEN",
+    title: "Astellunge",
     generalSettings: "Allgemeng Astellungen",
-    managePreferences: "Basis Astellunge verwalten",
-    customBoardName: "Eegene Board-Numm",
-    boardNameDesc: "Dësen Numm gëtt als elegant Markensignatur op der Startsäit ugewisen. Standardméisseg gëtt eng Begréissung jee no Auerzäit benotzt (Gudde Moien / Gudden Nomëtteg / Gudden Owend).",
+    managePreferences: "Basispreferenzen verwalten",
+    customBoardName: "Benotzerdefinéierten Numm",
+    boardNameDesc: "Dësen Numm gëtt op der Haaptsäit ugewisen.",
     defaultPlaceholder: "Standard: ",
     save: "Späicheren",
     saved: "Gespäichert",
-    languageSelection: "Sproochenauswiel",
-    langDesc: "Wielt Är Liiblingssprooch fir Widgets a Kontrollen.",
-    cardStyle: "Kaarten-Hannergrondstil",
-    cardDesc: "Wielt den Hannergrond an de Stil fir all Kaarten op der Säit.",
+    languageSelection: "Sproochauswiel",
+    langDesc: "Wielt Är Sprooch fir Widgets a Kontrollen.",
+    cardStyle: "Kaarte-Hannergrondstil",
+    cardDesc: "Wielt de Stil fir all Kaarten.",
     whiteBg: "Wäissen Hannergrond (Standard)",
-    darkGlass: "Transparent Glasstil",
-    dataBackup: "Datensécherung & Erhuelung",
-    dataDesc: "Exportéiert Är Lesezeechen, Aufgaben an Notizen an eng JSON-Datei, oder importéiert e Backup fir Är Donnéeën komplett erëm hierzestellen.",
-    exportBackup: "Backup exportéieren (Erhuelungspunkt erstellen)",
-    importBackup: "Backup importéieren (Erëm hierstellen)",
+    darkGlass: "Transparenten Glasstil",
+    dataBackup: "Datesécherung & Erhuelung",
+    dataDesc: "Exportéiert oder importéiert Är Donnéeën an eng JSON Datei.",
+    exportBackup: "Backup exportéieren",
+    importBackup: "Backup importéieren",
     resetTitle: "Op Standard zrécksetzen",
-    resetDesc: "Setzt de ganzen Dashboard op d'original Fabrécksastellungen zréck. Dëst geläscht permanent all Är eegen Themen, Hannergrënn, Lesezeechen, Aufgaben an Notizen!",
-    resetButton: "Zrécksetzen an all Donnéeën läschen",
+    resetDesc: "Setzt de ganzen Dashboard op d'Fabrécksastellungen zréck.",
+    resetButton: "Zrécksetzen & Daten läschen",
     aboutTitle: "Iwwer eis",
     aboutDesc: "Entdeckt eis Geschicht",
     aboutWelcome: "Wëllkomm bei GeekTabs",
-    aboutText1: "GeekTabs gouf mat enger einfacher Missioun entwéckelt: Déi normal \"Neien Tab\" Säit an e schéinen, personaliséierten an héich funktionellen Dashboard ze verwandelen. Mir gleewen, datt Är digitaler Ëmgéigend Är Produktivitéit a Kreativitéit staark beaflosst.",
-    aboutText2: "Mat engem Fokus op e proppert Design, duerchduechten Fonctiounen an extensiv Personnalisatioun, steet GeekTabs direkt um Ufank vun Ärer Rees duerch de Web. Egal ob Dir deeglech Inspiratioun braucht, eng Plaz fir Är Aufgaben ze organiséieren oder einfach eng elegant Auer sicht – mir hunn déi passend Léisung.",
+    aboutText1: "GeekTabs mécht Ären neien Tab zu engem schéinen an nëtzlechen Dashboard.",
+    aboutText2: "Kloert Design a flexibel Funktiounen.",
     supportContact: "Support & Kontakt",
-    restoreSuccess: "Backup erfolgräich erëm hiergestallt! D'Säit gëtt elo nei gelueden.",
+    restoreSuccess: "Backup erfollegräich hiergestallt!",
     invalidBackup: "Ongëlteg Backup-Datei.",
-    failParse: "Feeler beim Parsen vun der Backup-Datei.",
+    failParse: "Feeler beim Liesen vun der Datei.",
     modalTitle: "All Donnéeën zrécksetzen?",
-    modalMessage: "Dës Aktioun kann net réckgängeg gemaach ginn. Dëst geläscht permanent all Är personaliséiert Astellungen, Lesezeechen, Aufgaben an Notizen. D'Säit gëtt no der Erhuelung nei gelueden.",
-    modalConfirm: "Confirméieren",
+    modalMessage: "Dës Aktioun kann net réckgängeg gemaach ginn.",
+    modalConfirm: "Bestätegen",
     modalCancel: "Ofbriechen"
   }
 };
@@ -537,6 +536,7 @@ export default function SettingsTab({
   };
 
   const [activeTab, setActiveTab] = useState<'general' | 'color' | 'wallpaper' | 'text' | 'browser' | 'weather' | 'about'>('general');
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [pageName, setPageName] = useLocalStorage('GeekTabs-page-name', '');
   const [localName, setLocalName] = useState(() => {
     const initial = pageName && pageName !== 'have a good day' ? pageName : getGreetingByTime();
@@ -675,311 +675,413 @@ export default function SettingsTab({
     { id: 'about' as const, label: t(language, 'about_us'), icon: Info },
   ];
 
-  const isDefaultTheme = currentTheme === 'light-grey' || currentTheme === 'light-slate' || currentTheme === 'white-clean' || currentTheme === 'pastel-waves' || currentTheme === 'mix-neonpurple';
-  const isColorOrTextTab = activeTab === 'color' || activeTab === 'text';
-  const isColorOrTextGlass = isDarkGlass && isDefaultTheme && !isDarkMode && isColorOrTextTab;
+  const currentNav = navItems.find(i => i.id === activeTab) || navItems[0];
+  const CurrentIcon = currentNav.icon;
 
   return (
-    <div className={`w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-10 relative z-10 p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-[2.5rem] GeekTabs-card ${isColorOrTextGlass ? 'settings-color-text-glass-bg' : 'webcard-light-grey-bg'} transition-all duration-300`}>
-      {/* Sidebar - Responsive (Top bar on mobile/tablet, sidebar on desktop) */}
-      <div className="w-full lg:w-64 flex-shrink-0 flex flex-col gap-4 lg:gap-6 lg:border-r border-black/10 dark:border-white/10 lg:pr-8 lg:min-h-[480px]">
-        <div className="flex items-center gap-3">
-          <SettingsIcon size={24} className="text-violet-500 fill-violet-500/15 shrink-0" />
-          <h1 className="text-2xl font-black italic tracking-tighter text-black dark:text-white">{tData.title}</h1>
+    <div className="settings-tab-card w-full h-full flex flex-row overflow-hidden relative z-10 backdrop-blur-2xl bg-white/70 dark:bg-[#0c1017]/80 text-slate-800 dark:text-slate-100">
+      
+      {/* Mobile Backdrop */}
+      {mobileSidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* LEFT SIDEBAR (Gemini Chat Style) */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-80 md:w-80 md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0 h-full flex flex-col border-r border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+          mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
+        }`}
+      >
+        {/* Header */}
+        <div className="p-5 border-b border-black/10 dark:border-white/10 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-violet-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-violet-500/20">
+              <SettingsIcon size={17} strokeWidth={2.4} />
+            </div>
+            <div>
+              <h1 className="text-sm font-black tracking-tight uppercase text-slate-900 dark:text-white">
+                {tData.title}
+              </h1>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMobileSidebarOpen(false)}
+            className="md:hidden p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+          >
+            <X size={18} />
+          </button>
         </div>
-        
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex lg:flex-col gap-1.5 lg:gap-1 pb-3 lg:pb-0 border-b lg:border-b-0 border-black/10 dark:border-white/10">
+
+        {/* Navigation Items (Pill Buttons) */}
+        <div className="flex-1 overflow-y-auto p-3 space-y-1.5 scrollbar-thin">
+          <div className="px-3 pt-2 pb-1 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/35">
+            Preferences
+          </div>
           {navItems.map((item) => {
             const IconComp = item.icon;
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`settings-nav-btn flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5 lg:gap-2 px-1.5 sm:px-2 md:px-2.5 lg:px-4 py-1.5 sm:py-2 lg:py-2.5 rounded-xl lg:rounded-full text-[10px] sm:text-[10.5px] md:text-[11px] lg:text-xs transition-all font-bold tracking-tight lg:tracking-wide border cursor-pointer select-none min-w-0 ${
+                type="button"
+                onClick={() => {
+                  setActiveTab(item.id);
+                  setMobileSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer select-none text-left ${
                   isActive
-                    ? 'settings-nav-active-btn bg-indigo-500 hover:bg-indigo-600 !text-white text-white border-indigo-500 shadow-sm shadow-indigo-500/25'
-                    : 'border-black/5 dark:border-white/5 lg:border-transparent bg-black/[0.02] dark:bg-white/[0.02] lg:bg-transparent text-neutral-600 dark:text-neutral-400 hover:text-indigo-500 hover:bg-black/5 dark:hover:bg-white/5'
+                    ? 'settings-nav-active-btn bg-indigo-500 hover:bg-indigo-600 !text-white text-white shadow-sm shadow-indigo-500/25'
+                    : 'text-slate-700 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5 hover:text-indigo-600 dark:hover:text-white'
                 }`}
                 style={isActive ? { color: '#ffffff' } : undefined}
               >
-                <IconComp 
-                  className={`w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 lg:w-[15px] lg:h-[15px] shrink-0 ${isActive ? 'settings-nav-active-icon !text-white text-white' : ''}`}
-                  style={isActive ? { color: '#ffffff', stroke: '#ffffff' } : undefined}
+                <IconComp
+                  size={16}
+                  className={`shrink-0 ${isActive ? 'text-white' : 'opacity-70'}`}
+                  style={isActive ? { stroke: '#ffffff', color: '#ffffff' } : undefined}
                 />
-                <span 
-                  className={`whitespace-nowrap ${isActive ? 'settings-nav-active-label !text-white text-white' : ''}`}
-                  style={isActive ? { color: '#ffffff' } : undefined}
-                >
-                  {item.label}
-                </span>
+                <span className="truncate">{item.label}</span>
               </button>
             );
           })}
         </div>
-      </div>
 
-      {/* Main Content Area - Unbordered & Open */}
-      <div className="flex-1 min-w-0">
-        <AnimatePresence mode="wait">
-          {activeTab === 'general' && (
-            <motion.div
-              key="general"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-6 sm:space-y-8"
+        {/* Sidebar Footer */}
+        <div className="p-4 border-t border-black/10 dark:border-white/10 text-xs font-semibold text-slate-500 dark:text-white/45 flex items-center justify-between select-none">
+          <span className="text-[11px] uppercase tracking-wider font-bold">
+            {language}
+          </span>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5">
+            {cardBgMode}
+          </span>
+        </div>
+      </aside>
+
+      {/* RIGHT CONTENT PANE */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-transparent">
+        
+        {/* Workspace Top Header Bar */}
+        <header className="h-16 px-6 sm:px-8 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0 bg-white/40 dark:bg-black/20 backdrop-blur-md">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Mobile Hamburger to trigger Sidebar */}
+            <button
+              type="button"
+              onClick={() => setMobileSidebarOpen(true)}
+              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-700 dark:text-white transition-colors cursor-pointer"
+              title="Open Navigation"
             >
-              <div>
-                <h2 className="text-xl sm:text-2xl font-black text-black dark:text-white tracking-tight mb-1">{tData.generalSettings}</h2>
-                <p className="text-black/40 dark:text-white/40 font-bold uppercase tracking-widest text-[9px]">{tData.managePreferences}</p>
-              </div>
+              <Menu size={20} />
+            </button>
 
-              <div className="space-y-6 sm:space-y-8 divide-y divide-black/5 dark:divide-white/5">
-                <div className="py-2 sm:py-4">
-                  <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
-                    {tData.customBoardName}
-                  </label>
-                  <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
-                    {tData.boardNameDesc}
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 max-w-lg">
-                    <input
-                      type="text"
-                      value={localName}
-                      onChange={(e) => setLocalName(e.target.value)}
-                      className="settings-input w-full sm:flex-1 min-w-0 bg-neutral-100 dark:bg-black/25 border border-neutral-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-semibold transition-all shadow-sm"
-                      placeholder={`${tData.defaultPlaceholder}${getGreetingByTime()}`}
-                    />
-                    
-                    <div className="flex items-center gap-2 shrink-0">
-                      <button
-                        onClick={handleSave}
-                        className="flex-1 sm:flex-initial px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 !text-white text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
-                        style={{ color: '#ffffff' }}
-                      >
-                        {saved ? <><Check size={14} className="!text-white text-white" style={{ color: '#ffffff', stroke: '#ffffff' }} /> {tData.saved}</> : tData.save}
-                      </button>
+            <div className="flex items-center gap-2">
+              <CurrentIcon size={18} className="text-indigo-500 shrink-0" />
+              <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight truncate">
+                {currentNav.label}
+              </h2>
+            </div>
+          </div>
+
+          {saved && (
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-500/20">
+              <Check size={14} />
+              <span>{tData.saved}</span>
+            </div>
+          )}
+        </header>
+
+        {/* Main Settings Content Area */}
+        <main className="flex-1 overflow-y-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-8">
+          <div className="max-w-4xl space-y-8">
+            <AnimatePresence mode="wait">
+              {activeTab === 'general' && (
+                <motion.div
+                  key="general"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="space-y-6 sm:space-y-8"
+                >
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+                      {tData.generalSettings}
+                    </h2>
+                    <p className="text-slate-500 dark:text-white/40 font-bold uppercase tracking-widest text-[10px]">
+                      {tData.managePreferences}
+                    </p>
+                  </div>
+
+                  <div className="space-y-6 sm:space-y-8 divide-y divide-black/5 dark:divide-white/5">
+                    {/* Board Name */}
+                    <div className="py-2 sm:py-4">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
+                        {tData.customBoardName}
+                      </label>
+                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                        {tData.boardNameDesc}
+                      </p>
                       
+                      <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 max-w-lg">
+                        <input
+                          type="text"
+                          value={localName}
+                          onChange={(e) => setLocalName(e.target.value)}
+                          className="settings-input w-full sm:flex-1 min-w-0 bg-neutral-100 dark:bg-black/25 border border-neutral-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-semibold transition-all shadow-sm"
+                          placeholder={`${tData.defaultPlaceholder}${getGreetingByTime()}`}
+                        />
+                        
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            onClick={handleSave}
+                            className="flex-1 sm:flex-initial px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 !text-white text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs active:scale-98"
+                            style={{ color: '#ffffff' }}
+                          >
+                            {saved ? (
+                              <>
+                                <Check size={14} className="!text-white text-white" style={{ color: '#ffffff', stroke: '#ffffff' }} />
+                                {tData.saved}
+                              </>
+                            ) : (
+                              tData.save
+                            )}
+                          </button>
+                          
+                          <button
+                            onClick={handleDelete}
+                            className="p-2.5 bg-red-100 dark:bg-red-500/10 hover:bg-red-200 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+                            title="Remove Name"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Language Selection */}
+                    <div className="pt-6 pb-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                        <Globe size={14} />
+                        {tData.languageSelection}
+                      </label>
+                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                        {tData.langDesc}
+                      </p>
+                      <div className="mb-4">
+                        <SettingsDropdown
+                          value={language}
+                          onChange={setLanguage}
+                          options={languageOptions}
+                          isDarkGlass={isDarkGlass}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card Style */}
+                    <div className="pt-6 pb-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                        <Layout size={14} />
+                        {tData.cardStyle}
+                      </label>
+                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                        {tData.cardDesc}
+                      </p>
+                      <div className="mb-4">
+                        <SettingsDropdown
+                          value={cardBgMode}
+                          onChange={(val) => setCardBgMode(val as 'white' | 'dark-glass')}
+                          options={cardStyleOptions}
+                          isDarkGlass={isDarkGlass}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Export & Import (Restore) Section */}
+                    <div className="pt-6 pb-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                        <Download size={14} />
+                        {tData.dataBackup}
+                      </label>
+                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                        {tData.dataDesc}
+                      </p>
+                      <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                        <button
+                          onClick={handleExportData}
+                          className="w-full sm:w-auto px-5 py-3 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 border border-neutral-200 dark:border-white/10 text-slate-800 dark:text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                        >
+                          <Download size={14} />
+                          {tData.exportBackup}
+                        </button>
+                        
+                        <label 
+                          className="settings-backup-import-btn w-full sm:w-auto px-5 py-3 bg-indigo-500 hover:bg-indigo-600 !text-white text-white border border-transparent rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm select-none"
+                          style={{ color: '#ffffff' }}
+                        >
+                          <RotateCcw size={14} className="!text-white text-white shrink-0" style={{ color: '#ffffff', stroke: '#ffffff' }} />
+                          <span className="!text-white text-white font-bold" style={{ color: '#ffffff' }}>
+                            {tData.importBackup}
+                          </span>
+                          <input 
+                            type="file" 
+                            accept=".json" 
+                            onChange={handleImportData} 
+                            className="hidden" 
+                          />
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Reset to Default Section */}
+                    <div className="pt-6 pb-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-red-600 dark:text-red-400 mb-2 flex items-center gap-2">
+                        <RotateCcw size={14} />
+                        {tData.resetTitle}
+                      </label>
+                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                        {tData.resetDesc}
+                      </p>
                       <button
-                        onClick={handleDelete}
-                        className="p-2.5 bg-red-100 dark:bg-red-500/10 hover:bg-red-200 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center transition-all cursor-pointer"
-                        title="Remove Name"
+                        onClick={() => setShowResetConfirm(true)}
+                        className="w-full sm:w-auto px-5 py-3 bg-red-100 hover:bg-red-200 dark:bg-red-500/10 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-500/20 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                       >
-                        <Trash2 size={16} />
+                        <RotateCcw size={14} />
+                        {tData.resetButton}
                       </button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
+              )}
 
-                <div className="pt-6 pb-2">
-                  <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
-                    <Globe size={14} />
-                    {tData.languageSelection}
-                  </label>
-                  <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
-                    {tData.langDesc}
-                  </p>
-                  <div className="mb-8">
-                    <SettingsDropdown
-                      value={language}
-                      onChange={setLanguage}
-                      options={languageOptions}
-                      isDarkGlass={isDarkGlass}
-                    />
+              {activeTab === 'color' && (
+                <motion.div
+                  key="color"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ThemesTab
+                    currentTheme={currentTheme}
+                    setTheme={setTheme}
+                    isDarkMode={isDarkMode}
+                    language={language}
+                    cardBgMode={cardBgMode}
+                  />
+                </motion.div>
+              )}
+
+              {activeTab === 'wallpaper' && (
+                <motion.div
+                  key="wallpaper"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <WallpapersTab
+                    customWallpapers={customWallpapers}
+                    setCustomWallpapers={setCustomWallpapers}
+                    currentTheme={currentTheme}
+                    setTheme={setTheme}
+                    isDarkMode={isDarkMode}
+                    language={language}
+                    cardBgMode={cardBgMode}
+                  />
+                </motion.div>
+              )}
+
+              {activeTab === 'text' && (
+                <motion.div
+                  key="text"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <TextTab
+                    textColor={activeTextColor}
+                    setTextColor={handleSetTextColor}
+                    currentTheme={currentTheme}
+                    isDarkMode={isDarkMode}
+                    language={language}
+                    cardBgMode={cardBgMode}
+                  />
+                </motion.div>
+              )}
+
+              {activeTab === 'browser' && (
+                <motion.div
+                  key="browser"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <BrowserTab language={language} />
+                </motion.div>
+              )}
+
+              {activeTab === 'weather' && (
+                <motion.div
+                  key="weather"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <WeatherSettingsTab language={language} />
+                </motion.div>
+              )}
+
+              {activeTab === 'about' && (
+                <motion.div
+                  key="about"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="space-y-6"
+                >
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+                      {tData.aboutTitle}
+                    </h2>
+                    <p className="text-slate-500 dark:text-white/40 font-bold uppercase tracking-widest text-[10px]">
+                      {tData.aboutDesc}
+                    </p>
                   </div>
-                </div>
 
-                <div className="pt-4 pb-2 border-t border-black/5 dark:border-white/5">
-                  <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
-                    <Layout size={14} />
-                    {tData.cardStyle}
-                  </label>
-                  <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
-                    {tData.cardDesc}
-                  </p>
-                  <div className="mb-6">
-                    <SettingsDropdown
-                      value={cardBgMode}
-                      onChange={(val) => setCardBgMode(val as 'white' | 'dark-glass')}
-                      options={cardStyleOptions}
-                      isDarkGlass={isDarkGlass}
-                    />
+                  <div className="space-y-6 max-w-3xl divide-y divide-black/5 dark:divide-white/5">
+                    <div className="py-4">
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                        {tData.aboutWelcome}
+                      </h3>
+                      <p className="text-slate-700 dark:text-white/70 text-sm leading-relaxed mb-4">
+                        {tData.aboutText1}
+                      </p>
+                      <p className="text-slate-700 dark:text-white/70 text-sm leading-relaxed">
+                        {tData.aboutText2}
+                      </p>
+                    </div>
+                    <div className="pt-6">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/40 mb-2">
+                        {tData.supportContact}
+                      </p>
+                      <a href="mailto:support@geektabs.com" className="text-indigo-500 hover:underline font-bold text-sm">
+                        support@geektabs.com
+                      </a>
+                    </div>
                   </div>
-                </div>
-
-                {/* Export & Import (Restore) Section */}
-                <div className="pt-6 pb-2 border-t border-black/5 dark:border-white/5">
-                  <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
-                    <Download size={14} />
-                    {tData.dataBackup}
-                  </label>
-                  <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
-                    {tData.dataDesc}
-                  </p>
-                  <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                    <button
-                      onClick={handleExportData}
-                      className="w-full sm:w-auto px-5 py-3 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 border border-neutral-200 dark:border-white/10 text-slate-800 dark:text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-                    >
-                      <Download size={14} />
-                      {tData.exportBackup}
-                    </button>
-                    
-                    <label 
-                      className="settings-backup-import-btn w-full sm:w-auto px-5 py-3 bg-indigo-500 hover:bg-indigo-600 !text-white text-white border border-transparent rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm select-none"
-                      style={{ color: '#ffffff' }}
-                    >
-                      <RotateCcw size={14} className="!text-white text-white shrink-0" style={{ color: '#ffffff', stroke: '#ffffff' }} />
-                      <span className="!text-white text-white font-bold" style={{ color: '#ffffff' }}>
-                        {tData.importBackup}
-                      </span>
-                      <input 
-                        type="file" 
-                        accept=".json" 
-                        onChange={handleImportData} 
-                        className="hidden" 
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                {/* Reset to Default Section */}
-                <div className="pt-6 pb-2">
-                  <label className="block text-xs font-black uppercase tracking-widest text-red-600 dark:text-red-400 mb-2 flex items-center gap-2">
-                    <RotateCcw size={14} />
-                    {tData.resetTitle}
-                  </label>
-                  <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
-                    {tData.resetDesc}
-                  </p>
-                  <button
-                    onClick={() => setShowResetConfirm(true)}
-                    className="w-full sm:w-auto px-5 py-3 bg-red-100 hover:bg-red-200 dark:bg-red-500/10 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-500/20 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-                  >
-                    <RotateCcw size={14} />
-                    {tData.resetButton}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {activeTab === 'color' && (
-            <motion.div
-              key="color"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ThemesTab
-                currentTheme={currentTheme}
-                setTheme={setTheme}
-                isDarkMode={isDarkMode}
-                language={language}
-                cardBgMode={cardBgMode}
-              />
-            </motion.div>
-          )}
-
-          {activeTab === 'wallpaper' && (
-            <motion.div
-              key="wallpaper"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <WallpapersTab
-                customWallpapers={customWallpapers}
-                setCustomWallpapers={setCustomWallpapers}
-                currentTheme={currentTheme}
-                setTheme={setTheme}
-                isDarkMode={isDarkMode}
-                language={language}
-                cardBgMode={cardBgMode}
-              />
-            </motion.div>
-          )}
-
-          {activeTab === 'text' && (
-            <motion.div
-              key="text"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <TextTab
-                textColor={activeTextColor}
-                setTextColor={handleSetTextColor}
-                currentTheme={currentTheme}
-                isDarkMode={isDarkMode}
-                language={language}
-                cardBgMode={cardBgMode}
-              />
-            </motion.div>
-          )}
-
-          {activeTab === 'browser' && (
-            <motion.div
-              key="browser"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <BrowserTab language={language} />
-            </motion.div>
-          )}
-
-          {activeTab === 'weather' && (
-            <motion.div
-              key="weather"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <WeatherSettingsTab language={language} />
-            </motion.div>
-          )}
-
-          {activeTab === 'about' && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-6"
-            >
-              <div>
-                <h2 className="text-xl sm:text-2xl font-black text-black dark:text-white tracking-tight mb-1">{tData.aboutTitle}</h2>
-                <p className="text-black/40 dark:text-white/40 font-bold uppercase tracking-widest text-[9px]">{tData.aboutDesc}</p>
-              </div>
-
-              <div className="space-y-6 max-w-3xl divide-y divide-black/5 dark:divide-white/5">
-                <div className="py-4">
-                  <h3 className="text-lg font-bold text-black dark:text-white mb-3">{tData.aboutWelcome}</h3>
-                  <p className="text-black/70 dark:text-white/70 text-sm leading-relaxed mb-4">
-                    {tData.aboutText1}
-                  </p>
-                  <p className="text-black/70 dark:text-white/70 text-sm leading-relaxed">
-                    {tData.aboutText2}
-                  </p>
-                </div>
-                <div className="pt-6">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 mb-2">{tData.supportContact}</p>
-                  <a href="mailto:support@geektabs.com" className="text-indigo-500 hover:underline font-bold text-sm">support@geektabs.com</a>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </main>
       </div>
 
       <ConfirmModal

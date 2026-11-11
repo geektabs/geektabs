@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Plus, Check, Trash2, ListTodo, Pencil, Save, X, Inbox, Calendar, Circle, ArrowUpRight, ArrowLeft, Tag, Flag } from 'lucide-react';
+import { Plus, Check, Trash2, ListTodo, Pencil, X, Inbox, Calendar, Circle, Flag, Menu, Users, CalendarDays } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { motion, AnimatePresence } from 'motion/react';
 import ConfirmModal from '../ConfirmModal';
@@ -8,21 +8,23 @@ interface Task {
   id: string;
   text: string;
   completed: boolean;
-  project: string; // "Inbox" | "Today" | "Personal" | "Work"
+  project: string; // "Inbox" | "Today" | "Personal" | "Work" | "Meetings" | "Events"
   priority: 1 | 2 | 3 | 4; // 1 = High, 2 = Medium, 3 = Low, 4 = None
   description?: string;
 }
 
 const PROJECTS = [
-  { id: 'Inbox', name: 'Inbox', icon: <Inbox size={16} className="text-sky-500 fill-sky-500/10" /> },
-  { id: 'Today', name: 'Today', icon: <Calendar size={16} className="text-indigo-500 fill-indigo-500/10" /> },
-  { id: 'Personal', name: 'Personal', icon: <Circle size={8} className="text-indigo-400 fill-indigo-400" /> },
-  { id: 'Work', name: 'Work', icon: <Circle size={8} className="text-sky-400 fill-sky-400" /> },
+  { id: 'Inbox', name: 'Inbox', icon: <Inbox size={16} className="text-[#4f46e5] fill-[#4f46e5]/10" /> },
+  { id: 'Today', name: 'Today', icon: <Calendar size={16} className="text-[#4f46e5] fill-[#4f46e5]/10" /> },
+  { id: 'Personal', name: 'Personal', icon: <Circle size={9} className="text-indigo-400 fill-indigo-400" /> },
+  { id: 'Work', name: 'Work', icon: <Circle size={9} className="text-purple-400 fill-purple-400" /> },
+  { id: 'Meetings', name: 'Meetings', icon: <Users size={16} className="text-blue-500 fill-blue-500/10" /> },
+  { id: 'Events', name: 'Events', icon: <CalendarDays size={16} className="text-emerald-500 fill-emerald-500/10" /> },
 ];
 
 const PRIORITY_COLORS = {
   1: { border: 'border-red-500', text: 'text-red-500', bg: 'bg-red-500/10', hover: 'hover:bg-red-500/20' },
-  2: { border: 'border-indigo-500', text: 'text-indigo-500', bg: 'bg-indigo-500/10', hover: 'hover:bg-indigo-500/20' },
+  2: { border: 'border-[#4f46e5]', text: 'text-[#4f46e5]', bg: 'bg-[#4f46e5]/10', hover: 'hover:bg-[#4f46e5]/20' },
   3: { border: 'border-sky-400', text: 'text-sky-400', bg: 'bg-sky-400/10', hover: 'hover:bg-sky-400/20' },
   4: { border: 'border-neutral-400 dark:border-neutral-600', text: 'text-neutral-500', bg: 'bg-neutral-500/10', hover: 'hover:bg-neutral-500/20' }
 };
@@ -33,31 +35,33 @@ export interface TodoListProps {
 
 const TODO_T: Record<string, Record<string, string>> = {
   English: {
-    title: 'Task Workspace',
-    subtitle: 'Cloud Todoist Planner',
+    title: 'Tasks Workspace',
+    subtitle: 'Cloud Planner',
     inbox: 'Inbox',
     today: 'Today',
     personal: 'Personal',
     work: 'Work',
-    addTask: 'Add Task',
+    meetings: 'Meetings',
+    events: 'Events',
+    addTask: 'CREATE TASK',
     pending: 'tasks pending',
     noTasks: 'No tasks in this list.',
     addPlaceholder: 'What needs to be done?',
     descriptionPlaceholder: 'Description (optional)',
-    cancel: 'Cancel',
-    save: 'Save',
+    cancel: 'CANCEL',
+    save: 'SAVE',
     priority: 'Priority',
-    sidebarHeader: 'To-Do List',
+    sidebarHeader: 'Categories',
     remaining: 'remaining',
     taskSingular: 'task',
     taskPlural: 'tasks',
-    noGoals: 'No Goals in',
-    clickToCreate: 'Click Add Task in the sidebar to create one!',
+    noGoals: 'No Tasks in',
+    clickToCreate: 'Click "CREATE TASK" to create one!',
     deleteTitle: 'Delete Task',
     deleteMessage: 'Are you sure you want to permanently delete this task?',
     taskName: 'Task name',
     description: 'Description',
-    addNotes: 'Add notes or description...',
+    addNotes: 'Add notes or detailed description...',
     allLists: 'All Lists',
   },
   Korean: {
@@ -67,7 +71,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     today: '오늘 할 일',
     personal: '개인',
     work: '업무',
-    addTask: '할 일 추가',
+    addTask: '할 일 만들기',
     pending: '개 남음',
     noTasks: '할 일이 없습니다.',
     addPlaceholder: '어떤 일을 해야 하나요?',
@@ -75,12 +79,12 @@ const TODO_T: Record<string, Record<string, string>> = {
     cancel: '취소',
     save: '저장',
     priority: '우선순위',
-    sidebarHeader: '할 일 목록',
+    sidebarHeader: '카테고리',
     remaining: '남음',
     taskSingular: '개',
     taskPlural: '개',
     noGoals: '할 일이 없습니다: ',
-    clickToCreate: '사이드바의 할 일 추가를 클릭해 등록해 보세요!',
+    clickToCreate: '할 일 만들기 버튼을 눌러 등록해 보세요!',
     deleteTitle: '할 일 삭제',
     deleteMessage: '이 할 일을 영구적으로 삭제하시겠습니까?',
     taskName: '할 일 이름',
@@ -89,26 +93,26 @@ const TODO_T: Record<string, Record<string, string>> = {
     allLists: '전체 목록',
   },
   Spanish: {
-    title: 'Área de tareas',
+    title: 'Área de Tareas',
     subtitle: 'Planificador en la nube',
     inbox: 'Bandeja de entrada',
     today: 'Hoy',
     personal: 'Personal',
     work: 'Trabajo',
-    addTask: 'Agregar tarea',
+    addTask: 'CREAR TAREA',
     pending: 'tareas pendientes',
-    noTasks: 'No hay de estas tareas.',
+    noTasks: 'No hay tareas en esta lista.',
     addPlaceholder: '¿Qué se debe hacer?',
     descriptionPlaceholder: 'Descripción (opcional)',
-    cancel: 'Cancelar',
-    save: 'Guardar',
+    cancel: 'CANCELAR',
+    save: 'GUARDAR',
     priority: 'Prioridad',
-    sidebarHeader: 'Lista de tareas',
+    sidebarHeader: 'Categorías',
     remaining: 'restantes',
     taskSingular: 'tarea',
     taskPlural: 'tareas',
     noGoals: 'Sin tareas en',
-    clickToCreate: '¡Haz clic en Agregar tarea para crear una!',
+    clickToCreate: '¡Haz clic en CREAR TAREA para crear una!',
     deleteTitle: 'Eliminar tarea',
     deleteMessage: '¿Estás seguro de que deseas eliminar permanentemente esta tarea?',
     taskName: 'Nombre de la tarea',
@@ -123,20 +127,20 @@ const TODO_T: Record<string, Record<string, string>> = {
     today: 'Aujourd\'hui',
     personal: 'Personnel',
     work: 'Travail',
-    addTask: 'Créer une tâche',
+    addTask: 'CRÉER TÂCHE',
     pending: 'tâches en attente',
     noTasks: 'Aucune tâche dans cette liste.',
     addPlaceholder: 'Que faut-il faire ?',
     descriptionPlaceholder: 'Description (optionnel)',
-    cancel: 'Annuler',
-    save: 'Sauvegarder',
+    cancel: 'ANNULER',
+    save: 'ENREGISTRER',
     priority: 'Priorité',
-    sidebarHeader: 'Liste des tâches',
+    sidebarHeader: 'Catégories',
     remaining: 'restantes',
     taskSingular: 'tâche',
     taskPlural: 'tâches',
     noGoals: 'Aucune tâche dans',
-    clickToCreate: 'Cliquez sur Créer une tâche pour commencer !',
+    clickToCreate: 'Cliquez sur CRÉER TÂCHE pour commencer !',
     deleteTitle: 'Supprimer la tâche',
     deleteMessage: 'Voulez-vous vraiment supprimer définitivement cette tâche ?',
     taskName: 'Nom de la tâche',
@@ -151,20 +155,20 @@ const TODO_T: Record<string, Record<string, string>> = {
     today: 'Heute',
     personal: 'Privat',
     work: 'Arbeit',
-    addTask: 'Aufgabe hinzufügen',
+    addTask: 'AUFGABE ERSTELLEN',
     pending: 'Aufgaben offen',
     noTasks: 'Keine Aufgaben in dieser Liste.',
     addPlaceholder: 'Was gibt es zu tun?',
     descriptionPlaceholder: 'Beschreibung (optional)',
-    cancel: 'Abbrechen',
-    save: 'Speichern',
+    cancel: 'ABBRECHEN',
+    save: 'SPEICHERN',
     priority: 'Priorität',
-    sidebarHeader: 'Aufgabenliste',
+    sidebarHeader: 'Kategorien',
     remaining: 'verbleibend',
     taskSingular: 'Aufgabe',
     taskPlural: 'Aufgaben',
     noGoals: 'Keine Aufgaben in',
-    clickToCreate: 'Klicke auf Aufgabe hinzufügen, um eine zu erstellen!',
+    clickToCreate: 'Klicke auf AUFGABE ERSTELLEN, um eine zu erstellen!',
     deleteTitle: 'Aufgabe löschen',
     deleteMessage: 'Sind Sie sicher, dass Sie diese Aufgabe dauerhaft löschen möchten?',
     taskName: 'Aufgabenname',
@@ -174,12 +178,14 @@ const TODO_T: Record<string, Record<string, string>> = {
   },
   Chinese: {
     title: '任务空间',
-    subtitle: '云端待办计划工具',
+    subtitle: '待办计划管理',
     inbox: '收件箱',
     today: '今天',
     personal: '个人',
     work: '工作',
-    addTask: '添加任务',
+    meetings: '会议',
+    events: '事件',
+    addTask: '新建任务',
     pending: '项待办',
     noTasks: '当前列表无待办任务。',
     addPlaceholder: '有什么需要做的？',
@@ -187,12 +193,12 @@ const TODO_T: Record<string, Record<string, string>> = {
     cancel: '取消',
     save: '保存',
     priority: '优先级',
-    sidebarHeader: '待办清单',
+    sidebarHeader: '分类列表',
     remaining: '待完成',
     taskSingular: '个任务',
     taskPlural: '个任务',
     noGoals: '无待办任务在',
-    clickToCreate: '点击侧边栏中的添加任务来创建吧！',
+    clickToCreate: '点击新建任务来创建吧！',
     deleteTitle: '删除任务',
     deleteMessage: '您确定要永久删除该任务吗？',
     taskName: '任务名称',
@@ -202,12 +208,12 @@ const TODO_T: Record<string, Record<string, string>> = {
   },
   Japanese: {
     title: 'タスク機能',
-    subtitle: 'Todoist風クラウドプランナー',
+    subtitle: 'クラウドプランナー',
     inbox: 'インボックス',
     today: '今日',
     personal: 'プライベート',
     work: 'ワーク',
-    addTask: 'タスクを追加',
+    addTask: 'タスクを作成',
     pending: '件の未完了タスク',
     noTasks: 'このカテゴリーのタスクはありません。',
     addPlaceholder: '何を行いますか？',
@@ -215,12 +221,12 @@ const TODO_T: Record<string, Record<string, string>> = {
     cancel: 'キャンセル',
     save: '保存',
     priority: '優先度',
-    sidebarHeader: 'TODOリスト',
+    sidebarHeader: 'カテゴリー',
     remaining: '残り',
     taskSingular: '件のタスク',
     taskPlural: '件のタスク',
     noGoals: 'タスクはありません：',
-    clickToCreate: 'サイドバーの「タスクを追加」から作成できます！',
+    clickToCreate: '「タスクを作成」から登録できます！',
     deleteTitle: 'タスクを削除',
     deleteMessage: 'このタスクを完全に削除してもよろしいですか？',
     taskName: 'タスク名',
@@ -235,20 +241,20 @@ const TODO_T: Record<string, Record<string, string>> = {
     today: 'Oggi',
     personal: 'Personale',
     work: 'Lavoro',
-    addTask: 'Aggiungi attività',
+    addTask: 'CREA ATTIVITÀ',
     pending: 'attività in sospeso',
     noTasks: 'Nessuna attività in questo elenco.',
     addPlaceholder: 'Cosa c\'è da fare?',
     descriptionPlaceholder: 'Descrizione (opzionale)',
-    cancel: 'Annulla',
-    save: 'Salva',
+    cancel: 'ANNULLA',
+    save: 'SALVA',
     priority: 'Priorità',
-    sidebarHeader: 'Lista di cose da fare',
+    sidebarHeader: 'Categorie',
     remaining: 'rimanenti',
     taskSingular: 'attività',
     taskPlural: 'attività',
     noGoals: 'Nessun obiettivo in',
-    clickToCreate: 'Fai clic su Aggiungi attività nella barra laterale per crearne una!',
+    clickToCreate: 'Fai clic su CREA ATTIVITÀ per crearne una!',
     deleteTitle: 'Elimina attività',
     deleteMessage: 'Sei sicuro di voler eliminare definitivamente questa attività?',
     taskName: 'Nome attività',
@@ -263,20 +269,20 @@ const TODO_T: Record<string, Record<string, string>> = {
     today: 'Сегодня',
     personal: 'Личное',
     work: 'Работа',
-    addTask: 'Добавить задачу',
+    addTask: 'СОЗДАТЬ ЗАДАЧУ',
     pending: 'задач в списке',
     noTasks: 'В этом списке нет задач.',
     addPlaceholder: 'Что нужно сделать?',
     descriptionPlaceholder: 'Описание (необязательно)',
-    cancel: 'Отмена',
-    save: 'Сохранить',
+    cancel: 'ОТМЕНА',
+    save: 'СОХРАНИТЬ',
     priority: 'Приоритет',
-    sidebarHeader: 'Список дел',
+    sidebarHeader: 'Категории',
     remaining: 'осталось',
     taskSingular: 'задача',
     taskPlural: 'задач',
     noGoals: 'Нет целей в категории',
-    clickToCreate: 'Нажмите «Добавить задачу» на боковой панели, чтобы создать ее!',
+    clickToCreate: 'Нажмите «СОЗДАТЬ ЗАДАЧУ», чтобы создать ее!',
     deleteTitle: 'Удалить задачу',
     deleteMessage: 'Вы уверены, что хотите навсегда удалить эту задачу?',
     taskName: 'Название задачи',
@@ -291,20 +297,20 @@ const TODO_T: Record<string, Record<string, string>> = {
     today: 'Haut',
     personal: 'Perséinlech',
     work: 'Aarbecht',
-    addTask: 'Aufgab derbäisetzen',
+    addTask: 'AUFGAB ERSTELLEN',
     pending: 'Aufgaben am Waardestand',
     noTasks: 'Keng Aufgaben an dëser Lëscht.',
     addPlaceholder: 'Wat muss gemaach ginn?',
     descriptionPlaceholder: 'Beschreiwung (optional)',
-    cancel: 'Ofbriechen',
-    save: 'Späicheren',
+    cancel: 'OFBRIECHEN',
+    save: 'SPÄICHEREN',
     priority: 'Prioritéit',
-    sidebarHeader: 'Aufgabelëscht',
+    sidebarHeader: 'Kategorien',
     remaining: 'iwwereg',
     taskSingular: 'Aufgab',
     taskPlural: 'Aufgaben',
     noGoals: 'Keng Ziler an',
-    clickToCreate: 'Klickt op Aufgab derbäisetzen an der Säitelooss fir een ze erstellen!',
+    clickToCreate: 'Klickt op AUFGAB ERSTELLEN fir een ze erstellen!',
     deleteTitle: 'Aufgab läschen',
     deleteMessage: 'Sidd Dir sécher, datt Dir dës Aufgab permanent läsche wëllt?',
     taskName: 'Aufgabennumm',
@@ -321,6 +327,8 @@ const getProjectName = (id: string, lang: string) => {
     case 'Today': return dictionary.today;
     case 'Personal': return dictionary.personal;
     case 'Work': return dictionary.work;
+    case 'Meetings': return dictionary.meetings || (lang === 'Chinese' ? '会议' : 'Meetings');
+    case 'Events': return dictionary.events || (lang === 'Chinese' ? '事件' : 'Events');
     default: return id;
   }
 };
@@ -328,7 +336,7 @@ const getProjectName = (id: string, lang: string) => {
 export default function TodoListTab({ language = 'English' }: TodoListProps) {
   const [tasks, setTasks] = useLocalStorage<Task[]>('GeekTabs-tasks', []);
   const [currentProject, setCurrentProject] = useState('Inbox');
-  const [mobileView, setMobileView] = useState<'sidebar' | 'tasks'>('tasks');
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [newTaskText, setNewTaskText] = useState('');
   const [newTaskDesc, setNewTaskDesc] = useState('');
@@ -409,399 +417,381 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
   }
 
   return (
-    <div className="todolist-tab-container w-full max-w-7xl mx-auto flex flex-col gap-6 relative z-10 p-0 sm:p-4">
-      {/* Brand Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-black/5 dark:border-white/5">
-        <div className="flex items-center gap-3">
-          <ListTodo size={22} className="text-sky-500 fill-sky-500/10" />
-          <h1 className="text-xl font-bold tracking-tight uppercase word-color">
-            {dict.title}
-          </h1>
-        </div>
-      </div>
-
-      {/* Main Container - Card-less Split pane layout matching OneNote exactly */}
-      <div className="w-full h-[620px] lg:h-[700px] flex gap-1 GeekTabs-card webcard-light-grey-bg rounded-[2rem] overflow-hidden transition-all">
-        
-        {/* PANEL 1: SIDEBAR NAVIGATION */}
+    <div className="todolist-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 backdrop-blur-2xl bg-white/70 dark:bg-[#0c1017]/80 text-slate-800 dark:text-slate-100">
+      
+      {/* Mobile Drawer Backdrop */}
+      {mobileSidebarOpen && (
         <div
-          className={`${
-            mobileView === 'sidebar' ? 'flex w-full' : 'hidden'
-          } sm:flex sm:w-52 md:w-56 lg:w-60 shrink-0 h-full flex-col todo-sidebar bg-black/5 dark:bg-white/5 border-r border-black/5 dark:border-white/5 relative z-10`}
-        >
-          {/* Header */}
-          <div className="p-4 border-b border-black/5 dark:border-white/5 flex items-center justify-between">
-            <span className="text-[10px] font-black uppercase tracking-widest text-sky-500">
-              {dict.sidebarHeader}
-            </span>
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* LEFT SIDEBAR (Gemini Chat Style) */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-80 md:w-80 md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0 h-full flex flex-col border-r border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+          mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
+        }`}
+      >
+        {/* Sidebar Header & Brand */}
+        <div className="p-5 border-b border-black/10 dark:border-white/10 flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-[#4f46e5] to-[#7c3aed] flex items-center justify-center text-white shadow-md shadow-[#4f46e5]/25">
+                <ListTodo size={17} strokeWidth={2.4} />
+              </div>
+              <div>
+                <h1 className="text-sm font-black tracking-tight uppercase text-slate-900 dark:text-white">
+                  {dict.title}
+                </h1>
+              </div>
+            </div>
+
+            {/* Mobile Close Button */}
             <button
               type="button"
-              onClick={() => setMobileView('tasks')}
-              className="sm:hidden px-2.5 py-1 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-600 dark:text-sky-400 font-bold text-xs transition-all cursor-pointer"
+              onClick={() => setMobileSidebarOpen(false)}
+              className="md:hidden p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
             >
-              {getProjectName(currentProject, language)} →
+              <X size={18} />
             </button>
           </div>
 
-          {/* Navigation Items */}
-          <nav className="flex-1 overflow-y-auto p-2.5 space-y-1 scrollbar-none">
-            {PROJECTS.map((proj) => {
-              const countVal = tasks.filter(t => (t.project || 'Inbox') === proj.id && !t.completed).length;
-              const active = currentProject === proj.id;
-              const isInbox = proj.id === 'Inbox';
-              return (
-                <button
-                  key={proj.id}
-                  onClick={() => {
-                    setCurrentProject(proj.id);
-                    setIsAdding(false);
-                    setMobileView('tasks');
-                  }}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all font-semibold text-xs leading-normal relative cursor-pointer ${
-                    active
-                      ? 'bg-sky-500/15 text-sky-600 dark:text-sky-400 font-bold'
-                      : isInbox
-                      ? 'bg-black/[0.03] dark:bg-white/[0.04] text-slate-700 dark:text-white/70 hover:text-sky-500 hover:bg-sky-500/5'
-                      : 'text-slate-700 dark:text-white/60 hover:text-sky-500 hover:bg-sky-500/5'
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                    <span className="opacity-75 flex-shrink-0">
-                      {proj.icon}
-                    </span>
-                    <span className="truncate">{getProjectName(proj.id, language)}</span>
-                  </div>
-                  {countVal > 0 && (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-black/5 dark:bg-white/5 opacity-55 font-black">
-                      {countVal}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+          {/* Primary Action Button Matching Uploaded Reference Design */}
+          <button
+            type="button"
+            onClick={() => {
+              setIsAdding(true);
+              setMobileSidebarOpen(false);
+            }}
+            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+            className="todolist-action-btn w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-all cursor-pointer active:scale-98 select-none"
+          >
+            <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
+            <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.addTask}</span>
+          </button>
+        </div>
 
-            {/* "Add Task" moved directly under Work item in the sidebar of To-Do Menu */}
-            <div className="pt-4 mt-4 border-t border-black/5 dark:border-white/5">
+        {/* Sidebar Navigation Items */}
+        <div className="flex-1 overflow-y-auto p-3 space-y-1.5 scrollbar-thin">
+          <div className="px-3 pt-2 pb-1.5 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/35">
+            {dict.sidebarHeader}
+          </div>
+          {PROJECTS.map((proj) => {
+            const countVal = tasks.filter(t => (t.project || 'Inbox') === proj.id && !t.completed).length;
+            const active = currentProject === proj.id;
+            return (
               <button
+                key={proj.id}
+                type="button"
                 onClick={() => {
-                  setIsAdding(true);
-                  setMobileView('tasks');
+                  setCurrentProject(proj.id);
+                  setMobileSidebarOpen(false);
                 }}
-                className="flex items-center gap-2 px-3 py-2 text-sky-500 hover:text-sky-600 dark:hover:text-indigo-400 font-bold text-xs transition-colors tracking-wider uppercase rounded-xl hover:bg-sky-500/5 w-full text-left cursor-pointer"
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer select-none ${
+                  active
+                    ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border border-[#4f46e5]/30 shadow-xs'
+                    : 'text-slate-700 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5 hover:text-[#4f46e5] border border-transparent'
+                }`}
               >
-                <Plus size={16} />
-                <span>{dict.addTask}</span>
+                <div className="flex items-center gap-3 min-w-0 pr-2">
+                  <span className="shrink-0">{proj.icon}</span>
+                  <span className="truncate">{getProjectName(proj.id, language)}</span>
+                </div>
+                {countVal > 0 && (
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-black shrink-0 ${
+                      active
+                        ? 'bg-[#4f46e5] text-white shadow-xs'
+                        : 'bg-black/5 dark:bg-white/10 text-slate-600 dark:text-white/60'
+                    }`}
+                  >
+                    {countVal}
+                  </span>
+                )}
               </button>
-            </div>
-          </nav>
+            );
+          })}
+        </div>
 
-          <div className="p-3.5 border-t border-black/5 dark:border-white/5 text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold text-center select-none">
+        {/* Sidebar Footer */}
+        <div className="p-4 border-t border-black/10 dark:border-white/10 text-xs font-semibold text-slate-500 dark:text-white/45 flex items-center justify-between select-none">
+          <span className="text-[11px] uppercase tracking-wider font-bold">
             {language === 'Korean' 
               ? `${tasks.filter(t => !t.completed).length}개 대기 중` 
               : `${tasks.filter(t => !t.completed).length} ${dict.pending}`}
-          </div>
+          </span>
         </div>
+      </aside>
 
-        {/* PANEL 2: TASKS MAIN CONTENT (WEBCARD) */}
-        <div
-          className={`${
-            mobileView === 'tasks' ? 'flex w-full' : 'hidden'
-          } sm:flex flex-1 h-full flex-col ${
-            currentProject === 'Inbox' ? 'webcard-light-grey-bg' : 'bg-white/[0.02] dark:bg-black/[0.04]'
-          } relative z-10 min-w-0 p-4 sm:p-6 lg:p-10 overflow-y-auto scrollbar-none transition-colors`}
-        >
-          {/* Mobile Top Navigation & Quick Project Switcher (hidden on tablet & desktop) */}
-          <div className="sm:hidden flex flex-col gap-2.5 pb-3 mb-3 border-b border-black/5 dark:border-white/5">
-            <div className="flex items-center justify-between">
-              <button
-                type="button"
-                onClick={() => setMobileView('sidebar')}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-slate-800 dark:text-white text-xs font-bold transition-all cursor-pointer"
-              >
-                <ArrowLeft size={14} />
-                <span>{dict.allLists}</span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-extrabold ml-1">
-                  {tasks.filter(t => !t.completed).length}
-                </span>
-              </button>
+      {/* RIGHT CONTENT WORKSPACE */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-transparent">
+        
+        {/* Workspace Top Header Bar */}
+        <header className="h-16 px-6 sm:px-8 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0 bg-white/40 dark:bg-black/20 backdrop-blur-md">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Mobile Hamburger to trigger Sidebar */}
+            <button
+              type="button"
+              onClick={() => setMobileSidebarOpen(true)}
+              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-700 dark:text-white transition-colors cursor-pointer"
+              title="Open Navigation"
+            >
+              <Menu size={20} />
+            </button>
 
-              <button
-                type="button"
-                onClick={() => setIsAdding(true)}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
-              >
-                <Plus size={14} />
-                <span>{dict.addTask}</span>
-              </button>
-            </div>
-
-            {/* Quick Project Switcher: 2 items per row in uniform boxes on mobile */}
-            <div className="grid grid-cols-2 gap-2 py-1">
-              {PROJECTS.map((proj) => {
-                const countVal = tasks.filter(t => (t.project || 'Inbox') === proj.id && !t.completed).length;
-                const active = currentProject === proj.id;
-                const isInbox = proj.id === 'Inbox';
-                return (
-                  <button
-                    key={proj.id}
-                    type="button"
-                    onClick={() => {
-                      setCurrentProject(proj.id);
-                      setIsAdding(false);
-                    }}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border ${
-                      active
-                        ? 'bg-sky-500 text-white border-sky-500 shadow-xs'
-                        : isInbox
-                        ? 'bg-slate-100 dark:bg-white/10 border-black/10 dark:border-white/10 text-slate-800 dark:text-white/80 hover:bg-slate-200 dark:hover:bg-white/15'
-                        : 'bg-black/5 dark:bg-white/5 border-black/5 dark:border-white/5 text-slate-700 dark:text-white/70 hover:bg-black/10 dark:hover:bg-white/10'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="shrink-0">{proj.icon}</span>
-                      <span className="truncate">{getProjectName(proj.id, language)}</span>
-                    </div>
-                    {countVal > 0 && (
-                      <span
-                        className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ml-1.5 shrink-0 ${
-                          active ? 'bg-white/25 text-white' : 'bg-black/10 dark:bg-white/10 text-slate-600 dark:text-white/60'
-                        }`}
-                      >
-                        {countVal}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mb-6 flex items-baseline justify-between transition-all border-b border-black/5 dark:border-white/5 pb-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-3">
-                {getProjectName(currentProject, language)}
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+                <span>{getProjectName(currentProject, language)}</span>
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#4f46e5]/10 text-[#4f46e5] dark:text-indigo-400 border border-[#4f46e5]/20">
+                  {remainingText}
+                </span>
               </h2>
-              <p className="text-slate-600 dark:text-white/40 font-bold uppercase tracking-widest text-[9px] mt-1">
-                {remainingText}
-              </p>
             </div>
-            {!isAdding && (
-              <button
-                type="button"
-                onClick={() => setIsAdding(true)}
-                className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold transition-all shadow-xs cursor-pointer shrink-0"
-              >
-                <Plus size={14} />
-                <span>{dict.addTask}</span>
-              </button>
-            )}
           </div>
 
-          {/* Task Composer in work-card space */}
-          <div className="space-y-3 mb-6">
-            <AnimatePresence mode="popLayout">
-              {filteredTasks.map((task) => {
-                const priorityDetail = PRIORITY_COLORS[(task.priority || 4) as 1 | 2 | 3 | 4];
-                const isEditingThis = editingId === task.id;
+          {!isAdding && (
+            <button
+              type="button"
+              onClick={() => setIsAdding(true)}
+              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+              className="todolist-action-btn flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-[#4f46e5]/35 cursor-pointer shrink-0 active:scale-98 select-none"
+            >
+              <Plus size={14} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
+              <span className="hidden sm:inline !text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.addTask}</span>
+            </button>
+          )}
+        </header>
 
-                return (
-                  <motion.div
-                     key={task.id}
-                     initial={{ opacity: 0, y: 10 }}
-                     animate={{ opacity: 1, y: 0 }}
-                     exit={{ opacity: 0, y: -10 }}
-                     transition={{ duration: 0.2 }}
-                     className="group py-3.5 flex flex-col md:flex-row items-start md:items-center gap-4 bg-white/30 dark:bg-black/5 border border-black/5 dark:border-white/5 px-4 rounded-2xl transition-all shadow-xs"
-                  >
-                    {isEditingThis ? (
-                      <form onSubmit={handleEditSubmit} className="flex-1 w-full flex flex-col gap-2.5 bg-transparent">
-                        <input
-                          ref={editInputRef}
-                          type="text"
-                          value={editValue}
-                          onChange={(e) => setEditValue(e.target.value)}
-                          className="w-full px-3.5 py-2.5 bg-white/60 dark:bg-black/20 border border-black/10 dark:border-white/10 rounded-xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500/30 text-sm placeholder-black/30 dark:placeholder-white/30"
-                          placeholder={dict.taskName}
-                        />
-                        <input
-                          type="text"
-                          value={editDescValue}
-                          onChange={(e) => setEditDescValue(e.target.value)}
-                          className="w-full px-3.5 py-2 bg-white/60 dark:bg-black/20 border border-black/10 dark:border-white/10 rounded-xl text-xs text-slate-600 dark:text-white/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30 placeholder-black/20 dark:placeholder-white/20"
-                          placeholder={dict.description}
-                        />
-                        <div className="flex gap-2 justify-end mt-1">
-                          <button
-                            type="button"
-                            onClick={() => setEditingId(null)}
-                            className="px-3 py-1.5 rounded-lg text-xs uppercase tracking-wider font-bold dark:hover:bg-white/10 hover:bg-black/15 transition-all text-slate-800 dark:text-white cursor-pointer"
-                          >
-                            {dict.cancel}
-                          </button>
-                          <button
-                            type="submit"
-                            className="px-3.5 py-1.5 rounded-lg text-xs bg-sky-500 text-white hover:bg-sky-600 uppercase tracking-wider font-bold transition-all shadow-xs cursor-pointer"
-                          >
-                            {dict.save}
-                          </button>
-                        </div>
-                      </form>
-                    ) : (
-                      <>
-                        {/* Checkbox Icon Element with custom Priority Colors */}
-                        <div className="flex-1 flex gap-3.5 items-start min-w-0 pr-4">
-                          <button
-                            type="button"
-                            onClick={() => toggleTask(task.id)}
-                            className={`mt-0.5 w-[18px] h-[18px] rounded-full flex items-center justify-center shrink-0 border-2 transition-all ${priorityDetail.border} ${
-                              task.completed ? 'bg-sky-500 border-sky-500 scale-95 shadow-sm' : 'hover:scale-105'
-                            }`}
-                          >
-                            {task.completed ? (
-                              <Check size={10} className="text-white" strokeWidth={3} />
-                            ) : (
-                              <span className="w-2 h-2 rounded-full opacity-0 hover:opacity-100 bg-current transition-opacity text-inherit" />
-                            )}
-                          </button>
+        {/* Main Scrollable Content */}
+        <main className="flex-1 overflow-y-auto px-6 sm:px-10 lg:px-16 py-6 sm:py-8 space-y-4">
+          <div className="max-w-4xl mx-auto space-y-4">
 
-                          <div className="flex-1 min-w-0 leading-tight">
-                            <span className={`block font-medium text-[14px] leading-relaxed select-text tracking-wide ${
-                              task.completed ? 'line-through text-black/40 dark:text-white/35 font-normal' : 'text-slate-850 dark:text-white/90'
-                            }`}>
-                              {task.text}
-                            </span>
-                            {task.description && (
-                              <p className="text-xs text-slate-650 dark:text-white/50 mt-1 select-text leading-normal max-w-2xl font-normal">
-                                {task.description}
-                              </p>
-                            )}
-                          </div>
-                        </div>
+            {/* Inline Add Task Form */}
+            <AnimatePresence>
+              {isAdding && (
+                <motion.form
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  onSubmit={addTask}
+                  className="border border-[#4f46e5]/30 bg-white/80 dark:bg-black/40 backdrop-blur-md rounded-2xl p-5 flex flex-col gap-3.5 shadow-md shadow-[#4f46e5]/10 mb-6"
+                >
+                  <div className="w-full">
+                    <input
+                      autoFocus
+                      type="text"
+                      value={newTaskText}
+                      onChange={(e) => setNewTaskText(e.target.value)}
+                      placeholder={dict.addPlaceholder}
+                      className="w-full px-4 py-3 bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/15 rounded-xl font-bold text-slate-900 dark:text-white text-base placeholder-slate-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] dark:focus:border-indigo-400 transition-all"
+                    />
+                  </div>
 
-                        {/* Quick inline controls - Visible on row hover */}
-                        <div className="flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all shrink-0">
-                          <button
-                            onClick={() => startEdit(task)}
-                            className="p-1.5 hover:bg-black/5 dark:hover:bg-white/5 text-slate-500 dark:text-white/30 hover:text-slate-800 hover:dark:text-white/80 rounded-lg transition-all cursor-pointer"
-                            title="Edit task"
-                          >
-                            <Pencil size={13} />
-                          </button>
-                          <button
-                            onClick={() => setConfirmDeleteTask(task.id)}
-                            className="p-1.5 hover:bg-red-500/10 dark:hover:bg-red-500/10 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 rounded-lg transition-all cursor-pointer"
-                            title="Delete task"
-                          >
-                            <Trash2 size={13} />
-                          </button>
-                        </div>
-                      </>
-                    )}
-                  </motion.div>
-                );
-              })}
+                  <div className="w-full">
+                    <textarea
+                      rows={3}
+                      value={newTaskDesc}
+                      onChange={(e) => setNewTaskDesc(e.target.value)}
+                      placeholder={dict.addNotes}
+                      className="w-full px-4 py-2.5 bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/15 rounded-xl text-sm text-slate-700 dark:text-white/80 placeholder-slate-400 dark:placeholder-white/35 focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] dark:focus:border-indigo-400 transition-all resize-none leading-relaxed"
+                      onKeyDown={(e) => {
+                        if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+                          addTask(e);
+                        }
+                      }}
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/5">
+                    {/* Priority Selector */}
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#4f46e5] dark:text-indigo-400 mr-1 shrink-0">
+                        {dict.priority}
+                      </span>
+                      {([1, 2, 3, 4] as const).map((p) => (
+                        <button
+                          key={p}
+                          type="button"
+                          onClick={() => setNewTaskPriority(p)}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 cursor-pointer ${
+                            newTaskPriority === p
+                              ? `${PRIORITY_COLORS[p].bg} ${PRIORITY_COLORS[p].border} ${PRIORITY_COLORS[p].text} shadow-xs`
+                              : 'border-black/10 dark:border-white/10 text-slate-600 dark:text-white/50 hover:bg-black/5 dark:hover:bg-white/5'
+                          }`}
+                        >
+                          <Flag size={11} className="fill-current text-current" />
+                          <span>P{p}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-2 self-end sm:self-auto">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsAdding(false);
+                          setNewTaskText('');
+                          setNewTaskDesc('');
+                          setNewTaskPriority(4);
+                        }}
+                        style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                        className="todolist-cancel-btn px-4 py-2 font-black tracking-wider text-xs uppercase bg-black/25 dark:bg-white/10 hover:bg-black/35 dark:hover:bg-white/20 !text-white text-white transition-all rounded-2xl cursor-pointer"
+                      >
+                        <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.cancel}</span>
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={!newTaskText.trim()}
+                        style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                        className="todolist-action-btn px-6 py-2.5 font-black tracking-wider text-xs uppercase bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white transition-all disabled:opacity-40 rounded-2xl shadow-md shadow-[#4f46e5]/35 cursor-pointer active:scale-98 select-none"
+                      >
+                        <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.addTask}</span>
+                      </button>
+                    </div>
+                  </div>
+                </motion.form>
+              )}
             </AnimatePresence>
 
-            {filteredTasks.length === 0 && !isAdding && (
-              <div className="text-center py-20 flex flex-col items-center justify-center select-none">
-                <ListTodo size={36} strokeWidth={1.2} className="text-sky-500 mb-2" />
-                <p className="text-slate-800 dark:text-white text-[10px] uppercase font-black tracking-widest">
-                  {dict.noGoals} {getProjectName(currentProject, language)}
-                </p>
-                <p className="text-slate-600 dark:text-white/40 text-[9px] mt-1">{dict.clickToCreate}</p>
-              </div>
-            )}
+            {/* Task Items List */}
+            <div className="space-y-3">
+              <AnimatePresence mode="popLayout">
+                {filteredTasks.map((task) => {
+                  const priorityDetail = PRIORITY_COLORS[(task.priority || 4) as 1 | 2 | 3 | 4];
+                  const isEditingThis = editingId === task.id;
+
+                  return (
+                    <motion.div
+                      key={task.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.18 }}
+                      className="group py-3.5 px-4.5 flex flex-col md:flex-row items-start md:items-center gap-3.5 bg-white/60 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 rounded-2xl transition-all shadow-xs hover:border-[#4f46e5]/30 hover:shadow-md"
+                    >
+                      {isEditingThis ? (
+                        <form onSubmit={handleEditSubmit} className="flex-1 w-full flex flex-col gap-2.5 bg-transparent">
+                          <input
+                            ref={editInputRef}
+                            type="text"
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            className="w-full px-3.5 py-2 bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 text-sm"
+                            placeholder={dict.taskName}
+                          />
+                          <input
+                            type="text"
+                            value={editDescValue}
+                            onChange={(e) => setEditDescValue(e.target.value)}
+                            className="w-full px-3.5 py-1.5 bg-white/80 dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-xl text-xs text-slate-600 dark:text-white/50 focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30"
+                            placeholder={dict.description}
+                          />
+                          <div className="flex gap-2 justify-end mt-1">
+                            <button
+                              type="button"
+                              onClick={() => setEditingId(null)}
+                              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                              className="todolist-cancel-btn px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold bg-black/25 dark:bg-white/10 hover:bg-black/35 dark:hover:bg-white/20 transition-all !text-white text-white cursor-pointer"
+                            >
+                              <span className="!text-white text-white font-bold" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.cancel}</span>
+                            </button>
+                            <button
+                              type="submit"
+                              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                              className="todolist-action-btn px-4 py-1.5 rounded-2xl text-xs bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white uppercase tracking-wider font-black transition-all shadow-md shadow-[#4f46e5]/35 cursor-pointer select-none"
+                            >
+                              <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.save}</span>
+                            </button>
+                          </div>
+                        </form>
+                      ) : (
+                        <>
+                          <div className="flex-1 flex gap-3.5 items-start min-w-0 pr-2">
+                            <button
+                              type="button"
+                              onClick={() => toggleTask(task.id)}
+                              className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 border-2 transition-all cursor-pointer ${
+                                task.completed
+                                  ? 'bg-[#4f46e5] border-[#4f46e5] scale-95 shadow-xs'
+                                  : `${priorityDetail.border} hover:scale-105`
+                              }`}
+                            >
+                              {task.completed ? (
+                                <Check size={11} className="text-white" strokeWidth={3} />
+                              ) : (
+                                <span className="w-2 h-2 rounded-full opacity-0 hover:opacity-100 bg-current transition-opacity text-inherit" />
+                              )}
+                            </button>
+
+                            <div className="flex-1 min-w-0 leading-tight">
+                              <span
+                                className={`block font-medium text-sm leading-relaxed select-text tracking-wide ${
+                                  task.completed
+                                    ? 'line-through text-black/40 dark:text-white/35 font-normal'
+                                    : 'text-slate-900 dark:text-white/90'
+                                }`}
+                              >
+                                {task.text}
+                              </span>
+                              {task.description && (
+                                <p className="text-xs text-slate-600 dark:text-white/50 mt-1 select-text leading-normal max-w-2xl font-normal">
+                                  {task.description}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Inline Controls */}
+                          <div className="flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all shrink-0">
+                            <button
+                              onClick={() => startEdit(task)}
+                              className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 dark:text-white/40 hover:text-slate-900 hover:dark:text-white rounded-lg transition-all cursor-pointer"
+                              title="Edit task"
+                            >
+                              <Pencil size={14} />
+                            </button>
+                            <button
+                              onClick={() => setConfirmDeleteTask(task.id)}
+                              className="p-1.5 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 rounded-lg transition-all cursor-pointer"
+                              title="Delete task"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+
+              {filteredTasks.length === 0 && !isAdding && (
+                <div className="text-center py-24 flex flex-col items-center justify-center select-none">
+                  <div className="w-16 h-16 rounded-2xl bg-[#4f46e5]/10 flex items-center justify-center text-[#4f46e5] mb-4">
+                    <ListTodo size={32} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 dark:text-white">
+                    {dict.noGoals} {getProjectName(currentProject, language)}
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-white/50 mt-1 max-w-xs mb-4">
+                    {dict.clickToCreate}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setIsAdding(true)}
+                    style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                    className="todolist-action-btn px-6 py-2.5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider transition-all shadow-md shadow-[#4f46e5]/35 cursor-pointer active:scale-98 select-none"
+                  >
+                    <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.addTask}</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
           </div>
-
-          {/* Inline Add Task Composer Form */}
-          <AnimatePresence>
-            {isAdding && (
-              <motion.form
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                onSubmit={addTask}
-                className="border border-black/10 dark:border-white/15 bg-white/50 dark:bg-black/30 backdrop-blur-md rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm"
-              >
-                {/* Big Task Title Input Box */}
-                <div className="w-full">
-                  <input
-                    autoFocus
-                    type="text"
-                    value={newTaskText}
-                    onChange={(e) => setNewTaskText(e.target.value)}
-                    placeholder={dict.addPlaceholder}
-                    className="w-full px-4 py-3 sm:py-3.5 bg-white/70 dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-xl font-bold text-slate-900 dark:text-white text-base sm:text-lg placeholder-slate-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 dark:focus:border-sky-400 transition-all shadow-2xs"
-                  />
-                </div>
-
-                {/* Big Description / Notes Filling Box */}
-                <div className="w-full">
-                  <textarea
-                    rows={3}
-                    value={newTaskDesc}
-                    onChange={(e) => setNewTaskDesc(e.target.value)}
-                    placeholder={dict.addNotes}
-                    className="w-full px-4 py-3 bg-white/70 dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-xl text-sm sm:text-base text-slate-700 dark:text-white/80 placeholder-slate-400 dark:placeholder-white/35 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 dark:focus:border-sky-400 transition-all resize-none leading-relaxed shadow-2xs"
-                    onKeyDown={(e) => {
-                      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-                        addTask(e);
-                      }
-                    }}
-                  />
-                </div>
-
-                {/* Responsive Controls Bar: Priority on top, Cancel & Add Task cleanly placed underneath */}
-                <div className="flex flex-col gap-3 mt-1 pt-3.5 border-t border-black/5 dark:border-white/5">
-                  {/* Priority Selection Bar */}
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-sky-500 dark:text-sky-400 mr-1 shrink-0">
-                      {dict.priority}
-                    </span>
-                    {([1, 2, 3, 4] as const).map((p) => (
-                      <button
-                        key={p}
-                        type="button"
-                        onClick={() => setNewTaskPriority(p)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-1.5 cursor-pointer ${
-                          newTaskPriority === p
-                            ? `${PRIORITY_COLORS[p].bg} ${PRIORITY_COLORS[p].border} ${PRIORITY_COLORS[p].text} shadow-xs`
-                            : 'border-black/10 dark:border-white/10 text-slate-600 dark:text-white/50 hover:bg-black/5 dark:hover:bg-white/5'
-                        }`}
-                      >
-                        <Flag size={11} className="fill-current text-current" />
-                        <span>P{p}</span>
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons: Cancel and Add Task under Priority (with Cancel's text starting in the exact same column as Priority's P) */}
-                  <div className="flex items-center gap-3 w-full sm:w-auto justify-start sm:self-start shrink-0 pt-1">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setIsAdding(false);
-                        setNewTaskText('');
-                        setNewTaskDesc('');
-                        setNewTaskPriority(4);
-                      }}
-                      className="px-3 sm:px-4 py-2 font-bold tracking-wider text-xs uppercase text-slate-700 dark:text-white/80 hover:bg-black/5 dark:hover:bg-white/10 transition-all rounded-xl cursor-pointer text-left -ml-3 sm:-ml-4"
-                    >
-                      {dict.cancel}
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={!newTaskText.trim()}
-                      className="px-5 py-2 font-bold tracking-wider text-xs uppercase bg-sky-500 hover:bg-sky-600 text-white transition-all disabled:opacity-40 rounded-xl shadow-md shadow-sky-500/20 cursor-pointer text-center whitespace-nowrap"
-                    >
-                      {dict.addTask}
-                    </button>
-                  </div>
-                </div>
-              </motion.form>
-            )}
-          </AnimatePresence>
-        </div>
+        </main>
       </div>
 
       <ConfirmModal
