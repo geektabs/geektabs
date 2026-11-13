@@ -542,10 +542,10 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl sm:rounded-[1.5rem] bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-500 shadow-xl shadow-violet-500/5 hover:scale-105 transition-transform duration-300">
           <Compass size={28} className="stroke-[1.5] sm:w-8 sm:h-8" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-black dark:text-white mt-1 sm:mt-2">
+        <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 mt-1 sm:mt-2">
           {guides.title}
         </h1>
-        <p className="text-xs sm:text-sm text-black/60 dark:text-white/60 leading-relaxed px-2">
+        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed px-2">
           {guides.subtitle}
         </p>
       </div>

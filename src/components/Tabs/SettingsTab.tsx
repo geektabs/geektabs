@@ -18,8 +18,8 @@ export interface SettingsTabProps {
   setCustomWallpapers: (wallpapers: any[]) => void;
   language: string;
   setLanguage: (lang: string) => void;
-  cardBgMode: 'white' | 'dark-glass';
-  setCardBgMode: (mode: 'white' | 'dark-glass') => void;
+  cardBgMode: 'white' | 'dark' | 'dark-glass';
+  setCardBgMode: (mode: 'white' | 'dark' | 'dark-glass') => void;
   textColor?: string;
   setTextColor?: (color: string) => void;
 }
@@ -37,9 +37,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Language Selection",
     langDesc: "Choose your preferred language for the widgets and controls.",
     cardStyle: "Card Background Style",
-    cardDesc: "Choose between classic white cards or transparent glass cards with modern depth.",
-    whiteBg: "White Background (Default)",
-    darkGlass: "Transparent Glass Style",
+    cardDesc: "Choose between Light (white), Dark (black), or Glass (frosted glass) webcard background styles.",
+    whiteBg: "Light",
+    darkBg: "Dark",
+    darkGlass: "Glass",
     dataBackup: "Data Backup & Restore Point",
     dataDesc: "Export your bookmarks, to-do list items, and personal notes into a JSON file, or import a previously saved backup to restore your data completely.",
     exportBackup: "Export Backup (Create Restore Point)",
@@ -73,9 +74,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "语言选择",
     langDesc: "为所有小组件和控制面板选择您的偏好语言。",
     cardStyle: "卡片背景样式",
-    cardDesc: "在经典白色卡片与晶莹通透的透明玻璃卡片之间进行选择。",
-    whiteBg: "白色背景 (默认)",
-    darkGlass: "透明玻璃风格",
+    cardDesc: "在浅色（白色卡片）、深色（黑色卡片）与玻璃（磨砂玻璃卡片）之间进行选择。",
+    whiteBg: "浅色 (Light)",
+    darkBg: "深色 (Dark)",
+    darkGlass: "玻璃 (Glass)",
     dataBackup: "数据备份与还原 (还原点)",
     dataDesc: "导出您所有的书签、待办事项和笔记数据，或导入之前备份的 JSON 文件以恢复至此前的状态。",
     exportBackup: "导出备份 (创建还原点)",
@@ -109,9 +111,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Selección de Idioma",
     langDesc: "Elige tu idioma preferido para los widgets y controles.",
     cardStyle: "Estilo de Fondo de Tarjeta",
-    cardDesc: "Elige el color de fondo y estilo para todas las tarjetas de la página.",
-    whiteBg: "Fondo Blanco (Por defecto)",
-    darkGlass: "Estilo de Vidrio Transparente",
+    cardDesc: "Elige entre tarjetas Claro (blanco), Oscuro (negro) o Cristal (vidrio esmerilado).",
+    whiteBg: "Claro",
+    darkBg: "Oscuro",
+    darkGlass: "Cristal",
     dataBackup: "Copia de Seguridad y Restauración",
     dataDesc: "Exporta tus marcadores, tareas y notas a un archivo JSON, o importa una copia de seguridad para restaurar tus datos por completo.",
     exportBackup: "Exportar Copia (Crear Punto de Restauración)",
@@ -145,9 +148,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Sélection de la Langue",
     langDesc: "Choisissez votre langue préférée pour les widgets et contrôles.",
     cardStyle: "Style de Fond de Carte",
-    cardDesc: "Choisissez la couleur de fond et le style de toutes les cartes de la page.",
-    whiteBg: "Fond Blanc (Par défaut)",
-    darkGlass: "Style Verre Transparent",
+    cardDesc: "Choisissez entre Clair (blanc), Sombre (noir) ou Verre (verre dépoli).",
+    whiteBg: "Clair",
+    darkBg: "Sombre",
+    darkGlass: "Verre",
     dataBackup: "Sauvegarde et Restauration",
     dataDesc: "Exportez vos signets, tâches et notes dans un fichier JSON, ou importez une sauvegarde enregistrée pour restaurer complètement vos données.",
     exportBackup: "Exporter la Sauvegarde (Créer Point de Restauration)",
@@ -181,9 +185,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Sprachauswahl",
     langDesc: "Wählen Sie Ihre bevorzugte Sprache für Widgets und Steuerelemente.",
     cardStyle: "Karten-Hintergrundstil",
-    cardDesc: "Wählen Sie die Hintergrundfarbe und den Stil für alle Webkarten der Seite.",
-    whiteBg: "Weißer Hintergrund (Standard)",
-    darkGlass: "Transparenter Glasstil",
+    cardDesc: "Wählen Sie zwischen Hell (Weiß), Dunkel (Schwarz) oder Glas (Milchglas).",
+    whiteBg: "Hell",
+    darkBg: "Dunkel",
+    darkGlass: "Glas",
     dataBackup: "Datensicherung & Wiederherstellung",
     dataDesc: "Exportieren Sie Ihre Lesezeichen, Aufgaben und Notizen in eine JSON-Datei oder importieren Sie ein zuvor gespeichertes Backup, um Ihre Daten vollständig wiederherzustellen.",
     exportBackup: "Backup exportieren (Wiederherstellungspunkt erstellen)",
@@ -217,9 +222,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "言語選択",
     langDesc: "ウィジェットとコントロールに適用するお好みの言語を選択してください。",
     cardStyle: "カード背景スタイル",
-    cardDesc: "すべてのページカードの背景色と表示スタイルを選択します。",
-    whiteBg: "白背景 (デフォルト)",
-    darkGlass: "透明ガラススタイル",
+    cardDesc: "ライト（白）、ダーク（黒）、またはグラス（すりガラス）スタイルを選択します。",
+    whiteBg: "ライト",
+    darkBg: "ダーク",
+    darkGlass: "グラス",
     dataBackup: "データのバックアップと復元（復元ポイント）",
     dataDesc: "すべてのブックマーク、やることリスト、メモデータをエクスポートするか、以前に保存したJSONバックアップファイルをインポートして元の状態に復元します。",
     exportBackup: "バックアップをエクスポート (復元ポイント作成)",
@@ -253,9 +259,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "언어 선택",
     langDesc: "위젯 및 제어판에 사용할 선호 언어를 선택하세요.",
     cardStyle: "카드 배경 스타일",
-    cardDesc: "클래식 화이트 카드 또는 깊이감 있는 투명 유리 스타일 중 선택하세요.",
-    whiteBg: "흰색 배경 (기본)",
-    darkGlass: "투명 유리 스타일",
+    cardDesc: "라이트(화이트), 다크(블랙), 글래스(프로스트 유리) 스타일 중 선택하세요.",
+    whiteBg: "라이트",
+    darkBg: "다크",
+    darkGlass: "글래스",
     dataBackup: "데이터 백업 및 복원 (복원 지점)",
     dataDesc: "북마크, 할 일 목록, 메모 데이터를 JSON 파일로 내보내거나, 이전에 저장한 백업 파일을 가져와 완전히 복원하세요.",
     exportBackup: "백업 내보내기 (복원 지점 생성)",
@@ -289,9 +296,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Selezione Lingua",
     langDesc: "Scegli la lingua preferita per widget e controlli.",
     cardStyle: "Stile Sfondo Scheda",
-    cardDesc: "Scegli lo stile di sfondo per tutte le schede.",
-    whiteBg: "Sfondo Bianco (Predefinito)",
-    darkGlass: "Stile Vetro Trasparente",
+    cardDesc: "Scegli tra Chiaro (bianco), Scuro (nero) o Vetro (vetro satinato).",
+    whiteBg: "Chiaro",
+    darkBg: "Scuro",
+    darkGlass: "Vetro",
     dataBackup: "Backup e Ripristino Dati",
     dataDesc: "Esporta o importa i tuoi dati in un file JSON.",
     exportBackup: "Esporta Backup",
@@ -325,9 +333,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Выбор языка",
     langDesc: "Выберите предпочитаемый язык интерфейса.",
     cardStyle: "Стиль фона карточек",
-    cardDesc: "Выберите стиль фона для всех карточек.",
-    whiteBg: "Белый фон (По умолчанию)",
-    darkGlass: "Стиль прозрачного стекла",
+    cardDesc: "Выберите стиль карточек: Светлая (белый), Тёмная (чёрный) или Стекло (матовое стекло).",
+    whiteBg: "Светлая",
+    darkBg: "Тёмная",
+    darkGlass: "Стекло",
     dataBackup: "Резервное копирование и восстановление",
     dataDesc: "Экспортируйте или импортируйте данные в формате JSON.",
     exportBackup: "Экспорт резервной копии",
@@ -361,9 +370,10 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     languageSelection: "Sproochauswiel",
     langDesc: "Wielt Är Sprooch fir Widgets a Kontrollen.",
     cardStyle: "Kaarte-Hannergrondstil",
-    cardDesc: "Wielt de Stil fir all Kaarten.",
-    whiteBg: "Wäissen Hannergrond (Standard)",
-    darkGlass: "Transparenten Glasstil",
+    cardDesc: "Wielt tëscht Hell (wäiss), Däischter (schwaarz) oder Glas.",
+    whiteBg: "Hell",
+    darkBg: "Däischter",
+    darkGlass: "Glas",
     dataBackup: "Datesécherung & Erhuelung",
     dataDesc: "Exportéiert oder importéiert Är Donnéeën an eng JSON Datei.",
     exportBackup: "Backup exportéieren",
@@ -438,18 +448,12 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`settings-dropdown w-full flex items-center justify-between rounded-xl px-4 py-2.5 font-semibold text-sm transition-all outline-none cursor-pointer text-left ${
-          isDarkGlass
-            ? 'bg-white/[0.12] hover:bg-white/[0.18] border border-white/25 text-white shadow-sm backdrop-blur-xl'
-            : 'bg-neutral-100 dark:bg-black/25 hover:bg-neutral-200/70 dark:hover:bg-black/35 border border-neutral-300 dark:border-white/10 text-black dark:text-white shadow-sm'
-        } ${isOpen ? 'ring-2 ring-indigo-500 border-transparent' : ''}`}
+        className={`settings-dropdown w-full flex items-center justify-between rounded-xl px-4 py-2.5 font-semibold text-sm transition-all outline-none cursor-pointer text-left bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-300 text-slate-900 shadow-sm ${isOpen ? 'ring-2 ring-indigo-500 border-transparent' : ''}`}
       >
-        <span className="truncate pr-2">{selectedOption?.label}</span>
+        <span className="truncate pr-2 text-slate-900">{selectedOption?.label}</span>
         <ChevronDown
           size={16}
-          className={`shrink-0 transition-transform duration-200 ${
-            isDarkGlass ? 'text-white' : 'text-neutral-500 dark:text-neutral-400'
-          } ${isOpen ? 'rotate-180 text-indigo-400 opacity-100' : 'opacity-70'}`}
+          className={`shrink-0 transition-transform duration-200 text-neutral-600 ${isOpen ? 'rotate-180 text-indigo-500 opacity-100' : 'opacity-70'}`}
         />
       </button>
 
@@ -460,11 +464,7 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className={`settings-dropdown-menu absolute left-0 right-0 top-full mt-2 z-50 max-h-64 overflow-y-auto rounded-2xl p-1.5 shadow-2xl focus:outline-none ${
-              isDarkGlass
-                ? 'bg-slate-900/85 backdrop-blur-2xl border border-white/20 text-white shadow-black/50'
-                : 'bg-white dark:bg-[#1a1f2e] border border-neutral-200 dark:border-white/10 text-neutral-900 dark:text-white shadow-xl'
-            }`}
+            className="settings-dropdown-menu absolute left-0 right-0 top-full mt-2 z-50 max-h-64 overflow-y-auto rounded-2xl p-1.5 shadow-xl focus:outline-none bg-white border border-neutral-200 text-slate-900"
           >
             {options.map((opt) => {
               const isSelected = opt.value === value;
@@ -478,23 +478,15 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
                   }}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer text-left ${
                     isSelected
-                      ? isDarkGlass
-                        ? 'settings-option-selected bg-indigo-500/40 text-white font-bold'
-                        : 'settings-option-selected bg-indigo-500 text-white font-bold'
-                      : isDarkGlass
-                        ? 'text-white/90 hover:text-white hover:bg-white/15'
-                        : 'text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white'
+                      ? 'settings-option-selected bg-indigo-500 text-white font-bold'
+                      : 'text-slate-700 hover:bg-black/5 hover:text-black'
                   }`}
                 >
                   <span className="truncate">{opt.label}</span>
                   {isSelected && (
                     <Check
                       size={16}
-                      className={
-                        isSelected && !isDarkGlass
-                          ? 'text-white shrink-0 ml-2'
-                          : 'text-indigo-400 shrink-0 ml-2'
-                      }
+                      className="text-white shrink-0 ml-2"
                     />
                   )}
                 </button>
@@ -578,6 +570,7 @@ export default function SettingsTab({
 
   const cardStyleOptions: SettingsDropdownOption[] = [
     { value: 'white', label: tData.whiteBg },
+    { value: 'dark', label: tData.darkBg },
     { value: 'dark-glass', label: tData.darkGlass },
   ];
 
@@ -695,23 +688,13 @@ export default function SettingsTab({
           mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
         }`}
       >
-        {/* Header */}
-        <div className="p-5 border-b border-black/10 dark:border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-violet-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-violet-500/20">
-              <SettingsIcon size={17} strokeWidth={2.4} />
-            </div>
-            <div>
-              <h1 className="text-sm font-black tracking-tight uppercase text-slate-900 dark:text-white">
-                {tData.title}
-              </h1>
-            </div>
-          </div>
-
+        {/* Top of Sidebar - Mobile close button only */}
+        <div className="md:hidden flex items-center justify-end p-3 border-b border-black/10 dark:border-white/10">
           <button
             type="button"
             onClick={() => setMobileSidebarOpen(false)}
-            className="md:hidden p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+            className="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+            title="Close navigation"
           >
             <X size={18} />
           </button>
@@ -757,45 +740,50 @@ export default function SettingsTab({
             {language}
           </span>
           <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5">
-            {cardBgMode}
+            {cardBgMode === 'dark' ? tData.darkBg : cardBgMode === 'dark-glass' ? tData.darkGlass : tData.whiteBg}
           </span>
         </div>
       </aside>
 
-      {/* RIGHT CONTENT PANE */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-transparent">
+      {/* RIGHT CONTENT PANE - Always Pure Solid White */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
         
         {/* Workspace Top Header Bar */}
-        <header className="h-16 px-6 sm:px-8 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0 bg-white/40 dark:bg-black/20 backdrop-blur-md">
-          <div className="flex items-center gap-3 min-w-0">
+        <header className="h-16 px-6 sm:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+          <div className="flex items-center gap-3 min-w-[40px]">
             {/* Mobile Hamburger to trigger Sidebar */}
             <button
               type="button"
               onClick={() => setMobileSidebarOpen(true)}
-              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-700 dark:text-white transition-colors cursor-pointer"
+              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer"
               title="Open Navigation"
             >
               <Menu size={20} />
             </button>
-
-            <div className="flex items-center gap-2">
-              <CurrentIcon size={18} className="text-indigo-500 shrink-0" />
-              <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight truncate">
-                {currentNav.label}
-              </h2>
-            </div>
           </div>
 
-          {saved && (
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-500/20">
-              <Check size={14} />
-              <span>{tData.saved}</span>
-            </div>
-          )}
+          {/* Centered preference title at top */}
+          <div className="flex items-center justify-center gap-2">
+            <CurrentIcon size={18} className="text-[#5438dc] shrink-0" />
+            <h2 className="text-base sm:text-lg font-black text-slate-900 tracking-tight truncate">
+              {currentNav.label}
+            </h2>
+          </div>
+
+          <div className="flex items-center justify-end min-w-[40px]">
+            {saved ? (
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 text-xs font-bold border border-emerald-500/20">
+                <Check size={14} />
+                <span>{tData.saved}</span>
+              </div>
+            ) : (
+              <div className="w-10 pointer-events-none" />
+            )}
+          </div>
         </header>
 
-        {/* Main Settings Content Area */}
-        <main className="flex-1 overflow-y-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-8">
+        {/* Main Settings Content Area - Always Pure Solid White */}
+        <main className="flex-1 overflow-y-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-8 bg-white text-slate-900">
           <div className="max-w-4xl space-y-8">
             <AnimatePresence mode="wait">
               {activeTab === 'general' && (
@@ -807,22 +795,22 @@ export default function SettingsTab({
                   transition={{ duration: 0.2 }}
                   className="space-y-6 sm:space-y-8"
                 >
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+                  <div className="text-center flex flex-col items-center">
+                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1">
                       {tData.generalSettings}
                     </h2>
-                    <p className="text-slate-500 dark:text-white/40 font-bold uppercase tracking-widest text-[10px]">
+                    <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">
                       {tData.managePreferences}
                     </p>
                   </div>
 
-                  <div className="space-y-6 sm:space-y-8 divide-y divide-black/5 dark:divide-white/5">
+                  <div className="space-y-6 sm:space-y-8 divide-y divide-black/5">
                     {/* Board Name */}
                     <div className="py-2 sm:py-4">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2">
                         {tData.customBoardName}
                       </label>
-                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
                         {tData.boardNameDesc}
                       </p>
                       
@@ -831,7 +819,7 @@ export default function SettingsTab({
                           type="text"
                           value={localName}
                           onChange={(e) => setLocalName(e.target.value)}
-                          className="settings-input w-full sm:flex-1 min-w-0 bg-neutral-100 dark:bg-black/25 border border-neutral-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-semibold transition-all shadow-sm"
+                          className="settings-input w-full sm:flex-1 min-w-0 bg-neutral-100 border border-neutral-300 rounded-xl px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-semibold transition-all shadow-sm"
                           placeholder={`${tData.defaultPlaceholder}${getGreetingByTime()}`}
                         />
                         
@@ -853,7 +841,7 @@ export default function SettingsTab({
                           
                           <button
                             onClick={handleDelete}
-                            className="p-2.5 bg-red-100 dark:bg-red-500/10 hover:bg-red-200 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+                            className="p-2.5 bg-red-100 hover:bg-red-200 text-red-600 rounded-xl flex items-center justify-center transition-all cursor-pointer"
                             title="Remove Name"
                           >
                             <Trash2 size={16} />
@@ -864,11 +852,11 @@ export default function SettingsTab({
 
                     {/* Language Selection */}
                     <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
                         <Globe size={14} />
                         {tData.languageSelection}
                       </label>
-                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
                         {tData.langDesc}
                       </p>
                       <div className="mb-4">
@@ -883,17 +871,17 @@ export default function SettingsTab({
 
                     {/* Card Style */}
                     <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
                         <Layout size={14} />
                         {tData.cardStyle}
                       </label>
-                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
                         {tData.cardDesc}
                       </p>
                       <div className="mb-4">
                         <SettingsDropdown
                           value={cardBgMode}
-                          onChange={(val) => setCardBgMode(val as 'white' | 'dark-glass')}
+                          onChange={(val) => setCardBgMode(val as 'white' | 'dark' | 'dark-glass')}
                           options={cardStyleOptions}
                           isDarkGlass={isDarkGlass}
                         />
@@ -902,17 +890,17 @@ export default function SettingsTab({
 
                     {/* Export & Import (Restore) Section */}
                     <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
                         <Download size={14} />
                         {tData.dataBackup}
                       </label>
-                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
                         {tData.dataDesc}
                       </p>
                       <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                         <button
                           onClick={handleExportData}
-                          className="w-full sm:w-auto px-5 py-3 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 border border-neutral-200 dark:border-white/10 text-slate-800 dark:text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                          className="w-full sm:w-auto px-5 py-3 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-slate-800 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                         >
                           <Download size={14} />
                           {tData.exportBackup}
@@ -938,16 +926,16 @@ export default function SettingsTab({
 
                     {/* Reset to Default Section */}
                     <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-red-600 dark:text-red-400 mb-2 flex items-center gap-2">
+                      <label className="block text-xs font-black uppercase tracking-widest text-red-600 mb-2 flex items-center gap-2">
                         <RotateCcw size={14} />
                         {tData.resetTitle}
                       </label>
-                      <p className="text-xs text-slate-600 dark:text-white/60 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
                         {tData.resetDesc}
                       </p>
                       <button
                         onClick={() => setShowResetConfirm(true)}
-                        className="w-full sm:w-auto px-5 py-3 bg-red-100 hover:bg-red-200 dark:bg-red-500/10 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-500/20 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                        className="w-full sm:w-auto px-5 py-3 bg-red-100 hover:bg-red-200 text-red-600 border border-red-200/50 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                       >
                         <RotateCcw size={14} />
                         {tData.resetButton}
@@ -1047,29 +1035,29 @@ export default function SettingsTab({
                   transition={{ duration: 0.2 }}
                   className="space-y-6"
                 >
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+                  <div className="text-center flex flex-col items-center">
+                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1">
                       {tData.aboutTitle}
                     </h2>
-                    <p className="text-slate-500 dark:text-white/40 font-bold uppercase tracking-widest text-[10px]">
+                    <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">
                       {tData.aboutDesc}
                     </p>
                   </div>
 
-                  <div className="space-y-6 max-w-3xl divide-y divide-black/5 dark:divide-white/5">
+                  <div className="space-y-6 max-w-3xl divide-y divide-black/5">
                     <div className="py-4">
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                      <h3 className="text-lg font-bold text-slate-900 mb-3">
                         {tData.aboutWelcome}
                       </h3>
-                      <p className="text-slate-700 dark:text-white/70 text-sm leading-relaxed mb-4">
+                      <p className="text-slate-700 text-sm leading-relaxed mb-4">
                         {tData.aboutText1}
                       </p>
-                      <p className="text-slate-700 dark:text-white/70 text-sm leading-relaxed">
+                      <p className="text-slate-700 text-sm leading-relaxed">
                         {tData.aboutText2}
                       </p>
                     </div>
                     <div className="pt-6">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/40 mb-2">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
                         {tData.supportContact}
                       </p>
                       <a href="mailto:support@geektabs.com" className="text-indigo-500 hover:underline font-bold text-sm">

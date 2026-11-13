@@ -318,39 +318,39 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
   return (
     <div className="space-y-6 sm:space-y-8">
       {/* Header */}
-      <div>
-        <h2 className="text-xl sm:text-2xl font-black text-black dark:text-white tracking-tight mb-1 flex items-center gap-2.5">
+      <div className="text-center flex flex-col items-center">
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1 flex items-center justify-center gap-2.5">
           <CloudSun className="text-indigo-500 w-6 h-6" />
           <span>{d.title}</span>
         </h2>
-        <p className="text-black/50 dark:text-white/50 text-xs sm:text-sm font-medium">
+        <p className="text-slate-500 text-xs sm:text-sm font-medium">
           {d.subtitle}
         </p>
       </div>
 
-      <div className="space-y-6 divide-y divide-black/5 dark:divide-white/5">
+      <div className="space-y-6 divide-y divide-black/5">
         {/* Setting 0: Location & Region */}
         <div className="pt-2">
-          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
             <MapPin size={15} />
             <span>Weather Location</span>
           </label>
-          <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-4 leading-relaxed">
             Configure your global city, region, or postal code to accurately fetch live weather data for the home page.
           </p>
 
           <div className="max-w-xl space-y-3">
             {/* Current Active Location Card */}
-            <div className="p-4 rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] flex items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl border border-black/10 bg-white flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center shrink-0">
                   <MapPin size={18} />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[10px] uppercase font-bold text-black/40 dark:text-white/40 tracking-wider">
+                  <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
                     Current Location
                   </p>
-                  <p className="text-sm font-bold text-slate-900 dark:text-white truncate">
+                  <p className="text-sm font-bold text-slate-900 truncate">
                     {location}
                   </p>
                 </div>
@@ -361,7 +361,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   type="button"
                   onClick={handleDetectLocation}
                   disabled={isDetecting}
-                  className="px-3 py-1.5 rounded-xl border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/10 text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 transition-all cursor-pointer"
+                  className="px-3 py-1.5 rounded-xl border border-black/10 hover:bg-black/5 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all cursor-pointer"
                   title="Detect Current Location"
                 >
                   {isDetecting ? (
@@ -384,7 +384,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
             {/* Smart Search Dropdown in Settings */}
             {showSearchBox && (
-              <div ref={searchContainerRef} className="relative p-3.5 rounded-2xl border border-indigo-500/30 bg-indigo-500/5 dark:bg-indigo-500/10 space-y-2">
+              <div ref={searchContainerRef} className="relative p-3.5 rounded-2xl border border-indigo-500/30 bg-indigo-500/5 space-y-2">
                 <div className="relative flex items-center">
                   <Search size={15} className="absolute left-3 text-slate-400" />
                   <input
@@ -392,7 +392,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search city, postal code, or country (e.g. Miami, Paris, Tokyo, 90210)..."
-                    className="w-full bg-white dark:bg-slate-900 border border-black/10 dark:border-white/15 rounded-xl pl-9 pr-9 py-2 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-white border border-black/10 rounded-xl pl-9 pr-9 py-2 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     autoFocus
                   />
                   {searchQuery && (
@@ -402,7 +402,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                         setSearchQuery('');
                         setSearchResults([]);
                       }}
-                      className="absolute right-2.5 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                      className="absolute right-2.5 p-1 text-slate-400 hover:text-slate-600"
                     >
                       <X size={13} />
                     </button>
@@ -410,14 +410,14 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                 </div>
 
                 {isSearching && (
-                  <div className="flex items-center gap-2 text-xs text-black/50 dark:text-white/50 px-2 py-1">
+                  <div className="flex items-center gap-2 text-xs text-slate-500 px-2 py-1">
                     <Loader2 size={13} className="animate-spin text-indigo-500" />
                     <span>Searching global weather locations...</span>
                   </div>
                 )}
 
                 {searchResults.length > 0 && (
-                  <div className="bg-white dark:bg-slate-900 border border-black/10 dark:border-white/10 rounded-xl shadow-lg max-h-52 overflow-y-auto divide-y divide-black/5 dark:divide-white/5">
+                  <div className="bg-white border border-black/10 rounded-xl shadow-lg max-h-52 overflow-y-auto divide-y divide-black/5">
                     {searchResults.map((item) => (
                       <button
                         key={item.id}
@@ -427,10 +427,10 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                       >
                         <MapPin size={14} className="text-indigo-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                          <p className="text-xs font-bold text-slate-900 truncate">
                             {item.name}
                           </p>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+                          <p className="text-[11px] text-slate-500 truncate">
                             {[item.admin1, item.postcode, item.country].filter(Boolean).join(', ')}
                           </p>
                         </div>
@@ -446,11 +446,11 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
         {/* Setting 1: Temperature Unit (C vs F) */}
         <div className="pt-2">
-          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
             <Thermometer size={15} />
             {d.unitTitle}
           </label>
-          <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-4 leading-relaxed">
             {d.unitDesc}
           </p>
 
@@ -461,16 +461,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
               onClick={() => setTempUnit('C')}
               className={`p-4 rounded-2xl border text-left transition-all relative flex flex-col justify-between cursor-pointer select-none ${
                 tempUnit === 'C'
-                  ? 'border-indigo-500 bg-indigo-500/10 dark:bg-indigo-500/15 shadow-sm ring-1 ring-indigo-500/30'
-                  : 'border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 bg-black/[0.02] dark:bg-white/[0.02]'
+                  ? 'border-indigo-500 bg-indigo-500/10 shadow-sm ring-1 ring-indigo-500/30'
+                  : 'border-black/10 hover:border-black/20 bg-white'
               }`}
             >
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-black text-sm">
+                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 flex items-center justify-center font-black text-sm">
                     °C
                   </span>
-                  <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+                  <span className="font-extrabold text-sm text-slate-900">
                     {d.celsius}
                   </span>
                 </div>
@@ -480,7 +480,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-black/50 dark:text-white/50 font-medium">
+              <p className="text-[11px] text-slate-500 font-medium">
                 {d.celsiusDesc}
               </p>
             </button>
@@ -491,16 +491,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
               onClick={() => setTempUnit('F')}
               className={`p-4 rounded-2xl border text-left transition-all relative flex flex-col justify-between cursor-pointer select-none ${
                 tempUnit === 'F'
-                  ? 'border-indigo-500 bg-indigo-500/10 dark:bg-indigo-500/15 shadow-sm ring-1 ring-indigo-500/30'
-                  : 'border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 bg-black/[0.02] dark:bg-white/[0.02]'
+                  ? 'border-indigo-500 bg-indigo-500/10 shadow-sm ring-1 ring-indigo-500/30'
+                  : 'border-black/10 hover:border-black/20 bg-white'
               }`}
             >
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-black text-sm">
+                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 flex items-center justify-center font-black text-sm">
                     °F
                   </span>
-                  <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+                  <span className="font-extrabold text-sm text-slate-900">
                     {d.fahrenheit}
                   </span>
                 </div>
@@ -510,7 +510,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-black/50 dark:text-white/50 font-medium">
+              <p className="text-[11px] text-slate-500 font-medium">
                 {d.fahrenheitDesc}
               </p>
             </button>
@@ -519,11 +519,11 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
         {/* Setting 2: Forecast Interval Mode (by hour vs by day) */}
         <div className="pt-6">
-          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
             <Calendar size={15} />
             {d.forecastModeTitle}
           </label>
-          <p className="text-xs text-black/60 dark:text-white/60 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-4 leading-relaxed">
             {d.forecastModeDesc}
           </p>
 
@@ -534,16 +534,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
               onClick={() => setForecastMode('hr')}
               className={`p-4 rounded-2xl border text-left transition-all relative flex flex-col justify-between cursor-pointer select-none ${
                 forecastMode === 'hr'
-                  ? 'border-indigo-500 bg-indigo-500/10 dark:bg-indigo-500/15 shadow-sm ring-1 ring-indigo-500/30'
-                  : 'border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 bg-black/[0.02] dark:bg-white/[0.02]'
+                  ? 'border-indigo-500 bg-indigo-500/10 shadow-sm ring-1 ring-indigo-500/30'
+                  : 'border-black/10 hover:border-black/20 bg-white'
               }`}
             >
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 flex items-center justify-center">
                     <Clock size={16} />
                   </span>
-                  <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+                  <span className="font-extrabold text-sm text-slate-900">
                     {d.hourly}
                   </span>
                 </div>
@@ -553,7 +553,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-black/50 dark:text-white/50 font-medium">
+              <p className="text-[11px] text-slate-500 font-medium">
                 {d.hourlyDesc}
               </p>
             </button>
@@ -564,16 +564,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
               onClick={() => setForecastMode('day')}
               className={`p-4 rounded-2xl border text-left transition-all relative flex flex-col justify-between cursor-pointer select-none ${
                 forecastMode === 'day'
-                  ? 'border-indigo-500 bg-indigo-500/10 dark:bg-indigo-500/15 shadow-sm ring-1 ring-indigo-500/30'
-                  : 'border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 bg-black/[0.02] dark:bg-white/[0.02]'
+                  ? 'border-indigo-500 bg-indigo-500/10 shadow-sm ring-1 ring-indigo-500/30'
+                  : 'border-black/10 hover:border-black/20 bg-white'
               }`}
             >
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-600 flex items-center justify-center">
                     <Calendar size={16} />
                   </span>
-                  <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+                  <span className="font-extrabold text-sm text-slate-900">
                     {d.daily}
                   </span>
                 </div>
@@ -583,7 +583,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-black/50 dark:text-white/50 font-medium">
+              <p className="text-[11px] text-slate-500 font-medium">
                 {d.dailyDesc}
               </p>
             </button>
@@ -592,20 +592,20 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
         {/* Informational Status Card */}
         <div className="pt-6">
-          <div className="p-4 rounded-2xl bg-indigo-500/5 dark:bg-indigo-500/10 border border-indigo-500/15 flex items-start gap-3 max-w-xl">
+          <div className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/15 flex items-start gap-3 max-w-xl">
             <Sparkles size={16} className="text-indigo-500 shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white">
+              <h4 className="text-xs font-bold text-slate-900">
                 {d.previewTitle}
               </h4>
-              <p className="text-[11px] text-black/60 dark:text-white/60 mt-0.5">
+              <p className="text-[11px] text-slate-600 mt-0.5">
                 {d.previewDesc}
               </p>
               <div className="mt-2.5 flex items-center gap-2 text-[11px] font-mono">
-                <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 font-bold">
+                <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 font-bold">
                   Unit: °{tempUnit}
                 </span>
-                <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 font-bold">
+                <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 font-bold">
                   View: {forecastMode === 'hr' ? 'Hourly (12h)' : 'Daily (7d)'}
                 </span>
               </div>

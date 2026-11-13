@@ -21,7 +21,7 @@ interface WallpapersTabProps {
   setTheme: (theme: string) => void;
   isDarkMode: boolean;
   language?: string;
-  cardBgMode?: 'white' | 'dark-glass';
+  cardBgMode?: 'white' | 'dark' | 'dark-glass';
 }
 
 const WALLPAPER_T: Record<string, Record<string, string>> = {
@@ -492,8 +492,8 @@ export default function WallpapersTab({
       className="max-w-6xl mx-auto"
     >
       <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
-        <h2 className="text-2xl sm:text-4xl font-bold text-black dark:text-white tracking-tight mb-2 sm:mb-3">{tData.title}</h2>
-        <p className="text-black/50 dark:text-white/40 font-bold uppercase tracking-[0.25em] text-[10px]">{tData.subtitle}</p>
+        <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">{tData.title}</h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">{tData.subtitle}</p>
       </div>
 
       {/* Category Filter Pills */}
@@ -505,7 +505,7 @@ export default function WallpapersTab({
             className={`px-3 sm:px-4 h-[34px] sm:h-[38px] md:h-[40px] flex items-center justify-center rounded-full text-[10px] sm:text-[10.5px] md:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer select-none shrink-0 ${
               activeCategory === cat
                 ? 'bg-indigo-500 text-white wallpaper-card-badge shadow-lg shadow-indigo-500/20'
-                : 'GeekTabs-btn opacity-70 hover:opacity-100'
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-black/5'
             }`}
             title={catMap[cat] || cat}
           >
@@ -523,22 +523,12 @@ export default function WallpapersTab({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => fileInputRef.current?.click()}
-          className={`wallpaper-upload-card wallpaper-upload-file-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer ${
-            isDarkMode
-              ? 'border-indigo-400/60 bg-indigo-950/20 hover:border-indigo-400 hover:bg-indigo-900/30'
-              : 'border-indigo-400/70 bg-white/85 hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs'
-          }`}
+          className="wallpaper-upload-card wallpaper-upload-file-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs"
         >
-          <div className={`wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-90 duration-300 transition-all ${
-            isDarkMode 
-              ? 'bg-indigo-500/25 text-indigo-400 border border-indigo-500/30' 
-              : 'bg-indigo-50 text-indigo-600 border border-indigo-200/80 shadow-xs'
-          }`}>
+          <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-90 duration-300 transition-all bg-indigo-50 text-indigo-600 border border-indigo-200/80 shadow-xs">
             <Plus className="wallpaper-upload-icon" size={20} />
           </div>
-          <span className={`wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors ${
-            isDarkMode ? 'text-white group-hover:text-indigo-300' : 'text-slate-800 group-hover:text-indigo-600'
-          }`}>
+          <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600">
             {tData.uploadImage}
           </span>
           <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept="image/*" className="hidden" />
@@ -549,22 +539,12 @@ export default function WallpapersTab({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={openUrlModal}
-          className={`wallpaper-upload-card wallpaper-upload-url-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer ${
-            isDarkMode
-              ? 'border-purple-400/60 bg-purple-950/20 hover:border-purple-400 hover:bg-purple-900/30'
-              : 'border-purple-400/70 bg-white/85 hover:border-purple-600 hover:bg-purple-50/80 shadow-xs'
-          }`}
+          className="wallpaper-upload-card wallpaper-upload-url-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-purple-400/70 bg-white hover:border-purple-600 hover:bg-purple-50/80 shadow-xs"
         >
-          <div className={`wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 duration-300 transition-all ${
-            isDarkMode 
-              ? 'bg-purple-500/25 text-purple-400 border border-purple-500/30' 
-              : 'bg-purple-50 text-purple-600 border border-purple-200/80 shadow-xs'
-          }`}>
+          <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 duration-300 transition-all bg-purple-50 text-purple-600 border border-purple-200/80 shadow-xs">
             <Link className="wallpaper-upload-icon" size={18} />
           </div>
-          <span className={`wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors ${
-            isDarkMode ? 'text-white group-hover:text-purple-300' : 'text-slate-800 group-hover:text-purple-600'
-          }`}>
+          <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-purple-600">
             {tData.addUrl}
           </span>
         </motion.button>

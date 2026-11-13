@@ -10,7 +10,7 @@ interface TextTabProps {
   currentTheme: string;
   isDarkMode: boolean;
   language?: string;
-  cardBgMode?: 'white' | 'dark-glass';
+  cardBgMode?: 'white' | 'dark' | 'dark-glass';
 }
 
 const TEXT_T: Record<string, Record<string, string>> = {
@@ -278,9 +278,6 @@ export default function TextTab({
   language = 'English',
   cardBgMode = 'white'
 }: TextTabProps) {
-  const isDarkGlass = cardBgMode === 'dark-glass';
-  const isDefaultTheme = currentTheme === 'light-grey' || currentTheme === 'light-slate' || currentTheme === 'white-clean' || currentTheme === 'pastel-waves' || currentTheme === 'mix-neonpurple';
-  const isDefaultGlass = isDarkGlass && isDefaultTheme && !isDarkMode;
   const tData = TEXT_T[language] || TEXT_T['English'];
   const [customHex, setCustomHex] = useState(
     textColor && textColor !== 'default' && textColor.startsWith('#') ? textColor : '#38bdf8'
@@ -396,7 +393,7 @@ export default function TextTab({
     return (
       <div className="space-y-3 sm:space-y-4">
         <div>
-          <h4 className="text-xs font-black uppercase tracking-widest text-violet-400">{title}</h4>
+          <h4 className="text-xs font-black uppercase tracking-widest text-violet-600">{title}</h4>
         </div>
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-10 gap-2.5 sm:gap-3.5 md:gap-4 justify-items-center">
           {presets.map((p) => {
@@ -413,12 +410,8 @@ export default function TextTab({
                 <div
                   className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
                     isSelected
-                      ? (isDarkGlass
-                          ? 'border-white scale-110 shadow-lg ring-2 ring-violet-400'
-                          : 'border-black scale-110 shadow-lg shadow-black/15 ring-2 ring-violet-500')
-                      : (isDarkGlass
-                          ? 'border-white/20 opacity-85 hover:opacity-100 hover:scale-105 hover:border-white/50 shadow-sm'
-                          : 'border-black/10 opacity-85 hover:opacity-100 hover:scale-105 shadow-inner')
+                      ? 'border-black scale-110 shadow-lg shadow-black/15 ring-2 ring-violet-500'
+                      : 'border-black/15 opacity-85 hover:opacity-100 hover:scale-105 shadow-inner'
                   }`}
                   style={
                     isDefault
@@ -439,10 +432,10 @@ export default function TextTab({
                     <span
                       className={`text-[11px] font-black ${
                         isDefault
-                          ? 'text-white mix-blend-difference'
+                          ? 'text-white'
                           : p.color === '#ffffff' || p.color === '#f8fafc' || p.color === '#fffbeb' || p.color === '#e0f2fe' || p.color === '#dcfce7' || p.color === '#ffe4e6' || p.color === '#f3e8ff' || p.color === '#fef9c3' || p.color === '#ffedd5' || p.color === '#cffafe' || p.color === '#facc15' || p.color === '#4ade80' || p.color === '#67e8f9'
-                            ? (isDarkGlass ? 'text-black/70' : 'text-black/60')
-                            : 'text-white/80'
+                            ? 'text-black/60'
+                            : 'text-white/85'
                       }`}
                     >
                       A
@@ -464,64 +457,33 @@ export default function TextTab({
       className="max-w-4xl mx-auto"
     >
       <div className="mb-6 sm:mb-10 text-center">
-        <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tighter mb-2 italic">{tData.title}</h2>
-        <p className="text-black/40 dark:text-white/40 font-bold uppercase tracking-[0.4em] text-[10px]">{tData.subtitle}</p>
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-2 italic">{tData.title}</h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">{tData.subtitle}</p>
       </div>
 
-      {/* Main Container Card - Transparent Glass style or Classic White */}
+      {/* Main Container Card - Always clean white inside Settings right pane */}
       <div
-        className={`text-tab-card rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 md:p-8 flex flex-col gap-6 sm:gap-8 transition-all duration-300 border w-full max-w-full overflow-hidden ${
-          isDefaultGlass ? 'text-[#6143f7]' : isDarkGlass ? 'text-white' : 'text-black'
-        }`}
-        style={
-          isDefaultGlass
-            ? {
-                background: 'rgba(255, 255, 255, 0.48)',
-                borderColor: 'rgba(147, 197, 253, 0.85)',
-                backdropFilter: 'blur(28px) saturate(190%)',
-                WebkitBackdropFilter: 'blur(28px) saturate(190%)',
-                boxShadow:
-                  '0 0 0 1px rgba(186, 230, 253, 0.55), inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95), inset 0 0 16px 0 rgba(191, 219, 254, 0.25), 0 16px 40px -8px rgba(59, 130, 246, 0.12), 0 2px 8px -2px rgba(59, 130, 246, 0.05)',
-                color: '#6143f7'
-              }
-            : isDarkGlass
-            ? {
-                background: 'rgba(18, 22, 34, 0.32)',
-                borderColor: 'rgba(255, 255, 255, 0.22)',
-                backdropFilter: 'blur(24px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18)',
-                color: '#ffffff'
-              }
-            : {
-                background: '#ffffff',
-                borderColor: 'rgba(0, 0, 0, 0.08)',
-                boxShadow: '0 4px 6px rgba(60,64,67,0.1), 0 16px 40px rgba(60,64,67,0.06)'
-              }
-        }
+        className="text-tab-card rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 md:p-8 flex flex-col gap-6 sm:gap-8 transition-all duration-300 border w-full max-w-full overflow-hidden text-black"
+        style={{
+          background: '#ffffff',
+          borderColor: 'rgba(0, 0, 0, 0.08)',
+          boxShadow: '0 4px 6px rgba(60,64,67,0.1), 0 16px 40px rgba(60,64,67,0.06)'
+        }}
       >
         {/* Header Bar */}
-        <div className={`flex items-center justify-between border-b pb-4 flex-wrap gap-4 ${isDefaultGlass ? 'border-indigo-200/40' : isDarkGlass ? 'border-white/10' : 'border-black/5'}`}>
+        <div className="flex items-center justify-between border-b border-black/10 pb-4 flex-wrap gap-4">
           <div className="flex items-center gap-3">
-            <div className={`w-8 h-8 rounded-xl flex items-center justify-center border ${
-              isDefaultGlass ? 'bg-indigo-500/10 border-indigo-200' : isDarkGlass ? 'bg-white/10 border-white/20' : 'bg-black/5 border-black/10'
-            }`}>
-              <Type className={isDefaultGlass ? "text-[#6143f7]" : "text-violet-400"} size={16} />
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center border bg-black/5 border-black/10">
+              <Type className="text-violet-600" size={16} />
             </div>
             <div>
-              <h3 className={`text-sm font-black uppercase tracking-wider ${isDefaultGlass ? 'text-[#6143f7]' : isDarkGlass ? 'text-white' : 'text-black'}`}>{tData.panelHeader}</h3>
-              <p className={`text-[10px] font-bold uppercase tracking-wider ${isDefaultGlass ? 'text-neutral-500' : isDarkGlass ? 'text-white/60' : 'text-black/40'}`}>{tData.panelSub}</p>
+              <h3 className="text-sm font-black uppercase tracking-wider text-slate-900">{tData.panelHeader}</h3>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{tData.panelSub}</p>
             </div>
           </div>
           <button
             onClick={() => setTextColor('default')}
-            className={`text-tab-reset-btn flex items-center gap-2 px-4 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
-              isDefaultGlass
-                ? 'bg-white/50 hover:bg-white/80 text-[#6143f7] border-indigo-200/60'
-                : isDarkGlass
-                ? 'bg-white/10 hover:bg-white/20 text-white border-white/20'
-                : 'bg-neutral-100 hover:bg-neutral-200 text-black border-black/5'
-            }`}
+            className="text-tab-reset-btn flex items-center gap-2 px-4 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] bg-neutral-100 hover:bg-neutral-200 text-black border-black/5"
           >
             <RotateCcw size={14} />
             {tData.resetButton}
@@ -529,35 +491,27 @@ export default function TextTab({
         </div>
 
         {/* Live Vision Preview Box: Shows how selected text color looks on current background */}
-        <div className={`text-tab-preview-box rounded-2xl border p-5 relative overflow-hidden shadow-inner transition-colors ${
-          isDefaultGlass
-            ? 'bg-white/35 border-indigo-200/50 backdrop-blur-md'
-            : isDarkGlass
-            ? 'bg-black/25 border-white/15 backdrop-blur-md'
-            : 'bg-slate-50 border-black/10'
-        }`}>
+        <div className="text-tab-preview-box rounded-2xl border p-5 relative overflow-hidden shadow-inner transition-colors bg-slate-50 border-black/10">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Eye size={14} className={isDarkGlass ? 'text-violet-400' : 'text-violet-600'} />
-              <span className={`text-xs font-black uppercase tracking-wider ${isDarkGlass ? 'text-white' : 'text-slate-800'}`}>
+              <Eye size={14} className="text-violet-600" />
+              <span className="text-xs font-black uppercase tracking-wider text-slate-800">
                 {tData.previewTitle.startsWith('#') ? tData.previewTitle : `# ${tData.previewTitle}`}
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`text-[10px] uppercase font-bold tracking-wider ${isDarkGlass ? 'text-white/70' : 'text-slate-500'}`}>
+              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
                 {textColor === 'default' ? 'Default (Auto)' : (textColor.startsWith('#') ? textColor.toUpperCase() : `#${textColor.toUpperCase()}`)}
               </span>
               <div
-                className={`w-4 h-4 rounded-full border shadow-xs ${isDarkGlass ? 'border-white/40' : 'border-black/20'}`}
+                className="w-4 h-4 rounded-full border border-black/20 shadow-xs"
                 style={{ backgroundColor: effectiveTextColor }}
               />
             </div>
           </div>
 
           <div
-            className={`w-full rounded-xl p-6 min-h-[140px] flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 border shadow-sm ${
-              isDarkGlass ? 'border-white/20' : 'border-black/10'
-            }`}
+            className="w-full rounded-xl p-6 min-h-[140px] flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 border border-black/10 shadow-sm"
             style={getPreviewBgStyle()}
           >
             {/* Dark overlay for photo wallpapers to mirror actual app behavior */}
@@ -604,25 +558,19 @@ export default function TextTab({
         </div>
 
         {/* Custom Hex Color Picker */}
-        <div className={`pt-6 border-t flex flex-col gap-3.5 w-full ${isDarkGlass ? 'border-white/10' : 'border-black/5'}`}>
+        <div className="pt-6 border-t border-black/10 flex flex-col gap-3.5 w-full">
           <div className="flex items-start gap-3">
-            <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border shrink-0 mt-0.5 ${
-              isDarkGlass ? 'bg-violet-500/20 border-violet-400/30' : 'bg-violet-500/10 border-violet-500/20'
-            }`}>
-              <Sparkles className="text-violet-400" size={16} />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border shrink-0 mt-0.5 bg-violet-500/10 border-violet-500/20">
+              <Sparkles className="text-violet-600" size={16} />
             </div>
             <div className="min-w-0">
-              <h4 className={`text-xs sm:text-sm font-black uppercase tracking-wider ${isDarkGlass ? 'text-white' : 'text-black'}`}>{tData.customColorTitle}</h4>
-              <p className={`text-[10px] font-bold uppercase tracking-wider leading-relaxed ${isDarkGlass ? 'text-white/60' : 'text-black/40'}`}>{tData.panelSub}</p>
+              <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-900">{tData.customColorTitle}</h4>
+              <p className="text-[10px] font-bold uppercase tracking-wider leading-relaxed text-slate-500">{tData.panelSub}</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5 sm:gap-3 w-full max-w-sm pt-0.5">
-            <div className={`text-tab-input-box flex items-center gap-2 border px-3 py-2 rounded-xl shadow-inner flex-1 min-w-0 transition-colors ${
-              isDarkGlass
-                ? 'bg-black/25 hover:bg-black/35 border-white/20'
-                : 'bg-neutral-100 hover:bg-neutral-200/70 border-black/10'
-            }`}>
+            <div className="text-tab-input-box flex items-center gap-2 border px-3 py-2 rounded-xl shadow-inner flex-1 min-w-0 transition-colors bg-neutral-100 hover:bg-neutral-200/70 border-black/10">
               <input
                 type="color"
                 value={customHex.startsWith('#') ? customHex : '#38bdf8'}
@@ -638,9 +586,7 @@ export default function TextTab({
                 value={customHex}
                 onChange={(e) => setCustomHex(e.target.value)}
                 placeholder="#38bdf8"
-                className={`w-full text-xs sm:text-sm font-mono font-bold bg-transparent outline-none uppercase tracking-wider ${
-                  isDarkGlass ? 'text-white placeholder-white/40' : 'text-slate-800'
-                }`}
+                className="w-full text-xs sm:text-sm font-mono font-bold bg-transparent outline-none uppercase tracking-wider text-slate-800"
               />
             </div>
             <button

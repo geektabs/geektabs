@@ -521,7 +521,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
     <div className="w-full max-w-5xl mx-auto speedtest-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
       
       {/* Broadband Speed Diagnostics Webcard Header */}
-      <div className="w-full GeekTabs-card webcard-light-grey-bg rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="w-full GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <Gauge size={18} className="text-purple-500 animate-pulse" />
@@ -547,7 +547,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
         {/* BIG INTERACTIVE CIRCULAR GAUGE AND STATUS AREA */}
-        <div className="lg:col-span-8 flex flex-col justify-center items-center GeekTabs-card webcard-light-grey-bg rounded-[2.5rem] p-8 min-h-[480px] relative overflow-hidden">
+        <div className="lg:col-span-8 flex flex-col justify-center items-center GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-[2.5rem] p-8 min-h-[480px] relative overflow-hidden">
           <div className="absolute inset-0 bg-radial-gradient from-purple-500/5 via-transparent to-transparent opacity-60 pointer-events-none" />
           
           {/* Circular speeddial wrapper */}
@@ -633,7 +633,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
         <div className="lg:col-span-4 flex flex-col gap-6">
           
           {/* Main Download Metric Panel */}
-          <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
+          <div className="p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
             <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 blur-[30px]" />
             <div className="flex justify-between items-center mb-4">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple-500 flex items-center gap-1.5">
@@ -651,7 +651,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
           </div>
 
           {/* Upload Metric Panel */}
-          <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
+          <div className="p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
             <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 blur-[30px]" />
             <div className="flex justify-between items-center mb-4">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-500 flex items-center gap-1.5">
@@ -669,7 +669,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
           </div>
 
           {/* Jitter & Latency side parameters stats */}
-          <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl">
+          <div className="p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl">
             <h3 className="text-[10px] font-extrabold uppercase tracking-widest opacity-40 word-color mb-4">{d.pingParams}</h3>
             <div className="grid grid-cols-2 gap-4">
               

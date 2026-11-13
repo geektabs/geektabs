@@ -15,11 +15,11 @@ const MenuBar = ({ editor }: { editor: any }) => {
   }
 
   return (
-    <div className="flex gap-2 mb-4 pb-2 border-b border-black/10 dark:border-white/10 sticky top-0 z-10 backdrop-blur-md w-full">
+    <div className="flex gap-2 mb-4 pb-2 border-b border-black/10 sticky top-0 z-10 bg-white w-full">
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
-        className={`p-1.5 rounded-lg transition-colors ${editor.isActive('bold') ? 'bg-black/10 dark:bg-white/10 word-color' : 'word-color hover:bg-black/5 dark:hover:bg-white/5 opacity-50 hover:opacity-100'}`}
+        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('bold') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Bold"
       >
         <Bold size={18} />
@@ -27,7 +27,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
-        className={`p-1.5 rounded-lg transition-colors ${editor.isActive('italic') ? 'bg-black/10 dark:bg-white/10 word-color' : 'word-color hover:bg-black/5 dark:hover:bg-white/5 opacity-50 hover:opacity-100'}`}
+        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('italic') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Italic"
       >
         <Italic size={18} />
@@ -35,16 +35,16 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <button
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         disabled={!editor.can().chain().focus().toggleUnderline().run()}
-        className={`p-1.5 rounded-lg transition-colors ${editor.isActive('underline') ? 'bg-black/10 dark:bg-white/10 word-color' : 'word-color hover:bg-black/5 dark:hover:bg-white/5 opacity-50 hover:opacity-100'}`}
+        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('underline') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Underline"
       >
         <UnderlineIcon size={18} />
       </button>
-      <div className="w-[1px] h-6 bg-black/10 dark:bg-white/10 my-auto mx-2" />
+      <div className="w-[1px] h-6 bg-black/10 my-auto mx-2" />
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         disabled={!editor.can().chain().focus().toggleBulletList().run()}
-        className={`p-1.5 rounded-lg transition-colors ${editor.isActive('bulletList') ? 'bg-black/10 dark:bg-white/10 word-color' : 'word-color hover:bg-black/5 dark:hover:bg-white/5 opacity-50 hover:opacity-100'}`}
+        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('bulletList') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Bullet List"
       >
         <List size={18} />
@@ -64,8 +64,8 @@ export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
     content,
     editorProps: {
       attributes: {
-        class: 'prose-mirror focus:outline-none min-h-[200px] text-lg leading-relaxed font-sans',
-        style: 'font-family: Arial, Helvetica, sans-serif;',
+        class: 'prose-mirror focus:outline-none min-h-[200px] text-lg leading-relaxed font-sans text-slate-900',
+        style: 'font-family: Arial, Helvetica, sans-serif; color: #0f172a;',
       },
     },
     onUpdate: ({ editor }) => {

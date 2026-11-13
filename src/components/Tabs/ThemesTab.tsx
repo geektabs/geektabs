@@ -7,7 +7,7 @@ interface ThemesTabProps {
   setTheme: (theme: string) => void;
   isDarkMode: boolean;
   language?: string;
-  cardBgMode?: 'white' | 'dark-glass';
+  cardBgMode?: 'white' | 'dark' | 'dark-glass';
 }
 
 const THEME_T: Record<string, Record<string, string>> = {
@@ -22,7 +22,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'light',
     groupRegular: 'regular',
     groupDark: 'dark',
-    groupGradient: 'gradient'
+    groupGradient: 'Mix'
   },
   Chinese: {
     title: '主题引擎',
@@ -35,7 +35,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: '浅色',
     groupRegular: '常规',
     groupDark: '深色',
-    groupGradient: '渐变'
+    groupGradient: 'Mix'
   },
   Spanish: {
     title: 'MOTOR DE TEMAS',
@@ -48,7 +48,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'claro',
     groupRegular: 'regular',
     groupDark: 'oscuro',
-    groupGradient: 'gradiente'
+    groupGradient: 'Mix'
   },
   French: {
     title: 'MOTEUR DE THÈMES',
@@ -61,7 +61,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'clair',
     groupRegular: 'régulier',
     groupDark: 'sombre',
-    groupGradient: 'dégradé'
+    groupGradient: 'Mix'
   },
   German: {
     title: 'THEME-ENGINE',
@@ -74,7 +74,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'Hell',
     groupRegular: 'Normal',
     groupDark: 'Dunkel',
-    groupGradient: 'Verlauf'
+    groupGradient: 'Mix'
   },
   Japanese: {
     title: 'テーマエンジン',
@@ -87,7 +87,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'ライト',
     groupRegular: 'レギュラー',
     groupDark: 'ダーク',
-    groupGradient: 'グラデーション'
+    groupGradient: 'Mix'
   },
   Korean: {
     title: '테마 엔진',
@@ -100,7 +100,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: '밝은색',
     groupRegular: '일반색',
     groupDark: '어두운색',
-    groupGradient: '그라데이션'
+    groupGradient: 'Mix'
   },
   Italian: {
     title: 'MOTORE DI TEMI',
@@ -113,7 +113,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'chiaro',
     groupRegular: 'regolare',
     groupDark: 'scuro',
-    groupGradient: 'sfumato'
+    groupGradient: 'Mix'
   },
   Russian: {
     title: 'ДВИЖОК ТЕМ',
@@ -126,7 +126,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'светлый',
     groupRegular: 'обычный',
     groupDark: 'темный',
-    groupGradient: 'градиент'
+    groupGradient: 'Mix'
   },
   Luxembourgish: {
     title: 'THEME-ENGINE',
@@ -139,7 +139,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupLight: 'Hell',
     groupRegular: 'Normal',
     groupDark: 'Däischter',
-    groupGradient: 'Verlaf'
+    groupGradient: 'Mix'
   }
 };
 
@@ -216,16 +216,13 @@ export default function ThemesTab({
   language = 'English',
   cardBgMode = 'white'
 }: ThemesTabProps) {
-  const isDarkGlass = cardBgMode === 'dark-glass';
-  const isDefaultTheme = currentTheme === 'light-grey' || currentTheme === 'light-slate' || currentTheme === 'white-clean';
-  const isDefaultGlass = isDarkGlass && isDefaultTheme && !isDarkMode;
   const tData = THEME_T[language] || THEME_T['English'];
 
   const renderGroup = (title: string, presets: Preset[]) => {
     return (
       <div className="space-y-3 sm:space-y-4">
         <div>
-          <h4 className={`text-xs font-black uppercase tracking-widest ${isDarkGlass ? 'text-violet-400' : 'text-violet-500'}`}>{title}</h4>
+          <h4 className="text-xs font-black uppercase tracking-widest text-violet-600">{title}</h4>
         </div>
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-10 gap-2.5 sm:gap-3.5 md:gap-4 justify-items-center">
           {presets.map((p) => {
@@ -243,12 +240,8 @@ export default function ThemesTab({
                 <div
                   className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
                     isSelected
-                      ? (isDarkGlass
-                          ? 'border-white scale-110 shadow-lg ring-2 ring-violet-400'
-                          : 'border-black scale-110 shadow-lg shadow-black/10 ring-2 ring-black/10')
-                      : (isDarkGlass
-                          ? 'border-white/25 opacity-85 hover:opacity-100 hover:scale-105 hover:border-white/50 shadow-sm'
-                          : 'border-black/10 opacity-85 hover:opacity-100 hover:scale-105 shadow-inner')
+                      ? 'border-black scale-110 shadow-lg shadow-black/10 ring-2 ring-indigo-500/40'
+                      : 'border-black/15 opacity-85 hover:opacity-100 hover:scale-105 shadow-inner'
                   }`}
                   style={{ background: p.color }}
                 >
@@ -274,52 +267,27 @@ export default function ThemesTab({
       className="max-w-4xl mx-auto"
     >
       <div className="mb-6 sm:mb-10 text-center">
-        <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tighter mb-2 italic">{tData.title}</h2>
-        <p className="text-black/40 dark:text-white/40 font-bold uppercase tracking-[0.4em] text-[10px]">{tData.subtitle}</p>
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-2 italic">{tData.title}</h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">{tData.subtitle}</p>
       </div>
 
-      {/* Themes / Color Webcard - Transparent Glass style or Classic White */}
+      {/* Themes / Color Webcard - Always clean white card inside white Settings pane */}
       <div
-        className={`themes-tab-card rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-8 md:p-10 flex flex-col gap-6 sm:gap-8 transition-all duration-300 border w-full max-w-full overflow-hidden ${
-          isDefaultGlass ? 'text-[#6143f7]' : isDarkGlass ? 'text-white' : 'text-black'
-        }`}
-        style={
-          isDefaultGlass
-            ? {
-                background: 'rgba(255, 255, 255, 0.48)',
-                borderColor: 'rgba(147, 197, 253, 0.85)',
-                backdropFilter: 'blur(28px) saturate(190%)',
-                WebkitBackdropFilter: 'blur(28px) saturate(190%)',
-                boxShadow:
-                  '0 0 0 1px rgba(186, 230, 253, 0.55), inset 0 1.5px 1.5px 0 rgba(224, 242, 254, 0.95), inset 0 0 16px 0 rgba(191, 219, 254, 0.25), 0 16px 40px -8px rgba(59, 130, 246, 0.12), 0 2px 8px -2px rgba(59, 130, 246, 0.05)',
-                color: '#6143f7'
-              }
-            : isDarkGlass
-            ? {
-                background: 'rgba(18, 22, 34, 0.32)',
-                borderColor: 'rgba(255, 255, 255, 0.22)',
-                backdropFilter: 'blur(24px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18)',
-                color: '#ffffff'
-              }
-            : {
-                background: '#ffffff',
-                borderColor: 'rgba(0, 0, 0, 0.08)',
-                boxShadow: '0 4px 6px rgba(60,64,67,0.1), 0 16px 40px rgba(60,64,67,0.06)'
-              }
-        }
+        className="themes-tab-card rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-8 md:p-10 flex flex-col gap-6 sm:gap-8 transition-all duration-300 border w-full max-w-full overflow-hidden text-black"
+        style={{
+          background: '#ffffff',
+          borderColor: 'rgba(0, 0, 0, 0.08)',
+          boxShadow: '0 4px 20px -2px rgba(60, 64, 67, 0.08), 0 2px 6px -1px rgba(60, 64, 67, 0.04)'
+        }}
       >
-        <div className={`flex items-center justify-between border-b pb-4 flex-wrap gap-4 ${isDefaultGlass ? 'border-indigo-200/40' : isDarkGlass ? 'border-white/10' : 'border-black/5'}`}>
+        <div className="flex items-center justify-between border-b border-black/10 pb-4 flex-wrap gap-4">
           <div className="flex items-center gap-3">
-            <div className={`w-8 h-8 rounded-xl flex items-center justify-center border ${
-              isDefaultGlass ? 'bg-indigo-500/10 border-indigo-200' : isDarkGlass ? 'bg-white/10 border-white/20' : 'bg-black/5 border-black/10'
-            }`}>
-              <Palette className={isDefaultGlass ? "text-[#6143f7]" : isDarkGlass ? "text-violet-400" : "text-violet-500 opacity-80"} size={16} />
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center border bg-black/5 border-black/10">
+              <Palette className="text-violet-600" size={16} />
             </div>
             <div>
-              <h3 className={`text-sm font-black uppercase tracking-wider ${isDefaultGlass ? 'text-[#6143f7]' : isDarkGlass ? 'text-white' : 'text-black'}`}>{tData.panelHeader}</h3>
-              <p className={`text-[10px] font-bold uppercase tracking-wider ${isDefaultGlass ? 'text-neutral-500' : isDarkGlass ? 'text-white/60' : 'text-black/40'}`}>{tData.panelSub}</p>
+              <h3 className="text-sm font-black uppercase tracking-wider text-slate-900">{tData.panelHeader}</h3>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{tData.panelSub}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -327,16 +295,8 @@ export default function ThemesTab({
               onClick={() => setTheme('light-grey')}
               className={`themes-tab-action-btn flex items-center gap-1.5 px-3.5 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
                 currentTheme === 'light-grey' || currentTheme === 'light-slate'
-                  ? (isDefaultGlass
-                      ? 'bg-indigo-500/20 text-[#6143f7] border-indigo-400/60 ring-2 ring-indigo-400/30'
-                      : isDarkGlass
-                      ? 'bg-white/25 text-white border-white/40 ring-2 ring-white/30'
-                      : 'bg-neutral-200 text-black border-neutral-300 ring-2 ring-neutral-400/30')
-                  : (isDefaultGlass
-                      ? 'bg-white/50 hover:bg-white/80 text-[#6143f7] border-indigo-200/60'
-                      : isDarkGlass
-                      ? 'bg-white/10 hover:bg-white/20 text-white border-white/20'
-                      : 'bg-neutral-100 hover:bg-neutral-200 text-black border-black/5')
+                  ? 'bg-neutral-200 text-black border-neutral-300 ring-2 ring-neutral-400/30'
+                  : 'bg-neutral-100 hover:bg-neutral-200 text-black border-black/5'
               }`}
               title="Restore default light grey background"
             >
@@ -347,16 +307,8 @@ export default function ThemesTab({
               onClick={() => setTheme('pastel-waves')}
               className={`themes-tab-action-btn flex items-center gap-1.5 px-3.5 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
                 currentTheme === 'pastel-waves'
-                  ? (isDefaultGlass
-                      ? 'bg-indigo-500/25 text-[#6143f7] border-indigo-400/60 ring-2 ring-indigo-400/30'
-                      : isDarkGlass
-                      ? 'bg-indigo-500/30 text-indigo-200 border-indigo-400/50 ring-2 ring-indigo-400/30'
-                      : 'bg-indigo-100 text-indigo-900 border-indigo-300 ring-2 ring-indigo-400/30')
-                  : (isDefaultGlass
-                      ? 'bg-white/50 hover:bg-white/80 text-[#6143f7] border-indigo-200/60'
-                      : isDarkGlass
-                      ? 'bg-white/10 hover:bg-white/20 text-white border-white/20'
-                      : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200/60')
+                  ? 'bg-indigo-100 text-indigo-900 border-indigo-300 ring-2 ring-indigo-400/30'
+                  : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200/60'
               }`}
               title="Apply new pastel waves design"
             >

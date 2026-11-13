@@ -38,7 +38,7 @@ export default function App() {
   const [customWallpapers, setCustomWallpapers] = useLocalStorage<any[]>("GeekTabs-custom-wallpapers", DEFAULT_WALLPAPERS);
   const [pageName, setPageName] = useLocalStorage('GeekTabs-page-name', '');
   const [language, setLanguage] = useLocalStorage('GeekTabs-language', 'English');
-  const [cardBgMode, setCardBgMode] = useLocalStorage<'white' | 'dark-glass'>('GeekTabs-card-bg-mode', 'white');
+  const [cardBgMode, setCardBgMode] = useLocalStorage<'white' | 'dark' | 'dark-glass'>('GeekTabs-card-bg-mode', 'white');
   const [textColor, setTextColor] = useLocalStorage('GeekTabs-text-color', 'default');
 
   // Initialize Default Light Grey background and restore points
@@ -172,8 +172,30 @@ export default function App() {
     }
   }, [theme]);
 
-  const isPhoto = theme.startsWith('data:image') || theme.startsWith('http');
+  const isPhoto =
+    theme.startsWith('data:image') ||
+    theme.startsWith('http') ||
+    theme.startsWith('blob:') ||
+    theme.startsWith('/');
   const hasCustomTextColor = textColor && textColor !== 'default';
+
+  // For Glass card text color:
+  // Dark presets & photo/dark wallpapers -> white text ('dark');
+  // Light, Regular, Mix, and Default backgrounds -> black text ('light').
+  const isGlassBgDark = React.useMemo(() => {
+    if (isPhoto) return true;
+    if (theme.startsWith('dark-')) return true;
+    if (['immersive', 'deep-space', 'forest', 'northern-lights', 'purple-vibe'].includes(theme)) return true;
+    if (theme.startsWith('#') && theme.length >= 7) {
+      const cleanHex = theme.replace('#', '');
+      const r = parseInt(cleanHex.substring(0, 2), 16);
+      const g = parseInt(cleanHex.substring(2, 4), 16);
+      const b = parseInt(cleanHex.substring(4, 6), 16);
+      const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+      return yiq < 128;
+    }
+    return false;
+  }, [theme, isPhoto]);
 
   const isTextColorLight = React.useMemo(() => {
     if (!textColor || textColor === 'default') return isDarkMode;
@@ -193,15 +215,23 @@ export default function App() {
 
   const isFullPageTab = activeTab === 'todo' || activeTab === 'notes' || activeTab === 'settings';
 
+  const cardStyleClass =
+    cardBgMode === 'dark-glass'
+      ? 'card-style-dark-glass'
+      : cardBgMode === 'dark'
+      ? 'card-style-dark'
+      : 'card-style-white';
+
   return (
     <div 
-      className={`relative min-h-screen font-sans transition-colors duration-500 ${isDarkMode ? 'dark text-white' : 'light'} ${isPhoto ? 'photo-mode' : ''} ${cardBgMode === 'dark-glass' ? 'card-style-dark-glass' : 'card-style-white'} ${theme === 'light-grey' || theme === 'light-slate' ? 'bg-[#f8fafc]' : theme === 'white-clean' ? 'bg-white' : (theme === 'pastel-waves' || theme === 'mix-neonpurple') ? 'bg-[#d8f0fa]' : ''}`}
+      className={`relative min-h-screen font-sans transition-colors duration-500 ${isDarkMode ? 'dark text-white' : 'light'} ${isPhoto ? 'photo-mode' : ''} ${cardStyleClass} ${theme === 'light-grey' || theme === 'light-slate' ? 'bg-[#f8fafc]' : theme === 'white-clean' ? 'bg-white' : (theme === 'pastel-waves' || theme === 'mix-neonpurple') ? 'bg-[#d8f0fa]' : ''}`}
       style={hasCustomTextColor ? ({ '--custom-page-text-color': textColor } as React.CSSProperties) : undefined}
       data-has-custom-text={hasCustomTextColor ? 'true' : 'false'}
       data-custom-text-light={isTextColorLight ? 'true' : 'false'}
       data-bg-light={!isDarkMode || isDefaultLightBg ? 'true' : 'false'}
       data-dark-mode={isDarkMode ? 'true' : 'false'}
       data-card-bg-mode={cardBgMode}
+      data-glass-bg={isGlassBgDark ? 'dark' : 'light'}
       data-default-white-bg={theme === 'white-clean' ? 'true' : 'false'}
       data-default-light-grey-bg={theme === 'light-grey' || theme === 'light-slate' ? 'true' : 'false'}
       data-active-tab={activeTab}

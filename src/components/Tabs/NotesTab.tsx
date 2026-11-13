@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Trash2, Search, X, Layers, FileText, ChevronRight, Menu } from 'lucide-react';
+import { Plus, Trash2, Search, X, FileText, PanelLeft, PanelLeftClose } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import TipTapEditor from './TipTapEditor';
 
@@ -241,6 +241,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   const [newSectionName, setNewSectionName] = useState('');
   const [isCreatingSection, setIsCreatingSection] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Ensure activeSectionId fallback exists
@@ -343,45 +344,35 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
 
       {/* LEFT SIDEBAR (Gemini Chat Style) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-80 md:w-80 md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0 h-full flex flex-col border-r border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
-          mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
+        className={`fixed inset-y-0 left-0 z-50 md:relative transition-all duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+          mobileSidebarOpen 
+            ? 'w-80 translate-x-0 shadow-2xl border-r' 
+            : sidebarOpen 
+              ? 'w-80 -translate-x-full md:translate-x-0 md:w-80 border-r opacity-100' 
+              : 'w-0 -translate-x-full md:translate-x-0 md:w-0 border-r-0 opacity-0 overflow-hidden pointer-events-none'
         }`}
       >
-        {/* Header with Title & Action Button */}
-        <div className="p-5 border-b border-black/10 dark:border-white/10 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-[#4f46e5] to-[#7c3aed] flex items-center justify-center text-white shadow-md shadow-[#4f46e5]/25">
-                <Layers size={17} strokeWidth={2.4} />
-              </div>
-              <div>
-                <h1 className="text-sm font-black tracking-tight uppercase text-slate-900 dark:text-white">
-                  NOTE WORKSPACE
-                </h1>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setMobileSidebarOpen(false)}
-              className="md:hidden p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
-            >
-              <X size={18} />
-            </button>
-          </div>
-
-          {/* Primary Action Button: CREATE NOTE Matching Reference Design */}
+        {/* Top of Sidebar: Action Button */}
+        <div className="p-5 flex items-center justify-between gap-2">
           <button
             type="button"
             onClick={() => {
               handleCreateNote();
-              setMobileSidebarOpen(false);
+              if (typeof window !== 'undefined' && window.innerWidth < 768) setMobileSidebarOpen(false);
             }}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className="notes-create-page-btn w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-all cursor-pointer active:scale-98 select-none"
+            className="notes-create-page-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-all cursor-pointer active:scale-98 select-none"
           >
             <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
-            <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
+            <span className="!text-white text-white font-black tracking-wider" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileSidebarOpen(false)}
+            className="md:hidden p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
+            title="Close sidebar"
+          >
+            <X size={18} />
           </button>
         </div>
 
@@ -394,11 +385,11 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
             <button
               type="button"
               onClick={() => setIsCreatingSection(!isCreatingSection)}
-              className="p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 dark:text-white/50 hover:text-[#4f46e5] cursor-pointer text-xs flex items-center gap-1 font-bold"
+              className="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 hover:bg-[#4f46e5]/10 text-slate-600 dark:text-white/70 hover:text-[#4f46e5] border border-black/5 dark:border-white/10 cursor-pointer text-[10px] font-bold flex items-center gap-1 transition-all shadow-xs"
               title="Add Section"
             >
-              <Plus size={12} strokeWidth={2.5} />
-              <span className="text-[10px] font-bold">New</span>
+              <Plus size={11} strokeWidth={2.5} />
+              <span>New</span>
             </button>
           </div>
 
@@ -511,7 +502,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-bold text-xs truncate leading-snug">
+                    <span className="font-bold text-xs truncate leading-snug text-emerald-600 dark:text-emerald-400">
                       {note.title.trim() || dictionary.untitledPage}
                     </span>
                     <button
@@ -543,70 +534,61 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         </div>
       </aside>
 
-      {/* RIGHT CONTENT EDITOR PANE */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-transparent">
+      {/* RIGHT CONTENT EDITOR PANE - Always Pure Solid White */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
         
         {/* Workspace Top Header Bar */}
-        <header className="h-16 px-6 sm:px-8 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0 bg-white/40 dark:bg-black/20 backdrop-blur-md">
-          <div className="flex items-center gap-3 min-w-0">
-            {/* Mobile Hamburger to trigger Sidebar */}
+        <header className="h-16 px-6 sm:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+          {/* Left: Sidebar Toggle Button (Hide / Show) */}
+          <div className="flex items-center gap-2 min-w-0">
             <button
               type="button"
-              onClick={() => setMobileSidebarOpen(true)}
-              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-700 dark:text-white transition-colors cursor-pointer"
-              title="Open Navigation"
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                  setMobileSidebarOpen(prev => !prev);
+                } else {
+                  setSidebarOpen(prev => !prev);
+                }
+              }}
+              className="p-2.5 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
+              title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
+              aria-label="Toggle sidebar"
             >
-              <Menu size={20} />
+              {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeft size={20} />}
             </button>
-
-            {/* Breadcrumb path */}
-            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-white/60 truncate">
-              <span className="text-[#4f46e5] dark:text-indigo-400 uppercase tracking-wider text-[11px]">
-                {dictionary.oneNoteWorkspace}
-              </span>
-              <ChevronRight size={13} className="shrink-0 opacity-40" />
-              <span className="truncate">{currentSectionInfo?.name}</span>
-              {activeNote && (
-                <>
-                  <ChevronRight size={13} className="shrink-0 opacity-40" />
-                  <span className="text-slate-900 dark:text-white truncate font-extrabold">
-                    {activeNote.title || dictionary.untitledPage}
-                  </span>
-                </>
-              )}
-            </div>
           </div>
 
+          {/* Centered section title */}
+          <div className="flex items-center justify-center">
+            <h2 className="text-sm font-bold text-slate-900 tracking-tight">
+              {currentSectionInfo?.name || 'Quick Notes'}
+            </h2>
+          </div>
+
+          {/* Right side: Note update date & delete icon */}
           <div className="flex items-center gap-2 shrink-0">
-            {activeNote && (
+            {activeNote ? (
               <>
-                <span className="text-[10px] font-mono opacity-50 text-slate-700 dark:text-white hidden lg:inline-block">
+                <span className="text-[11px] font-mono opacity-60 text-slate-700">
                   {formatDate(activeNote.updatedAt)}
                 </span>
                 <button
                   type="button"
                   onClick={(e) => handleDeleteNote(activeNote.id, e)}
-                  className="p-2 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 dark:hover:text-red-400 rounded-xl transition-colors cursor-pointer"
+                  className="p-2 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-xl transition-colors cursor-pointer"
                   title="Delete note"
                 >
                   <Trash2 size={16} />
                 </button>
               </>
+            ) : (
+              <div className="w-10 pointer-events-none" />
             )}
-            <button
-              type="button"
-              onClick={handleCreateNote}
-              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-              className="notes-create-page-btn flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-[#4f46e5]/35 cursor-pointer active:scale-98 select-none"
-            >
-              <Plus size={14} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
-              <span className="hidden sm:inline !text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
-            </button>
           </div>
         </header>
 
         {/* Main Writing Canvas */}
-        <main className="flex-1 flex flex-col h-full overflow-hidden min-w-0">
+        <main className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white">
           {activeNote ? (
             <div className="flex-1 flex flex-col h-full px-6 sm:px-12 lg:px-16 py-6 sm:py-8 overflow-hidden">
               
@@ -614,7 +596,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               <div className="relative mb-5 shrink-0">
                 <input
                   type="text"
-                  className="w-full text-2xl sm:text-3xl font-black bg-transparent outline-none pb-2 text-slate-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 tracking-tight"
+                  className="w-full text-2xl sm:text-3xl font-black bg-transparent outline-none pb-2 text-emerald-600 placeholder-neutral-300 tracking-tight"
                   value={activeNote.title}
                   onChange={(e) => updateNote(activeNote.id, { title: e.target.value })}
                   placeholder={dictionary.enterPageTitle}
@@ -636,10 +618,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               <div className="w-16 h-16 rounded-2xl bg-[#4f46e5]/10 flex items-center justify-center text-[#4f46e5] mb-4">
                 <FileText size={32} strokeWidth={1.5} />
               </div>
-              <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 dark:text-white mb-1">
+              <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 mb-1">
                 {dictionary.noNotebook}
               </h3>
-              <p className="text-xs text-slate-500 dark:text-white/50 max-w-xs mb-4">
+              <p className="text-xs text-slate-500 max-w-xs mb-4">
                 {dictionary.createNotesDesc}
               </p>
               <button
