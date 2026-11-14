@@ -1,42 +1,47 @@
 [
-  {
-    "quote": "용기는 모든 다른 자질을 보장하기 때문에 인간의 가장 으뜸가는 자질입니다.",
-    "author": "윈스턴 처칠"
-  },
-  {
-    "quote": "멈추지 않는 이상 얼마나 천천히 가는지는 중요하지 않다.",
-    "author": "공자"
-  },
-  {
-    "quote": "오늘 할 수 있는 일을 내일로 미루지 마십시오.",
-    "author": "에이브러햄 링컨"
-  },
-  {
-    "quote": "갈등이 치열할수록 승리는 더욱 위대해집니다.",
-    "author": "조지 워싱턴"
-  },
-  {
-    "quote": "가격은 당신이 지불하는 것이고, 가치는 당신이 얻는 것이다.",
-    "author": "워런 버핏"
-  },
-  {
-    "quote": "할 수 있다고 믿으십시오. 그러면 이미 절반은 온 것입니다.",
-    "author": "시어도어 루스벨트"
-  },
-  {
-    "quote": "성공은 최종적인 것이 아니며 실패는 치명적인 것이 아닙니다. 중요한 것은 계속 나아가는 용기입니다.",
-    "author": "윈스턴 처칠"
-  },
-  {
-    "quote": "어려움 한가운데에 기회가 숨겨져 있습니다.",
-    "author": "알베르트 아인슈타인"
-  },
-  {
-    "quote": "아침에 일어났을 때보다 조금 더 현명해진 상태로 하루를 마무리하세요.",
-    "author": "찰리 멍거"
-  },
-  {
-    "quote": "끝나기 전까지는 항상 불가능해 보입니다.",
-    "author": "넬슨 만델라"
-  }
+  { "quote": "싸움이 치열할수록 승리도 더욱 위대하다.", "author": "조지 워싱턴", "category": "motivational" },
+  { "quote": "사람들은 대개 스스로 마음먹은 만큼 행복해진다.", "author": "에이브러햄 링컨", "category": "positive" },
+  { "quote": "우리가 두려워해야 할 유일한 것은 두려움 그 자체다.", "author": "프랭클린 D. 루스벨트", "category": "motivational" },
+  { "quote": "할 수 있다고 믿으면 이미 반은 이룬 것이다.", "author": "시어도어 루스벨트", "category": "inspirational" },
+  { "quote": "정직은 지혜의 책의 첫 장이다.", "author": "토머스 제퍼슨", "category": "wisdom" },
+  { "quote": "미래는 소심한 자가 아니라 용기 있는 자의 것이다.", "author": "로널드 레이건", "category": "hope" },
+  { "quote": "우리가 함께 일할 때 모두가 더 나아진다.", "author": "빌 클린턴", "category": "relationship" },
+  { "quote": "성공적인 삶의 정의에는 반드시 타인을 위한 봉사가 포함되어야 한다.", "author": "조지 H. W. 부시", "category": "life" },
+  { "quote": "가격은 당신이 지불하는 것이고, 가치는 당신이 얻는 것이다.", "author": "워런 버핏", "category": "finance" },
+  { "quote": "무언가를 개선하려 하기 전에 안에서부터 어떻게 작동하는지 철저히 배우라.", "author": "토머스 피터피", "category": "education" },
+  { "quote": "인생은 실패를 피하는 데에만 쓰기에는 너무 짧다.", "author": "마이클 블룸버그", "category": "life" },
+  { "quote": "확신이 아닌 확률로 생각하라. 좋은 결정은 신중한 계산에서 나온다.", "author": "제프 야스", "category": "wisdom" },
+  { "quote": "교육에 대한 투자를 멈추지 마라. 지식은 자본보다 더 빠르게 복리로 자란다.", "author": "켄 그리핀", "category": "education" },
+  { "quote": "정직함에 지름길을 택하지 마라. 당신의 약속이 모든 관계의 토대다.", "author": "스티븐 슈워츠먼", "category": "wisdom" },
+  { "quote": "재정적 안정은 꾸준히 실천하는 작은 습관에서 시작된다.", "author": "애비게일 존슨", "category": "finance" },
+  { "quote": "호기심과 관대함이 만나는 곳에서 희망이 자란다.", "author": "마릴린 사이먼스", "category": "hope" },
+  { "quote": "뛰어난 사고는 드물지만, 용기는 천재성보다도 더 희귀하다.", "author": "피터 틸", "category": "motivational" },
+  { "quote": "어떤 일이 충분히 중요하다면, 가능성이 불리해 보여도 실행해야 한다.", "author": "일론 머스크", "category": "motivational" },
+  { "quote": "영리함은 재능이지만, 친절함은 선택이다.", "author": "제프 베이조스", "category": "relationship" },
+  { "quote": "자신의 시간을 통제하는 것이 돈이 줄 수 있는 가장 큰 배당금이다.", "author": "모건 하우절", "category": "freedom" },
+  { "quote": "우리는 좋아하지도 않는 사람에게 잘 보이려, 있지도 않은 돈으로 필요 없는 물건을 산다.", "author": "데이브 램지", "category": "finance" },
+  { "quote": "자유는 버는 것보다 적게 쓰고 자신을 위해 먼저 저축하는 날 시작된다.", "author": "베스 코블라이너", "category": "freedom" },
+  { "quote": "움직임과 혼란 속에서도 내면의 고요함을 지켜라.", "author": "디팩 초프라", "category": "health" },
+  { "quote": "자기 인식은 감성 지능의 주춧돌이다.", "author": "대니얼 골먼", "category": "education" },
+  { "quote": "지금 이 순간이 당신이 가진 전부임을 깊이 깨달아라.", "author": "에크하르트 톨레", "category": "life" },
+  { "quote": "당신의 말에 흠이 없도록 진실과 사랑으로 말하라.", "author": "돈 미겔 루이스", "category": "wisdom" },
+  { "quote": "평화는 내면에서 온다. 밖에서 찾지 마라.", "author": "부처", "category": "health" },
+  { "quote": "천 리 길도 한 걸음부터 시작된다.", "author": "노자", "category": "motivational" },
+  { "quote": "혼란의 한가운데에도 기회는 있다.", "author": "손자", "category": "positive" },
+  { "quote": "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다.", "author": "공자", "category": "motivational" },
+  { "quote": "보편적 사랑과 상호 이익이야말로 평화의 진정한 토대다.", "author": "묵자", "category": "love" },
+  { "quote": "일어나는 모든 일과 조화롭게 흐르며 마음을 자유롭게 두어라.", "author": "장자", "category": "freedom" },
+  { "quote": "내게 지렛대와 디딜 곳을 준다면 세상도 움직여 보이겠다.", "author": "아르키메데스", "category": "motivational" },
+  { "quote": "행복은 우리 자신에게 달려 있다.", "author": "아리스토텔레스", "category": "positive" },
+  { "quote": "사랑이 닿으면 누구나 시인이 된다.", "author": "플라톤", "category": "love" },
+  { "quote": "성찰하지 않는 삶은 살 가치가 없다.", "author": "소크라테스", "category": "life" },
+  { "quote": "나는 실패한 것이 아니라 작동하지 않는 만 가지 방법을 찾았을 뿐이다.", "author": "토머스 에디슨", "category": "positive" },
+  { "quote": "현재는 그들의 것이지만, 내가 진정으로 일궈온 미래는 나의 것이다.", "author": "니콜라 테슬라", "category": "hope" },
+  { "quote": "내가 더 멀리 보았다면 그것은 거인들의 어깨 위에 올라섰기 때문이다.", "author": "아이작 뉴턴", "category": "wisdom" },
+  { "quote": "어려움 한가운데에 기회가 놓여 있다.", "author": "알베르트 아인슈타인", "category": "inspirational" },
+  { "quote": "삶에서 두려워할 것은 아무것도 없다. 오직 이해해야 할 것만 있을 뿐이다.", "author": "마리 퀴리", "category": "wisdom" },
+  { "quote": "대체 불가능한 존재가 되려면 언제나 남달라야 한다.", "author": "코코 샤넬", "category": "work" },
+  { "quote": "진정하고 지속적인 변화는 한 걸음씩 이루어진다.", "author": "루스 베이더 긴즈버그", "category": "leadership" },
+  { "quote": "용기는 모습을 드러내고 온전한 자신을 보여주는 데서 시작된다.", "author": "브레네 브라운", "category": "relationship" },
+  { "quote": "완벽함보다 완성이 더 낫다.", "author": "엘리자베스 길버트", "category": "work" }
 ]

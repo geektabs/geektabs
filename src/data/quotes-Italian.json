@@ -1,42 +1,47 @@
 [
-  {
-    "quote": "Il coraggio è la prima delle qualità umane, poiché garantisce tutte le altre.",
-    "author": "Winston Churchill"
-  },
-  {
-    "quote": "Non importa quanto vai piano, l'importante è non fermarsi.",
-    "author": "Confucio"
-  },
-  {
-    "quote": "Non lasciare per domani quello che può essere fatto oggi.",
-    "author": "Abraham Lincoln"
-  },
-  {
-    "quote": "Più duro è il conflitto, più grande è il trionfo.",
-    "author": "George Washington"
-  },
-  {
-    "quote": "Il prezzo è quello che paghi. Il valore è quello che ottieni.",
-    "author": "Warren Buffett"
-  },
-  {
-    "quote": "Credi di farcela e sarai già a metà strada.",
-    "author": "Theodore Roosevelt"
-  },
-  {
-    "quote": "Il successo non è definitivo, il fallimento non è fatale: ciò che conta è il coraggio di continuare.",
-    "author": "Winston Churchill"
-  },
-  {
-    "quote": "Nel mezzo delle difficoltà si trova l'opportunità.",
-    "author": "Albert Einstein"
-  },
-  {
-    "quote": "Passa ogni giorno cercando di essere un po' più saggio di quando ti sei svegliato.",
-    "author": "Charlie Munger"
-  },
-  {
-    "quote": "Sembra sempre impossibile finché non viene fatto.",
-    "author": "Nelson Mandela"
-  }
+  { "quote": "Più duro è il conflitto, più grande è il trionfo.", "author": "George Washington", "category": "motivational" },
+  { "quote": "Le persone sono di solito felici tanto quanto decidono di esserlo.", "author": "Abraham Lincoln", "category": "positive" },
+  { "quote": "L'unica cosa di cui dobbiamo avere paura è la paura stessa.", "author": "Franklin D. Roosevelt", "category": "motivational" },
+  { "quote": "Credi di farcela e sarai già a metà strada.", "author": "Theodore Roosevelt", "category": "inspirational" },
+  { "quote": "L'onestà è il primo capitolo nel libro della saggezza.", "author": "Thomas Jefferson", "category": "wisdom" },
+  { "quote": "Il futuro non appartiene ai timidi; appartiene ai coraggiosi.", "author": "Ronald Reagan", "category": "hope" },
+  { "quote": "Miglioriamo tutti quando lavoriamo insieme.", "author": "Bill Clinton", "category": "relationship" },
+  { "quote": "Qualsiasi definizione di una vita riuscita deve includere il servizio agli altri.", "author": "George H. W. Bush", "category": "life" },
+  { "quote": "Il prezzo è quello che paghi. Il valore è quello che ottieni.", "author": "Warren Buffett", "category": "finance" },
+  { "quote": "Impara come funzionano le cose dall'interno prima di provare a migliorarle.", "author": "Thomas Peterffy", "category": "education" },
+  { "quote": "La vita è troppo breve per passarla cercando di evitare i fallimenti.", "author": "Michael Bloomberg", "category": "life" },
+  { "quote": "Ragiona in probabilità, non in certezze: le scelte migliori nascono dall'analisi.", "author": "Jeff Yass", "category": "wisdom" },
+  { "quote": "Non smettere mai di investire nella tua istruzione: la conoscenza cresce più del capitale.", "author": "Ken Griffin", "category": "education" },
+  { "quote": "Non prendere scorciatoie con l'integrità: la tua parola fonda ogni relazione.", "author": "Stephen Schwarzman", "category": "wisdom" },
+  { "quote": "La sicurezza finanziaria inizia con piccole abitudini costanti nel tempo.", "author": "Abigail Johnson", "category": "finance" },
+  { "quote": "La speranza cresce dove la curiosità incontra la generosità.", "author": "Marilyn Simons", "category": "hope" },
+  { "quote": "Il pensiero brillante è raro, ma il coraggio è ancora più raro del genio.", "author": "Peter Thiel", "category": "motivational" },
+  { "quote": "Quando qualcosa è abbastanza importante, fallo anche se le probabilità sono contro di te.", "author": "Elon Musk", "category": "motivational" },
+  { "quote": "L'intelligenza è un dono; la gentilezza è una scelta.", "author": "Jeffrey Bezos", "category": "relationship" },
+  { "quote": "Avere il controllo del proprio tempo è il dividendo più alto che il denaro paghi.", "author": "Morgan Housel", "category": "freedom" },
+  { "quote": "Compriamo cose che non ci servono con soldi che non abbiamo.", "author": "Dave Ramsey", "category": "finance" },
+  { "quote": "La libertà inizia il giorno in cui spendi meno di ciò che guadagni.", "author": "Beth Kobliner", "category": "freedom" },
+  { "quote": "Nel mezzo del movimento e del caos, mantieni la quiete dentro di te.", "author": "Deepak Chopra", "category": "health" },
+  { "quote": "L'autoconsapevolezza è la pietra angolare dell'intelligenza emotiva.", "author": "Daniel Goleman", "category": "education" },
+  { "quote": "Comprendi profondamente che il momento presente è tutto ciò che hai.", "author": "Eckhart Tolle", "category": "life" },
+  { "quote": "Sii impeccabile con la tua parola.", "author": "Don Miguel Ruiz", "category": "wisdom" },
+  { "quote": "La pace viene da dentro; non cercarla fuori.", "author": "Buddha", "category": "health" },
+  { "quote": "Un viaggio di mille miglia inizia con un solo passo.", "author": "Laozi", "category": "motivational" },
+  { "quote": "In mezzo al caos c'è anche un'opportunità.", "author": "Sun Tzu", "category": "positive" },
+  { "quote": "Non importa quanto vai piano, l'importante è non fermarsi.", "author": "Confucio", "category": "motivational" },
+  { "quote": "L'amore universale e il beneficio reciproco sono la vera base della pace.", "author": "Mozi", "category": "love" },
+  { "quote": "Segui il flusso degli eventi e lascia la tua mente libera.", "author": "Zhuangzi", "category": "freedom" },
+  { "quote": "Datemi una leva e un punto d'appoggio e solleverò il mondo.", "author": "Archimede", "category": "motivational" },
+  { "quote": "La felicità dipende da noi stessi.", "author": "Aristotele", "category": "positive" },
+  { "quote": "Al tocco dell'amore ognuno diventa poeta.", "author": "Platone", "category": "love" },
+  { "quote": "Una vita senza ricerca non è degna di essere vissuta.", "author": "Socrate", "category": "life" },
+  { "quote": "Non ho fallito. Ho solo trovato diecimila modi che non funzionano.", "author": "Thomas Edison", "category": "positive" },
+  { "quote": "Il presente è loro; il futuro, per il quale ho lavorato davvero, è mio.", "author": "Nikola Tesla", "category": "hope" },
+  { "quote": "Se ho visto più lontano è perché stavo sulle spalle dei giganti.", "author": "Isaac Newton", "category": "wisdom" },
+  { "quote": "Nel mezzo delle difficoltà si trova l'opportunità.", "author": "Albert Einstein", "category": "inspirational" },
+  { "quote": "Nella vita nulla va temuto, va solo compreso.", "author": "Marie Curie", "category": "wisdom" },
+  { "quote": "Per essere insostituibili bisogna essere sempre diversi.", "author": "Coco Chanel", "category": "work" },
+  { "quote": "Il vero cambiamento duraturo avviene un passo alla volta.", "author": "Ruth Bader Ginsburg", "category": "leadership" },
+  { "quote": "Il coraggio inizia mostrandosi e lasciandosi vedere.", "author": "Brené Brown", "category": "relationship" },
+  { "quote": "Fatto è meglio che perfetto.", "author": "Elizabeth Gilbert", "category": "work" }
 ]

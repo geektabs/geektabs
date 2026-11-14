@@ -1,42 +1,47 @@
 [
-  {
-    "quote": "勇気は人間の第一の資質であり、他のすべての資質を保証するものである。",
-    "author": "ウィンストン・チャーチル"
-  },
-  {
-    "quote": "止まりさえしなければ、どんなにゆっくり進んでも問題はない。",
-    "author": "孔子"
-  },
-  {
-    "quote": "今日できることを明日に残すな。",
-    "author": "エイブラハム・リンカーン"
-  },
-  {
-    "quote": "困難が大きければ大きいほど、その勝利は偉大になる。",
-    "author": "ジョージ・ワシントン"
-  },
-  {
-    "quote": "価格とは支払うものであり、価値とは得るものである。",
-    "author": "ウォーレン・バフェット"
-  },
-  {
-    "quote": "できると信じなさい。そうすれば、すでに道は半ばまで来ています。",
-    "author": "セオドア・ルーズベルト"
-  },
-  {
-    "quote": "成功は最終結果ではなく、失敗は致命的ではない。大切なのは続ける勇気である。",
-    "author": "ウィンストン・チャーチル"
-  },
-  {
-    "quote": "困難の中にこそ、機会があります。",
-    "author": "アルベルト・アインシュタイン"
-  },
-  {
-    "quote": "毎朝目覚めたときよりも、少し賢くなって一日を終えなさい。",
-    "author": "チャーリー・マンガー"
-  },
-  {
-    "quote": "成し遂げるまでは、常に不可能に見えるものです。",
-    "author": "ネルソン・マンデラ"
-  }
+  { "quote": "戦いが厳しければ厳しいほど、勝利はより偉大になる。", "author": "ジョージ・ワシントン", "category": "motivational" },
+  { "quote": "人はたいてい、自分が決心した分だけ幸せになれる。", "author": "エイブラハム・リンカーン", "category": "positive" },
+  { "quote": "我々が恐れなければならない唯一のものは、恐怖そのものである。", "author": "フランクリン・D・ルーズベルト", "category": "motivational" },
+  { "quote": "できると信じれば、もう半分は達成したようなものだ。", "author": "セオドア・ルーズベルト", "category": "inspirational" },
+  { "quote": "誠実は、知恵の書の第一章である。", "author": "トーマス・ジェファーソン", "category": "wisdom" },
+  { "quote": "未来は臆病者のものではなく、勇気ある者のものだ。", "author": "ロナルド・レーガン", "category": "hope" },
+  { "quote": "互いに協力するとき、私たちはみなさらに良くなる。", "author": "ビル・クリントン", "category": "relationship" },
+  { "quote": "成功した人生の定義には、他者への奉仕が欠かせない。", "author": "ジョージ・H・W・ブッシュ", "category": "life" },
+  { "quote": "価格とはあなたが払うもの。価値とはあなたが手にするもの。", "author": "ウォーレン・バフェット", "category": "finance" },
+  { "quote": "何かを改善しようとする前に、内側からその仕組みを深く理解せよ。", "author": "トーマス・ピーターフィ", "category": "education" },
+  { "quote": "失敗を避けることだけに費やすには、人生は短すぎる。", "author": "マイケル・ブルームバーグ", "category": "life" },
+  { "quote": "確実性ではなく確率で考えよ。良い決断は丁寧な見極めから生まれる。", "author": "ジェフ・ヤス", "category": "wisdom" },
+  { "quote": "教育への投資を決してやめるな。知識は資本よりも速く複利で増える。", "author": "ケン・グリフィン", "category": "education" },
+  { "quote": "誠実さに近道をしてはならない。あなたの言葉がすべての関係の土台だ。", "author": "スティーブン・シュワルツマン", "category": "wisdom" },
+  { "quote": "経済的な安心は、忍耐強く続ける小さな習慣から始まる。", "author": "アビゲイル・ジョンソン", "category": "finance" },
+  { "quote": "好奇心と寛大さが出会うところに、希望は育つ。", "author": "マリリン・サイモンズ", "category": "hope" },
+  { "quote": "優れた思考は希少だが、勇気はそれ以上に希少だ。", "author": "ピーター・ティール", "category": "motivational" },
+  { "quote": "本当に重要なことなら、たとえ不利でもやり抜くべきだ。", "author": "イーロン・マスク", "category": "motivational" },
+  { "quote": "賢さは生まれつきの才能だが、優しさは自らの選択だ。", "author": "ジェフ・ベゾス", "category": "relationship" },
+  { "quote": "自分の時間をコントロールすることこそ、お金がもたらす最大の配当だ。", "author": "モーガン・ハウゼル", "category": "freedom" },
+  { "quote": "私たちは、好感を持たない人に見栄を張るため、手元にないお金で不要なものを買う。", "author": "デイブ・ラムジー", "category": "finance" },
+  { "quote": "自由とは、稼ぐ額より少なく使い、自分への貯蓄を最優先した日に始まる。", "author": "ベス・コブリナー", "category": "freedom" },
+  { "quote": "喧騒と変化のただなかでも、心の内に静けさを保ちなさい。", "author": "ディーパック・チョプラ", "category": "health" },
+  { "quote": "自己認識こそ、心の知能指数（EQ）の要である。", "author": "ダニエル・ゴールマン", "category": "education" },
+  { "quote": "今この瞬間こそが、あなたが持つすべてであると深く悟りなさい。", "author": "エックハルト・トール", "category": "life" },
+  { "quote": "自分の言葉に誠実でありなさい。", "author": "ドン・ミゲル・ルイス", "category": "wisdom" },
+  { "quote": "安らぎは内面から来る。外に求めてはならない。", "author": "ブッダ", "category": "health" },
+  { "quote": "千里の道も一歩から始まる。", "author": "老子", "category": "motivational" },
+  { "quote": "混乱のただ中にも、必ず好機がある。", "author": "孫子", "category": "positive" },
+  { "quote": "止まりさえしなければ、どんなにゆっくり進んでも構わない。", "author": "孔子", "category": "motivational" },
+  { "quote": "普遍的な愛と相互の利益こそ、平和の真の礎である。", "author": "墨子", "category": "love" },
+  { "quote": "起こるがままに身を委ね、心を自由にしなさい。", "author": "荘子", "category": "freedom" },
+  { "quote": "私に支点を与えよ、そうすれば地球を動かしてみせよう。", "author": "アルキメデス", "category": "motivational" },
+  { "quote": "幸福は私たち自身にかかっている。", "author": "アリストテレス", "category": "positive" },
+  { "quote": "愛に触れれば、誰もが詩人になる。", "author": "プラトン", "category": "love" },
+  { "quote": "吟味されない人生に生きる価値はない。", "author": "ソクラテス", "category": "life" },
+  { "quote": "私は失敗したことがない。うまくいかない一万通りの方法を見つけただけだ。", "author": "トーマス・エジソン", "category": "positive" },
+  { "quote": "現在は彼らのものだが、私が本当に力を注いできた未来は私のものだ。", "author": "ニコラ・テスラ", "category": "hope" },
+  { "quote": "私がさらに遠くを見渡せたのは、巨人の肩の上に立っていたからだ。", "author": "アイザック・ニュートン", "category": "wisdom" },
+  { "quote": "困難の真ん中にこそ、好機がある。", "author": "アルベルト・アインシュタイン", "category": "inspirational" },
+  { "quote": "人生において恐れるべきものは何もない。ただ理解すべきことがあるだけだ。", "author": "マリー・キュリー", "category": "wisdom" },
+  { "quote": "かけがえのない存在になるためには、常に人とは違っていなければならない。", "author": "ココ・シャネル", "category": "work" },
+  { "quote": "真の永続的な変化は、一歩ずつ訪れる。", "author": "ルース・ベイダー・ギンズバーグ", "category": "leadership" },
+  { "quote": "勇気とは、ありのままの自分をさらけ出し、見せることから始まる。", "author": "ブレネー・ブラウン", "category": "relationship" },
+  { "quote": "完璧を目指すより、まずやり遂げることが大切だ。", "author": "エリザベス・ギルバート", "category": "work" }
 ]

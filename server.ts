@@ -188,6 +188,27 @@ async function startServer() {
         }
 
         if (Object.keys(rates).length <= 1) {
+          try {
+            const cdnRes = await fetch(
+              "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
+              { signal: AbortSignal.timeout(5000) }
+            );
+            if (cdnRes.ok) {
+              const cdnJson = await cdnRes.json();
+              if (cdnJson?.usd && typeof cdnJson.usd === "object") {
+                for (const [k, v] of Object.entries(cdnJson.usd)) {
+                  if (typeof v === "number" && v > 0) {
+                    rates[k.toUpperCase()] = v;
+                  }
+                }
+              }
+            }
+          } catch {
+            // Try Frankfurter next
+          }
+        }
+
+        if (Object.keys(rates).length <= 1) {
           // Last-resort Frankfurter fallback
           const frankRes = await fetch("https://api.frankfurter.dev/v1/latest?base=USD", {
             signal: AbortSignal.timeout(5000),

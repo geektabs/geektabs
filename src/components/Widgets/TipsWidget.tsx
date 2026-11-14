@@ -116,14 +116,14 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
   }[language] || 'Daily Tips';
 
   return (
-    <div className="weather-huawei-style rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:shadow-lg hover:-translate-y-0.5">
-      {/* Top Header: Squircle icon + Title + Refresh Button with Light Green Background */}
+    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:-translate-y-0.5">
+      {/* Top Header: Squircle icon + Title + Refresh Button with Regular Green Background */}
       <div className="daily-title-green daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
-          <div className="daily-card-icon-badge w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-800 border border-black/5 dark:border-white/10 text-[#c8102e] dark:text-red-500 flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105">
+          <div className="daily-card-icon-badge w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white text-[#c8102e] flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105">
             <Lightbulb className="w-4.5 h-4.5 sm:w-5 sm:h-5" strokeWidth={2.2} />
           </div>
-          <h2 className="text-sm sm:text-base font-black text-slate-900 dark:text-white tracking-tight leading-snug break-words">
+          <h2 className="text-sm sm:text-base font-black text-white tracking-tight leading-snug break-words">
             {widgetTitle}
           </h2>
         </div>
@@ -150,7 +150,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
         title="Click to get new tip"
       >
         <p 
-          className="daily-card-content-text text-xs sm:text-[13px] md:text-sm font-normal leading-relaxed line-clamp-4 select-text"
+          className="daily-card-content-text text-xs sm:text-[13px] md:text-sm lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-4 lg:line-clamp-5 select-text"
         >
           {tip}
         </p>

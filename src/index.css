@@ -1359,18 +1359,33 @@ button.todolist-cancel-btn span,
 .card-style-white .speedtest-tab-card div.GeekTabs-card,
 [data-card-bg-mode="white"] .speedtest-tab-card div.GeekTabs-card,
 .card-style-white .bookmark-webcard,
-[data-card-bg-mode="white"] .bookmark-webcard,
-.card-style-white .daily-title-green,
-[data-card-bg-mode="white"] .daily-title-green,
-.card-style-white .daily-title-yellow,
-[data-card-bg-mode="white"] .daily-title-yellow,
-.card-style-white .daily-title-orange,
-[data-card-bg-mode="white"] .daily-title-orange {
+[data-card-bg-mode="white"] .bookmark-webcard {
   background: #ffffff !important;
   background-color: #ffffff !important;
   background-image: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+}
+
+.card-style-white .daily-title-green,
+[data-card-bg-mode="white"] .daily-title-green {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
+  background-color: #dcfce7 !important;
+  border-bottom: 1.5px solid rgba(22, 163, 74, 0.22) !important;
+}
+
+.card-style-white .daily-title-yellow,
+[data-card-bg-mode="white"] .daily-title-yellow {
+  background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%) !important;
+  background-color: #fef9c3 !important;
+  border-bottom: 1.5px solid rgba(202, 138, 4, 0.24) !important;
+}
+
+.card-style-white .daily-title-orange,
+[data-card-bg-mode="white"] .daily-title-orange {
+  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%) !important;
+  background-color: #ffedd5 !important;
+  border-bottom: 1.5px solid rgba(234, 88, 12, 0.22) !important;
 }
 
 .card-style-white .weather-huawei-style,
@@ -1501,7 +1516,7 @@ button.todolist-cancel-btn span,
 .card-style-white .calendar-container p,
 .card-style-white .calendar-container .calendar-year-display,
 .card-style-white .calendar-container .calendar-weekday-header,
-.card-style-white .calendar-container .calendar-day-btn span,
+.card-style-white .calendar-container .calendar-day-btn span:not(.cal-today-text):not(.cal-holiday-dot),
 .card-style-white .calendar-container .world-dates-title,
 .card-style-white .calendar-container .world-clock-card *,
 .card-style-white .calendar-container .world-dates-select,
@@ -1509,18 +1524,18 @@ button.todolist-cancel-btn span,
 .card-style-white .calendar-container .opacity-40,
 .card-style-white .calendar-container .opacity-50,
 .card-style-white .calendar-container .opacity-60,
-.card-style-white .calendar-container span:not([class*="bg-"]),
+.card-style-white .calendar-container span:not([class*="bg-"]):not(.cal-today-text):not(.cal-holiday-dot):not([class*="text-[#6143f7]"]),
 [data-card-bg-mode="white"] .calendar-container h2,
 [data-card-bg-mode="white"] .calendar-container h3,
 [data-card-bg-mode="white"] .calendar-container p,
 [data-card-bg-mode="white"] .calendar-container .calendar-year-display,
 [data-card-bg-mode="white"] .calendar-container .calendar-weekday-header,
-[data-card-bg-mode="white"] .calendar-container .calendar-day-btn span,
+[data-card-bg-mode="white"] .calendar-container .calendar-day-btn span:not(.cal-today-text):not(.cal-holiday-dot),
 [data-card-bg-mode="white"] .calendar-container .world-dates-title,
 [data-card-bg-mode="white"] .calendar-container .world-clock-card *,
 [data-card-bg-mode="white"] .calendar-container .world-dates-select,
 [data-card-bg-mode="white"] .calendar-container .world-dates-diff-pill *,
-[data-card-bg-mode="white"] .calendar-container span:not([class*="bg-"]),
+[data-card-bg-mode="white"] .calendar-container span:not([class*="bg-"]):not(.cal-today-text):not(.cal-holiday-dot):not([class*="text-[#6143f7]"]),
 .card-style-white .calculator-tab-card p,
 .card-style-white .calculator-tab-card h3,
 .card-style-white .calculator-tab-card .calculator-display-main,
@@ -1595,9 +1610,9 @@ button.todolist-cancel-btn span,
 }
 
 .card-style-white .daily-card-divider,
-.card-style-white .daily-card-title-section,
+.card-style-white .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose),
 [data-card-bg-mode="white"] .daily-card-divider,
-[data-card-bg-mode="white"] .daily-card-title-section {
+[data-card-bg-mode="white"] .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose) {
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.08) !important;
 }
 
@@ -1633,41 +1648,68 @@ button.todolist-cancel-btn span,
   border: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Light Card Mode: Calendar tiles, selected-date box, event rows, modals */
-.card-style-white .calendar-container .calendar-day-btn:not([class*="border-indigo-500"]),
-[data-card-bg-mode="white"] .calendar-container .calendar-day-btn:not([class*="border-indigo-500"]),
+/* Light Card Mode: Calendar tiles, Today circle, arrows, selects */
+.card-style-white .calendar-container .calendar-day-btn,
+[data-card-bg-mode="white"] .calendar-container .calendar-day-btn {
+  background: #f3f5fa !important;
+  background-color: #f3f5fa !important;
+  border-color: transparent !important;
+}
+
+.card-style-white .calendar-container .calendar-day-btn:hover,
+[data-card-bg-mode="white"] .calendar-container .calendar-day-btn:hover {
+  background: #e6eaf5 !important;
+  background-color: #e6eaf5 !important;
+}
+
+.card-style-white .calendar-container .calendar-day-btn.cal-selected-tile,
+[data-card-bg-mode="white"] .calendar-container .calendar-day-btn.cal-selected-tile {
+  box-shadow: inset 0 0 0 2px #6143f7 !important;
+}
+
 .card-style-white .calendar-container .world-clock-card,
 [data-card-bg-mode="white"] .calendar-container .world-clock-card,
 .card-style-white .calendar-container .world-dates-select,
 [data-card-bg-mode="white"] .calendar-container .world-dates-select,
 .card-style-white .calendar-container .world-dates-diff-pill,
 [data-card-bg-mode="white"] .calendar-container .world-dates-diff-pill,
+.card-style-white .calendar-container .calendar-today-btn,
+[data-card-bg-mode="white"] .calendar-container .calendar-today-btn,
 .card-style-white .calendar-container .bg-black\/5,
-[data-card-bg-mode="white"] .calendar-container .bg-black\/5 {
-  background: #f1f5f9 !important;
-  background-color: #f1f5f9 !important;
+[data-card-bg-mode="white"] .calendar-container .bg-black\/5,
+.card-style-white .calendar-container .bg-black\/\[0\.04\],
+[data-card-bg-mode="white"] .calendar-container .bg-black\/\[0\.04\] {
+  background: #f3f5fa !important;
+  background-color: #f3f5fa !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
 }
 
-.card-style-white .calendar-container .calendar-day-btn:not([class*="border-indigo-500"]):hover,
-[data-card-bg-mode="white"] .calendar-container .calendar-day-btn:not([class*="border-indigo-500"]):hover {
-  background: #e2e8f0 !important;
-  background-color: #e2e8f0 !important;
+.card-style-white .calendar-container .cal-today-circle,
+[data-card-bg-mode="white"] .calendar-container .cal-today-circle {
+  background: #6143f7 !important;
+  background-color: #6143f7 !important;
+  color: #ffffff !important;
 }
 
-.card-style-white .calendar-container .calendar-day-btn.border-2.border-indigo-500,
-[data-card-bg-mode="white"] .calendar-container .calendar-day-btn.border-2.border-indigo-500 {
-  background: #eef2ff !important;
-  background-color: #eef2ff !important;
-  border: 2px solid #6366f1 !important;
+.card-style-white .calendar-container .cal-today-circle *,
+[data-card-bg-mode="white"] .calendar-container .cal-today-circle *,
+.calendar-container .cal-today-circle *,
+.calendar-container .cal-today-text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.calendar-container .cal-holiday-dot {
+  background-color: #ef4444 !important;
+  background: #ef4444 !important;
 }
 
 .card-style-white .calendar-container .calendar-nav-arrow,
 [data-card-bg-mode="white"] .calendar-container .calendar-nav-arrow {
-  background: #f1f5f9 !important;
-  background-color: #f1f5f9 !important;
+  background: #f3f5fa !important;
+  background-color: #f3f5fa !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 1rem !important;
+  border-radius: 9999px !important;
   color: #000000 !important;
   stroke: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
@@ -1837,18 +1879,33 @@ button.todolist-cancel-btn span,
 .card-style-dark .speedtest-tab-card div.GeekTabs-card,
 [data-card-bg-mode="dark"] .speedtest-tab-card div.GeekTabs-card,
 .card-style-dark .bookmark-webcard,
-[data-card-bg-mode="dark"] .bookmark-webcard,
-.card-style-dark .daily-title-green,
-[data-card-bg-mode="dark"] .daily-title-green,
-.card-style-dark .daily-title-yellow,
-[data-card-bg-mode="dark"] .daily-title-yellow,
-.card-style-dark .daily-title-orange,
-[data-card-bg-mode="dark"] .daily-title-orange {
+[data-card-bg-mode="dark"] .bookmark-webcard {
   background: #000000 !important;
   background-color: #000000 !important;
   background-image: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+}
+
+.card-style-dark .daily-title-green,
+[data-card-bg-mode="dark"] .daily-title-green {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%) !important;
+  background-color: #064e3b !important;
+  border-bottom: 1.5px solid rgba(52, 211, 153, 0.28) !important;
+}
+
+.card-style-dark .daily-title-yellow,
+[data-card-bg-mode="dark"] .daily-title-yellow {
+  background: linear-gradient(135deg, #713f12 0%, #854d0e 100%) !important;
+  background-color: #713f12 !important;
+  border-bottom: 1.5px solid rgba(250, 204, 21, 0.30) !important;
+}
+
+.card-style-dark .daily-title-orange,
+[data-card-bg-mode="dark"] .daily-title-orange {
+  background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%) !important;
+  background-color: #7c2d12 !important;
+  border-bottom: 1.5px solid rgba(251, 146, 60, 0.30) !important;
 }
 
 .card-style-dark .weather-huawei-style,
@@ -1942,9 +1999,9 @@ button.todolist-cancel-btn span,
 }
 
 .card-style-dark .daily-card-divider,
-.card-style-dark .daily-card-title-section,
+.card-style-dark .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose),
 [data-card-bg-mode="dark"] .daily-card-divider,
-[data-card-bg-mode="dark"] .daily-card-title-section {
+[data-card-bg-mode="dark"] .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose) {
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.14) !important;
 }
 
@@ -2000,28 +2057,30 @@ button.todolist-cancel-btn span,
 .card-style-dark .calendar-container p,
 .card-style-dark .calendar-container .calendar-year-display,
 .card-style-dark .calendar-container .calendar-weekday-header,
-.card-style-dark .calendar-container .calendar-day-btn span,
+.card-style-dark .calendar-container .calendar-day-btn span:not(.cal-holiday-dot),
 .card-style-dark .calendar-container .world-dates-title,
 .card-style-dark .calendar-container .world-clock-card *,
 .card-style-dark .calendar-container .world-dates-select,
 .card-style-dark .calendar-container .world-dates-diff-pill *,
+.card-style-dark .calendar-container .calendar-today-btn,
 .card-style-dark .calendar-container .text-black,
 .card-style-dark .calendar-container .opacity-40,
 .card-style-dark .calendar-container .opacity-50,
 .card-style-dark .calendar-container .opacity-60,
-.card-style-dark .calendar-container span:not([class*="bg-"]),
+.card-style-dark .calendar-container span:not([class*="bg-"]):not(.cal-holiday-dot):not([class*="text-[#6143f7]"]),
 [data-card-bg-mode="dark"] .calendar-container h2,
 [data-card-bg-mode="dark"] .calendar-container h3,
 [data-card-bg-mode="dark"] .calendar-container p,
 [data-card-bg-mode="dark"] .calendar-container .calendar-year-display,
 [data-card-bg-mode="dark"] .calendar-container .calendar-weekday-header,
-[data-card-bg-mode="dark"] .calendar-container .calendar-day-btn span,
+[data-card-bg-mode="dark"] .calendar-container .calendar-day-btn span:not(.cal-holiday-dot),
 [data-card-bg-mode="dark"] .calendar-container .world-dates-title,
 [data-card-bg-mode="dark"] .calendar-container .world-clock-card *,
 [data-card-bg-mode="dark"] .calendar-container .world-dates-select,
 [data-card-bg-mode="dark"] .calendar-container .world-dates-diff-pill *,
+[data-card-bg-mode="dark"] .calendar-container .calendar-today-btn,
 [data-card-bg-mode="dark"] .calendar-container .text-black,
-[data-card-bg-mode="dark"] .calendar-container span:not([class*="bg-"]),
+[data-card-bg-mode="dark"] .calendar-container span:not([class*="bg-"]):not(.cal-holiday-dot):not([class*="text-[#6143f7]"]),
 .card-style-dark .calculator-tab-card p,
 .card-style-dark .calculator-tab-card h3,
 .card-style-dark .calculator-tab-card .calculator-display-main,
@@ -2119,24 +2178,11 @@ button.todolist-cancel-btn span,
 }
 
 /* Dark Card Mode: Calendar surfaces & icons */
-.card-style-dark .calendar-container .calendar-day-btn:not(:hover):not([class*="border-indigo-500"]),
-[data-card-bg-mode="dark"] .calendar-container .calendar-day-btn:not(:hover):not([class*="border-indigo-500"]) {
-  background: transparent !important;
-  background-color: transparent !important;
-  border-color: transparent !important;
-}
-
-.card-style-dark .calendar-container .world-clock-card,
-[data-card-bg-mode="dark"] .calendar-container .world-clock-card,
-.card-style-dark .calendar-container .world-dates-select,
-[data-card-bg-mode="dark"] .calendar-container .world-dates-select,
-.card-style-dark .calendar-container .world-dates-diff-pill,
-[data-card-bg-mode="dark"] .calendar-container .world-dates-diff-pill,
-.card-style-dark .calendar-container .bg-black\/5,
-[data-card-bg-mode="dark"] .calendar-container .bg-black\/5 {
+.card-style-dark .calendar-container .calendar-day-btn,
+[data-card-bg-mode="dark"] .calendar-container .calendar-day-btn {
   background: #141418 !important;
   background-color: #141418 !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .card-style-dark .calendar-container .calendar-day-btn:hover,
@@ -2145,18 +2191,38 @@ button.todolist-cancel-btn span,
   background-color: #1f1f26 !important;
 }
 
-.card-style-dark .calendar-container .cal-selected-circle,
-[data-card-bg-mode="dark"] .calendar-container .cal-selected-circle,
-.card-style-dark .calendar-container .cal-seg-active,
-[data-card-bg-mode="dark"] .calendar-container .cal-seg-active {
-  background: #0067c0 !important;
-  background-color: #0067c0 !important;
+.card-style-dark .calendar-container .calendar-day-btn.cal-selected-tile,
+[data-card-bg-mode="dark"] .calendar-container .calendar-day-btn.cal-selected-tile {
+  box-shadow: inset 0 0 0 2px #6143f7 !important;
+}
+
+.card-style-dark .calendar-container .world-clock-card,
+[data-card-bg-mode="dark"] .calendar-container .world-clock-card,
+.card-style-dark .calendar-container .world-dates-select,
+[data-card-bg-mode="dark"] .calendar-container .world-dates-select,
+.card-style-dark .calendar-container .world-dates-diff-pill,
+[data-card-bg-mode="dark"] .calendar-container .world-dates-diff-pill,
+.card-style-dark .calendar-container .calendar-today-btn,
+[data-card-bg-mode="dark"] .calendar-container .calendar-today-btn,
+.card-style-dark .calendar-container .bg-black\/5,
+[data-card-bg-mode="dark"] .calendar-container .bg-black\/5,
+.card-style-dark .calendar-container .bg-black\/\[0\.04\],
+[data-card-bg-mode="dark"] .calendar-container .bg-black\/\[0\.04\] {
+  background: #141418 !important;
+  background-color: #141418 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.card-style-dark .calendar-container .cal-today-circle,
+[data-card-bg-mode="dark"] .calendar-container .cal-today-circle {
+  background: #6143f7 !important;
+  background-color: #6143f7 !important;
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
 
-.card-style-dark .calendar-container .cal-selected-circle *,
-[data-card-bg-mode="dark"] .calendar-container .cal-selected-circle * {
+.card-style-dark .calendar-container .cal-today-circle *,
+[data-card-bg-mode="dark"] .calendar-container .cal-today-circle * {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
@@ -2166,7 +2232,7 @@ button.todolist-cancel-btn span,
   background: #141418 !important;
   background-color: #141418 !important;
   border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-radius: 1rem !important;
+  border-radius: 9999px !important;
   color: #ffffff !important;
   stroke: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
@@ -2179,14 +2245,18 @@ button.todolist-cancel-btn span,
 
 .card-style-dark .calendar-container .world-clock-card svg,
 .card-style-dark .calendar-container .calendar-header-logo-icon,
-.card-style-dark .calendar-container .calendar-empty-icon,
-.card-style-dark .calendar-container .world-dates-logo,
 [data-card-bg-mode="dark"] .calendar-container .world-clock-card svg,
-[data-card-bg-mode="dark"] .calendar-container .calendar-header-logo-icon,
-[data-card-bg-mode="dark"] .calendar-container .calendar-empty-icon,
-[data-card-bg-mode="dark"] .calendar-container .world-dates-logo {
+[data-card-bg-mode="dark"] .calendar-container .calendar-header-logo-icon {
   color: #a5b4fc !important;
   stroke: #a5b4fc !important;
+}
+
+.card-style-dark .calendar-container .world-dates-logo,
+.card-style-dark .calendar-container .calendar-empty-icon,
+[data-card-bg-mode="dark"] .calendar-container .world-dates-logo,
+[data-card-bg-mode="dark"] .calendar-container .calendar-empty-icon {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
 }
 
 .card-style-dark .calendar-container .calendar-nav-arrow svg,
@@ -2365,14 +2435,21 @@ button.todolist-cancel-btn span,
 }
 
 [data-glass-bg="dark"].card-style-dark-glass .daily-title-green,
-[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-green,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-green {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.36) 0%, rgba(5, 150, 105, 0.24) 100%) !important;
+  border-bottom: 1.5px solid rgba(110, 231, 183, 0.34) !important;
+}
+
 [data-glass-bg="dark"].card-style-dark-glass .daily-title-yellow,
-[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-yellow,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-yellow {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.38) 0%, rgba(202, 138, 4, 0.24) 100%) !important;
+  border-bottom: 1.5px solid rgba(253, 224, 71, 0.36) !important;
+}
+
 [data-glass-bg="dark"].card-style-dark-glass .daily-title-orange,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-orange {
-  background: rgba(255, 255, 255, 0.08) !important;
-  background-image: none !important;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.38) 0%, rgba(234, 88, 12, 0.24) 100%) !important;
+  border-bottom: 1.5px solid rgba(253, 186, 116, 0.36) !important;
 }
 
 [data-glass-bg="dark"].card-style-dark-glass .weather-subcard,
@@ -2381,14 +2458,16 @@ button.todolist-cancel-btn span,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500),
 [data-glass-bg="dark"].card-style-dark-glass .bookmark-add-cat-btn,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn,
-[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn:not([class*="border-indigo-500"]),
-[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn:not([class*="border-indigo-500"]),
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-clock-card,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .world-clock-card,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-select,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .world-dates-select,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-diff-pill,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .world-dates-diff-pill,
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-today-btn,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-today-btn,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-nav-arrow,
 [data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow,
 [data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calculator-btn:not(.calculator-equals-btn),
@@ -2413,14 +2492,19 @@ button.todolist-cancel-btn span,
 [data-glass-bg="dark"].card-style-dark-glass .weather-subcard:hover,
 [data-glass-bg="dark"].card-style-dark-glass .bookmark-webcard:hover,
 [data-glass-bg="dark"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
-[data-glass-bg="dark"].card-style-dark-glass .bookmark-add-cat-btn:hover {
+[data-glass-bg="dark"].card-style-dark-glass .bookmark-add-cat-btn:hover,
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn:hover {
   background: rgba(255, 255, 255, 0.24) !important;
   border-color: rgba(255, 255, 255, 0.44) !important;
 }
 
-[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn.border-2.border-indigo-500 {
-  background: rgba(99, 102, 241, 0.34) !important;
-  border: 2px solid rgba(165, 180, 252, 0.9) !important;
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn.cal-selected-tile,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn.cal-selected-tile {
+  box-shadow: inset 0 0 0 2px #6143f7 !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-day-btn.opacity-55 {
+  opacity: 0.55 !important;
 }
 
 [data-glass-bg="dark"].card-style-dark-glass .daily-card-icon-badge,
@@ -2463,15 +2547,16 @@ button.todolist-cancel-btn span,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container p,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-year-display,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-weekday-header,
-[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn span:not(.text-rose-500):not([class*="text-rose"]),
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-day-btn span:not(.cal-holiday-dot),
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-title,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-clock-card *,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-select,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-diff-pill *,
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-today-btn,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .opacity-40,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .opacity-50,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .opacity-60,
-[data-glass-bg="dark"].card-style-dark-glass .calendar-container span:not([class*="bg-"]):not([class*="text-rose"]),
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container span:not([class*="bg-"]):not(.cal-holiday-dot):not([class*="text-[#6143f7]"]),
 [data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card p,
 [data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card h3,
 [data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calculator-display-main,
@@ -2532,12 +2617,16 @@ button.todolist-cancel-btn span,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-nav-arrow svg,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-clock-card svg,
 [data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-header-logo-icon,
-[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-empty-icon,
-[data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-logo,
 [data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calculator-btn:not(.calculator-equals-btn) svg,
 [data-glass-bg="dark"].card-style-dark-glass .bookmark-add-cat-btn svg {
   color: #ffffff !important;
   stroke: #ffffff !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .world-dates-logo,
+[data-glass-bg="dark"].card-style-dark-glass .calendar-container .calendar-empty-icon {
+  color: #6143f7 !important;
+  stroke: #6143f7 !important;
 }
 
 [data-glass-bg="dark"].card-style-dark-glass .ipaddress-tab-card .border-b,
@@ -2605,14 +2694,21 @@ button.todolist-cancel-btn span,
 }
 
 [data-glass-bg="light"].card-style-dark-glass .daily-title-green,
-[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-green,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-green {
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.58) 0%, rgba(187, 247, 208, 0.45) 100%) !important;
+  border-bottom: 1.5px solid rgba(22, 163, 74, 0.26) !important;
+}
+
 [data-glass-bg="light"].card-style-dark-glass .daily-title-yellow,
-[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-yellow,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-yellow {
+  background: linear-gradient(135deg, rgba(253, 224, 71, 0.60) 0%, rgba(254, 240, 138, 0.48) 100%) !important;
+  border-bottom: 1.5px solid rgba(202, 138, 4, 0.28) !important;
+}
+
 [data-glass-bg="light"].card-style-dark-glass .daily-title-orange,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-orange {
-  background: rgba(255, 255, 255, 0.22) !important;
-  background-image: none !important;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+  background: linear-gradient(135deg, rgba(253, 186, 116, 0.62) 0%, rgba(254, 215, 170, 0.48) 100%) !important;
+  border-bottom: 1.5px solid rgba(234, 88, 12, 0.26) !important;
 }
 
 [data-glass-bg="light"].card-style-dark-glass .weather-subcard,
@@ -2621,12 +2717,16 @@ button.todolist-cancel-btn span,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500),
 [data-glass-bg="light"].card-style-dark-glass .bookmark-add-cat-btn,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn,
+[data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-day-btn,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-clock-card,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calendar-container .world-clock-card,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-dates-select,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calendar-container .world-dates-select,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-dates-diff-pill,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calendar-container .world-dates-diff-pill,
+[data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-today-btn,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-today-btn,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-nav-arrow,
 [data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calendar-container .calendar-nav-arrow,
 [data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calculator-btn:not(.calculator-equals-btn),
@@ -2651,27 +2751,29 @@ button.todolist-cancel-btn span,
 [data-glass-bg="light"].card-style-dark-glass .weather-subcard:hover,
 [data-glass-bg="light"].card-style-dark-glass .bookmark-webcard:hover,
 [data-glass-bg="light"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
-[data-glass-bg="light"].card-style-dark-glass .bookmark-add-cat-btn:hover {
+[data-glass-bg="light"].card-style-dark-glass .bookmark-add-cat-btn:hover,
+[data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-day-btn:hover {
   background: rgba(255, 255, 255, 0.68) !important;
   border-color: rgba(99, 102, 241, 0.35) !important;
 }
 
-.card-style-dark-glass .calendar-container .cal-selected-circle,
-[data-card-bg-mode="dark-glass"] .calendar-container .cal-selected-circle,
-.card-style-dark-glass .calendar-container .cal-seg-active,
-[data-card-bg-mode="dark-glass"] .calendar-container .cal-seg-active {
-  background: #0067c0 !important;
-  background-color: #0067c0 !important;
+.card-style-dark-glass .calendar-container .cal-today-circle,
+[data-card-bg-mode="dark-glass"] .calendar-container .cal-today-circle {
+  background: #6143f7 !important;
+  background-color: #6143f7 !important;
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
 
-.card-style-dark-glass .calendar-container .cal-selected-circle *,
-[data-card-bg-mode="dark-glass"] .calendar-container .cal-selected-circle *,
-.card-style-dark-glass .calendar-container .cal-seg-active *,
-[data-card-bg-mode="dark-glass"] .calendar-container .cal-seg-active * {
+.card-style-dark-glass .calendar-container .cal-today-circle *,
+[data-card-bg-mode="dark-glass"] .calendar-container .cal-today-circle * {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
+}
+
+.card-style-dark-glass .calendar-container .calendar-day-btn.cal-selected-tile,
+[data-card-bg-mode="dark-glass"] .calendar-container .calendar-day-btn.cal-selected-tile {
+  box-shadow: inset 0 0 0 2px #6143f7 !important;
 }
 
 [data-glass-bg="light"].card-style-dark-glass .daily-card-icon-badge {
@@ -2711,15 +2813,16 @@ button.todolist-cancel-btn span,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container p,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-year-display,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-weekday-header,
-[data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-day-btn:not(:has(.cal-selected-circle)) span:not([class*="text-rose"]),
+[data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-day-btn:not(:has(.cal-today-circle)) span:not(.cal-holiday-dot),
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-dates-title,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-clock-card *,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-dates-select,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .world-dates-diff-pill *,
+[data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-today-btn,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .opacity-40,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .opacity-50,
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .opacity-60,
-[data-glass-bg="light"].card-style-dark-glass .calendar-container span:not([class*="bg-"]):not(.cal-selected-circle *):not(.cal-seg-active *):not([class*="text-rose"]),
+[data-glass-bg="light"].card-style-dark-glass .calendar-container span:not([class*="bg-"]):not(.cal-today-text):not(.cal-holiday-dot):not([class*="text-[#6143f7]"]),
 [data-glass-bg="light"].card-style-dark-glass .calendar-container .calendar-nav-arrow,
 [data-glass-bg="light"].card-style-dark-glass .calculator-tab-card p,
 [data-glass-bg="light"].card-style-dark-glass .calculator-tab-card h3,
@@ -3382,16 +3485,185 @@ button.todolist-cancel-btn span,
   text-shadow: none !important;
 }
 
+/* Home Daily Web Cards: Regular (non-light) header colors across Light, Dark, and Glass modes + borderless in Dark card mode */
+.weather-huawei-style .daily-title-green,
+.card-style-white .weather-huawei-style .daily-title-green,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-green,
+.card-style-dark .weather-huawei-style .daily-title-green,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-green,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-green,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-green,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-green,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-green {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
+  background-color: #16a34a !important;
+  border-bottom: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 
+.weather-huawei-style .daily-title-yellow,
+.card-style-white .weather-huawei-style .daily-title-yellow,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-yellow,
+.card-style-dark .weather-huawei-style .daily-title-yellow,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-yellow,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-yellow,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-yellow,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-yellow,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-yellow {
+  background: linear-gradient(135deg, #facc15 0%, #eab308 100%) !important;
+  background-color: #eab308 !important;
+  border-bottom: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 
+.weather-huawei-style .daily-title-orange,
+.card-style-white .weather-huawei-style .daily-title-orange,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-orange,
+.card-style-dark .weather-huawei-style .daily-title-orange,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-orange,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-orange,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-orange,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-orange,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-orange {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+  background-color: #ea580c !important;
+  border-bottom: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 
+.weather-huawei-style .daily-title-rose,
+.card-style-white .weather-huawei-style .daily-title-rose,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-rose,
+.card-style-dark .weather-huawei-style .daily-title-rose,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-rose,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-rose,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-rose,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-rose,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-rose {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%) !important;
+  background-color: #e11d48 !important;
+  border-bottom: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 
+/* Header titles & refresh controls: white on green/rose/orange, black on yellow */
+.weather-huawei-style .daily-title-green h2,
+.weather-huawei-style .daily-title-green button,
+.weather-huawei-style .daily-title-rose h2,
+.weather-huawei-style .daily-title-rose button,
+.weather-huawei-style .daily-title-orange h2,
+.weather-huawei-style .daily-title-orange button,
+.card-style-white .weather-huawei-style .daily-title-green h2,
+.card-style-white .weather-huawei-style .daily-title-green button,
+.card-style-white .weather-huawei-style .daily-title-rose h2,
+.card-style-white .weather-huawei-style .daily-title-rose button,
+.card-style-white .weather-huawei-style .daily-title-orange h2,
+.card-style-white .weather-huawei-style .daily-title-orange button,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-green h2,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-green button,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-rose h2,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-rose button,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-orange h2,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-orange button,
+.card-style-dark .weather-huawei-style .daily-title-green h2,
+.card-style-dark .weather-huawei-style .daily-title-green button,
+.card-style-dark .weather-huawei-style .daily-title-rose h2,
+.card-style-dark .weather-huawei-style .daily-title-rose button,
+.card-style-dark .weather-huawei-style .daily-title-orange h2,
+.card-style-dark .weather-huawei-style .daily-title-orange button,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-green h2,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-green button,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-rose h2,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-rose button,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-orange h2,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-orange button,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-green h2,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-green button,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-rose h2,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-rose button,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-orange h2,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-orange button,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-green h2,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-green button,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-rose h2,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-rose button,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-orange h2,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-orange button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}
 
+.weather-huawei-style .daily-title-yellow h2,
+.weather-huawei-style .daily-title-yellow button,
+.card-style-white .weather-huawei-style .daily-title-yellow h2,
+.card-style-white .weather-huawei-style .daily-title-yellow button,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-yellow h2,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-yellow button,
+.card-style-dark .weather-huawei-style .daily-title-yellow h2,
+.card-style-dark .weather-huawei-style .daily-title-yellow button,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-yellow h2,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-yellow button,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-yellow h2,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-yellow button,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-yellow h2,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-yellow button {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  text-shadow: none !important;
+}
 
+.weather-huawei-style .daily-card-title-section .daily-card-icon-badge,
+.card-style-white .weather-huawei-style .daily-card-title-section .daily-card-icon-badge,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-card-title-section .daily-card-icon-badge,
+.card-style-dark .weather-huawei-style .daily-card-title-section .daily-card-icon-badge,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-card-title-section .daily-card-icon-badge,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-card-title-section .daily-card-icon-badge,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-card-title-section .daily-card-icon-badge {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 0 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10) !important;
+}
 
+.weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg,
+.card-style-white .weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg,
+.card-style-dark .weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-card-title-section .daily-card-icon-badge svg {
+  color: #c8102e !important;
+  stroke: #c8102e !important;
+}
 
+.weather-huawei-style.daily-webcard .daily-card-divider,
+.card-style-white .weather-huawei-style.daily-webcard .daily-card-divider,
+.card-style-dark .weather-huawei-style.daily-webcard .daily-card-divider,
+.card-style-dark-glass .weather-huawei-style.daily-webcard .daily-card-divider {
+  border-bottom: 0 !important;
+}
 
+/* Remove outer black border & dark shadow rim on the 4 daily web cards in Dark card background mode */
+.card-style-dark .weather-huawei-style.daily-webcard,
+[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard,
+.card-style-dark .weather-huawei-style.daily-webcard:hover,
+[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard:hover {
+  border: 0 !important;
+  border-width: 0 !important;
+  border-color: transparent !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background-clip: padding-box !important;
+}
 
-
-
+.photo-mode .daily-cards-humor-intro h2,
+.photo-mode .daily-cards-humor-intro p,
+.photo-mode .daily-cards-humor-intro span {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.72) !important;
+}
 

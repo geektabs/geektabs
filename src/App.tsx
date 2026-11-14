@@ -12,6 +12,7 @@ import HumorWidget from './components/Widgets/HumorWidget';
 import QuoteWidget from './components/Widgets/QuoteWidget';
 import WeatherWidget from './components/Widgets/WeatherWidget';
 import TipsWidget from './components/Widgets/TipsWidget';
+import ReminderWidget from './components/Widgets/ReminderWidget';
 import HoroscopeInfo from './components/Widgets/HoroscopeInfo';
 import Dock from './components/Navigation/Dock';
 import { useLocalStorage } from './hooks/useLocalStorage';
@@ -222,6 +223,45 @@ export default function App() {
       ? 'card-style-dark'
       : 'card-style-white';
 
+  const dailySectionTitle =
+    {
+      English: 'Daily Digest',
+      Chinese: '每日精选',
+      Spanish: 'Resumen Diario',
+      French: 'Le Quatuor du Jour',
+      German: 'Tagesbriefing',
+      Japanese: 'デイリーダイジェスト',
+      Korean: '데일리 다이제스트',
+      Italian: 'Riepilogo Quotidiano',
+      Russian: 'Сводка дня',
+      Luxembourgish: 'Dagbléck',
+    }[language] || 'Daily Digest';
+
+  const dailySectionHumorDesc =
+    {
+      English:
+        'Smart life tips so you wing it less, gentle reminders so you overthink less, a quick laugh before your coffee cools, and wise quotes to sound brilliant in meetings.',
+      Chinese:
+        '实用生活贴士让你少走弯路，温柔觉悟提醒让你少点内耗，咖啡凉前先笑一笑，名言金句帮你开会随时金句频出。',
+      Spanish:
+        'Trucos útiles para improvisar menos, recordatorios suaves para pensar de más un poco menos, una risa rápida antes de que se enfríe el café y citas brillantes para lucirte.',
+      French:
+        'Des astuces pour moins improviser, des rappels doux pour moins cogiter, un sourire avant que le café refroidisse et de belles citations pour briller en réunion.',
+      German:
+        'Clevere Alltagstipps gegen das Raten, sanfte Erinnerungen gegen das Grübeln, ein schneller Lacher zum Kaffee und kluge Zitate für jedes Meeting.',
+      Japanese:
+        '暮らしの知恵で迷いを減らし、やさしいリマインダーで考えすぎを防ぎ、コーヒーが冷める前にひと笑い、名言で会議もスマートに。',
+      Korean:
+        '시행착오를 줄여주는 생활 팁, 잡념을 덜어주는 깨달음 알림, 커피 식기 전 웃음 한 스푼, 회의에서 빛나는 명언까지.',
+      Italian:
+        'Consigli pratici per improvvisare meno, promemoria gentili per rimuginare meno, una risata prima che il caffè si raffreddi e citazioni brillanti per le riunioni.',
+      Russian:
+        'Житейские хитрости, чтобы меньше импровизировать, мягкие напоминания от лишних тревог, повод улыбнуться к кофе и меткие цитаты для встреч.',
+      Luxembourgish:
+        'Alldeeglech Tipps fir manner ze rätselen, sanft Erënnerungen géint d’Iwwerleeën, e kuerze Laach beim Kaffi a schlau Zitater.',
+    }[language] ||
+    'Smart life tips so you wing it less, gentle reminders so you overthink less, a quick laugh before your coffee cools, and wise quotes to sound brilliant in meetings.';
+
   return (
     <div 
       className={`relative min-h-screen font-sans transition-colors duration-500 ${isDarkMode ? 'dark text-white' : 'light'} ${isPhoto ? 'photo-mode' : ''} ${cardStyleClass} ${theme === 'light-grey' || theme === 'light-slate' ? 'bg-[#f8fafc]' : theme === 'white-clean' ? 'bg-white' : (theme === 'pastel-waves' || theme === 'mix-neonpurple') ? 'bg-[#d8f0fa]' : ''}`}
@@ -292,18 +332,29 @@ export default function App() {
               </div>
 
               {/* Bottom Widgets */}
-              <div className="flex flex-col gap-6 w-full max-w-6xl mx-auto mb-20 sm:mb-24 mt-6 sm:mt-8">
+              <div className="flex flex-col gap-6 w-full max-w-6xl lg:max-w-5xl mx-auto mb-20 sm:mb-24 mt-6 sm:mt-8">
                 <div className="w-full">
                   <WeatherWidget language={language} />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-6 w-full">
-                  <div className="min-h-[250px] sm:min-h-[260px] h-full">
+                <div className="daily-cards-humor-intro w-full px-2 sm:px-4 mt-6 sm:mt-8 mb-4 sm:mb-6 pt-1 select-none text-center">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] font-black tracking-tight word-color mb-2">
+                    {dailySectionTitle}
+                  </h2>
+                  <p className="text-sm sm:text-base lg:text-lg xl:text-[19px] font-medium word-color opacity-90 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed">
+                    {dailySectionHumorDesc}
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 w-full">
+                  <div className="min-h-[240px] sm:min-h-[250px] h-full">
                     <TipsWidget language={language} />
                   </div>
-                  <div className="min-h-[250px] sm:min-h-[260px] h-full">
+                  <div className="min-h-[240px] sm:min-h-[250px] h-full">
+                    <ReminderWidget language={language} />
+                  </div>
+                  <div className="min-h-[240px] sm:min-h-[250px] h-full">
                     <HumorWidget language={language} />
                   </div>
-                  <div className="min-h-[250px] sm:min-h-[260px] h-full">
+                  <div className="min-h-[240px] sm:min-h-[250px] h-full">
                     <QuoteWidget language={language} />
                   </div>
                 </div>

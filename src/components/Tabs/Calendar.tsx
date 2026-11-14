@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Plus, MapPin, Bell, CalendarClock, Globe, LocateFixed } from 'lucide-react';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Plus, MapPin, Bell, CalendarClock, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import ConfirmModal from '../ConfirmModal';
@@ -736,6 +736,14 @@ const chineseLunarFmt = (() => {
   }
 })();
 
+const chineseLunarNumFmt = (() => {
+  try {
+    return new Intl.DateTimeFormat('zh-CN-u-ca-chinese', { month: 'numeric', day: 'numeric' });
+  } catch {
+    return null;
+  }
+})();
+
 const getChineseLunarParts = (date: Date): { fullLabel: string; cellLabel: string } | null => {
   if (!chineseLunarFmt) return null;
   try {
@@ -753,6 +761,36 @@ const getChineseLunarParts = (date: Date): { fullLabel: string; cellLabel: strin
   } catch {
     return null;
   }
+};
+
+const getKoreanLunarParts = (date: Date): { fullLabel: string; cellLabel: string } | null => {
+  if (!chineseLunarNumFmt) return null;
+  try {
+    const parts = chineseLunarNumFmt.formatToParts(
+      new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12)
+    );
+    const monthNum = parseInt(parts.find((p) => p.type === 'month')?.value || '', 10);
+    const dayNum = parseInt(parts.find((p) => p.type === 'day')?.value || '', 10);
+    if (!Number.isFinite(monthNum) || !Number.isFinite(dayNum) || dayNum < 1 || dayNum > 30) {
+      return null;
+    }
+    return {
+      fullLabel: `음력 ${monthNum}월 ${dayNum}일`,
+      cellLabel: `${monthNum}.${dayNum}`,
+    };
+  } catch {
+    return null;
+  }
+};
+
+// Countries whose official or traditional calendar adds a distinct day-by-day calendar alongside Global Gregorian
+const getSecondaryCalendarParts = (
+  date: Date,
+  countryId: string
+): { fullLabel: string; cellLabel: string } | null => {
+  if (countryId === 'CHN') return getChineseLunarParts(date);
+  if (countryId === 'KOR') return getKoreanLunarParts(date);
+  return null;
 };
 
 const WEEKDAYS: Record<string, string[]> = {
@@ -782,13 +820,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Save',
     deleteEvent: 'Delete Event',
     deleteConfirm: 'Are you sure you want to delete this event?',
-    oneCalendar: '1 Calendar',
-    twoCalendars: '2 Calendars',
+    singleCalNone: '1 Country (None)',
+    globalDefault: 'Global Official Calendar',
     today: 'Today',
     ipLocation: 'IP Location',
-    lunar: 'Lunar',
-    primaryCal: 'Calendar 1',
-    secondaryCal: 'Calendar 2',
   },
   Korean: {
     worldDates: '세계 시간',
@@ -803,13 +838,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: '저장',
     deleteEvent: '일정 삭제',
     deleteConfirm: '이 일정을 삭제하시겠습니까?',
-    oneCalendar: '1개 달력',
-    twoCalendars: '2개 달력',
+    singleCalNone: '1개 국가 (없음)',
+    globalDefault: '글로벌 표준 달력',
     today: '오늘',
     ipLocation: 'IP 위치',
-    lunar: '음력',
-    primaryCal: '달력 1',
-    secondaryCal: '달력 2',
   },
   Spanish: {
     worldDates: 'Fechas mundiales',
@@ -824,13 +856,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Guardar',
     deleteEvent: 'Eliminar evento',
     deleteConfirm: '¿Estás seguro de que deseas eliminar este evento?',
-    oneCalendar: '1 Calendario',
-    twoCalendars: '2 Calendarios',
+    singleCalNone: '1 País (Ninguno)',
+    globalDefault: 'Calendario Oficial Global',
     today: 'Hoy',
     ipLocation: 'Ubicación IP',
-    lunar: 'Lunar',
-    primaryCal: 'Calendario 1',
-    secondaryCal: 'Calendario 2',
   },
   French: {
     worldDates: 'Heures mondiales',
@@ -845,13 +874,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Enregistrer',
     deleteEvent: 'Supprimer l\'événement',
     deleteConfirm: 'Êtes-vous sûr de vouloir supprimer cet événement ?',
-    oneCalendar: '1 Calendrier',
-    twoCalendars: '2 Calendriers',
+    singleCalNone: '1 Pays (Aucun)',
+    globalDefault: 'Calendrier Officiel Mondial',
     today: 'Aujourd\'hui',
     ipLocation: 'Position IP',
-    lunar: 'Lunaire',
-    primaryCal: 'Calendrier 1',
-    secondaryCal: 'Calendrier 2',
   },
   German: {
     worldDates: 'Weltzeiten',
@@ -866,13 +892,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Speichern',
     deleteEvent: 'Termin löschen',
     deleteConfirm: 'Sind Sie sicher, dass Sie diesen Termin löschen möchten?',
-    oneCalendar: '1 Kalender',
-    twoCalendars: '2 Kalender',
+    singleCalNone: '1 Land (Keiner)',
+    globalDefault: 'Globaler Offizieller Kalender',
     today: 'Heute',
     ipLocation: 'IP-Standort',
-    lunar: 'Mondkalender',
-    primaryCal: 'Kalender 1',
-    secondaryCal: 'Kalender 2',
   },
   Chinese: {
     worldDates: '世界时间',
@@ -887,13 +910,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: '保存',
     deleteEvent: '删除日程',
     deleteConfirm: '您确定要删除此日程吗？',
-    oneCalendar: '单日历',
-    twoCalendars: '双日历',
+    singleCalNone: '单国家 (无第二国家)',
+    globalDefault: '全球官方日历',
     today: '今天',
     ipLocation: 'IP 所在地',
-    lunar: '农历',
-    primaryCal: '日历 1',
-    secondaryCal: '日历 2',
   },
   Japanese: {
     worldDates: '世界時計',
@@ -908,13 +928,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: '保存',
     deleteEvent: '予定の削除',
     deleteConfirm: 'この予定を削除してもよろしいですか？',
-    oneCalendar: '1カレンダー',
-    twoCalendars: '2カレンダー',
+    singleCalNone: '1か国 (なし)',
+    globalDefault: 'グローバル公式カレンダー',
     today: '今日',
     ipLocation: 'IP 位置情報',
-    lunar: '旧暦',
-    primaryCal: 'カレンダー 1',
-    secondaryCal: 'カレンダー 2',
   },
   Italian: {
     worldDates: 'Fusi Orari',
@@ -929,13 +946,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Salva',
     deleteEvent: 'Elimina Evento',
     deleteConfirm: 'Sei sicuro di voler eliminare questo evento?',
-    oneCalendar: '1 Calendario',
-    twoCalendars: '2 Calendari',
+    singleCalNone: '1 Paese (Nessuno)',
+    globalDefault: 'Calendario Ufficiale Globale',
     today: 'Oggi',
     ipLocation: 'Posizione IP',
-    lunar: 'Lunare',
-    primaryCal: 'Calendario 1',
-    secondaryCal: 'Calendario 2',
   },
   Russian: {
     worldDates: 'Мировое Время',
@@ -950,13 +964,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Сохранить',
     deleteEvent: 'Удалить событие',
     deleteConfirm: 'Вы уверены, что хотите удалить это событие?',
-    oneCalendar: '1 Календарь',
-    twoCalendars: '2 Календаря',
+    singleCalNone: '1 Страна (Нет)',
+    globalDefault: 'Глобальный календарь',
     today: 'Сегодня',
     ipLocation: 'IP-локация',
-    lunar: 'Лунный',
-    primaryCal: 'Календарь 1',
-    secondaryCal: 'Календарь 2',
   },
   Luxembourgish: {
     worldDates: 'Weltzäiten',
@@ -971,13 +982,10 @@ const CAL_T: Record<string, Record<string, string>> = {
     save: 'Späicheren',
     deleteEvent: 'Evenement läschen',
     deleteConfirm: 'Sidd Dir sécher, datt Dir dëst Evenement läschen wëllt?',
-    oneCalendar: '1 Kalenner',
-    twoCalendars: '2 Kalenneren',
+    singleCalNone: '1 Land (Keen)',
+    globalDefault: 'Globale offizielle Kalenner',
     today: 'Haut',
     ipLocation: 'IP-Standuert',
-    lunar: 'Mound',
-    primaryCal: 'Kalenner 1',
-    secondaryCal: 'Kalenner 2',
   }
 };
 
@@ -1002,15 +1010,11 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   const initialBrowserCountry = useMemo(() => guessCountryFromBrowserTimezone(), []);
 
   const [events, setEvents] = useLocalStorage<EventItem[]>('GeekTabs-events', []);
-  const [calendarCount, setCalendarCount] = useLocalStorage<1 | 2>('GeekTabs-cal-count-v2', 1);
   const [country1Mode, setCountry1Mode] = useLocalStorage<'auto' | 'manual'>('GeekTabs-cal-country1-mode', 'auto');
   const [country1, setCountry1] = useLocalStorage<string>('GeekTabs-cal-country1', initialBrowserCountry);
-  const [country2, setCountry2] = useLocalStorage<string>(
-    'GeekTabs-cal-country2-v2',
-    initialBrowserCountry === 'CHN' ? 'USA' : 'CHN'
-  );
-  const [lunarSetting, setLunarSetting] = useLocalStorage<'auto' | 'on' | 'off'>('GeekTabs-cal-lunar', 'auto');
-  const [ipDetectedCountry, setIpDetectedCountry] = useState<string>(initialBrowserCountry);
+  const [country2, setCountry2] = useLocalStorage<string>('GeekTabs-cal-country2-v3', 'NONE');
+  // Main calendar top-right selector: 'GLOBAL' (Global Official Gregorian Calendar by default) or specific country
+  const [calendarCountry, setCalendarCountry] = useLocalStorage<string>('GeekTabs-cal-country-v4', 'GLOBAL');
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [newEvent, setNewEvent] = useState({ title: '', time: '', type: 'event' as 'event' | 'reminder' });
@@ -1080,12 +1084,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
       }
 
       if (!cancelled && mapped) {
-        setIpDetectedCountry(mapped);
         if (country1Mode === 'auto') {
           setCountry1(mapped);
-          if (country2 === mapped) {
-            setCountry2(mapped === 'CHN' ? 'USA' : 'CHN');
-          }
         }
       }
     };
@@ -1096,30 +1096,31 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     };
   }, [country1Mode]);
 
-  const handleResetToIpCountry = () => {
-    setCountry1Mode('auto');
-    setCountry1(ipDetectedCountry);
-  };
-
   const handleSelectCountry1 = (val: string) => {
     setCountry1Mode('manual');
     setCountry1(val);
   };
 
+  const hasSecondCountry = Boolean(country2 && country2 !== 'NONE' && country2 !== country1);
+
+  const activeWorldCountries = useMemo(() => {
+    if (hasSecondCountry) {
+      return [country1, country2];
+    }
+    return [country1].filter(Boolean);
+  }, [country1, country2, hasSecondCountry]);
+
+  const activeHolidayCountries = useMemo(() => {
+    if (calendarCountry && calendarCountry !== 'GLOBAL') {
+      return [calendarCountry];
+    }
+    return activeWorldCountries;
+  }, [calendarCountry, activeWorldCountries]);
+
   const selectedDateStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
   const selectedEvents = events.filter((e) => e.date === selectedDateStr);
 
-  const activeCountries = useMemo(() => {
-    if (calendarCount === 1) {
-      return [country1];
-    }
-    if (country1 && country2 && country1 !== country2) {
-      return [country1, country2];
-    }
-    return [country1 || country2].filter(Boolean);
-  }, [calendarCount, country1, country2]);
-
-  const getHolidaysForYMD = (y: number, m1: number, d: number, countriesList = activeCountries) => {
+  const getHolidaysForYMD = (y: number, m1: number, d: number, countriesList = activeHolidayCountries) => {
     const mmdd = `${String(m1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
     const result: string[] = [];
     for (const cId of countriesList) {
@@ -1141,7 +1142,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     const y = currentDate.getFullYear();
     const mPrefix = `${String(currentDate.getMonth() + 1).padStart(2, '0')}-`;
     const list: Array<{ day: number; countryId: string; name: string }> = [];
-    for (const cId of activeCountries) {
+    for (const cId of activeHolidayCountries) {
       const hols = getCountryHolidaysForYear(cId, y);
       for (const [mmdd, name] of Object.entries(hols)) {
         if (mmdd.startsWith(mPrefix)) {
@@ -1155,9 +1156,9 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     }
     list.sort((a, b) => a.day - b.day || a.countryId.localeCompare(b.countryId));
     return list;
-  }, [currentDate, activeCountries]);
+  }, [currentDate, activeHolidayCountries]);
 
-  // Windows 11 style 42-cell (6 weeks x 7 days) month grid
+  // 42-cell (6 weeks x 7 days) month matrix
   const calendarCells = useMemo(() => {
     const y = currentDate.getFullYear();
     const m = currentDate.getMonth();
@@ -1181,12 +1182,6 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     return cells;
   }, [currentDate]);
 
-  const shouldShowLunarForCountry = (cId: string) => {
-    if (lunarSetting === 'on') return true;
-    if (lunarSetting === 'off') return false;
-    return cId === 'CHN' || cId === 'KOR' || cId === 'SGP' || language === 'Chinese';
-  };
-
   const selectedHeaderDateText = useMemo(() => {
     try {
       return selectedDate.toLocaleDateString(locale, {
@@ -1200,13 +1195,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   }, [selectedDate, locale, selectedDateStr]);
 
   const selectedLunarInfo = useMemo(() => {
-    const anyLunarActive =
-      lunarSetting === 'on' ||
-      (lunarSetting === 'auto' && activeCountries.some((c) => c === 'CHN' || c === 'KOR' || c === 'SGP')) ||
-      language === 'Chinese';
-    if (!anyLunarActive) return null;
-    return getChineseLunarParts(selectedDate)?.fullLabel || null;
-  }, [selectedDate, lunarSetting, activeCountries, language]);
+    return getSecondaryCalendarParts(selectedDate, calendarCountry)?.fullLabel || null;
+  }, [selectedDate, calendarCountry]);
 
   const handleAddEvent = (e: React.FormEvent) => {
     e.preventDefault();
@@ -1223,179 +1213,6 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     ]);
     setShowAddModal(false);
     setNewEvent({ title: '', time: '', type: 'event' });
-  };
-
-  const renderCountryGrid = (
-    countryId: string,
-    onChangeCountry: (val: string) => void,
-    isAutoIp: boolean,
-    slotLabel?: string
-  ) => {
-    const showLunar = shouldShowLunarForCountry(countryId);
-    const holidaysMap = getCountryHolidaysForYear(countryId, currentDate.getFullYear());
-    const countryName = COUNTRY_NAMES[language]?.[countryId] || COUNTRIES.find((c) => c.id === countryId)?.name || countryId;
-
-    return (
-      <div className="flex flex-col">
-        {/* Per-calendar selector bar (shown prominently in 2-calendar mode or compact country header in 1-calendar mode) */}
-        <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-black/8 dark:border-white/10">
-          <div className="flex items-center gap-2 min-w-0">
-            {slotLabel && (
-              <span className="text-[11px] font-bold uppercase tracking-wider opacity-60 shrink-0">
-                {slotLabel}
-              </span>
-            )}
-            <select
-              value={countryId}
-              onChange={(e) => onChangeCountry(e.target.value)}
-              aria-label={slotLabel || countryName}
-              className="world-dates-select bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl px-2.5 py-1.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer truncate max-w-[175px]"
-            >
-              {COUNTRIES.map((c) => (
-                <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
-                  {COUNTRY_NAMES[language]?.[c.id] || c.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex items-center gap-1.5 shrink-0">
-            {isAutoIp ? (
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">
-                <LocateFixed size={12} />
-                <span>{calText.ipLocation}</span>
-              </span>
-            ) : slotLabel === calText.primaryCal || calendarCount === 1 ? (
-              <button
-                type="button"
-                onClick={handleResetToIpCountry}
-                className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 text-[11px] font-semibold text-black dark:text-white transition-colors cursor-pointer"
-                title={calText.ipLocation}
-              >
-                <LocateFixed size={11} />
-                <span>{calText.ipLocation}</span>
-              </button>
-            ) : (
-              <span className="text-[11px] font-mono opacity-55 font-semibold">{countryId}</span>
-            )}
-          </div>
-        </div>
-
-        {/* Weekday Headers */}
-        <div className="grid grid-cols-7 gap-1 sm:gap-1.5 mb-1.5">
-          {(WEEKDAYS[language] || WEEKDAYS['English']).map((day) => (
-            <div
-              key={day}
-              className="text-center calendar-weekday-header text-black dark:text-white font-semibold text-xs py-1.5"
-            >
-              {day}
-            </div>
-          ))}
-        </div>
-
-        {/* Windows 11 6x7 Date Matrix */}
-        <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
-          {calendarCells.map(({ date, inCurrentMonth }) => {
-            const cellY = date.getFullYear();
-            const cellM = date.getMonth() + 1;
-            const cellD = date.getDate();
-            const dateKey = `${cellY}-${String(cellM).padStart(2, '0')}-${String(cellD).padStart(2, '0')}`;
-            const mmdd = `${String(cellM).padStart(2, '0')}-${String(cellD).padStart(2, '0')}`;
-
-            // Use accurate year lookup when leading/trailing cells span adjacent year
-            const cellHolidaysMap =
-              cellY === currentDate.getFullYear()
-                ? holidaysMap
-                : getCountryHolidaysForYear(countryId, cellY);
-            const holidayName = cellHolidaysMap[mmdd] || null;
-            const hasEvt = events.some((e) => e.date === dateKey);
-            const lunarCell = showLunar ? getChineseLunarParts(date)?.cellLabel : null;
-
-            const isTodayCell =
-              cellD === now.getDate() &&
-              date.getMonth() === now.getMonth() &&
-              cellY === now.getFullYear();
-            const isSelectedCell =
-              cellD === selectedDate.getDate() &&
-              date.getMonth() === selectedDate.getMonth() &&
-              cellY === selectedDate.getFullYear();
-
-            return (
-              <button
-                key={dateKey}
-                type="button"
-                onClick={() => {
-                  setSelectedDate(date);
-                  if (!inCurrentMonth) {
-                    setCurrentDate(new Date(cellY, date.getMonth(), 1));
-                  }
-                }}
-                title={holidayName ? `${countryId}: ${holidayName}` : dateKey}
-                className={`calendar-day-btn relative flex flex-col items-center justify-center rounded-xl transition-all cursor-pointer select-none ${
-                  calendarCount === 2 ? 'py-1.5 min-h-[48px]' : 'py-2 min-h-[54px] sm:min-h-[60px]'
-                } ${
-                  isSelectedCell
-                    ? 'bg-transparent'
-                    : isTodayCell
-                      ? 'bg-indigo-500/10 border border-indigo-500/60 hover:bg-indigo-500/15'
-                      : inCurrentMonth
-                        ? 'hover:bg-black/5 dark:hover:bg-white/10'
-                        : 'opacity-40 hover:opacity-75 hover:bg-black/5 dark:hover:bg-white/10'
-                }`}
-              >
-                <div
-                  className={`flex flex-col items-center justify-center rounded-full transition-all ${
-                    calendarCount === 2 ? 'w-9 h-9 sm:w-10 sm:h-10' : 'w-11 h-11 sm:w-12 sm:h-12'
-                  } ${
-                    isSelectedCell
-                      ? 'cal-selected-circle bg-[#0067c0] text-white shadow-sm'
-                      : ''
-                  }`}
-                >
-                  <span
-                    className={`leading-none tabular-nums ${
-                      calendarCount === 2 ? 'text-sm sm:text-base' : 'text-sm sm:text-lg'
-                    } ${
-                      isSelectedCell
-                        ? '!text-white font-bold'
-                        : isTodayCell
-                          ? 'text-indigo-600 dark:text-indigo-400 font-bold'
-                          : 'text-black dark:text-white font-medium'
-                    }`}
-                  >
-                    {cellD}
-                  </span>
-
-                  {/* Sub-label inside circle (Holiday short label or Lunar date, matching Windows 11 calendar) */}
-                  {(holidayName || lunarCell) && (
-                    <span
-                      className={`mt-0.5 max-w-[92%] truncate text-[9px] leading-none font-medium ${
-                        isSelectedCell
-                          ? '!text-white/95'
-                          : holidayName
-                            ? '!text-rose-500 font-semibold'
-                            : 'opacity-65 text-black dark:text-white'
-                      }`}
-                    >
-                      {holidayName ? holidayName.replace(/ \(Observed\)/, '') : lunarCell}
-                    </span>
-                  )}
-                </div>
-
-                {/* Tiny dot indicator for user events */}
-                {hasEvt && (
-                  <span
-                    className={`absolute bottom-1 w-1 h-1 rounded-full ${
-                      isSelectedCell ? 'bg-[#0067c0]' : 'bg-indigo-500'
-                    }`}
-                  />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
   };
 
   const WorldClock = ({ countryId }: { countryId: string }) => {
@@ -1421,16 +1238,16 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     const countryName = COUNTRY_NAMES[language]?.[country.id] || country.name;
 
     return (
-      <div className="world-clock-card flex flex-col p-3 sm:p-3.5 bg-black/5 dark:bg-white/10 rounded-2xl border border-black/10 dark:border-white/10 transition-all">
+      <div className="world-clock-card flex flex-col p-3.5 sm:p-4 bg-black/[0.03] dark:bg-white/10 rounded-2xl border border-black/10 dark:border-white/10 transition-all">
         <div className="flex items-center justify-between gap-2 mb-1.5">
           <div className="flex items-center gap-2 min-w-0">
-            <Globe size={15} className="text-black dark:text-white opacity-70 shrink-0" />
+            <Globe size={15} className="text-black dark:text-white opacity-75 shrink-0" />
             <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate leading-tight">
               {countryName}
             </span>
           </div>
           {countryId === country1 && country1Mode === 'auto' && (
-            <span className="text-[10px] font-semibold text-indigo-600 dark:text-indigo-400 shrink-0">
+            <span className="text-[10px] font-semibold text-[#6143f7] shrink-0">
               {calText.ipLocation}
             </span>
           )}
@@ -1450,15 +1267,11 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   };
 
   return (
-    <div
-      className={`calendar-container flex flex-col lg:flex-row gap-6 lg:gap-7 mx-auto w-full px-4 sm:px-6 ${
-        calendarCount === 2 ? 'max-w-7xl' : 'max-w-6xl'
-      }`}
-    >
-      {/* Main Windows-style Calendar Card */}
-      <div className="w-full lg:flex-[1.7] xl:flex-[2.1] GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl overflow-hidden flex flex-col">
-        {/* Windows 11 Top Date Strip + View Mode Setting (1 Calendar / 2 Calendars) */}
-        <div className="px-5 sm:px-7 py-4 border-b border-black/10 dark:border-white/15 bg-black/[0.025] dark:bg-white/[0.03] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div className="calendar-container flex flex-col lg:flex-row gap-6 lg:gap-7 mx-auto w-full max-w-6xl px-4 sm:px-6">
+      {/* Main Calendar Card */}
+      <div className="w-full lg:flex-[1.75] xl:flex-[2.05] GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl overflow-hidden flex flex-col">
+        {/* Top Date Header Strip + Today Button */}
+        <div className="px-6 sm:px-8 pt-5 pb-4 border-b border-black/8 dark:border-white/10 flex items-center justify-between gap-4">
           <div className="min-w-0">
             <p className="text-base sm:text-lg font-semibold text-black dark:text-white tracking-tight truncate">
               {selectedHeaderDateText}
@@ -1472,83 +1285,38 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             </div>
           </div>
 
-          {/* Calendar Settings Controls (1 Calendar vs 2 Calendars, Lunar Toggle, Today) */}
-          <div className="flex flex-wrap items-center gap-2 shrink-0">
-            <div className="inline-flex items-center p-1 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15">
-              <button
-                type="button"
-                onClick={() => setCalendarCount(1)}
-                style={calendarCount === 1 ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' } : undefined}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  calendarCount === 1
-                    ? 'cal-seg-active bg-[#0067c0] text-white !text-white shadow-xs'
-                    : 'text-black dark:text-white opacity-75 hover:opacity-100'
-                }`}
-              >
-                {calText.oneCalendar}
-              </button>
-              <button
-                type="button"
-                onClick={() => setCalendarCount(2)}
-                style={calendarCount === 2 ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' } : undefined}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  calendarCount === 2
-                    ? 'cal-seg-active bg-[#0067c0] text-white !text-white shadow-xs'
-                    : 'text-black dark:text-white opacity-75 hover:opacity-100'
-                }`}
-              >
-                {calText.twoCalendars}
-              </button>
-            </div>
-
-            <button
-              type="button"
-              onClick={() =>
-                setLunarSetting((prev) => (prev === 'on' ? 'off' : 'on'))
-              }
-              style={lunarSetting === 'on' ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' } : undefined}
-              className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap border transition-all cursor-pointer ${
-                lunarSetting === 'on'
-                  ? 'cal-seg-active bg-[#0067c0] border-transparent text-white !text-white'
-                  : 'bg-black/5 dark:bg-white/10 border-black/10 dark:border-white/15 text-black dark:text-white opacity-75 hover:opacity-100'
-              }`}
-              title={calText.lunar}
-            >
-              {calText.lunar}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                const t = new Date();
-                setCurrentDate(new Date(t.getFullYear(), t.getMonth(), 1));
-                setSelectedDate(t);
-              }}
-              className="px-2.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 border border-black/10 dark:border-white/15 text-black dark:text-white transition-all cursor-pointer"
-            >
-              {calText.today}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => {
+              const t = new Date();
+              setCurrentDate(new Date(t.getFullYear(), t.getMonth(), 1));
+              setSelectedDate(t);
+            }}
+            className="calendar-today-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 border border-black/10 dark:border-white/15 text-black dark:text-white transition-all cursor-pointer shrink-0"
+          >
+            {calText.today}
+          </button>
         </div>
 
-        {/* Month / Year Bar + Left/Right Navigation Arrows */}
-        <div className="p-5 sm:p-7 flex-1 flex flex-col">
-          <div className="flex items-center justify-between mb-5 gap-3">
+        {/* Body */}
+        <div className="px-6 sm:px-8 pt-5 pb-7 flex-1 flex flex-col">
+          {/* Month + Huge Bold Year & Left/Right Arrows */}
+          <div className="flex items-center justify-between mb-4 gap-3">
             <div className="flex items-baseline gap-2.5 min-w-0">
               <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-white tracking-tight truncate">
                 {monthName}
               </h2>
-              <span className="calendar-year-display text-xl sm:text-2xl font-bold text-black dark:text-white tracking-tight tabular-nums">
+              <span className="calendar-year-display text-4xl sm:text-5xl font-black text-black dark:text-white tracking-tight leading-none tabular-nums">
                 {year}
               </span>
             </div>
 
-            {/* Left / Right Month Navigation Arrows (preserved per user request) */}
+            {/* Preserved Left / Right Month Navigation Arrows */}
             <div className="flex items-center gap-2 shrink-0">
               <button
                 type="button"
                 onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
-                className="calendar-nav-arrow p-2.5 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-xl transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
+                className="calendar-nav-arrow w-10 h-10 bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-full transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
                 title="Previous month"
                 aria-label="Previous Month"
               >
@@ -1557,7 +1325,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
               <button
                 type="button"
                 onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
-                className="calendar-nav-arrow p-2.5 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-xl transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
+                className="calendar-nav-arrow w-10 h-10 bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-full transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
                 title="Next month"
                 aria-label="Next Month"
               >
@@ -1566,15 +1334,132 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             </div>
           </div>
 
-          {/* 1 Calendar or 2 Calendars Side-by-Side */}
-          {calendarCount === 1 ? (
-            renderCountryGrid(country1, handleSelectCountry1, country1Mode === 'auto')
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              {renderCountryGrid(country1, handleSelectCountry1, country1Mode === 'auto', calText.primaryCal)}
-              {renderCountryGrid(country2, setCountry2, false, calText.secondaryCal)}
-            </div>
-          )}
+          {/* Top-right Calendar Country Selector (Global Official Calendar by default; shows dual calendar when a distinct traditional calendar country like China or Korea is selected) */}
+          <div className="flex items-center justify-end pb-4 mb-4 border-b border-black/8 dark:border-white/10">
+            <select
+              value={calendarCountry}
+              onChange={(e) => setCalendarCountry(e.target.value)}
+              aria-label="Calendar country selector"
+              className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl px-3.5 py-1.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
+            >
+              <option value="GLOBAL" className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
+                {calText.globalDefault}
+              </option>
+              {COUNTRIES.map((c) => (
+                <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
+                  {COUNTRY_NAMES[language]?.[c.id] || c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Weekday Headers */}
+          <div className="grid grid-cols-7 gap-2 sm:gap-2.5 mb-2">
+            {(WEEKDAYS[language] || WEEKDAYS['English']).map((day) => (
+              <div
+                key={day}
+                className="text-center calendar-weekday-header text-black dark:text-white font-semibold text-xs py-1.5"
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+
+          {/* 6x7 Rounded Tile Calendar Matrix */}
+          <div className="grid grid-cols-7 gap-2 sm:gap-2.5">
+            {calendarCells.map(({ date, inCurrentMonth }) => {
+              const cellY = date.getFullYear();
+              const cellM = date.getMonth() + 1;
+              const cellD = date.getDate();
+              const dateKey = `${cellY}-${String(cellM).padStart(2, '0')}-${String(cellD).padStart(2, '0')}`;
+              const dayHolidays = getHolidaysForYMD(cellY, cellM, cellD);
+              const isHoliday = dayHolidays.length > 0;
+              const hasEvt = events.some((e) => e.date === dateKey);
+              const lunarCell = getSecondaryCalendarParts(date, calendarCountry)?.cellLabel || '';
+
+              const isTodayCell =
+                cellD === now.getDate() &&
+                date.getMonth() === now.getMonth() &&
+                cellY === now.getFullYear();
+              const isSelectedCell =
+                cellD === selectedDate.getDate() &&
+                date.getMonth() === selectedDate.getMonth() &&
+                cellY === selectedDate.getFullYear();
+
+              return (
+                <button
+                  key={dateKey}
+                  type="button"
+                  onClick={() => {
+                    setSelectedDate(date);
+                    if (!inCurrentMonth) {
+                      setCurrentDate(new Date(cellY, date.getMonth(), 1));
+                    }
+                  }}
+                  title={isHoliday ? dayHolidays.join(' · ') : dateKey}
+                  className={`calendar-day-btn relative flex flex-col items-center justify-center rounded-2xl min-h-[60px] sm:min-h-[68px] transition-all cursor-pointer select-none ${
+                    isSelectedCell && !isTodayCell
+                      ? 'cal-selected-tile ring-2 ring-[#6143f7]'
+                      : ''
+                  } ${
+                    inCurrentMonth
+                      ? 'bg-[#f3f5fa] hover:bg-[#e8ecf6] dark:bg-white/10 dark:hover:bg-white/15'
+                      : 'bg-[#f6f7fb] opacity-55 hover:opacity-85 dark:bg-white/[0.05] dark:hover:bg-white/10'
+                  }`}
+                >
+                  {/* Today highlighted in the same #6143f7 color as the World Dates logo */}
+                  <div
+                    className={`flex flex-col items-center justify-center rounded-full transition-all ${
+                      isTodayCell
+                        ? 'cal-today-circle w-11 h-11 sm:w-12 sm:h-12 bg-[#6143f7] text-white shadow-sm'
+                        : 'w-full px-1'
+                    }`}
+                  >
+                    <span
+                      className={`text-sm sm:text-base leading-none tabular-nums ${
+                        isTodayCell
+                          ? 'cal-today-text text-white font-bold'
+                          : 'text-black dark:text-white font-semibold'
+                      }`}
+                    >
+                      {cellD}
+                    </span>
+
+                    {(lunarCell || isHoliday) && (
+                      <div className="mt-1 flex items-center justify-center gap-1 leading-none">
+                        {lunarCell && (
+                          <span
+                            className={`text-[10px] leading-none font-medium ${
+                              isTodayCell
+                                ? 'cal-today-text text-white/95'
+                                : 'opacity-65 text-black dark:text-white'
+                            }`}
+                          >
+                            {lunarCell}
+                          </span>
+                        )}
+                        {isHoliday && (
+                          <span
+                            className={`cal-holiday-dot rounded-full bg-rose-500 shrink-0 ${
+                              lunarCell ? 'w-1.5 h-1.5' : 'mt-0.5 w-2.5 h-2.5'
+                            } ${isTodayCell ? 'ring-2 ring-white/90' : ''}`}
+                            aria-label={dayHolidays.join(', ')}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Subtle corner dot indicator for user-added events */}
+                  {hasEvt && (
+                    <span
+                      className="absolute top-1.5 right-2 w-1.5 h-1.5 rounded-full bg-[#6143f7]"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -1583,17 +1468,17 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
         {/* World Dates Widget */}
         <div className="GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-5 sm:p-6 flex flex-col gap-4">
           <div className="flex items-center gap-2 mb-0.5">
-            <Globe size={18} className="world-dates-logo text-[#6143f7] dark:text-[#6143f7] shrink-0 opacity-90" strokeWidth={2} />
-            <h3 className="world-dates-title text-sm font-bold uppercase tracking-widest text-[#6143f7] dark:text-[#6143f7]">
+            <Globe size={18} className="world-dates-logo text-[#6143f7] shrink-0" strokeWidth={2} />
+            <h3 className="world-dates-title text-sm font-bold uppercase tracking-widest text-[#6143f7]">
               {calText.worldDates}
             </h3>
           </div>
 
-          <div className={`grid ${calendarCount === 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-2`}>
+          <div className="grid grid-cols-2 gap-2">
             <select
               value={country1}
               onChange={(e) => handleSelectCountry1(e.target.value)}
-              className="world-dates-select bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
+              className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
             >
               {COUNTRIES.map((c) => (
                 <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
@@ -1601,29 +1486,30 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                 </option>
               ))}
             </select>
-            {calendarCount === 2 && (
-              <select
-                value={country2}
-                onChange={(e) => setCountry2(e.target.value)}
-                className="world-dates-select bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
-              >
-                {COUNTRIES.map((c) => (
-                  <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
-                    {COUNTRY_NAMES[language]?.[c.id] || c.name}
-                  </option>
-                ))}
-              </select>
-            )}
+            <select
+              value={country2}
+              onChange={(e) => setCountry2(e.target.value)}
+              className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
+            >
+              <option value="NONE" className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
+                {calText.singleCalNone}
+              </option>
+              {COUNTRIES.filter((c) => c.id !== country1).map((c) => (
+                <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
+                  {COUNTRY_NAMES[language]?.[c.id] || c.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="space-y-3 mt-1 flex-1 flex flex-col justify-between">
             <div className="space-y-2.5">
               <WorldClock countryId={country1} />
-              {calendarCount === 2 && <WorldClock countryId={country2} />}
+              {hasSecondCountry && <WorldClock countryId={country2} />}
             </div>
 
-            {calendarCount === 2 && country1 && country2 && country1 !== country2 && (
-              <div className="world-dates-diff-pill flex items-center justify-center p-3 bg-black/5 dark:bg-white/10 rounded-2xl border border-black/10 dark:border-white/10 mt-auto">
+            {hasSecondCountry && (
+              <div className="world-dates-diff-pill flex items-center justify-center p-3 bg-black/[0.03] dark:bg-white/10 rounded-2xl border border-black/10 dark:border-white/10 mt-auto">
                 <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black dark:text-white text-center leading-relaxed">
                   {(() => {
                     const c1 = COUNTRIES.find((c) => c.id === country1);
@@ -1662,21 +1548,21 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
         <div className="flex-1 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-5 sm:p-6 flex flex-col min-h-[300px]">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-indigo-500/20 border border-indigo-500/30 rounded-xl flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 bg-[#6143f7]/15 border border-[#6143f7]/25 rounded-xl flex items-center justify-center shrink-0">
                 <span className="text-black dark:text-white font-bold text-base tabular-nums">
                   {selectedDate.getDate()}
                 </span>
               </div>
               <div className="min-w-0">
                 <h3 className="text-sm font-bold text-black dark:text-white truncate">{calText.events}</h3>
-                <p className="text-[10px] uppercase font-bold tracking-widest text-black dark:text-white opacity-75 truncate">
+                <p className="text-[10px] uppercase font-bold tracking-widest text-black dark:text-white opacity-70 truncate">
                   {selectedDate.toLocaleString(locale, { weekday: 'long' })}
                 </p>
               </div>
             </div>
             <button
               onClick={() => setShowAddModal(true)}
-              className="w-8 h-8 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white flex items-center justify-center hover:scale-105 transition-all shrink-0 cursor-pointer shadow-sm"
+              className="w-8 h-8 rounded-full bg-[#6143f7] hover:opacity-90 text-white flex items-center justify-center hover:scale-105 transition-all shrink-0 cursor-pointer shadow-sm"
               title="Add event or reminder"
               aria-label="Add Event"
             >
@@ -1711,7 +1597,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
               selectedEvents.map((evt) => (
                 <div
                   key={evt.id}
-                  className="flex items-center gap-3 p-3 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 group"
+                  className="flex items-center gap-3 p-3 rounded-2xl bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 group"
                 >
                   {evt.type === 'event' ? (
                     <CalendarIcon size={16} className="text-rose-500 shrink-0" />
@@ -1739,8 +1625,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             {/* Monthly holidays for active country/countries */}
             {viewedMonthHolidays.length > 0 && (
               <div className="pt-2 border-t border-black/10 dark:border-white/15 space-y-2">
-                <p className="text-[10px] uppercase font-bold tracking-widest text-rose-500 px-1">
-                  {calText.holidaysMonth} · {activeCountries.join(' / ')}
+                <p className="text-[10px] uppercase font-bold tracking-widest text-black/65 dark:text-white/70 px-1">
+                  {calText.holidaysMonth} · {activeHolidayCountries.join(' / ')}
                 </p>
                 <div className="space-y-1.5">
                   {viewedMonthHolidays.map((h, idx) => (
@@ -1750,10 +1636,10 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                       onClick={() =>
                         setSelectedDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), h.day))
                       }
-                      className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 border border-black/5 dark:border-white/10 text-left transition-all cursor-pointer"
+                      className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 border border-black/5 dark:border-white/10 text-left transition-all cursor-pointer"
                     >
                       <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-[10px] font-bold text-rose-500 shrink-0">
+                        <span className="text-[10px] font-bold text-black/60 dark:text-white/65 shrink-0">
                           {h.countryId}
                         </span>
                         <span className="text-xs font-semibold text-black dark:text-white truncate">

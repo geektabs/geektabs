@@ -1,42 +1,47 @@
 [
-  {
-    "quote": "Courage ass déi éischt vu mënschleche Qualitéiten, well et all déi aner garantéiert.",
-    "author": "Winston Churchill"
-  },
-  {
-    "quote": "Et spillt keng Roll wéi lues s du gees, soulaang s du net stoe bleifs.",
-    "author": "Konfuzius"
-  },
-  {
-    "quote": "Loss näischt op muer, wat haut ka gemaach ginn.",
-    "author": "Abraham Lincoln"
-  },
-  {
-    "quote": "Wat de Konflikt méi schwéier ass, wat den Triumph méi grouss ass.",
-    "author": "George Washington"
-  },
-  {
-    "quote": "Präis ass wat Dir bezuelt. Wäert ass wat Dir kritt.",
-    "author": "Warren Buffett"
-  },
-  {
-    "quote": "Gleef drun, datt s du et kannst, an du bass scho um hallwe Wee.",
-    "author": "Theodore Roosevelt"
-  },
-  {
-    "quote": "Erfolleg ass net definitiv, Versoen ass net fatal: et ass de Courage weiderzegoen, deen zielt.",
-    "author": "Winston Churchill"
-  },
-  {
-    "quote": "Midden an der Schwieregkeet läit d'Méiglegkeet.",
-    "author": "Albert Einstein"
-  },
-  {
-    "quote": "Verbréngt all Dag domat, e bësse méi schlau ze sinn wéi wéi Dir opgewuess sidd.",
-    "author": "Charlie Munger"
-  },
-  {
-    "quote": "Et gesäit ëmmer onméiglech aus, bis et fäerdeg ass.",
-    "author": "Nelson Mandela"
-  }
+  { "quote": "Wat de Konflikt méi haart ass, wat den Triumph méi grouss ass.", "author": "George Washington", "category": "motivational" },
+  { "quote": "Déi meescht Leit si genee esou glécklech, wéi si sech et virhuelen.", "author": "Abraham Lincoln", "category": "positive" },
+  { "quote": "Dat Eenzegt, wat mir fäerte mussen, ass d'Angscht selwer.", "author": "Franklin D. Roosevelt", "category": "motivational" },
+  { "quote": "Gleef drun, datt s du et packst, an du bass schonn op der halwer Streck.", "author": "Theodore Roosevelt", "category": "inspirational" },
+  { "quote": "Éierlechkeet ass dat éischt Kapitel am Buch vun der Wäisheet.", "author": "Thomas Jefferson", "category": "wisdom" },
+  { "quote": "D'Zukunft gehéiert net de Zéckegen, mee de Muttegen.", "author": "Ronald Reagan", "category": "hope" },
+  { "quote": "Mir ginn all besser, wa mir zesummeschaffen.", "author": "Bill Clinton", "category": "relationship" },
+  { "quote": "All Definitioun vun engem gudde Liewe muss den Déngscht un aneren enthalen.", "author": "George H. W. Bush", "category": "life" },
+  { "quote": "De Präis ass dat, wat dir bezuelt. De Wäert ass dat, wat dir kritt.", "author": "Warren Buffett", "category": "finance" },
+  { "quote": "Léier fir d'éischt vu bannen, wéi d'Saache funktionéieren, éier s du se verbessere wëlls.", "author": "Thomas Peterffy", "category": "education" },
+  { "quote": "D'Liewen ass ze kuerz, fir seng Zäit domat ze verbréngen, Feeler ze vermeiden.", "author": "Michael Bloomberg", "category": "life" },
+  { "quote": "Denk a Probabilitéiten, net a Sécherheeten.", "author": "Jeff Yass", "category": "wisdom" },
+  { "quote": "Halt ni op, an deng Bildung ze investéieren — Wësse wiisst méi séier wéi Kapital.", "author": "Ken Griffin", "category": "education" },
+  { "quote": "Maach ni Ofkierzunge bei denger Integritéit — däi Wuert dréit all Bezéiung.", "author": "Stephen Schwarzman", "category": "wisdom" },
+  { "quote": "Finanziell Sécherheet fänkt mat klenge, bestännege Gewunnechten un.", "author": "Abigail Johnson", "category": "finance" },
+  { "quote": "Hoffnung wiisst do, wou Virwëtz op Generositéit trëfft.", "author": "Marilyn Simons", "category": "hope" },
+  { "quote": "Kloert Denken ass rar, mee Mutt ass nach méi rar wéi Genie.", "author": "Peter Thiel", "category": "motivational" },
+  { "quote": "Wann eppes wichteg genuch ass, maach et, och wann d'Chancë géint dech stinn.", "author": "Elon Musk", "category": "motivational" },
+  { "quote": "Intelligenz ass e Geschenk; Frëndlechkeet ass eng Entscheedung.", "author": "Jeffrey Bezos", "category": "relationship" },
+  { "quote": "Deng eegen Zäit ze kontrolléieren ass déi héchst Dividend, déi Geld bezillt.", "author": "Morgan Housel", "category": "freedom" },
+  { "quote": "Mir kafen Saachen, déi mir net brauchen, mat Geld, dat mir net hunn.", "author": "Dave Ramsey", "category": "finance" },
+  { "quote": "Fräiheet fänkt un deem Dag un, wou s du manner ausgëss wéi s du verdéngs.", "author": "Beth Kobliner", "category": "freedom" },
+  { "quote": "Matten an der Beweegung an am Chaos, behal d'Rou a dir selwer.", "author": "Deepak Chopra", "category": "health" },
+  { "quote": "Selbsterkenntnis ass de Grondsteen vun der emotionaler Intelligenz.", "author": "Daniel Goleman", "category": "education" },
+  { "quote": "Erkenn déif, datt de Moment elo alles ass, wat s du hues.", "author": "Eckhart Tolle", "category": "life" },
+  { "quote": "Sief makellos mat dengem Wuert.", "author": "Don Miguel Ruiz", "category": "wisdom" },
+  { "quote": "Fridde kënnt vu bannen; sich en net dobaussen.", "author": "Buddha", "category": "health" },
+  { "quote": "Eng Rees vun dausend Meile fänkt mat engem eenzege Schrëtt un.", "author": "Laozi", "category": "motivational" },
+  { "quote": "Matten am Chaos läit och eng Chance.", "author": "Sun Tzu", "category": "positive" },
+  { "quote": "Et spillt keng Roll, wéi lues s du gees, soulaang s du net stoe bleifs.", "author": "Konfuzius", "category": "motivational" },
+  { "quote": "Allgemeng Léift an Notze fir all sinn d'Wuerzel vum Fridden.", "author": "Mozi", "category": "love" },
+  { "quote": "Fléiss mat deem, wat geschitt, a looss däi Geescht fräi.", "author": "Zhuangzi", "category": "freedom" },
+  { "quote": "Gitt mir e feste Punkt, an ech beweegen d'Welt.", "author": "Archimedes", "category": "motivational" },
+  { "quote": "Gléck hänkt vun eis selwer of.", "author": "Aristoteles", "category": "positive" },
+  { "quote": "Bei der Beréierung vun der Léift gëtt jiddereen zum Dichter.", "author": "Platon", "category": "love" },
+  { "quote": "E Liewen ouni Iwwerpréiwung ass net wäert gelieft ze ginn.", "author": "Sokrates", "category": "life" },
+  { "quote": "Ech sinn net gescheitert; ech hunn zéngdausend Weeër fonnt, déi net funktionéieren.", "author": "Thomas Edison", "category": "positive" },
+  { "quote": "D'Géigewaart gehéiert hinnen; d'Zukunft, fir déi ech geschafft hunn, gehéiert mir.", "author": "Nikola Tesla", "category": "hope" },
+  { "quote": "Wann ech méi wäit gesinn hunn, da well ech op de Schëllere vu Rise stoung.", "author": "Isaac Newton", "category": "wisdom" },
+  { "quote": "Matten an de Schwieregkeete läit d'Méiglechkeet.", "author": "Albert Einstein", "category": "inspirational" },
+  { "quote": "Am Liewe gëtt et näischt ze fäerten, nëmme vill ze verstoen.", "author": "Marie Curie", "category": "wisdom" },
+  { "quote": "Fir onersätzlech ze sinn, muss ee stänneg anescht sinn.", "author": "Coco Chanel", "category": "work" },
+  { "quote": "Echte, dauerhafte Wandel geschitt Schrëtt fir Schrëtt.", "author": "Ruth Bader Ginsburg", "category": "leadership" },
+  { "quote": "Mutt fänkt domat un, sech ze weisen an sech gesinn ze loossen.", "author": "Brené Brown", "category": "relationship" },
+  { "quote": "Fäerdeg ass besser wéi perfekt.", "author": "Elizabeth Gilbert", "category": "work" }
 ]

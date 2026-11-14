@@ -1,102 +1,47 @@
 [
-  {
-    "quote": "勇气是人类最优秀的品质，因为它是所有其他品质的保证。",
-    "author": "温斯顿·丘吉尔"
-  },
-  {
-    "quote": "学而时习之，不亦说乎？有朋自远方来，不亦乐乎？",
-    "author": "孔子"
-  },
-  {
-    "quote": "今天能做的事绝不要留到明天。",
-    "author": "亚伯拉罕·林肯"
-  },
-  {
-    "quote": "冲突越艰难，胜利就越伟大。",
-    "author": "乔治·华盛顿"
-  },
-  {
-    "quote": "价格是你付出的，价值是你得到的。",
-    "author": "沃伦·巴菲特"
-  },
-  {
-    "quote": "对知识的投资总能带来最好的回报。",
-    "author": "本杰明·富兰克林"
-  },
-  {
-    "quote": "今天有人坐在树荫下，是因为很久以前有人栽下了一棵树。",
-    "author": "沃伦·巴菲特"
-  },
-  {
-    "quote": "生命中最伟大的光辉不在于永不坠落，而在于每次跌倒后都能重新站起来。",
-    "author": "纳尔逊·曼德拉"
-  },
-  {
-    "quote": "每天入睡前，努力让自己比早晨醒来时更聪明一点。",
-    "author": "查理·芒格"
-  },
-  {
-    "quote": "大钱不是在买进和卖出中赚到的，而是在等待中赚到的。",
-    "author": "查理·芒格"
-  },
-  {
-    "quote": "反过来想，总是反过来想：把问题倒过来看。",
-    "author": "查理·芒格"
-  },
-  {
-    "quote": "搞清楚你拥有什么，以及你为什么拥有它。",
-    "author": "彼得·林奇"
-  },
-  {
-    "quote": "在股票市场上，最重要的器官是胃，而不是大脑。",
-    "author": "彼得·林奇"
-  },
-  {
-    "quote": "持续的自我提升与行动，是通往美好人生的基石。",
-    "author": "瑞·达利欧"
-  },
-  {
-    "quote": "短期来看，市场是一台投票机；但长期来看，它是一台称重机。",
-    "author": "本杰明·格雷厄姆"
-  },
-  {
-    "quote": "保持积极与专注，每一个新的开始都蕴含着无限希望。",
-    "author": "约翰·邓普顿"
-  },
-  {
-    "quote": "保持乐观是创造更美好未来最有力的策略。",
-    "author": "诺姆·乔姆斯基"
-  },
-  {
-    "quote": "尽你所能去看远方；当你走到那里，你会看得更远。",
-    "author": "J·P·摩根"
-  },
-  {
-    "quote": "不要害怕为了卓越而放弃优秀。",
-    "author": "约翰·D·洛克菲勒"
-  },
-  {
-    "quote": "成功的秘诀就是把平凡的事情做得非凡得出色。",
-    "author": "约翰·D·洛克菲勒"
-  },
-  {
-    "quote": "幸福绝非现成之物，它完全源于你自身的每一个善意与努力。",
-    "author": "达赖喇嘛"
-  },
-  {
-    "quote": "相信你能做到，你就已经成功了一半。",
-    "author": "西奥多·罗斯福"
-  },
-  {
-    "quote": "成功不是终点，失败也不是终局：最重要的是继续前进的勇气。",
-    "author": "温斯顿·丘吉尔"
-  },
-  {
-    "quote": "在困难的中间，往往蕴藏着机遇。",
-    "author": "阿尔伯特·爱因斯坦"
-  },
-  {
-    "quote": "在事情未完成之前，一切都看似不可能。",
-    "author": "纳尔逊·曼德拉"
-  }
+  { "quote": "冲突越艰难，胜利就越伟大。", "author": "乔治·华盛顿", "category": "motivational" },
+  { "quote": "一个人决定自己有多快乐，往往就会有多快乐。", "author": "亚伯拉罕·林肯", "category": "positive" },
+  { "quote": "我们唯一值得恐惧的，就是恐惧本身。", "author": "富兰克林·罗斯福", "category": "motivational" },
+  { "quote": "相信自己能做到，你就已经成功了一半。", "author": "西奥多·罗斯福", "category": "inspirational" },
+  { "quote": "诚实是智慧之书的第一章。", "author": "托马斯·杰斐逊", "category": "wisdom" },
+  { "quote": "未来不属于怯懦者，而属于勇敢的人。", "author": "罗纳德·里根", "category": "hope" },
+  { "quote": "携手合作能让我们每一个人走得更远。", "author": "比尔·克林顿", "category": "relationship" },
+  { "quote": "成功人生的定义里，必定包含为他人服务。", "author": "乔治·H·W·布什", "category": "life" },
+  { "quote": "价格是你付出的，价值是你得到的。", "author": "沃伦·巴菲特", "category": "finance" },
+  { "quote": "在尝试改进任何事物前，先从内部彻底弄懂它的运转规律。", "author": "托马斯·彼得菲", "category": "education" },
+  { "quote": "人生太短，不能把时间都花在躲避失败上。", "author": "迈克尔·布隆伯格", "category": "life" },
+  { "quote": "用概率思考，而不是追求绝对确定；好决策来自对结果的审慎权衡。", "author": "杰夫·亚斯", "category": "wisdom" },
+  { "quote": "永远不要停止投资教育，知识的复利增长快于资本。", "author": "肯·格里芬", "category": "education" },
+  { "quote": "绝不在诚信上走捷径，你的承诺是一切关系的基石。", "author": "史蒂夫·施瓦茨曼", "category": "wisdom" },
+  { "quote": "财务安全始于日复一日耐心坚持的小习惯。", "author": "阿比盖尔·约翰逊", "category": "finance" },
+  { "quote": "当好奇心与慷慨相遇，希望就会生长。", "author": "玛丽莲·西蒙斯", "category": "hope" },
+  { "quote": "卓越的思考罕见，但勇气比天才更为稀缺。", "author": "彼得·蒂尔", "category": "motivational" },
+  { "quote": "当一件事足够重要，即便胜算渺茫也要去做。", "author": "埃隆·马斯克", "category": "motivational" },
+  { "quote": "聪明是一种天赋，而善良是一种选择。", "author": "杰夫·贝索斯", "category": "relationship" },
+  { "quote": "掌控自己的时间，是金钱所能支付的最高红利。", "author": "摩根·豪泽尔", "category": "freedom" },
+  { "quote": "我们花着还没有挣到的钱，买不需要的东西，去取悦不喜欢的人。", "author": "戴夫·拉姆齐", "category": "finance" },
+  { "quote": "财务自由始于量入为出、先储蓄后消费的那一天。", "author": "贝丝·科布莱纳", "category": "freedom" },
+  { "quote": "在喧嚣与变动之中，保持内心的宁静。", "author": "迪帕克·乔普拉", "category": "health" },
+  { "quote": "自我觉察是情商的基石。", "author": "丹尼尔·戈尔曼", "category": "education" },
+  { "quote": "深深觉知：此刻就是你所拥有的一切。", "author": "埃克哈特·托利", "category": "life" },
+  { "quote": "谨守口德，用真诚与爱说出每一句话。", "author": "唐·米格尔·鲁伊斯", "category": "wisdom" },
+  { "quote": "内心的平静只能向内求，不可向外寻。", "author": "佛陀", "category": "health" },
+  { "quote": "千里之行，始于足下。", "author": "老子", "category": "motivational" },
+  { "quote": "在混乱与危机之中，往往也蕴藏着机遇。", "author": "孙子", "category": "positive" },
+  { "quote": "只要不停下脚步，走得慢一点也无妨。", "author": "孔子", "category": "motivational" },
+  { "quote": "兼爱与交利，是世界和平与繁荣的真正根基。", "author": "墨子", "category": "love" },
+  { "quote": "顺应自然的变化，让心灵自由自在。", "author": "庄子", "category": "freedom" },
+  { "quote": "给我一个支点，我就能撬动整个地球。", "author": "阿基米德", "category": "motivational" },
+  { "quote": "幸福取决于我们自己。", "author": "亚里士多德", "category": "positive" },
+  { "quote": "在爱的触动下，每个人都会成为诗人。", "author": "柏拉图", "category": "love" },
+  { "quote": "未经审视的人生不值得度过。", "author": "苏格拉底", "category": "life" },
+  { "quote": "我没有失败，我只是找到了一万种行不通的方法。", "author": "托马斯·爱迪生", "category": "positive" },
+  { "quote": "现在属于他们，但我真正为之奋斗的未来属于我。", "author": "尼古拉·特斯拉", "category": "hope" },
+  { "quote": "如果我看得更远，那是因为我站在巨人的肩膀上。", "author": "艾萨克·牛顿", "category": "wisdom" },
+  { "quote": "困难之中，往往隐藏着机遇。", "author": "阿尔伯特·爱因斯坦", "category": "inspirational" },
+  { "quote": "生活中没有什么值得害怕，只有等待被理解的事物。", "author": "玛丽·居里", "category": "wisdom" },
+  { "quote": "要想无可替代，就必须与众不同。", "author": "可可·香奈儿", "category": "work" },
+  { "quote": "真正持久的改变，是一步一步积累出来的。", "author": "露丝·巴德·金斯伯格", "category": "leadership" },
+  { "quote": "勇气始于勇敢展示真实的自己，允许自己被看见。", "author": "布琳·布朗", "category": "relationship" },
+  { "quote": "完成比完美更重要。", "author": "伊丽莎白·吉尔伯特", "category": "work" }
 ]

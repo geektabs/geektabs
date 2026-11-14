@@ -1,102 +1,47 @@
 [
-  {
-    "quote": "El coraje es la primera de las cualidades humanas porque garantiza todas las demás.",
-    "author": "Winston Churchill"
-  },
-  {
-    "quote": "No importa lo lento que vayas, siempre y cuando no te detengas.",
-    "author": "Confucio"
-  },
-  {
-    "quote": "No dejes para mañana lo que puedas hacer hoy.",
-    "author": "Abraham Lincoln"
-  },
-  {
-    "quote": "Cuanto más duro es el conflicto, más grande es el triunfo.",
-    "author": "George Washington"
-  },
-  {
-    "quote": "El precio es lo que pagas. El valor es lo que obtienes.",
-    "author": "Warren Buffett"
-  },
-  {
-    "quote": "Invertir en conocimientos produce los mejores intereses.",
-    "author": "Benjamin Franklin"
-  },
-  {
-    "quote": "Alguien descansa a la sombra hoy porque alguien plantó un árbol hace mucho tiempo.",
-    "author": "Warren Buffett"
-  },
-  {
-    "quote": "La mayor gloria no es no caer nunca, sino levantarse siempre.",
-    "author": "Nelson Mandela"
-  },
-  {
-    "quote": "Pasa cada día intentando ser un poco más sabio que cuando te despertaste.",
-    "author": "Charlie Munger"
-  },
-  {
-    "quote": "El gran dinero no está en comprar y vender, sino en esperar.",
-    "author": "Charlie Munger"
-  },
-  {
-    "quote": "Invierte, siempre invierte: pon la situación o problema del revés.",
-    "author": "Charlie Munger"
-  },
-  {
-    "quote": "Conoce lo que posees y comprende por qué lo posees.",
-    "author": "Peter Lynch"
-  },
-  {
-    "quote": "En el mercado de valores, el órgano más importante es el estómago, no el cerebro.",
-    "author": "Peter Lynch"
-  },
-  {
-    "quote": "El crecimiento personal florece cuando creemos en nuestro propio potencial.",
-    "author": "Ray Dalio"
-  },
-  {
-    "quote": "A corto plazo, el mercado es una máquina de votación; a largo plazo, es una báscula de pesar.",
-    "author": "Benjamin Graham"
-  },
-  {
-    "quote": "Mantén una actitud positiva y tus posibilidades se expandirán cada día.",
-    "author": "John Templeton"
-  },
-  {
-    "quote": "El optimismo es la mejor estrategia para construir un futuro brillante.",
-    "author": "Noam Chomsky"
-  },
-  {
-    "quote": "Ve tan lejos como puedas ver; cuando llegues allí, podrás ver más lejos.",
-    "author": "J. Pierpont Morgan"
-  },
-  {
-    "quote": "No temas renunciar a lo bueno para ir tras lo grandioso.",
-    "author": "John D. Rockefeller"
-  },
-  {
-    "quote": "El secreto del éxito consiste en hacer las cosas comunes extraordinariamente bien.",
-    "author": "John D. Rockefeller"
-  },
-  {
-    "quote": "La felicidad no es algo que ya esté hecho; proviene de tus propias acciones.",
-    "author": "Dalai Lama"
-  },
-  {
-    "quote": "Cree que puedes y ya habrás recorrido la mitad del camino.",
-    "author": "Theodore Roosevelt"
-  },
-  {
-    "quote": "El éxito no es el final, el fracaso no es fatal: lo que cuenta es el valor para continuar.",
-    "author": "Winston Churchill"
-  },
-  {
-    "quote": "En medio de la dificultad se encuentra la oportunidad.",
-    "author": "Albert Einstein"
-  },
-  {
-    "quote": "Siempre parece imposible hasta que se hace.",
-    "author": "Nelson Mandela"
-  }
+  { "quote": "El conflicto más duro hace mayor el triunfo.", "author": "George Washington", "category": "motivational" },
+  { "quote": "La gente suele ser tan feliz como decide serlo.", "author": "Abraham Lincoln", "category": "positive" },
+  { "quote": "Lo único que debemos temer es al miedo mismo.", "author": "Franklin D. Roosevelt", "category": "motivational" },
+  { "quote": "Cree que puedes y ya estás a mitad de camino.", "author": "Theodore Roosevelt", "category": "inspirational" },
+  { "quote": "La honestidad es el primer capítulo del libro de la sabiduría.", "author": "Thomas Jefferson", "category": "wisdom" },
+  { "quote": "El futuro no pertenece a los pusilánimes; pertenece a los valientes.", "author": "Ronald Reagan", "category": "hope" },
+  { "quote": "Todos mejoramos cuando trabajamos juntos.", "author": "Bill Clinton", "category": "relationship" },
+  { "quote": "Cualquier definición de una vida exitosa debe incluir el servicio a los demás.", "author": "George H. W. Bush", "category": "life" },
+  { "quote": "El precio es lo que pagas; el valor es lo que recibes.", "author": "Warren Buffett", "category": "finance" },
+  { "quote": "Aprende cómo funcionan las cosas desde adentro antes de intentar mejorarlas.", "author": "Thomas Peterffy", "category": "education" },
+  { "quote": "La vida es demasiado corta para pasarla evitando el fracaso.", "author": "Michael Bloomberg", "category": "life" },
+  { "quote": "Piensa en probabilidades, no en certezas; las buenas decisiones nacen de evaluar resultados.", "author": "Jeff Yass", "category": "wisdom" },
+  { "quote": "Nunca dejes de invertir en tu educación: el conocimiento crece más rápido que el capital.", "author": "Ken Griffin", "category": "education" },
+  { "quote": "Nunca tomes atajos con tu integridad; tu palabra es la base de toda relación.", "author": "Stephen Schwarzman", "category": "wisdom" },
+  { "quote": "La seguridad financiera empieza con hábitos pequeños y constantes.", "author": "Abigail Johnson", "category": "finance" },
+  { "quote": "La esperanza crece donde la curiosidad se encuentra con la generosidad.", "author": "Marilyn Simons", "category": "hope" },
+  { "quote": "El pensamiento brillante es escaso, pero el valor aún más.", "author": "Peter Thiel", "category": "motivational" },
+  { "quote": "Cuando algo es lo suficientemente importante, lo haces incluso si las probabilidades están en tu contra.", "author": "Elon Musk", "category": "motivational" },
+  { "quote": "La amabilidad es una elección; el ingenio es un don.", "author": "Jeffrey Bezos", "category": "relationship" },
+  { "quote": "Controlar tu tiempo es el mayor dividendo que paga el dinero.", "author": "Morgan Housel", "category": "freedom" },
+  { "quote": "Compramos cosas que no necesitamos con dinero que no tenemos.", "author": "Dave Ramsey", "category": "finance" },
+  { "quote": "La libertad financiera comienza el día en que gastas menos de lo que ganas.", "author": "Beth Kobliner", "category": "freedom" },
+  { "quote": "En medio del movimiento y el caos, mantén la calma en tu interior.", "author": "Deepak Chopra", "category": "health" },
+  { "quote": "El autoconocimiento es la piedra angular de la inteligencia emocional.", "author": "Daniel Goleman", "category": "education" },
+  { "quote": "Comprende profundamente que el momento presente es todo lo que tienes.", "author": "Eckhart Tolle", "category": "life" },
+  { "quote": "Sé impecable con tus palabras.", "author": "Don Miguel Ruiz", "category": "wisdom" },
+  { "quote": "La paz viene de adentro; no la busques afuera.", "author": "Buda", "category": "health" },
+  { "quote": "Un viaje de mil millas comienza con un solo paso.", "author": "Laozi", "category": "motivational" },
+  { "quote": "En medio del caos, también hay oportunidad.", "author": "Sun Tzu", "category": "positive" },
+  { "quote": "No importa qué tan lento vayas mientras no te detengas.", "author": "Confucio", "category": "motivational" },
+  { "quote": "El amor universal y el beneficio mutuo son la base de la paz.", "author": "Mozi", "category": "love" },
+  { "quote": "Fluye con lo que suceda y deja que tu mente sea libre.", "author": "Zhuangzi", "category": "freedom" },
+  { "quote": "Dadme un punto de apoyo y moveré el mundo.", "author": "Arquímedes", "category": "motivational" },
+  { "quote": "La felicidad depende de nosotros mismos.", "author": "Aristóteles", "category": "positive" },
+  { "quote": "Al contacto del amor todo el mundo se vuelve poeta.", "author": "Platón", "category": "love" },
+  { "quote": "Una vida sin examen no merece ser vivida.", "author": "Sócrates", "category": "life" },
+  { "quote": "No he fracasado; solo he encontrado diez mil formas que no funcionan.", "author": "Thomas Edison", "category": "positive" },
+  { "quote": "El presente es suyo; el futuro, por el que trabajé, es mío.", "author": "Nikola Tesla", "category": "hope" },
+  { "quote": "Si he visto más lejos es poniéndome sobre los hombros de gigantes.", "author": "Isaac Newton", "category": "wisdom" },
+  { "quote": "En medio de la dificultad yace la oportunidad.", "author": "Albert Einstein", "category": "inspirational" },
+  { "quote": "Nada en la vida debe ser temido, solo comprendido.", "author": "Marie Curie", "category": "wisdom" },
+  { "quote": "Para ser irremplazable, uno siempre debe ser diferente.", "author": "Coco Chanel", "category": "work" },
+  { "quote": "El cambio real y duradero ocurre paso a paso.", "author": "Ruth Bader Ginsburg", "category": "leadership" },
+  { "quote": "El valor comienza al mostrarse y dejarse ver.", "author": "Brené Brown", "category": "relationship" },
+  { "quote": "Hecho es mejor que perfecto.", "author": "Elizabeth Gilbert", "category": "work" }
 ]

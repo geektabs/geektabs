@@ -405,43 +405,224 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
   const [currencyAmount, setCurrencyAmount] = useState('100');
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('EUR');
-  const [rates, setRates] = useState<Record<string, number>>({});
-  const [majors, setMajors] = useState<Array<{ pair: string; price: number; changePct: number }>>([]);
+  const [rates, setRates] = useState<Record<string, number>>(() => {
+    try {
+      const saved = localStorage.getItem('GeekTabs-forex-cache-v1');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.rates && typeof parsed.rates === 'object') return parsed.rates;
+      }
+    } catch {
+      // Ignore storage errors
+    }
+    return {};
+  });
+  const [majors, setMajors] = useState<Array<{ pair: string; price: number; changePct: number }>>(() => {
+    try {
+      const saved = localStorage.getItem('GeekTabs-forex-cache-v1');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed?.majors)) return parsed.majors;
+      }
+    } catch {
+      // Ignore storage errors
+    }
+    return [];
+  });
   const [directRate, setDirectRate] = useState<number | null>(null);
-  const [ratesUpdatedAt, setRatesUpdatedAt] = useState<string>('');
+  const [ratesUpdatedAt, setRatesUpdatedAt] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('GeekTabs-forex-cache-v1');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed?.updatedAt === 'string') return parsed.updatedAt;
+      }
+    } catch {
+      // Ignore storage errors
+    }
+    return '';
+  });
   const [loadingRates, setLoadingRates] = useState(false);
   const [ratesError, setRatesError] = useState(false);
+
+  const buildMajorsFromRates = useCallback((r: Record<string, number>) => {
+    const defs = [
+      { pair: 'EUR/USD', base: 'EUR', quote: 'USD' },
+      { pair: 'GBP/USD', base: 'GBP', quote: 'USD' },
+      { pair: 'USD/JPY', base: 'USD', quote: 'JPY' },
+      { pair: 'USD/CHF', base: 'USD', quote: 'CHF' },
+      { pair: 'AUD/USD', base: 'AUD', quote: 'USD' },
+      { pair: 'USD/CAD', base: 'USD', quote: 'CAD' },
+      { pair: 'NZD/USD', base: 'NZD', quote: 'USD' },
+      { pair: 'USD/CNY', base: 'USD', quote: 'CNY' },
+      { pair: 'EUR/GBP', base: 'EUR', quote: 'GBP' },
+      { pair: 'EUR/JPY', base: 'EUR', quote: 'JPY' },
+    ];
+    const list: Array<{ pair: string; price: number; changePct: number }> = [];
+    for (const def of defs) {
+      const baseR = r[def.base];
+      const quoteR = r[def.quote];
+      if (baseR > 0 && quoteR > 0) {
+        list.push({ pair: def.pair, price: quoteR / baseR, changePct: 0 });
+      }
+    }
+    return list;
+  }, []);
+
+  const fetchDirectBrowserFx = useCallback(async () => {
+    const providers = [
+      async () => {
+        const res = await fetch('https://open.er-api.com/v6/latest/USD', {
+          signal: AbortSignal.timeout(4500),
+        });
+        if (!res.ok) throw new Error('er-api failed');
+        const json = await res.json();
+        if (!json?.rates || Object.keys(json.rates).length < 10) throw new Error('empty');
+        return {
+          rates: { USD: 1, ...json.rates } as Record<string, number>,
+          updatedAt: json.time_last_update_unix
+            ? new Date(json.time_last_update_unix * 1000).toISOString()
+            : new Date().toISOString(),
+        };
+      },
+      async () => {
+        const res = await fetch(
+          'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json',
+          { signal: AbortSignal.timeout(4500) }
+        );
+        if (!res.ok) throw new Error('jsdelivr failed');
+        const json = await res.json();
+        const usdMap = json?.usd;
+        if (!usdMap || typeof usdMap !== 'object') throw new Error('empty');
+        const normalized: Record<string, number> = { USD: 1 };
+        for (const [k, v] of Object.entries(usdMap)) {
+          if (typeof v === 'number' && v > 0) {
+            normalized[k.toUpperCase()] = v;
+          }
+        }
+        if (Object.keys(normalized).length < 10) throw new Error('empty');
+        return {
+          rates: normalized,
+          updatedAt: json.date ? new Date(json.date).toISOString() : new Date().toISOString(),
+        };
+      },
+      async () => {
+        const res = await fetch(
+          'https://latest.currency-api.pages.dev/v1/currencies/usd.json',
+          { signal: AbortSignal.timeout(4500) }
+        );
+        if (!res.ok) throw new Error('pages.dev failed');
+        const json = await res.json();
+        const usdMap = json?.usd;
+        if (!usdMap || typeof usdMap !== 'object') throw new Error('empty');
+        const normalized: Record<string, number> = { USD: 1 };
+        for (const [k, v] of Object.entries(usdMap)) {
+          if (typeof v === 'number' && v > 0) {
+            normalized[k.toUpperCase()] = v;
+          }
+        }
+        if (Object.keys(normalized).length < 10) throw new Error('empty');
+        return {
+          rates: normalized,
+          updatedAt: json.date ? new Date(json.date).toISOString() : new Date().toISOString(),
+        };
+      },
+      async () => {
+        const res = await fetch('https://api.frankfurter.dev/v1/latest?base=USD', {
+          signal: AbortSignal.timeout(4500),
+        });
+        if (!res.ok) throw new Error('frankfurter failed');
+        const json = await res.json();
+        if (!json?.rates || Object.keys(json.rates).length < 10) throw new Error('empty');
+        return {
+          rates: { USD: 1, ...json.rates } as Record<string, number>,
+          updatedAt: json.date ? new Date(json.date).toISOString() : new Date().toISOString(),
+        };
+      },
+    ];
+
+    for (const runProvider of providers) {
+      try {
+        return await runProvider();
+      } catch {
+        // Try next live FX feed
+      }
+    }
+    throw new Error('All live FX providers failed');
+  }, []);
 
   const fetchLiveRates = useCallback(
     async (forceRefresh = false) => {
       setLoadingRates(true);
       setRatesError(false);
+
+      let nextRates: Record<string, number> | null = null;
+      let nextMajors: Array<{ pair: string; price: number; changePct: number }> = [];
+      let nextDirect: number | null = null;
+      let nextUpdatedAt = '';
+
+      // 1. Try local Express proxy (includes Investing.com + Yahoo intraday spot when backend server is active)
       try {
         const params = new URLSearchParams({
           from: fromCurrency,
           to: toCurrency,
         });
         if (forceRefresh) params.set('refresh', '1');
-        const res = await fetch(`/api/forex-rates?${params.toString()}`);
-        if (!res.ok) throw new Error('Failed');
-        const data = await res.json();
-        if (data?.rates) {
-          setRates(data.rates);
-        }
-        if (Array.isArray(data?.majors)) {
-          setMajors(data.majors);
-        }
-        setDirectRate(typeof data?.directRate === 'number' ? data.directRate : null);
-        if (data?.updatedAt) {
-          setRatesUpdatedAt(data.updatedAt);
+        const res = await fetch(`/api/forex-rates?${params.toString()}`, {
+          signal: AbortSignal.timeout(3500),
+        });
+        const contentType = res.headers.get('content-type') || '';
+        if (res.ok && contentType.includes('application/json')) {
+          const data = await res.json();
+          if (data?.rates && Object.keys(data.rates).length > 5) {
+            nextRates = data.rates;
+            nextMajors =
+              Array.isArray(data.majors) && data.majors.length > 0
+                ? data.majors
+                : buildMajorsFromRates(data.rates);
+            nextDirect = typeof data?.directRate === 'number' ? data.directRate : null;
+            nextUpdatedAt = data?.updatedAt || new Date().toISOString();
+          }
         }
       } catch {
-        setRatesError(true);
-      } finally {
-        setLoadingRates(false);
+        // Fallback directly to browser CORS-enabled live FX feeds (for static/live web hosting)
       }
+
+      // 2. Direct live FX fallback if /api/forex-rates is unavailable or returns HTML/empty
+      if (!nextRates) {
+        try {
+          const fallbackData = await fetchDirectBrowserFx();
+          nextRates = fallbackData.rates;
+          nextMajors = buildMajorsFromRates(fallbackData.rates);
+          nextUpdatedAt = fallbackData.updatedAt;
+        } catch {
+          setRatesError(true);
+        }
+      }
+
+      if (nextRates) {
+        setRates(nextRates);
+        setMajors(nextMajors);
+        setDirectRate(nextDirect);
+        setRatesUpdatedAt(nextUpdatedAt);
+        setRatesError(false);
+        try {
+          localStorage.setItem(
+            'GeekTabs-forex-cache-v1',
+            JSON.stringify({
+              rates: nextRates,
+              majors: nextMajors,
+              updatedAt: nextUpdatedAt,
+            })
+          );
+        } catch {
+          // Ignore storage quota errors
+        }
+      }
+
+      setLoadingRates(false);
     },
-    [fromCurrency, toCurrency]
+    [fromCurrency, toCurrency, buildMajorsFromRates, fetchDirectBrowserFx]
   );
 
   useEffect(() => {
