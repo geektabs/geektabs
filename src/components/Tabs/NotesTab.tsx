@@ -38,7 +38,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'CANCEL',
     create: 'CREATE',
     activeSpaces: 'active spaces',
-    sheetsList: 'Notes & Sheets',
+    sheetsList: 'Notes',
     filterSheets: 'Filter notes...',
     noPageEntries: 'No notes in this section',
     untitledPage: 'Untitled Note',
@@ -55,7 +55,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'CANCELAR',
     create: 'CREAR',
     activeSpaces: 'espacios activos',
-    sheetsList: 'Notas y Hojas',
+    sheetsList: 'Notas',
     filterSheets: 'Filtrar notas...',
     noPageEntries: 'Sin notas en esta sección',
     untitledPage: 'Nota sin título',
@@ -72,7 +72,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'ANNULER',
     create: 'CRÉER',
     activeSpaces: 'espaces actifs',
-    sheetsList: 'Notes & Feuilles',
+    sheetsList: 'Notes',
     filterSheets: 'Filtrer les notes...',
     noPageEntries: 'Aucune note dans cette section',
     untitledPage: 'Note sans titre',
@@ -89,7 +89,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'ABBRECHEN',
     create: 'ERSTELLEN',
     activeSpaces: 'aktive Bereiche',
-    sheetsList: 'Notizen & Seiten',
+    sheetsList: 'Notizen',
     filterSheets: 'Notizen filtern...',
     noPageEntries: 'Keine Notizen in diesem Bereich',
     untitledPage: 'Unbenannte Notiz',
@@ -106,7 +106,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: '取消',
     create: '创建',
     activeSpaces: '个活跃分区',
-    sheetsList: '笔记与文档',
+    sheetsList: '笔记',
     filterSheets: '搜索过滤笔记...',
     noPageEntries: '当前分区暂无笔记',
     untitledPage: '无标题笔记',
@@ -123,7 +123,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'キャンセル',
     create: '作成',
     activeSpaces: '個のアクティブ領域',
-    sheetsList: 'ノート一覧',
+    sheetsList: 'ノート',
     filterSheets: 'ノートを絞り込む...',
     noPageEntries: 'このセクションにノートがありません',
     untitledPage: '無題のノート',
@@ -140,7 +140,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: '취소',
     create: '생성',
     activeSpaces: '개의 활성 공간',
-    sheetsList: '노트 목록',
+    sheetsList: '노트',
     filterSheets: '노트 필터링...',
     noPageEntries: '이 섹션에 노트가 없습니다',
     untitledPage: '제목 없는 노트',
@@ -157,7 +157,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'ANNULLA',
     create: 'CREA',
     activeSpaces: 'spazi attivi',
-    sheetsList: 'Note ed Elenco',
+    sheetsList: 'Note',
     filterSheets: 'Filtra note...',
     noPageEntries: 'Nessuna nota in questa sezione',
     untitledPage: 'Nota senza titolo',
@@ -174,7 +174,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'ОТМЕНА',
     create: 'СОЗДАТЬ',
     activeSpaces: 'активных областей',
-    sheetsList: 'Заметки и страницы',
+    sheetsList: 'Заметки',
     filterSheets: 'Фильтр заметок...',
     noPageEntries: 'В этом разделе нет заметок',
     untitledPage: 'Заметка без названия',
@@ -191,7 +191,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     cancel: 'OFBRIECHEN',
     create: 'ERSTELLEN',
     activeSpaces: 'aktiv Beräicher',
-    sheetsList: 'Notizen a Lëscht',
+    sheetsList: 'Notizen',
     filterSheets: 'Notize filteren...',
     noPageEntries: 'Keng Notizen an dësem Beräich',
     untitledPage: 'Onbenannte Notiz',
@@ -332,7 +332,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   const currentSectionInfo = sections.find(s => s.id === currentSectionId);
 
   return (
-    <div className="notes-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 backdrop-blur-2xl bg-white/70 dark:bg-[#0c1017]/80 text-slate-800 dark:text-slate-100">
+    <div className="notes-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
       
       {/* Mobile Backdrop */}
       {mobileSidebarOpen && (
@@ -344,7 +344,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
 
       {/* LEFT SIDEBAR (Gemini Chat Style) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 md:relative transition-all duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+        className={`fixed inset-y-0 left-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
           mobileSidebarOpen 
             ? 'w-80 translate-x-0 shadow-2xl border-r' 
             : sidebarOpen 
@@ -361,7 +361,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               if (typeof window !== 'undefined' && window.innerWidth < 768) setMobileSidebarOpen(false);
             }}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className="notes-create-page-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-all cursor-pointer active:scale-98 select-none"
+            className="notes-create-page-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-colors cursor-pointer active:scale-98 select-none"
           >
             <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
             <span className="!text-white text-white font-black tracking-wider" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
@@ -379,7 +379,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         {/* Section / Folder Chips Selector - Exactly 2 options per line */}
         <div className="px-4 pt-3 pb-2 border-b border-black/5 dark:border-white/5 flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/40">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-white/70">
               {dictionary.sections}
             </span>
             <button
@@ -446,7 +446,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
                     setActiveNoteId(secNotes[0]?.id || null);
                   }}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer border select-none min-w-0 ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer border select-none min-w-0 ${
                     active
                       ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-2xs'
                       : 'bg-black/5 dark:bg-white/5 border-transparent text-slate-600 dark:text-white/60 hover:text-slate-900 hover:dark:text-white hover:bg-black/10 dark:hover:bg-white/10'
@@ -477,7 +477,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
 
         {/* Note Pages List in Section */}
         <div className="flex-1 overflow-y-auto p-2.5 space-y-1 scrollbar-thin">
-          <div className="px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/35">
+          <div className="px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-white/70">
             {dictionary.sheetsList}
           </div>
 
@@ -495,7 +495,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     setActiveNoteId(note.id);
                     setMobileSidebarOpen(false);
                   }}
-                  className={`group relative w-full flex flex-col p-3 rounded-xl cursor-pointer text-left transition-all border ${
+                  className={`group relative w-full flex flex-col p-3 rounded-xl cursor-pointer text-left transition-colors border ${
                     active
                       ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-xs'
                       : 'hover:bg-black/5 dark:hover:bg-white/5 border-transparent text-slate-700 dark:text-white/70'
@@ -514,7 +514,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                       <Trash2 size={12} />
                     </button>
                   </div>
-                  <span className="text-[10px] font-mono text-slate-400 dark:text-white/35 mt-1.5 flex items-center gap-1">
+                  <span className="notes-item-datetime text-[10px] font-mono text-black dark:text-white/85 mt-1.5 flex items-center gap-1">
                     {formatDate(note.updatedAt)}
                   </span>
                 </div>

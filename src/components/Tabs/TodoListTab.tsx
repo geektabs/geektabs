@@ -456,7 +456,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
   }
 
   return (
-    <div className="todolist-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 backdrop-blur-2xl bg-white/70 dark:bg-[#0c1017]/80 text-slate-800 dark:text-slate-100">
+    <div className="todolist-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
       
       {/* Mobile Drawer Backdrop */}
       {mobileSidebarOpen && (
@@ -468,7 +468,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
 
       {/* LEFT SIDEBAR (Gemini Chat Style with Hide/Show) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 md:relative transition-all duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+        className={`fixed inset-y-0 left-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
           mobileSidebarOpen 
             ? 'w-80 translate-x-0 shadow-2xl border-r' 
             : sidebarOpen 
@@ -485,7 +485,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
               if (typeof window !== 'undefined' && window.innerWidth < 768) setMobileSidebarOpen(false);
             }}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className="todolist-action-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#5438dc] hover:bg-[#472fc2] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#5438dc]/30 transition-all cursor-pointer active:scale-98 select-none"
+            className="todolist-action-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#5438dc] hover:bg-[#472fc2] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#5438dc]/30 transition-colors cursor-pointer active:scale-98 select-none"
           >
             <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
             <span className="!text-white text-white font-black tracking-wider" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.addTask}</span>
@@ -494,7 +494,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
 
         {/* Sidebar Navigation Items */}
         <div className="flex-1 overflow-y-auto px-4 py-2 space-y-1.5 scrollbar-thin">
-          <div className="px-3 pt-2 pb-1.5 text-[11px] font-black uppercase tracking-wider text-slate-400 dark:text-white/35">
+          <div className="px-3 pt-2 pb-1.5 text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-white/70">
             {dict.sidebarHeader}
           </div>
           {PROJECTS.map((proj) => {
@@ -508,7 +508,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                   setCurrentProject(proj.id);
                   setMobileSidebarOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl font-bold text-xs transition-all cursor-pointer select-none ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl font-bold text-xs transition-colors cursor-pointer select-none ${
                   active
                     ? 'bg-[#5438dc]/15 text-[#5438dc] dark:text-indigo-400 border border-[#5438dc]/30 shadow-xs'
                     : 'text-slate-700 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5 hover:text-[#5438dc] border border-transparent'

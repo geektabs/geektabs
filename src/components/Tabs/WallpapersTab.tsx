@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Upload, Trash2, Image as ImageIcon, Plus, Link, Check, HardDrive } from 'lucide-react';
 import ConfirmModal from '../ConfirmModal';
@@ -346,6 +346,8 @@ export default function WallpapersTab({
   const [confirmDeleteWallpaper, setConfirmDeleteWallpaper] = useState<string | null>(null);
 
   const [activeCategory, setActiveCategory] = useState('All');
+  const categoryBtnRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [uniformCategoryWidth, setUniformCategoryWidth] = useState<number | null>(null);
   const tData = WALLPAPER_T[language] || WALLPAPER_T['English'];
 
   // Load user wallpapers from IndexedDB and auto-migrate any old localStorage items
@@ -484,6 +486,43 @@ export default function WallpapersTab({
     return w.category === activeCategory;
   });
 
+  const categoriesKey = categories.join('|');
+
+  useLayoutEffect(() => {
+    let cancelled = false;
+    const measureMaxCategoryWidth = () => {
+      if (cancelled) return;
+      const buttons = categoryBtnRefs.current
+        .slice(0, categories.length)
+        .filter((el): el is HTMLButtonElement => Boolean(el));
+      if (buttons.length === 0) return;
+
+      buttons.forEach((btn) => {
+        btn.style.width = 'auto';
+      });
+      const maxWidth = Math.ceil(
+        Math.max(...buttons.map((btn) => btn.getBoundingClientRect().width))
+      );
+      if (maxWidth > 0) {
+        buttons.forEach((btn) => {
+          btn.style.width = `${maxWidth}px`;
+        });
+        setUniformCategoryWidth(maxWidth);
+      }
+    };
+
+    measureMaxCategoryWidth();
+    window.addEventListener('resize', measureMaxCategoryWidth);
+    if (typeof document !== 'undefined' && document.fonts?.ready) {
+      document.fonts.ready.then(measureMaxCategoryWidth).catch(() => {});
+    }
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener('resize', measureMaxCategoryWidth);
+    };
+  }, [language, categoriesKey, categories.length]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -496,13 +535,17 @@ export default function WallpapersTab({
         <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">{tData.subtitle}</p>
       </div>
 
-      {/* Category Filter Pills */}
+      {/* Category Filter Pills — Equal width based on widest category button */}
       <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 mb-6 sm:mb-8 pb-2 justify-center items-center">
-        {categories.map((cat) => (
+        {categories.map((cat, idx) => (
           <button
             key={cat}
+            ref={(el) => {
+              categoryBtnRefs.current[idx] = el;
+            }}
             onClick={() => setActiveCategory(cat)}
-            className={`px-3 sm:px-4 h-[34px] sm:h-[38px] md:h-[40px] flex items-center justify-center rounded-full text-[10px] sm:text-[10.5px] md:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer select-none shrink-0 ${
+            style={uniformCategoryWidth ? { width: `${uniformCategoryWidth}px` } : undefined}
+            className={`max-w-full px-3 sm:px-4 h-[34px] sm:h-[38px] md:h-[40px] flex items-center justify-center rounded-full text-[10px] sm:text-[10.5px] md:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer select-none shrink-0 ${
               activeCategory === cat
                 ? 'bg-indigo-500 text-white wallpaper-card-badge shadow-lg shadow-indigo-500/20'
                 : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-black/5'
@@ -516,104 +559,109 @@ export default function WallpapersTab({
         ))}
       </div>
 
-      {/* Wallpaper Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-        {/* Upload from Computer/Phone Card */}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => fileInputRef.current?.click()}
-          className="wallpaper-upload-card wallpaper-upload-file-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs"
-        >
-          <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-90 duration-300 transition-all bg-indigo-50 text-indigo-600 border border-indigo-200/80 shadow-xs">
-            <Plus className="wallpaper-upload-icon" size={20} />
-          </div>
-          <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600">
-            {tData.uploadImage}
-          </span>
-          <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept="image/*" className="hidden" />
-        </motion.button>
+      {/* Line 1: Upload File & Add via URL */}
+      <div className="space-y-4 sm:space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Upload from Computer/Phone Card */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => fileInputRef.current?.click()}
+            className="wallpaper-upload-card wallpaper-upload-file-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs"
+          >
+            <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-90 duration-300 transition-all bg-indigo-50 text-indigo-600 border border-indigo-200/80 shadow-xs">
+              <Plus className="wallpaper-upload-icon" size={20} />
+            </div>
+            <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600">
+              {tData.uploadImage}
+            </span>
+            <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept="image/*" className="hidden" />
+          </motion.button>
 
-        {/* Add via Web URL Card */}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={openUrlModal}
-          className="wallpaper-upload-card wallpaper-upload-url-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-purple-400/70 bg-white hover:border-purple-600 hover:bg-purple-50/80 shadow-xs"
-        >
-          <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 duration-300 transition-all bg-purple-50 text-purple-600 border border-purple-200/80 shadow-xs">
-            <Link className="wallpaper-upload-icon" size={18} />
-          </div>
-          <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-purple-600">
-            {tData.addUrl}
-          </span>
-        </motion.button>
+          {/* Add via Web URL Card */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={openUrlModal}
+            className="wallpaper-upload-card wallpaper-upload-url-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-purple-400/70 bg-white hover:border-purple-600 hover:bg-purple-50/80 shadow-xs"
+          >
+            <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 duration-300 transition-all bg-purple-50 text-purple-600 border border-purple-200/80 shadow-xs">
+              <Link className="wallpaper-upload-icon" size={18} />
+            </div>
+            <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-purple-600">
+              {tData.addUrl}
+            </span>
+          </motion.button>
+        </div>
 
-        {/* Wallpapers List */}
-        <AnimatePresence mode="popLayout">
-          {filteredWallpapers.map((w) => {
-            const isActive = currentTheme === w.url;
-            const isUserUpload = userWallpapers.some((uw) => uw.id === w.id);
-            return (
-              <motion.div
-                layout
-                key={w.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="relative group animate-fade-in"
-              >
-                <button
-                  onClick={() => setTheme(w.url)}
-                  className={`w-full aspect-video relative block rounded-2xl overflow-hidden border-2 transition-all p-0 focus:outline-none cursor-pointer ${
-                    isActive 
-                      ? 'border-indigo-500 ring-4 ring-indigo-500/20 shadow-xl' 
-                      : 'border-transparent shadow-md hover:shadow-lg'
-                  }`}
-                  style={{ backgroundColor: 'transparent', outline: 'none' }}
-                >
-                  <img
-                    src={w.url}
-                    className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all"
-                    alt=""
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 rounded-[14px] transition-colors" />
-
-                  {/* Active Checkmark Badge */}
-                  {isActive && (
-                    <div className="wallpaper-card-badge absolute top-3 left-3 bg-indigo-500 text-white rounded-full p-1.5 shadow-lg flex items-center justify-center" style={{ color: '#ffffff' }}>
-                      <Check size={14} className="stroke-[3] text-white stroke-white" />
-                    </div>
-                  )}
-
-                  {/* Category / Upload Tag */}
-                  <div 
-                    className="wallpaper-card-badge absolute bottom-3 left-3 bg-black/75 backdrop-blur-md text-white text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border border-white/20 shadow-md pointer-events-none select-none flex items-center justify-center"
-                    style={{ color: '#ffffff' }}
+        {/* Line 2+: Wallpapers List (4 per line) */}
+        {filteredWallpapers.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <AnimatePresence mode="popLayout">
+              {filteredWallpapers.map((w) => {
+                const isActive = currentTheme === w.url;
+                return (
+                  <motion.div
+                    layout
+                    key={w.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="relative group animate-fade-in"
                   >
-                    <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
-                      {catMap[w.category] || w.category}
-                    </span>
-                  </div>
-                </button>
-                
-                {/* Delete Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setConfirmDeleteWallpaper(w.id);
-                  }}
-                  className="wallpaper-card-badge absolute top-3 right-3 w-9 h-9 bg-red-500/90 hover:bg-red-600 text-white rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-xl z-10 cursor-pointer"
-                  title={tData.deleteTitle}
-                  style={{ color: '#ffffff' }}
-                >
-                  <Trash2 size={16} className="wallpaper-card-badge text-white stroke-white" />
-                </button>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+                    <button
+                      onClick={() => setTheme(w.url)}
+                      className={`w-full aspect-video relative block rounded-2xl overflow-hidden border-2 transition-all p-0 focus:outline-none cursor-pointer ${
+                        isActive 
+                          ? 'border-indigo-500 ring-4 ring-indigo-500/20 shadow-xl' 
+                          : 'border-transparent shadow-md hover:shadow-lg'
+                      }`}
+                      style={{ backgroundColor: 'transparent', outline: 'none' }}
+                    >
+                      <img
+                        src={w.url}
+                        className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all"
+                        alt=""
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 rounded-[14px] transition-colors" />
+
+                      {/* Active Checkmark Badge */}
+                      {isActive && (
+                        <div className="wallpaper-card-badge absolute top-3 left-3 bg-indigo-500 text-white rounded-full p-1.5 shadow-lg flex items-center justify-center" style={{ color: '#ffffff' }}>
+                          <Check size={14} className="stroke-[3] text-white stroke-white" />
+                        </div>
+                      )}
+
+                      {/* Category / Upload Tag */}
+                      <div 
+                        className="wallpaper-card-badge absolute bottom-3 left-3 bg-black/75 backdrop-blur-md text-white text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border border-white/20 shadow-md pointer-events-none select-none flex items-center justify-center"
+                        style={{ color: '#ffffff' }}
+                      >
+                        <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
+                          {catMap[w.category] || w.category}
+                        </span>
+                      </div>
+                    </button>
+                    
+                    {/* Delete Button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setConfirmDeleteWallpaper(w.id);
+                      }}
+                      className="wallpaper-card-badge absolute top-3 right-3 w-9 h-9 bg-red-500/90 hover:bg-red-600 text-white rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-xl z-10 cursor-pointer"
+                      title={tData.deleteTitle}
+                      style={{ color: '#ffffff' }}
+                    >
+                      <Trash2 size={16} className="wallpaper-card-badge text-white stroke-white" />
+                    </button>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        )}
       </div>
 
       {filteredWallpapers.length === 0 && (

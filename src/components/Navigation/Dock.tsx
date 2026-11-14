@@ -67,7 +67,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
     <>
       {/* Universal Top Menu Bar */}
       <div
-        className={`top-menu-bar fixed top-0 left-0 right-0 z-[60] flex flex-row items-center justify-center border-b backdrop-blur-xl shadow-xs transition-colors duration-200 [text-shadow:none] ${
+        className={`top-menu-bar isolate fixed top-0 left-0 right-0 z-[60] flex flex-row items-center justify-center border-b backdrop-blur-xl shadow-xs transition-colors duration-200 [text-shadow:none] ${
           isDarkMode
             ? 'bg-slate-900/90 border-white/10 text-white'
             : 'bg-white/90 border-black/10 text-slate-900'
@@ -379,7 +379,7 @@ function DockItem({
   return (
     <button
       onClick={onClick}
-      className={`relative px-3 py-1.5 rounded-full text-xs transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap outline-none shrink-0 cursor-pointer ${
+      className={`relative px-3 py-1.5 rounded-full text-xs transition-colors duration-200 flex items-center gap-1.5 whitespace-nowrap outline-none shrink-0 cursor-pointer ${
         active ? activeColorClass : inactiveColorClass
       }`}
     >

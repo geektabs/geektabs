@@ -1480,7 +1480,7 @@ button.todolist-cancel-btn span,
 .card-style-white .weather-huawei-style .dark\:text-slate-200,
 .card-style-white .weather-huawei-style .text-slate-400,
 .card-style-white .weather-huawei-style .text-slate-500,
-.card-style-white .weather-huawei-style .text-white:not(button.bg-\[\#c8102e\] *):not(button.bg-\[\#c8102e\]),
+.card-style-white .weather-huawei-style .text-white:not(button.bg-\[\#c8102e\] *):not(button.bg-\[\#c8102e\]):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-start-btn):not(.speedtest-start-btn *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.calculator-equals-btn):not(.calculator-equals-btn *),
 [data-card-bg-mode="white"] .weather-huawei-style h1,
 [data-card-bg-mode="white"] .weather-huawei-style h2,
 [data-card-bg-mode="white"] .weather-huawei-style h3,
@@ -3443,8 +3443,14 @@ button.todolist-cancel-btn span,
 
 .calculator-tab-card .calc-mode-tab-active,
 .calculator-tab-card .calc-mode-tab-active *,
+.weather-huawei-style.calculator-tab-card .calc-mode-tab-active,
+.weather-huawei-style.calculator-tab-card .calc-mode-tab-active *,
+.card-style-white .weather-huawei-style.calculator-tab-card .calc-mode-tab-active,
+.card-style-white .weather-huawei-style.calculator-tab-card .calc-mode-tab-active *,
 .card-style-white .calculator-tab-card .calc-mode-tab-active,
 .card-style-white .calculator-tab-card .calc-mode-tab-active *,
+[data-card-bg-mode="white"] .weather-huawei-style.calculator-tab-card .calc-mode-tab-active,
+[data-card-bg-mode="white"] .weather-huawei-style.calculator-tab-card .calc-mode-tab-active *,
 [data-card-bg-mode="white"] .calculator-tab-card .calc-mode-tab-active,
 [data-card-bg-mode="white"] .calculator-tab-card .calc-mode-tab-active *,
 .card-style-dark .calculator-tab-card .calc-mode-tab-active,
@@ -3455,10 +3461,38 @@ button.todolist-cancel-btn span,
 .card-style-dark-glass .calculator-tab-card .calc-mode-tab-active *,
 [data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-mode-tab-active,
 [data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-mode-tab-active *,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-mode-tab-active,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-mode-tab-active *,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-mode-tab-active,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-mode-tab-active *,
 .calculator-tab-card .calc-rate-pill-active,
 .calculator-tab-card .calc-rate-pill-active *,
+.card-style-white .calculator-tab-card .calc-rate-pill-active,
+.card-style-white .calculator-tab-card .calc-rate-pill-active *,
+[data-card-bg-mode="white"] .calculator-tab-card .calc-rate-pill-active,
+[data-card-bg-mode="white"] .calculator-tab-card .calc-rate-pill-active *,
+.card-style-dark .calculator-tab-card .calc-rate-pill-active,
+.card-style-dark .calculator-tab-card .calc-rate-pill-active *,
+[data-card-bg-mode="dark"] .calculator-tab-card .calc-rate-pill-active,
+[data-card-bg-mode="dark"] .calculator-tab-card .calc-rate-pill-active *,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-rate-pill-active,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-rate-pill-active *,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-rate-pill-active,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-rate-pill-active *,
 .calculator-tab-card .calc-swap-btn,
 .calculator-tab-card .calc-swap-btn *,
+.card-style-white .calculator-tab-card .calc-swap-btn,
+.card-style-white .calculator-tab-card .calc-swap-btn *,
+[data-card-bg-mode="white"] .calculator-tab-card .calc-swap-btn,
+[data-card-bg-mode="white"] .calculator-tab-card .calc-swap-btn *,
+.card-style-dark .calculator-tab-card .calc-swap-btn,
+.card-style-dark .calculator-tab-card .calc-swap-btn *,
+[data-card-bg-mode="dark"] .calculator-tab-card .calc-swap-btn,
+[data-card-bg-mode="dark"] .calculator-tab-card .calc-swap-btn *,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-swap-btn,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-swap-btn *,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-swap-btn,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-swap-btn *,
 .calculator-tab-card .calculator-equals-btn,
 .calculator-tab-card .calculator-equals-btn *,
 [data-card-bg-mode="white"] .calculator-tab-card .calculator-equals-btn,
@@ -3467,6 +3501,18 @@ button.todolist-cancel-btn span,
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
   stroke: #ffffff !important;
+  opacity: 1 !important;
+}
+
+input[type="number"].no-spinner::-webkit-inner-spin-button,
+input[type="number"].no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"].no-spinner {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .calculator-tab-card .calculator-equals-btn,
@@ -3511,6 +3557,17 @@ button.todolist-cancel-btn span,
 .speedtest-start-sublabel,
 .speedtest-action-button,
 .speedtest-action-button *,
+.card-style-white .weather-huawei-style .speedtest-center-circle,
+.card-style-white .weather-huawei-style .speedtest-center-circle *,
+.card-style-white .weather-huawei-style .speedtest-start-button,
+.card-style-white .weather-huawei-style .speedtest-start-button *,
+.card-style-white .weather-huawei-style .speedtest-start-btn,
+.card-style-white .weather-huawei-style .speedtest-start-btn *,
+.card-style-white .weather-huawei-style .speedtest-btn-text,
+.card-style-white .weather-huawei-style .speedtest-start-label,
+.card-style-white .weather-huawei-style .speedtest-start-sublabel,
+.card-style-white .weather-huawei-style .speedtest-action-button,
+.card-style-white .weather-huawei-style .speedtest-action-button *,
 .card-style-white .speedtest-tab-card .speedtest-center-circle,
 .card-style-white .speedtest-tab-card .speedtest-center-circle *,
 .card-style-white .speedtest-tab-card .speedtest-start-button,
@@ -3522,19 +3579,28 @@ button.todolist-cancel-btn span,
 .card-style-white .speedtest-tab-card .speedtest-start-sublabel,
 .card-style-white .speedtest-tab-card .speedtest-action-button,
 .card-style-white .speedtest-tab-card .speedtest-action-button *,
+[data-card-bg-mode="white"] .weather-huawei-style .speedtest-center-circle,
+[data-card-bg-mode="white"] .weather-huawei-style .speedtest-center-circle *,
+[data-card-bg-mode="white"] .weather-huawei-style .speedtest-start-button,
+[data-card-bg-mode="white"] .weather-huawei-style .speedtest-start-button *,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-center-circle,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-center-circle *,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-start-button,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-start-button *,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-btn-text,
+[data-card-bg-mode="white"] .speedtest-tab-card .speedtest-start-label,
+[data-card-bg-mode="white"] .speedtest-tab-card .speedtest-start-sublabel,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-action-button,
 [data-card-bg-mode="white"] .speedtest-tab-card .speedtest-action-button *,
+.card-style-dark .speedtest-tab-card .speedtest-center-circle *,
+[data-card-bg-mode="dark"] .speedtest-tab-card .speedtest-center-circle *,
 .card-style-dark-glass .speedtest-tab-card .speedtest-center-circle *,
 [data-card-bg-mode="dark-glass"] .speedtest-tab-card .speedtest-center-circle * {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
   stroke: #ffffff !important;
   text-shadow: none !important;
+  opacity: 1 !important;
 }
 
 /* Home Daily Web Cards: Regular (non-light) header colors across Light, Dark, and Glass modes + borderless in Dark card mode */
@@ -3695,17 +3761,104 @@ button.todolist-cancel-btn span,
   border-bottom: 0 !important;
 }
 
-/* Remove outer black border & dark shadow rim on the 4 daily web cards in Dark card background mode */
+/* Remove outer border & white inset border glow on the 4 daily web cards across ALL card styles & ALL website backgrounds */
+.weather-huawei-style.daily-webcard,
+.weather-huawei-style.daily-webcard:hover,
+.card-style-white .weather-huawei-style.daily-webcard,
+.card-style-white .weather-huawei-style.daily-webcard:hover,
+[data-card-bg-mode="white"] .weather-huawei-style.daily-webcard,
+[data-card-bg-mode="white"] .weather-huawei-style.daily-webcard:hover,
 .card-style-dark .weather-huawei-style.daily-webcard,
-[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard,
 .card-style-dark .weather-huawei-style.daily-webcard:hover,
-[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard:hover {
+[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard,
+[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard:hover,
+.card-style-dark-glass .weather-huawei-style.daily-webcard,
+.card-style-dark-glass .weather-huawei-style.daily-webcard:hover,
+[data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard,
+[data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style.daily-webcard,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style.daily-webcard,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard:hover {
   border: 0 !important;
   border-width: 0 !important;
   border-color: transparent !important;
   outline: 0 !important;
-  box-shadow: none !important;
   background-clip: padding-box !important;
+}
+
+.card-style-white .weather-huawei-style.daily-webcard,
+.card-style-white .weather-huawei-style.daily-webcard:hover,
+[data-card-bg-mode="white"] .weather-huawei-style.daily-webcard,
+[data-card-bg-mode="white"] .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style.daily-webcard,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard:hover {
+  box-shadow: 0 10px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.05) !important;
+}
+
+.card-style-dark .weather-huawei-style.daily-webcard,
+.card-style-dark .weather-huawei-style.daily-webcard:hover,
+[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard,
+[data-card-bg-mode="dark"] .weather-huawei-style.daily-webcard:hover {
+  box-shadow: none !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style.daily-webcard,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style.daily-webcard:hover,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style.daily-webcard:hover {
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.36) !important;
+}
+
+/* Isolate top menu bar & To-Do / Notes left sidebars to eliminate compositor/backdrop hover flashes */
+.top-menu-bar,
+.todolist-tab-container > aside,
+.notes-tab-container > aside {
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.light.card-style-white .todolist-tab-container,
+.light[data-card-bg-mode="white"] .todolist-tab-container,
+.light.card-style-white .notes-tab-container,
+.light[data-card-bg-mode="white"] .notes-tab-container,
+.light.card-style-white .todolist-tab-container > aside,
+.light[data-card-bg-mode="white"] .todolist-tab-container > aside,
+.light.card-style-white .notes-tab-container > aside,
+.light[data-card-bg-mode="white"] .notes-tab-container > aside {
+  background: #f4f6fa !important;
+  background-color: #f4f6fa !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.dark.card-style-white .todolist-tab-container,
+.dark[data-card-bg-mode="white"] .todolist-tab-container,
+.dark.card-style-white .notes-tab-container,
+.dark[data-card-bg-mode="white"] .notes-tab-container,
+.dark.card-style-white .todolist-tab-container > aside,
+.dark[data-card-bg-mode="white"] .todolist-tab-container > aside,
+.dark.card-style-white .notes-tab-container > aside,
+.dark[data-card-bg-mode="white"] .notes-tab-container > aside {
+  background: #111622 !important;
+  background-color: #111622 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.light .notes-tab-container > aside .notes-item-datetime,
+[data-glass-bg="light"].card-style-dark-glass .notes-tab-container > aside .notes-item-datetime {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
 }
 
 .photo-mode .daily-cards-humor-intro h2,

@@ -316,7 +316,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
   };
 
   return (
-    <div className="space-y-6 sm:space-y-8">
+    <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8">
       {/* Header */}
       <div className="text-center flex flex-col items-center">
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1 flex items-center justify-center gap-2.5">
@@ -330,16 +330,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
       <div className="space-y-6 divide-y divide-black/5">
         {/* Setting 0: Location & Region */}
-        <div className="pt-2">
-          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+        <div className="pt-2 flex flex-col items-center text-center">
+          <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
             <MapPin size={15} />
             <span>Weather Location</span>
           </label>
-          <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
             Configure your global city, region, or postal code to accurately fetch live weather data for the home page.
           </p>
 
-          <div className="max-w-xl space-y-3">
+          <div className="max-w-xl w-full mx-auto space-y-3 text-left">
             {/* Current Active Location Card */}
             <div className="p-4 rounded-2xl border border-black/10 bg-white flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
@@ -445,16 +445,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
         </div>
 
         {/* Setting 1: Temperature Unit (C vs F) */}
-        <div className="pt-2">
-          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+        <div className="pt-6 flex flex-col items-center text-center">
+          <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
             <Thermometer size={15} />
             {d.unitTitle}
           </label>
-          <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
             {d.unitDesc}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl w-full mx-auto">
             {/* Celsius Option */}
             <button
               type="button"
@@ -518,16 +518,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
         </div>
 
         {/* Setting 2: Forecast Interval Mode (by hour vs by day) */}
-        <div className="pt-6">
-          <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+        <div className="pt-6 flex flex-col items-center text-center">
+          <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
             <Calendar size={15} />
             {d.forecastModeTitle}
           </label>
-          <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
             {d.forecastModeDesc}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl w-full mx-auto">
             {/* By Hour Option */}
             <button
               type="button"
@@ -591,9 +591,9 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
         </div>
 
         {/* Informational Status Card */}
-        <div className="pt-6">
-          <div className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/15 flex items-start gap-3 max-w-xl">
-            <Sparkles size={16} className="text-indigo-500 shrink-0 mt-0.5" />
+        <div className="pt-6 flex justify-center">
+          <div className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/15 flex flex-col items-center text-center gap-2.5 max-w-xl w-full mx-auto">
+            <Sparkles size={16} className="text-indigo-500 shrink-0" />
             <div>
               <h4 className="text-xs font-bold text-slate-900">
                 {d.previewTitle}
@@ -601,7 +601,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
               <p className="text-[11px] text-slate-600 mt-0.5">
                 {d.previewDesc}
               </p>
-              <div className="mt-2.5 flex items-center gap-2 text-[11px] font-mono">
+              <div className="mt-2.5 flex items-center justify-center gap-2 text-[11px] font-mono">
                 <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 font-bold">
                   Unit: °{tempUnit}
                 </span>

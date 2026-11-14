@@ -1012,7 +1012,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   const [events, setEvents] = useLocalStorage<EventItem[]>('GeekTabs-events', []);
   const [country1Mode, setCountry1Mode] = useLocalStorage<'auto' | 'manual'>('GeekTabs-cal-country1-mode', 'auto');
   const [country1, setCountry1] = useLocalStorage<string>('GeekTabs-cal-country1', initialBrowserCountry);
-  const [country2, setCountry2] = useLocalStorage<string>('GeekTabs-cal-country2-v3', 'NONE');
+  const [country2, setCountry2] = useLocalStorage<string>('GeekTabs-cal-country2-v3', 'UK');
   // Main calendar top-right selector: 'GLOBAL' (Global Official Gregorian Calendar by default) or specific country
   const [calendarCountry, setCalendarCountry] = useLocalStorage<string>('GeekTabs-cal-country-v4', 'GLOBAL');
 
@@ -1101,14 +1101,16 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     setCountry1(val);
   };
 
-  const hasSecondCountry = Boolean(country2 && country2 !== 'NONE' && country2 !== country1);
+  const resolvedCountry2 = useMemo(() => {
+    if (country2 && country2 !== 'NONE' && country2 !== country1 && COUNTRIES.some((c) => c.id === country2)) {
+      return country2;
+    }
+    return COUNTRIES.find((c) => c.id !== country1)?.id || 'UK';
+  }, [country1, country2]);
 
   const activeWorldCountries = useMemo(() => {
-    if (hasSecondCountry) {
-      return [country1, country2];
-    }
-    return [country1].filter(Boolean);
-  }, [country1, country2, hasSecondCountry]);
+    return [country1, resolvedCountry2].filter(Boolean);
+  }, [country1, resolvedCountry2]);
 
   const activeHolidayCountries = useMemo(() => {
     if (calendarCountry && calendarCountry !== 'GLOBAL') {
@@ -1397,7 +1399,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                     }
                   }}
                   title={isHoliday ? dayHolidays.join(' · ') : dateKey}
-                  className={`calendar-day-btn relative flex flex-col items-center justify-center rounded-2xl min-h-[60px] sm:min-h-[68px] transition-all cursor-pointer select-none ${
+                  className={`calendar-day-btn relative flex items-center justify-center rounded-2xl min-h-[64px] sm:min-h-[72px] transition-all cursor-pointer select-none ${
                     isSelectedCell && !isTodayCell
                       ? 'cal-selected-tile ring-2 ring-[#6143f7]'
                       : ''
@@ -1409,10 +1411,10 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                 >
                   {/* Today highlighted in the same #6143f7 color as the World Dates logo */}
                   <div
-                    className={`flex flex-col items-center justify-center rounded-full transition-all ${
+                    className={`flex items-center justify-center rounded-full transition-all ${
                       isTodayCell
-                        ? 'cal-today-circle w-11 h-11 sm:w-12 sm:h-12 bg-[#6143f7] text-white shadow-sm'
-                        : 'w-full px-1'
+                        ? 'cal-today-circle w-9 h-9 sm:w-10 sm:h-10 bg-[#6143f7] text-white shadow-sm'
+                        : 'w-9 h-9 sm:w-10 sm:h-10'
                     }`}
                   >
                     <span
@@ -1424,31 +1426,31 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                     >
                       {cellD}
                     </span>
-
-                    {(lunarCell || isHoliday) && (
-                      <div className="mt-1 flex items-center justify-center gap-1 leading-none">
-                        {lunarCell && (
-                          <span
-                            className={`text-[10px] leading-none font-medium ${
-                              isTodayCell
-                                ? 'cal-today-text text-white/95'
-                                : 'opacity-65 text-black dark:text-white'
-                            }`}
-                          >
-                            {lunarCell}
-                          </span>
-                        )}
-                        {isHoliday && (
-                          <span
-                            className={`cal-holiday-dot rounded-full bg-rose-500 shrink-0 ${
-                              lunarCell ? 'w-1.5 h-1.5' : 'mt-0.5 w-2.5 h-2.5'
-                            } ${isTodayCell ? 'ring-2 ring-white/90' : ''}`}
-                            aria-label={dayHolidays.join(', ')}
-                          />
-                        )}
-                      </div>
-                    )}
                   </div>
+
+                  {(lunarCell || isHoliday) && (
+                    <div className="pointer-events-none absolute bottom-1 sm:bottom-1.5 left-0 right-0 flex items-center justify-center gap-1 leading-none">
+                      {lunarCell && (
+                        <span
+                          className={`text-[9.5px] sm:text-[10px] leading-none font-medium ${
+                            isTodayCell
+                              ? 'opacity-90 text-black dark:text-white'
+                              : 'opacity-65 text-black dark:text-white'
+                          }`}
+                        >
+                          {lunarCell}
+                        </span>
+                      )}
+                      {isHoliday && (
+                        <span
+                          className={`cal-holiday-dot rounded-full bg-rose-500 shrink-0 ${
+                            lunarCell ? 'w-1.5 h-1.5' : 'w-2 h-2'
+                          }`}
+                          aria-label={dayHolidays.join(', ')}
+                        />
+                      )}
+                    </div>
+                  )}
 
                   {/* Subtle corner dot indicator for user-added events */}
                   {hasEvt && (
@@ -1487,13 +1489,10 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
               ))}
             </select>
             <select
-              value={country2}
+              value={resolvedCountry2}
               onChange={(e) => setCountry2(e.target.value)}
               className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
             >
-              <option value="NONE" className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
-                {calText.singleCalNone}
-              </option>
               {COUNTRIES.filter((c) => c.id !== country1).map((c) => (
                 <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
                   {COUNTRY_NAMES[language]?.[c.id] || c.name}
@@ -1505,42 +1504,40 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
           <div className="space-y-3 mt-1 flex-1 flex flex-col justify-between">
             <div className="space-y-2.5">
               <WorldClock countryId={country1} />
-              {hasSecondCountry && <WorldClock countryId={country2} />}
+              <WorldClock countryId={resolvedCountry2} />
             </div>
 
-            {hasSecondCountry && (
-              <div className="world-dates-diff-pill flex items-center justify-center p-3 bg-black/[0.03] dark:bg-white/10 rounded-2xl border border-black/10 dark:border-white/10 mt-auto">
-                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black dark:text-white text-center leading-relaxed">
-                  {(() => {
-                    const c1 = COUNTRIES.find((c) => c.id === country1);
-                    const c2 = COUNTRIES.find((c) => c.id === country2);
-                    if (!c1 || !c2) return null;
-                    try {
-                      const currentNow = new Date();
-                      const getOffsetHours = (tz: string) => {
-                        const parts = new Intl.DateTimeFormat('en-US', {
-                          timeZone: tz,
-                          timeZoneName: 'shortOffset',
-                        }).formatToParts(currentNow);
-                        const tzName = parts.find((p) => p.type === 'timeZoneName')?.value || '';
-                        if (!tzName.includes('+') && !tzName.includes('-')) return 0;
-                        const sign = tzName.includes('-') ? -1 : 1;
-                        const timePart = tzName.split(/[+-]/)[1];
-                        const [h, m] = timePart.split(':');
-                        return sign * (parseInt(h, 10) + (m ? parseInt(m, 10) / 60 : 0));
-                      };
+            <div className="world-dates-diff-pill flex items-center justify-center p-3 bg-black/[0.03] dark:bg-white/10 rounded-2xl border border-black/10 dark:border-white/10 mt-auto">
+              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black dark:text-white text-center leading-relaxed">
+                {(() => {
+                  const c1 = COUNTRIES.find((c) => c.id === country1);
+                  const c2 = COUNTRIES.find((c) => c.id === resolvedCountry2);
+                  if (!c1 || !c2) return null;
+                  try {
+                    const currentNow = new Date();
+                    const getOffsetHours = (tz: string) => {
+                      const parts = new Intl.DateTimeFormat('en-US', {
+                        timeZone: tz,
+                        timeZoneName: 'shortOffset',
+                      }).formatToParts(currentNow);
+                      const tzName = parts.find((p) => p.type === 'timeZoneName')?.value || '';
+                      if (!tzName.includes('+') && !tzName.includes('-')) return 0;
+                      const sign = tzName.includes('-') ? -1 : 1;
+                      const timePart = tzName.split(/[+-]/)[1];
+                      const [h, m] = timePart.split(':');
+                      return sign * (parseInt(h, 10) + (m ? parseInt(m, 10) / 60 : 0));
+                    };
 
-                      const diffHours = getOffsetHours(c1.timezone) - getOffsetHours(c2.timezone);
-                      const c1Name = COUNTRY_NAMES[language]?.[c1.id] || c1.name;
-                      const c2Name = COUNTRY_NAMES[language]?.[c2.id] || c2.name;
-                      return formatTimeDifference(c1Name, c2Name, diffHours, language);
-                    } catch {
-                      return null;
-                    }
-                  })()}
-                </span>
-              </div>
-            )}
+                    const diffHours = getOffsetHours(c1.timezone) - getOffsetHours(c2.timezone);
+                    const c1Name = COUNTRY_NAMES[language]?.[c1.id] || c1.name;
+                    const c2Name = COUNTRY_NAMES[language]?.[c2.id] || c2.name;
+                    return formatTimeDifference(c1Name, c2Name, diffHours, language);
+                  } catch {
+                    return null;
+                  }
+                })()}
+              </span>
+            </div>
           </div>
         </div>
 

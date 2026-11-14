@@ -1,20 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { BellRing, RefreshCw } from 'lucide-react';
-import dailyReminders from '../../data/daily-reminders.json';
+import remindersEnglish from '../../data/daily-reminders-English.json';
+import remindersSpanish from '../../data/daily-reminders-Spanish.json';
+import remindersFrench from '../../data/daily-reminders-French.json';
+import remindersGerman from '../../data/daily-reminders-German.json';
+import remindersChinese from '../../data/daily-reminders-Chinese.json';
+import remindersJapanese from '../../data/daily-reminders-Japanese.json';
+import remindersKorean from '../../data/daily-reminders-Korean.json';
+import remindersItalian from '../../data/daily-reminders-Italian.json';
+import remindersRussian from '../../data/daily-reminders-Russian.json';
+import remindersLuxembourgish from '../../data/daily-reminders-Luxembourgish.json';
+
+const remindersMap: Record<string, string[]> = {
+  English: remindersEnglish,
+  Spanish: remindersSpanish,
+  French: remindersFrench,
+  German: remindersGerman,
+  Chinese: remindersChinese,
+  Japanese: remindersJapanese,
+  Korean: remindersKorean,
+  Italian: remindersItalian,
+  Russian: remindersRussian,
+  Luxembourgish: remindersLuxembourgish,
+};
 
 const STORAGE_KEY = 'GeekTabs_daily_reminder_history';
 
-function getFreshReminder(excludeCurrent?: string): string {
-  const dataset = dailyReminders;
+function getFreshReminder(lang: string, excludeCurrent?: string): string {
+  const dataset = remindersMap[lang] || remindersEnglish;
   if (!dataset || dataset.length === 0) {
     return '';
   }
 
   const today = new Date().toISOString().slice(0, 10);
+  const storageKey = `${STORAGE_KEY}_${lang}`;
   let seenToday: string[] = [];
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(storageKey);
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed && parsed.date === today && Array.isArray(parsed.seen)) {
@@ -48,7 +71,7 @@ function getFreshReminder(excludeCurrent?: string): string {
 
   try {
     const updatedSeen = [...seenToday, picked].slice(-dataset.length);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ date: today, seen: updatedSeen }));
+    localStorage.setItem(storageKey, JSON.stringify({ date: today, seen: updatedSeen }));
   } catch {
     // ignore storage error
   }
@@ -61,14 +84,14 @@ interface ReminderWidgetProps {
 }
 
 export default function ReminderWidget({ language = 'English' }: ReminderWidgetProps) {
-  const [reminder, setReminder] = useState<string>(() => getFreshReminder());
+  const [reminder, setReminder] = useState<string>(() => getFreshReminder(language));
   const [loading, setLoading] = useState(false);
 
   const fetchReminder = async () => {
     setLoading(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 300));
-      const next = getFreshReminder(reminder);
+      const next = getFreshReminder(language, reminder);
       setReminder(next);
     } finally {
       setLoading(false);
@@ -76,7 +99,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
   };
 
   useEffect(() => {
-    setReminder(getFreshReminder());
+    setReminder(getFreshReminder(language));
   }, [language]);
 
   const widgetTitle =

@@ -86,45 +86,6 @@ async function startServer() {
         let updatedAt = new Date().toISOString();
         let source = "Streaming Forex Majors";
 
-        // 1. Attempt Investing.com streaming-forex-rates-majors directly if accessible
-        try {
-          const invRes = await fetch("https://www.investing.com/currencies/streaming-forex-rates-majors", {
-            headers: {
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-              "Accept-Language": "en-US,en;q=0.9",
-            },
-            signal: AbortSignal.timeout(3500),
-          });
-          if (invRes.ok) {
-            const html = await invRes.text();
-            const pairPatterns = [
-              "EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF", "AUD/USD", "USD/CAD", "NZD/USD",
-              "EUR/GBP", "EUR/JPY", "GBP/JPY", "USD/CNY", "USD/HKD", "USD/SGD",
-            ];
-            for (const pair of pairPatterns) {
-              const escaped = pair.replace("/", "\\/");
-              const regex = new RegExp(`${escaped}[\\s\\S]{0,450}?>([0-9]+\\.[0-9]+)<`, "i");
-              const match = html.match(regex);
-              if (match && match[1]) {
-                const val = parseFloat(match[1]);
-                if (Number.isFinite(val) && val > 0) {
-                  majors.push({ pair, price: val, changePct: 0 });
-                  const [base, quote] = pair.split("/");
-                  if (base === "USD") rates[quote] = val;
-                  else if (quote === "USD") rates[base] = 1 / val;
-                }
-              }
-            }
-            if (majors.length >= 5) {
-              source = "Investing.com Streaming Forex Majors";
-            }
-          }
-        } catch {
-          // Proceed cleanly to global FX feed
-        }
-
-        // 2. Fetch full 160+ currency table + real-time spot major pairs in parallel
         const spotDefs = [
           { pair: "EUR/USD", sym: "EURUSD=X", base: "EUR", quote: "USD" },
           { pair: "GBP/USD", sym: "GBPUSD=X", base: "GBP", quote: "USD" },
@@ -138,12 +99,22 @@ async function startServer() {
           { pair: "EUR/JPY", sym: "EURJPY=X", base: "EUR", quote: "JPY" },
         ];
 
-        const [erSettled, ...spotSettled] = await Promise.allSettled([
-          fetch("https://open.er-api.com/v6/latest/USD", { signal: AbortSignal.timeout(5000) }).then((r) => r.json()),
+        const [invSettled, erSettled, ...spotSettled] = await Promise.allSettled([
+          fetch("https://www.investing.com/currencies/streaming-forex-rates-majors", {
+            headers: {
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+              "Accept-Language": "en-US,en;q=0.9",
+            },
+            signal: AbortSignal.timeout(2500),
+          })
+            .then((r) => (r.ok ? r.text() : ""))
+            .catch(() => ""),
+          fetch("https://open.er-api.com/v6/latest/USD", { signal: AbortSignal.timeout(4000) }).then((r) => r.json()),
           ...spotDefs.map((def) =>
             fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${def.sym}?interval=1m&range=1d`, {
               headers: { "User-Agent": "Mozilla/5.0" },
-              signal: AbortSignal.timeout(4500),
+              signal: AbortSignal.timeout(3500),
             })
               .then((r) => (r.ok ? r.json() : null))
               .then((json) => {
@@ -156,6 +127,31 @@ async function startServer() {
               .catch(() => null)
           ),
         ]);
+
+        if (invSettled.status === "fulfilled" && invSettled.value) {
+          const html = invSettled.value;
+          const pairPatterns = [
+            "EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF", "AUD/USD", "USD/CAD", "NZD/USD",
+            "EUR/GBP", "EUR/JPY", "GBP/JPY", "USD/CNY", "USD/HKD", "USD/SGD",
+          ];
+          for (const pair of pairPatterns) {
+            const escaped = pair.replace("/", "\\/");
+            const regex = new RegExp(`${escaped}[\\s\\S]{0,450}?>([0-9]+\\.[0-9]+)<`, "i");
+            const match = html.match(regex);
+            if (match && match[1]) {
+              const val = parseFloat(match[1]);
+              if (Number.isFinite(val) && val > 0) {
+                majors.push({ pair, price: val, changePct: 0 });
+                const [base, quote] = pair.split("/");
+                if (base === "USD") rates[quote] = val;
+                else if (quote === "USD") rates[base] = 1 / val;
+              }
+            }
+          }
+          if (majors.length >= 5) {
+            source = "Investing.com Streaming Forex Majors";
+          }
+        }
 
         if (erSettled.status === "fulfilled" && erSettled.value?.rates) {
           for (const [code, val] of Object.entries(erSettled.value.rates)) {
@@ -191,7 +187,7 @@ async function startServer() {
           try {
             const cdnRes = await fetch(
               "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
-              { signal: AbortSignal.timeout(5000) }
+              { signal: AbortSignal.timeout(4000) }
             );
             if (cdnRes.ok) {
               const cdnJson = await cdnRes.json();
@@ -209,9 +205,8 @@ async function startServer() {
         }
 
         if (Object.keys(rates).length <= 1) {
-          // Last-resort Frankfurter fallback
           const frankRes = await fetch("https://api.frankfurter.dev/v1/latest?base=USD", {
-            signal: AbortSignal.timeout(5000),
+            signal: AbortSignal.timeout(4000),
           });
           if (frankRes.ok) {
             const frankJson = await frankRes.json();
@@ -219,7 +214,7 @@ async function startServer() {
           }
         }
 
-        payload = { timestamp: now, rates, majors, updatedAt, source };
+        payload = { timestamp: Date.now(), rates, majors, updatedAt, source };
         forexCache = payload;
       }
 
@@ -232,7 +227,7 @@ async function startServer() {
           try {
             const pairRes = await fetch(
               `https://query1.finance.yahoo.com/v8/finance/chart/${from}${to}=X?interval=1m&range=1d`,
-              { headers: { "User-Agent": "Mozilla/5.0" }, signal: AbortSignal.timeout(3000) }
+              { headers: { "User-Agent": "Mozilla/5.0" }, signal: AbortSignal.timeout(2200) }
             );
             if (pairRes.ok) {
               const pairJson = await pairRes.json();
@@ -250,12 +245,14 @@ async function startServer() {
         }
       }
 
+      res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
       res.json({
         base: "USD",
         rates: payload.rates,
         majors: payload.majors,
         directRate,
         updatedAt: payload.updatedAt,
+        fetchedAt: new Date(payload.timestamp).toISOString(),
         source: payload.source,
       });
     } catch (error: any) {
@@ -267,8 +264,28 @@ async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { middlewareMode: true, hmr: false, watch: null },
       appType: "spa",
+      plugins: [
+        {
+          name: "disable-hmr-websocket",
+          enforce: "post",
+          transform(code, id) {
+            const normalizedId = id.replace(/\\/g, "/");
+            if (normalizedId.endsWith("/vite/dist/client/client.mjs") || normalizedId === "/@vite/client") {
+              return code
+                .replace(
+                  "wsTransport.send(data);",
+                  "return Promise.resolve();"
+                )
+                .replace(
+                  "transport.connect(createHMRHandler(handleMessage));",
+                  "/* HMR WebSocket disabled */"
+                );
+            }
+          },
+        },
+      ],
     });
     app.use(vite.middlewares);
   } else {

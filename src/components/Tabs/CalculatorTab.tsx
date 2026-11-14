@@ -8,6 +8,7 @@ import {
   RefreshCw,
   ExternalLink,
   RotateCcw,
+  Check,
 } from 'lucide-react';
 
 export interface CalculatorTabProps {
@@ -79,10 +80,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Live Rate',
     majorPairs: 'Streaming Forex Majors',
     refresh: 'Refresh',
+    refreshed: 'Updated',
     loadingRates: 'Loading live rates...',
     rateError: 'Could not load live rates. Tap refresh to retry.',
     reset: 'Reset',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manual',
+    exchangeRate: 'Exchange Rate',
+    manualRateLabel: 'Custom Rate',
   },
   Spanish: {
     history: 'Historial',
@@ -108,10 +114,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Tasa en vivo',
     majorPairs: 'Divisas principales en vivo',
     refresh: 'Actualizar',
+    refreshed: 'Actualizado',
     loadingRates: 'Cargando tasas en vivo...',
     rateError: 'No se pudieron cargar las tasas.',
     reset: 'Reiniciar',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'En vivo',
+    manualMode: 'Manual',
+    exchangeRate: 'Tipo de cambio',
+    manualRateLabel: 'Tasa personalizada',
   },
   French: {
     history: 'Historique',
@@ -137,10 +148,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Taux en direct',
     majorPairs: 'Paires Forex majeures',
     refresh: 'Actualiser',
+    refreshed: 'Actualisé',
     loadingRates: 'Chargement des taux...',
     rateError: 'Impossible de charger les taux.',
     reset: 'Réinitialiser',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'En direct',
+    manualMode: 'Manuel',
+    exchangeRate: 'Taux de change',
+    manualRateLabel: 'Taux personnalisé',
   },
   German: {
     history: 'Verlauf',
@@ -166,10 +182,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Live-Kurs',
     majorPairs: 'Live-Forex-Hauptpaare',
     refresh: 'Aktualisieren',
+    refreshed: 'Aktualisiert',
     loadingRates: 'Kurse werden geladen...',
     rateError: 'Live-Kurse konnten nicht geladen werden.',
     reset: 'Zurücksetzen',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manuell',
+    exchangeRate: 'Wechselkurs',
+    manualRateLabel: 'Eigener Kurs',
   },
   Chinese: {
     history: '计算历史',
@@ -195,10 +216,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: '实时汇率',
     majorPairs: '实时主要外汇汇率',
     refresh: '刷新',
+    refreshed: '已更新',
     loadingRates: '正在获取实时汇率...',
     rateError: '获取实时汇率失败，请重试。',
     reset: '重置',
     sourceLabel: 'Investing.com 实时外汇',
+    liveMode: '实时',
+    manualMode: '手动',
+    exchangeRate: '汇率',
+    manualRateLabel: '自定义汇率',
   },
   Japanese: {
     history: '履歴',
@@ -224,10 +250,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'リアルタイムレート',
     majorPairs: '主要為替レート',
     refresh: '更新',
+    refreshed: '更新済み',
     loadingRates: 'レート読込中...',
     rateError: '為替レートを取得できませんでした。',
     reset: 'リセット',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'ライブ',
+    manualMode: '手動',
+    exchangeRate: '為替レート',
+    manualRateLabel: '手動レート',
   },
   Korean: {
     history: '기록',
@@ -253,10 +284,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: '실시간 환율',
     majorPairs: '실시간 주요 외환',
     refresh: '새로고침',
+    refreshed: '업데이트됨',
     loadingRates: '실시간 환율 불러오는 중...',
     rateError: '환율을 불러오지 못했습니다.',
     reset: '초기화',
     sourceLabel: 'Investing.com Majors',
+    liveMode: '실시간',
+    manualMode: '수동',
+    exchangeRate: '환율',
+    manualRateLabel: '직접 입력 환율',
   },
   Italian: {
     history: 'Cronologia',
@@ -282,10 +318,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Tasso in tempo reale',
     majorPairs: 'Cambio Forex principale',
     refresh: 'Aggiorna',
+    refreshed: 'Aggiornato',
     loadingRates: 'Caricamento tassi...',
     rateError: 'Impossibile caricare i tassi.',
     reset: 'Ripristina',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manuale',
+    exchangeRate: 'Tasso di cambio',
+    manualRateLabel: 'Tasso personalizzato',
   },
   Russian: {
     history: 'История',
@@ -311,10 +352,15 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Текущий курс',
     majorPairs: 'Основные курсы Форекс',
     refresh: 'Обновить',
+    refreshed: 'Обновлено',
     loadingRates: 'Загрузка курсов...',
     rateError: 'Не удалось загрузить курсы.',
     reset: 'Сброс',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'Онлайн',
+    manualMode: 'Вручную',
+    exchangeRate: 'Обменный курс',
+    manualRateLabel: 'Свой курс',
   },
   Luxembourgish: {
     history: 'Verlaf',
@@ -340,11 +386,29 @@ const CALC_T: Record<string, Record<string, string>> = {
     liveRate: 'Live-Cours',
     majorPairs: 'Live Forex Majors',
     refresh: 'Aktualiséieren',
+    refreshed: 'Aktualiséiert',
     loadingRates: 'Coursen ginn gelueden...',
     rateError: 'Coursen konnten net geluede ginn.',
     reset: 'Zrécksetzen',
     sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manuell',
+    exchangeRate: 'Wiesselcours',
+    manualRateLabel: 'Eege Cours',
   },
+};
+
+const CALC_LOCALES: Record<string, string> = {
+  English: 'en-US',
+  Spanish: 'es-ES',
+  French: 'fr-FR',
+  German: 'de-DE',
+  Chinese: 'zh-CN',
+  Japanese: 'ja-JP',
+  Korean: 'ko-KR',
+  Italian: 'it-IT',
+  Russian: 'ru-RU',
+  Luxembourgish: 'lb-LU',
 };
 
 const TAX_PRESETS = ['2.5', '4', '5', '5.5', '6', '7'];
@@ -402,9 +466,12 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
   const [tipsRate, setTipsRate] = useState('10.00');
 
   // Currency Converter State
+  const [currencyMode, setCurrencyMode] = useState<'live' | 'manual'>('live');
   const [currencyAmount, setCurrencyAmount] = useState('100');
+  const [manualRateInput, setManualRateInput] = useState('1.00');
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('EUR');
+  const [refreshSuccess, setRefreshSuccess] = useState(false);
   const [rates, setRates] = useState<Record<string, number>>(() => {
     try {
       const saved = localStorage.getItem('GeekTabs-forex-cache-v1');
@@ -567,9 +634,13 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
           from: fromCurrency,
           to: toCurrency,
         });
-        if (forceRefresh) params.set('refresh', '1');
+        if (forceRefresh) {
+          params.set('refresh', '1');
+          params.set('_t', String(Date.now()));
+        }
         const res = await fetch(`/api/forex-rates?${params.toString()}`, {
-          signal: AbortSignal.timeout(3500),
+          cache: 'no-store',
+          signal: AbortSignal.timeout(8000),
         });
         const contentType = res.headers.get('content-type') || '';
         if (res.ok && contentType.includes('application/json')) {
@@ -581,7 +652,8 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                 ? data.majors
                 : buildMajorsFromRates(data.rates);
             nextDirect = typeof data?.directRate === 'number' ? data.directRate : null;
-            nextUpdatedAt = data?.updatedAt || new Date().toISOString();
+            nextUpdatedAt =
+              (forceRefresh ? data?.fetchedAt : null) || data?.updatedAt || new Date().toISOString();
           }
         }
       } catch {
@@ -594,7 +666,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
           const fallbackData = await fetchDirectBrowserFx();
           nextRates = fallbackData.rates;
           nextMajors = buildMajorsFromRates(fallbackData.rates);
-          nextUpdatedAt = fallbackData.updatedAt;
+          nextUpdatedAt = forceRefresh ? new Date().toISOString() : fallbackData.updatedAt;
         } catch {
           setRatesError(true);
         }
@@ -606,6 +678,10 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
         setDirectRate(nextDirect);
         setRatesUpdatedAt(nextUpdatedAt);
         setRatesError(false);
+        if (forceRefresh) {
+          setRefreshSuccess(true);
+          setTimeout(() => setRefreshSuccess(false), 1800);
+        }
         try {
           localStorage.setItem(
             'GeekTabs-forex-cache-v1',
@@ -626,10 +702,10 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
   );
 
   useEffect(() => {
-    if (activeMode === 'currency') {
+    if (activeMode === 'currency' && currencyMode === 'live') {
       fetchLiveRates(false);
     }
-  }, [activeMode, fetchLiveRates]);
+  }, [activeMode, currencyMode, fetchLiveRates]);
 
   // Simple Calculator Handlers
   const handleNumClick = (num: string) => {
@@ -822,8 +898,32 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
   }, [fromCurrency, toCurrency, directRate, rates]);
 
   const parsedCurrencyAmt = Math.max(0, parseFloat(currencyAmount) || 0);
+  const parsedManualRate = (() => {
+    const val = parseFloat(manualRateInput);
+    return Number.isFinite(val) && val >= 0 ? val : null;
+  })();
+  const activeCurrencyRate =
+    currencyMode === 'manual' ? parsedManualRate : effectiveExchangeRate;
   const convertedTotal =
-    effectiveExchangeRate !== null ? parsedCurrencyAmt * effectiveExchangeRate : null;
+    activeCurrencyRate !== null ? parsedCurrencyAmt * activeCurrencyRate : null;
+
+  const locale = CALC_LOCALES[language] || 'en-US';
+  const formattedUpdatedDateTime = useMemo(() => {
+    if (!ratesUpdatedAt) return '';
+    const d = new Date(ratesUpdatedAt);
+    if (Number.isNaN(d.getTime())) return '';
+    try {
+      return d.toLocaleString(locale, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    } catch {
+      return d.toLocaleString();
+    }
+  }, [ratesUpdatedAt, locale]);
 
   const btnClass =
     'flex items-center justify-center p-3 h-14 text-xl font-medium rounded-lg transition-all active:scale-[0.98]';
@@ -1315,9 +1415,9 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
 
         {activeMode === 'currency' && (
           <div className="flex-1 overflow-y-auto p-5 sm:p-6 flex flex-col gap-4">
-            {/* Header & Refresh */}
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
+            {/* Header, Refresh/Reset & Manual/Live Buttons */}
+            <div className="flex flex-wrap items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-500 flex items-center justify-center shrink-0">
                   <ArrowLeftRight size={17} />
                 </div>
@@ -1325,106 +1425,264 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                   <h3 className="text-base font-black tracking-tight word-color leading-none">
                     {dictionary.currency}
                   </h3>
-                  {ratesUpdatedAt && (
-                    <p className="text-[11px] opacity-65 mt-1">
-                      {new Date(ratesUpdatedAt).toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
-                    </p>
+                  {currencyMode === 'live' && (
+                    <div className="flex flex-wrap items-center gap-2 mt-1">
+                      {formattedUpdatedDateTime && (
+                        <p className="text-[11px] opacity-65 tabular-nums leading-none">
+                          {formattedUpdatedDateTime}
+                        </p>
+                      )}
+                      <a
+                        href="https://www.investing.com/currencies/streaming-forex-rates-majors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-bold text-sky-500 hover:underline flex items-center gap-1 leading-none"
+                      >
+                        <span>{dictionary.sourceLabel}</span>
+                        <ExternalLink size={10} />
+                      </a>
+                    </div>
                   )}
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://www.investing.com/currencies/streaming-forex-rates-majors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="calc-subcard px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 hover:border-sky-500/40 transition-all"
-                >
-                  <span>{dictionary.sourceLabel}</span>
-                  <ExternalLink size={11} />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => fetchLiveRates(true)}
-                  disabled={loadingRates}
-                  style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-                  className="calc-swap-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white flex items-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-60"
-                >
-                  <RefreshCw size={12} className={loadingRates ? 'animate-spin' : ''} />
-                  <span>{dictionary.refresh}</span>
-                </button>
-              </div>
-            </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {currencyMode === 'live' ? (
+                  <button
+                    type="button"
+                    onClick={() => fetchLiveRates(true)}
+                    disabled={loadingRates}
+                    className="calc-subcard px-3 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 cursor-pointer transition-all hover:border-sky-500/40 disabled:opacity-60"
+                  >
+                    {refreshSuccess && !loadingRates ? (
+                      <Check size={12} className="text-emerald-500" />
+                    ) : (
+                      <RefreshCw size={12} className={`text-sky-500 ${loadingRates ? 'animate-spin' : ''}`} />
+                    )}
+                    <span>
+                      {refreshSuccess && !loadingRates
+                        ? dictionary.refreshed
+                        : dictionary.refresh}
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCurrencyAmount('100');
+                      setManualRateInput('1.00');
+                    }}
+                    className="calc-subcard px-3 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 cursor-pointer transition-all hover:border-sky-500/40"
+                  >
+                    <RotateCcw size={12} />
+                    <span>{dictionary.reset}</span>
+                  </button>
+                )}
 
-            {/* Amount + Currency Pair Row */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
-              <div className="md:col-span-4 space-y-1">
-                <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
-                  {dictionary.amount}
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  step="any"
-                  value={currencyAmount}
-                  onChange={(e) => setCurrencyAmount(e.target.value)}
-                  placeholder="100"
-                  className="w-full px-3.5 py-2.5 rounded-xl text-base font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40"
-                />
-              </div>
-
-              <div className="md:col-span-3 space-y-1">
-                <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
-                  {dictionary.from}
-                </label>
-                <select
-                  value={fromCurrency}
-                  onChange={(e) => setFromCurrency(e.target.value)}
-                  className="calc-select w-full px-3 py-2.5 rounded-xl text-sm font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40 cursor-pointer"
-                >
-                  {CURRENCIES.map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.code} — {c.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="md:col-span-2 flex justify-center">
                 <button
                   type="button"
                   onClick={() => {
-                    setFromCurrency(toCurrency);
-                    setToCurrency(fromCurrency);
+                    if (currencyMode === 'live' && effectiveExchangeRate !== null) {
+                      setManualRateInput(effectiveExchangeRate.toFixed(4));
+                    }
+                    setCurrencyMode('manual');
                   }}
-                  style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-                  className="calc-swap-btn w-full md:w-11 h-11 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white flex items-center justify-center shadow-md cursor-pointer active:scale-95 transition-transform"
-                  title="Swap currencies"
+                  style={
+                    currencyMode === 'manual'
+                      ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' }
+                      : undefined
+                  }
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer select-none ${
+                    currencyMode === 'manual'
+                      ? 'calc-mode-tab-active bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white border-transparent shadow-sm'
+                      : 'calc-mode-tab hover:border-sky-500/40'
+                  }`}
                 >
-                  <ArrowLeftRight size={17} />
+                  <span className={currencyMode === 'manual' ? 'text-white !text-white' : ''}>
+                    {dictionary.manualMode}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setCurrencyMode('live')}
+                  style={
+                    currencyMode === 'live'
+                      ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' }
+                      : undefined
+                  }
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer select-none ${
+                    currencyMode === 'live'
+                      ? 'calc-mode-tab-active bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white border-transparent shadow-sm'
+                      : 'calc-mode-tab hover:border-sky-500/40'
+                  }`}
+                >
+                  <span className={currencyMode === 'live' ? 'text-white !text-white' : ''}>
+                    {dictionary.liveMode}
+                  </span>
                 </button>
               </div>
-
-              <div className="md:col-span-3 space-y-1">
-                <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
-                  {dictionary.to}
-                </label>
-                <select
-                  value={toCurrency}
-                  onChange={(e) => setToCurrency(e.target.value)}
-                  className="calc-select w-full px-3 py-2.5 rounded-xl text-sm font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40 cursor-pointer"
-                >
-                  {CURRENCIES.map((c) => (
-                    <option key={c.code} value={c.code}>
-                      {c.code} — {c.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </div>
+
+            {currencyMode === 'live' ? (
+              <>
+                {/* Live: Amount + Currency Pair Row */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                  <div className="md:col-span-4 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.amount}
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="any"
+                      value={currencyAmount}
+                      onChange={(e) => setCurrencyAmount(e.target.value)}
+                      placeholder="100"
+                      className="w-full px-3.5 py-2.5 rounded-xl text-base font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40"
+                    />
+                  </div>
+
+                  <div className="md:col-span-3 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.from}
+                    </label>
+                    <select
+                      value={fromCurrency}
+                      onChange={(e) => setFromCurrency(e.target.value)}
+                      className="calc-select w-full px-3 py-2.5 rounded-xl text-sm font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40 cursor-pointer"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.code} — {c.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFromCurrency(toCurrency);
+                        setToCurrency(fromCurrency);
+                      }}
+                      style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                      className="calc-swap-btn w-full md:w-11 h-11 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white flex items-center justify-center shadow-md cursor-pointer active:scale-95 transition-transform"
+                      title="Swap currencies"
+                    >
+                      <ArrowLeftRight size={17} />
+                    </button>
+                  </div>
+
+                  <div className="md:col-span-3 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.to}
+                    </label>
+                    <select
+                      value={toCurrency}
+                      onChange={(e) => setToCurrency(e.target.value)}
+                      className="calc-select w-full px-3 py-2.5 rounded-xl text-sm font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40 cursor-pointer"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.code} — {c.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Manual: Amount + Custom Exchange Rate + Optional Currency Labels */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                  <div className="md:col-span-6 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.amount}
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="any"
+                      value={currencyAmount}
+                      onChange={(e) => setCurrencyAmount(e.target.value)}
+                      placeholder="100"
+                      className="no-spinner [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full px-3.5 py-2.5 rounded-xl text-base font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40"
+                    />
+                  </div>
+
+                  <div className="md:col-span-6 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.exchangeRate} (1 {fromCurrency} → {toCurrency})
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="any"
+                      value={manualRateInput}
+                      onChange={(e) => setManualRateInput(e.target.value)}
+                      placeholder="1.0000"
+                      className="no-spinner [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full px-3.5 py-2.5 rounded-xl text-base font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                  <div className="md:col-span-5 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.from}
+                    </label>
+                    <select
+                      value={fromCurrency}
+                      onChange={(e) => setFromCurrency(e.target.value)}
+                      className="calc-select w-full px-3 py-2.5 rounded-xl text-sm font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40 cursor-pointer"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.code} — {c.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFromCurrency(toCurrency);
+                        setToCurrency(fromCurrency);
+                        if (parsedManualRate && parsedManualRate > 0) {
+                          setManualRateInput((1 / parsedManualRate).toFixed(4));
+                        }
+                      }}
+                      style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                      className="calc-swap-btn w-full md:w-11 h-11 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white flex items-center justify-center shadow-md cursor-pointer active:scale-95 transition-transform"
+                      title="Swap currencies"
+                    >
+                      <ArrowLeftRight size={17} />
+                    </button>
+                  </div>
+
+                  <div className="md:col-span-5 space-y-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider opacity-75 word-color">
+                      {dictionary.to}
+                    </label>
+                    <select
+                      value={toCurrency}
+                      onChange={(e) => setToCurrency(e.target.value)}
+                      className="calc-select w-full px-3 py-2.5 rounded-xl text-sm font-bold border focus:outline-none focus:ring-2 focus:ring-sky-500/40 cursor-pointer"
+                    >
+                      {CURRENCIES.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.code} — {c.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* Conversion Output Box */}
             <div className="calc-subcard rounded-2xl p-4 sm:p-5 border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -1432,9 +1690,9 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                 <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">
                   {dictionary.convertedAmount}
                 </p>
-                {loadingRates && convertedTotal === null ? (
+                {currencyMode === 'live' && loadingRates && convertedTotal === null ? (
                   <p className="text-sm font-semibold opacity-70">{dictionary.loadingRates}</p>
-                ) : ratesError && convertedTotal === null ? (
+                ) : currencyMode === 'live' && ratesError && convertedTotal === null ? (
                   <p className="text-sm font-semibold text-red-500">{dictionary.rateError}</p>
                 ) : (
                   <div className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-sky-500">
@@ -1445,23 +1703,23 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                 )}
               </div>
 
-              {effectiveExchangeRate !== null && (
+              {activeCurrencyRate !== null && activeCurrencyRate > 0 && (
                 <div className="sm:text-right space-y-0.5">
                   <p className="text-xs font-bold uppercase tracking-wider opacity-65">
-                    {dictionary.liveRate}
+                    {currencyMode === 'manual' ? dictionary.manualRateLabel : dictionary.liveRate}
                   </p>
                   <p className="text-sm font-bold font-mono">
-                    1 {fromCurrency} = {effectiveExchangeRate.toFixed(4)} {toCurrency}
+                    1 {fromCurrency} = {activeCurrencyRate.toFixed(4)} {toCurrency}
                   </p>
                   <p className="text-xs font-mono opacity-65">
-                    1 {toCurrency} = {(1 / effectiveExchangeRate).toFixed(4)} {fromCurrency}
+                    1 {toCurrency} = {(1 / activeCurrencyRate).toFixed(4)} {fromCurrency}
                   </p>
                 </div>
               )}
             </div>
 
             {/* Live Major Pairs Grid */}
-            {majors.length > 0 && (
+            {currencyMode === 'live' && majors.length > 0 && (
               <div className="space-y-2">
                 <p className="text-xs font-bold uppercase tracking-wider opacity-70">
                   {dictionary.majorPairs}

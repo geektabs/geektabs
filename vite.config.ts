@@ -91,6 +91,33 @@ export default defineConfig(({mode}) => {
           type: 'module',
         },
       }),
+      {
+        name: 'pwa-safe-dev-register',
+        apply: 'serve' as const,
+        enforce: 'pre' as const,
+        load(id: string) {
+          if (
+            id === '/@vite-plugin-pwa/pwa-entry-point-loaded' ||
+            id === '\0/@vite-plugin-pwa/pwa-entry-point-loaded'
+          ) {
+            return 'export default function registerDevSW() {}\n';
+          }
+          return undefined;
+        },
+      },
+      {
+        name: 'pwa-strip-dev-hmr-script',
+        apply: 'serve' as const,
+        transformIndexHtml: {
+          order: 'post' as const,
+          handler(html: string) {
+            return html.replace(
+              /<script id="vite-plugin-pwa:register-dev-sw"[^>]*>[\s\S]*?<\/script>\s*/g,
+              '',
+            );
+          },
+        },
+      },
     ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

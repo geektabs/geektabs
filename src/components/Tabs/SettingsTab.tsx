@@ -704,7 +704,7 @@ export default function SettingsTab({
 
         {/* Navigation Items (Pill Buttons) */}
         <div className="flex-1 overflow-y-auto p-3 space-y-1.5 scrollbar-thin">
-          <div className="px-3 pt-2 pb-1 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/35">
+          <div className="px-3 pt-2 pb-1.5 text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-white/70">
             Preferences
           </div>
           {navItems.map((item) => {
@@ -791,7 +791,7 @@ export default function SettingsTab({
 
         {/* Main Settings Content Area - Always Pure Solid White */}
         <main className="flex-1 overflow-y-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-8 bg-white text-slate-900">
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-6xl mx-auto space-y-8">
             <AnimatePresence mode="wait">
               {activeTab === 'general' && (
                 <motion.div
@@ -811,17 +811,17 @@ export default function SettingsTab({
                     </p>
                   </div>
 
-                  <div className="space-y-6 sm:space-y-8 divide-y divide-black/5">
+                  <div className="space-y-6 sm:space-y-8 divide-y divide-black/5 max-w-2xl mx-auto text-center">
                     {/* Board Name */}
-                    <div className="py-2 sm:py-4">
+                    <div className="py-2 sm:py-4 flex flex-col items-center">
                       <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2">
                         {tData.customBoardName}
                       </label>
-                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
                         {tData.boardNameDesc}
                       </p>
                       
-                      <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 max-w-lg">
+                      <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full max-w-lg mx-auto">
                         <input
                           type="text"
                           value={localName}
@@ -830,7 +830,7 @@ export default function SettingsTab({
                           placeholder={`${tData.defaultPlaceholder}${getGreetingByTime()}`}
                         />
                         
-                        <div className="flex items-center gap-2 shrink-0">
+                        <div className="flex items-center gap-2 shrink-0 justify-center">
                           <button
                             onClick={handleSave}
                             className="flex-1 sm:flex-initial px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 !text-white text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs active:scale-98"
@@ -858,15 +858,15 @@ export default function SettingsTab({
                     </div>
 
                     {/* Language Selection */}
-                    <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+                    <div className="pt-6 pb-2 flex flex-col items-center">
+                      <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
                         <Globe size={14} />
                         {tData.languageSelection}
                       </label>
-                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
                         {tData.langDesc}
                       </p>
-                      <div className="mb-4">
+                      <div className="mb-4 w-full flex justify-center">
                         <SettingsDropdown
                           value={language}
                           onChange={setLanguage}
@@ -877,15 +877,15 @@ export default function SettingsTab({
                     </div>
 
                     {/* Card Style */}
-                    <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+                    <div className="pt-6 pb-2 flex flex-col items-center">
+                      <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
                         <Layout size={14} />
                         {tData.cardStyle}
                       </label>
-                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
                         {tData.cardDesc}
                       </p>
-                      <div className="mb-4">
+                      <div className="mb-4 w-full flex justify-center">
                         <SettingsDropdown
                           value={cardBgMode}
                           onChange={(val) => setCardBgMode(val as 'white' | 'dark' | 'dark-glass')}
@@ -896,15 +896,15 @@ export default function SettingsTab({
                     </div>
 
                     {/* Export & Import (Restore) Section */}
-                    <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center gap-2">
+                    <div className="pt-6 pb-2 flex flex-col items-center">
+                      <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
                         <Download size={14} />
                         {tData.dataBackup}
                       </label>
-                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
                         {tData.dataDesc}
                       </p>
-                      <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                      <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center w-full">
                         <button
                           onClick={handleExportData}
                           className="w-full sm:w-auto px-5 py-3 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-slate-800 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
@@ -925,19 +925,19 @@ export default function SettingsTab({
                             type="file" 
                             accept=".json" 
                             onChange={handleImportData} 
-                            className="hidden" 
+                            className="hidden"
                           />
                         </label>
                       </div>
                     </div>
 
                     {/* Reset to Default Section */}
-                    <div className="pt-6 pb-2">
-                      <label className="block text-xs font-black uppercase tracking-widest text-red-600 mb-2 flex items-center gap-2">
+                    <div className="pt-6 pb-2 flex flex-col items-center">
+                      <label className="text-xs font-black uppercase tracking-widest text-red-600 mb-2 flex items-center justify-center gap-2">
                         <RotateCcw size={14} />
                         {tData.resetTitle}
                       </label>
-                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-2xl">
+                      <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
                         {tData.resetDesc}
                       </p>
                       <button
@@ -1063,7 +1063,7 @@ export default function SettingsTab({
                     </p>
                   </div>
 
-                  <div className="space-y-6 max-w-3xl divide-y divide-black/5">
+                  <div className="space-y-6 max-w-2xl mx-auto divide-y divide-black/5 text-center">
                     <div className="py-4">
                       <h3 className="text-lg font-bold text-slate-900 mb-3">
                         {tData.aboutWelcome}
