@@ -15,6 +15,7 @@ import TipsWidget from './components/Widgets/TipsWidget';
 import ReminderWidget from './components/Widgets/ReminderWidget';
 import HoroscopeInfo from './components/Widgets/HoroscopeInfo';
 import Dock from './components/Navigation/Dock';
+import { OfflineIndicator } from './components/PWAInstallButton';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import Calendar from './components/Tabs/Calendar';
 import QuickLinks from './components/Tabs/QuickLinks';
@@ -501,6 +502,7 @@ export default function App() {
         isDarkMode={isDarkMode}
         language={language}
       />
+      <OfflineIndicator language={language} />
     </div>
   );
 }

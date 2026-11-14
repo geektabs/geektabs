@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Compass, Globe, Copy, Check } from 'lucide-react';
-import { motion } from 'motion/react';
 
 export interface BrowserTabProps {
   language?: string;
@@ -198,7 +197,7 @@ const browserGuides: Record<string, any> = {
         'Ouvrez Safari et choisissez "Safari > Réglages" dans la barre des menus.',
         'Dans l\'onglet "Général", localisez le champ "Page d\'accueil".',
         'Réglez l\'option d\'ouverture des fenêtres sur "Page d\'accueil".',
-        'Collez l\'URL de la page et valisez.'
+        'Collez l\'URL de la page et validez.'
       ]
     },
     brave: {
@@ -207,7 +206,7 @@ const browserGuides: Record<string, any> = {
         'Ouvrez Brave, cliquez sur le menu à trois lignes (en haut à droite) et sélectionnez Paramètres.',
         'Naviguez vers "Au démarrage" dans la colonne de gauche.',
         'Choisissez "Ouvrir une page spécifique ou un ensemble de pages" et cliquez sur "Ajouter une nouvelle page".',
-        'Collez l\'URL copiée et cliquez sur "Ajoute".'
+        'Collez l\'URL copiée et cliquez sur "Ajouter".'
       ]
     }
   },
@@ -331,8 +330,8 @@ const browserGuides: Record<string, any> = {
       title: 'Microsoft Edge',
       steps: [
         'Edge を開き、右上にある3点メニューをクリックして「設定」を選択します。',
-        '左側のサイドバーから「[スタート]、[홈]、および [新規タブ]」を選択します。',
-        '「Edge の起動時」で「these pages」を選択します。',
+        '左側のサイドバーから「[スタート]、[ホーム]、および [新規タブ]」を選択します。',
+        '「Edge の起動時」で「特定のページを開く」を選択します。',
         '「新しいページを追加」をクリックし、コピーしたURLを貼り付け、「追加」をクリックします。'
       ]
     },
@@ -358,7 +357,7 @@ const browserGuides: Record<string, any> = {
       title: 'Brave',
       steps: [
         'Brave を開き、右上にある3本線メニューをクリックして「設定」を選択します。',
-        '左側のサイドメニューから「起動时」を選択します。',
+        '左側のサイドメニューから「起動時」を選択します。',
         '「特定のページまたはページセットを開く」を選択し、「新しいページを追加」をクリックします。',
         'コピーしたURLを貼り付け、「追加」をクリックします。'
       ]
@@ -538,6 +537,7 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8 relative z-10 p-2 sm:p-4 select-none">
+      {/* Header */}
       <div className="flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 max-w-2xl mx-auto mb-2 sm:mb-4">
         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl sm:rounded-[1.5rem] bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-500 shadow-xl shadow-violet-500/5 hover:scale-105 transition-transform duration-300">
           <Compass size={28} className="stroke-[1.5] sm:w-8 sm:h-8" />
@@ -550,6 +550,7 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
         </p>
       </div>
 
+      {/* Set Browser Homepage Card */}
       <div className="GeekTabs-card rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-6 md:p-8 flex flex-col gap-5 sm:gap-6 max-w-2xl mx-auto w-full">
         {/* URL Field with Copy button */}
         <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
@@ -564,6 +565,7 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
             type="button"
             onClick={handleCopy}
             className="px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-2xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shrink-0 shadow-lg shadow-blue-500/15 cursor-pointer active:scale-95"
+            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
           >
             {copiedHomepage ? (
               <>

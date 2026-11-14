@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { t } from '../../i18n';
+import { PWAInstallButton } from '../PWAInstallButton';
 
 interface DockProps {
   activeTab: string;
@@ -127,8 +128,10 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
             </div>
           </div>
 
-          {/* Mobile and Tablet One-Click Menu Trigger (screens < xl) */}
-          <div className="flex items-center gap-2 xl:hidden relative ml-auto z-10">
+          {/* Right Controls: Compact PWA Install button + Mobile/Tablet Menu Trigger */}
+          <div className="flex items-center gap-2 relative ml-auto z-10 shrink-0">
+            <PWAInstallButton variant="compact" isDarkMode={isDarkMode} language={language} />
+            <div className="xl:hidden">
             <button
               id="mobile-tablet-menu-trigger"
               onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -178,6 +181,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                 />
               </div>
             </button>
+            </div>
           </div>
 
           {/* Mobile & Tablet Popup Menu List */}

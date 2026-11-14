@@ -5,6 +5,7 @@ import ThemesTab from './ThemesTab';
 import WallpapersTab from './WallpapersTab';
 import TextTab from './TextTab';
 import BrowserTab from './BrowserTab';
+import DownloadAppTab from './DownloadAppTab';
 import WeatherSettingsTab from './WeatherSettingsTab';
 import { motion, AnimatePresence } from 'motion/react';
 import ConfirmModal from '../ConfirmModal';
@@ -527,7 +528,7 @@ export default function SettingsTab({
     }
   };
 
-  const [activeTab, setActiveTab] = useState<'general' | 'color' | 'wallpaper' | 'text' | 'browser' | 'weather' | 'about'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'color' | 'wallpaper' | 'text' | 'browser' | 'download' | 'weather' | 'about'>('general');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [pageName, setPageName] = useLocalStorage('GeekTabs-page-name', '');
   const [localName, setLocalName] = useState(() => {
@@ -664,6 +665,7 @@ export default function SettingsTab({
     { id: 'wallpaper' as const, label: t(language, 'wallpaper'), icon: ImageIcon },
     { id: 'text' as const, label: t(language, 'text'), icon: Type },
     { id: 'browser' as const, label: t(language, 'browser'), icon: Compass },
+    { id: 'download' as const, label: t(language, 'download_app'), icon: Download },
     { id: 'weather' as const, label: t(language, 'weather'), icon: CloudSun },
     { id: 'about' as const, label: t(language, 'about_us'), icon: Info },
   ];
@@ -728,7 +730,12 @@ export default function SettingsTab({
                   className={`shrink-0 ${isActive ? 'text-white' : 'opacity-70'}`}
                   style={isActive ? { stroke: '#ffffff', color: '#ffffff' } : undefined}
                 />
-                <span className="truncate">{item.label}</span>
+                <span
+                  className={`truncate ${isActive ? '!text-white text-white font-bold' : ''}`}
+                  style={isActive ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' } : undefined}
+                >
+                  {item.label}
+                </span>
               </button>
             );
           })}
@@ -1011,6 +1018,18 @@ export default function SettingsTab({
                   transition={{ duration: 0.2 }}
                 >
                   <BrowserTab language={language} />
+                </motion.div>
+              )}
+
+              {activeTab === 'download' && (
+                <motion.div
+                  key="download"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <DownloadAppTab language={language} />
                 </motion.div>
               )}
 

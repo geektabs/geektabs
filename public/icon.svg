@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="gt-bg" x1="48" y1="32" x2="464" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="55%" stop-color="#6143f7" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="gt-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#a5b4fc" />
+    </linearGradient>
+  </defs>
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#gt-bg)" />
+  <!-- Top-left wide widget bar -->
+  <rect x="116" y="124" width="164" height="122" rx="30" fill="#ffffff" />
+  <!-- Top-right quick widget -->
+  <rect x="304" y="124" width="92" height="122" rx="30" fill="url(#gt-accent)" />
+  <!-- Bottom-left compact widget -->
+  <rect x="116" y="268" width="92" height="120" rx="30" fill="#ffffff" fill-opacity="0.88" />
+  <!-- Bottom-right main widget -->
+  <rect x="232" y="268" width="164" height="120" rx="30" fill="#ffffff" />
+</svg>

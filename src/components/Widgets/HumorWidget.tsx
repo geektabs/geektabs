@@ -123,7 +123,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
           <div className="daily-card-icon-badge w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white text-[#c8102e] flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105">
             <Smile className="w-4.5 h-4.5 sm:w-5 sm:h-5" strokeWidth={2.2} />
           </div>
-          <h2 className="text-sm sm:text-base font-black text-black tracking-tight leading-snug break-words">
+          <h2 className="text-sm sm:text-base font-black text-white tracking-tight leading-snug break-words">
             {widgetTitle}
           </h2>
         </div>
