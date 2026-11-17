@@ -267,16 +267,16 @@ const REGULAR_PRESETS: Preset[] = [
 ];
 
 const DARK_PRESETS: Preset[] = [
-  { id: 'dark-rust', name: 'Dark Rust', color: '#7c2d12' },
-  { id: 'dark-blue', name: 'Dark Blue', color: '#1e3a8a' },
-  { id: 'dark-purple', name: 'Dark Purple', color: '#581c87' },
-  { id: 'dark-ruby', name: 'Dark Ruby', color: '#4c0519' },
-  { id: 'dark-green', name: 'Dark Green', color: '#064e3b' },
-  { id: 'dark-bronze', name: 'Dark Bronze', color: '#451a03' },
-  { id: 'dark-wine', name: 'Dark Wine', color: '#881337' },
-  { id: 'dark-teal', name: 'Dark Teal', color: '#115e59' },
-  { id: 'dark-indigo', name: 'Dark Indigo', color: '#312e81' },
-  { id: 'dark-midnight', name: 'Midnight', color: '#030712' },
+  { id: 'dark-navy', name: 'Deep Navy', color: '#01295f' },
+  { id: 'dark-violet', name: 'Deep Violet', color: '#370160' },
+  { id: 'dark-crimson', name: 'Deep Crimson', color: '#ff0000' },
+  { id: 'dark-forest', name: 'Deep Forest', color: '#2a6001' },
+  { id: 'dark-espresso', name: 'Dark Espresso', color: '#382209' },
+  { id: 'dark-plum', name: 'Deep Plum', color: '#4e062f' },
+  { id: 'dark-charcoal', name: 'Charcoal Slate', color: '#33333f' },
+  { id: 'dark-royal', name: 'Royal Indigo', color: '#0000ff' },
+  { id: 'dark-olive', name: 'Dark Olive', color: '#706934' },
+  { id: 'dark-obsidian', name: 'Obsidian', color: '#111111' },
 ];
 
 const MIXING_PRESETS: Preset[] = [
@@ -284,7 +284,7 @@ const MIXING_PRESETS: Preset[] = [
   { id: 'mix-sunset', name: 'Sunset', color: 'linear-gradient(135deg, #fbbf24, #ef4444)' },
   { id: 'mix-ocean', name: 'Ocean', color: 'linear-gradient(135deg, #0ea5e9, #22c55e)' },
   { id: 'mix-cosmic', name: 'Cosmic', color: 'linear-gradient(135deg, #6366f1, #ec4899)' },
-  { id: 'mix-fire', name: 'Fire', color: 'linear-gradient(135deg, #f97316, #facc15)' },
+  { id: 'mix-fire', name: 'Fire', color: 'linear-gradient(135deg, #ef4444 0%, #22c55e 34%, #3b82f6 67%, #9333ea 100%)' },
   { id: 'mix-cyber', name: 'Cyber', color: 'linear-gradient(135deg, #2dd4bf, #e879f9)' },
   { id: 'mix-forest', name: 'Decorated White', color: 'radial-gradient(circle at 20% 20%, #bae6fd 0%, #ffffff 50%, #ede9fe 100%)' },
   { id: 'mix-violetteal', name: 'Violet Teal', color: 'linear-gradient(135deg, #7c3aed, #0d9488)' },

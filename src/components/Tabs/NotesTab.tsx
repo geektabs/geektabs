@@ -55,7 +55,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'No Note Selected',
     createNotesDesc: 'Create notes, organize folders, and build formatted workspace sheets.',
     createPage: 'CREATE NOTE',
-    sections: 'Sections'
+    sections: 'Sections',
+    manageSectionTitle: 'Section Options',
+    manageSectionMsg: 'Do you want to edit or delete this section?',
+    editSectionBtn: 'Edit',
+    deleteSectionBtn: 'Delete'
   },
   Spanish: {
     cancel: 'CANCELAR',
@@ -72,7 +76,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Ninguna nota seleccionada',
     createNotesDesc: 'Crea notas, organiza carpetas y diseña hojas de trabajo con formato.',
     createPage: 'CREAR NOTA',
-    sections: 'Secciones'
+    sections: 'Secciones',
+    manageSectionTitle: 'Opciones de sección',
+    manageSectionMsg: '¿Deseas editar o eliminar esta sección?',
+    editSectionBtn: 'Editar',
+    deleteSectionBtn: 'Eliminar'
   },
   French: {
     cancel: 'ANNULER',
@@ -89,7 +97,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Aucune note sélectionnée',
     createNotesDesc: 'Créez des notes, organisez les dossiers et concevez des feuilles de travail.',
     createPage: 'CRÉER UNE NOTE',
-    sections: 'Sections'
+    sections: 'Sections',
+    manageSectionTitle: 'Options de section',
+    manageSectionMsg: 'Voulez-vous modifier ou supprimer cette section ?',
+    editSectionBtn: 'Modifier',
+    deleteSectionBtn: 'Supprimer'
   },
   German: {
     cancel: 'ABBRECHEN',
@@ -106,7 +118,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Keine Notiz ausgewählt',
     createNotesDesc: 'Erstellen Sie Notizen, organisiere Sie Ordner und strukturieren Sie Arbeitsblätter.',
     createPage: 'NOTIZ ERSTELLEN',
-    sections: 'Bereiche'
+    sections: 'Bereiche',
+    manageSectionTitle: 'Bereichsoptionen',
+    manageSectionMsg: 'Möchten Sie diesen Bereich bearbeiten oder löschen?',
+    editSectionBtn: 'Bearbeiten',
+    deleteSectionBtn: 'Löschen'
   },
   Chinese: {
     cancel: '取消',
@@ -123,7 +139,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: '未选择任何笔记',
     createNotesDesc: '在此记录您的灵感日记、策划方案或个人备忘，分区随心整理。',
     createPage: '创建笔记',
-    sections: '分区'
+    sections: '分区',
+    manageSectionTitle: '分区操作',
+    manageSectionMsg: '您想要编辑还是删除此分区？',
+    editSectionBtn: '编辑',
+    deleteSectionBtn: '删除'
   },
   Japanese: {
     cancel: 'キャンセル',
@@ -140,7 +160,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'ノートが選択されていません',
     createNotesDesc: 'ノートを作成し、フォルダーを整理し、フォーマットされたシートを構築します。',
     createPage: 'ノートを作成',
-    sections: 'セクション'
+    sections: 'セクション',
+    manageSectionTitle: 'セクション設定',
+    manageSectionMsg: 'このセクションを編集または削除しますか？',
+    editSectionBtn: '編集',
+    deleteSectionBtn: '削除'
   },
   Korean: {
     cancel: '취소',
@@ -157,7 +181,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: '선택된 노트가 없습니다',
     createNotesDesc: '메모를 작성하고 폴더 탭을 구성하며 시트를 편집해보세요.',
     createPage: '노트 만들기',
-    sections: '섹션'
+    sections: '섹션',
+    manageSectionTitle: '섹션 옵션',
+    manageSectionMsg: '이 섹션을 수정하거나 삭제하시겠습니까?',
+    editSectionBtn: '수정',
+    deleteSectionBtn: '삭제'
   },
   Italian: {
     cancel: 'ANNULLA',
@@ -174,7 +202,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Nessuna nota selezionata',
     createNotesDesc: 'Crea note, organizza schede e costruisci fogli di lavoro formattati.',
     createPage: 'CREA NOTA',
-    sections: 'Sezioni'
+    sections: 'Sezioni',
+    manageSectionTitle: 'Opzioni sezione',
+    manageSectionMsg: 'Vuoi modificare o eliminare questa sezione?',
+    editSectionBtn: 'Modifica',
+    deleteSectionBtn: 'Elimina'
   },
   Russian: {
     cancel: 'ОТМЕНА',
@@ -191,7 +223,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Заметка не выбрана',
     createNotesDesc: 'Создавайте заметки, упорядочивайте вкладки папок и форматируйте рабочие листы.',
     createPage: 'СОЗДАТЬ ЗАМЕТКУ',
-    sections: 'Разделы'
+    sections: 'Разделы',
+    manageSectionTitle: 'Действие с разделом',
+    manageSectionMsg: 'Вы хотите изменить или удалить этот раздел?',
+    editSectionBtn: 'Изменить',
+    deleteSectionBtn: 'Удалить'
   },
   Luxembourgish: {
     cancel: 'OFBRIECHEN',
@@ -208,7 +244,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Keng Notiz ausgewielt',
     createNotesDesc: 'Erstellt Notizen, organiséiert Ordneren an designt formatéiert Blieder.',
     createPage: 'NOTIZ ERSTELLEN',
-    sections: 'Beräicher'
+    sections: 'Beräicher',
+    manageSectionTitle: 'Beräich-Optiounen',
+    manageSectionMsg: 'Wëllt Dir dëse Beräich änneren oder läschen?',
+    editSectionBtn: 'Änneren',
+    deleteSectionBtn: 'Läschen'
   },
   Dutch: {
     cancel: 'ANNULEREN',
@@ -225,7 +265,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Geen notitie geselecteerd',
     createNotesDesc: 'Maak notities, organiseer mappen en maak opgemaakte werkbladen.',
     createPage: 'NOTITIE MAKEN',
-    sections: 'Secties'
+    sections: 'Secties',
+    manageSectionTitle: 'Sectie-opties',
+    manageSectionMsg: 'Wil je deze sectie bewerken of verwijderen?',
+    editSectionBtn: 'Bewerken',
+    deleteSectionBtn: 'Verwijderen'
   },
   Swedish: {
     cancel: 'AVBRYT',
@@ -242,7 +286,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Ingen anteckning vald',
     createNotesDesc: 'Skapa anteckningar, organisera mappar och bygg formaterade arbetsblad.',
     createPage: 'SKAPA ANTECKNING',
-    sections: 'Avsnitt'
+    sections: 'Avsnitt',
+    manageSectionTitle: 'Avsnittsalternativ',
+    manageSectionMsg: 'Vill du redigera eller ta bort det här avsnittet?',
+    editSectionBtn: 'Redigera',
+    deleteSectionBtn: 'Ta bort'
   },
   Finnish: {
     cancel: 'PERUUTA',
@@ -259,7 +307,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Ei valittua muistiinpanoa',
     createNotesDesc: 'Luo muistiinpanoja, järjestele kansioita ja muotoile työlehtiä.',
     createPage: 'LUO MUISTIINPANO',
-    sections: 'Osiot'
+    sections: 'Osiot',
+    manageSectionTitle: 'Osion asetukset',
+    manageSectionMsg: 'Haluatko muokata tätä osiota vai poistaa sen?',
+    editSectionBtn: 'Muokkaa',
+    deleteSectionBtn: 'Poista'
   },
   Hindi: {
     cancel: 'रद्द करें',
@@ -276,7 +328,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'कोई नोट चयनित नहीं',
     createNotesDesc: 'नोट्स बनाएँ, फ़ोल्डर व्यवस्थित करें और फ़ॉर्मेट की गई वर्कशीट तैयार करें।',
     createPage: 'नोट बनाएँ',
-    sections: 'अनुभाग'
+    sections: 'अनुभाग',
+    manageSectionTitle: 'अनुभाग विकल्प',
+    manageSectionMsg: 'क्या आप इस अनुभाग को संपादित करना या हटाना चाहते हैं?',
+    editSectionBtn: 'संपादित करें',
+    deleteSectionBtn: 'हटाएँ'
   },
   Norwegian: {
     cancel: 'AVBRYT',
@@ -293,7 +349,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'Ingen notat valgt',
     createNotesDesc: 'Opprett notater, organiser mapper og lag formaterte arbeidsark.',
     createPage: 'OPPRETT NOTAT',
-    sections: 'Seksjoner'
+    sections: 'Seksjoner',
+    manageSectionTitle: 'Seksjonsvalg',
+    manageSectionMsg: 'Vil du redigere eller slette denne seksjonen?',
+    editSectionBtn: 'Rediger',
+    deleteSectionBtn: 'Slett'
   },
   Thai: {
     cancel: 'ยกเลิก',
@@ -310,7 +370,11 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noNotebook: 'ไม่ได้เลือกบันทึก',
     createNotesDesc: 'สร้างบันทึก จัดระเบียบโฟลเดอร์ และจัดรูปแบบเอกสารการทำงานของคุณ',
     createPage: 'สร้างบันทึก',
-    sections: 'หมวดหมู่'
+    sections: 'หมวดหมู่',
+    manageSectionTitle: 'จัดการหมวดหมู่',
+    manageSectionMsg: 'คุณต้องการแก้ไขหรือลบหมวดหมู่นี้หรือไม่?',
+    editSectionBtn: 'แก้ไข',
+    deleteSectionBtn: 'ลบ'
   }
 };
 
@@ -350,6 +414,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   const [isCreatingSection, setIsCreatingSection] = useState(false);
   const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
   const [editingSectionName, setEditingSectionName] = useState('');
+  const [sectionMenuTarget, setSectionMenuTarget] = useState<Section | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -395,8 +460,8 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     setIsCreatingSection(false);
   };
 
-  const handleStartEditSection = (sec: Section, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleStartEditSection = (sec: Section, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (isDefaultSection(sec)) return;
     setEditingSectionId(sec.id);
     setEditingSectionName(sec.name);
@@ -416,8 +481,8 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     setEditingSectionName('');
   };
 
-  const handleDeleteSection = (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleDeleteSection = (id: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     const target = sections.find((s) => s.id === id);
     if (!target || isDefaultSection(target) || sections.length <= 1) {
       return;
@@ -505,7 +570,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         }`}
       >
         {/* Top of Sidebar: Action Button */}
-        <div className="p-5 flex items-center justify-between gap-2">
+        <div className="p-3.5 md:p-5 flex items-center justify-between gap-2">
           <button
             type="button"
             onClick={() => {
@@ -513,10 +578,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               if (typeof window !== 'undefined' && window.innerWidth < 768) setMobileSidebarOpen(false);
             }}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className="notes-create-page-btn w-full min-h-[44px] lg:min-h-0 flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-colors cursor-pointer active:scale-98 select-none"
+            className="notes-create-page-btn flex-1 min-w-0 min-h-[40px] md:min-h-[44px] lg:min-h-0 flex items-center justify-center gap-1.5 md:gap-2 py-2.5 md:py-3 px-3 md:px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-[10px] sm:text-[11px] md:text-xs uppercase tracking-normal md:tracking-wider shadow-md shadow-[#4f46e5]/35 transition-colors cursor-pointer active:scale-98 select-none"
           >
-            <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
-            <span className="!text-white text-white font-black tracking-wider" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
+            <Plus size={13} strokeWidth={3} className="shrink-0 md:w-[15px] md:h-[15px] !text-white text-white" style={{ stroke: '#ffffff' }} />
+            <span className="!text-white text-white font-black tracking-normal md:tracking-wider truncate" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
           </button>
           <button
             type="button"
@@ -529,7 +594,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         </div>
 
         {/* Section / Folder Chips Selector - Exactly 2 options per line */}
-        <div className="px-4 pt-3 pb-2 border-b border-black/5 dark:border-white/5 flex flex-col gap-2">
+        <div className="px-3 md:px-4 pt-3 pb-2 border-b border-black/5 dark:border-white/5 flex flex-col gap-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-white/70">
               {dictionary.sections}
@@ -537,10 +602,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
             <button
               type="button"
               onClick={() => setIsCreatingSection(!isCreatingSection)}
-              className="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 hover:bg-[#4f46e5]/10 text-slate-600 dark:text-white/70 hover:text-[#4f46e5] border border-black/5 dark:border-white/10 cursor-pointer text-[10px] font-bold flex items-center gap-1 transition-all shadow-xs"
+              className="px-2 md:px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 hover:bg-[#4f46e5]/10 text-slate-600 dark:text-white/70 hover:text-[#4f46e5] border border-black/5 dark:border-white/10 cursor-pointer text-[9.5px] md:text-[10px] font-bold flex items-center gap-1 transition-all shadow-xs"
               title="Add Section"
             >
-              <Plus size={11} strokeWidth={2.5} />
+              <Plus size={10} strokeWidth={2.5} className="md:w-[11px] md:h-[11px]" />
               <span>New</span>
             </button>
           </div>
@@ -568,7 +633,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     type="button"
                     onClick={() => setIsCreatingSection(false)}
                     style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-                    className="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-black/20 dark:bg-white/10 hover:bg-black/30 dark:hover:bg-white/20 !text-white text-white cursor-pointer"
+                    className="px-2 md:px-2.5 py-1 text-[9.5px] md:text-[10px] font-bold rounded-lg bg-black/20 dark:bg-white/10 hover:bg-black/30 dark:hover:bg-white/20 !text-white text-white cursor-pointer"
                   >
                     <span className="!text-white text-white font-bold" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.cancel}</span>
                   </button>
@@ -576,7 +641,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     type="submit"
                     disabled={!newSectionName.trim()}
                     style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-                    className="notes-create-page-btn px-3 py-1 bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white rounded-xl text-[10px] font-black uppercase tracking-wider transition-shadow disabled:opacity-45 cursor-pointer shadow-sm shadow-[#4f46e5]/25"
+                    className="notes-create-page-btn px-2.5 md:px-3 py-1 bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white rounded-xl text-[9.5px] md:text-[10px] font-black uppercase tracking-wider transition-shadow disabled:opacity-45 cursor-pointer shadow-sm shadow-[#4f46e5]/25"
                   >
                     <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.create}</span>
                   </button>
@@ -586,7 +651,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           </AnimatePresence>
 
           {/* Sections Grid - Exactly 2 options per line */}
-          <div className="grid grid-cols-2 gap-2 pt-1 pb-1">
+          <div className="grid grid-cols-2 gap-1.5 md:gap-2 pt-1 pb-1">
             {sections.map((sec) => {
               const active = currentSectionId === sec.id;
               const isCustomSection = !isDefaultSection(sec);
@@ -656,38 +721,30 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                       setActiveNoteId(secNotes[0]?.id || null);
                     }
                   }}
-                  className={`group flex items-center justify-between gap-1.5 px-2.5 sm:px-3 py-2 min-h-[42px] lg:min-h-0 rounded-xl text-xs font-bold transition-colors cursor-pointer border select-none min-w-0 ${
+                  className={`group flex items-center justify-between gap-1 md:gap-1.5 px-2 md:px-3 py-1.5 md:py-2 min-h-[38px] md:min-h-[42px] lg:min-h-0 rounded-xl text-[10px] sm:text-[11px] md:text-xs font-bold transition-colors cursor-pointer border select-none min-w-0 ${
                     active
                       ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-2xs'
                       : 'bg-black/5 dark:bg-white/5 border-transparent text-slate-600 dark:text-white/60 hover:text-slate-900 hover:dark:text-white hover:bg-black/10 dark:hover:bg-white/10'
                   }`}
                   title={sec.name}
                 >
-                  <div className="flex items-center gap-2 min-w-0 flex-1">
-                    <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
-                    <span className="truncate">{sec.name}</span>
+                  <div className="flex items-center gap-1.5 md:gap-2 min-w-0 flex-1">
+                    <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
+                    <span className="truncate leading-tight">{sec.name}</span>
                   </div>
                   {isCustomSection && (
-                    <div className="flex items-center gap-0.5 shrink-0">
-                      <button
-                        type="button"
-                        onClick={(e) => handleStartEditSection(sec, e)}
-                        className="p-1.5 lg:p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/15 opacity-80 lg:opacity-70 hover:opacity-100 cursor-pointer transition-opacity"
-                        title="Edit section"
-                        aria-label={`Edit ${sec.name}`}
-                      >
-                        <Pencil size={11} />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={(e) => handleDeleteSection(sec.id, e)}
-                        className="p-1.5 lg:p-0.5 rounded hover:bg-red-500/15 hover:text-red-500 opacity-80 lg:opacity-70 hover:opacity-100 cursor-pointer transition-opacity"
-                        title="Delete section"
-                        aria-label={`Delete ${sec.name}`}
-                      >
-                        <Trash2 size={11} />
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSectionMenuTarget(sec);
+                      }}
+                      className="p-1 md:p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/15 opacity-80 lg:opacity-70 hover:opacity-100 cursor-pointer transition-opacity shrink-0"
+                      title={dictionary.manageSectionTitle}
+                      aria-label={`${dictionary.manageSectionTitle}: ${sec.name}`}
+                    >
+                      <X size={11} />
+                    </button>
                   )}
                 </div>
               );
@@ -729,14 +786,14 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     setActiveNoteId(note.id);
                     setMobileSidebarOpen(false);
                   }}
-                  className={`group relative w-full flex flex-col p-3 rounded-xl cursor-pointer text-left transition-colors border ${
+                  className={`group relative w-full flex flex-col p-2.5 md:p-3 rounded-xl cursor-pointer text-left transition-colors border ${
                     active
                       ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-xs'
                       : 'hover:bg-black/5 dark:hover:bg-white/5 border-transparent text-slate-700 dark:text-white/70'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-bold text-xs truncate leading-snug text-emerald-600 dark:text-emerald-400">
+                    <span className="font-bold text-[11px] md:text-xs truncate leading-snug text-emerald-600 dark:text-emerald-400">
                       {note.title.trim() || dictionary.untitledPage}
                     </span>
                     <button
@@ -871,6 +928,79 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         </main>
 
       </div>
+
+      {/* Section Edit / Delete Choice Modal */}
+      <AnimatePresence>
+        {sectionMenuTarget && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setSectionMenuTarget(null)}
+            />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative z-10 GeekTabs-card p-6 sm:p-8 rounded-3xl w-full max-w-sm shadow-2xl text-center"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 mb-3 max-w-full">
+                <span
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
+                  style={{ backgroundColor: sectionMenuTarget.color }}
+                />
+                <span className="text-xs font-bold word-color truncate">
+                  {sectionMenuTarget.name}
+                </span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold word-color mb-2">
+                {dictionary.manageSectionTitle}
+              </h2>
+              <p className="text-xs sm:text-sm word-color opacity-70 mb-6 font-medium">
+                {dictionary.manageSectionMsg}
+              </p>
+
+              <div className="flex flex-col gap-2.5">
+                <div className="flex gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const target = sectionMenuTarget;
+                      setSectionMenuTarget(null);
+                      handleStartEditSection(target);
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] bg-[#4f46e5] text-white rounded-2xl hover:bg-[#4338ca] transition-all font-bold text-sm shadow-lg shadow-[#4f46e5]/25 cursor-pointer"
+                  >
+                    <Pencil size={15} />
+                    <span>{dictionary.editSectionBtn}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const targetId = sectionMenuTarget.id;
+                      setSectionMenuTarget(null);
+                      handleDeleteSection(targetId);
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] bg-red-500 text-white rounded-2xl hover:bg-red-600 transition-all font-bold text-sm shadow-lg shadow-red-500/20 cursor-pointer"
+                  >
+                    <Trash2 size={15} />
+                    <span>{dictionary.deleteSectionBtn}</span>
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSectionMenuTarget(null)}
+                  className="w-full px-4 py-2.5 min-h-[42px] bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold text-xs uppercase tracking-wider cursor-pointer"
+                >
+                  {dictionary.cancel}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

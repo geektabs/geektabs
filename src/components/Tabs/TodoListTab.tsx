@@ -669,7 +669,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
         }`}
       >
         {/* Top of Sidebar: Action Button */}
-        <div className="p-5">
+        <div className="p-5 flex items-center justify-between gap-2">
           <button
             type="button"
             onClick={() => {
@@ -677,10 +677,19 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
               if (typeof window !== 'undefined' && window.innerWidth < 768) setMobileSidebarOpen(false);
             }}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className="todolist-action-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#5438dc] hover:bg-[#472fc2] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#5438dc]/30 transition-colors cursor-pointer active:scale-98 select-none"
+            className="todolist-action-btn w-full min-h-[44px] lg:min-h-0 flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#5438dc] hover:bg-[#472fc2] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#5438dc]/30 transition-colors cursor-pointer active:scale-98 select-none"
           >
             <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
             <span className="!text-white text-white font-black tracking-wider" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.addTask}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileSidebarOpen(false)}
+            className="md:hidden p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
+            title="Close sidebar"
+            aria-label="Close sidebar"
+          >
+            <X size={18} />
           </button>
         </div>
 
