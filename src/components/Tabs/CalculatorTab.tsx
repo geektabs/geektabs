@@ -1248,7 +1248,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
   ];
 
   return (
-    <div className="flex items-center justify-center w-full h-full max-w-[420px] sm:max-w-[540px] md:max-w-3xl mx-auto pb-16 lg:pb-20">
+    <div className="flex justify-center w-full max-w-[420px] sm:max-w-[540px] md:max-w-3xl mx-auto">
       <div className="w-full rounded-2xl overflow-hidden GeekTabs-card weather-huawei-style webcard-light-grey-bg calculator-tab-card flex flex-col min-h-[540px] sm:min-h-[590px] md:h-[600px]">
         {/* Top Colorful Sub-Tabs Bar */}
         <div className="calc-tabs-bar px-3 pt-3 pb-2.5 border-b border-black/10 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">

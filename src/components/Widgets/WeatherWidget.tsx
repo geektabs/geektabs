@@ -50,6 +50,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Hourly forecast",
     dailyForecast: "Daily forecast",
+    byHour: "By Hour",
+    byDay: "By Day",
     now: "Now",
     today: "Today",
     high: "H",
@@ -97,6 +99,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "实时",
     hourlyForecast: "逐小时预报",
     dailyForecast: "7天预报",
+    byHour: "按小时",
+    byDay: "按天",
     now: "现在",
     today: "今天",
     high: "最高",
@@ -144,6 +148,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "En vivo",
     hourlyForecast: "Pronóstico por horas",
     dailyForecast: "Pronóstico diario",
+    byHour: "Por hora",
+    byDay: "Por día",
     now: "Ahora",
     today: "Hoy",
     high: "MÁX",
@@ -191,6 +197,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "En direct",
     hourlyForecast: "Prévisions horaires",
     dailyForecast: "Prévisions quotidiennes",
+    byHour: "Par heure",
+    byDay: "Par jour",
     now: "Maintenant",
     today: "Aujourd'hui",
     high: "Max",
@@ -238,6 +246,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Stündliche Vorhersage",
     dailyForecast: "Tagesvorhersage",
+    byHour: "Stündlich",
+    byDay: "Täglich",
     now: "Jetzt",
     today: "Heute",
     high: "H",
@@ -285,6 +295,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "ライブ",
     hourlyForecast: "時間ごとの予報",
     dailyForecast: "週間予報",
+    byHour: "時間別",
+    byDay: "日別",
     now: "現在",
     today: "今日",
     high: "最高",
@@ -332,6 +344,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "실시간",
     hourlyForecast: "시간별 예보",
     dailyForecast: "일별 예보",
+    byHour: "시간별",
+    byDay: "일별",
     now: "지금",
     today: "오늘",
     high: "최고",
@@ -379,6 +393,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Previsioni orarie",
     dailyForecast: "Previsioni giornaliere",
+    byHour: "Orario",
+    byDay: "Giorni",
     now: "Ora",
     today: "Oggi",
     high: "MAX",
@@ -426,6 +442,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "В эфире",
     hourlyForecast: "Почасовой прогноз",
     dailyForecast: "Прогноз по дням",
+    byHour: "По часам",
+    byDay: "По дням",
     now: "Сейчас",
     today: "Сегодня",
     high: "Макс",
@@ -473,6 +491,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Stonnweis Prognos",
     dailyForecast: "Dagesprognos",
+    byHour: "Pro Stonn",
+    byDay: "Pro Dag",
     now: "Elo",
     today: "Haut",
     high: "H",
@@ -520,6 +540,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Uurverwachting",
     dailyForecast: "Dagverwachting",
+    byHour: "Per uur",
+    byDay: "Per dag",
     now: "Nu",
     today: "Vandaag",
     high: "H",
@@ -567,6 +589,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Timprognos",
     dailyForecast: "Dygnsprognos",
+    byHour: "Per timme",
+    byDay: "Per dag",
     now: "Nu",
     today: "Idag",
     high: "H",
@@ -614,6 +638,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Tuntiennuste",
     dailyForecast: "Päiväennuste",
+    byHour: "Tunneittain",
+    byDay: "Päivittäin",
     now: "Nyt",
     today: "Tänään",
     high: "Y",
@@ -661,6 +687,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "लाइव",
     hourlyForecast: "प्रति घंटा पूर्वानुमान",
     dailyForecast: "दैनिक पूर्वानुमान",
+    byHour: "प्रति घंटा",
+    byDay: "प्रति दिन",
     now: "अभी",
     today: "आज",
     high: "उच्च",
@@ -708,6 +736,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "Live",
     hourlyForecast: "Timevarsel",
     dailyForecast: "Langtidsvarsel",
+    byHour: "Per time",
+    byDay: "Per dag",
     now: "Nå",
     today: "I dag",
     high: "H",
@@ -755,6 +785,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     liveBadge: "สด",
     hourlyForecast: "พยากรณ์รายชั่วโมง",
     dailyForecast: "พยากรณ์รายวัน",
+    byHour: "รายชั่วโมง",
+    byDay: "รายวัน",
     now: "ตอนนี้",
     today: "วันนี้",
     high: "สูงสุด",
@@ -783,7 +815,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
   const dictionary = WEATHER_T[language] || WEATHER_T['English'];
 
   const [tempUnit] = useLocalStorage<'C' | 'F'>('GeekTabs-weather-temp-unit', 'F');
-  const [forecastMode] = useLocalStorage<'hr' | 'day'>('GeekTabs-weather-forecast-mode', 'hr');
+  const [forecastMode, setForecastMode] = useLocalStorage<'hr' | 'day'>('GeekTabs-weather-forecast-mode', 'hr');
 
   const [location, setLocation] = useLocalStorage('GeekTabs-location', 'Boston, MA 02115, United States');
   const [weatherInputs, setWeatherInputs] = useLocalStorage('GeekTabs-weather-inputs', {
@@ -1480,10 +1512,10 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
       ) : (
         /* Normal Live Weather View */
         <div className="flex flex-col w-full">
-          {/* Top Header Row: Title + Refresh on Left, Forecast Label on Right */}
-          <div className="flex items-center justify-between gap-4 mb-3.5 sm:mb-4">
-            <div className="flex items-center gap-2">
-              <h2 className="text-lg sm:text-xl font-bold tracking-tight leading-none">
+          {/* Top Header Row: Title + Refresh on Left, By Hour / By Day Switch on Right */}
+          <div className="flex items-center justify-between gap-2 sm:gap-4 mb-3.5 sm:mb-4">
+            <div className="flex items-center gap-2 min-w-0">
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight leading-none truncate">
                 {dictionary.title}
               </h2>
               <button
@@ -1491,7 +1523,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                 onClick={handleRefresh}
                 disabled={loading || isRefreshing}
                 title={dictionary.refreshTooltip}
-                className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center"
+                className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center shrink-0"
               >
                 <RefreshCw
                   size={15}
@@ -1500,11 +1532,38 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
               </button>
             </div>
 
-            <span className="text-xs sm:text-sm font-medium opacity-60 leading-none">
-              {forecastMode === 'day'
-                ? dictionary.dailyForecast || 'Daily forecast'
-                : dictionary.hourlyForecast || 'Hourly forecast'}
-            </span>
+            <div
+              role="group"
+              aria-label="Forecast interval switch"
+              className="inline-flex items-center p-0.5 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 shrink-0"
+            >
+              <button
+                type="button"
+                onClick={() => setForecastMode('hr')}
+                aria-pressed={forecastMode === 'hr'}
+                title={dictionary.hourlyForecast}
+                className={`px-2 sm:px-2.5 py-1 rounded-[10px] text-[11px] sm:text-xs font-bold leading-none transition-all cursor-pointer select-none whitespace-nowrap ${
+                  forecastMode === 'hr'
+                    ? 'bg-indigo-500 text-white shadow-xs'
+                    : 'opacity-70 hover:opacity-100 bg-transparent'
+                }`}
+              >
+                {dictionary.byHour}
+              </button>
+              <button
+                type="button"
+                onClick={() => setForecastMode('day')}
+                aria-pressed={forecastMode === 'day'}
+                title={dictionary.dailyForecast}
+                className={`px-2 sm:px-2.5 py-1 rounded-[10px] text-[11px] sm:text-xs font-bold leading-none transition-all cursor-pointer select-none whitespace-nowrap ${
+                  forecastMode === 'day'
+                    ? 'bg-indigo-500 text-white shadow-xs'
+                    : 'opacity-70 hover:opacity-100 bg-transparent'
+                }`}
+              >
+                {dictionary.byDay}
+              </button>
+            </div>
           </div>
 
           {/* Middle Section: Current Weather Icon + Temp / (Condition & H) / (Address & L) */}
@@ -1515,9 +1574,12 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
 
             <div className="grid grid-cols-[auto_auto] items-baseline gap-x-8 sm:gap-x-14 md:gap-x-20 min-w-0">
               {/* Row 1: Temperature */}
-              <div className="col-span-2 flex items-baseline gap-1 leading-none">
+              <div className="col-span-2 flex items-start gap-0.5 leading-none">
                 <span className="text-2xl sm:text-[28px] font-bold tracking-tight leading-none tabular-nums">
-                  {loading ? '--' : weather?.temp}°
+                  {loading ? '--' : weather?.temp}
+                </span>
+                <span className="text-xs sm:text-sm font-bold leading-none mt-0.5 opacity-90">
+                  °{tempUnit}
                 </span>
               </div>
 
@@ -1556,13 +1618,13 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
           <div className="w-full border-t border-current opacity-15 my-4 sm:my-5" />
 
           {/* Bottom Section: 12-Hour Horizontal Forecast Strip (or 7-Day Daily Mode) */}
-          <div className="w-full">
+          <div className="w-full h-[270px] sm:h-[176px] lg:h-[82px]">
             {forecastMode === 'day' ? (
-              <div className="grid grid-cols-3 sm:grid-cols-7 gap-y-4 gap-x-2 w-full">
+              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-y-3 gap-x-2 w-full h-full content-start">
                 {(weather?.daily || defaultDayDetails).slice(0, 7).map((dayItem, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col items-center justify-center gap-1.5 py-1 text-center select-text"
+                    className="h-[82px] flex flex-col items-center justify-center gap-1 py-1 text-center select-text"
                   >
                     <span className="weather-card-item-text text-[11px] sm:text-xs font-medium opacity-65 whitespace-nowrap leading-none">
                       {dayItem.time}
@@ -1589,11 +1651,11 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-y-4 gap-x-1 sm:gap-x-2 w-full">
+              <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-y-3 gap-x-1 sm:gap-x-2 w-full h-full content-start">
                 {(weather?.hourly || defaultHrDetails).slice(0, 12).map((hr, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col items-center justify-center gap-2 py-1 text-center select-text"
+                    className="h-[82px] flex flex-col items-center justify-center gap-2 py-1 text-center select-text"
                   >
                     <span className="weather-card-item-text text-[11px] sm:text-xs font-medium opacity-60 whitespace-nowrap leading-none">
                       {formatHourlyTime(hr.time, idx)}

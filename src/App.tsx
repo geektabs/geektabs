@@ -511,7 +511,7 @@ export default function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-              className="w-full max-w-7xl px-4 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-16 lg:pb-20"
+              className="w-full max-w-6xl px-4 sm:px-6 pt-20 sm:pt-24 lg:pt-36 pb-20 lg:pb-32"
             >
               <CalculatorTab language={language} />
             </motion.div>
