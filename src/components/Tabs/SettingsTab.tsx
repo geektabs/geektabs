@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings as SettingsIcon, Palette, Image as ImageIcon, Layout, Check, Trash2, Globe, Compass, Download, RotateCcw, Type, ChevronDown, CloudSun, Menu, X, Info } from 'lucide-react';
+import { Settings as SettingsIcon, Palette, Image as ImageIcon, Layout, Check, Trash2, Globe, Compass, Download, RotateCcw, Type, ChevronDown, CloudSun, X, Info, PanelLeft, PanelLeftClose } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import ThemesTab from './ThemesTab';
 import WallpapersTab from './WallpapersTab';
@@ -23,6 +23,7 @@ export interface SettingsTabProps {
   setCardBgMode: (mode: 'white' | 'dark' | 'dark-glass') => void;
   textColor?: string;
   setTextColor?: (color: string) => void;
+  initialTab?: 'general' | 'color' | 'wallpaper' | 'text' | 'browser' | 'download' | 'weather' | 'about';
 }
 
 const SETTINGS_T: Record<string, Record<string, string>> = {
@@ -395,6 +396,228 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     modalMessage: "Dës Aktioun kann net réckgängeg gemaach ginn.",
     modalConfirm: "Bestätegen",
     modalCancel: "Ofbriechen"
+  },
+  Dutch: {
+    title: "INSTELLINGEN",
+    generalSettings: "Algemene Instellingen",
+    managePreferences: "Basisvoorkeuren beheren",
+    customBoardName: "Aangepaste Bordnaam",
+    boardNameDesc: "Deze naam wordt weergegeven als handtekening op de startpagina. Standaard wordt een begroeting op basis van het tijdstip getoond.",
+    defaultPlaceholder: "Standaard: ",
+    save: "Opslaan",
+    saved: "Opgeslagen",
+    languageSelection: "Taalselectie",
+    langDesc: "Kies je voorkeurstaal voor widgets en bedieningselementen.",
+    cardStyle: "Kaartachtergrondstijl",
+    cardDesc: "Kies tussen Licht (wit), Donker (zwart) of Glas (matglas) kaartstijlen.",
+    whiteBg: "Licht",
+    darkBg: "Donker",
+    darkGlass: "Glas",
+    dataBackup: "Gegevensback-up & Herstelpunt",
+    dataDesc: "Exporteer je bladwijzers, taken en notities naar een JSON-bestand of importeer een eerdere back-up.",
+    exportBackup: "Back-up Exporteren (Herstelpunt Maken)",
+    importBackup: "Back-up Importeren (Herstellen)",
+    resetTitle: "Standaardinstellingen Herstellen",
+    resetDesc: "Zet het hele dashboard terug naar de fabrieksinstellingen. Dit verwijdert permanent al je thema's, achtergronden, bladwijzers, taken en notities!",
+    resetButton: "Resetten & Alle Gegevens Wissen",
+    aboutTitle: "Over Ons",
+    aboutDesc: "Ontdek ons verhaal",
+    aboutWelcome: "Welkom bij GeekTabs",
+    aboutText1: "GeekTabs is gebouwd met een simpele missie: de standaard nieuwe tabbladpagina omtoveren tot een prachtig, gepersonaliseerd en productief dashboard.",
+    aboutText2: "Met focus op strak design, doordachte functies en uitgebreide aanpassingen vormt GeekTabs het ideale startpunt op het web.",
+    supportContact: "Ondersteuning & Contact",
+    restoreSuccess: "Back-up succesvol hersteld! De pagina wordt nu opnieuw geladen.",
+    invalidBackup: "Ongeldig back-upbestand.",
+    failParse: "Fout bij het lezen van het back-upbestand.",
+    modalTitle: "Alle gegevens resetten?",
+    modalMessage: "Deze actie is onomkeerbaar en verwijdert al je aangepaste instellingen, bladwijzers, taken en notities.",
+    modalConfirm: "Reset Bevestigen",
+    modalCancel: "Annuleren"
+  },
+  Swedish: {
+    title: "INSTÄLLNINGAR",
+    generalSettings: "Allmänna Inställningar",
+    managePreferences: "Hantera grundläggande inställningar",
+    customBoardName: "Anpassat Panelnamn",
+    boardNameDesc: "Detta namn visas som en stilren signatur på startsidan. Som standard visas en hälsning efter tid på dygnet.",
+    defaultPlaceholder: "Standard: ",
+    save: "Spara",
+    saved: "Sparad",
+    languageSelection: "Språkval",
+    langDesc: "Välj ditt föredragna språk för widgets och kontroller.",
+    cardStyle: "Kortens Bakgrundsstil",
+    cardDesc: "Välj mellan Ljus (vit), Mörk (svart) eller Glas (frostat glas) för webbkorten.",
+    whiteBg: "Ljus",
+    darkBg: "Mörk",
+    darkGlass: "Glas",
+    dataBackup: "Säkerhetskopiering & Återställning",
+    dataDesc: "Exportera dina bokmärken, uppgifter och anteckningar till en JSON-fil, eller importera en tidigare säkerhetskopia.",
+    exportBackup: "Exportera Backup (Skapa Återställningspunkt)",
+    importBackup: "Importera Backup (Återställ)",
+    resetTitle: "Återställ till Standard",
+    resetDesc: "Återställ hela kontrollpanelen till fabriksinställningarna. Detta raderar permanent alla teman, bakgrunder, bokmärken, uppgifter och anteckningar!",
+    resetButton: "Återställ & Rensa All Data",
+    aboutTitle: "Om Oss",
+    aboutDesc: "Upptäck vår historia",
+    aboutWelcome: "Välkommen till GeekTabs",
+    aboutText1: "GeekTabs skapades med ett enkelt mål: att förvandla den vanliga fliksidan till en vacker, personlig och funktionell startsida.",
+    aboutText2: "Med fokus på ren design, smarta funktioner och bred anpassning är GeekTabs din naturliga startpunkt på webben.",
+    supportContact: "Support & Kontakt",
+    restoreSuccess: "Säkerhetskopian återställdes! Sidan laddas nu om.",
+    invalidBackup: "Ogiltig säkerhetskopia.",
+    failParse: "Kunde inte läsa säkerhetskopian.",
+    modalTitle: "Återställa all data?",
+    modalMessage: "Denna åtgärd kan inte ångras och raderar permanent alla inställningar, bokmärken, uppgifter och anteckningar.",
+    modalConfirm: "Bekräfta Återställning",
+    modalCancel: "Avbryt"
+  },
+  Finnish: {
+    title: "ASETUKSET",
+    generalSettings: "Yleiset Asetukset",
+    managePreferences: "Hallitse perusasetuksia",
+    customBoardName: "Mukautettu Näkymän Nimi",
+    boardNameDesc: "Tämä nimi näytetään etusivulla allekirjoituksena. Oletuksena näytetään vuorokaudenaikaan sopiva tervehdys.",
+    defaultPlaceholder: "Oletus: ",
+    save: "Tallenna",
+    saved: "Tallennettu",
+    languageSelection: "Kielen Valinta",
+    langDesc: "Valitse haluamasi kieli vimpaimille ja ohjaimille.",
+    cardStyle: "Kortin Taustatyyli",
+    cardDesc: "Valitse Vaalea (valkoinen), Tumma (musta) tai Lasi (himmeä lasi) -korttityyli.",
+    whiteBg: "Vaalea",
+    darkBg: "Tumma",
+    darkGlass: "Lasi",
+    dataBackup: "Varmuuskopiointi & Palautus",
+    dataDesc: "Vie kirjanmerkit, tehtävät ja muistiinpanot JSON-tiedostoon tai palauta tiedot aiemmasta varmuuskopiosta.",
+    exportBackup: "Vie Varmuuskopio (Luo Palautuspiste)",
+    importBackup: "Tuo Varmuuskopio (Palauta)",
+    resetTitle: "Palauta Oletusasetukset",
+    resetDesc: "Palauta koko hallintapaneeli alkuperäisiin tehdasasetuksiin. Tämä poistaa pysyvästi kaikki teemat, taustakuvat, kirjanmerkit, tehtävät ja muistiinpanot!",
+    resetButton: "Nollaa & Tyhjennä Kaikki Tiedot",
+    aboutTitle: "Tietoa Meistä",
+    aboutDesc: "Tutustu tarinaamme",
+    aboutWelcome: "Tervetuloa GeekTabsiin",
+    aboutText1: "GeekTabs luotiin yksinkertaisella tavoitteella: muuttaa tavallinen uuden välilehden sivu kauniiksi, henkilökohtaiseksi ja toimivaksi työtilaksi.",
+    aboutText2: "Selkeä muotoilu, harkitut ominaisuudet ja monipuolinen muokattavuus tekevät GeekTabsista täydellisen aloituspisteen verkkoon.",
+    supportContact: "Tuki & Yhteystiedot",
+    restoreSuccess: "Varmuuskopio palautettu! Sivu ladataan uudelleen.",
+    invalidBackup: "Virheellinen varmuuskopiotiedosto.",
+    failParse: "Varmuuskopiotiedoston lukeminen epäonnistui.",
+    modalTitle: "Nollataanko kaikki tiedot?",
+    modalMessage: "Tätä toimintoa ei voi perua. Se poistaa pysyvästi kaikki asetukset, kirjanmerkit, tehtävät ja muistiinpanot.",
+    modalConfirm: "Vahvista Nollaus",
+    modalCancel: "Peruuta"
+  },
+  Hindi: {
+    title: "सेटिंग्स",
+    generalSettings: "सामान्य सेटिंग्स",
+    managePreferences: "बुनियादी प्राथमिकताएं प्रबंधित करें",
+    customBoardName: "कस्टम बोर्ड नाम",
+    boardNameDesc: "यह नाम होम पेज पर एक सुंदर हस्ताक्षर के रूप में दिखाई देगा। डिफ़ॉल्ट रूप से समय के अनुसार अभिवादन दिखाया जाता है।",
+    defaultPlaceholder: "डिफ़ॉल्ट: ",
+    save: "सहेजें",
+    saved: "सहेजा गया",
+    languageSelection: "भाषा चयन",
+    langDesc: "विजेट और नियंत्रणों के लिए अपनी पसंदीदा भाषा चुनें।",
+    cardStyle: "कार्ड बैकग्राउंड स्टाइल",
+    cardDesc: "लाइट (सफेद), डार्क (काला) या ग्लास (फ्रॉस्टेड ग्लास) कार्ड स्टाइल चुनें।",
+    whiteBg: "लाइट",
+    darkBg: "डार्क",
+    darkGlass: "ग्लास",
+    dataBackup: "डेटा बैकअप और रिस्टोर पॉइंट",
+    dataDesc: "अपने बुकमार्क, कार्य सूची और नोट्स को JSON फ़ाइल में एक्सपोर्ट करें या पिछले बैकअप से रिस्टोर करें।",
+    exportBackup: "बैकअप एक्सपोर्ट करें (रिस्टोर पॉइंट बनाएं)",
+    importBackup: "बैकअप इम्पोर्ट करें (रिस्टोर करें)",
+    resetTitle: "डिफ़ॉल्ट पर रीसेट करें",
+    resetDesc: "पूरे डैशबोर्ड को मूल फ़ैक्टरी सेटिंग्स पर रीसेट करें। इससे आपके सभी कस्टम थीम, वॉलपेपर, बुकमार्क, कार्य और नोट्स स्थायी रूप से हट जाएंगे!",
+    resetButton: "रीसेट करें और सारा डेटा साफ़ करें",
+    aboutTitle: "हमारे बारे में",
+    aboutDesc: "हमारी कहानी जानें",
+    aboutWelcome: "GeekTabs में आपका स्वागत है",
+    aboutText1: "GeekTabs को एक सरल उद्देश्य के साथ बनाया गया था: सामान्य 'नए टैब' पेज को एक सुंदर, व्यक्तिगत और उपयोगी डैशबोर्ड में बदलना।",
+    aboutText2: "स्वच्छ डिज़ाइन, स्मार्ट सुविधाओं और गहन कस्टमाइज़ेशन के साथ, GeekTabs वेब पर आपकी यात्रा की बेहतरीन शुरुआत करता है।",
+    supportContact: "सहायता और संपर्क",
+    restoreSuccess: "बैकअप सफलतापूर्वक रिस्टोर हो गया! पेज अब पुनः लोड होगा।",
+    invalidBackup: "अमान्य बैकअप फ़ाइल।",
+    failParse: "बैकअप फ़ाइल पढ़ने में विफल।",
+    modalTitle: "सारा डेटा रीसेट करें?",
+    modalMessage: "यह क्रिया अपरिवर्तनीय है। यह आपकी सभी कस्टम सेटिंग्स, बुकमार्क, कार्य और नोट्स को स्थायी रूप से हटा देगी।",
+    modalConfirm: "रीसेट की पुष्टि करें",
+    modalCancel: "रद्द करें"
+  },
+  Norwegian: {
+    title: "INNSTILLINGER",
+    generalSettings: "Generelle Innstillinger",
+    managePreferences: "Administrer grunnleggende preferanser",
+    customBoardName: "Egendefinert Tavlenavn",
+    boardNameDesc: "Dette navnet vises som en elegant signatur på startsiden. Standard er en hilsen basert på tiden på døgnet.",
+    defaultPlaceholder: "Standard: ",
+    save: "Lagre",
+    saved: "Lagret",
+    languageSelection: "Språkvalg",
+    langDesc: "Velg ditt foretrukne språk for widgets og kontroller.",
+    cardStyle: "Bakgrunnsstil for Kort",
+    cardDesc: "Velg mellom Lys (hvit), Mørk (svart) eller Glass (frostet glass) kortstil.",
+    whiteBg: "Lys",
+    darkBg: "Mørk",
+    darkGlass: "Glass",
+    dataBackup: "Sikkerhetskopiering & Gjenoppretting",
+    dataDesc: "Eksporter bokmerker, gjøremål og notater til en JSON-fil, eller importer en tidligere sikkerhetskopi.",
+    exportBackup: "Eksporter Backup (Opprett Gjenopprettingspunkt)",
+    importBackup: "Importer Backup (Gjenopprett)",
+    resetTitle: "Tilbakestill til Standard",
+    resetDesc: "Tilbakestill hele dashbordet til fabrikkinnstillingene. Dette sletter permanent alle temaer, bakgrunner, bokmerker, oppgaver og notater!",
+    resetButton: "Tilbakestill & Slett Alle Data",
+    aboutTitle: "Om Oss",
+    aboutDesc: "Oppdag vår historie",
+    aboutWelcome: "Velkommen til GeekTabs",
+    aboutText1: "GeekTabs ble laget med et enkelt mål: å forvandle den vanlige nye fanen til et vakkert, personlig og svært funksjonelt dashbord.",
+    aboutText2: "Med fokus på rent design, gjennomtenkte funksjoner og bred tilpasning er GeekTabs det perfekte startpunktet på nettet.",
+    supportContact: "Støtte & Kontakt",
+    restoreSuccess: "Sikkerhetskopi gjenopprettet! Siden lastes inn på nytt.",
+    invalidBackup: "Ugyldig sikkerhetskopifil.",
+    failParse: "Kunne ikke lese sikkerhetskopifilen.",
+    modalTitle: "Tilbakestille alle data?",
+    modalMessage: "Denne handlingen kan ikke angres og vil slette alle innstillinger, bokmerker, oppgaver og notater permanent.",
+    modalConfirm: "Bekreft Tilbakestilling",
+    modalCancel: "Avbryt"
+  },
+  Thai: {
+    title: "การตั้งค่า",
+    generalSettings: "การตั้งค่าทั่วไป",
+    managePreferences: "จัดการการตั้งค่าพื้นฐาน",
+    customBoardName: "ชื่อกระดานแบบกำหนดเอง",
+    boardNameDesc: "ชื่อนี้จะแสดงเป็นลายเซ็นบนหน้าแรก โดยค่าเริ่มต้นจะแสดงคำทักทายตามช่วงเวลา",
+    defaultPlaceholder: "ค่าเริ่มต้น: ",
+    save: "บันทึก",
+    saved: "บันทึกแล้ว",
+    languageSelection: "เลือกภาษา",
+    langDesc: "เลือกภาษาที่คุณต้องการสำหรับวิดเจ็ตและเมนูต่างๆ",
+    cardStyle: "สไตล์พื้นหลังการ์ด",
+    cardDesc: "เลือกระหว่างการ์ดแบบ สว่าง (ขาว), มืด (ดำ) หรือ กระจก (กระจกฝ้า)",
+    whiteBg: "สว่าง",
+    darkBg: "มืด",
+    darkGlass: "กระจก",
+    dataBackup: "สำรองข้อมูลและกู้คืน",
+    dataDesc: "ส่งออกบุ๊กมาร์ก รายการสิ่งที่ต้องทำ และโน้ตเป็นไฟล์ JSON หรือนำเข้าไฟล์สำรองที่บันทึกไว้ก่อนหน้า",
+    exportBackup: "ส่งออกข้อมูลสำรอง (สร้างจุดกู้คืน)",
+    importBackup: "นำเข้าข้อมูลสำรอง (กู้คืนข้อมูล)",
+    resetTitle: "รีเซ็ตเป็นค่าเริ่มต้น",
+    resetDesc: "รีเซ็ตแดชบอร์ดทั้งหมดกลับเป็นค่าเริ่มต้นจากโรงงาน การดำเนินการนี้จะลบธีม วอลเปเปอร์ บุ๊กมาร์ก งาน และโน้ตทั้งหมดของคุณอย่างถาวร!",
+    resetButton: "รีเซ็ตและล้างข้อมูลทั้งหมด",
+    aboutTitle: "เกี่ยวกับเรา",
+    aboutDesc: "เรื่องราวของเรา",
+    aboutWelcome: "ยินดีต้อนรับสู่ GeekTabs",
+    aboutText1: "GeekTabs ถูกสร้างขึ้นด้วยเป้าหมายเรียบง่าย เพื่อเปลี่ยนหน้าแท็บใหม่ธรรมดาให้กลายเป็นแดชบอร์ดที่สวยงาม ปรับแต่งได้ และทรงพลัง",
+    aboutText2: "ด้วยการออกแบบที่สะอาดตา ฟีเจอร์ที่ใส่ใจ และการปรับแต่งที่หลากหลาย GeekTabs พร้อมเป็นจุดเริ่มต้นที่ดีในทุกการท่องเว็บของคุณ",
+    supportContact: "ฝ่ายสนับสนุนและติดต่อ",
+    restoreSuccess: "กู้คืนข้อมูลสำรองสำเร็จแล้ว! กำลังรีโหลดหน้าเว็บ",
+    invalidBackup: "ไฟล์สำรองข้อมูลไม่ถูกต้อง",
+    failParse: "ไม่สามารถอ่านไฟล์สำรองข้อมูลได้",
+    modalTitle: "รีเซ็ตข้อมูลทั้งหมดหรือไม่?",
+    modalMessage: "การดำเนินการนี้ไม่สามารถย้อนกลับได้ และจะลบการตั้งค่า บุ๊กมาร์ก งาน และโน้ตทั้งหมดของคุณอย่างถาวร",
+    modalConfirm: "ยืนยันการรีเซ็ต",
+    modalCancel: "ยกเลิก"
   }
 };
 
@@ -449,7 +672,7 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`settings-dropdown w-full flex items-center justify-between rounded-xl px-4 py-2.5 font-semibold text-sm transition-all outline-none cursor-pointer text-left bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-300 text-slate-900 shadow-sm ${isOpen ? 'ring-2 ring-indigo-500 border-transparent' : ''}`}
+        className={`settings-dropdown w-full flex items-center justify-between rounded-xl px-4 py-2.5 min-h-[44px] lg:min-h-0 font-semibold text-sm transition-all outline-none cursor-pointer text-left bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-300 text-slate-900 shadow-sm ${isOpen ? 'ring-2 ring-indigo-500 border-transparent' : ''}`}
       >
         <span className="truncate pr-2 text-slate-900">{selectedOption?.label}</span>
         <ChevronDown
@@ -477,7 +700,7 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
                     onChange(opt.value);
                     setIsOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer text-left ${
+                  className={`w-full flex items-center justify-between px-3.5 py-3 lg:py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer text-left ${
                     isSelected
                       ? 'settings-option-selected bg-indigo-500 text-white font-bold'
                       : 'text-slate-700 hover:bg-black/5 hover:text-black'
@@ -511,7 +734,8 @@ export default function SettingsTab({
   cardBgMode,
   setCardBgMode,
   textColor,
-  setTextColor
+  setTextColor,
+  initialTab
 }: SettingsTabProps) {
   const [internalTextColor, setInternalTextColor] = useLocalStorage('GeekTabs-text-color', 'default');
   const activeTextColor = textColor ?? internalTextColor;
@@ -528,8 +752,15 @@ export default function SettingsTab({
     }
   };
 
-  const [activeTab, setActiveTab] = useState<'general' | 'color' | 'wallpaper' | 'text' | 'browser' | 'download' | 'weather' | 'about'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'color' | 'wallpaper' | 'text' | 'browser' | 'download' | 'weather' | 'about'>(initialTab || 'general');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
   const [pageName, setPageName] = useLocalStorage('GeekTabs-page-name', '');
   const [localName, setLocalName] = useState(() => {
     const initial = pageName && pageName !== 'have a good day' ? pageName : getGreetingByTime();
@@ -561,6 +792,12 @@ export default function SettingsTab({
     { value: 'Spanish', label: 'Spanish' },
     { value: 'French', label: 'French' },
     { value: 'German', label: 'German' },
+    { value: 'Dutch', label: 'Dutch' },
+    { value: 'Swedish', label: 'Swedish' },
+    { value: 'Finnish', label: 'Finnish' },
+    { value: 'Norwegian', label: 'Norwegian' },
+    { value: 'Hindi', label: 'Hindi' },
+    { value: 'Thai', label: 'Thai' },
     { value: 'Chinese', label: 'Chinese' },
     { value: 'Japanese', label: 'Japanese' },
     { value: 'Korean', label: 'Korean' },
@@ -674,39 +911,43 @@ export default function SettingsTab({
   const CurrentIcon = currentNav.icon;
 
   return (
-    <div className="settings-tab-card w-full h-full flex flex-row overflow-hidden relative z-10 backdrop-blur-2xl bg-white/70 dark:bg-[#0c1017]/80 text-slate-800 dark:text-slate-100">
+    <div className="settings-tab-card w-full h-full flex flex-row overflow-hidden relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
       
       {/* Mobile Backdrop */}
       {mobileSidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+          className="fixed top-14 inset-x-0 bottom-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
           onClick={() => setMobileSidebarOpen(false)}
         />
       )}
 
-      {/* LEFT SIDEBAR (Gemini Chat Style) */}
+      {/* LEFT SIDEBAR (Gemini Chat Style with Hide/Show) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-80 md:w-80 md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0 h-full flex flex-col border-r border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
-          mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
+        className={`fixed top-14 bottom-0 left-0 md:inset-y-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 md:h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+          mobileSidebarOpen
+            ? 'w-72 sm:w-80 translate-x-0 shadow-2xl border-r'
+            : sidebarOpen
+              ? 'w-72 sm:w-80 -translate-x-full md:translate-x-0 md:w-60 lg:w-80 border-r opacity-100'
+              : 'w-0 -translate-x-full md:translate-x-0 md:w-0 border-r-0 opacity-0 overflow-hidden pointer-events-none'
         }`}
       >
-        {/* Top of Sidebar - Mobile close button only */}
-        <div className="md:hidden flex items-center justify-end p-3 border-b border-black/10 dark:border-white/10">
+        {/* Top of Sidebar - Preferences title aligned with right header's divider line */}
+        <div className="h-16 px-4 sm:px-5 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0">
+          <span className="text-base sm:text-lg font-black uppercase tracking-wider text-slate-700 dark:text-white truncate">
+            Preferences
+          </span>
           <button
             type="button"
             onClick={() => setMobileSidebarOpen(false)}
-            className="p-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+            className="md:hidden p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
             title="Close navigation"
           >
             <X size={18} />
           </button>
         </div>
 
-        {/* Navigation Items (Pill Buttons) */}
+        {/* Navigation Items (Pill Buttons) - positioned under the top header line */}
         <div className="flex-1 overflow-y-auto p-3 space-y-1.5 scrollbar-thin">
-          <div className="px-3 pt-2 pb-1.5 text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-white/70">
-            Preferences
-          </div>
           {navItems.map((item) => {
             const IconComp = item.icon;
             const isActive = activeTab === item.id;
@@ -718,7 +959,7 @@ export default function SettingsTab({
                   setActiveTab(item.id);
                   setMobileSidebarOpen(false);
                 }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer select-none text-left ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 lg:py-2.5 rounded-xl font-bold text-xs transition-colors cursor-pointer select-none text-left ${
                   isActive
                     ? 'settings-nav-active-btn bg-indigo-500 hover:bg-indigo-600 !text-white text-white shadow-sm shadow-indigo-500/25'
                     : 'text-slate-700 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5 hover:text-indigo-600 dark:hover:text-white'
@@ -756,16 +997,23 @@ export default function SettingsTab({
       <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
         
         {/* Workspace Top Header Bar */}
-        <header className="h-16 px-6 sm:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
-          <div className="flex items-center gap-3 min-w-[40px]">
-            {/* Mobile Hamburger to trigger Sidebar */}
+        <header className="h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+          {/* Left: Sidebar Toggle Button (Hide / Show - same as Notes page) */}
+          <div className="flex items-center gap-2 min-w-0">
             <button
               type="button"
-              onClick={() => setMobileSidebarOpen(true)}
-              className="md:hidden p-2 -ml-2 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer"
-              title="Open Navigation"
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                  setMobileSidebarOpen(prev => !prev);
+                } else {
+                  setSidebarOpen(prev => !prev);
+                }
+              }}
+              className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
+              title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
+              aria-label="Toggle sidebar"
             >
-              <Menu size={20} />
+              {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeft size={20} />}
             </button>
           </div>
 
@@ -790,7 +1038,7 @@ export default function SettingsTab({
         </header>
 
         {/* Main Settings Content Area - Always Pure Solid White */}
-        <main className="flex-1 overflow-y-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-8 bg-white text-slate-900">
+        <main className="flex-1 overflow-y-auto px-4 sm:px-6 md:px-6 lg:px-16 py-6 sm:py-8 bg-white text-slate-900">
           <div className="max-w-6xl mx-auto space-y-8">
             <AnimatePresence mode="wait">
               {activeTab === 'general' && (
@@ -802,11 +1050,11 @@ export default function SettingsTab({
                   transition={{ duration: 0.2 }}
                   className="space-y-6 sm:space-y-8"
                 >
-                  <div className="text-center flex flex-col items-center">
-                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1">
+                  <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
+                    <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">
                       {tData.generalSettings}
                     </h2>
-                    <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">
+                    <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">
                       {tData.managePreferences}
                     </p>
                   </div>
@@ -826,14 +1074,14 @@ export default function SettingsTab({
                           type="text"
                           value={localName}
                           onChange={(e) => setLocalName(e.target.value)}
-                          className="settings-input w-full sm:flex-1 min-w-0 bg-neutral-100 border border-neutral-300 rounded-xl px-4 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-semibold transition-all shadow-sm"
+                          className="settings-input w-full sm:flex-1 min-w-0 bg-neutral-100 border border-neutral-300 rounded-xl px-4 py-2.5 min-h-[44px] lg:min-h-0 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-sm font-semibold transition-all shadow-sm"
                           placeholder={`${tData.defaultPlaceholder}${getGreetingByTime()}`}
                         />
                         
                         <div className="flex items-center gap-2 shrink-0 justify-center">
                           <button
                             onClick={handleSave}
-                            className="flex-1 sm:flex-initial px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 !text-white text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs active:scale-98"
+                            className="flex-1 sm:flex-initial px-5 py-2.5 min-h-[44px] lg:min-h-0 bg-indigo-500 hover:bg-indigo-600 !text-white text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs active:scale-98"
                             style={{ color: '#ffffff' }}
                           >
                             {saved ? (
@@ -848,7 +1096,7 @@ export default function SettingsTab({
                           
                           <button
                             onClick={handleDelete}
-                            className="p-2.5 bg-red-100 hover:bg-red-200 text-red-600 rounded-xl flex items-center justify-center transition-all cursor-pointer"
+                            className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 bg-red-100 hover:bg-red-200 text-red-600 rounded-xl flex items-center justify-center transition-all cursor-pointer"
                             title="Remove Name"
                           >
                             <Trash2 size={16} />
@@ -907,14 +1155,14 @@ export default function SettingsTab({
                       <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center w-full">
                         <button
                           onClick={handleExportData}
-                          className="w-full sm:w-auto px-5 py-3 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-slate-800 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                          className="w-full sm:w-auto px-5 py-3 min-h-[44px] lg:min-h-0 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-slate-800 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                         >
                           <Download size={14} />
                           {tData.exportBackup}
                         </button>
                         
                         <label 
-                          className="settings-backup-import-btn w-full sm:w-auto px-5 py-3 bg-indigo-500 hover:bg-indigo-600 !text-white text-white border border-transparent rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm select-none"
+                          className="settings-backup-import-btn w-full sm:w-auto px-5 py-3 min-h-[44px] lg:min-h-0 bg-indigo-500 hover:bg-indigo-600 !text-white text-white border border-transparent rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm select-none"
                           style={{ color: '#ffffff' }}
                         >
                           <RotateCcw size={14} className="!text-white text-white shrink-0" style={{ color: '#ffffff', stroke: '#ffffff' }} />
@@ -942,7 +1190,7 @@ export default function SettingsTab({
                       </p>
                       <button
                         onClick={() => setShowResetConfirm(true)}
-                        className="w-full sm:w-auto px-5 py-3 bg-red-100 hover:bg-red-200 text-red-600 border border-red-200/50 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                        className="w-full sm:w-auto px-5 py-3 min-h-[44px] lg:min-h-0 bg-red-100 hover:bg-red-200 text-red-600 border border-red-200/50 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                       >
                         <RotateCcw size={14} />
                         {tData.resetButton}
@@ -1054,11 +1302,11 @@ export default function SettingsTab({
                   transition={{ duration: 0.2 }}
                   className="space-y-6"
                 >
-                  <div className="text-center flex flex-col items-center">
-                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1">
+                  <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
+                    <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">
                       {tData.aboutTitle}
                     </h2>
-                    <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">
+                    <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">
                       {tData.aboutDesc}
                     </p>
                   </div>

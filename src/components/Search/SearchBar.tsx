@@ -36,13 +36,13 @@ export default function SearchBar({ language }: SearchBarProps) {
     >
       <form 
         onSubmit={handleSearch} 
-        className="w-full max-w-3xl bg-white/95 dark:bg-[#202124]/95 backdrop-blur-md border border-[#dfe1e5] dark:border-[#5f6368] rounded-full flex items-center px-2.5 sm:px-4 py-2 sm:py-3 hover:shadow-md focus-within:shadow-md focus-within:border-indigo-500/40 dark:focus-within:border-indigo-400/40 transition-all overflow-hidden"
+        className="w-full max-w-3xl bg-white/95 dark:bg-[#202124]/95 backdrop-blur-md border border-[#dfe1e5] dark:border-[#5f6368] rounded-full flex items-center min-h-[48px] sm:min-h-[52px] lg:min-h-0 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 hover:shadow-md focus-within:shadow-md focus-within:border-indigo-500/40 dark:focus-within:border-indigo-400/40 transition-all overflow-hidden"
       >
         <div className="relative group/engine shrink-0 ml-1 sm:ml-2">
           <select
             value={engine}
             onChange={(e) => setEngine(e.target.value)}
-            className="appearance-none bg-transparent outline-none cursor-pointer text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300 pl-1 pr-4"
+            className="appearance-none bg-transparent outline-none cursor-pointer text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300 pl-1 pr-4 py-2 lg:py-0 min-h-[40px] lg:min-h-0"
           >
             <option value="Google">Google</option>
             <option value="Bing">Bing</option>
@@ -64,7 +64,7 @@ export default function SearchBar({ language }: SearchBarProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t(language, 'search')}
-          className="min-w-0 flex-1 bg-transparent border-none outline-none px-2 sm:px-3 text-xs sm:text-sm md:text-base text-black dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
+          className="min-w-0 flex-1 bg-transparent border-none outline-none px-2.5 sm:px-3 text-base text-black dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
         />
       </form>
     </motion.div>

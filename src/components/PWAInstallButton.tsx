@@ -140,6 +140,78 @@ const LABELS: Record<string, {
     close: 'Verstanen',
     offline: 'Offline-Modus — Zwëschespäichert Donnéeën aktiv',
   },
+  Dutch: {
+    installApp: 'App installeren',
+    installOnIOS: 'Zet op beginscherm',
+    installedBadge: 'Geïnstalleerd als app',
+    useAddressBar: 'Klik op het installatiepictogram in de adresbalk van je browser',
+    iosModalTitle: 'GeekTabs installeren op iPhone / iPad',
+    iosStep1: 'Tik op de Deel-knop in de Safari-werkbalk.',
+    iosStep2: 'Scrol omlaag en tik op "Zet op beginscherm".',
+    iosStep3: 'Tik op "Voeg toe" om het GeekTabs-logo op je scherm te plaatsen.',
+    close: 'Begrepen',
+    offline: 'Offline-modus — Gegevens in cache actief',
+  },
+  Swedish: {
+    installApp: 'Installera app',
+    installOnIOS: 'Lägg till på hemskärmen',
+    installedBadge: 'Installerad som app',
+    useAddressBar: 'Klicka på installationsikonen i webbläsarens adressfält',
+    iosModalTitle: 'Installera GeekTabs på iPhone / iPad',
+    iosStep1: 'Tryck på Dela-knappen i Safaris verktygsfält.',
+    iosStep2: 'Bläddra ner och tryck på "Lägg till på hemskärmen".',
+    iosStep3: 'Tryck på "Lägg till" för att placera GeekTabs-logotypen på skärmen.',
+    close: 'Uppfattat',
+    offline: 'Offlineläge — Cachad data aktiv',
+  },
+  Finnish: {
+    installApp: 'Asenna sovellus',
+    installOnIOS: 'Lisää Koti-valikkoon',
+    installedBadge: 'Asennettu sovelluksena',
+    useAddressBar: 'Napsauta selaimen osoitepalkin asennuskuvaketta',
+    iosModalTitle: 'Asenna GeekTabs iPhonelle / iPadille',
+    iosStep1: 'Napauta Jaa-painiketta Safarin työkalupalkissa.',
+    iosStep2: 'Vieritä alas ja napauta "Lisää Koti-valikkoon".',
+    iosStep3: 'Napauta "Lisää" asettaaksesi GeekTabs-logon näytölle.',
+    close: 'Selvä',
+    offline: 'Offline-tila — Välimuistissa olevat tiedot käytössä',
+  },
+  Hindi: {
+    installApp: 'ऐप इंस्टॉल करें',
+    installOnIOS: 'होम स्क्रीन पर जोड़ें',
+    installedBadge: 'ऐप के रूप में इंस्टॉल किया गया',
+    useAddressBar: 'अपने ब्राउज़र के एड्रेस बार में इंस्टॉल आइकन पर क्लिक करें',
+    iosModalTitle: 'iPhone / iPad पर GeekTabs इंस्टॉल करें',
+    iosStep1: 'Safari टूलबार में शेयर बटन पर टैप करें।',
+    iosStep2: 'नीचे स्क्रॉल करें और "Add to Home Screen" पर टैप करें।',
+    iosStep3: 'अपनी स्क्रीन पर GeekTabs लोगो रखने के लिए "Add" पर टैप करें।',
+    close: 'समझ गया',
+    offline: 'ऑफ़लाइन मोड — कैश्ड डेटा सक्रिय',
+  },
+  Norwegian: {
+    installApp: 'Installer app',
+    installOnIOS: 'Legg til på Hjem-skjerm',
+    installedBadge: 'Installert som app',
+    useAddressBar: 'Klikk på installeringsikonet i nettleserens adressefelt',
+    iosModalTitle: 'Installer GeekTabs på iPhone / iPad',
+    iosStep1: 'Trykk på Del-knappen i Safari-verktøylinjen.',
+    iosStep2: 'Bla nedover og trykk på «Legg til på Hjem-skjerm».',
+    iosStep3: 'Trykk på «Legg til» for å plassere GeekTabs-logoen på skjermen.',
+    close: 'Forstått',
+    offline: 'Frakoblet modus — Bufrede data aktive',
+  },
+  Thai: {
+    installApp: 'ติดตั้งแอป',
+    installOnIOS: 'เพิ่มไปยังหน้าจอโฮม',
+    installedBadge: 'ติดตั้งเป็นแอปแล้ว',
+    useAddressBar: 'คลิกไอคอนติดตั้งในแถบที่อยู่ของเบราว์เซอร์',
+    iosModalTitle: 'ติดตั้ง GeekTabs บน iPhone / iPad',
+    iosStep1: 'แตะปุ่มแชร์ในแถบเครื่องมือ Safari',
+    iosStep2: 'เลื่อนลงแล้วแตะ "เพิ่มไปยังหน้าจอโฮม"',
+    iosStep3: 'แตะ "เพิ่ม" เพื่อวางโลโก้ GeekTabs บนหน้าจอของคุณ',
+    close: 'เข้าใจแล้ว',
+    offline: 'โหมดออฟไลน์ — กำลังใช้ข้อมูลแคช',
+  },
 };
 
 export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
@@ -161,7 +233,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         <button
           type="button"
           onClick={isInstallable ? install : () => setShowIOSGuide(true)}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer shadow-sm active:scale-95 ${
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[38px] lg:min-h-0 rounded-full text-xs font-bold transition-all cursor-pointer shadow-sm active:scale-95 ${
             isDarkMode
               ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-500/20'
               : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-500/20'

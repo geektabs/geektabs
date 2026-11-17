@@ -207,13 +207,6 @@
   color: var(--custom-page-text-color) !important;
 }
 
-@media (max-width: 767px) {
-  .bookmark-add-cat-btn {
-    width: var(--standard-cat-width, 180px) !important;
-    height: 38px !important;
-  }
-}
-
 /* Settings sidebar: active menu button styled in purple with white text & icon */
 .settings-nav-active-btn,
 .settings-nav-active-btn *,
@@ -1019,6 +1012,17 @@ button.custom-hex-apply-btn svg,
   text-shadow: none !important;
 }
 
+[data-default-earth-bg="true"]:not([data-has-custom-text="true"]) .welcome-greeting-display,
+[data-default-earth-bg="true"]:not([data-has-custom-text="true"]) .clock-time-display,
+[data-default-earth-bg="true"]:not([data-has-custom-text="true"]) .clock-date-display,
+[data-default-earth-bg="true"]:not([data-has-custom-text="true"]) [data-tab="home"] .welcome-greeting-display,
+[data-default-earth-bg="true"]:not([data-has-custom-text="true"]) [data-tab="home"] .clock-time-display,
+[data-default-earth-bg="true"]:not([data-has-custom-text="true"]) [data-tab="home"] .clock-date-display {
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45) !important;
+}
+
 [data-has-custom-text="true"] .welcome-greeting-display,
 [data-has-custom-text="true"] .clock-time-display,
 [data-has-custom-text="true"] .clock-date-display,
@@ -1374,11 +1378,11 @@ button.todolist-cancel-btn span,
   border-bottom: 1.5px solid rgba(22, 163, 74, 0.22) !important;
 }
 
-.card-style-white .daily-title-yellow,
-[data-card-bg-mode="white"] .daily-title-yellow {
-  background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%) !important;
-  background-color: #fef9c3 !important;
-  border-bottom: 1.5px solid rgba(202, 138, 4, 0.24) !important;
+.card-style-white .daily-title-blue,
+[data-card-bg-mode="white"] .daily-title-blue {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+  background-color: #dbeafe !important;
+  border-bottom: 1.5px solid rgba(37, 99, 235, 0.24) !important;
 }
 
 .card-style-white .daily-title-orange,
@@ -1610,9 +1614,9 @@ button.todolist-cancel-btn span,
 }
 
 .card-style-white .daily-card-divider,
-.card-style-white .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose),
+.card-style-white .daily-card-title-section:not(.daily-title-green):not(.daily-title-blue):not(.daily-title-orange):not(.daily-title-rose),
 [data-card-bg-mode="white"] .daily-card-divider,
-[data-card-bg-mode="white"] .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose) {
+[data-card-bg-mode="white"] .daily-card-title-section:not(.daily-title-green):not(.daily-title-blue):not(.daily-title-orange):not(.daily-title-rose) {
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.08) !important;
 }
 
@@ -1894,11 +1898,11 @@ button.todolist-cancel-btn span,
   border-bottom: 1.5px solid rgba(52, 211, 153, 0.28) !important;
 }
 
-.card-style-dark .daily-title-yellow,
-[data-card-bg-mode="dark"] .daily-title-yellow {
-  background: linear-gradient(135deg, #713f12 0%, #854d0e 100%) !important;
-  background-color: #713f12 !important;
-  border-bottom: 1.5px solid rgba(250, 204, 21, 0.30) !important;
+.card-style-dark .daily-title-blue,
+[data-card-bg-mode="dark"] .daily-title-blue {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%) !important;
+  background-color: #1e3a8a !important;
+  border-bottom: 1.5px solid rgba(96, 165, 250, 0.30) !important;
 }
 
 .card-style-dark .daily-title-orange,
@@ -1999,9 +2003,9 @@ button.todolist-cancel-btn span,
 }
 
 .card-style-dark .daily-card-divider,
-.card-style-dark .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose),
+.card-style-dark .daily-card-title-section:not(.daily-title-green):not(.daily-title-blue):not(.daily-title-orange):not(.daily-title-rose),
 [data-card-bg-mode="dark"] .daily-card-divider,
-[data-card-bg-mode="dark"] .daily-card-title-section:not(.daily-title-green):not(.daily-title-yellow):not(.daily-title-orange):not(.daily-title-rose) {
+[data-card-bg-mode="dark"] .daily-card-title-section:not(.daily-title-green):not(.daily-title-blue):not(.daily-title-orange):not(.daily-title-rose) {
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.14) !important;
 }
 
@@ -2440,10 +2444,10 @@ button.todolist-cancel-btn span,
   border-bottom: 1.5px solid rgba(110, 231, 183, 0.34) !important;
 }
 
-[data-glass-bg="dark"].card-style-dark-glass .daily-title-yellow,
-[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-yellow {
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.38) 0%, rgba(202, 138, 4, 0.24) 100%) !important;
-  border-bottom: 1.5px solid rgba(253, 224, 71, 0.36) !important;
+[data-glass-bg="dark"].card-style-dark-glass .daily-title-blue,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .daily-title-blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.38) 0%, rgba(37, 99, 235, 0.24) 100%) !important;
+  border-bottom: 1.5px solid rgba(147, 197, 253, 0.36) !important;
 }
 
 [data-glass-bg="dark"].card-style-dark-glass .daily-title-orange,
@@ -2699,10 +2703,10 @@ button.todolist-cancel-btn span,
   border-bottom: 1.5px solid rgba(22, 163, 74, 0.26) !important;
 }
 
-[data-glass-bg="light"].card-style-dark-glass .daily-title-yellow,
-[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-yellow {
-  background: linear-gradient(135deg, rgba(253, 224, 71, 0.60) 0%, rgba(254, 240, 138, 0.48) 100%) !important;
-  border-bottom: 1.5px solid rgba(202, 138, 4, 0.28) !important;
+[data-glass-bg="light"].card-style-dark-glass .daily-title-blue,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .daily-title-blue {
+  background: linear-gradient(135deg, rgba(147, 197, 253, 0.60) 0%, rgba(191, 219, 254, 0.48) 100%) !important;
+  border-bottom: 1.5px solid rgba(37, 99, 235, 0.28) !important;
 }
 
 [data-glass-bg="light"].card-style-dark-glass .daily-title-orange,
@@ -2860,7 +2864,7 @@ button.todolist-cancel-btn span,
 [data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) h2,
 [data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) p,
 [data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) .word-color,
-[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) button:not(.bg-indigo-500):not(.bg-red-500):not(.GeekTabs-btn):not(.speedtest-start-button):not(.speedtest-start-btn):not(.speedtest-action-button):not(.calculator-equals-btn):not(.calc-mode-tab-active):not(.calc-rate-pill-active):not(.calc-swap-btn) {
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) button:not(.bg-indigo-500):not(.bg-red-500):not(.bookmark-cat-delete-btn):not(.GeekTabs-btn):not(.speedtest-start-button):not(.speedtest-start-btn):not(.speedtest-action-button):not(.calculator-equals-btn):not(.calc-mode-tab-active):not(.calc-rate-pill-active):not(.calc-swap-btn) {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
   opacity: 1 !important;
@@ -3441,6 +3445,13 @@ button.todolist-cancel-btn span,
   stroke: #ffffff !important;
 }
 
+.GeekTabs-card button.bookmark-cat-delete-btn,
+.GeekTabs-card button.bookmark-cat-delete-btn * {
+  color: #475569 !important;
+  -webkit-text-fill-color: #475569 !important;
+  stroke: #475569 !important;
+}
+
 .calculator-tab-card .calc-mode-tab-active,
 .calculator-tab-card .calc-mode-tab-active *,
 .weather-huawei-style.calculator-tab-card .calc-mode-tab-active,
@@ -3620,17 +3631,17 @@ input[type="number"].no-spinner {
   -webkit-backdrop-filter: none !important;
 }
 
-.weather-huawei-style .daily-title-yellow,
-.card-style-white .weather-huawei-style .daily-title-yellow,
-[data-card-bg-mode="white"] .weather-huawei-style .daily-title-yellow,
-.card-style-dark .weather-huawei-style .daily-title-yellow,
-[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-yellow,
-[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-yellow,
-[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-yellow,
-[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-yellow,
-[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-yellow {
-  background: linear-gradient(135deg, #facc15 0%, #eab308 100%) !important;
-  background-color: #eab308 !important;
+.weather-huawei-style .daily-title-blue,
+.card-style-white .weather-huawei-style .daily-title-blue,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-blue,
+.card-style-dark .weather-huawei-style .daily-title-blue,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-blue,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-blue,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-blue,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-blue,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style .daily-title-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  background-color: #2563eb !important;
   border-bottom: 0 !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -3668,61 +3679,61 @@ input[type="number"].no-spinner {
   -webkit-backdrop-filter: none !important;
 }
 
-/* Header titles & refresh controls: white on all 4 daily card headers (green/rose/yellow/orange) */
+/* Header titles & refresh controls: white on all 4 daily card headers (green/rose/blue/orange) */
 .weather-huawei-style .daily-title-green h2,
 .weather-huawei-style .daily-title-green button,
 .weather-huawei-style .daily-title-rose h2,
 .weather-huawei-style .daily-title-rose button,
-.weather-huawei-style .daily-title-yellow h2,
-.weather-huawei-style .daily-title-yellow button,
+.weather-huawei-style .daily-title-blue h2,
+.weather-huawei-style .daily-title-blue button,
 .weather-huawei-style .daily-title-orange h2,
 .weather-huawei-style .daily-title-orange button,
 .card-style-white .weather-huawei-style .daily-title-green h2,
 .card-style-white .weather-huawei-style .daily-title-green button,
 .card-style-white .weather-huawei-style .daily-title-rose h2,
 .card-style-white .weather-huawei-style .daily-title-rose button,
-.card-style-white .weather-huawei-style .daily-title-yellow h2,
-.card-style-white .weather-huawei-style .daily-title-yellow button,
+.card-style-white .weather-huawei-style .daily-title-blue h2,
+.card-style-white .weather-huawei-style .daily-title-blue button,
 .card-style-white .weather-huawei-style .daily-title-orange h2,
 .card-style-white .weather-huawei-style .daily-title-orange button,
 [data-card-bg-mode="white"] .weather-huawei-style .daily-title-green h2,
 [data-card-bg-mode="white"] .weather-huawei-style .daily-title-green button,
 [data-card-bg-mode="white"] .weather-huawei-style .daily-title-rose h2,
 [data-card-bg-mode="white"] .weather-huawei-style .daily-title-rose button,
-[data-card-bg-mode="white"] .weather-huawei-style .daily-title-yellow h2,
-[data-card-bg-mode="white"] .weather-huawei-style .daily-title-yellow button,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-blue h2,
+[data-card-bg-mode="white"] .weather-huawei-style .daily-title-blue button,
 [data-card-bg-mode="white"] .weather-huawei-style .daily-title-orange h2,
 [data-card-bg-mode="white"] .weather-huawei-style .daily-title-orange button,
 .card-style-dark .weather-huawei-style .daily-title-green h2,
 .card-style-dark .weather-huawei-style .daily-title-green button,
 .card-style-dark .weather-huawei-style .daily-title-rose h2,
 .card-style-dark .weather-huawei-style .daily-title-rose button,
-.card-style-dark .weather-huawei-style .daily-title-yellow h2,
-.card-style-dark .weather-huawei-style .daily-title-yellow button,
+.card-style-dark .weather-huawei-style .daily-title-blue h2,
+.card-style-dark .weather-huawei-style .daily-title-blue button,
 .card-style-dark .weather-huawei-style .daily-title-orange h2,
 .card-style-dark .weather-huawei-style .daily-title-orange button,
 [data-card-bg-mode="dark"] .weather-huawei-style .daily-title-green h2,
 [data-card-bg-mode="dark"] .weather-huawei-style .daily-title-green button,
 [data-card-bg-mode="dark"] .weather-huawei-style .daily-title-rose h2,
 [data-card-bg-mode="dark"] .weather-huawei-style .daily-title-rose button,
-[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-yellow h2,
-[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-yellow button,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-blue h2,
+[data-card-bg-mode="dark"] .weather-huawei-style .daily-title-blue button,
 [data-card-bg-mode="dark"] .weather-huawei-style .daily-title-orange h2,
 [data-card-bg-mode="dark"] .weather-huawei-style .daily-title-orange button,
 [data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-green h2,
 [data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-green button,
 [data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-rose h2,
 [data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-rose button,
-[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-yellow h2,
-[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-yellow button,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-blue h2,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-blue button,
 [data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-orange h2,
 [data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .daily-title-orange button,
 [data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-green h2,
 [data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-green button,
 [data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-rose h2,
 [data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-rose button,
-[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-yellow h2,
-[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-yellow button,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-blue h2,
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-blue button,
 [data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-orange h2,
 [data-glass-bg="light"].card-style-dark-glass .weather-huawei-style .daily-title-orange button {
   color: #ffffff !important;
@@ -3816,45 +3827,236 @@ input[type="number"].no-spinner {
   box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.36) !important;
 }
 
-/* Isolate top menu bar & To-Do / Notes left sidebars to eliminate compositor/backdrop hover flashes */
+/* Isolate top menu bar & To-Do / Notes / Settings left sidebars to eliminate compositor/backdrop hover flashes */
 .top-menu-bar,
 .todolist-tab-container > aside,
-.notes-tab-container > aside {
+.notes-tab-container > aside,
+.settings-tab-card > aside {
   isolation: isolate;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-.light.card-style-white .todolist-tab-container,
-.light[data-card-bg-mode="white"] .todolist-tab-container,
-.light.card-style-white .notes-tab-container,
-.light[data-card-bg-mode="white"] .notes-tab-container,
-.light.card-style-white .todolist-tab-container > aside,
-.light[data-card-bg-mode="white"] .todolist-tab-container > aside,
-.light.card-style-white .notes-tab-container > aside,
-.light[data-card-bg-mode="white"] .notes-tab-container > aside {
+/* LIGHT CARD STYLE (.card-style-white / [data-card-bg-mode="white"]):
+   To-Do, Notes, and Settings left sidebars remain strictly identical across ALL
+   background colors (Default, Light, Regular, Dark, Mix) and Wallpapers. */
+.card-style-white .todolist-tab-container,
+[data-card-bg-mode="white"] .todolist-tab-container,
+.card-style-white .notes-tab-container,
+[data-card-bg-mode="white"] .notes-tab-container,
+.card-style-white .settings-tab-card,
+[data-card-bg-mode="white"] .settings-tab-card,
+.card-style-white .todolist-tab-container > aside,
+[data-card-bg-mode="white"] .todolist-tab-container > aside,
+.card-style-white .notes-tab-container > aside,
+[data-card-bg-mode="white"] .notes-tab-container > aside,
+.card-style-white .settings-tab-card > aside,
+[data-card-bg-mode="white"] .settings-tab-card > aside {
   background: #f4f6fa !important;
   background-color: #f4f6fa !important;
+  background-image: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  color: #1e293b !important;
 }
 
-.dark.card-style-white .todolist-tab-container,
-.dark[data-card-bg-mode="white"] .todolist-tab-container,
-.dark.card-style-white .notes-tab-container,
-.dark[data-card-bg-mode="white"] .notes-tab-container,
-.dark.card-style-white .todolist-tab-container > aside,
-.dark[data-card-bg-mode="white"] .todolist-tab-container > aside,
-.dark.card-style-white .notes-tab-container > aside,
-.dark[data-card-bg-mode="white"] .notes-tab-container > aside {
-  background: #111622 !important;
-  background-color: #111622 !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+.card-style-white .todolist-tab-container > aside,
+[data-card-bg-mode="white"] .todolist-tab-container > aside,
+.card-style-white .notes-tab-container > aside,
+[data-card-bg-mode="white"] .notes-tab-container > aside,
+.card-style-white .settings-tab-card > aside,
+[data-card-bg-mode="white"] .settings-tab-card > aside,
+.card-style-white .settings-tab-card > aside .border-b,
+[data-card-bg-mode="white"] .settings-tab-card > aside .border-b,
+.card-style-white .settings-tab-card > aside .border-t,
+[data-card-bg-mode="white"] .settings-tab-card > aside .border-t,
+.card-style-white .notes-tab-container > aside .border-t,
+[data-card-bg-mode="white"] .notes-tab-container > aside .border-t {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-style-white .notes-tab-container > aside .border-b,
+[data-card-bg-mode="white"] .notes-tab-container > aside .border-b {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.card-style-white .todolist-tab-container > aside .opacity-70,
+[data-card-bg-mode="white"] .todolist-tab-container > aside .opacity-70,
+.card-style-white .notes-tab-container > aside .opacity-70,
+[data-card-bg-mode="white"] .notes-tab-container > aside .opacity-70,
+.card-style-white .settings-tab-card > aside .opacity-70,
+[data-card-bg-mode="white"] .settings-tab-card > aside .opacity-70 {
+  opacity: 0.95 !important;
+}
+
+.card-style-white .notes-tab-container > aside .text-neutral-400,
+[data-card-bg-mode="white"] .notes-tab-container > aside .text-neutral-400 {
+  color: #334155 !important;
+}
+
+.card-style-white .notes-tab-container > aside .text-neutral-400:hover,
+[data-card-bg-mode="white"] .notes-tab-container > aside .text-neutral-400:hover {
+  color: #ef4444 !important;
+}
+
+/* To-Do Sidebar (Light Card Mode) */
+.card-style-white .todolist-tab-container > aside .text-slate-700,
+[data-card-bg-mode="white"] .todolist-tab-container > aside .text-slate-700 {
+  color: #334155 !important;
+}
+
+.card-style-white .todolist-tab-container > aside button:not(.todolist-action-btn):not(.bg-\[\#5438dc\]\/15),
+[data-card-bg-mode="white"] .todolist-tab-container > aside button:not(.todolist-action-btn):not(.bg-\[\#5438dc\]\/15) {
+  color: #334155 !important;
+  border-color: transparent !important;
+}
+
+.card-style-white .todolist-tab-container > aside button:not(.todolist-action-btn):not(.bg-\[\#5438dc\]\/15):hover,
+[data-card-bg-mode="white"] .todolist-tab-container > aside button:not(.todolist-action-btn):not(.bg-\[\#5438dc\]\/15):hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #5438dc !important;
+}
+
+.card-style-white .todolist-tab-container > aside button.bg-\[\#5438dc\]\/15,
+[data-card-bg-mode="white"] .todolist-tab-container > aside button.bg-\[\#5438dc\]\/15 {
+  background-color: rgba(84, 56, 220, 0.15) !important;
+  color: #5438dc !important;
+  border-color: rgba(84, 56, 220, 0.3) !important;
+}
+
+.card-style-white .todolist-tab-container > aside span.rounded-full:not(.bg-\[\#5438dc\]),
+[data-card-bg-mode="white"] .todolist-tab-container > aside span.rounded-full:not(.bg-\[\#5438dc\]) {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #475569 !important;
+}
+
+.card-style-white .todolist-tab-container > aside > div:last-child,
+[data-card-bg-mode="white"] .todolist-tab-container > aside > div:last-child {
+  color: #0f172a !important;
+}
+
+/* Notes Sidebar (Light Card Mode) */
+.card-style-white .notes-tab-container > aside .text-slate-600,
+[data-card-bg-mode="white"] .notes-tab-container > aside .text-slate-600 {
+  color: #475569 !important;
+}
+
+.card-style-white .notes-tab-container > aside button.bg-black\/5,
+[data-card-bg-mode="white"] .notes-tab-container > aside button.bg-black\/5 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+  color: #475569 !important;
+}
+
+.card-style-white .notes-tab-container > aside button.bg-black\/5:hover,
+[data-card-bg-mode="white"] .notes-tab-container > aside button.bg-black\/5:hover {
+  background-color: rgba(79, 70, 229, 0.1) !important;
+  color: #4f46e5 !important;
+}
+
+.card-style-white .notes-tab-container > aside div[role="button"]:not(.bg-\[\#4f46e5\]\/15),
+[data-card-bg-mode="white"] .notes-tab-container > aside div[role="button"]:not(.bg-\[\#4f46e5\]\/15) {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: transparent !important;
+  color: #475569 !important;
+}
+
+.card-style-white .notes-tab-container > aside div[role="button"]:not(.bg-\[\#4f46e5\]\/15):hover,
+[data-card-bg-mode="white"] .notes-tab-container > aside div[role="button"]:not(.bg-\[\#4f46e5\]\/15):hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: #0f172a !important;
+}
+
+.card-style-white .notes-tab-container > aside div[role="button"].bg-\[\#4f46e5\]\/15,
+[data-card-bg-mode="white"] .notes-tab-container > aside div[role="button"].bg-\[\#4f46e5\]\/15,
+.card-style-white .notes-tab-container > aside div.group.bg-\[\#4f46e5\]\/15,
+[data-card-bg-mode="white"] .notes-tab-container > aside div.group.bg-\[\#4f46e5\]\/15 {
+  background-color: rgba(79, 70, 229, 0.15) !important;
+  border-color: rgba(79, 70, 229, 0.3) !important;
+  color: #4f46e5 !important;
+}
+
+.card-style-white .notes-tab-container > aside div.group:not([role="button"]):not(.bg-\[\#4f46e5\]\/15),
+[data-card-bg-mode="white"] .notes-tab-container > aside div.group:not([role="button"]):not(.bg-\[\#4f46e5\]\/15) {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #334155 !important;
+}
+
+.card-style-white .notes-tab-container > aside div.group:not([role="button"]):not(.bg-\[\#4f46e5\]\/15):hover,
+[data-card-bg-mode="white"] .notes-tab-container > aside div.group:not([role="button"]):not(.bg-\[\#4f46e5\]\/15):hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.card-style-white .notes-tab-container > aside form input,
+[data-card-bg-mode="white"] .notes-tab-container > aside form input {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+
+.card-style-white .notes-tab-container > aside > div:nth-child(3) input,
+[data-card-bg-mode="white"] .notes-tab-container > aside > div:nth-child(3) input {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+.card-style-white .notes-tab-container > aside input::placeholder,
+[data-card-bg-mode="white"] .notes-tab-container > aside input::placeholder {
+  color: #94a3b8 !important;
+  -webkit-text-fill-color: #94a3b8 !important;
+}
+
+.card-style-white .notes-tab-container > aside .text-slate-400,
+[data-card-bg-mode="white"] .notes-tab-container > aside .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.card-style-white .notes-tab-container > aside span.text-emerald-600,
+[data-card-bg-mode="white"] .notes-tab-container > aside span.text-emerald-600 {
+  color: #059669 !important;
+  -webkit-text-fill-color: #059669 !important;
+}
+
+.card-style-white .notes-tab-container > aside > div:last-child,
+[data-card-bg-mode="white"] .notes-tab-container > aside > div:last-child,
+.card-style-white .settings-tab-card > aside > div:last-child,
+[data-card-bg-mode="white"] .settings-tab-card > aside > div:last-child {
+  color: #64748b !important;
+}
+
+.card-style-white .notes-tab-container > aside span.bg-black\/5,
+[data-card-bg-mode="white"] .notes-tab-container > aside span.bg-black\/5,
+.card-style-white .settings-tab-card > aside span.bg-black\/5,
+[data-card-bg-mode="white"] .settings-tab-card > aside span.bg-black\/5 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #64748b !important;
+}
+
+/* Settings Sidebar (Light Card Mode) */
+.card-style-white .settings-tab-card > aside .text-slate-700,
+[data-card-bg-mode="white"] .settings-tab-card > aside .text-slate-700 {
+  color: #334155 !important;
+}
+
+.card-style-white .settings-tab-card > aside button:not(.settings-nav-active-btn),
+[data-card-bg-mode="white"] .settings-tab-card > aside button:not(.settings-nav-active-btn) {
+  color: #334155 !important;
+  background-color: transparent !important;
+}
+
+.card-style-white .settings-tab-card > aside button:not(.settings-nav-active-btn):hover,
+[data-card-bg-mode="white"] .settings-tab-card > aside button:not(.settings-nav-active-btn):hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #4f46e5 !important;
 }
 
 .light .notes-tab-container > aside .notes-item-datetime,
+.card-style-white .notes-tab-container > aside .notes-item-datetime,
+[data-card-bg-mode="white"] .notes-tab-container > aside .notes-item-datetime,
 [data-glass-bg="light"].card-style-dark-glass .notes-tab-container > aside .notes-item-datetime {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
@@ -3865,5 +4067,33 @@ input[type="number"].no-spinner {
 .photo-mode .daily-cards-humor-intro p,
 .photo-mode .daily-cards-humor-intro span {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.72) !important;
+}
+
+/* Weather widget outline icon accent color across Light, Dark & Glass modes */
+.weather-huawei-style .weather-icon-accent {
+  color: #5b4ce0 !important;
+  stroke: #5b4ce0 !important;
+}
+
+.card-style-dark .weather-huawei-style .weather-icon-accent,
+[data-card-bg-mode="dark"] .weather-huawei-style .weather-icon-accent,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .weather-icon-accent,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .weather-icon-accent {
+  color: #8b7cff !important;
+  stroke: #8b7cff !important;
+}
+
+/* Sunshine weather icon: bright yellow across Light, Dark & Glass modes */
+.weather-huawei-style .weather-icon-sun {
+  color: #f59e0b !important;
+  stroke: #f59e0b !important;
+}
+
+.card-style-dark .weather-huawei-style .weather-icon-sun,
+[data-card-bg-mode="dark"] .weather-huawei-style .weather-icon-sun,
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .weather-icon-sun,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .weather-icon-sun {
+  color: #facc15 !important;
+  stroke: #facc15 !important;
 }
 

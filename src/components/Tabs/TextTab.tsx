@@ -15,7 +15,7 @@ interface TextTabProps {
 
 const TEXT_T: Record<string, Record<string, string>> = {
   English: {
-    title: 'TEXT COLOR ENGINE',
+    title: 'Text Color Engine',
     subtitle: 'CUSTOM PAGE TEXT COLOR CONFIGURATION',
     panelHeader: 'Text Color Palette Presets',
     panelSub: 'select a text color to match your background or wallpaper',
@@ -53,7 +53,7 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleClock: '08:45'
   },
   Spanish: {
-    title: 'MOTOR DE COLOR DE TEXTO',
+    title: 'Motor de Color de Texto',
     subtitle: 'CONFIGURACIÓN DE COLOR DE TEXTO PERSONALIZADA',
     panelHeader: 'Ajustes de Paleta de Color de Texto',
     panelSub: 'selecciona un color de texto que coincida con tu fondo o fondo de pantalla',
@@ -72,7 +72,7 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleClock: '08:45'
   },
   French: {
-    title: 'MOTEUR DE COULEUR DU TEXTE',
+    title: 'Moteur de Couleur du Texte',
     subtitle: 'CONFIGURATION PERSONNALISÉE DU TEXTE',
     panelHeader: 'Palettes de Couleurs de Texte',
     panelSub: 'sélectionnez une couleur de texte adaptée à votre fond ou fond d\'écran',
@@ -91,7 +91,7 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleClock: '08:45'
   },
   German: {
-    title: 'TEXTFARBE-ENGINE',
+    title: 'Textfarbe-Engine',
     subtitle: 'BENUTZERDEFINIERTE TEXTFARBKONFIGURATION',
     panelHeader: 'Textfarben-Voreinstellungen',
     panelSub: 'Wählen Sie eine Textfarbe passend zu Ihrem Hintergrund oder Wallpaper',
@@ -148,7 +148,7 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleClock: '08:45'
   },
   Italian: {
-    title: 'MOTORE COLORE TESTO',
+    title: 'Motore Colore Testo',
     subtitle: 'CONFIGURAZIONE COLORE DEL TESTO',
     panelHeader: 'Tavolozze di Colori del Testo',
     panelSub: 'seleziona un colore del testo per il tuo sfondo o wallpaper',
@@ -167,7 +167,7 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleClock: '08:45'
   },
   Russian: {
-    title: 'ДВИЖОК ЦВЕТА ТЕКСТА',
+    title: 'Движок цвета текста',
     subtitle: 'НАСТРОЙКА ЦВЕТА ТЕКСТА СТРАНИЦЫ',
     panelHeader: 'Пресеты цвета текста',
     panelSub: 'выберите цвет текста для идеального сочетания с фоном или обоями',
@@ -186,7 +186,7 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleClock: '08:45'
   },
   Luxembourgish: {
-    title: 'TEXTFAARF-ENGINE',
+    title: 'Textfaarf-Engine',
     subtitle: 'Eegen Textfaarf Astellungen',
     panelHeader: 'Textfaarf-Voreinstellungen',
     panelSub: 'Wielt eng Textfaarf passend zu Ärem Hannergrond oder Wallpaper',
@@ -202,6 +202,120 @@ const TEXT_T: Record<string, Record<string, string>> = {
     customColorApply: 'Uwenden',
     sampleGreeting: 'Gudde Moien, GeekTabs',
     sampleDate: 'Donneschdeg, 10. September',
+    sampleClock: '08:45'
+  },
+  Dutch: {
+    title: 'Tekstkleur-Engine',
+    subtitle: 'AANGEPASTE TEKSTKLEURCONFIGURATIE',
+    panelHeader: 'Tekstkleurpaletten',
+    panelSub: 'selecteer een tekstkleur die past bij je achtergrond',
+    resetButton: 'Tekstkleur herstellen naar standaard',
+    groupDefault: 'standaard (auto)',
+    groupLight: 'lichte tinten',
+    groupRegular: 'normale tinten',
+    groupDark: 'donkere tinten',
+    groupVibrant: 'levendig & contrast',
+    previewTitle: '# Live Paginavoorbeeld',
+    previewSub: 'Visuele test op huidige achtergrond',
+    customColorTitle: 'Aangepaste Hex-kleur',
+    customColorApply: 'Toepassen',
+    sampleGreeting: 'Goedemorgen, GeekTabs',
+    sampleDate: 'Donderdag 10 september',
+    sampleClock: '08:45'
+  },
+  Swedish: {
+    title: 'Textfärgsmotor',
+    subtitle: 'ANPASSAD TEXTFÄRGSKONFIGURATION',
+    panelHeader: 'Textfärgspaletter',
+    panelSub: 'välj en textfärg som passar din bakgrund',
+    resetButton: 'Återställ textfärg till standard',
+    groupDefault: 'standard (auto)',
+    groupLight: 'ljusa toner',
+    groupRegular: 'normala toner',
+    groupDark: 'mörka toner',
+    groupVibrant: 'starka & kontrast',
+    previewTitle: '# Liveförhandsvisning',
+    previewSub: 'Visuellt test på aktuell bakgrund',
+    customColorTitle: 'Anpassad Hex-färg',
+    customColorApply: 'Tillämpa',
+    sampleGreeting: 'God morgon, GeekTabs',
+    sampleDate: 'Torsdag 10 september',
+    sampleClock: '08:45'
+  },
+  Finnish: {
+    title: 'Tekstin Värimoottori',
+    subtitle: 'MUKAUTETTU TEKSTIVÄRIN MÄÄRITYS',
+    panelHeader: 'Tekstin Väripaletit',
+    panelSub: 'valitse taustakuvaasi sopiva tekstin väri',
+    resetButton: 'Palauta tekstin oletusväri',
+    groupDefault: 'oletus (auto)',
+    groupLight: 'vaaleat sävyt',
+    groupRegular: 'tavalliset sävyt',
+    groupDark: 'tummat sävyt',
+    groupVibrant: 'kirkkaat & kontrasti',
+    previewTitle: '# Reaaliaikainen Esikatselu',
+    previewSub: 'Visuaalinen testi nykyisellä taustalla',
+    customColorTitle: 'Mukautettu Hex-väri',
+    customColorApply: 'Käytä väriä',
+    sampleGreeting: 'Hyvää huomenta, GeekTabs',
+    sampleDate: 'Torstai 10. syyskuuta',
+    sampleClock: '08:45'
+  },
+  Hindi: {
+    title: 'टेक्स्ट कलर इंजन',
+    subtitle: 'कस्टम पेज टेक्स्ट रंग कॉन्फ़िगरेशन',
+    panelHeader: 'टेक्स्ट कलर पैलेट प्रीसेट',
+    panelSub: 'अपनी पृष्ठभूमि के अनुसार टेक्स्ट रंग चुनें',
+    resetButton: 'टेक्स्ट रंग डिफ़ॉल्ट पर रीसेट करें',
+    groupDefault: 'डिफ़ॉल्ट (ऑटो)',
+    groupLight: 'हल्के शेड्स',
+    groupRegular: 'सामान्य शेड्स',
+    groupDark: 'गहरे शेड्स',
+    groupVibrant: 'चमकीला और कंट्रास्ट',
+    previewTitle: '# लाइव पेज पूर्वावलोकन',
+    previewSub: 'वर्तमान पृष्ठभूमि पर विज़ुअल परीक्षण',
+    customColorTitle: 'कस्टम Hex रंग',
+    customColorApply: 'लागू करें',
+    sampleGreeting: 'सुप्रभात, GeekTabs',
+    sampleDate: 'गुरुवार, 10 सितंबर',
+    sampleClock: '08:45'
+  },
+  Norwegian: {
+    title: 'Tekstfargemotor',
+    subtitle: 'TILPASSET TEKSTFARGEKONFIGURASJON',
+    panelHeader: 'Tekstfargepaletter',
+    panelSub: 'velg en tekstfarge som passer bakgrunnen din',
+    resetButton: 'Tilbakestill tekstfarge til standard',
+    groupDefault: 'standard (auto)',
+    groupLight: 'lyse toner',
+    groupRegular: 'vanlige toner',
+    groupDark: 'mørke toner',
+    groupVibrant: 'sterke & kontrast',
+    previewTitle: '# Direkte Forhåndsvisning',
+    previewSub: 'Visuell test på nåværende bakgrunn',
+    customColorTitle: 'Egendefinert Hex-farge',
+    customColorApply: 'Bruk farge',
+    sampleGreeting: 'God morgen, GeekTabs',
+    sampleDate: 'Torsdag 10. september',
+    sampleClock: '08:45'
+  },
+  Thai: {
+    title: 'เครื่องมือสีข้อความ',
+    subtitle: 'การตั้งค่าสีข้อความหน้าเว็บแบบกำหนดเอง',
+    panelHeader: 'ชุดสีข้อความสำเร็จรูป',
+    panelSub: 'เลือกสีข้อความให้เข้ากับพื้นหลังหรือวอลเปเปอร์ของคุณ',
+    resetButton: 'รีเซ็ตสีข้อความเป็นค่าเริ่มต้น',
+    groupDefault: 'ค่าเริ่มต้น (อัตโนมัติ)',
+    groupLight: 'โทนอ่อน',
+    groupRegular: 'โทนทั่วไป',
+    groupDark: 'โทนเข้ม',
+    groupVibrant: 'สีสดและคมชัด',
+    previewTitle: '# ตัวอย่างหน้าเว็บแบบสด',
+    previewSub: 'ทดสอบการมองเห็นบนพื้นหลังปัจจุบัน',
+    customColorTitle: 'สี Hex กำหนดเอง',
+    customColorApply: 'ใช้สี',
+    sampleGreeting: 'สวัสดีตอนเช้า, GeekTabs',
+    sampleDate: 'วันพฤหัสบดีที่ 10 กันยายน',
     sampleClock: '08:45'
   }
 };
@@ -305,23 +419,35 @@ export default function TextTab({
     if (isHex) {
       return { backgroundColor: currentTheme };
     }
+    if (currentTheme === 'default-earth') {
+      return {
+        backgroundColor: '#063354',
+        backgroundImage: `url('/assets/aistudio/Gemini_Generated_Image_earth_8ba148bc.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
+    }
+    if (currentTheme === 'pastel-waves') {
+      return {
+        backgroundColor: '#b8c8ec',
+        backgroundImage: `url('/assets/aistudio/Gemini_Generated_Image_mix_b913d992.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
+    }
+    if (currentTheme === 'mix-neonpurple') {
+      return {
+        backgroundColor: '#eef4ff',
+        backgroundImage: `url('/assets/aistudio/Gemini_Generated_Image_5_9379e872.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
+    }
     if (isGradient) {
       return { background: GRADIENTS_MAP[currentTheme] };
     }
     if (isSolid) {
       return { backgroundColor: SOLIDS_MAP[currentTheme] };
-    }
-    if (currentTheme === 'pastel-waves') {
-      return {
-        backgroundColor: '#d8f0fa',
-        backgroundImage: `radial-gradient(ellipse at 15% 15%, rgba(142, 227, 239, 0.75) 0%, transparent 60%),
-                          radial-gradient(ellipse at 85% 15%, rgba(255, 198, 255, 0.75) 0%, transparent 60%),
-                          radial-gradient(ellipse at 25% 85%, rgba(216, 180, 254, 0.75) 0%, transparent 60%),
-                          radial-gradient(ellipse at 80% 85%, rgba(167, 243, 208, 0.7) 0%, transparent 55%),
-                          url('/wallpapers/pastel-soothing-bg.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      };
     }
     if (currentTheme === 'light-grey' || currentTheme === 'light-slate') {
       return { backgroundColor: '#f8fafc' };
@@ -359,6 +485,12 @@ export default function TextTab({
     Italian: 'it-IT',
     Russian: 'ru-RU',
     Luxembourgish: 'lb-LU',
+    Dutch: 'nl-NL',
+    Swedish: 'sv-SE',
+    Finnish: 'fi-FI',
+    Hindi: 'hi-IN',
+    Norwegian: 'nb-NO',
+    Thai: 'th-TH',
   };
 
   const locale = languageToLocale[language] || 'en-US';
@@ -404,11 +536,11 @@ export default function TextTab({
               <button
                 key={p.id}
                 onClick={() => setTextColor(p.id)}
-                className="group w-full flex flex-col items-center justify-center transition-all duration-300 relative focus:outline-none cursor-pointer py-1"
+                className="group w-full min-h-[44px] min-w-[44px] lg:min-h-0 lg:min-w-0 flex flex-col items-center justify-center transition-all duration-300 relative focus:outline-none cursor-pointer py-1"
                 title={p.name}
               >
                 <div
-                  className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
+                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
                     isSelected
                       ? 'border-black scale-110 shadow-lg shadow-black/15 ring-2 ring-violet-500'
                       : 'border-black/15 opacity-85 hover:opacity-100 hover:scale-105 shadow-inner'
@@ -456,9 +588,9 @@ export default function TextTab({
       animate={{ opacity: 1, y: 0 }}
       className="max-w-4xl mx-auto"
     >
-      <div className="mb-6 sm:mb-10 text-center">
-        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-2 italic">{tData.title}</h2>
-        <p className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">{tData.subtitle}</p>
+      <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
+        <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">{tData.title}</h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">{tData.subtitle}</p>
       </div>
 
       {/* Main Container Card - Always clean white inside Settings right pane */}
@@ -483,7 +615,7 @@ export default function TextTab({
           </div>
           <button
             onClick={() => setTextColor('default')}
-            className="text-tab-reset-btn flex items-center gap-2 px-4 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] bg-neutral-100 hover:bg-neutral-200 text-black border-black/5"
+            className="text-tab-reset-btn flex items-center gap-2 px-4 py-2 min-h-[42px] lg:min-h-0 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] bg-neutral-100 hover:bg-neutral-200 text-black border-black/5"
           >
             <RotateCcw size={14} />
             {tData.resetButton}
@@ -569,8 +701,8 @@ export default function TextTab({
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 sm:gap-3 w-full max-w-sm pt-0.5">
-            <div className="text-tab-input-box flex items-center gap-2 border px-3 py-2 rounded-xl shadow-inner flex-1 min-w-0 transition-colors bg-neutral-100 hover:bg-neutral-200/70 border-black/10">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full max-w-sm pt-0.5">
+            <div className="text-tab-input-box flex items-center gap-2 border px-3 py-2 min-h-[44px] lg:min-h-0 rounded-xl shadow-inner flex-1 min-w-0 transition-colors bg-neutral-100 hover:bg-neutral-200/70 border-black/10">
               <input
                 type="color"
                 value={customHex.startsWith('#') ? customHex : '#38bdf8'}
@@ -586,7 +718,7 @@ export default function TextTab({
                 value={customHex}
                 onChange={(e) => setCustomHex(e.target.value)}
                 placeholder="#38bdf8"
-                className="w-full text-xs sm:text-sm font-mono font-bold bg-transparent outline-none uppercase tracking-wider text-slate-800"
+                className="w-full text-base sm:text-sm font-mono font-bold bg-transparent outline-none uppercase tracking-wider text-slate-800"
               />
             </div>
             <button
@@ -597,7 +729,7 @@ export default function TextTab({
                 }
               }}
               style={{ color: '#ffffff' }}
-              className="custom-hex-apply-btn px-5 sm:px-6 py-2.5 bg-violet-600 hover:bg-violet-500 active:scale-95 text-white !text-white rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5"
+              className="custom-hex-apply-btn px-5 sm:px-6 py-2.5 min-h-[44px] lg:min-h-0 bg-violet-600 hover:bg-violet-500 active:scale-95 text-white !text-white rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5"
             >
               <Check size={14} className="shrink-0 text-white !text-white custom-hex-btn-icon" style={{ color: '#ffffff', stroke: '#ffffff' }} />
               <span className="text-white !text-white font-bold custom-hex-btn-text" style={{ color: '#ffffff' }}>{tData.customColorApply}</span>

@@ -284,6 +284,162 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catCreation: "Kreatives",
     catHoliday: "Feiertage",
     catAnimal: "Déieren"
+  },
+  Dutch: {
+    title: "Aangepaste Bibliotheek",
+    subtitle: "Je persoonlijke achtergrondengalerij",
+    uploadImage: "Bestand uploaden",
+    addUrl: "Via URL toevoegen",
+    enterUrl: "Afbeeldings-URL invoeren",
+    urlPlaceholder: "https://images.unsplash.com/...",
+    categoryEmpty: "Categorie is leeg",
+    saveWallpaper: "Achtergrond opslaan",
+    chooseCategory: "Kies een categorie",
+    categoryName: "Categorienaam",
+    cancel: "Annuleren",
+    save: "Opslaan",
+    deleteTitle: "Achtergrond verwijderen",
+    deleteMsg: "Weet je zeker dat je deze achtergrond wilt verwijderen? Dit kan niet ongedaan worden gemaakt.",
+    catAll: "Alles",
+    catMyUploads: "Mijn uploads",
+    catFavorites: "Favorieten",
+    catNature: "Natuur",
+    catAbstract: "Abstract",
+    catScience: "Wetenschap",
+    catArchitecture: "Architectuur",
+    catCreation: "Creatie",
+    catHoliday: "Vakantie",
+    catAnimal: "Dieren"
+  },
+  Swedish: {
+    title: "Anpassat Bibliotek",
+    subtitle: "Ditt personliga bakgrundsgalleri",
+    uploadImage: "Ladda upp fil",
+    addUrl: "Lägg till via URL",
+    enterUrl: "Ange bild-URL",
+    urlPlaceholder: "https://images.unsplash.com/...",
+    categoryEmpty: "Kategorin är tom",
+    saveWallpaper: "Spara bakgrund",
+    chooseCategory: "Välj en kategori",
+    categoryName: "Kategorinamn",
+    cancel: "Avbryt",
+    save: "Spara",
+    deleteTitle: "Ta bort bakgrund",
+    deleteMsg: "Är du säker på att du vill ta bort denna bakgrund? Detta kan inte ångras.",
+    catAll: "Alla",
+    catMyUploads: "Mina uppladdningar",
+    catFavorites: "Favoriter",
+    catNature: "Natur",
+    catAbstract: "Abstrakt",
+    catScience: "Vetenskap",
+    catArchitecture: "Arkitektur",
+    catCreation: "Skapande",
+    catHoliday: "Högtider",
+    catAnimal: "Djur"
+  },
+  Finnish: {
+    title: "Oma Kirjasto",
+    subtitle: "Henkilökohtainen taustakuvagalleria",
+    uploadImage: "Lataa tiedosto",
+    addUrl: "Lisää URL-osoitteella",
+    enterUrl: "Syötä kuvan URL",
+    urlPlaceholder: "https://images.unsplash.com/...",
+    categoryEmpty: "Kategoria on tyhjä",
+    saveWallpaper: "Tallenna taustakuva",
+    chooseCategory: "Valitse kategoria",
+    categoryName: "Kategorian nimi",
+    cancel: "Peruuta",
+    save: "Tallenna",
+    deleteTitle: "Poista taustakuva",
+    deleteMsg: "Haluatko varmasti poistaa tämän taustakuvan? Tätä toimintoa ei voi perua.",
+    catAll: "Kaikki",
+    catMyUploads: "Omat lataukset",
+    catFavorites: "Suosikit",
+    catNature: "Luonto",
+    catAbstract: "Abstrakti",
+    catScience: "Tiede",
+    catArchitecture: "Arkkitehtuuri",
+    catCreation: "Luovuus",
+    catHoliday: "Juhlapyhät",
+    catAnimal: "Eläimet"
+  },
+  Hindi: {
+    title: "कस्टम लाइब्रेरी",
+    subtitle: "आपकी व्यक्तिगत वॉलपेपर गैलरी",
+    uploadImage: "फ़ाइल अपलोड करें",
+    addUrl: "URL से जोड़ें",
+    enterUrl: "छवि URL दर्ज करें",
+    urlPlaceholder: "https://images.unsplash.com/...",
+    categoryEmpty: "श्रेणी खाली है",
+    saveWallpaper: "वॉलपेपर सहेजें",
+    chooseCategory: "एक श्रेणी चुनें",
+    categoryName: "श्रेणी का नाम",
+    cancel: "रद्द करें",
+    save: "सहेजें",
+    deleteTitle: "वॉलपेपर हटाएं",
+    deleteMsg: "क्या आप वाकई इस वॉलपेपर को हटाना चाहते हैं? इसे पूर्ववत नहीं किया जा सकता।",
+    catAll: "सभी",
+    catMyUploads: "मेरे अपलोड",
+    catFavorites: "पसंदीदा",
+    catNature: "प्रकृति",
+    catAbstract: "अमूर्त",
+    catScience: "विज्ञान",
+    catArchitecture: "वास्तुकला",
+    catCreation: "रचना",
+    catHoliday: "अवकाश",
+    catAnimal: "पशु"
+  },
+  Norwegian: {
+    title: "Egendefinert Bibliotek",
+    subtitle: "Ditt personlige bakgrunnsgalleri",
+    uploadImage: "Last opp fil",
+    addUrl: "Legg til via URL",
+    enterUrl: "Skriv inn bilde-URL",
+    urlPlaceholder: "https://images.unsplash.com/...",
+    categoryEmpty: "Kategorien er tom",
+    saveWallpaper: "Lagre bakgrunn",
+    chooseCategory: "Velg en kategori",
+    categoryName: "Kategorinavn",
+    cancel: "Avbryt",
+    save: "Lagre",
+    deleteTitle: "Slett bakgrunn",
+    deleteMsg: "Er du sikker på at du vil slette denne bakgrunnen? Dette kan ikke angres.",
+    catAll: "Alle",
+    catMyUploads: "Mine opplastinger",
+    catFavorites: "Favoritter",
+    catNature: "Natur",
+    catAbstract: "Abstrakt",
+    catScience: "Vitenskap",
+    catArchitecture: "Arkitektur",
+    catCreation: "Kreativt",
+    catHoliday: "Høytider",
+    catAnimal: "Dyr"
+  },
+  Thai: {
+    title: "คลังวอลเปเปอร์",
+    subtitle: "แกลเลอรีวอลเปเปอร์ส่วนตัวของคุณ",
+    uploadImage: "อัปโหลดไฟล์",
+    addUrl: "เพิ่มผ่าน URL",
+    enterUrl: "ป้อน URL รูปภาพ",
+    urlPlaceholder: "https://images.unsplash.com/...",
+    categoryEmpty: "หมวดหมู่นี้ว่างเปล่า",
+    saveWallpaper: "บันทึกวอลเปเปอร์",
+    chooseCategory: "เลือกหมวดหมู่",
+    categoryName: "ชื่อหมวดหมู่",
+    cancel: "ยกเลิก",
+    save: "บันทึก",
+    deleteTitle: "ลบวอลเปเปอร์",
+    deleteMsg: "คุณแน่ใจหรือไม่ว่าต้องการลบวอลเปเปอร์นี้? การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    catAll: "ทั้งหมด",
+    catMyUploads: "อัปโหลดของฉัน",
+    catFavorites: "รายการโปรด",
+    catNature: "ธรรมชาติ",
+    catAbstract: "นามธรรม",
+    catScience: "วิทยาศาสตร์",
+    catArchitecture: "สถาปัตยกรรม",
+    catCreation: "สร้างสรรค์",
+    catHoliday: "วันหยุด",
+    catAnimal: "สัตว์"
   }
 };
 
@@ -500,9 +656,11 @@ export default function WallpapersTab({
       buttons.forEach((btn) => {
         btn.style.width = 'auto';
       });
-      const maxWidth = Math.ceil(
+      const measuredMax = Math.ceil(
         Math.max(...buttons.map((btn) => btn.getBoundingClientRect().width))
       );
+      const containerWidth = buttons[0]?.parentElement?.clientWidth || measuredMax;
+      const maxWidth = Math.min(measuredMax, containerWidth);
       if (maxWidth > 0) {
         buttons.forEach((btn) => {
           btn.style.width = `${maxWidth}px`;
@@ -545,7 +703,7 @@ export default function WallpapersTab({
             }}
             onClick={() => setActiveCategory(cat)}
             style={uniformCategoryWidth ? { width: `${uniformCategoryWidth}px` } : undefined}
-            className={`max-w-full px-3 sm:px-4 h-[34px] sm:h-[38px] md:h-[40px] flex items-center justify-center rounded-full text-[10px] sm:text-[10.5px] md:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer select-none shrink-0 ${
+            className={`max-w-full px-3.5 sm:px-4 min-h-[40px] lg:min-h-0 h-[40px] flex items-center justify-center rounded-full text-[11px] sm:text-[10.5px] md:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer select-none shrink-0 ${
               activeCategory === cat
                 ? 'bg-indigo-500 text-white wallpaper-card-badge shadow-lg shadow-indigo-500/20'
                 : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-black/5'
@@ -561,18 +719,18 @@ export default function WallpapersTab({
 
       {/* Line 1: Upload File & Add via URL */}
       <div className="space-y-4 sm:space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
           {/* Upload from Computer/Phone Card */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => fileInputRef.current?.click()}
-            className="wallpaper-upload-card wallpaper-upload-file-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs"
+            className="wallpaper-upload-card wallpaper-upload-file-card aspect-[4/3] sm:aspect-[16/10] lg:aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2 sm:gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs"
           >
             <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-90 duration-300 transition-all bg-indigo-50 text-indigo-600 border border-indigo-200/80 shadow-xs">
               <Plus className="wallpaper-upload-icon" size={20} />
             </div>
-            <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600">
+            <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600 px-2 text-center">
               {tData.uploadImage}
             </span>
             <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept="image/*" className="hidden" />
@@ -583,20 +741,20 @@ export default function WallpapersTab({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={openUrlModal}
-            className="wallpaper-upload-card wallpaper-upload-url-card aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2.5 transition-all group cursor-pointer border-purple-400/70 bg-white hover:border-purple-600 hover:bg-purple-50/80 shadow-xs"
+            className="wallpaper-upload-card wallpaper-upload-url-card aspect-[4/3] sm:aspect-[16/10] lg:aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2 sm:gap-2.5 transition-all group cursor-pointer border-purple-400/70 bg-white hover:border-purple-600 hover:bg-purple-50/80 shadow-xs"
           >
             <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 duration-300 transition-all bg-purple-50 text-purple-600 border border-purple-200/80 shadow-xs">
               <Link className="wallpaper-upload-icon" size={18} />
             </div>
-            <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-purple-600">
+            <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-purple-600 px-2 text-center">
               {tData.addUrl}
             </span>
           </motion.button>
         </div>
 
-        {/* Line 2+: Wallpapers List (4 per line) */}
+        {/* Line 2+: Wallpapers List (4 per line on desktop, 2 on tablet, 1 on phone) */}
         {filteredWallpapers.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             <AnimatePresence mode="popLayout">
               {filteredWallpapers.map((w) => {
                 const isActive = currentTheme === w.url;
@@ -611,7 +769,7 @@ export default function WallpapersTab({
                   >
                     <button
                       onClick={() => setTheme(w.url)}
-                      className={`w-full aspect-video relative block rounded-2xl overflow-hidden border-2 transition-all p-0 focus:outline-none cursor-pointer ${
+                      className={`w-full aspect-[16/10] sm:aspect-[16/10] lg:aspect-video relative block rounded-2xl overflow-hidden border-2 transition-all p-0 focus:outline-none cursor-pointer ${
                         isActive 
                           ? 'border-indigo-500 ring-4 ring-indigo-500/20 shadow-xl' 
                           : 'border-transparent shadow-md hover:shadow-lg'
@@ -650,7 +808,7 @@ export default function WallpapersTab({
                         e.stopPropagation();
                         setConfirmDeleteWallpaper(w.id);
                       }}
-                      className="wallpaper-card-badge absolute top-3 right-3 w-9 h-9 bg-red-500/90 hover:bg-red-600 text-white rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-xl z-10 cursor-pointer"
+                      className="wallpaper-card-badge absolute top-3 right-3 w-10 h-10 lg:w-9 lg:h-9 bg-red-500/90 hover:bg-red-600 text-white rounded-xl flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all shadow-xl z-10 cursor-pointer"
                       title={tData.deleteTitle}
                       style={{ color: '#ffffff' }}
                     >
@@ -698,7 +856,7 @@ export default function WallpapersTab({
                     value={urlInput}
                     onChange={(e) => setUrlInput(e.target.value)}
                     placeholder={tData.urlPlaceholder}
-                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-mono shadow-inner"
+                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-xs font-mono shadow-inner"
                   />
                 </div>
               ) : (
@@ -718,7 +876,7 @@ export default function WallpapersTab({
                   <select
                     value={uploadCategory}
                     onChange={(e) => setUploadCategory(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer pr-10 text-xs font-semibold shadow-inner"
+                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer pr-10 text-base sm:text-xs font-semibold shadow-inner"
                   >
                     {categories
                       .filter((c) => c !== 'All' && c !== 'My Uploads')
@@ -741,13 +899,13 @@ export default function WallpapersTab({
                 <button
                   type="button"
                   onClick={() => setShowUploadModal(false)}
-                  className="flex-1 px-4 py-3 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 text-slate-700 dark:text-white rounded-2xl transition-all font-bold cursor-pointer"
+                  className="flex-1 px-4 py-3 min-h-[44px] lg:min-h-0 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 text-slate-700 dark:text-white rounded-2xl transition-all font-bold cursor-pointer"
                 >
                   {tData.cancel}
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-2xl font-bold shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-all cursor-pointer"
+                  className="flex-1 px-4 py-3 min-h-[44px] lg:min-h-0 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-2xl font-bold shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-all cursor-pointer"
                 >
                   {tData.save}
                 </button>

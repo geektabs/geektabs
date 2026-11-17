@@ -15,17 +15,25 @@ interface EventItem {
 const COUNTRIES = [
   { id: 'AUS', name: 'Australia', timezone: 'Australia/Sydney' },
   { id: 'CHN', name: 'China', timezone: 'Asia/Shanghai' },
+  { id: 'FIN', name: 'Finland', timezone: 'Europe/Helsinki' },
   { id: 'FRA', name: 'France', timezone: 'Europe/Paris' },
+  { id: 'DEU', name: 'Germany', timezone: 'Europe/Berlin' },
+  { id: 'UK', name: 'Great Britain', timezone: 'Europe/London' },
+  { id: 'IND', name: 'India', timezone: 'Asia/Kolkata' },
   { id: 'ITA', name: 'Italy', timezone: 'Europe/Rome' },
   { id: 'JPN', name: 'Japan', timezone: 'Asia/Tokyo' },
   { id: 'KOR', name: 'Korea', timezone: 'Asia/Seoul' },
   { id: 'LUX', name: 'Luxembourg', timezone: 'Europe/Luxembourg' },
+  { id: 'MEX', name: 'Mexico', timezone: 'America/Mexico_City' },
+  { id: 'NLD', name: 'Netherlands', timezone: 'Europe/Amsterdam' },
   { id: 'NZL', name: 'New Zealand', timezone: 'Pacific/Auckland' },
+  { id: 'NOR', name: 'Norway', timezone: 'Europe/Oslo' },
   { id: 'RUS', name: 'Russia', timezone: 'Europe/Moscow' },
   { id: 'SGP', name: 'Singapore', timezone: 'Asia/Singapore' },
   { id: 'ESP', name: 'Spain', timezone: 'Europe/Madrid' },
+  { id: 'SWE', name: 'Sweden', timezone: 'Europe/Stockholm' },
   { id: 'CHE', name: 'Switzerland', timezone: 'Europe/Zurich' },
-  { id: 'UK', name: 'United Kingdom', timezone: 'Europe/London' },
+  { id: 'THA', name: 'Thailand', timezone: 'Asia/Bangkok' },
   { id: 'USA', name: 'United States', timezone: 'America/New_York' },
 ];
 
@@ -172,6 +180,68 @@ const NZL_MATARIKI: Record<number, string> = {
   2026: '07-10',
   2027: '06-25',
   2028: '07-14',
+};
+
+const IND_LUNAR_HOLIDAYS: Record<number, Record<string, string>> = {
+  2025: {
+    '02-26': 'Maha Shivaratri',
+    '03-14': 'Holi',
+    '03-31': 'Eid al-Fitr',
+    '08-16': 'Janmashtami',
+    '10-02': 'Dussehra',
+    '10-20': 'Diwali',
+    '11-05': 'Guru Nanak Jayanti',
+  },
+  2026: {
+    '02-15': 'Maha Shivaratri',
+    '03-04': 'Holi',
+    '03-21': 'Eid al-Fitr',
+    '09-04': 'Janmashtami',
+    '10-20': 'Dussehra',
+    '11-08': 'Diwali',
+    '11-24': 'Guru Nanak Jayanti',
+  },
+  2027: {
+    '03-06': 'Maha Shivaratri',
+    '03-22': 'Holi',
+    '03-10': 'Eid al-Fitr',
+    '08-25': 'Janmashtami',
+    '10-09': 'Dussehra',
+    '10-29': 'Diwali',
+    '11-14': 'Guru Nanak Jayanti',
+  },
+  2028: {
+    '02-23': 'Maha Shivaratri',
+    '03-11': 'Holi',
+    '02-27': 'Eid al-Fitr',
+    '08-13': 'Janmashtami',
+    '09-28': 'Dussehra',
+    '10-17': 'Diwali',
+    '11-02': 'Guru Nanak Jayanti',
+  },
+};
+
+const THA_LUNAR_HOLIDAYS: Record<number, Record<string, string>> = {
+  2025: {
+    '02-12': 'Makha Bucha Day',
+    '05-11': 'Visakha Bucha Day',
+    '07-10': 'Asalha Bucha Day',
+  },
+  2026: {
+    '03-03': 'Makha Bucha Day',
+    '05-31': 'Visakha Bucha Day',
+    '07-29': 'Asalha Bucha Day',
+  },
+  2027: {
+    '02-21': 'Makha Bucha Day',
+    '05-20': 'Visakha Bucha Day',
+    '07-18': 'Asalha Bucha Day',
+  },
+  2028: {
+    '02-10': 'Makha Bucha Day',
+    '05-08': 'Visakha Bucha Day',
+    '07-06': 'Asalha Bucha Day',
+  },
 };
 
 const getCountryHolidaysForYear = (countryId: string, year: number): Record<string, string> => {
@@ -412,6 +482,131 @@ const getCountryHolidaysForYear = (countryId: string, year: number): Record<stri
       setHol('11-04', 'Unity Day');
       break;
     }
+    case 'MEX': {
+      setHol('01-01', "New Year's Day");
+      setHol(nthWeekdayOfMonth(year, 2, 1, 1), 'Constitution Day');
+      setHol(nthWeekdayOfMonth(year, 3, 1, 3), "Benito Juárez's Birthday");
+      setHol('05-01', 'Labour Day');
+      setHol('09-16', 'Independence Day');
+      setHol('11-02', 'Day of the Dead');
+      setHol(nthWeekdayOfMonth(year, 11, 1, 3), 'Revolution Day');
+      setHol('12-25', 'Christmas Day');
+      break;
+    }
+    case 'NLD': {
+      setHol('01-01', "New Year's Day");
+      setHol(goodFriday, 'Good Friday');
+      setHol(easterSunday, 'Easter Sunday');
+      setHol(easterMonday, 'Easter Monday');
+      const kingsDayDate = new Date(year, 3, 27);
+      setHol(kingsDayDate.getDay() === 0 ? '04-26' : '04-27', "King's Day");
+      setHol('05-05', 'Liberation Day');
+      setHol(ascensionDay, 'Ascension Day');
+      setHol(formatMMDD(addDaysToDate(easter, 49)), 'Whit Sunday');
+      setHol(whitMonday, 'Whit Monday');
+      setHol('12-25', 'Christmas Day');
+      setHol('12-26', 'Second Day of Christmas');
+      break;
+    }
+    case 'SWE': {
+      setHol('01-01', "New Year's Day");
+      setHol('01-06', 'Epiphany');
+      setHol(goodFriday, 'Good Friday');
+      setHol(easterSunday, 'Easter Sunday');
+      setHol(easterMonday, 'Easter Monday');
+      setHol('05-01', 'International Workers\' Day');
+      setHol(ascensionDay, 'Ascension Day');
+      setHol('06-06', 'National Day of Sweden');
+      const jun20 = new Date(year, 5, 20);
+      const midsummerSat = addDaysToDate(jun20, (6 - jun20.getDay() + 7) % 7);
+      setHol(formatMMDD(addDaysToDate(midsummerSat, -1)), 'Midsummer Eve');
+      setHol(formatMMDD(midsummerSat), 'Midsummer Day');
+      const oct31 = new Date(year, 9, 31);
+      const allSaintsSat = addDaysToDate(oct31, (6 - oct31.getDay() + 7) % 7);
+      setHol(formatMMDD(allSaintsSat), "All Saints' Day");
+      setHol('12-24', 'Christmas Eve');
+      setHol('12-25', 'Christmas Day');
+      setHol('12-26', 'Boxing Day');
+      setHol('12-31', "New Year's Eve");
+      break;
+    }
+    case 'FIN': {
+      setHol('01-01', "New Year's Day");
+      setHol('01-06', 'Epiphany');
+      setHol(goodFriday, 'Good Friday');
+      setHol(easterSunday, 'Easter Sunday');
+      setHol(easterMonday, 'Easter Monday');
+      setHol('05-01', 'May Day (Vappu)');
+      setHol(ascensionDay, 'Ascension Day');
+      const jun20Fin = new Date(year, 5, 20);
+      const midsummerSatFin = addDaysToDate(jun20Fin, (6 - jun20Fin.getDay() + 7) % 7);
+      setHol(formatMMDD(addDaysToDate(midsummerSatFin, -1)), 'Midsummer Eve');
+      setHol(formatMMDD(midsummerSatFin), 'Midsummer Day');
+      const oct31Fin = new Date(year, 9, 31);
+      const allSaintsSatFin = addDaysToDate(oct31Fin, (6 - oct31Fin.getDay() + 7) % 7);
+      setHol(formatMMDD(allSaintsSatFin), "All Saints' Day");
+      setHol('12-06', 'Independence Day');
+      setHol('12-24', 'Christmas Eve');
+      setHol('12-25', 'Christmas Day');
+      setHol('12-26', "St. Stephen's Day");
+      break;
+    }
+    case 'IND': {
+      setHol('01-26', 'Republic Day');
+      setHol(goodFriday, 'Good Friday');
+      setHol('08-15', 'Independence Day');
+      setHol('10-02', 'Gandhi Jayanti');
+      setHol('12-25', 'Christmas Day');
+      const indLunar = IND_LUNAR_HOLIDAYS[year];
+      if (indLunar) Object.entries(indLunar).forEach(([k, v]) => setHol(k, v));
+      break;
+    }
+    case 'DEU': {
+      setHol('01-01', "New Year's Day");
+      setHol(goodFriday, 'Good Friday');
+      setHol(easterMonday, 'Easter Monday');
+      setHol('05-01', 'Labour Day');
+      setHol(ascensionDay, 'Ascension Day');
+      setHol(whitMonday, 'Whit Monday');
+      setHol('10-03', 'German Unity Day');
+      setHol('12-25', 'Christmas Day');
+      setHol('12-26', 'Second Day of Christmas');
+      break;
+    }
+    case 'NOR': {
+      setHol('01-01', "New Year's Day");
+      setHol(formatMMDD(addDaysToDate(easter, -3)), 'Maundy Thursday');
+      setHol(goodFriday, 'Good Friday');
+      setHol(easterSunday, 'Easter Sunday');
+      setHol(easterMonday, 'Easter Monday');
+      setHol('05-01', 'Labour Day');
+      setHol('05-17', 'Constitution Day');
+      setHol(ascensionDay, 'Ascension Day');
+      setHol(whitMonday, 'Whit Monday');
+      setHol('12-25', 'Christmas Day');
+      setHol('12-26', 'Second Day of Christmas');
+      break;
+    }
+    case 'THA': {
+      setHol('01-01', "New Year's Day");
+      setHol('04-06', 'Chakri Memorial Day');
+      setHol('04-13', 'Songkran Festival');
+      setHol('04-14', 'Songkran Festival');
+      setHol('04-15', 'Songkran Festival');
+      setHol('05-01', 'National Labour Day');
+      setHol('05-04', 'Coronation Day');
+      setHol('06-03', "Queen Suthida's Birthday");
+      setHol('07-28', "King's Birthday");
+      setHol('08-12', "Mother's Day");
+      setHol('10-13', 'King Bhumibol Memorial Day');
+      setHol('10-23', 'Chulalongkorn Day');
+      setHol('12-05', "Father's Day");
+      setHol('12-10', 'Constitution Day');
+      setHol('12-31', "New Year's Eve");
+      const thaLunar = THA_LUNAR_HOLIDAYS[year];
+      if (thaLunar) Object.entries(thaLunar).forEach(([k, v]) => setHol(k, v));
+      break;
+    }
   }
 
   return map;
@@ -421,162 +616,386 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
   English: {
     AUS: 'Australia',
     CHN: 'China',
+    FIN: 'Finland',
     FRA: 'France',
+    DEU: 'Germany',
+    UK: 'Great Britain',
+    IND: 'India',
     ITA: 'Italy',
     JPN: 'Japan',
     KOR: 'Korea',
     LUX: 'Luxembourg',
+    MEX: 'Mexico',
+    NLD: 'Netherlands',
     NZL: 'New Zealand',
+    NOR: 'Norway',
     RUS: 'Russia',
     SGP: 'Singapore',
     ESP: 'Spain',
+    SWE: 'Sweden',
     CHE: 'Switzerland',
-    UK: 'United Kingdom',
+    THA: 'Thailand',
     USA: 'United States',
   },
   Korean: {
     AUS: '호주',
     CHN: '중국',
+    FIN: '핀란드',
     FRA: '프랑스',
+    DEU: '독일',
+    UK: '그레이트브리튼',
+    IND: '인도',
     ITA: '이탈리아',
     JPN: '일본',
     KOR: '대한민국',
     LUX: '룩셈부르크',
+    MEX: '멕시코',
+    NLD: '네덜란드',
     NZL: '뉴질랜드',
+    NOR: '노르웨이',
     RUS: '러시아',
     SGP: '싱가포르',
     ESP: '스페인',
+    SWE: '스웨덴',
     CHE: '스위스',
-    UK: '영국',
+    THA: '태국',
     USA: '미국',
   },
   Spanish: {
     AUS: 'Australia',
     CHN: 'China',
+    FIN: 'Finlandia',
     FRA: 'Francia',
+    DEU: 'Alemania',
+    UK: 'Gran Bretaña',
+    IND: 'India',
     ITA: 'Italia',
     JPN: 'Japón',
     KOR: 'Corea',
     LUX: 'Luxemburgo',
+    MEX: 'México',
+    NLD: 'Países Bajos',
     NZL: 'Nueva Zelanda',
+    NOR: 'Noruega',
     RUS: 'Rusia',
     SGP: 'Singapur',
     ESP: 'España',
+    SWE: 'Suecia',
     CHE: 'Suiza',
-    UK: 'Reino Unido',
+    THA: 'Tailandia',
     USA: 'Estados Unidos',
   },
   French: {
     AUS: 'Australie',
     CHN: 'Chine',
+    FIN: 'Finlande',
     FRA: 'France',
+    DEU: 'Allemagne',
+    UK: 'Grande-Bretagne',
+    IND: 'Inde',
     ITA: 'Italie',
     JPN: 'Japon',
     KOR: 'Corée',
     LUX: 'Luxembourg',
+    MEX: 'Mexique',
+    NLD: 'Pays-Bas',
     NZL: 'Nouvelle-Zélande',
+    NOR: 'Norvège',
     RUS: 'Russie',
     SGP: 'Singapour',
     ESP: 'Espagne',
+    SWE: 'Suède',
     CHE: 'Suisse',
-    UK: 'Royaume-Uni',
+    THA: 'Thaïlande',
     USA: 'États-Unis',
   },
   German: {
     AUS: 'Australien',
     CHN: 'China',
+    FIN: 'Finnland',
     FRA: 'Frankreich',
+    DEU: 'Deutschland',
+    UK: 'Großbritannien',
+    IND: 'Indien',
     ITA: 'Italien',
     JPN: 'Japan',
     KOR: 'Korea',
     LUX: 'Luxemburg',
+    MEX: 'Mexiko',
+    NLD: 'Niederlande',
     NZL: 'Neuseeland',
+    NOR: 'Norwegen',
     RUS: 'Russland',
     SGP: 'Singapur',
     ESP: 'Spanien',
+    SWE: 'Schweden',
     CHE: 'Schweiz',
-    UK: 'Vereinigtes Königreich',
+    THA: 'Thailand',
     USA: 'Vereinigte Staaten',
   },
   Chinese: {
     AUS: '澳大利亚',
     CHN: '中国',
+    FIN: '芬兰',
     FRA: '法国',
+    DEU: '德国',
+    UK: '大不列颠',
+    IND: '印度',
     ITA: '意大利',
     JPN: '日本',
     KOR: '韩国',
-    LUX: '卢堡',
+    LUX: '卢森堡',
+    MEX: '墨西哥',
+    NLD: '荷兰',
     NZL: '新西兰',
+    NOR: '挪威',
     RUS: '俄罗斯',
     SGP: '新加坡',
     ESP: '西班牙',
+    SWE: '瑞典',
     CHE: '瑞士',
-    UK: '英国',
+    THA: '泰国',
     USA: '美国',
   },
   Japanese: {
     AUS: 'オーストラリア',
     CHN: '中国',
+    FIN: 'フィンランド',
     FRA: 'フランス',
+    DEU: 'ドイツ',
+    UK: 'グレートブリテン',
+    IND: 'インド',
     ITA: 'イタリア',
     JPN: '日本',
     KOR: '韓国',
     LUX: 'ルクセンブルク',
+    MEX: 'メキシコ',
+    NLD: 'オランダ',
     NZL: 'ニュージーランド',
+    NOR: 'ノルウェー',
     RUS: 'ロシア',
     SGP: 'シンガポール',
     ESP: 'スペイン',
+    SWE: 'スウェーデン',
     CHE: 'スイス',
-    UK: 'イギリス',
+    THA: 'タイ',
     USA: 'アメリカ',
   },
   Italian: {
     AUS: 'Australia',
     CHN: 'Cina',
+    FIN: 'Finlandia',
     FRA: 'Francia',
+    DEU: 'Germania',
+    UK: 'Gran Bretagna',
+    IND: 'India',
     ITA: 'Italia',
     JPN: 'Giappone',
     KOR: 'Corea',
     LUX: 'Lussemburgo',
+    MEX: 'Messico',
+    NLD: 'Paesi Bassi',
     NZL: 'Nuova Zelanda',
+    NOR: 'Norvegia',
     RUS: 'Russia',
     SGP: 'Singapore',
     ESP: 'Spagna',
+    SWE: 'Svezia',
     CHE: 'Svizzera',
-    UK: 'Regno Unito',
+    THA: 'Thailandia',
     USA: 'Stati Uniti',
   },
   Russian: {
     AUS: 'Австралия',
     CHN: 'Китай',
+    FIN: 'Финляндия',
     FRA: 'Франция',
+    DEU: 'Германия',
+    UK: 'Великобритания',
+    IND: 'Индия',
     ITA: 'Италия',
     JPN: 'Япония',
     KOR: 'Корея',
     LUX: 'Люксембург',
+    MEX: 'Мексика',
+    NLD: 'Нидерланды',
     NZL: 'Новая Зеландия',
+    NOR: 'Норвегия',
     RUS: 'Россия',
     SGP: 'Сингапур',
     ESP: 'Испания',
+    SWE: 'Швеция',
     CHE: 'Швейцария',
-    UK: 'Великобритания',
+    THA: 'Таиланд',
     USA: 'США',
   },
   Luxembourgish: {
     AUS: 'Australien',
     CHN: 'China',
+    FIN: 'Finnland',
     FRA: 'Frankräich',
+    DEU: 'Däitschland',
+    UK: 'Groussbritannien',
+    IND: 'Indien',
     ITA: 'Italien',
     JPN: 'Japan',
     KOR: 'Korea',
     LUX: 'Lëtzebuerg',
+    MEX: 'Mexiko',
+    NLD: 'Holland',
     NZL: 'Neiséiland',
+    NOR: 'Norwegen',
     RUS: 'Russland',
     SGP: 'Singapur',
     ESP: 'Spuenien',
+    SWE: 'Schweden',
     CHE: 'Schwäiz',
-    UK: 'Groussbritannien',
+    THA: 'Thailand',
     USA: 'USA',
+  },
+  Dutch: {
+    AUS: 'Australië',
+    CHN: 'China',
+    FIN: 'Finland',
+    FRA: 'Frankrijk',
+    DEU: 'Duitsland',
+    UK: 'Groot-Brittannië',
+    IND: 'India',
+    ITA: 'Italië',
+    JPN: 'Japan',
+    KOR: 'Korea',
+    LUX: 'Luxemburg',
+    MEX: 'Mexico',
+    NLD: 'Nederland',
+    NZL: 'Nieuw-Zeeland',
+    NOR: 'Noorwegen',
+    RUS: 'Rusland',
+    SGP: 'Singapore',
+    ESP: 'Spanje',
+    SWE: 'Zweden',
+    CHE: 'Zwitserland',
+    THA: 'Thailand',
+    USA: 'Verenigde Staten',
+  },
+  Swedish: {
+    AUS: 'Australien',
+    CHN: 'Kina',
+    FIN: 'Finland',
+    FRA: 'Frankrike',
+    DEU: 'Tyskland',
+    UK: 'Storbritannien',
+    IND: 'Indien',
+    ITA: 'Italien',
+    JPN: 'Japan',
+    KOR: 'Korea',
+    LUX: 'Luxemburg',
+    MEX: 'Mexiko',
+    NLD: 'Nederländerna',
+    NZL: 'Nya Zeeland',
+    NOR: 'Norge',
+    RUS: 'Ryssland',
+    SGP: 'Singapore',
+    ESP: 'Spanien',
+    SWE: 'Sverige',
+    CHE: 'Schweiz',
+    THA: 'Thailand',
+    USA: 'USA',
+  },
+  Finnish: {
+    AUS: 'Australia',
+    CHN: 'Kiina',
+    FIN: 'Suomi',
+    FRA: 'Ranska',
+    DEU: 'Saksa',
+    UK: 'Iso-Britannia',
+    IND: 'Intia',
+    ITA: 'Italia',
+    JPN: 'Japani',
+    KOR: 'Korea',
+    LUX: 'Luxemburg',
+    MEX: 'Meksiko',
+    NLD: 'Alankomaat',
+    NZL: 'Uusi-Seelanti',
+    NOR: 'Norja',
+    RUS: 'Venäjä',
+    SGP: 'Singapore',
+    ESP: 'Espanja',
+    SWE: 'Ruotsi',
+    CHE: 'Sveitsi',
+    THA: 'Thaimaa',
+    USA: 'Yhdysvallat',
+  },
+  Hindi: {
+    AUS: 'ऑस्ट्रेलिया',
+    CHN: 'चीन',
+    FIN: 'फ़िनलैंड',
+    FRA: 'फ़्रांस',
+    DEU: 'जर्मनी',
+    UK: 'ग्रेट ब्रिटेन',
+    IND: 'भारत',
+    ITA: 'इटली',
+    JPN: 'जापान',
+    KOR: 'कोरिया',
+    LUX: 'लक्ज़मबर्ग',
+    MEX: 'मेक्सिको',
+    NLD: 'नीदरलैंड्स',
+    NZL: 'न्यूज़ीलैंड',
+    NOR: 'नॉर्वे',
+    RUS: 'रूस',
+    SGP: 'सिंगापुर',
+    ESP: 'स्पेन',
+    SWE: 'स्वीडन',
+    CHE: 'स्विट्ज़रलैंड',
+    THA: 'थाईलैंड',
+    USA: 'संयुक्त राज्य अमेरिका',
+  },
+  Norwegian: {
+    AUS: 'Australia',
+    CHN: 'Kina',
+    FIN: 'Finland',
+    FRA: 'Frankrike',
+    DEU: 'Tyskland',
+    UK: 'Storbritannia',
+    IND: 'India',
+    ITA: 'Italia',
+    JPN: 'Japan',
+    KOR: 'Korea',
+    LUX: 'Luxembourg',
+    MEX: 'Mexico',
+    NLD: 'Nederland',
+    NZL: 'New Zealand',
+    NOR: 'Norge',
+    RUS: 'Russland',
+    SGP: 'Singapore',
+    ESP: 'Spania',
+    SWE: 'Sverige',
+    CHE: 'Sveits',
+    THA: 'Thailand',
+    USA: 'USA',
+  },
+  Thai: {
+    AUS: 'ออสเตรเลีย',
+    CHN: 'จีน',
+    FIN: 'ฟินแลนด์',
+    FRA: 'ฝรั่งเศส',
+    DEU: 'เยอรมนี',
+    UK: 'เกรตบริเตน',
+    IND: 'อินเดีย',
+    ITA: 'อิตาลี',
+    JPN: 'ญี่ปุ่น',
+    KOR: 'เกาหลีใต้',
+    LUX: 'ลักเซมเบิร์ก',
+    MEX: 'เม็กซิโก',
+    NLD: 'เนเธอร์แลนด์',
+    NZL: 'นิวซีแลนด์',
+    NOR: 'นอร์เวย์',
+    RUS: 'รัสเซีย',
+    SGP: 'สิงคโปร์',
+    ESP: 'สเปน',
+    SWE: 'สวีเดน',
+    CHE: 'สวิตเซอร์แลนด์',
+    THA: 'ไทย',
+    USA: 'สหรัฐอเมริกา',
   },
 };
 
@@ -593,6 +1012,12 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       Italian: 'Stesso fuso orario',
       Russian: 'Тот же часовой пояс',
       Luxembourgish: 'Saddselwecht Zäitzon',
+      Dutch: 'Zelfde tijdzone',
+      Swedish: 'Samma tidszon',
+      Finnish: 'Sama aikavyöhyke',
+      Hindi: 'समान समय क्षेत्र',
+      Norwegian: 'Samme tidssone',
+      Thai: 'เขตเวลาเดียวกัน',
     };
     return sameMap[lang] || sameMap.English;
   }
@@ -636,6 +1061,30 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       return diffHours > 0 
         ? `${c1Name} ass ${formatted} Std. virun ${c2Name}`
         : `${c1Name} ass ${formatted} Std. hannert ${c2Name}`;
+    case 'Dutch':
+      return diffHours > 0
+        ? `${c1Name} loopt ${formatted} uur voor op ${c2Name}`
+        : `${c1Name} loopt ${formatted} uur achter op ${c2Name}`;
+    case 'Swedish':
+      return diffHours > 0
+        ? `${c1Name} ligger ${formatted} tim före ${c2Name}`
+        : `${c1Name} ligger ${formatted} tim efter ${c2Name}`;
+    case 'Finnish':
+      return diffHours > 0
+        ? `${c1Name} on ${formatted} t edellä maata ${c2Name}`
+        : `${c1Name} on ${formatted} t jäljessä maasta ${c2Name}`;
+    case 'Hindi':
+      return diffHours > 0
+        ? `${c1Name}, ${c2Name} से ${formatted} घंटे आगे है`
+        : `${c1Name}, ${c2Name} से ${formatted} घंटे पीछे है`;
+    case 'Norwegian':
+      return diffHours > 0
+        ? `${c1Name} ligger ${formatted} t foran ${c2Name}`
+        : `${c1Name} ligger ${formatted} t bak ${c2Name}`;
+    case 'Thai':
+      return diffHours > 0
+        ? `${c1Name} เร็วกว่า ${c2Name} ${formatted} ชั่วโมง`
+        : `${c1Name} ช้ากว่า ${c2Name} ${formatted} ชั่วโมง`;
     default:
       return diffHours > 0 
         ? `${c1Name} is ${formatted} hr ahead of ${c2Name}`
@@ -654,14 +1103,22 @@ const ISO_TO_COUNTRY_ID: Record<string, string> = {
   UK: 'UK',
   JP: 'JPN',
   FR: 'FRA',
+  DE: 'DEU',
   IT: 'ITA',
   KR: 'KOR',
   LU: 'LUX',
+  MX: 'MEX',
+  NL: 'NLD',
   NZ: 'NZL',
+  NO: 'NOR',
   RU: 'RUS',
   SG: 'SGP',
   ES: 'ESP',
+  SE: 'SWE',
+  FI: 'FIN',
+  IN: 'IND',
   CH: 'CHE',
+  TH: 'THA',
   AU: 'AUS',
 };
 
@@ -677,6 +1134,18 @@ const guessCountryFromBrowserTimezone = (): string => {
     if (!tz) return 'USA';
     const exact = COUNTRIES.find((c) => c.timezone === tz);
     if (exact) return exact.id;
+    if (
+      tz.startsWith('America/') &&
+      (tz.includes('Mexico_City') ||
+        tz.includes('Monterrey') ||
+        tz.includes('Tijuana') ||
+        tz.includes('Cancun') ||
+        tz.includes('Merida') ||
+        tz.includes('Chihuahua') ||
+        tz.includes('Hermosillo'))
+    ) {
+      return 'MEX';
+    }
     if (
       tz.startsWith('America/') &&
       (tz.includes('New_York') ||
@@ -702,8 +1171,15 @@ const guessCountryFromBrowserTimezone = (): string => {
     if (tz === 'Asia/Tokyo') return 'JPN';
     if (tz === 'Asia/Seoul') return 'KOR';
     if (tz === 'Asia/Singapore') return 'SGP';
+    if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') return 'IND';
+    if (tz === 'Asia/Bangkok') return 'THA';
     if (tz === 'Europe/London') return 'UK';
     if (tz === 'Europe/Paris') return 'FRA';
+    if (tz === 'Europe/Berlin' || tz === 'Europe/Busingen') return 'DEU';
+    if (tz === 'Europe/Amsterdam') return 'NLD';
+    if (tz === 'Europe/Stockholm') return 'SWE';
+    if (tz === 'Europe/Helsinki') return 'FIN';
+    if (tz === 'Europe/Oslo') return 'NOR';
     if (tz === 'Europe/Rome') return 'ITA';
     if (tz === 'Europe/Luxembourg') return 'LUX';
     if (tz === 'Europe/Madrid') return 'ESP';
@@ -804,6 +1280,12 @@ const WEEKDAYS: Record<string, string[]> = {
   Italian: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
   Russian: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
   Luxembourgish: ['So', 'Mé', 'Dë', 'Më', 'Do', 'Fr', 'Sa'],
+  Dutch: ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
+  Swedish: ['Sö', 'Må', 'Ti', 'On', 'To', 'Fr', 'Lö'],
+  Finnish: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'],
+  Hindi: ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'],
+  Norwegian: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø'],
+  Thai: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
 };
 
 const CAL_T: Record<string, Record<string, string>> = {
@@ -986,7 +1468,115 @@ const CAL_T: Record<string, Record<string, string>> = {
     globalDefault: 'Globale offizielle Kalenner',
     today: 'Haut',
     ipLocation: 'IP-Standuert',
-  }
+  },
+  Dutch: {
+    worldDates: 'Wereldtijden',
+    events: 'Agenda & Herinneringen',
+    holidaysMonth: 'Feestdagen deze maand',
+    noEvents: 'Geen afspraken',
+    addEvent: 'Toevoegen aan agenda',
+    event: 'Afspraak',
+    reminder: 'Herinnering',
+    title: 'Titel',
+    cancel: 'Annuleren',
+    save: 'Opslaan',
+    deleteEvent: 'Afspraak verwijderen',
+    deleteConfirm: 'Weet u zeker dat u deze afspraak wilt verwijderen?',
+    singleCalNone: '1 Land (Geen)',
+    globalDefault: 'Wereldwijde Officiële Kalender',
+    today: 'Vandaag',
+    ipLocation: 'IP-locatie',
+  },
+  Swedish: {
+    worldDates: 'Världstider',
+    events: 'Händelser & Påminnelser',
+    holidaysMonth: 'Helgdagar denna månad',
+    noEvents: 'Inga händelser',
+    addEvent: 'Lägg till i kalender',
+    event: 'Händelse',
+    reminder: 'Påminnelse',
+    title: 'Titel',
+    cancel: 'Avbryt',
+    save: 'Spara',
+    deleteEvent: 'Ta bort händelse',
+    deleteConfirm: 'Är du säker på att du vill ta bort den här händelsen?',
+    singleCalNone: '1 Land (Ingen)',
+    globalDefault: 'Global Officiell Kalender',
+    today: 'Idag',
+    ipLocation: 'IP-plats',
+  },
+  Finnish: {
+    worldDates: 'Maailmanajat',
+    events: 'Tapahtumat & Muistutukset',
+    holidaysMonth: 'Kuukauden juhlapäivät',
+    noEvents: 'Ei tapahtumia',
+    addEvent: 'Lisää kalenteriin',
+    event: 'Tapahtuma',
+    reminder: 'Muistutus',
+    title: 'Otsikko',
+    cancel: 'Peruuta',
+    save: 'Tallenna',
+    deleteEvent: 'Poista tapahtuma',
+    deleteConfirm: 'Haluatko varmasti poistaa tämän tapahtuman?',
+    singleCalNone: '1 Maa (Ei toista)',
+    globalDefault: 'Maailmanlaajuinen Virallinen Kalenteri',
+    today: 'Tänään',
+    ipLocation: 'IP-sijainti',
+  },
+  Hindi: {
+    worldDates: 'विश्व समय',
+    events: 'कार्यक्रम और अनुस्मारक',
+    holidaysMonth: 'इस माह के अवकाश',
+    noEvents: 'कोई कार्यक्रम नहीं',
+    addEvent: 'कैलेंडर में जोड़ें',
+    event: 'कार्यक्रम',
+    reminder: 'अनुस्मारक',
+    title: 'शीर्षक',
+    cancel: 'रद्द करें',
+    save: 'सहेजें',
+    deleteEvent: 'कार्यक्रम हटाएँ',
+    deleteConfirm: 'क्या आप वाकई इस कार्यक्रम को हटाना चाहते हैं?',
+    singleCalNone: '1 देश (कोई नहीं)',
+    globalDefault: 'वैश्विक आधिकारिक कैलेंडर',
+    today: 'आज',
+    ipLocation: 'IP स्थान',
+  },
+  Norwegian: {
+    worldDates: 'Verdenstider',
+    events: 'Hendelser & Påminnelser',
+    holidaysMonth: 'Helligdager denne måneden',
+    noEvents: 'Ingen hendelser',
+    addEvent: 'Legg til i kalender',
+    event: 'Hendelse',
+    reminder: 'Påminnelse',
+    title: 'Tittel',
+    cancel: 'Avbryt',
+    save: 'Lagre',
+    deleteEvent: 'Slett hendelse',
+    deleteConfirm: 'Er du sikker på at du vil slette denne hendelsen?',
+    singleCalNone: '1 Land (Ingen)',
+    globalDefault: 'Global Offisiell Kalender',
+    today: 'I dag',
+    ipLocation: 'IP-plassering',
+  },
+  Thai: {
+    worldDates: 'เวลาทั่วโลก',
+    events: 'กิจกรรมและการแจ้งเตือน',
+    holidaysMonth: 'วันหยุดเดือนนี้',
+    noEvents: 'ไม่มีกิจกรรม',
+    addEvent: 'เพิ่มลงในปฏิทิน',
+    event: 'กิจกรรม',
+    reminder: 'เตือนความจำ',
+    title: 'หัวข้อ',
+    cancel: 'ยกเลิก',
+    save: 'บันทึก',
+    deleteEvent: 'ลบกิจกรรม',
+    deleteConfirm: 'คุณแน่ใจหรือไม่ว่าต้องการลบกิจกรรมนี้?',
+    singleCalNone: '1 ประเทศ (ไม่มี)',
+    globalDefault: 'ปฏิทินทางการสากล',
+    today: 'วันนี้',
+    ipLocation: 'ตำแหน่ง IP',
+  },
 };
 
 const LOCALES: Record<string, string> = {
@@ -1000,6 +1590,12 @@ const LOCALES: Record<string, string> = {
   Italian: 'it-IT',
   Russian: 'ru-RU',
   Luxembourgish: 'lb-LU',
+  Dutch: 'nl-NL',
+  Swedish: 'sv-SE',
+  Finnish: 'fi-FI',
+  Hindi: 'hi-IN',
+  Norwegian: 'nb-NO',
+  Thai: 'th-TH',
 };
 
 export default function Calendar({ language = 'English' }: CalendarProps) {
@@ -1116,8 +1712,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     if (calendarCountry && calendarCountry !== 'GLOBAL') {
       return [calendarCountry];
     }
-    return activeWorldCountries;
-  }, [calendarCountry, activeWorldCountries]);
+    return [];
+  }, [calendarCountry]);
 
   const selectedDateStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
   const selectedEvents = events.filter((e) => e.date === selectedDateStr);
@@ -1269,11 +1865,11 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   };
 
   return (
-    <div className="calendar-container flex flex-col lg:flex-row gap-6 lg:gap-7 mx-auto w-full max-w-6xl px-4 sm:px-6">
+    <div className="calendar-container flex flex-col lg:flex-row gap-5 sm:gap-6 lg:gap-7 mx-auto w-full max-w-6xl px-0 sm:px-4 lg:px-6">
       {/* Main Calendar Card */}
       <div className="w-full lg:flex-[1.75] xl:flex-[2.05] GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl overflow-hidden flex flex-col">
         {/* Top Date Header Strip + Today Button */}
-        <div className="px-6 sm:px-8 pt-5 pb-4 border-b border-black/8 dark:border-white/10 flex items-center justify-between gap-4">
+        <div className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 pb-3.5 sm:pb-4 border-b border-black/8 dark:border-white/10 flex items-center justify-between gap-3 sm:gap-4">
           <div className="min-w-0">
             <p className="text-base sm:text-lg font-semibold text-black dark:text-white tracking-tight truncate">
               {selectedHeaderDateText}
@@ -1294,14 +1890,14 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
               setCurrentDate(new Date(t.getFullYear(), t.getMonth(), 1));
               setSelectedDate(t);
             }}
-            className="calendar-today-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 border border-black/10 dark:border-white/15 text-black dark:text-white transition-all cursor-pointer shrink-0"
+            className="calendar-today-btn min-h-[40px] lg:min-h-0 px-3.5 py-2 lg:py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15 border border-black/10 dark:border-white/15 text-black dark:text-white transition-all cursor-pointer shrink-0"
           >
             {calText.today}
           </button>
         </div>
 
         {/* Body */}
-        <div className="px-6 sm:px-8 pt-5 pb-7 flex-1 flex flex-col">
+        <div className="px-3 sm:px-6 lg:px-8 pt-4 sm:pt-5 pb-5 sm:pb-7 flex-1 flex flex-col">
           {/* Month + Huge Bold Year & Left/Right Arrows */}
           <div className="flex items-center justify-between mb-4 gap-3">
             <div className="flex items-baseline gap-2.5 min-w-0">
@@ -1342,7 +1938,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
               value={calendarCountry}
               onChange={(e) => setCalendarCountry(e.target.value)}
               aria-label="Calendar country selector"
-              className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl px-3.5 py-1.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
+              className="world-dates-select min-h-[40px] lg:min-h-0 bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl px-3.5 py-2 lg:py-1.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
             >
               <option value="GLOBAL" className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
                 {calText.globalDefault}
@@ -1356,7 +1952,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
           </div>
 
           {/* Weekday Headers */}
-          <div className="grid grid-cols-7 gap-2 sm:gap-2.5 mb-2">
+          <div className="grid grid-cols-7 gap-1 sm:gap-2 lg:gap-2.5 mb-1.5 sm:mb-2">
             {(WEEKDAYS[language] || WEEKDAYS['English']).map((day) => (
               <div
                 key={day}
@@ -1368,7 +1964,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
           </div>
 
           {/* 6x7 Rounded Tile Calendar Matrix */}
-          <div className="grid grid-cols-7 gap-2 sm:gap-2.5">
+          <div className="grid grid-cols-7 gap-1 sm:gap-2 lg:gap-2.5">
             {calendarCells.map(({ date, inCurrentMonth }) => {
               const cellY = date.getFullYear();
               const cellM = date.getMonth() + 1;
@@ -1399,7 +1995,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                     }
                   }}
                   title={isHoliday ? dayHolidays.join(' · ') : dateKey}
-                  className={`calendar-day-btn relative flex items-center justify-center rounded-2xl min-h-[64px] sm:min-h-[72px] transition-all cursor-pointer select-none ${
+                  className={`calendar-day-btn relative flex items-center justify-center rounded-xl sm:rounded-2xl min-h-[52px] sm:min-h-[68px] lg:min-h-[72px] transition-all cursor-pointer select-none ${
                     isSelectedCell && !isTodayCell
                       ? 'cal-selected-tile ring-2 ring-[#6143f7]'
                       : ''
@@ -1413,8 +2009,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                   <div
                     className={`flex items-center justify-center rounded-full transition-all ${
                       isTodayCell
-                        ? 'cal-today-circle w-9 h-9 sm:w-10 sm:h-10 bg-[#6143f7] text-white shadow-sm'
-                        : 'w-9 h-9 sm:w-10 sm:h-10'
+                        ? 'cal-today-circle w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-[#6143f7] text-white shadow-sm'
+                        : 'w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10'
                     }`}
                   >
                     <span
@@ -1480,7 +2076,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             <select
               value={country1}
               onChange={(e) => handleSelectCountry1(e.target.value)}
-              className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
+              className="world-dates-select min-h-[42px] lg:min-h-0 bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
             >
               {COUNTRIES.map((c) => (
                 <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
@@ -1491,7 +2087,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             <select
               value={resolvedCountry2}
               onChange={(e) => setCountry2(e.target.value)}
-              className="world-dates-select bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
+              className="world-dates-select min-h-[42px] lg:min-h-0 bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl p-2.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
             >
               {COUNTRIES.filter((c) => c.id !== country1).map((c) => (
                 <option key={c.id} value={c.id} className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
@@ -1559,7 +2155,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             </div>
             <button
               onClick={() => setShowAddModal(true)}
-              className="w-8 h-8 rounded-full bg-[#6143f7] hover:opacity-90 text-white flex items-center justify-center hover:scale-105 transition-all shrink-0 cursor-pointer shadow-sm"
+              className="w-10 h-10 lg:w-8 lg:h-8 rounded-full bg-[#6143f7] hover:opacity-90 text-white flex items-center justify-center hover:scale-105 transition-all shrink-0 cursor-pointer shadow-sm"
               title="Add event or reminder"
               aria-label="Add Event"
             >
@@ -1611,7 +2207,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                   </div>
                   <button
                     onClick={() => setConfirmDeleteEvent(evt.id)}
-                    className="opacity-0 group-hover:opacity-100 text-black dark:text-white hover:text-rose-500 transition-all p-1 cursor-pointer"
+                    className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 text-black dark:text-white hover:text-rose-500 transition-all p-2 lg:p-1 cursor-pointer"
+                    aria-label={`Delete ${evt.title}`}
                   >
                     <Plus size={16} className="rotate-45" />
                   </button>

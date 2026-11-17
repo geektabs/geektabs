@@ -515,6 +515,312 @@ const browserGuides: Record<string, any> = {
         'Pech déi kopéiert URL an klickt op "Derbäisetzen".'
       ]
     }
+  },
+  Dutch: {
+    title: 'Instellen als Browser-Startpagina',
+    subtitle: 'Maak dit dashboard je standaard startpagina of nieuw tabblad zodat je altijd georganiseerd blijft.',
+    copyButton: 'URL kopiëren',
+    copiedText: 'Gekopieerd!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Open Chrome, klik op het menu met drie puntjes (rechtsboven) en kies Instellingen.',
+        'Ga naar "Bij opstarten" in de linkerzijbalk.',
+        'Kies "Een specifieke pagina of reeks pagina\'s openen" en klik op "Een nieuwe pagina toevoegen".',
+        'Plak de gekopieerde URL en klik op "Toevoegen".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Open Edge, klik op het menu met drie puntjes en kies Instellingen.',
+        'Klik op "Start, startpagina en nieuwe tabbladen" in de linkerzijbalk.',
+        'Selecteer onder "Wanneer Edge wordt gestart" de optie "Deze pagina\'s openen".',
+        'Klik op "Een nieuwe pagina toevoegen", plak de URL en klik op "Toevoegen".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Open Firefox, klik op het menu rechtsboven en kies Instellingen.',
+        'Klik op "Startpagina" in de linkerzijbalk.',
+        'Selecteer onder "Startpagina en nieuwe vensters" de optie "Aangepaste URL\'s...".',
+        'Plak de gekopieerde URL en druk op Enter om op te slaan.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Open Safari en kies "Safari > Instellingen" in de menubalk.',
+        'Zoek in het paneel "Algemeen" het veld "Startpagina".',
+        'Stel "Open nieuwe vensters met" in op "Startpagina".',
+        'Plak de URL van deze pagina en bevestig.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Open Brave, klik op het menu rechtsboven en kies Instellingen.',
+        'Ga naar "Bij opstarten" in het linkermenu.',
+        'Kies "Een specifieke pagina of reeks pagina\'s openen" en klik op "Een nieuwe pagina toevoegen".',
+        'Plak de gekopieerde URL en klik op "Toevoegen".'
+      ]
+    }
+  },
+  Swedish: {
+    title: 'Ange som Webbläsarens Startsida',
+    subtitle: 'Gör denna instrumentpanel till din startsida för att alltid hålla ordning när du öppnar webbläsaren.',
+    copyButton: 'Kopiera URL',
+    copiedText: 'Kopierad!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Öppna Chrome, klicka på trepunktsmenyn uppe till höger och välj Inställningar.',
+        'Gå till "Vid uppstart" i menyn till vänster.',
+        'Välj "Öppna en specifik sida eller en uppsättning sidor" och klicka på "Lägg till en ny sida".',
+        'Klistra in den kopierade webbadressen och klicka på "Lägg till".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Öppna Edge, klicka på menyn uppe till höger och välj Inställningar.',
+        'Klicka på "Start, startsida och nya flikar" i vänstermenyn.',
+        'Välj "Öppna dessa sidor" under "När Edge startar".',
+        'Klicka på "Lägg till en ny sida", klistra in webbadressen och klicka på "Lägg till".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Öppna Firefox, klicka på menyknappen och välj Inställningar.',
+        'Klicka på "Startsida" i vänsterpanelen.',
+        'Välj "Anpassade adresser..." under "Startsida och nya fönster".',
+        'Klistra in den kopierade webbadressen och tryck på Enter.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Öppna Safari och välj "Safari > Inställningar" i menyraden.',
+        'Under fliken "Allmänt" hittar du fältet "Startsida".',
+        'Ställ in "Nya fönster öppnas med" till "Startsida".',
+        'Klistra in sidans webbadress och bekräfta.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Öppna Brave, klicka på menyn uppe till höger och välj Inställningar.',
+        'Gå till "Vid uppstart" i vänstermenyn.',
+        'Välj "Öppna en specifik sida" och klicka på "Lägg till en ny sida".',
+        'Klistra in den kopierade webbadressen och klicka på "Lägg till".'
+      ]
+    }
+  },
+  Finnish: {
+    title: 'Aseta Selaimen Aloitussivuksi',
+    subtitle: 'Tee tästä näkymästä selaimesi oletusaloitussivu pysyäksesi aina järjestyksessä.',
+    copyButton: 'Kopioi URL',
+    copiedText: 'Kopioitu!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Avaa Chrome, napsauta oikean yläkulman kolmen pisteen valikkoa ja valitse Asetukset.',
+        'Siirry vasemmasta sivupalkista kohtaan "Käynnistyksessä".',
+        'Valitse "Avaa tietty sivu tai sivujoukko" ja napsauta "Lisää uusi sivu".',
+        'Liitä kopioitu URL ja napsauta "Lisää".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Avaa Edge, napsauta valikkoa ja valitse Asetukset.',
+        'Napsauta vasemmasta sivupalkista "Aloitus, aloitussivu ja uudet välilehdet".',
+        'Valitse kohdasta "Kun Edge käynnistyy" vaihtoehto "Avaa nämä sivut".',
+        'Napsauta "Lisää uusi sivu", liitä URL ja valitse "Lisää".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Avaa Firefox, napsauta valikkopainiketta ja valitse Asetukset.',
+        'Napsauta vasemmasta valikosta "Etusivu".',
+        'Valitse kohdasta "Aloitussivu ja uudet ikkunat" vaihtoehto "Mukautetut URL-osoitteet...".',
+        'Liitä kopioitu URL ja paina Enter.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Avaa Safari ja valitse valikkopalkista "Safari > Asetukset".',
+        'Etsi "Yleiset"-välilehdeltä kohta "Kotisivu".',
+        'Aseta "Uudet ikkunat avataan sivulla" valinnaksi "Kotisivu".',
+        'Liitä sivun URL ja vahvista.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Avaa Brave, napsauta valikkoa oikeassa yläkulmassa ja valitse Asetukset.',
+        'Valitse vasemmasta valikosta "Käynnistyksessä".',
+        'Valitse "Avaa tietty sivu" ja napsauta "Lisää uusi sivu".',
+        'Liitä kopioitu URL ja napsauta "Lisää".'
+      ]
+    }
+  },
+  Hindi: {
+    title: 'ब्राउज़र होमपेज के रूप में सेट करें',
+    subtitle: 'हर बार ब्राउज़र खोलते समय व्यवस्थित रहने के लिए इस डैशबोर्ड को अपना डिफ़ॉल्ट होमपेज बनाएं।',
+    copyButton: 'URL कॉपी करें',
+    copiedText: 'कॉपी हो गया!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Chrome खोलें, ऊपर दाईं ओर तीन-डॉट मेनू पर क्लिक करें और Settings चुनें।',
+        'बाईं ओर के साइडबार में "On startup" पर जाएं।',
+        '"Open a specific page or set of pages" चुनें और "Add a new page" पर क्लिक करें।',
+        'कॉपी किया गया URL पेस्ट करें और "Add" पर क्लिक करें।'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Edge खोलें, ऊपर दाईं ओर मेनू पर क्लिक करें और Settings चुनें।',
+        'बाईं ओर "Start, home, and new tabs" पर क्लिक करें।',
+        '"When Edge starts" के अंतर्गत "Open these pages" चुनें।',
+        '"Add a new page" पर क्लिक करें, URL पेस्ट करें और "Add" दबाएं।'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Firefox खोलें, मेनू बटन पर क्लिक करें और Settings चुनें।',
+        'बाईं ओर के पैनल में "Home" पर क्लिक करें।',
+        '"Homepage and new windows" के अंतर्गत "Custom URLs..." चुनें।',
+        'कॉपी किया गया URL पेस्ट करें और सेव करने के लिए Enter दबाएं।'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Safari खोलें और मेनू बार से "Safari > Settings" चुनें।',
+        '"General" पैनल में "Homepage" विकल्प ढूंढें।',
+        '"New windows open with" को "Homepage" पर सेट करें।',
+        'पेज का URL पेस्ट करें और पुष्टि करें।'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Brave खोलें, ऊपर दाईं ओर मेनू पर क्लिक करें और Settings चुनें।',
+        'बाईं ओर "On startup" पर जाएं।',
+        '"Open a specific page or set of pages" चुनें और "Add a new page" पर क्लिक करें।',
+        'कॉपी किया गया URL पेस्ट करें और "Add" पर क्लिक करें।'
+      ]
+    }
+  },
+  Norwegian: {
+    title: 'Angi som Nettleserens Startside',
+    subtitle: 'Gjør dette dashbordet til din faste startside slik at du alltid holder oversikten når du åpner nettleseren.',
+    copyButton: 'Kopier URL',
+    copiedText: 'Kopiert!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Åpne Chrome, klikk på tre-prikk-menyen øverst til høyre og velg Innstillinger.',
+        'Naviger til «Ved oppstart» i sidefeltet til venstre.',
+        'Velg «Åpne en bestemt side eller et sett med sider» og klikk «Legg til en ny side».',
+        'Lim inn den kopierte URL-en og klikk «Legg til».'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Åpne Edge, klikk på menyen øverst til høyre og velg Innstillinger.',
+        'Klikk på «Start, hjem og nye faner» i venstre sidefelt.',
+        'Under «Når Edge starter», velg «Åpne disse sidene».',
+        'Klikk «Legg til en ny side», lim inn URL-en og klikk «Legg til».'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Åpne Firefox, klikk på menyknappen og velg Innstillinger.',
+        'Klikk på «Startside» i venstre sidefelt.',
+        'Under «Startside og nye vinduer», velg «Egendefinerte nettadresser...».',
+        'Lim inn den kopierte URL-en og trykk Enter for å lagre.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Åpne Safari og velg «Safari > Innstillinger» fra menylinjen.',
+        'Under «Generelt» finner du feltet «Startside».',
+        'Sett «Nye vinduer åpnes med» til «Startside».',
+        'Lim inn sidens URL og bekreft.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Åpne Brave, klikk på menyen øverst til høyre og velg Innstillinger.',
+        'Gå til «Ved oppstart» i venstremenyen.',
+        'Velg «Åpne en bestemt side» og klikk «Legg til en ny side».',
+        'Lim inn den kopierte URL-en og klikk «Legg til».'
+      ]
+    }
+  },
+  Thai: {
+    title: 'ตั้งเป็นหน้าแรกของเบราว์เซอร์',
+    subtitle: 'ตั้งค่าแดชบอร์ดนี้เป็นหน้าแรกหรือหน้าแท็บใหม่เริ่มต้นเพื่อความเป็นระเบียบทุกครั้งที่เปิดเบราว์เซอร์',
+    copyButton: 'คัดลอก URL',
+    copiedText: 'คัดลอกแล้ว!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'เปิด Chrome คลิกที่เมนูจุดสามจุดมุมขวาบน แล้วเลือก "การตั้งค่า" (Settings)',
+        'ไปที่เมนู "เมื่อเริ่มต้น" (On startup) ทางแถบด้านซ้าย',
+        'เลือก "เปิดหน้าเว็บที่ต้องการหรือชุดหน้าเว็บ" และคลิก "เพิ่มหน้าใหม่"',
+        'วาง URL ที่คัดลอกไว้แล้วคลิก "เพิ่ม"'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'เปิด Edge คลิกเมนูมุมขวาบน แล้วเลือก "การตั้งค่า" (Settings)',
+        'คลิก "เริ่มต้น หน้าแรก และแท็บใหม่" ทางด้านซ้าย',
+        'ภายใต้หัวข้อ "เมื่อ Edge เริ่มทำงาน" ให้เลือก "เปิดหน้าเว็บเหล่านี้"',
+        'คลิก "เพิ่มหน้าใหม่" วาง URL แล้วกด "เพิ่ม"'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'เปิด Firefox คลิกปุ่มเมนูมุมขวาบน แล้วเลือก "การตั้งค่า" (Settings)',
+        'คลิกที่เมนู "หน้าแรก" (Home) ทางด้านซ้าย',
+        'ในส่วน "หน้าแรกและหน้าต่างใหม่" เลือก "URL ที่กำหนดเอง..."',
+        'วาง URL ที่คัดลอกไว้แล้วกด Enter เพื่อบันทึก'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'เปิด Safari แล้วเลือก "Safari > การตั้งค่า" จากแถบเมนูด้านบน',
+        'ในแท็บ "ทั่วไป" (General) ให้มองหาช่อง "หน้าแรก" (Homepage)',
+        'ตั้งค่า "เปิดหน้าต่างใหม่ด้วย" เป็น "หน้าแรก"',
+        'วาง URL ของหน้านี้แล้วยืนยัน'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'เปิด Brave คลิกเมนูสามขีดมุมขวาบน แล้วเลือก "การตั้งค่า" (Settings)',
+        'ไปที่ "เมื่อเริ่มต้น" (On startup) ในแถบด้านซ้าย',
+        'เลือก "เปิดหน้าเว็บที่ต้องการ" แล้วคลิก "เพิ่มหน้าใหม่"',
+        'วาง URL ที่คัดลอกไว้แล้วคลิก "เพิ่ม"'
+      ]
+    }
   }
 };
 
@@ -538,14 +844,14 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8 relative z-10 p-2 sm:p-4 select-none">
       {/* Header */}
-      <div className="flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 max-w-2xl mx-auto mb-2 sm:mb-4">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl sm:rounded-[1.5rem] bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-500 shadow-xl shadow-violet-500/5 hover:scale-105 transition-transform duration-300">
+      <div className="mb-4 sm:mb-6 flex flex-col items-center justify-center text-center max-w-2xl mx-auto">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl sm:rounded-[1.5rem] bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-500 shadow-xl shadow-violet-500/5 hover:scale-105 transition-transform duration-300 mb-3 sm:mb-4">
           <Compass size={28} className="stroke-[1.5] sm:w-8 sm:h-8" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 mt-1 sm:mt-2">
+        <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">
           {guides.title}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed px-2">
+        </h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px] leading-relaxed max-w-xl px-2">
           {guides.subtitle}
         </p>
       </div>
@@ -558,13 +864,13 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
             type="text"
             readOnly
             value={getTargetUrl()}
-            className="browser-url-input flex-1 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 text-[#6143f7] font-mono text-xs outline-none select-all overflow-hidden text-ellipsis whitespace-nowrap focus:ring-1 focus:ring-violet-500/30"
+            className="browser-url-input flex-1 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 text-[#6143f7] font-mono text-base sm:text-xs outline-none select-all overflow-hidden text-ellipsis whitespace-nowrap focus:ring-1 focus:ring-violet-500/30"
             style={{ color: '#6143f7' }}
           />
           <button
             type="button"
             onClick={handleCopy}
-            className="px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-2xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shrink-0 shadow-lg shadow-blue-500/15 cursor-pointer active:scale-95"
+            className="px-5 sm:px-6 py-3 sm:py-3.5 min-h-[44px] lg:min-h-0 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-2xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shrink-0 shadow-lg shadow-blue-500/15 cursor-pointer active:scale-95"
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
           >
             {copiedHomepage ? (
@@ -593,7 +899,7 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
                   key={bKey}
                   type="button"
                   onClick={() => setActiveBrowser(bKey)}
-                  className={`browser-nav-btn px-2 sm:px-3 lg:px-1.5 xl:px-2 py-2 sm:py-2.5 lg:py-2 rounded-xl text-[10px] sm:text-[11px] lg:text-[9.5px] xl:text-[10px] font-bold tracking-tight uppercase transition-all cursor-pointer text-center select-none flex items-center justify-center min-h-[38px] sm:min-h-[42px] lg:min-h-[38px] border ${
+                  className={`browser-nav-btn px-2 sm:px-3 lg:px-1.5 xl:px-2 py-2 sm:py-2.5 lg:py-2 rounded-xl text-[11px] sm:text-xs lg:text-[9.5px] xl:text-[10px] font-bold tracking-tight uppercase transition-all cursor-pointer text-center select-none flex items-center justify-center min-h-[44px] lg:min-h-[38px] border ${
                     isLast ? 'col-span-2 lg:col-span-1' : ''
                   } ${
                     isSelected
@@ -631,7 +937,7 @@ export default function BrowserTab({ language = 'English' }: BrowserTabProps = {
           >
             {((guides[activeBrowser] || browserGuides['English'][activeBrowser])?.steps || []).map((step: string, i: number) => (
               <li key={i} className="leading-relaxed font-semibold text-[#6143f7]" style={{ color: '#6143f7' }}>
-                <span className="ml-1 sm:ml-2 font-sans text-xs sm:text-[13px] text-[#6143f7]" style={{ color: '#6143f7' }}>{step}</span>
+                <span className="ml-1 sm:ml-2 font-sans text-[13px] sm:text-sm lg:text-[13px] text-[#6143f7]" style={{ color: '#6143f7' }}>{step}</span>
               </li>
             ))}
           </ol>

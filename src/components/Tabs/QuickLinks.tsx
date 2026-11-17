@@ -40,8 +40,34 @@ const DEFAULT_CATEGORIES: Category[] = [
     ]
   },
   {
+    id: 'my-folders',
+    name: 'AI Apps',
+    links: [
+      { id: 'ai1', title: 'ChatGPT', url: 'https://chatgpt.com', description: 'AI chatbot developed by OpenAI.' },
+      { id: 'ai2', title: 'Gemini', url: 'https://gemini.google.com', description: 'AI conversational assistant developed by Google.' },
+      { id: 'ai3', title: 'Claude', url: 'https://claude.ai', description: 'Next-generation AI assistant developed by Anthropic.' },
+      { id: 'ai4', title: 'Grok', url: 'https://grok.com', description: 'AI assistant developed by xAI.' },
+      { id: 'ai5', title: 'Microsoft Copilot', url: 'https://copilot.microsoft.com', description: 'AI-powered chat assistant from Microsoft.' },
+      { id: 'ai6', title: 'Meta AI', url: 'https://meta.ai', description: 'AI assistant built on Meta Llama.' },
+      { id: 'ai7', title: 'Perplexity AI', url: 'https://perplexity.ai', description: 'AI-powered search engine and chatbot.' },
+      { id: 'ai8', title: 'Zhipu AI', url: 'https://chat.z.ai/', description: 'Generative AI assistant by Zhipu AI.' },
+      { id: 'ai9', title: 'DeepSeek', url: 'https://chat.deepseek.com', description: 'Advanced AI language model and assistant by DeepSeek.' },
+      { id: 'ai10', title: 'Qwen AI', url: 'https://chat.qwenlm.ai', description: 'AI model series developed by Alibaba Cloud.' },
+      { id: 'ai11', title: 'Midjourney', url: 'https://midjourney.com', description: 'Generative artificial intelligence program for image generation.' },
+      { id: 'ai12', title: 'Leonardo AI', url: 'https://leonardo.ai', description: 'AI-driven creative suite for image generation.' },
+      { id: 'ai13', title: 'Suno', url: 'https://suno.com', description: 'Generative AI music and speech creation platform.' },
+      { id: 'ai14', title: 'Murf AI', url: 'https://murf.ai', description: 'Versatile AI voice generator and text-to-speech platform.' },
+      { id: 'ai15', title: 'HeyGen', url: 'https://heygen.com', description: 'AI video generation platform for creating avatars.' },
+      { id: 'ai16', title: 'Pictory', url: 'https://pictory.ai', description: 'AI video generator for content creators.' },
+      { id: 'ai17', title: 'DeepL Write', url: 'https://www.deepl.com/write', description: 'AI writing assistant for grammar and style.' },
+      { id: 'ai18', title: 'Jasper', url: 'https://jasper.ai', description: 'AI copilot for enterprise marketing and content writing.' },
+      { id: 'ai19', title: 'Canva', url: 'https://canva.com', description: 'Graphic design platform with integrated AI tools.' },
+      { id: 'ai20', title: 'Fotor', url: 'https://www.fotor.com', description: 'Online photo editor and AI-powered graphic designer.' }
+    ]
+  },
+  {
     id: 'google-apps',
-    name: 'Google Apps',
+    name: 'Google',
     links: [
       { id: 'g1', title: 'Account', url: 'https://myaccount.google.com', description: 'Manage your Google Account info, privacy, and security.' },
       { id: 'g2', title: 'Search', url: 'https://www.google.com', description: 'Google web search engine to find information online.' },
@@ -87,7 +113,7 @@ const DEFAULT_CATEGORIES: Category[] = [
   },
   {
     id: 'ms-office',
-    name: 'Microsoft Office',
+    name: 'Microsoft',
     links: [
       { id: 'm1', title: 'Word', url: 'https://www.office.com/launch/word', description: 'Web-based word processor for creating and editing documents.' },
       { id: 'm2', title: 'Excel', url: 'https://www.office.com/launch/excel', description: 'Web-based spreadsheet application for data analysis and charting.' },
@@ -100,6 +126,39 @@ const DEFAULT_CATEGORIES: Category[] = [
       { id: 'm9', title: 'Loop', url: 'https://loop.microsoft.com/', description: 'A collaborative canvas app where teams can think, plan, and create together.' },
       { id: 'm10', title: 'Lists', url: 'https://lists.live.com/', description: 'A web application to track information, organize work, and manage workflows.' },
       { id: 'm11', title: 'Clipchamp', url: 'https://app.clipchamp.com/', description: 'A web-based video editing tool integrated with the platform.' }
+    ]
+  },
+  {
+    id: 'tech',
+    name: 'Technology',
+    links: [
+      { id: 'tech1', title: 'Apple', url: 'https://www.apple.com', description: 'Innovative technology products including iPhone, iPad, Mac, and Apple Watch.' },
+      { id: 'tech2', title: 'Microsoft', url: 'https://www.microsoft.com', description: 'Devices, software, Windows, cloud solutions, and productivity tools.' },
+      { id: 'tech3', title: 'Google', url: 'https://www.google.com', description: 'Search engine, Android, Pixel hardware, cloud computing, and AI services.' },
+      { id: 'tech4', title: 'Samsung', url: 'https://www.samsung.com', description: 'Galaxy smartphones, tablets, home appliances, displays, and electronics.' },
+      { id: 'tech5', title: 'Lenovo', url: 'https://www.lenovo.com', description: 'ThinkPad laptops, PCs, tablets, data center solutions, and accessories.' },
+      { id: 'tech6', title: 'Dell Technologies', url: 'https://www.dell.com', description: 'Laptops, workstations, desktop computers, servers, and enterprise solutions.' },
+      { id: 'tech8', title: 'Intel', url: 'https://www.intel.com', description: 'Processors, microchips, data center computing, and semiconductor innovations.' },
+      { id: 'tech7', title: 'HP', url: 'https://www.hp.com', description: 'Laptops, desktops, printers, monitors, and business computing solutions.' },
+      { id: 'tech9', title: 'NVIDIA', url: 'https://www.nvidia.com', description: 'Pioneering GPU computing, artificial intelligence, gaming, and robotics.' },
+      { id: 'tech10', title: 'AMD', url: 'https://www.amd.com', description: 'Ryzen and EPYC processors, Radeon graphics, and computing technology.' },
+      { id: 'tech11', title: 'Sony', url: 'https://www.sony.com', description: 'Audio, cameras, PlayStation gaming, TVs, and entertainment electronics.' },
+      { id: 'tech12', title: 'LG', url: 'https://www.lg.com', description: 'OLED TVs, home appliances, monitors, and audio electronics.' },
+      { id: 'tech13', title: 'ASUS', url: 'https://www.asus.com', description: 'ROG gaming hardware, ZenBook laptops, motherboards, and PC components.' },
+      { id: 'tech14', title: 'Acer', url: 'https://www.acer.com', description: 'Laptops, Predator gaming computers, monitors, and projectors.' },
+      { id: 'tech15', title: 'Xiaomi', url: 'https://www.mi.com', description: 'Smartphones, smart home IoT ecosystem products, and consumer electronics.' },
+      { id: 'tech16', title: 'Huawei', url: 'https://www.huawei.com', description: 'Smart devices, smartphones, telecom infrastructure, and cloud solutions.' },
+      { id: 'tech17', title: 'OnePlus', url: 'https://www.oneplus.com', description: 'High-performance flagship smartphones, earbuds, and wearables.' },
+      { id: 'tech18', title: 'Motorola', url: 'https://www.motorola.com', description: 'Razr flip phones, Edge series smartphones, and mobile technology.' },
+      { id: 'tech19', title: 'TCL', url: 'https://www.tcl.com', description: 'Smart televisions, mobile devices, audio gear, and home appliances.' },
+      { id: 'tech20', title: 'Panasonic', url: 'https://www.panasonic.com', description: 'Consumer electronics, Lumix cameras, home appliances, and automotive tech.' },
+      { id: 'tech21', title: 'Adobe', url: 'https://www.adobe.com', description: 'Creative Cloud applications including Photoshop, Illustrator, Premiere, and Acrobat.' },
+      { id: 'tech22', title: 'Oracle', url: 'https://www.oracle.com', description: 'Cloud infrastructure, enterprise database software, and ERP business systems.' },
+      { id: 'tech23', title: 'IBM', url: 'https://www.ibm.com', description: 'Enterprise hybrid cloud, quantum computing, artificial intelligence, and IT services.' },
+      { id: 'tech24', title: 'Salesforce', url: 'https://www.salesforce.com', description: 'Cloud-based customer relationship management (CRM) and enterprise software.' },
+      { id: 'tech25', title: 'SAP', url: 'https://www.sap.com', description: 'Market leader in enterprise application software, ERP, and business networks.' },
+      { id: 'tech26', title: 'Cisco', url: 'https://www.cisco.com', description: 'Networking hardware, cybersecurity, cloud software, and telecommunications.' },
+      { id: 'tech27', title: 'VMware', url: 'https://www.vmware.com', description: 'Cloud infrastructure, virtualization technology, and digital workspace solutions.' }
     ]
   },
   {
@@ -127,68 +186,49 @@ const DEFAULT_CATEGORIES: Category[] = [
     ]
   },
   {
-    id: 'my-folders',
-    name: 'AI Apps',
+    id: 'finance',
+    name: 'Finance',
     links: [
-      { id: 'ai1', title: 'ChatGPT', url: 'https://chatgpt.com', description: 'AI chatbot developed by OpenAI.' },
-      { id: 'ai2', title: 'Gemini', url: 'https://gemini.google.com', description: 'AI conversational assistant developed by Google.' },
-      { id: 'ai3', title: 'Claude', url: 'https://claude.ai', description: 'Next-generation AI assistant developed by Anthropic.' },
-      { id: 'ai4', title: 'Grok', url: 'https://grok.com', description: 'AI assistant developed by xAI.' },
-      { id: 'ai5', title: 'Microsoft Copilot', url: 'https://copilot.microsoft.com', description: 'AI-powered chat assistant from Microsoft.' },
-      { id: 'ai6', title: 'Meta AI', url: 'https://meta.ai', description: 'AI assistant built on Meta Llama.' },
-      { id: 'ai7', title: 'Perplexity AI', url: 'https://perplexity.ai', description: 'AI-powered search engine and chatbot.' },
-      { id: 'ai8', title: 'Zhipu AI', url: 'https://chat.z.ai/', description: 'Generative AI assistant by Zhipu AI.' },
-      { id: 'ai9', title: 'DeepSeek', url: 'https://chat.deepseek.com', description: 'Advanced AI language model and assistant by DeepSeek.' },
-      { id: 'ai10', title: 'Qwen AI', url: 'https://chat.qwenlm.ai', description: 'AI model series developed by Alibaba Cloud.' },
-      { id: 'ai11', title: 'Midjourney', url: 'https://midjourney.com', description: 'Generative artificial intelligence program for image generation.' },
-      { id: 'ai12', title: 'Leonardo AI', url: 'https://leonardo.ai', description: 'AI-driven creative suite for image generation.' },
-      { id: 'ai13', title: 'Suno', url: 'https://suno.com', description: 'Generative AI music and speech creation platform.' },
-      { id: 'ai14', title: 'Murf AI', url: 'https://murf.ai', description: 'Versatile AI voice generator and text-to-speech platform.' },
-      { id: 'ai15', title: 'HeyGen', url: 'https://heygen.com', description: 'AI video generation platform for creating avatars.' },
-      { id: 'ai16', title: 'Pictory', url: 'https://pictory.ai', description: 'AI video generator for content creators.' },
-      { id: 'ai17', title: 'DeepL Write', url: 'https://www.deepl.com/write', description: 'AI writing assistant for grammar and style.' },
-      { id: 'ai18', title: 'Jasper', url: 'https://jasper.ai', description: 'AI copilot for enterprise marketing and content writing.' },
-      { id: 'ai19', title: 'Canva', url: 'https://canva.com', description: 'Graphic design platform with integrated AI tools.' },
-      { id: 'ai20', title: 'Fotor', url: 'https://www.fotor.com', description: 'Online photo editor and AI-powered graphic designer.' }
-    ]
-  },
-  {
-    id: 'shopping',
-    name: 'Shopping',
-    links: [
-      { id: 's1', title: 'Amazon', url: 'https://www.amazon.com', description: 'Online shopping for electronics, apparel, computers, books, and more.' },
-      { id: 's2', title: 'Bjs', url: 'https://www.bjs.com', description: 'Warehouse club offering groceries, electronics, and home essentials.' },
-      { id: 's3', title: 'Walmart', url: 'https://www.walmart.com', description: 'Department store for everyday low prices on groceries and goods.' },
-      { id: 's4', title: 'Target', url: 'https://www.target.com', description: 'Retail store for trendy clothing, home essentials, and electronics.' },
-      { id: 's5', title: 'Costco', url: 'https://www.costco.com', description: 'Wholesale warehouse offering bulk goods, electronics, and groceries.' },
-      { id: 's6', title: "Macy's", url: 'https://www.macys.com', description: 'Department store featuring fashion, cosmetics, and home decor.' },
-      { id: 's7', title: 'Walgreens', url: 'https://www.walgreens.com', description: 'Pharmacy, health and wellness products, and photo services.' },
-      { id: 's8', title: 'CVS', url: 'https://www.cvs.com', description: 'Pharmacy store for prescriptions, health products, and convenience items.' },
-      { id: 's9', title: "Sam's Club", url: 'https://www.samsclub.com', description: 'Membership warehouse club with bulk savings and exclusive deals.' },
-      { id: 's10', title: "Kohl's", url: 'https://www.kohls.com', description: 'Department store for clothing, shoes, bedding, and home goods.' },
-      { id: 's11', title: 'JCPenney', url: 'https://www.jcpenney.com', description: 'Apparel, footwear, jewelry, beauty, and home furnishings.' },
-      { id: 's12', title: 'eBay', url: 'https://www.ebay.com', description: 'Online marketplace for buying and selling new and vintage items.' },
-      { id: 's13', title: 'Nordstrom', url: 'https://www.nordstrom.com', description: 'Luxury department store for designer fashion, shoes, and beauty.' },
-      { id: 's14', title: 'Saks Fifth Avenue', url: 'https://www.saksfifthavenue.com', description: 'Premier luxury shopping destination for designer apparel and accessories.' },
-      { id: 's15', title: 'Neiman Marcus', url: 'https://www.neimanmarcus.com', description: 'Luxury specialty retailer offering high-end fashion and beauty.' },
-      { id: 's16', title: 'Nordstrom Rack', url: 'https://www.nordstromrack.com', description: 'Discount destination for top brands, designer apparel, and shoes.' },
-      { id: 's17', title: 'Gap', url: 'https://www.gap.com', description: 'Casual clothing and classic American style essentials.' },
-      { id: 's18', title: 'Old Navy', url: 'https://oldnavy.gap.com', description: 'Affordable fashion, activewear, and everyday essentials.' },
-      { id: 's19', title: 'Banana Republic', url: 'https://bananarepublic.gap.com', description: 'Contemporary apparel and sophisticated wardrobe staples.' },
-      { id: 's20', title: 'J.Crew', url: 'https://www.jcrew.com', description: 'Classic and modern styles, cashmere, denim, and workwear.' },
-      { id: 's21', title: 'Abercrombie & Fitch', url: 'https://www.abercrombie.com', description: 'Casual luxury apparel, denim, and trendy lifestyle fashion.' },
-      { id: 's22', title: 'Uniqlo', url: 'https://www.uniqlo.com', description: 'Innovative LifeWear designed for simple, high-quality daily wear.' },
-      { id: 's23', title: 'Home Depot', url: 'https://www.homedepot.com', description: 'Home improvement supplies, tools, appliances, and building materials.' },
-      { id: 's24', title: "Lowe's", url: 'https://www.lowes.com', description: 'Home improvement, appliances, hardware, and DIY project supplies.' },
-      { id: 's25', title: 'Wayfair', url: 'https://www.wayfair.com', description: 'Online furniture store and home decor for every room and budget.' },
-      { id: 's26', title: 'IKEA', url: 'https://www.ikea.com', description: 'Affordable Scandinavian furniture, smart home, and decor items.' },
-      { id: 's27', title: 'Crate & Barrel', url: 'https://www.crateandbarrel.com', description: 'Modern furniture, kitchenware, and contemporary home accessories.' },
-      { id: 's28', title: 'Best Buy', url: 'https://www.bestbuy.com', description: 'Consumer electronics, computers, appliances, and tech support.' },
-      { id: 's29', title: 'Etsy', url: 'https://www.etsy.com', description: 'Global marketplace for unique, handcrafted, and vintage items.' },
-      { id: 's30', title: 'Temu', url: 'https://www.temu.com', description: 'Online marketplace with competitive prices across endless categories.' },
-      { id: 's31', title: 'AliExpress', url: 'https://www.aliexpress.com', description: 'Global online retail marketplace with direct-from-manufacturer deals.' },
-      { id: 's32', title: 'SHEIN', url: 'https://www.shein.com', description: 'Global fashion and lifestyle e-retailer offering trendy styles.' },
-      { id: 's33', title: 'Poshmark', url: 'https://poshmark.com', description: 'Social marketplace for buying and selling fashion, luxury, and home.' }
+      { id: 'fin1', title: 'Vanguard', url: 'https://investor.vanguard.com', description: 'Investment management company offering index funds, ETFs, and retirement accounts.' },
+      { id: 'fin2', title: 'Goldman Sachs', url: 'https://www.goldmansachs.com', description: 'Global investment banking, securities, and investment management firm.' },
+      { id: 'fin5', title: 'UBS', url: 'https://www.ubs.com', description: 'Global financial services firm offering wealth management and investment banking.' },
+      { id: 'fin3', title: 'BlackRock', url: 'https://www.blackrock.com', description: 'Global asset manager and provider of iShares ETFs and Aladdin risk analytics.' },
+      { id: 'fin4', title: 'Fidelity', url: 'https://www.fidelity.com', description: 'Brokerage, mutual funds, retirement planning, and wealth management services.' },
+      { id: 'fin7', title: 'Charles Schwab', url: 'https://www.schwab.com', description: 'Full-service brokerage, banking, and wealth management platform.' },
+      { id: 'fin9', title: 'PIMCO', url: 'https://www.pimco.com', description: 'Global investment management firm specializing in fixed income.' },
+      { id: 'fin8', title: 'Morgan Stanley', url: 'https://www.morganstanley.com', description: 'Global investment banking, wealth management, and institutional securities.' },
+      { id: 'fin10', title: 'J.P. Morgan', url: 'https://www.jpmorgan.com', description: 'Global financial services, investment banking, and asset management.' },
+      { id: 'fin11', title: 'TD Bank', url: 'https://www.td.com', description: 'Personal, small business, and commercial banking services.' },
+      { id: 'fin12', title: 'E*TRADE', url: 'https://www.etrade.com', description: 'Online brokerage and trading platform for stocks, ETFs, and options.' },
+      { id: 'fin13', title: 'Chase', url: 'https://www.chase.com', description: 'Consumer and commercial banking, credit cards, mortgages, and auto loans.' },
+      { id: 'fin14', title: 'Capital One', url: 'https://www.capitalone.com', description: 'Credit cards, checking and savings accounts, and auto finance.' },
+      { id: 'fin15', title: 'Citibank', url: 'https://www.citi.com', description: 'Global consumer and corporate banking, credit cards, and wealth services.' },
+      { id: 'fin42', title: 'Santander Bank', url: 'https://www.santanderbank.com', description: 'Retail and commercial banking, checking, savings, and loans.' },
+      { id: 'fin16', title: 'Wells Fargo', url: 'https://www.wellsfargo.com', description: 'Banking, mortgage, investing, credit card, and personal loan services.' },
+      { id: 'fin17', title: 'U.S. Bank', url: 'https://www.usbank.com', description: 'Personal, business, and corporate banking and payment solutions.' },
+      { id: 'fin18', title: 'PNC Bank', url: 'https://www.pnc.com', description: 'Personal banking, wealth management, and institutional financial services.' },
+      { id: 'fin19', title: 'Citizens Bank', url: 'https://www.citizensbank.com', description: 'Consumer and commercial banking, lending, and wealth management.' },
+      { id: 'fin20', title: 'M&T Bank', url: 'https://www.mtb.com', description: 'Personal and business banking, loans, and wealth advisory services.' },
+      { id: 'fin21', title: 'Chime', url: 'https://www.chime.com', description: 'Mobile-first banking app with fee-free checking and high-yield savings.' },
+      { id: 'fin22', title: 'Ally Bank', url: 'https://www.ally.com', description: 'Online bank offering savings accounts, CDs, auto financing, and investing.' },
+      { id: 'fin24', title: 'ING', url: 'https://www.ing.com', description: 'Multinational banking and financial services corporation.' },
+      { id: 'fin23', title: 'Revolut', url: 'https://www.revolut.com', description: 'Global financial superapp for multi-currency accounts, cards, and transfers.' },
+      { id: 'fin26', title: 'Klarna', url: 'https://www.klarna.com', description: 'Flexible payment and buy-now-pay-later shopping platform.' },
+      { id: 'fin27', title: 'Starling Bank', url: 'https://www.starlingbank.com', description: 'UK digital challenger bank for personal, joint, and business accounts.' },
+      { id: 'fin28', title: 'Venmo', url: 'https://venmo.com', description: 'Mobile payment service for fast peer-to-peer money transfers.' },
+      { id: 'fin29', title: 'Zelle', url: 'https://www.zellepay.com', description: 'US digital payments network for direct bank-to-bank transfers.' },
+      { id: 'fin30', title: 'Cash App', url: 'https://cash.app', description: 'Mobile payment app for sending money, banking, stocks, and Bitcoin.' },
+      { id: 'fin31', title: 'Remitly', url: 'https://www.remitly.com', description: 'International money transfer and remittance service.' },
+      { id: 'fin33', title: 'Kraken', url: 'https://www.kraken.com', description: 'Cryptocurrency exchange for spot, margin, and institutional trading.' },
+      { id: 'fin32', title: 'Binance', url: 'https://www.binance.com', description: 'Global cryptocurrency exchange and digital asset ecosystem.' },
+      { id: 'fin37', title: 'OKX', url: 'https://www.okx.com', description: 'Cryptocurrency exchange and Web3 wallet platform.' },
+      { id: 'fin35', title: 'Gemini', url: 'https://www.gemini.com', description: 'Regulated cryptocurrency exchange and custodian.' },
+      { id: 'fin36', title: 'ZuluTrade', url: 'https://www.zulutrade.com', description: 'Social and copy trading platform for forex, stocks, and crypto.' },
+      { id: 'fin34', title: 'Crypto.com', url: 'https://crypto.com', description: 'Cryptocurrency exchange, wallet, and Visa card platform.' },
+      { id: 'fin38', title: 'OpenSea', url: 'https://opensea.io', description: 'Web3 marketplace for NFTs and digital collectibles.' },
+      { id: 'fin39', title: 'Rarible', url: 'https://rarible.com', description: 'Multi-chain NFT marketplace for creators and collectors.' },
+      { id: 'fin40', title: 'DeFiLlama', url: 'https://defillama.com', description: 'DeFi TVL aggregator and decentralized finance analytics dashboard.' },
+      { id: 'fin41', title: 'Dexscreener', url: 'https://dexscreener.com', description: 'Real-time DEX token charts, prices, and on-chain analytics.' }
     ]
   },
   {
@@ -228,36 +268,42 @@ const DEFAULT_CATEGORIES: Category[] = [
     ]
   },
   {
-    id: 'tech',
-    name: 'Technology',
+    id: 'shopping',
+    name: 'Shopping',
     links: [
-      { id: 'tech1', title: 'Apple', url: 'https://www.apple.com', description: 'Innovative technology products including iPhone, iPad, Mac, and Apple Watch.' },
-      { id: 'tech2', title: 'Microsoft', url: 'https://www.microsoft.com', description: 'Devices, software, Windows, cloud solutions, and productivity tools.' },
-      { id: 'tech3', title: 'Google', url: 'https://www.google.com', description: 'Search engine, Android, Pixel hardware, cloud computing, and AI services.' },
-      { id: 'tech4', title: 'Samsung', url: 'https://www.samsung.com', description: 'Galaxy smartphones, tablets, home appliances, displays, and electronics.' },
-      { id: 'tech5', title: 'Lenovo', url: 'https://www.lenovo.com', description: 'ThinkPad laptops, PCs, tablets, data center solutions, and accessories.' },
-      { id: 'tech6', title: 'Dell Technologies', url: 'https://www.dell.com', description: 'Laptops, workstations, desktop computers, servers, and enterprise solutions.' },
-      { id: 'tech7', title: 'HP', url: 'https://www.hp.com', description: 'Laptops, desktops, printers, monitors, and business computing solutions.' },
-      { id: 'tech8', title: 'Intel', url: 'https://www.intel.com', description: 'Processors, microchips, data center computing, and semiconductor innovations.' },
-      { id: 'tech9', title: 'NVIDIA', url: 'https://www.nvidia.com', description: 'Pioneering GPU computing, artificial intelligence, gaming, and robotics.' },
-      { id: 'tech10', title: 'AMD', url: 'https://www.amd.com', description: 'Ryzen and EPYC processors, Radeon graphics, and computing technology.' },
-      { id: 'tech11', title: 'Sony', url: 'https://www.sony.com', description: 'Audio, cameras, PlayStation gaming, TVs, and entertainment electronics.' },
-      { id: 'tech12', title: 'LG', url: 'https://www.lg.com', description: 'OLED TVs, home appliances, monitors, and audio electronics.' },
-      { id: 'tech13', title: 'ASUS', url: 'https://www.asus.com', description: 'ROG gaming hardware, ZenBook laptops, motherboards, and PC components.' },
-      { id: 'tech14', title: 'Acer', url: 'https://www.acer.com', description: 'Laptops, Predator gaming computers, monitors, and projectors.' },
-      { id: 'tech15', title: 'Xiaomi', url: 'https://www.mi.com', description: 'Smartphones, smart home IoT ecosystem products, and consumer electronics.' },
-      { id: 'tech16', title: 'Huawei', url: 'https://www.huawei.com', description: 'Smart devices, smartphones, telecom infrastructure, and cloud solutions.' },
-      { id: 'tech17', title: 'OnePlus', url: 'https://www.oneplus.com', description: 'High-performance flagship smartphones, earbuds, and wearables.' },
-      { id: 'tech18', title: 'Motorola', url: 'https://www.motorola.com', description: 'Razr flip phones, Edge series smartphones, and mobile technology.' },
-      { id: 'tech19', title: 'TCL', url: 'https://www.tcl.com', description: 'Smart televisions, mobile devices, audio gear, and home appliances.' },
-      { id: 'tech20', title: 'Panasonic', url: 'https://www.panasonic.com', description: 'Consumer electronics, Lumix cameras, home appliances, and automotive tech.' },
-      { id: 'tech21', title: 'Adobe', url: 'https://www.adobe.com', description: 'Creative Cloud applications including Photoshop, Illustrator, Premiere, and Acrobat.' },
-      { id: 'tech22', title: 'Oracle', url: 'https://www.oracle.com', description: 'Cloud infrastructure, enterprise database software, and ERP business systems.' },
-      { id: 'tech23', title: 'IBM', url: 'https://www.ibm.com', description: 'Enterprise hybrid cloud, quantum computing, artificial intelligence, and IT services.' },
-      { id: 'tech24', title: 'Salesforce', url: 'https://www.salesforce.com', description: 'Cloud-based customer relationship management (CRM) and enterprise software.' },
-      { id: 'tech25', title: 'SAP', url: 'https://www.sap.com', description: 'Market leader in enterprise application software, ERP, and business networks.' },
-      { id: 'tech26', title: 'Cisco', url: 'https://www.cisco.com', description: 'Networking hardware, cybersecurity, cloud software, and telecommunications.' },
-      { id: 'tech27', title: 'VMware', url: 'https://www.vmware.com', description: 'Cloud infrastructure, virtualization technology, and digital workspace solutions.' }
+      { id: 's1', title: 'Amazon', url: 'https://www.amazon.com', description: 'Online shopping for electronics, apparel, computers, books, and more.' },
+      { id: 's2', title: 'Bjs', url: 'https://www.bjs.com', description: 'Warehouse club offering groceries, electronics, and home essentials.' },
+      { id: 's3', title: 'Walmart', url: 'https://www.walmart.com', description: 'Department store for everyday low prices on groceries and goods.' },
+      { id: 's4', title: 'Target', url: 'https://www.target.com', description: 'Retail store for trendy clothing, home essentials, and electronics.' },
+      { id: 's5', title: 'Costco', url: 'https://www.costco.com', description: 'Wholesale warehouse offering bulk goods, electronics, and groceries.' },
+      { id: 's6', title: "Macy's", url: 'https://www.macys.com', description: 'Department store featuring fashion, cosmetics, and home decor.' },
+      { id: 's7', title: 'Walgreens', url: 'https://www.walgreens.com', description: 'Pharmacy, health and wellness products, and photo services.' },
+      { id: 's8', title: 'CVS', url: 'https://www.cvs.com', description: 'Pharmacy store for prescriptions, health products, and convenience items.' },
+      { id: 's9', title: "Sam's Club", url: 'https://www.samsclub.com', description: 'Membership warehouse club with bulk savings and exclusive deals.' },
+      { id: 's10', title: "Kohl's", url: 'https://www.kohls.com', description: 'Department store for clothing, shoes, bedding, and home goods.' },
+      { id: 's11', title: 'JCPenney', url: 'https://www.jcpenney.com', description: 'Apparel, footwear, jewelry, beauty, and home furnishings.' },
+      { id: 's12', title: 'eBay', url: 'https://www.ebay.com', description: 'Online marketplace for buying and selling new and vintage items.' },
+      { id: 's13', title: 'Nordstrom', url: 'https://www.nordstrom.com', description: 'Luxury department store for designer fashion, shoes, and beauty.' },
+      { id: 's14', title: 'Saks Fifth Avenue', url: 'https://www.saksfifthavenue.com', description: 'Premier luxury shopping destination for designer apparel and accessories.' },
+      { id: 's15', title: 'Neiman Marcus', url: 'https://www.neimanmarcus.com', description: 'Luxury specialty retailer offering high-end fashion and beauty.' },
+      { id: 's16', title: 'Nordstrom Rack', url: 'https://www.nordstromrack.com', description: 'Discount destination for top brands, designer apparel, and shoes.' },
+      { id: 's17', title: 'Gap', url: 'https://www.gap.com', description: 'Casual clothing and classic American style essentials.' },
+      { id: 's18', title: 'Old Navy', url: 'https://oldnavy.gap.com', description: 'Affordable fashion, activewear, and everyday essentials.' },
+      { id: 's19', title: 'Banana Republic', url: 'https://bananarepublic.gap.com', description: 'Contemporary apparel and sophisticated wardrobe staples.' },
+      { id: 's20', title: 'J.Crew', url: 'https://www.jcrew.com', description: 'Classic and modern styles, cashmere, denim, and workwear.' },
+      { id: 's21', title: 'Abercrombie & Fitch', url: 'https://www.abercrombie.com', description: 'Casual luxury apparel, denim, and trendy lifestyle fashion.' },
+      { id: 's22', title: 'Uniqlo', url: 'https://www.uniqlo.com', description: 'Innovative LifeWear designed for simple, high-quality daily wear.' },
+      { id: 's23', title: 'Home Depot', url: 'https://www.homedepot.com', description: 'Home improvement supplies, tools, appliances, and building materials.' },
+      { id: 's24', title: "Lowe's", url: 'https://www.lowes.com', description: 'Home improvement, appliances, hardware, and DIY project supplies.' },
+      { id: 's25', title: 'Wayfair', url: 'https://www.wayfair.com', description: 'Online furniture store and home decor for every room and budget.' },
+      { id: 's26', title: 'IKEA', url: 'https://www.ikea.com', description: 'Affordable Scandinavian furniture, smart home, and decor items.' },
+      { id: 's27', title: 'Crate & Barrel', url: 'https://www.crateandbarrel.com', description: 'Modern furniture, kitchenware, and contemporary home accessories.' },
+      { id: 's28', title: 'Best Buy', url: 'https://www.bestbuy.com', description: 'Consumer electronics, computers, appliances, and tech support.' },
+      { id: 's29', title: 'Etsy', url: 'https://www.etsy.com', description: 'Global marketplace for unique, handcrafted, and vintage items.' },
+      { id: 's30', title: 'Temu', url: 'https://www.temu.com', description: 'Online marketplace with competitive prices across endless categories.' },
+      { id: 's31', title: 'AliExpress', url: 'https://www.aliexpress.com', description: 'Global online retail marketplace with direct-from-manufacturer deals.' },
+      { id: 's32', title: 'SHEIN', url: 'https://www.shein.com', description: 'Global fashion and lifestyle e-retailer offering trendy styles.' },
+      { id: 's33', title: 'Poshmark', url: 'https://poshmark.com', description: 'Social marketplace for buying and selling fashion, luxury, and home.' }
     ]
   },
   {
@@ -453,7 +499,115 @@ const LINKS_T: Record<string, Record<string, string>> = {
     deleteCategoryMsg: 'Sidd Dir sécher, datt Dir dës Kategorie an all hir Linke läsche wëllt? Dës Aktioun kann net réckgängeg gemaach ginn.',
     deleteBookmarkTitle: 'Bookmark läschen',
     deleteBookmarkMsg: 'Sidd Dir sécher, datt Dir dëse Bookmark läsche wëllt?',
-  }
+  },
+  Dutch: {
+    addBookmark: 'Bladwijzer toevoegen',
+    saveTo: 'Opslaan in',
+    titleLabel: 'Titel',
+    urlLabel: 'URL',
+    placeholderTitle: 'bijv. Werkdashboard',
+    placeholderUrl: 'bijv. app.werk.com',
+    cancel: 'Annuleren',
+    newCategory: 'Nieuwe categorie',
+    createCategoryDesc: 'Een nieuwe categorie maken',
+    categoryName: 'Categorienaam',
+    placeholderCategory: 'bijv. Winkelen',
+    create: 'Maken',
+    deleteCategoryTitle: 'Categorie verwijderen',
+    deleteCategoryMsg: 'Weet u zeker dat u deze categorie en alle bijbehorende links wilt verwijderen? Dit kan niet ongedaan worden gemaakt.',
+    deleteBookmarkTitle: 'Bladwijzer verwijderen',
+    deleteBookmarkMsg: 'Weet u zeker dat u deze bladwijzer wilt verwijderen?',
+  },
+  Swedish: {
+    addBookmark: 'Lägg till bokmärke',
+    saveTo: 'Spara i',
+    titleLabel: 'Titel',
+    urlLabel: 'URL',
+    placeholderTitle: 't.ex. Arbetsdashboard',
+    placeholderUrl: 't.ex. app.arbete.com',
+    cancel: 'Avbryt',
+    newCategory: 'Ny kategori',
+    createCategoryDesc: 'Skapa en ny kategori',
+    categoryName: 'Kategorinamn',
+    placeholderCategory: 't.ex. Shopping',
+    create: 'Skapa',
+    deleteCategoryTitle: 'Ta bort kategori',
+    deleteCategoryMsg: 'Är du säker på att du vill ta bort den här kategorin och alla dess länkar? Åtgärden kan inte ångras.',
+    deleteBookmarkTitle: 'Ta bort bokmärke',
+    deleteBookmarkMsg: 'Är du säker på att du vill ta bort det här bokmärket?',
+  },
+  Finnish: {
+    addBookmark: 'Lisää kirjanmerkki',
+    saveTo: 'Tallenna kohteeseen',
+    titleLabel: 'Otsikko',
+    urlLabel: 'URL',
+    placeholderTitle: 'esim. Työpöytä',
+    placeholderUrl: 'esim. app.tyo.com',
+    cancel: 'Peruuta',
+    newCategory: 'Uusi kategoria',
+    createCategoryDesc: 'Luo uusi kategoria',
+    categoryName: 'Kategorian nimi',
+    placeholderCategory: 'esim. Ostokset',
+    create: 'Luo',
+    deleteCategoryTitle: 'Poista kategoria',
+    deleteCategoryMsg: 'Haluatko varmasti poistaa tämän kategorian ja kaikki sen linkit? Tätä toimintoa ei voi perua.',
+    deleteBookmarkTitle: 'Poista kirjanmerkki',
+    deleteBookmarkMsg: 'Haluatko varmasti poistaa tämän kirjanmerkin?',
+  },
+  Hindi: {
+    addBookmark: 'बुकमार्क जोड़ें',
+    saveTo: 'इसमें सहेजें',
+    titleLabel: 'शीर्षक',
+    urlLabel: 'URL',
+    placeholderTitle: 'जैसे: कार्य डैशबोर्ड',
+    placeholderUrl: 'जैसे: app.work.com',
+    cancel: 'रद्द करें',
+    newCategory: 'नई श्रेणी',
+    createCategoryDesc: 'एक नई श्रेणी बनाएँ',
+    categoryName: 'श्रेणी का नाम',
+    placeholderCategory: 'जैसे: खरीदारी',
+    create: 'बनाएँ',
+    deleteCategoryTitle: 'श्रेणी हटाएँ',
+    deleteCategoryMsg: 'क्या आप वाकई इस श्रेणी और इसके सभी लिंक को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।',
+    deleteBookmarkTitle: 'बुकमार्क हटाएँ',
+    deleteBookmarkMsg: 'क्या आप वाकई इस बुकमार्क को हटाना चाहते हैं?',
+  },
+  Norwegian: {
+    addBookmark: 'Legg til bokmerke',
+    saveTo: 'Lagre til',
+    titleLabel: 'Tittel',
+    urlLabel: 'URL',
+    placeholderTitle: 'f.eks. Arbeidsoversikt',
+    placeholderUrl: 'f.eks. app.arbeid.com',
+    cancel: 'Avbryt',
+    newCategory: 'Ny kategori',
+    createCategoryDesc: 'Opprett en ny kategori',
+    categoryName: 'Kategorinavn',
+    placeholderCategory: 'f.eks. Shopping',
+    create: 'Opprett',
+    deleteCategoryTitle: 'Slett kategori',
+    deleteCategoryMsg: 'Er du sikker på at du vil slette denne kategorien og alle dens lenker? Denne handlingen kan ikke angres.',
+    deleteBookmarkTitle: 'Slett bokmerke',
+    deleteBookmarkMsg: 'Er du sikker på at du vil slette dette bokmerket?',
+  },
+  Thai: {
+    addBookmark: 'เพิ่มบุ๊กมาร์ก',
+    saveTo: 'บันทึกไปยัง',
+    titleLabel: 'ชื่อเรื่อง',
+    urlLabel: 'URL',
+    placeholderTitle: 'เช่น แดชบอร์ดงาน',
+    placeholderUrl: 'เช่น app.work.com',
+    cancel: 'ยกเลิก',
+    newCategory: 'หมวดหมู่ใหม่',
+    createCategoryDesc: 'สร้างหมวดหมู่ใหม่',
+    categoryName: 'ชื่อหมวดหมู่',
+    placeholderCategory: 'เช่น ช้อปปิ้ง',
+    create: 'สร้าง',
+    deleteCategoryTitle: 'ลบหมวดหมู่',
+    deleteCategoryMsg: 'คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้และลิงก์ทั้งหมด? การดำเนินการนี้ไม่สามารถย้อนกลับได้',
+    deleteBookmarkTitle: 'ลบบุ๊กมาร์ก',
+    deleteBookmarkMsg: 'คุณแน่ใจหรือไม่ว่าต้องการลบบุ๊กมาร์กนี้?',
+  },
 };
 
 const getFavicon = (url: string) => {
@@ -1039,13 +1193,21 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
           }
         }
 
-        if (linksChanged) {
+        if (linksChanged || officeCat.name !== 'Microsoft') {
           updated[msOfficeIndex] = {
             ...officeCat,
+            name: 'Microsoft',
             links: cleanedLinks
           };
           changed = true;
         }
+      }
+      if (hasNewLink === false && officeCat.name !== 'Microsoft' && defaultMsOffice) {
+        updated[msOfficeIndex] = {
+          ...updated[msOfficeIndex],
+          name: 'Microsoft'
+        };
+        changed = true;
       }
     }
 
@@ -1183,6 +1345,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
         if (defaultGoogleApps) {
           updated[googleAppsIndex] = {
             ...googleCat,
+            name: 'Google',
             links: defaultGoogleApps.links
           };
           changed = true;
@@ -1245,9 +1408,10 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
           return updatedLink;
         });
 
-        if (linksChanged) {
+        if (linksChanged || googleCat.name !== 'Google') {
           updated[googleAppsIndex] = {
             ...googleCat,
+            name: 'Google',
             links: cleanedLinks
           };
           changed = true;
@@ -1356,11 +1520,21 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
         const missingLinks = defaultTech.links.filter(
           defLink => !existingUrls.has(defLink.url.toLowerCase()) && !existingTitles.has(defLink.title.toLowerCase())
         );
-        if (missingLinks.length > 0 || nameChanged) {
+        let nextTechLinks = [...techCat.links, ...missingLinks];
+        const hpIdx = nextTechLinks.findIndex(l => l.id === 'tech7' || l.title.toLowerCase() === 'hp');
+        const intelIdx = nextTechLinks.findIndex(l => l.id === 'tech8' || l.title.toLowerCase() === 'intel');
+        let orderSwapped = false;
+        if (hpIdx !== -1 && intelIdx !== -1 && hpIdx < intelIdx) {
+          const temp = nextTechLinks[hpIdx];
+          nextTechLinks[hpIdx] = nextTechLinks[intelIdx];
+          nextTechLinks[intelIdx] = temp;
+          orderSwapped = true;
+        }
+        if (missingLinks.length > 0 || nameChanged || orderSwapped) {
           updated[techIndex] = {
             ...techCat,
             name: 'Technology',
-            links: [...techCat.links, ...missingLinks]
+            links: nextTechLinks
           };
           changed = true;
         }
@@ -1411,6 +1585,185 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
       }
     });
 
+    // Ensure AI Apps category is positioned between Home and Google
+    const currentHomeIdx = updated.findIndex(cat => cat.id === 'default' || cat.name === 'Home');
+    const currentAiIdx = updated.findIndex(cat => cat.id === 'my-folders' || cat.name.toLowerCase() === 'ai apps');
+    const currentGoogleIdx = updated.findIndex(cat => cat.id === 'google-apps' || cat.name === 'Google' || cat.name === 'Google Apps');
+    if (currentAiIdx !== -1) {
+      let needsMove = false;
+      if (currentHomeIdx !== -1 && currentGoogleIdx !== -1 && currentHomeIdx < currentGoogleIdx) {
+        if (currentAiIdx !== currentHomeIdx + 1) {
+          needsMove = true;
+        }
+      } else if (currentHomeIdx !== -1 && currentAiIdx !== currentHomeIdx + 1) {
+        needsMove = true;
+      } else if (currentGoogleIdx !== -1 && currentAiIdx !== currentGoogleIdx - 1) {
+        needsMove = true;
+      }
+
+      if (needsMove) {
+        const [aiCat] = updated.splice(currentAiIdx, 1);
+        const newHomeIdx = updated.findIndex(cat => cat.id === 'default' || cat.name === 'Home');
+        const newGoogleIdx = updated.findIndex(cat => cat.id === 'google-apps' || cat.name === 'Google' || cat.name === 'Google Apps');
+        if (newHomeIdx !== -1) {
+          updated.splice(newHomeIdx + 1, 0, aiCat);
+        } else if (newGoogleIdx !== -1) {
+          updated.splice(newGoogleIdx, 0, aiCat);
+        } else {
+          updated.unshift(aiCat);
+        }
+        changed = true;
+      }
+    }
+
+    // Ensure Technology category is positioned after Microsoft (between Microsoft and Tools)
+    const currentMsOfficeIdx = updated.findIndex(cat => cat.id === 'ms-office' || cat.name.toLowerCase() === 'microsoft' || cat.name.toLowerCase() === 'microsoft office');
+    const currentTechIdx = updated.findIndex(cat => cat.id === 'tech' || cat.name.toLowerCase() === 'technology');
+    if (currentTechIdx !== -1 && currentMsOfficeIdx !== -1 && currentTechIdx !== currentMsOfficeIdx + 1) {
+      const [techCat] = updated.splice(currentTechIdx, 1);
+      const newMsOfficeIdx = updated.findIndex(cat => cat.id === 'ms-office' || cat.name.toLowerCase() === 'microsoft' || cat.name.toLowerCase() === 'microsoft office');
+      if (newMsOfficeIdx !== -1) {
+        updated.splice(newMsOfficeIdx + 1, 0, techCat);
+      } else {
+        updated.push(techCat);
+      }
+      changed = true;
+    }
+
+    // Ensure Finance category removes WeBank/Bridgewater, includes Santander Bank between Citibank & Wells Fargo, and orders UBS/BlackRock, ING, Kraken/Binance
+    const currentFinanceIdxForLinks = updated.findIndex(cat => cat.id === 'finance' || cat.name.toLowerCase() === 'finance');
+    if (currentFinanceIdxForLinks !== -1) {
+      const finCat = updated[currentFinanceIdxForLinks];
+      let nextFinLinks = finCat.links.filter(
+        l =>
+          l.id !== 'fin6' &&
+          l.id !== 'fin25' &&
+          l.title.toLowerCase() !== 'bridgewater' &&
+          l.title.toLowerCase() !== 'webank'
+      );
+      let finChanged = nextFinLinks.length !== finCat.links.length;
+
+      // Ensure Santander Bank is placed between Citibank and Wells Fargo
+      const existingSantanderIdx = nextFinLinks.findIndex(
+        l => l.id === 'fin42' || l.title.toLowerCase().includes('santander')
+      );
+      const citiIdx = nextFinLinks.findIndex(l => l.title.toLowerCase() === 'citibank');
+      if (existingSantanderIdx === -1) {
+        const santanderLink: Link = {
+          id: 'fin42',
+          title: 'Santander Bank',
+          url: 'https://www.santanderbank.com',
+          description: 'Retail and commercial banking, checking, savings, and loans.'
+        };
+        const wellsIdx = nextFinLinks.findIndex(l => l.title.toLowerCase() === 'wells fargo');
+        if (citiIdx !== -1) {
+          nextFinLinks.splice(citiIdx + 1, 0, santanderLink);
+        } else if (wellsIdx !== -1) {
+          nextFinLinks.splice(wellsIdx, 0, santanderLink);
+        } else {
+          nextFinLinks.push(santanderLink);
+        }
+        finChanged = true;
+      } else if (citiIdx !== -1 && existingSantanderIdx !== citiIdx + 1) {
+        const [santanderLink] = nextFinLinks.splice(existingSantanderIdx, 1);
+        const newCitiIdx = nextFinLinks.findIndex(l => l.title.toLowerCase() === 'citibank');
+        nextFinLinks.splice(newCitiIdx + 1, 0, santanderLink);
+        finChanged = true;
+      }
+
+      // Switch BlackRock and UBS if BlackRock comes before UBS
+      const blackRockIdx = nextFinLinks.findIndex(l => l.id === 'fin3' || l.title.toLowerCase() === 'blackrock');
+      const ubsIdx = nextFinLinks.findIndex(l => l.id === 'fin5' || l.title.toLowerCase() === 'ubs');
+      if (blackRockIdx !== -1 && ubsIdx !== -1 && blackRockIdx < ubsIdx) {
+        const temp = nextFinLinks[blackRockIdx];
+        nextFinLinks[blackRockIdx] = nextFinLinks[ubsIdx];
+        nextFinLinks[ubsIdx] = temp;
+        finChanged = true;
+      }
+
+      // Switch Fidelity and BlackRock if Fidelity comes before BlackRock
+      const fidelityIdx = nextFinLinks.findIndex(l => l.id === 'fin4' || l.title.toLowerCase() === 'fidelity');
+      const blackRockIdxAfter = nextFinLinks.findIndex(l => l.id === 'fin3' || l.title.toLowerCase() === 'blackrock');
+      if (fidelityIdx !== -1 && blackRockIdxAfter !== -1 && fidelityIdx < blackRockIdxAfter) {
+        const temp = nextFinLinks[fidelityIdx];
+        nextFinLinks[fidelityIdx] = nextFinLinks[blackRockIdxAfter];
+        nextFinLinks[blackRockIdxAfter] = temp;
+        finChanged = true;
+      }
+
+      // Switch Morgan Stanley and PIMCO if Morgan Stanley comes before PIMCO
+      const morganIdx = nextFinLinks.findIndex(l => l.id === 'fin8' || l.title.toLowerCase() === 'morgan stanley');
+      const pimcoIdx = nextFinLinks.findIndex(l => l.id === 'fin9' || l.title.toLowerCase() === 'pimco');
+      if (morganIdx !== -1 && pimcoIdx !== -1 && morganIdx < pimcoIdx) {
+        const temp = nextFinLinks[morganIdx];
+        nextFinLinks[morganIdx] = nextFinLinks[pimcoIdx];
+        nextFinLinks[pimcoIdx] = temp;
+        finChanged = true;
+      }
+
+      // Move ING between Ally Bank and Revolut
+      const allyIdx = nextFinLinks.findIndex(l => l.id === 'fin22' || l.title.toLowerCase() === 'ally bank');
+      const ingIdx = nextFinLinks.findIndex(l => l.id === 'fin24' || l.title.toLowerCase() === 'ing');
+      if (allyIdx !== -1 && ingIdx !== -1 && ingIdx !== allyIdx + 1) {
+        const [ingLink] = nextFinLinks.splice(ingIdx, 1);
+        const newAllyIdx = nextFinLinks.findIndex(l => l.id === 'fin22' || l.title.toLowerCase() === 'ally bank');
+        nextFinLinks.splice(newAllyIdx + 1, 0, ingLink);
+        finChanged = true;
+      }
+
+      // Switch Binance and Kraken if Binance comes before Kraken
+      const binanceIdx = nextFinLinks.findIndex(l => l.id === 'fin32' || l.title.toLowerCase() === 'binance');
+      const krakenIdx = nextFinLinks.findIndex(l => l.id === 'fin33' || l.title.toLowerCase() === 'kraken');
+      if (binanceIdx !== -1 && krakenIdx !== -1 && binanceIdx < krakenIdx) {
+        const temp = nextFinLinks[binanceIdx];
+        nextFinLinks[binanceIdx] = nextFinLinks[krakenIdx];
+        nextFinLinks[krakenIdx] = temp;
+        finChanged = true;
+      }
+
+      // Switch Crypto.com and OKX if Crypto.com comes before OKX
+      const cryptoComIdx = nextFinLinks.findIndex(l => l.id === 'fin34' || l.title.toLowerCase() === 'crypto.com');
+      const okxIdx = nextFinLinks.findIndex(l => l.id === 'fin37' || l.title.toLowerCase() === 'okx');
+      if (cryptoComIdx !== -1 && okxIdx !== -1 && cryptoComIdx < okxIdx) {
+        const temp = nextFinLinks[cryptoComIdx];
+        nextFinLinks[cryptoComIdx] = nextFinLinks[okxIdx];
+        nextFinLinks[okxIdx] = temp;
+        finChanged = true;
+      }
+
+      if (finChanged) {
+        updated[currentFinanceIdxForLinks] = {
+          ...finCat,
+          links: nextFinLinks
+        };
+        changed = true;
+      }
+    }
+
+    // Switch Shopping and Travel categories if Shopping currently appears before Travel
+    const currentShopIdx = updated.findIndex(cat => cat.id === 'shopping' || cat.name.toLowerCase() === 'shopping');
+    const currentTravIdx = updated.findIndex(cat => cat.id === 'travel' || cat.name.toLowerCase() === 'travel');
+    if (currentShopIdx !== -1 && currentTravIdx !== -1 && currentShopIdx < currentTravIdx) {
+      const tempCat = updated[currentShopIdx];
+      updated[currentShopIdx] = updated[currentTravIdx];
+      updated[currentTravIdx] = tempCat;
+      changed = true;
+    }
+
+    // Ensure Finance category is positioned immediately before Travel (after Music)
+    const currentFinanceIdx = updated.findIndex(cat => cat.id === 'finance' || cat.name.toLowerCase() === 'finance');
+    const currentTravelAfterSwapIdx = updated.findIndex(cat => cat.id === 'travel' || cat.name.toLowerCase() === 'travel');
+    if (currentFinanceIdx !== -1 && currentTravelAfterSwapIdx !== -1 && currentFinanceIdx !== currentTravelAfterSwapIdx - 1) {
+      const [financeCat] = updated.splice(currentFinanceIdx, 1);
+      const newTravelIdx = updated.findIndex(cat => cat.id === 'travel' || cat.name.toLowerCase() === 'travel');
+      if (newTravelIdx !== -1) {
+        updated.splice(newTravelIdx, 0, financeCat);
+      } else {
+        updated.push(financeCat);
+      }
+      changed = true;
+    }
+
     if (changed) {
       setCategories(updated);
     }
@@ -1426,16 +1779,32 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
   
   const [confirmDeleteCat, setConfirmDeleteCat] = useState<string | null>(null);
   const [confirmDeleteLinkItem, setConfirmDeleteLinkItem] = useState<string | null>(null);
+  const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
+  const cardsGridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setSelectedLinkId(null);
+  }, [activeCategoryId]);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (cardsGridRef.current && !cardsGridRef.current.contains(e.target as Node)) {
+        setSelectedLinkId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
 
   const hiddenMeasureRef = useRef<HTMLDivElement>(null);
   const [standardCategoryWidth, setStandardCategoryWidth] = useState<number>(180);
-  const [isMobile, setIsMobile] = useState<boolean>(() => 
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  const [isTabletOrDesktop, setIsTabletOrDesktop] = useState<boolean>(() => 
+    typeof window !== 'undefined' ? window.innerWidth >= 640 : true
   );
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsTabletOrDesktop(window.innerWidth >= 640);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -1485,7 +1854,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
 
   const addCategory = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newCategoryName || categories.length >= 12) return;
+    if (!newCategoryName || categories.length >= 15) return;
     const newCat: Category = {
       id: Date.now().toString(),
       name: newCategoryName,
@@ -1518,18 +1887,18 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
         {categories.map((cat) => (
           <div
             key={`measure-${cat.id}`}
-            className="px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap"
+            className="pl-4 pr-10 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap"
           >
             {cat.name}
           </div>
         ))}
-        <div className="px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
-          Microsoft Office
+        <div className="pl-4 pr-10 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap">
+          Microsoft
         </div>
       </div>
 
       {/* Category Tabs */}
-      <div className="flex flex-wrap justify-center items-center gap-2.5 mb-12">
+      <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center sm:items-center gap-2.5 w-full mb-8 sm:mb-10 lg:mb-12">
         <AnimatePresence>
           {categories.map((cat) => (
             <motion.div
@@ -1537,12 +1906,14 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="relative group/cat shrink-0"
+              className="relative group/cat w-full sm:w-auto shrink-0"
             >
               <button
                 onClick={() => setActiveCategoryId(cat.id)}
-                style={{ width: `${standardCategoryWidth}px`, height: '38px' }}
-                className={`bookmark-cat-pill px-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all flex items-center justify-center text-center cursor-pointer select-none ${
+                style={isTabletOrDesktop ? { width: `${standardCategoryWidth}px`, height: '44px' } : undefined}
+                className={`bookmark-cat-pill w-full min-h-[44px] h-[44px] ${
+                  categories.length > 1 && activeCategoryId === cat.id ? 'pl-3 pr-9 sm:pl-4 sm:pr-9' : 'px-3 sm:px-4'
+                } rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center cursor-pointer select-none ${
                   activeCategoryId === cat.id
                     ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
                     : 'bg-white dark:bg-[#202025] text-neutral-800 dark:text-white/90 border border-neutral-200/80 dark:border-white/10 opacity-70 hover:opacity-100'
@@ -1551,26 +1922,23 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
               >
                 <span className="truncate whitespace-nowrap px-1">{cat.name}</span>
               </button>
-              {categories.length > 1 && (
+              {categories.length > 1 && activeCategoryId === cat.id && (
                 <button
                   onClick={(e) => { e.stopPropagation(); setConfirmDeleteCat(cat.id); }}
-                  className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover/cat:opacity-100 transition-opacity"
+                  className="bookmark-cat-delete-btn absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6 bg-slate-200/90 hover:bg-slate-300 text-slate-600 hover:text-slate-800 rounded-lg flex items-center justify-center transition-all shadow-xs cursor-pointer z-10"
+                  aria-label={`Delete ${cat.name}`}
                 >
-                  <X size={8} />
+                  <X size={11} />
                 </button>
               )}
             </motion.div>
           ))}
-          {categories.length < 12 && (
-            <div className="w-full md:w-auto flex justify-center shrink-0">
+          {categories.length < 15 && (
+            <div className="w-full sm:w-auto flex justify-center shrink-0">
               <button
                 onClick={() => setShowAddCategory(true)}
-                style={{
-                  width: isMobile ? `${standardCategoryWidth}px` : undefined,
-                  height: '38px',
-                  '--standard-cat-width': `${standardCategoryWidth}px`,
-                } as React.CSSProperties}
-                className="bookmark-cat-pill bookmark-add-cat-btn h-[38px] px-4 rounded-full border border-dashed border-neutral-300 dark:border-white/20 text-neutral-800 dark:text-white/90 opacity-70 hover:opacity-100 hover:border-indigo-500/50 hover:text-indigo-500 transition-all bg-white dark:bg-[#202025] flex items-center justify-center shrink-0 cursor-pointer select-none"
+                style={isTabletOrDesktop ? { width: `${standardCategoryWidth}px`, height: '44px' } : undefined}
+                className="bookmark-cat-pill bookmark-add-cat-btn w-full min-h-[44px] h-[44px] px-4 rounded-full border border-dashed border-neutral-300 dark:border-white/20 text-neutral-800 dark:text-white/90 opacity-70 hover:opacity-100 hover:border-indigo-500/50 hover:text-indigo-500 transition-all bg-white dark:bg-[#202025] flex items-center justify-center shrink-0 cursor-pointer select-none"
                 title="Add Category"
                 aria-label="Add Category"
               >
@@ -1581,52 +1949,62 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
         </AnimatePresence>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full max-w-6xl mx-auto">
+      <div ref={cardsGridRef} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-3.5 lg:gap-4 w-full max-w-6xl mx-auto">
         <AnimatePresence mode="popLayout">
-          {activeCategory?.links.map((link) => (
-            <motion.div
-              key={link.id}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              layout
-              className="group relative w-full"
-            >
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={link.description || link.title}
-                className="bookmark-webcard w-full h-16 flex items-center gap-3.5 px-4 rounded-xl border border-neutral-200/80 dark:border-white/10 bg-white dark:bg-[#202025] hover:border-indigo-500/40 hover:shadow-md group-hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+          {activeCategory?.links.map((link) => {
+            const isLinkSelected = selectedLinkId === link.id;
+            return (
+              <motion.div
+                key={link.id}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                layout
+                className="group relative w-full"
               >
-                <div className="flex items-center justify-center shrink-0 w-9 h-9">
-                  {renderBookmarkBrandIcon(link)}
-                </div>
-                <span 
-                  className="bookmark-link-title font-medium text-xs sm:text-sm truncate text-left flex-1 select-none"
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setSelectedLinkId(link.id)}
+                  onFocus={() => setSelectedLinkId(link.id)}
+                  title={link.description || link.title}
+                  className="bookmark-webcard w-full min-h-[68px] lg:h-16 flex items-center gap-2.5 sm:gap-3 lg:gap-3.5 px-3 sm:px-3.5 lg:px-4 py-2 lg:py-0 rounded-xl border border-neutral-200/80 dark:border-white/10 bg-white dark:bg-[#202025] hover:border-indigo-500/40 hover:shadow-md group-hover:scale-[1.02] transition-all duration-300 overflow-hidden"
                 >
-                  {link.title}
-                </span>
-              </a>
-              <button
-                onClick={(e) => { e.stopPropagation(); e.preventDefault(); setConfirmDeleteLinkItem(link.id); }}
-                className="absolute top-1.5 right-1.5 w-5 h-5 bg-black/10 hover:bg-red-500 hover:text-white rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all dark:text-white/60 z-10"
-              >
-                <X size={10} />
-              </button>
-            </motion.div>
-          ))}
+                  <div className="flex items-center justify-center shrink-0 w-8 h-8 lg:w-9 lg:h-9">
+                    {renderBookmarkBrandIcon(link)}
+                  </div>
+                  <span 
+                    className="bookmark-link-title font-medium text-[13px] sm:text-sm truncate text-left flex-1 select-none"
+                  >
+                    {link.title}
+                  </span>
+                </a>
+                <button
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); setConfirmDeleteLinkItem(link.id); }}
+                  className={`absolute top-1.5 right-1.5 w-7 h-7 lg:w-5 lg:h-5 bg-black/10 hover:bg-red-500 hover:text-white rounded-lg flex items-center justify-center transition-all dark:text-white/60 z-10 cursor-pointer ${
+                    isLinkSelected
+                      ? 'opacity-100 pointer-events-auto'
+                      : 'opacity-0 pointer-events-none [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto'
+                  }`}
+                  aria-label={`Delete ${link.title}`}
+                >
+                  <X size={12} className="lg:w-2.5 lg:h-2.5" />
+                </button>
+              </motion.div>
+            );
+          })}
 
           <div className="group relative w-full">
             <motion.button
               onClick={() => setShowAdd(true)}
-              className="bookmark-webcard w-full h-16 flex items-center gap-3.5 px-4 rounded-xl border border-neutral-200/80 dark:border-white/10 bg-white dark:bg-[#202025] hover:border-indigo-500/40 hover:shadow-md group-hover:scale-[1.02] transition-all duration-300 overflow-hidden text-left"
+              className="bookmark-webcard w-full min-h-[68px] lg:h-16 flex items-center gap-2.5 sm:gap-3 lg:gap-3.5 px-3 sm:px-3.5 lg:px-4 py-2 lg:py-0 rounded-xl border border-neutral-200/80 dark:border-white/10 bg-white dark:bg-[#202025] hover:border-indigo-500/40 hover:shadow-md group-hover:scale-[1.02] transition-all duration-300 overflow-hidden text-left"
             >
-              <div className="flex items-center justify-center shrink-0 w-9 h-9">
+              <div className="flex items-center justify-center shrink-0 w-8 h-8 lg:w-9 lg:h-9">
                 <Plus size={22} className="text-indigo-500 transition-transform group-hover:rotate-90 duration-300" />
               </div>
               <span 
-                className="bookmark-link-title font-medium text-xs sm:text-sm truncate text-left flex-1 select-none"
+                className="bookmark-link-title font-medium text-[13px] sm:text-sm truncate text-left flex-1 select-none"
               >
                 {LINKS_T[language]?.addBookmark || LINKS_T.English.addBookmark}
               </span>
@@ -1637,22 +2015,22 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
 
       {/* Add Link Modal */}
       {showAdd && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
           <div className="absolute inset-0 bg-black/60" onClick={() => setShowAdd(false)} />
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            className="relative z-10 p-10 rounded-[3rem] w-full max-w-md shadow-2xl GeekTabs-card"
+            className="relative z-10 p-6 sm:p-8 lg:p-10 rounded-3xl lg:rounded-[3rem] w-full max-w-md shadow-2xl GeekTabs-card"
           >
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
               {LINKS_T[language]?.addBookmark || LINKS_T.English.addBookmark}
             </h2>
-            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-white/30 mb-8">
+            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-white/30 mb-6 sm:mb-8">
               {LINKS_T[language]?.saveTo || LINKS_T.English.saveTo} {activeCategory.name}
             </p>
-            <form onSubmit={addLink} className="space-y-6">
+            <form onSubmit={addLink} className="space-y-5 sm:space-y-6">
               <div>
-                <label className="block text-[10px] uppercase tracking-widest text-slate-600 dark:text-white/40 mb-3 font-bold">
+                <label className="block text-[10px] uppercase tracking-widest text-slate-600 dark:text-white/40 mb-2 sm:mb-3 font-bold">
                   {LINKS_T[language]?.titleLabel || LINKS_T.English.titleLabel}
                 </label>
                 <input
@@ -1660,33 +2038,33 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                   type="text"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-sm lg:text-base text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
                   placeholder={LINKS_T[language]?.placeholderTitle || LINKS_T.English.placeholderTitle}
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-widest text-slate-600 dark:text-white/40 mb-3 font-bold">
+                <label className="block text-[10px] uppercase tracking-widest text-slate-600 dark:text-white/40 mb-2 sm:mb-3 font-bold">
                   {LINKS_T[language]?.urlLabel || LINKS_T.English.urlLabel}
                 </label>
                 <input
                   type="text"
                   value={newUrl}
                   onChange={(e) => setNewUrl(e.target.value)}
-                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-sm lg:text-base text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
                   placeholder={LINKS_T[language]?.placeholderUrl || LINKS_T.English.placeholderUrl}
                 />
               </div>
-              <div className="flex gap-4 pt-4 text-[10px] font-bold tracking-widest uppercase">
+              <div className="flex gap-3 sm:gap-4 pt-3 sm:pt-4 text-xs lg:text-[10px] font-bold tracking-widest uppercase">
                 <button
                   type="button"
                   onClick={() => setShowAdd(false)}
-                  className="flex-1 px-8 py-4 bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold"
+                  className="flex-1 min-h-[44px] px-4 sm:px-6 lg:px-8 py-3.5 lg:py-4 bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold"
                 >
                   {LINKS_T[language]?.cancel || LINKS_T.English.cancel}
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-2xl font-bold transition-all"
+                  className="flex-1 min-h-[44px] px-4 sm:px-6 lg:px-8 py-3.5 lg:py-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-2xl font-bold transition-all"
                 >
                   {LINKS_T[language]?.addBookmark || LINKS_T.English.addBookmark}
                 </button>
@@ -1698,22 +2076,22 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
 
       {/* Add Category Modal */}
       {showAddCategory && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
           <div className="absolute inset-0 bg-black/60" onClick={() => setShowAddCategory(false)} />
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            className="relative z-10 p-10 rounded-[3rem] w-full max-w-md shadow-2xl GeekTabs-card"
+            className="relative z-10 p-6 sm:p-8 lg:p-10 rounded-3xl lg:rounded-[3rem] w-full max-w-md shadow-2xl GeekTabs-card"
           >
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
               {LINKS_T[language]?.newCategory || LINKS_T.English.newCategory}
             </h2>
-            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-white/30 mb-8">
+            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-white/30 mb-6 sm:mb-8">
               {LINKS_T[language]?.createCategoryDesc || LINKS_T.English.createCategoryDesc}
             </p>
-            <form onSubmit={addCategory} className="space-y-6">
+            <form onSubmit={addCategory} className="space-y-5 sm:space-y-6">
               <div>
-                <label className="block text-[10px] uppercase tracking-widest text-slate-600 dark:text-white/40 mb-3 font-bold">
+                <label className="block text-[10px] uppercase tracking-widest text-slate-600 dark:text-white/40 mb-2 sm:mb-3 font-bold">
                   {LINKS_T[language]?.categoryName || LINKS_T.English.categoryName}
                 </label>
                 <input
@@ -1721,21 +2099,21 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                   type="text"
                   value={newCategoryName}
                   onChange={(e) => setNewCategoryName(e.target.value)}
-                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-sm lg:text-base text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
                   placeholder={LINKS_T[language]?.placeholderCategory || LINKS_T.English.placeholderCategory}
                 />
               </div>
-              <div className="flex gap-4 pt-4 text-[10px] font-bold tracking-widest uppercase">
+              <div className="flex gap-3 sm:gap-4 pt-3 sm:pt-4 text-xs lg:text-[10px] font-bold tracking-widest uppercase">
                 <button
                   type="button"
                   onClick={() => setShowAddCategory(false)}
-                  className="flex-1 px-8 py-4 bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold"
+                  className="flex-1 min-h-[44px] px-4 sm:px-6 lg:px-8 py-3.5 lg:py-4 bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold"
                 >
                   {LINKS_T[language]?.cancel || LINKS_T.English.cancel}
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-2xl font-bold transition-all"
+                  className="flex-1 min-h-[44px] px-4 sm:px-6 lg:px-8 py-3.5 lg:py-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-2xl font-bold transition-all"
                 >
                   {LINKS_T[language]?.create || LINKS_T.English.create}
                 </button>

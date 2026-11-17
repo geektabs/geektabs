@@ -17,6 +17,12 @@ const languageToLocale: Record<string, string> = {
   Italian: 'it-IT',
   Russian: 'ru-RU',
   Luxembourgish: 'lb-LU',
+  Dutch: 'nl-NL',
+  Swedish: 'sv-SE',
+  Finnish: 'fi-FI',
+  Hindi: 'hi-IN',
+  Norwegian: 'nb-NO',
+  Thai: 'th-TH',
 };
 
 export default function Clock({ language = 'English', customTextColor }: ClockProps) {
@@ -48,13 +54,13 @@ export default function Clock({ language = 'English', customTextColor }: ClockPr
       className="text-center select-none"
     >
       <h1 
-        className="text-[75px] sm:text-[90px] font-normal tracking-tight leading-none clock-time-display w-fit mx-auto text-[#6143f7]"
+        className="text-[60px] sm:text-[82px] lg:text-[90px] font-normal tracking-tight leading-none clock-time-display w-fit mx-auto text-[#6143f7]"
         style={textStyle}
       >
         {timeString}
       </h1>
       <p 
-        className="text-base sm:text-lg font-bold tracking-[0.2em] uppercase mt-4 clock-date-display w-fit mx-auto text-[#6143f7]"
+        className="text-sm sm:text-base lg:text-lg font-bold tracking-[0.12em] sm:tracking-[0.18em] lg:tracking-[0.2em] uppercase mt-3 sm:mt-4 clock-date-display w-fit mx-auto text-[#6143f7]"
         style={textStyle}
       >
         {dateString}

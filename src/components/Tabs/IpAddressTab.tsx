@@ -458,6 +458,270 @@ const IP_T: Record<string, Record<string, string>> = {
     transportStatus: "TLS 1.3 / HTTP/3",
     ipReputation: "IP-Ruff",
     ipReputationStatus: "Propper / Niddrege Risiko"
+  },
+  Dutch: {
+    identifier: "Wereldwijde IP-identificatie",
+    title: "Wat is mijn IP-adres?",
+    subtitle: "Detecteer en lokaliseer snel uw actieve openbare IPv4- en IPv6-adressen.",
+    resolving: "IP-pakketheaders worden opgehaald...",
+    ipv4: "Openbaar IPv4-adres",
+    typeUnicast: "Type: openbaar unicast",
+    notDetected: "Niet gedetecteerd",
+    copied: "Gekopieerd!",
+    copyV4: "Kopieer IPv4",
+    copyV6: "Kopieer IPv6",
+    ipv6: "Openbaar IPv6-adres",
+    supported: "IPv6 ondersteund",
+    notSupported: "Geen IPv6 gedetecteerd",
+    noIpv6: "Niet gedetecteerd (provider routeert geen IPv6)",
+    nextGen: "Next-gen IP-protocol",
+    legacyRails: "Uw verbinding werkt volledig via de traditionele IPv4-infrastructuur.",
+    geoLoc: "Geografische locatie",
+    country: "Land",
+    region: "Regio / Provincie",
+    city: "Stad",
+    postal: "Postcode",
+    secured: "Beveiligd knooppunt",
+    networkParams: "Netwerkparameters",
+    asn: "ASN-identificatie",
+    iana: "IANA-bereik",
+    timezone: "Tijdzone",
+    utc: "UTC-afwijking",
+    reidentify: "Opnieuw detecteren",
+    compass: "Kompasradar",
+    lat: "Breedtegraad",
+    lon: "Lengtegraad",
+    secDiagnostics: "Netwerkprotocol- en beveiligingsdiagnostiek",
+    secSubtitle: "Actieve TLS-transportversleuteling, DNS-lekbescherming en privacycontrole van de routering.",
+    allSystemsSecure: "Alle systemen veilig",
+    dnsPrivacy: "DNS-lekbescherming",
+    dnsStatus: "DoH/DoT versleuteld",
+    webrtcPrivacy: "WebRTC-schild",
+    webrtcStatus: "Geen lekken gedetecteerd",
+    transportSecurity: "Transportbeveiliging",
+    transportStatus: "TLS 1.3 / HTTP/3",
+    ipReputation: "IP-routereputatie",
+    ipReputationStatus: "Schoon / Laag risico"
+  },
+  Swedish: {
+    identifier: "Global IP-identifierare",
+    title: "Vad är min IP-adress?",
+    subtitle: "Identifiera och lokalisera snabbt dina aktiva publika IPv4- och IPv6-adresser.",
+    resolving: "Analyserar IP-pakethuvuden...",
+    ipv4: "Publik IPv4-adress",
+    typeUnicast: "Typ: publik unicast",
+    notDetected: "Ej upptäckt",
+    copied: "Kopierad!",
+    copyV4: "Kopiera IPv4",
+    copyV6: "Kopiera IPv6",
+    ipv6: "Publik IPv6-adress",
+    supported: "IPv6 stöds",
+    notSupported: "Ingen IPv6 upptäckt",
+    noIpv6: "Ej upptäckt (ISP dirigerar inte IPv6)",
+    nextGen: "Nästa generations IP-protokoll",
+    legacyRails: "Din anslutning körs helt över traditionella IPv4-nät.",
+    geoLoc: "Geografisk plats",
+    country: "Land",
+    region: "Region / Län",
+    city: "Stad",
+    postal: "Postnummer",
+    secured: "Säkrad nod",
+    networkParams: "Nätverksparametrar",
+    asn: "ASN-identifierare",
+    iana: "IANA-intervall",
+    timezone: "Tidszon",
+    utc: "UTC-skillnad",
+    reidentify: "Identifiera igen",
+    compass: "Kompassradar",
+    lat: "Latitud",
+    lon: "Longitud",
+    secDiagnostics: "Nätverksprotokoll & säkerhetsdiagnostik",
+    secSubtitle: "Aktiv TLS-transportkryptering, DNS-läckageskydd och integritetsgranskning.",
+    allSystemsSecure: "Alla system säkra",
+    dnsPrivacy: "DNS-läckageskydd",
+    dnsStatus: "DoH/DoT-krypterad",
+    webrtcPrivacy: "WebRTC-skydd",
+    webrtcStatus: "Inga läckor upptäckta",
+    transportSecurity: "Transportsäkerhet",
+    transportStatus: "TLS 1.3 / HTTP/3",
+    ipReputation: "IP-rykte",
+    ipReputationStatus: "Rent / Låg risk"
+  },
+  Finnish: {
+    identifier: "Globaali IP-tunniste",
+    title: "Mikä on IP-osoitteeni?",
+    subtitle: "Tunnista ja paikanna aktiiviset julkiset IPv4- ja IPv6-osoitteesi nopeasti.",
+    resolving: "Selvitetään IP-pakettien otsikoita...",
+    ipv4: "Julkinen IPv4-osoite",
+    typeUnicast: "Tyyppi: julkinen unicast",
+    notDetected: "Ei havaittu",
+    copied: "Kopioitu!",
+    copyV4: "Kopioi IPv4",
+    copyV6: "Kopioi IPv6",
+    ipv6: "Julkinen IPv6-osoite",
+    supported: "IPv6 tuettu",
+    notSupported: "IPv6:ta ei havaittu",
+    noIpv6: "Ei havaittu (palveluntarjoaja ei reititä IPv6:ta)",
+    nextGen: "Seuraavan sukupolven IP-protokolla",
+    legacyRails: "Yhteytesi toimii kokonaan perinteisen IPv4-verkon kautta.",
+    geoLoc: "Maantieteellinen sijainti",
+    country: "Maa",
+    region: "Alue / Maakunta",
+    city: "Kaupunki",
+    postal: "Postinumero",
+    secured: "Suojattu solmu",
+    networkParams: "Verkkoparametrit",
+    asn: "ASN-tunniste",
+    iana: "IANA-alue",
+    timezone: "Aikavyöhyke",
+    utc: "UTC-ero",
+    reidentify: "Tunnista uudelleen",
+    compass: "Kompassitutka",
+    lat: "Leveysaste",
+    lon: "Pituusaste",
+    secDiagnostics: "Verkkoprotokolla- ja tietoturvadiagnostiikka",
+    secSubtitle: "Aktiivinen TLS-salaus, DNS-vuotosuojaus ja reitityksen tietosuojatarkastus.",
+    allSystemsSecure: "Kaikki järjestelmät suojattu",
+    dnsPrivacy: "DNS-vuotosuojaus",
+    dnsStatus: "DoH/DoT-salattu",
+    webrtcPrivacy: "WebRTC-suojaus",
+    webrtcStatus: "Ei vuotoja havaittu",
+    transportSecurity: "Siirtoturvallisuus",
+    transportStatus: "TLS 1.3 / HTTP/3",
+    ipReputation: "IP-maine",
+    ipReputationStatus: "Puhdas / Alhainen riski"
+  },
+  Hindi: {
+    identifier: "वैश्विक IP पहचानकर्ता",
+    title: "मेरा IP पता क्या है?",
+    subtitle: "अपने सक्रिय सार्वजनिक IPv4 और IPv6 पतों का तुरंत पता लगाएँ और स्थान जानें।",
+    resolving: "IP पैकेट हेडर की जाँच हो रही है...",
+    ipv4: "सार्वजनिक IPv4 पता",
+    typeUnicast: "प्रकार: सार्वजनिक यूनिकास्ट",
+    notDetected: "पता नहीं चला",
+    copied: "कॉपी किया गया!",
+    copyV4: "IPv4 कॉपी करें",
+    copyV6: "IPv6 कॉपी करें",
+    ipv6: "सार्वजनिक IPv6 पता",
+    supported: "IPv6 समर्थित",
+    notSupported: "कोई IPv6 नहीं मिला",
+    noIpv6: "पता नहीं चला (ISP द्वारा IPv6 रूटिंग उपलब्ध नहीं)",
+    nextGen: "नेक्स्ट-जेन IP प्रोटोकॉल",
+    legacyRails: "आपका कनेक्शन पूरी तरह से पारंपरिक IPv4 नेटवर्क पर चल रहा है।",
+    geoLoc: "भौगोलिक स्थान",
+    country: "देश",
+    region: "क्षेत्र / राज्य",
+    city: "शहर",
+    postal: "पिन कोड",
+    secured: "सुरक्षित नोड",
+    networkParams: "नेटवर्क पैरामीटर",
+    asn: "ASN पहचानकर्ता",
+    iana: "IANA रेंज",
+    timezone: "समय क्षेत्र",
+    utc: "UTC अंतर",
+    reidentify: "पुनः पहचानें",
+    compass: "कम्पास रडार",
+    lat: "अक्षांश",
+    lon: "देशांतर",
+    secDiagnostics: "नेटवर्क प्रोटोकॉल और सुरक्षा जांच",
+    secSubtitle: "सक्रिय TLS ट्रांसपोर्ट एन्क्रिप्शन, DNS लीक सुरक्षा और रूटिंग गोपनीयता ऑडिट।",
+    allSystemsSecure: "सभी सिस्टम सुरक्षित",
+    dnsPrivacy: "DNS लीक सुरक्षा",
+    dnsStatus: "DoH/DoT एन्क्रिप्टेड",
+    webrtcPrivacy: "WebRTC शील्ड",
+    webrtcStatus: "कोई लीक नहीं मिला",
+    transportSecurity: "ट्रांसपोर्ट सुरक्षा",
+    transportStatus: "TLS 1.3 / HTTP/3",
+    ipReputation: "IP रूट प्रतिष्ठा",
+    ipReputationStatus: "स्वच्छ / कम जोखिम"
+  },
+  Norwegian: {
+    identifier: "Global IP-identifikator",
+    title: "Hva er min IP-adresse?",
+    subtitle: "Oppdag og lokaliser dine aktive offentlige IPv4- og IPv6-adresser raskt.",
+    resolving: "Analyserer IP-pakkehoder...",
+    ipv4: "Offentlig IPv4-adresse",
+    typeUnicast: "Type: offentlig unicast",
+    notDetected: "Ikke oppdaget",
+    copied: "Kopiert!",
+    copyV4: "Kopier IPv4",
+    copyV6: "Kopier IPv6",
+    ipv6: "Offentlig IPv6-adresse",
+    supported: "IPv6 støttet",
+    notSupported: "Ingen IPv6 oppdaget",
+    noIpv6: "Ikke oppdaget (ISP ruter ikke IPv6)",
+    nextGen: "Neste generasjons IP-protokoll",
+    legacyRails: "Tilkoblingen din kjører helt over tradisjonelle IPv4-linjer.",
+    geoLoc: "Geografisk plassering",
+    country: "Land",
+    region: "Region / Fylke",
+    city: "By",
+    postal: "Postnummer",
+    secured: "Sikret node",
+    networkParams: "Nettverksparametere",
+    asn: "ASN-identifikator",
+    iana: "IANA-område",
+    timezone: "Tidssone",
+    utc: "UTC-avvik",
+    reidentify: "Identifiser på nytt",
+    compass: "Kompassradar",
+    lat: "Breddegrad",
+    lon: "Lengdegrad",
+    secDiagnostics: "Nettverksprotokoll- og sikkerhetsdiagnostikk",
+    secSubtitle: "Aktiv TLS-transportkryptering, DNS-lekkasjebeskyttelse og personvernkontroll.",
+    allSystemsSecure: "Alle systemer sikre",
+    dnsPrivacy: "DNS-lekkasjebeskyttelse",
+    dnsStatus: "DoH/DoT-kryptert",
+    webrtcPrivacy: "WebRTC-skjold",
+    webrtcStatus: "Ingen lekkasjer oppdaget",
+    transportSecurity: "Transportsikkerhet",
+    transportStatus: "TLS 1.3 / HTTP/3",
+    ipReputation: "IP-rykte",
+    ipReputationStatus: "Ren / Lav risiko"
+  },
+  Thai: {
+    identifier: "ตัวระบุ IP ระดับสากล",
+    title: "IP แอดเดรสของฉันคืออะไร?",
+    subtitle: "ตรวจจับและระบุตำแหน่ง IPv4 และ IPv6 สาธารณะที่ใช้งานอยู่ของคุณอย่างรวดเร็ว",
+    resolving: "กำลังตรวจสอบส่วนหัวแพ็กเก็ต IP...",
+    ipv4: "ที่อยู่ IPv4 สาธารณะ",
+    typeUnicast: "ประเภท: unicast สาธารณะ",
+    notDetected: "ตรวจไม่พบ",
+    copied: "คัดลอกแล้ว!",
+    copyV4: "คัดลอก IPv4",
+    copyV6: "คัดลอก IPv6",
+    ipv6: "ที่อยู่ IPv6 สาธารณะ",
+    supported: "รองรับ IPv6",
+    notSupported: "ไม่พบ IPv6",
+    noIpv6: "ตรวจไม่พบ (ผู้ให้บริการไม่ได้กำหนดเส้นทาง IPv6)",
+    nextGen: "โปรโตคอล IP ยุคใหม่",
+    legacyRails: "การเชื่อมต่อของคุณทำงานผ่านโครงข่าย IPv4 แบบดั้งเดิมทั้งหมด",
+    geoLoc: "ตำแหน่งทางภูมิศาสตร์",
+    country: "ประเทศ",
+    region: "ภูมิภาค / จังหวัด",
+    city: "เมือง",
+    postal: "รหัสไปรษณีย์",
+    secured: "โหนดปลอดภัย",
+    networkParams: "พารามิเตอร์เครือข่าย",
+    asn: "ตัวระบุ ASN",
+    iana: "ช่วง IANA",
+    timezone: "เขตเวลา",
+    utc: "ส่วนต่าง UTC",
+    reidentify: "ตรวจสอบใหม่",
+    compass: "เรดาร์เข็มทิศ",
+    lat: "ละติจูด",
+    lon: "ลองจิจูด",
+    secDiagnostics: "การวินิจฉัยโปรโตคอลและความปลอดภัยเครือข่าย",
+    secSubtitle: "การเข้ารหัส TLS ที่ใช้งานอยู่ การป้องกัน DNS รั่วไหล และการตรวจสอบความเป็นส่วนตัว",
+    allSystemsSecure: "ระบบทั้งหมดปลอดภัย",
+    dnsPrivacy: "การป้องกัน DNS รั่วไหล",
+    dnsStatus: "เข้ารหัส DoH/DoT แล้ว",
+    webrtcPrivacy: "เกราะป้องกัน WebRTC",
+    webrtcStatus: "ไม่พบการรั่วไหล",
+    transportSecurity: "ความปลอดภัยการรับส่งข้อมูล",
+    transportStatus: "TLS 1.3 / HTTP/3",
+    ipReputation: "ชื่อเสียงเส้นทาง IP",
+    ipReputationStatus: "สะอาด / ความเสี่ยงต่ำ"
   }
 };
 
@@ -653,11 +917,11 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
 
                 {/* Row 3: Action Controls and details on another line */}
-                <div className="flex items-center gap-4 mt-1">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-1">
                   {ipv4Address && ipv4Address !== 'Unavailable' && ipv4Address !== d.notDetected && (
                     <button
                       onClick={copyV4}
-                      className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/10 shadow-sm dark:shadow-none hover:bg-black/5 dark:hover:bg-white/20 rounded-xl transition-all cursor-pointer text-xs font-bold word-color"
+                      className="flex items-center gap-2 min-h-[42px] lg:min-h-0 px-4 py-2.5 lg:py-2 bg-white dark:bg-white/10 shadow-sm dark:shadow-none hover:bg-black/5 dark:hover:bg-white/20 rounded-xl transition-all cursor-pointer text-xs font-bold word-color"
                     >
                       {copiedV4 ? (
                         <>
@@ -673,7 +937,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                     </button>
                   )}
                   {ipData?.org && (
-                    <div className="text-xs word-color opacity-60 truncate">
+                    <div className="text-xs word-color opacity-60 break-words min-w-0">
                       ISP: <span className="font-semibold">{ipData.org}</span>
                     </div>
                   )}
@@ -702,11 +966,11 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
 
                 {/* Row 3: Action Controls and details on another line */}
-                <div className="flex items-center gap-4 mt-1">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-1">
                   {ipv6Address && (
                     <button
                       onClick={copyV6}
-                      className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/10 shadow-sm dark:shadow-none hover:bg-black/5 dark:hover:bg-white/20 rounded-xl transition-all cursor-pointer text-xs font-bold word-color"
+                      className="flex items-center gap-2 min-h-[42px] lg:min-h-0 px-4 py-2.5 lg:py-2 bg-white dark:bg-white/10 shadow-sm dark:shadow-none hover:bg-black/5 dark:hover:bg-white/20 rounded-xl transition-all cursor-pointer text-xs font-bold word-color"
                     >
                       {copiedV6 ? (
                         <>
@@ -741,28 +1005,28 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <span>{d.geoLoc}</span>
                 </h3>
                 <div className="flex flex-col gap-4 font-mono text-xs">
-                  <div className="flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-2.5">
-                    <span className="opacity-50 word-color">{d.country}</span>
-                    <span className="font-bold word-color">{ipData?.country_name || 'Detecting...'} ({ipData?.country_code || 'US'})</span>
+                  <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
+                    <span className="opacity-50 word-color shrink-0">{d.country}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.country_name || 'Detecting...'} ({ipData?.country_code || 'US'})</span>
                   </div>
-                  <div className="flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-2.5">
-                    <span className="opacity-50 word-color">{d.region}</span>
-                    <span className="font-bold word-color">{ipData?.region || 'Detecting...'}</span>
+                  <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
+                    <span className="opacity-50 word-color shrink-0">{d.region}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.region || 'Detecting...'}</span>
                   </div>
-                  <div className="flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-2.5">
-                    <span className="opacity-50 word-color">{d.city}</span>
-                    <span className="font-bold word-color">{ipData?.city || 'Detecting...'}</span>
+                  <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
+                    <span className="opacity-50 word-color shrink-0">{d.city}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.city || 'Detecting...'}</span>
                   </div>
-                  <div className="flex justify-between items-center pb-1">
-                    <span className="opacity-50 word-color">{d.postal}</span>
-                    <span className="font-bold word-color">{ipData?.postal || 'N/A'}</span>
+                  <div className="flex justify-between items-center gap-3 pb-1">
+                    <span className="opacity-50 word-color shrink-0">{d.postal}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.postal || 'N/A'}</span>
                   </div>
                 </div>
               </div>
               
               <div className="ipaddress-badge-secured mt-6 flex items-center gap-1.5 px-3 py-1 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-lg pointer-events-none self-start">
                 <Shield size={12} className="text-indigo-500" />
-                <span className="text-[9px] font-mono uppercase font-bold tracking-wider word-color opacity-70">{d.secured}</span>
+                <span className="text-[10px] lg:text-[9px] font-mono uppercase font-bold tracking-wider word-color opacity-70">{d.secured}</span>
               </div>
             </div>
 
@@ -774,21 +1038,21 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <span>{d.networkParams}</span>
                 </h3>
                 <div className="flex flex-col gap-4 font-mono text-xs">
-                  <div className="flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-2.5">
-                    <span className="opacity-50 word-color">{d.asn}</span>
-                    <span className="font-bold word-color">{ipData?.asn || 'Detecting...'}</span>
+                  <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
+                    <span className="opacity-50 word-color shrink-0">{d.asn}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.asn || 'Detecting...'}</span>
                   </div>
-                  <div className="flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-2.5">
-                    <span className="opacity-50 word-color">{d.iana}</span>
-                    <span className="font-bold word-color">Public Unicast</span>
+                  <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
+                    <span className="opacity-50 word-color shrink-0">{d.iana}</span>
+                    <span className="font-bold word-color text-right break-words">Public Unicast</span>
                   </div>
-                  <div className="flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-2.5">
-                    <span className="opacity-50 word-color">{d.timezone}</span>
-                    <span className="font-bold word-color">{ipData?.timezone || 'N/A'}</span>
+                  <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
+                    <span className="opacity-50 word-color shrink-0">{d.timezone}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.timezone || 'N/A'}</span>
                   </div>
-                  <div className="flex justify-between items-center pb-1">
-                    <span className="opacity-50 word-color">{d.utc}</span>
-                    <span className="font-bold word-color">{ipData?.utc_offset || 'N/A'}</span>
+                  <div className="flex justify-between items-center gap-3 pb-1">
+                    <span className="opacity-50 word-color shrink-0">{d.utc}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.utc_offset || 'N/A'}</span>
                   </div>
                 </div>
               </div>
@@ -796,7 +1060,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
               <button
                 type="button"
                 onClick={fetchIp}
-                className="ipaddress-btn-reidentify mt-6 flex items-center gap-1.5 px-3 py-1 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 rounded-lg word-color font-mono uppercase font-bold text-[9px] tracking-wider transition-colors self-start cursor-pointer active:scale-95"
+                className="ipaddress-btn-reidentify mt-6 flex items-center gap-1.5 min-h-[42px] lg:min-h-0 px-4 py-2.5 lg:px-3 lg:py-1 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 rounded-lg word-color font-mono uppercase font-bold text-xs lg:text-[9px] tracking-wider transition-colors self-start cursor-pointer active:scale-95"
               >
                 <RefreshCw size={12} className={`text-purple-500 ${isLoadingIp ? "animate-spin" : ""}`} />
                 <span>{d.reidentify}</span>
@@ -804,7 +1068,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
             </div>
 
             {/* Location Radar Sidebar Card */}
-            <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl flex flex-col justify-between items-center text-center">
+            <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl flex flex-col justify-between items-center text-center md:col-span-2 lg:col-span-1">
               <div className="w-full flex justify-between items-center mb-4">
                 <div className="flex items-center gap-1.5">
                   <Compass size={14} className="text-indigo-500 animate-spin" style={{ animationDuration: '4s' }} />

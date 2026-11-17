@@ -10,6 +10,12 @@ import humorsKorean from '../../data/humors-Korean.json';
 import humorsItalian from '../../data/humors-Italian.json';
 import humorsRussian from '../../data/humors-Russian.json';
 import humorsLuxembourgish from '../../data/humors-Luxembourgish.json';
+import humorsDutch from '../../data/humors-Dutch.json';
+import humorsSwedish from '../../data/humors-Swedish.json';
+import humorsFinnish from '../../data/humors-Finnish.json';
+import humorsHindi from '../../data/humors-Hindi.json';
+import humorsNorwegian from '../../data/humors-Norwegian.json';
+import humorsThai from '../../data/humors-Thai.json';
 
 const humorsMap: Record<string, string[]> = {
   English: humorsEnglish,
@@ -22,6 +28,12 @@ const humorsMap: Record<string, string[]> = {
   Italian: humorsItalian,
   Russian: humorsRussian,
   Luxembourgish: humorsLuxembourgish,
+  Dutch: humorsDutch,
+  Swedish: humorsSwedish,
+  Finnish: humorsFinnish,
+  Hindi: humorsHindi,
+  Norwegian: humorsNorwegian,
+  Thai: humorsThai,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_humor_history';
@@ -112,13 +124,19 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
     Korean: '일일 유머',
     Italian: 'Umorismo Giornaliero',
     Russian: 'Юмор дня',
-    Luxembourgish: 'Deeglechen Humor'
+    Luxembourgish: 'Deeglechen Humor',
+    Dutch: 'Dagelijkse Humor',
+    Swedish: 'Dagens Humor',
+    Finnish: 'Päivän Huumori',
+    Hindi: 'दैनिक हास्य',
+    Norwegian: 'Daglig Humor',
+    Thai: 'อารมณ์ขันประจำวัน'
   }[language] || 'Daily Humor';
 
   return (
     <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:-translate-y-0.5">
-      {/* Top Header: Squircle icon + Title + Refresh Button with Regular Yellow Background */}
-      <div className="daily-title-yellow daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
+      {/* Top Header: Squircle icon + Title + Refresh Button with Regular Blue Background */}
+      <div className="daily-title-blue daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
           <div className="daily-card-icon-badge w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white text-[#c8102e] flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105">
             <Smile className="w-4.5 h-4.5 sm:w-5 sm:h-5" strokeWidth={2.2} />
@@ -133,7 +151,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
             e.stopPropagation();
             fetchHumor();
           }}
-          className="p-1.5 sm:p-2 rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
+          className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
           title="Refresh joke"
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : 'transition-transform group-hover:rotate-45'} />
@@ -150,7 +168,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
         title="Click to get new joke"
       >
         <p 
-          className="daily-card-content-text text-xs sm:text-[13px] md:text-sm lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-4 lg:line-clamp-5 select-text"
+          className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-none sm:line-clamp-5 lg:line-clamp-5 select-text"
         >
           {humor}
         </p>

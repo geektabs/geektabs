@@ -10,6 +10,12 @@ import tipsKorean from '../../data/life-tips-Korean.json';
 import tipsItalian from '../../data/life-tips-Italian.json';
 import tipsRussian from '../../data/life-tips-Russian.json';
 import tipsLuxembourgish from '../../data/life-tips-Luxembourgish.json';
+import tipsDutch from '../../data/life-tips-Dutch.json';
+import tipsSwedish from '../../data/life-tips-Swedish.json';
+import tipsFinnish from '../../data/life-tips-Finnish.json';
+import tipsHindi from '../../data/life-tips-Hindi.json';
+import tipsNorwegian from '../../data/life-tips-Norwegian.json';
+import tipsThai from '../../data/life-tips-Thai.json';
 
 const tipsMap: Record<string, string[]> = {
   English: tipsEnglish,
@@ -22,6 +28,12 @@ const tipsMap: Record<string, string[]> = {
   Italian: tipsItalian,
   Russian: tipsRussian,
   Luxembourgish: tipsLuxembourgish,
+  Dutch: tipsDutch,
+  Swedish: tipsSwedish,
+  Finnish: tipsFinnish,
+  Hindi: tipsHindi,
+  Norwegian: tipsNorwegian,
+  Thai: tipsThai,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_tip_history';
@@ -112,7 +124,13 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
     Korean: '일일 팁',
     Italian: 'Consigli Giornalieri',
     Russian: 'Совет дня',
-    Luxembourgish: 'Deeglech Tipps'
+    Luxembourgish: 'Deeglech Tipps',
+    Dutch: 'Dagelijkse Tips',
+    Swedish: 'Dagliga Tips',
+    Finnish: 'Päivän Vinkit',
+    Hindi: 'दैनिक सुझाव',
+    Norwegian: 'Daglige Tips',
+    Thai: 'เคล็ดลับประจำวัน'
   }[language] || 'Daily Tips';
 
   return (
@@ -133,7 +151,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
             e.stopPropagation();
             fetchTip();
           }}
-          className="p-1.5 sm:p-2 rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
+          className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
           title="Refresh tip"
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : 'transition-transform group-hover:rotate-45'} />
@@ -150,7 +168,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
         title="Click to get new tip"
       >
         <p 
-          className="daily-card-content-text text-xs sm:text-[13px] md:text-sm lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-4 lg:line-clamp-5 select-text"
+          className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-none sm:line-clamp-5 lg:line-clamp-5 select-text"
         >
           {tip}
         </p>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Cloud, 
+  CloudSun,
   Sun, 
   CloudRain, 
   Snowflake, 
@@ -47,6 +48,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Clear",
     refreshTooltip: "Refresh live weather",
     liveBadge: "Live",
+    hourlyForecast: "Hourly forecast",
+    dailyForecast: "Daily forecast",
     now: "Now",
     today: "Today",
     high: "H",
@@ -92,6 +95,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "清空",
     refreshTooltip: "刷新实时天气",
     liveBadge: "实时",
+    hourlyForecast: "逐小时预报",
+    dailyForecast: "7天预报",
     now: "现在",
     today: "今天",
     high: "最高",
@@ -137,6 +142,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Limpiar",
     refreshTooltip: "Actualizar clima en vivo",
     liveBadge: "En vivo",
+    hourlyForecast: "Pronóstico por horas",
+    dailyForecast: "Pronóstico diario",
     now: "Ahora",
     today: "Hoy",
     high: "MÁX",
@@ -182,6 +189,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Effacer",
     refreshTooltip: "Actualiser la météo en direct",
     liveBadge: "En direct",
+    hourlyForecast: "Prévisions horaires",
+    dailyForecast: "Prévisions quotidiennes",
     now: "Maintenant",
     today: "Aujourd'hui",
     high: "Max",
@@ -227,6 +236,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Leeren",
     refreshTooltip: "Live-Wetter aktualisieren",
     liveBadge: "Live",
+    hourlyForecast: "Stündliche Vorhersage",
+    dailyForecast: "Tagesvorhersage",
     now: "Jetzt",
     today: "Heute",
     high: "H",
@@ -272,6 +283,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "クリア",
     refreshTooltip: "リアルタイム天気を更新",
     liveBadge: "ライブ",
+    hourlyForecast: "時間ごとの予報",
+    dailyForecast: "週間予報",
     now: "現在",
     today: "今日",
     high: "最高",
@@ -317,6 +330,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "지우기",
     refreshTooltip: "실시간 날씨 새로고침",
     liveBadge: "실시간",
+    hourlyForecast: "시간별 예보",
+    dailyForecast: "일별 예보",
     now: "지금",
     today: "오늘",
     high: "최고",
@@ -362,6 +377,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Cancella",
     refreshTooltip: "Aggiorna meteo in tempo reale",
     liveBadge: "Live",
+    hourlyForecast: "Previsioni orarie",
+    dailyForecast: "Previsioni giornaliere",
     now: "Ora",
     today: "Oggi",
     high: "MAX",
@@ -407,6 +424,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Очистить",
     refreshTooltip: "Обновить погоду",
     liveBadge: "В эфире",
+    hourlyForecast: "Почасовой прогноз",
+    dailyForecast: "Прогноз по дням",
     now: "Сейчас",
     today: "Сегодня",
     high: "Макс",
@@ -452,6 +471,8 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     clearBtn: "Läschen",
     refreshTooltip: "Live-Wieder aktualiséieren",
     liveBadge: "Live",
+    hourlyForecast: "Stonnweis Prognos",
+    dailyForecast: "Dagesprognos",
     now: "Elo",
     today: "Haut",
     high: "H",
@@ -473,6 +494,288 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Do',
     fri: 'Fr',
     sat: 'Sa',
+  },
+  Dutch: {
+    title: "Weer",
+    locationTitle: "Weerlocatie",
+    searchPlaceholder: "Zoek stad, postcode of land...",
+    searching: "Locaties zoeken...",
+    noResults: "Geen locaties gevonden.",
+    quickSearch: "Wereldwijd zoeken",
+    detailedSearch: "Gedetailleerde velden",
+    detectLocation: "Mijn locatie gebruiken",
+    detecting: "Locatie bepalen...",
+    city: "Stad",
+    state: "Provincie",
+    zip: "Postcode",
+    country: "Land",
+    placeholderCity: "bijv. Amsterdam",
+    placeholderState: "bijv. NH",
+    placeholderZip: "bijv. 1012",
+    placeholderCountry: "bijv. Nederland",
+    setBtn: "Locatie instellen",
+    backBtn: "Terug naar verwachting",
+    clearBtn: "Wissen",
+    refreshTooltip: "Live weer vernieuwen",
+    liveBadge: "Live",
+    hourlyForecast: "Uurverwachting",
+    dailyForecast: "Dagverwachting",
+    now: "Nu",
+    today: "Vandaag",
+    high: "H",
+    low: "L",
+    errInput: "Vul minimaal een stad of postcode in.",
+    errDetect: "Kan locatie niet bepalen.",
+    tooltipDetect: "Huidige locatie detecteren",
+    tooltipChange: "Locatie wijzigen",
+    clear: 'Helder',
+    cloudy: 'Licht bewolkt',
+    foggy: 'Mistig',
+    rainy: 'Regenachtig',
+    snowy: 'Sneeuw',
+    thunderstorm: 'Onweer',
+    sun: 'Zo',
+    mon: 'Ma',
+    tue: 'Di',
+    wed: 'Wo',
+    thu: 'Do',
+    fri: 'Vr',
+    sat: 'Za',
+  },
+  Swedish: {
+    title: "Väder",
+    locationTitle: "Väderplats",
+    searchPlaceholder: "Sök stad, postnummer eller land...",
+    searching: "Söker platser...",
+    noResults: "Inga platser hittades.",
+    quickSearch: "Global sökning",
+    detailedSearch: "Detaljerade fält",
+    detectLocation: "Använd min plats",
+    detecting: "Hämtar plats...",
+    city: "Stad",
+    state: "Län / Region",
+    zip: "Postnummer",
+    country: "Land",
+    placeholderCity: "t.ex. Stockholm",
+    placeholderState: "t.ex. AB",
+    placeholderZip: "t.ex. 111 22",
+    placeholderCountry: "t.ex. Sverige",
+    setBtn: "Ange plats",
+    backBtn: "Tillbaka till prognos",
+    clearBtn: "Rensa",
+    refreshTooltip: "Uppdatera vädret",
+    liveBadge: "Live",
+    hourlyForecast: "Timprognos",
+    dailyForecast: "Dygnsprognos",
+    now: "Nu",
+    today: "Idag",
+    high: "H",
+    low: "L",
+    errInput: "Ange minst en stad eller ett postnummer.",
+    errDetect: "Kunde inte fastställa plats.",
+    tooltipDetect: "Upptäck aktuell plats",
+    tooltipChange: "Byt plats",
+    clear: 'Klart',
+    cloudy: 'Halvklart',
+    foggy: 'Dimmigt',
+    rainy: 'Regnigt',
+    snowy: 'Snö',
+    thunderstorm: 'Åskväder',
+    sun: 'Sön',
+    mon: 'Mån',
+    tue: 'Tis',
+    wed: 'Ons',
+    thu: 'Tor',
+    fri: 'Fre',
+    sat: 'Lör',
+  },
+  Finnish: {
+    title: "Sää",
+    locationTitle: "Sääsijainti",
+    searchPlaceholder: "Hae kaupunkia, postinumeroa tai maata...",
+    searching: "Haetaan sijainteja...",
+    noResults: "Sijainteja ei löytynyt.",
+    quickSearch: "Maailmanlaajuinen haku",
+    detailedSearch: "Tarkat kentät",
+    detectLocation: "Käytä sijaintiani",
+    detecting: "Tunnistetaan sijaintia...",
+    city: "Kaupunki",
+    state: "Maakunta",
+    zip: "Postinumero",
+    country: "Maa",
+    placeholderCity: "esim. Helsinki",
+    placeholderState: "esim. Uusimaa",
+    placeholderZip: "esim. 00100",
+    placeholderCountry: "esim. Suomi",
+    setBtn: "Aseta sijainti",
+    backBtn: "Takaisin ennusteeseen",
+    clearBtn: "Tyhjennä",
+    refreshTooltip: "Päivitä reaaliaikainen sää",
+    liveBadge: "Live",
+    hourlyForecast: "Tuntiennuste",
+    dailyForecast: "Päiväennuste",
+    now: "Nyt",
+    today: "Tänään",
+    high: "Y",
+    low: "A",
+    errInput: "Anna vähintään kaupunki tai postinumero.",
+    errDetect: "Sijainnin tunnistus epäonnistui.",
+    tooltipDetect: "Tunnista nykyinen sijainti",
+    tooltipChange: "Vaihda sijaintia",
+    clear: 'Selkeää',
+    cloudy: 'Puolipilvistä',
+    foggy: 'Sumuista',
+    rainy: 'Sateista',
+    snowy: 'Lumisadetta',
+    thunderstorm: 'Ukkosta',
+    sun: 'Su',
+    mon: 'Ma',
+    tue: 'Ti',
+    wed: 'Ke',
+    thu: 'To',
+    fri: 'Pe',
+    sat: 'La',
+  },
+  Hindi: {
+    title: "मौसम",
+    locationTitle: "मौसम का स्थान",
+    searchPlaceholder: "शहर, पिन कोड या देश खोजें...",
+    searching: "स्थान खोजे जा रहे हैं...",
+    noResults: "कोई स्थान नहीं मिला।",
+    quickSearch: "वैश्विक खोज",
+    detailedSearch: "विस्तृत फ़ील्ड",
+    detectLocation: "मेरा स्थान उपयोग करें",
+    detecting: "स्थान का पता लगाया जा रहा है...",
+    city: "शहर",
+    state: "राज्य",
+    zip: "पिन कोड",
+    country: "देश",
+    placeholderCity: "उदा. नई दिल्ली",
+    placeholderState: "उदा. दिल्ली",
+    placeholderZip: "उदा. 110001",
+    placeholderCountry: "उदा. भारत",
+    setBtn: "स्थान सेट करें",
+    backBtn: "पूर्वानुमान पर वापस जाएं",
+    clearBtn: "साफ़ करें",
+    refreshTooltip: "लाइव मौसम रीफ़्रेश करें",
+    liveBadge: "लाइव",
+    hourlyForecast: "प्रति घंटा पूर्वानुमान",
+    dailyForecast: "दैनिक पूर्वानुमान",
+    now: "अभी",
+    today: "आज",
+    high: "उच्च",
+    low: "न्यून",
+    errInput: "कृपया कम से कम एक शहर या पिन कोड दर्ज करें।",
+    errDetect: "स्थान का पता नहीं लगाया जा सका।",
+    tooltipDetect: "वर्तमान स्थान पहचानें",
+    tooltipChange: "स्थान बदलें",
+    clear: 'साफ़ मौसम',
+    cloudy: 'आंशिक बादल',
+    foggy: 'कोहरा',
+    rainy: 'बारिश',
+    snowy: 'बर्फबारी',
+    thunderstorm: 'आंधी-तूफान',
+    sun: 'रवि',
+    mon: 'सोम',
+    tue: 'मंगल',
+    wed: 'बुध',
+    thu: 'गुरु',
+    fri: 'शुक्र',
+    sat: 'शनि',
+  },
+  Norwegian: {
+    title: "Vær",
+    locationTitle: "Værlokasjon",
+    searchPlaceholder: "Søk etter by, postnummer eller land...",
+    searching: "Søker etter steder...",
+    noResults: "Ingen steder funnet.",
+    quickSearch: "Globalt søk",
+    detailedSearch: "Detaljerte felt",
+    detectLocation: "Bruk min posisjon",
+    detecting: "Finner posisjon...",
+    city: "By",
+    state: "Fylke",
+    zip: "Postnummer",
+    country: "Land",
+    placeholderCity: "f.eks. Oslo",
+    placeholderState: "f.eks. Oslo",
+    placeholderZip: "f.eks. 0150",
+    placeholderCountry: "f.eks. Norge",
+    setBtn: "Angi posisjon",
+    backBtn: "Tilbake til varsel",
+    clearBtn: "Tøm",
+    refreshTooltip: "Oppdater live vær",
+    liveBadge: "Live",
+    hourlyForecast: "Timevarsel",
+    dailyForecast: "Langtidsvarsel",
+    now: "Nå",
+    today: "I dag",
+    high: "H",
+    low: "L",
+    errInput: "Vennligst oppgi minst en by eller et postnummer.",
+    errDetect: "Kunne ikke finne posisjon.",
+    tooltipDetect: "Finn nåværende posisjon",
+    tooltipChange: "Endre posisjon",
+    clear: 'Klart',
+    cloudy: 'Delvis skyet',
+    foggy: 'Tåke',
+    rainy: 'Regn',
+    snowy: 'Snø',
+    thunderstorm: 'Tordenvær',
+    sun: 'Søn',
+    mon: 'Man',
+    tue: 'Tir',
+    wed: 'Ons',
+    thu: 'Tor',
+    fri: 'Fre',
+    sat: 'Lør',
+  },
+  Thai: {
+    title: "สภาพอากาศ",
+    locationTitle: "ตำแหน่งสภาพอากาศ",
+    searchPlaceholder: "ค้นหาเมือง รหัสไปรษณีย์ หรือประเทศ...",
+    searching: "กำลังค้นหาสถานที่...",
+    noResults: "ไม่พบสถานที่",
+    quickSearch: "ค้นหาทั่วโลก",
+    detailedSearch: "กรอกรายละเอียด",
+    detectLocation: "ใช้ตำแหน่งปัจจุบัน",
+    detecting: "กำลังระบุตำแหน่ง...",
+    city: "เมือง",
+    state: "จังหวัด / รัฐ",
+    zip: "รหัสไปรษณีย์",
+    country: "ประเทศ",
+    placeholderCity: "เช่น กรุงเทพมหานคร",
+    placeholderState: "เช่น กทม.",
+    placeholderZip: "เช่น 10110",
+    placeholderCountry: "เช่น ประเทศไทย",
+    setBtn: "ตั้งค่าตำแหน่ง",
+    backBtn: "กลับไปที่พยากรณ์อากาศ",
+    clearBtn: "ล้าง",
+    refreshTooltip: "รีเฟรชสภาพอากาศสด",
+    liveBadge: "สด",
+    hourlyForecast: "พยากรณ์รายชั่วโมง",
+    dailyForecast: "พยากรณ์รายวัน",
+    now: "ตอนนี้",
+    today: "วันนี้",
+    high: "สูงสุด",
+    low: "ต่ำสุด",
+    errInput: "โปรดระบุอย่างน้อยหนึ่งเมืองหรือรหัสไปรษณีย์",
+    errDetect: "ไม่สามารถระบุตำแหน่งได้",
+    tooltipDetect: "ตรวจจับตำแหน่งปัจจุบัน",
+    tooltipChange: "เปลี่ยนตำแหน่ง",
+    clear: 'ท้องฟ้าแจ่มใส',
+    cloudy: 'มีเมฆบางส่วน',
+    foggy: 'มีหมอก',
+    rainy: 'ฝนตก',
+    snowy: 'หิมะตก',
+    thunderstorm: 'พายุฝนฟ้าคะนอง',
+    sun: 'อา.',
+    mon: 'จ.',
+    tue: 'อ.',
+    wed: 'พ.',
+    thu: 'พฤ.',
+    fri: 'ศ.',
+    sat: 'ส.',
   }
 };
 
@@ -809,6 +1112,10 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
     const handleLocationUpdate = (e: any) => {
       if (e.detail?.inputs?.lat && e.detail?.inputs?.lon) {
         const inp = e.detail.inputs;
+        if (e.detail.location) {
+          setLocation(e.detail.location);
+        }
+        setWeatherInputs(inp);
         setCity(inp.city || '');
         setStateName(inp.state || '');
         setCountry(inp.country || '');
@@ -821,7 +1128,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
 
     window.addEventListener('geektabs-weather-location-updated', handleLocationUpdate);
     return () => window.removeEventListener('geektabs-weather-location-updated', handleLocationUpdate);
-  }, [tempUnit, dictionary]);
+  }, [tempUnit, dictionary, setLocation, setWeatherInputs]);
 
   const getConditionTranslation = (text: string): string => {
     switch (text) {
@@ -870,9 +1177,9 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
     const baseF = 65 + (i % 3 === 0 ? 4 : -2);
     const tempVal = tempUnit === 'C' ? Math.round(((baseF - 32) * 5) / 9) : baseF;
     return {
-      time: i === 0 ? dictionary.now || 'Now' : `${displayHour} ${ampm}`,
+      time: `${displayHour} ${ampm}`,
       temp: tempVal,
-      icon: i % 4 === 0 ? 'sun' : 'cloud'
+      icon: i % 4 === 0 ? 'sun' : i % 4 === 2 ? 'partly-cloudy' : 'cloud'
     };
   });
 
@@ -891,12 +1198,78 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
       temp: tempVal,
       maxTemp: tempVal + (tempUnit === 'C' ? 3 : 5),
       minTemp: tempVal - (tempUnit === 'C' ? 4 : 7),
-      icon: i % 3 === 0 ? 'sun' : i % 3 === 1 ? 'rain' : 'cloud'
+      icon: i % 3 === 0 ? 'sun' : i % 3 === 1 ? 'rain' : 'partly-cloudy'
     };
   });
 
+  const displayLocation = React.useMemo(() => {
+    const cName = (weatherInputs?.city || '').trim();
+    const sRegion = (weatherInputs?.state || '').trim();
+    const coName = (weatherInputs?.country || '').trim();
+
+    if (cName || sRegion || coName) {
+      const parts: string[] = [];
+      if (cName) parts.push(cName);
+      if (sRegion && sRegion.toLowerCase() !== cName.toLowerCase()) {
+        parts.push(sRegion);
+      }
+      if (
+        coName &&
+        coName.toLowerCase() !== cName.toLowerCase() &&
+        coName.toLowerCase() !== sRegion.toLowerCase()
+      ) {
+        parts.push(coName);
+      }
+      if (parts.length > 0) {
+        return parts.join(', ');
+      }
+    }
+
+    let cleaned = location || '';
+    const zip = (weatherInputs?.zipcode || '').trim();
+    if (zip) {
+      const escapedZip = zip.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      cleaned = cleaned.replace(new RegExp(`\\s*,?\\s*${escapedZip}(?=\\s*,|\\s*$)`, 'gi'), '');
+    }
+    cleaned = cleaned
+      .replace(/,\s*\d{4,10}(?:-\d{4})?\s*(?=,|$)/g, '')
+      .replace(/\s+\d{4,10}(?:-\d{4})?\s*(?=,|$)/g, '')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/,\s*,/g, ',')
+      .replace(/^[\s,]+|[\s,]+$/g, '');
+    return cleaned || location;
+  }, [weatherInputs, location]);
+
+  const renderWeatherIcon = (icon: string, text?: string, size = 20) => {
+    const isPartlyCloudy =
+      icon === 'partly-cloudy' || (icon === 'cloud' && Boolean(text && text.toLowerCase().includes('partly')));
+    if (icon === 'sun') {
+      return <Sun size={size} className="weather-icon-sun" strokeWidth={1.8} />;
+    }
+    if (icon === 'rain') {
+      return <CloudRain size={size} className="weather-icon-accent" strokeWidth={1.8} />;
+    }
+    if (icon === 'snow') {
+      return <Snowflake size={size} className="weather-icon-accent" strokeWidth={1.8} />;
+    }
+    if (isPartlyCloudy) {
+      return <CloudSun size={size} className="weather-icon-accent" strokeWidth={1.8} />;
+    }
+    return <Cloud size={size} className="weather-icon-accent" strokeWidth={1.8} />;
+  };
+
+  const formatHourlyTime = (time: string, idx: number) => {
+    if (idx === 0 && (time === 'Now' || time === dictionary.now)) {
+      const h = new Date().getHours();
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const displayHour = h % 12 === 0 ? 12 : h % 12;
+      return `${displayHour} ${ampm}`;
+    }
+    return time;
+  };
+
   return (
-    <div className="weather-huawei-style rounded-[2rem] sm:rounded-[2.25rem] p-6 sm:p-8 lg:p-9 h-full flex flex-col justify-center relative overflow-visible transition-all group">
+    <div className="weather-huawei-style rounded-[2rem] sm:rounded-[2.25rem] p-5 sm:p-7 lg:p-8 h-full flex flex-col justify-center relative overflow-visible transition-all group">
       {isEditing ? (
         /* Location Setup View */
         <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 lg:gap-10 w-full">
@@ -942,7 +1315,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                     if (searchResults.length > 0) setShowSuggestions(true);
                   }}
                   placeholder={dictionary.searchPlaceholder}
-                  className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl pl-10 pr-24 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/40 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-red-500 shadow-inner"
+                  className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl pl-10 pr-24 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/40 text-base sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-red-500 shadow-inner"
                 />
 
                 <div className="absolute right-2 flex items-center gap-1">
@@ -1034,7 +1407,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder={dictionary.placeholderCity}
-                    className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:ring-1 focus:ring-red-500"
+                    className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2 sm:py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-base sm:text-xs focus:ring-1 focus:ring-red-500"
                   />
                 </div>
 
@@ -1048,7 +1421,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                       value={stateName}
                       onChange={(e) => setStateName(e.target.value)}
                       placeholder={dictionary.placeholderState}
-                      className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:ring-1 focus:ring-red-500"
+                      className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2 sm:py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-base sm:text-xs focus:ring-1 focus:ring-red-500"
                     />
                   </div>
                   <div>
@@ -1060,7 +1433,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                       value={zipcode}
                       onChange={(e) => setZipcode(e.target.value)}
                       placeholder={dictionary.placeholderZip}
-                      className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:ring-1 focus:ring-red-500"
+                      className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2 sm:py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-base sm:text-xs focus:ring-1 focus:ring-red-500"
                     />
                   </div>
                 </div>
@@ -1074,7 +1447,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                     placeholder={dictionary.placeholderCountry}
-                    className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:ring-1 focus:ring-red-500"
+                    className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2 sm:py-1.5 text-slate-900 dark:text-white placeholder-slate-400 text-base sm:text-xs focus:ring-1 focus:ring-red-500"
                   />
                 </div>
 
@@ -1106,177 +1479,131 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
         </div>
       ) : (
         /* Normal Live Weather View */
-        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 lg:gap-10 w-full">
-          {/* Left Section: Section Title with Red Underline, Current Weather Highlight & Clickable Location */}
-          <div className="flex flex-col shrink-0 lg:w-64 xl:w-72 justify-between">
-            <div>
-              <div className="flex items-center justify-between w-fit gap-3">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
-                    {dictionary.title}
-                  </h2>
-                  {/* Red Accent Underline Bar covering the length of the 'weather' text */}
-                  <div className="w-full h-[3.5px] bg-[#c8102e] dark:bg-red-500 rounded-full mt-3 mb-5" />
-                </div>
-
-                {/* Live Refresh Button */}
-                <button
-                  type="button"
-                  onClick={handleRefresh}
-                  disabled={loading || isRefreshing}
-                  title={dictionary.refreshTooltip}
-                  className="mb-2 p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-all cursor-pointer"
-                >
-                  <RefreshCw
-                    size={15}
-                    className={`${isRefreshing ? 'animate-spin text-[#c8102e]' : ''}`}
-                  />
-                </button>
-              </div>
-
-              {/* Current Weather Highlight */}
-              <div className="flex items-center gap-3.5 mb-3">
-                <div className="flex items-center justify-center shrink-0 w-13 h-13 rounded-2xl weather-subcard">
-                  {weather?.icon === 'sun' ? (
-                    <Sun size={28} className="text-amber-500 dark:text-yellow-400" strokeWidth={1.75} />
-                  ) : weather?.icon === 'rain' ? (
-                    <CloudRain size={28} className="text-sky-400 dark:text-sky-300" strokeWidth={1.75} />
-                  ) : weather?.icon === 'snow' ? (
-                    <Snowflake size={28} className="text-sky-300 dark:text-sky-200" strokeWidth={1.75} />
-                  ) : (
-                    <Cloud size={28} className="text-sky-400 dark:text-sky-300" strokeWidth={1.75} />
-                  )}
-                </div>
-                <div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
-                      {loading ? '--' : weather?.temp}°
-                    </span>
-                    <span className="text-sm font-bold text-slate-500 dark:text-white/60">{tempUnit}</span>
-                  </div>
-                  <p className="text-[11px] font-bold text-slate-700 dark:text-slate-300 mt-1 uppercase tracking-wide leading-none">
-                    {getConditionTranslation(weather?.text || 'Partly Cloudy')}
-                  </p>
-                </div>
-              </div>
-
-              {weather?.high !== undefined && (
-                <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-3.5 leading-none">
-                  {dictionary.high}: <span className="font-bold text-slate-800 dark:text-white">{weather?.high}°</span> &bull; {dictionary.low}: <span className="font-bold text-slate-800 dark:text-white">{weather?.low}°</span>
-                </p>
-              )}
+        <div className="flex flex-col w-full">
+          {/* Top Header Row: Title + Refresh on Left, Forecast Label on Right */}
+          <div className="flex items-center justify-between gap-4 mb-3.5 sm:mb-4">
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight leading-none">
+                {dictionary.title}
+              </h2>
+              <button
+                type="button"
+                onClick={handleRefresh}
+                disabled={loading || isRefreshing}
+                title={dictionary.refreshTooltip}
+                className="p-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center"
+              >
+                <RefreshCw
+                  size={15}
+                  className={`${isRefreshing ? 'animate-spin' : 'opacity-85 hover:opacity-100'}`}
+                />
+              </button>
             </div>
 
-            {/* Clickable Location Card/Badge with full canonical address visibility */}
-            <button
-              type="button"
-              onClick={() => setIsEditing(true)}
-              title={dictionary.tooltipChange}
-              className="weather-subcard flex items-start justify-between gap-2.5 px-3.5 py-2.5 rounded-xl text-left transition-all hover:shadow-md group/loc cursor-pointer w-full mt-1"
-            >
-              <div className="flex items-start gap-2 min-w-0 flex-1">
-                <MapPin size={14} className="text-[#c8102e] dark:text-red-500 shrink-0 mt-0.5 group-hover/loc:scale-110 transition-transform" />
-                <span className="weather-location-text text-[11px] font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 break-words whitespace-normal leading-snug">
-                  {location}
-                </span>
-              </div>
-              <ChevronRight size={14} className="text-[#c8102e] dark:text-red-500 shrink-0 mt-0.5 group-hover/loc:translate-x-0.5 transition-transform" strokeWidth={2.2} />
-            </button>
+            <span className="text-xs sm:text-sm font-medium opacity-60 leading-none">
+              {forecastMode === 'day'
+                ? dictionary.dailyForecast || 'Daily forecast'
+                : dictionary.hourlyForecast || 'Hourly forecast'}
+            </span>
           </div>
 
-          {/* Right Section: Hourly or Daily Forecast Grid */}
-          <div className="flex-1 min-w-0 w-full">
+          {/* Middle Section: Current Weather Icon + Temp / (Condition & H) / (Address & L) */}
+          <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+            <div className="flex items-center justify-center shrink-0">
+              {renderWeatherIcon(weather?.icon || 'partly-cloudy', weather?.text || 'Partly Cloudy', 44)}
+            </div>
+
+            <div className="grid grid-cols-[auto_auto] items-baseline gap-x-8 sm:gap-x-14 md:gap-x-20 min-w-0">
+              {/* Row 1: Temperature */}
+              <div className="col-span-2 flex items-baseline gap-1 leading-none">
+                <span className="text-2xl sm:text-[28px] font-bold tracking-tight leading-none tabular-nums">
+                  {loading ? '--' : weather?.temp}°
+                </span>
+              </div>
+
+              {/* Row 2: Weather condition line + H degree */}
+              <p className="text-xs sm:text-sm font-normal opacity-80 leading-snug mt-1">
+                {getConditionTranslation(weather?.text || 'Partly Cloudy')}
+              </p>
+              {weather?.high !== undefined ? (
+                <span className="text-xs sm:text-[13px] font-medium opacity-65 leading-snug tabular-nums whitespace-nowrap mt-1">
+                  {dictionary.high}: {weather?.high}°
+                </span>
+              ) : (
+                <span />
+              )}
+
+              {/* Row 3: Address line (without zip/post code) + L degree */}
+              <button
+                type="button"
+                onClick={() => setIsEditing(true)}
+                title={dictionary.tooltipChange}
+                className="inline-flex items-center gap-1 text-left text-xs sm:text-[13px] font-normal opacity-60 hover:opacity-100 transition-opacity cursor-pointer mt-0.5 leading-snug bg-transparent border-0 p-0 min-w-0"
+              >
+                <span className="weather-location-text break-words">{displayLocation}</span>
+              </button>
+              {weather?.low !== undefined ? (
+                <span className="text-xs sm:text-[13px] font-medium opacity-65 leading-snug tabular-nums whitespace-nowrap mt-0.5">
+                  {dictionary.low}: {weather?.low}°
+                </span>
+              ) : (
+                <span />
+              )}
+            </div>
+          </div>
+
+          {/* Horizontal Divider */}
+          <div className="w-full border-t border-current opacity-15 my-4 sm:my-5" />
+
+          {/* Bottom Section: 12-Hour Horizontal Forecast Strip (or 7-Day Daily Mode) */}
+          <div className="w-full">
             {forecastMode === 'day' ? (
-              /* Daily Forecast Grid (7 days) */
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2.5 sm:gap-3 w-full">
+              <div className="grid grid-cols-3 sm:grid-cols-7 gap-y-4 gap-x-2 w-full">
                 {(weather?.daily || defaultDayDetails).slice(0, 7).map((dayItem, idx) => (
                   <div
                     key={idx}
-                    className="weather-subcard rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex flex-col justify-between min-h-[92px] sm:min-h-[102px] transition-all hover:shadow-md hover:-translate-y-0.5 group/card cursor-pointer"
+                    className="flex flex-col items-center justify-center gap-1.5 py-1 text-center select-text"
                   >
-                    {/* Top Row: Weather Icon */}
-                    <div className="flex items-center justify-between">
-                      <div className="transition-transform group-hover/card:scale-105">
-                        {dayItem.icon === 'sun' ? (
-                          <Sun size={22} className="text-amber-500 dark:text-yellow-400" strokeWidth={1.8} />
-                        ) : dayItem.icon === 'rain' ? (
-                          <CloudRain size={22} className="text-sky-400 dark:text-sky-300" strokeWidth={1.8} />
-                        ) : dayItem.icon === 'snow' ? (
-                          <Snowflake size={22} className="text-sky-300 dark:text-sky-200" strokeWidth={1.8} />
-                        ) : (
-                          <Cloud size={22} className="text-sky-400 dark:text-sky-300" strokeWidth={1.8} />
-                        )}
-                      </div>
+                    <span className="weather-card-item-text text-[11px] sm:text-xs font-medium opacity-65 whitespace-nowrap leading-none">
+                      {dayItem.time}
+                    </span>
+                    {dayItem.date && (
+                      <span className="weather-card-item-text text-[10px] opacity-50 whitespace-nowrap leading-none">
+                        {dayItem.date}
+                      </span>
+                    )}
+                    <div className="flex items-center justify-center my-0.5">
+                      {renderWeatherIcon(dayItem.icon, undefined, 20)}
                     </div>
-
-                    {/* Bottom Row: Day Label, Date & High/Low Temp */}
-                    <div className="pt-2">
-                      <p 
-                        className="weather-card-item-text text-xs sm:text-[13px] font-bold leading-tight truncate select-text"
-                      >
-                        {dayItem.time}
-                      </p>
-                      {dayItem.date && (
-                        <p 
-                          className="weather-card-item-text text-[10px] sm:text-[11px] font-semibold tracking-tight leading-tight mt-0.5 truncate select-text"
-                        >
-                          {dayItem.date}
-                        </p>
-                      )}
-                      <div className="flex items-baseline gap-1 mt-1 leading-none">
-                        <span 
-                          className="weather-card-item-text text-xs sm:text-[13px] font-extrabold select-text"
-                        >
-                          {dayItem.maxTemp !== undefined ? dayItem.maxTemp : dayItem.temp}°
+                    <div className="flex items-baseline gap-1 leading-none tabular-nums">
+                      <span className="weather-card-item-text text-xs sm:text-sm font-bold">
+                        {dayItem.maxTemp !== undefined ? dayItem.maxTemp : dayItem.temp}°
+                      </span>
+                      {dayItem.minTemp !== undefined && (
+                        <span className="weather-card-item-text text-[11px] font-medium opacity-60">
+                          {dayItem.minTemp}°
                         </span>
-                        {dayItem.minTemp !== undefined && (
-                          <span 
-                            className="weather-card-item-text text-[11px] font-bold select-text"
-                          >
-                            {dayItem.minTemp}°
-                          </span>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              /* Hourly Forecast Grid (12 hours) */
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 sm:gap-3 w-full">
+              <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-y-4 gap-x-1 sm:gap-x-2 w-full">
                 {(weather?.hourly || defaultHrDetails).slice(0, 12).map((hr, idx) => (
                   <div
                     key={idx}
-                    className="weather-subcard rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex flex-col justify-between min-h-[92px] sm:min-h-[102px] transition-all hover:shadow-md hover:-translate-y-0.5 group/card cursor-pointer"
+                    className="flex flex-col items-center justify-center gap-2 py-1 text-center select-text"
                   >
-                    {/* Top Row: Weather Icon */}
-                    <div className="flex items-center justify-between">
-                      <div className="transition-transform group-hover/card:scale-105">
-                        {hr.icon === 'sun' ? (
-                          <Sun size={22} className="text-amber-500 dark:text-yellow-400" strokeWidth={1.8} />
-                        ) : hr.icon === 'rain' ? (
-                          <CloudRain size={22} className="text-sky-400 dark:text-sky-300" strokeWidth={1.8} />
-                        ) : hr.icon === 'snow' ? (
-                          <Snowflake size={22} className="text-sky-300 dark:text-sky-200" strokeWidth={1.8} />
-                        ) : (
-                          <Cloud size={22} className="text-sky-400 dark:text-sky-300" strokeWidth={1.8} />
-                        )}
-                      </div>
+                    <span className="weather-card-item-text text-[11px] sm:text-xs font-medium opacity-60 whitespace-nowrap leading-none">
+                      {formatHourlyTime(hr.time, idx)}
+                    </span>
+                    <div className="flex items-center justify-center">
+                      {renderWeatherIcon(hr.icon, undefined, 20)}
                     </div>
-
-                    {/* Bottom Row: Label & Temp */}
-                    <div className="pt-2">
-                      <p 
-                        className="weather-card-item-text text-xs sm:text-[13px] font-bold leading-tight truncate select-text"
-                      >
-                        {hr.time === 'Now' ? dictionary.now : hr.time}
-                      </p>
-                      <p 
-                        className="weather-card-item-text text-xs sm:text-[13px] font-extrabold mt-0.5 leading-none select-text"
-                      >
-                        {hr.temp}°
-                      </p>
-                    </div>
+                    <span className="weather-card-item-text text-xs sm:text-sm font-bold leading-none tabular-nums">
+                      {hr.temp}°
+                    </span>
                   </div>
                 ))}
               </div>

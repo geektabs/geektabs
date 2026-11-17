@@ -425,6 +425,258 @@ const ST_T: Record<string, Record<string, string>> = {
     backupStandard: "Séier & stabil",
     backupBasic: "Standard-Vitesse",
     backupDesc: "Séier Synchroniséierung mat Google Drive an iCloud"
+  },
+  Dutch: {
+    broadband: "Breedbandsnelheidsdiagnose",
+    analyzer: "Netwerkprestatie-analysator",
+    subtitle: "Meet nauwkeurig de downloadsnelheid, uploadbandbreedte, jitter en realtime pakketlatentie.",
+    hostServer: "Hostserver",
+    autoOptimized: "Automatisch geoptimaliseerd",
+    start: "START",
+    beginTest: "Test starten",
+    running: "Diagnose uitvoeren...",
+    clickStart: "Klik op de middelste startknop om de live netwerksnelheid te meten.",
+    downloadSpeed: "Downloadsnelheid",
+    uploadSpeed: "Uploadsnelheid",
+    pingParams: "Ping-parameters",
+    latency: "Latentie",
+    jitter: "Jitter",
+    diagnosticsRunning: "Diagnose uitvoeren...",
+    retryBenchmark: "Benchmark herhalen",
+    runBenchmark: "Benchmark starten",
+    latencyPhase: "latentie",
+    downloadPhase: "download",
+    uploadPhase: "upload",
+    completePhase: "voltooid",
+    serviceReadiness: "Serviceprestaties en geschiktheid",
+    serviceSubtitle: "Realtime capaciteitsbenchmarks op basis van uw huidige bandbreedte en latentie.",
+    broadbandGrade: "Providerklasse A+",
+    streaming4k: "4K / 8K Streaming",
+    streamingDesc: "Bufferloos afspelen op YouTube & Netflix",
+    cloudGaming: "Online & Cloud Gaming",
+    gamingExcellent: "Pro-competitief",
+    gamingGood: "Vloeiend spelen",
+    gamingAverage: "Normale spellen",
+    gamingDesc: "Geoptimaliseerd voor multiplayer met lage latentie",
+    latencyTag: "latentie",
+    videoConference: "Videovergaderen",
+    conferenceGrade: "HD Multi-deelnemers",
+    conferenceDesc: "Naadloos voor Zoom, Teams & Google Meet",
+    cloudBackup: "Cloudsync & Grote overdrachten",
+    backupFast: "Ultrasnel",
+    backupStandard: "Snel & Stabiel",
+    backupBasic: "Standaardsnelheid",
+    backupDesc: "Snelle synchronisatie met Google Drive & iCloud"
+  },
+  Swedish: {
+    broadband: "Bredbandshastighetsdiagnostik",
+    analyzer: "Nätverksprestandaanalysator",
+    subtitle: "Mät exakt nedladdningskapacitet, uppladdningsbandbredd, jitter och paketfördröjning i realtid.",
+    hostServer: "Värdserver",
+    autoOptimized: "Automatiskt optimerad",
+    start: "START",
+    beginTest: "Starta test",
+    running: "Kör diagnostik...",
+    clickStart: "Klicka på den mittersta startknappen för att mäta nätverkshastigheten i realtid.",
+    downloadSpeed: "Nedladdningshastighet",
+    uploadSpeed: "Uppladdningshastighet",
+    pingParams: "Ping-parametrar",
+    latency: "Latens",
+    jitter: "Jitter",
+    diagnosticsRunning: "Kör diagnostik...",
+    retryBenchmark: "Kör test igen",
+    runBenchmark: "Kör test",
+    latencyPhase: "latens",
+    downloadPhase: "nedladdning",
+    uploadPhase: "uppladdning",
+    completePhase: "klar",
+    serviceReadiness: "Tjänsteprestanda och beredskap",
+    serviceSubtitle: "Realtidsriktmärken baserade på din nuvarande bandbredd och latens.",
+    broadbandGrade: "Operatörsklass A+",
+    streaming4k: "4K / 8K-streaming",
+    streamingDesc: "Buffertfri uppspelning på YouTube & Netflix",
+    cloudGaming: "Online- & Molnspel",
+    gamingExcellent: "Proffsnivå",
+    gamingGood: "Smidigt spel",
+    gamingAverage: "Vardagsspel",
+    gamingDesc: "Optimerad för flerspelarläge med låg latens",
+    latencyTag: "latens",
+    videoConference: "Videomöten",
+    conferenceGrade: "HD Flerpartsamtal",
+    conferenceDesc: "Sömlöst för Zoom, Teams & Google Meet",
+    cloudBackup: "Molnsynk & Stora filöverföringar",
+    backupFast: "Ultrasnabb",
+    backupStandard: "Snabb & Stabil",
+    backupBasic: "Standardhastighet",
+    backupDesc: "Snabb synkronisering med Google Drive & iCloud"
+  },
+  Finnish: {
+    broadband: "Laajakaistan nopeusdiagnostiikka",
+    analyzer: "Verkon suorituskykyanalysaattori",
+    subtitle: "Mittaa tarkka latauskapasiteetti, lähetyskaista, värinä ja pakettiviive reaaliajassa.",
+    hostServer: "Isäntäpalvelin",
+    autoOptimized: "Automaattisesti optimoitu",
+    start: "ALOITA",
+    beginTest: "Aloita testi",
+    running: "Suoritetaan diagnostiikkaa...",
+    clickStart: "Napsauta keskimmäistä aloituspainiketta mitataksesi verkon nopeuden reaaliajassa.",
+    downloadSpeed: "Latausnopeus",
+    uploadSpeed: "Lähetysnopeus",
+    pingParams: "Ping-parametrit",
+    latency: "Viive",
+    jitter: "Värinä (Jitter)",
+    diagnosticsRunning: "Suoritetaan diagnostiikkaa...",
+    retryBenchmark: "Toista testi",
+    runBenchmark: "Suorita testi",
+    latencyPhase: "viive",
+    downloadPhase: "lataus",
+    uploadPhase: "lähetys",
+    completePhase: "valmis",
+    serviceReadiness: "Palvelun suorituskyky ja valmius",
+    serviceSubtitle: "Reaaliaikaiset suorituskykyarviot nykyisen kaistanleveyden ja viiveen perusteella.",
+    broadbandGrade: "Operaattoritaso A+",
+    streaming4k: "4K / 8K -suoratoisto",
+    streamingDesc: "Puskuroimaton toisto YouTubessa ja Netflixissä",
+    cloudGaming: "Verkko- ja pilvipelaaminen",
+    gamingExcellent: "Kilpataso",
+    gamingGood: "Sujuva pelaaminen",
+    gamingAverage: "Peruspelaaminen",
+    gamingDesc: "Optimoitu pienen viiveen moninpeliin",
+    latencyTag: "viive",
+    videoConference: "Videoneuvottelut",
+    conferenceGrade: "HD-ryhmäpuhelut",
+    conferenceDesc: "Sujuva Zoom-, Teams- ja Google Meet -käyttö",
+    cloudBackup: "Pilvisynkronointi ja suuret tiedostot",
+    backupFast: "Huippunopea",
+    backupStandard: "Nopea ja vakaa",
+    backupBasic: "Perusnopeus",
+    backupDesc: "Nopea synkronointi Google Driven ja iCloudin kanssa"
+  },
+  Hindi: {
+    broadband: "ब्रॉडबैंड गति निदान",
+    analyzer: "नेटवर्क प्रदर्शन विश्लेषक",
+    subtitle: "रीयल-टाइम में सटीक डाउनलोड क्षमता, अपलोड बैंडविड्थ, जिटर और पैकेट लेटेंसी मापें।",
+    hostServer: "होस्ट सर्वर",
+    autoOptimized: "स्वतः अनुकूलित",
+    start: "शुरू करें",
+    beginTest: "टेस्ट शुरू करें",
+    running: "जांच चल रही है...",
+    clickStart: "लाइव नेटवर्क गति मापने के लिए बीच वाले स्टार्ट बटन पर क्लिक करें।",
+    downloadSpeed: "डाउनलोड गति",
+    uploadSpeed: "अपलोड गति",
+    pingParams: "पिंग पैरामीटर",
+    latency: "लेटेंसी",
+    jitter: "जिटर",
+    diagnosticsRunning: "जांच चल रही है...",
+    retryBenchmark: "पुनः परीक्षण करें",
+    runBenchmark: "बेंचमार्क चलाएँ",
+    latencyPhase: "लेटेंसी",
+    downloadPhase: "डाउनलोड",
+    uploadPhase: "अपलोड",
+    completePhase: "पूर्ण",
+    serviceReadiness: "सेवा प्रदर्शन और एप्लिकेशन तत्परता",
+    serviceSubtitle: "आपकी वर्तमान बैंडविड्थ और लेटेंसी पर आधारित लाइव क्षमता बेंचमार्क।",
+    broadbandGrade: "कैरियर ग्रेड A+",
+    streaming4k: "4K / 8K स्ट्रीमिंग",
+    streamingDesc: "YouTube और Netflix पर बिना बफर के प्लेबैक",
+    cloudGaming: "ऑनलाइन और क्लाउड गेमिंग",
+    gamingExcellent: "प्रो प्रतिस्पर्धी",
+    gamingGood: "सुचारू गेमिंग",
+    gamingAverage: "सामान्य गेमिंग",
+    gamingDesc: "कम लेटेंसी वाले मल्टीप्लेयर के लिए अनुकूलित",
+    latencyTag: "लेटेंसी",
+    videoConference: "वीडियो कॉन्फ्रेंसिंग",
+    conferenceGrade: "HD मल्टी-पार्टी",
+    conferenceDesc: "Zoom, Teams और Google Meet के लिए सहज",
+    cloudBackup: "क्लाउड सिंक और बड़ी फ़ाइल ट्रांसफ़र",
+    backupFast: "अल्ट्रा फ़ास्ट",
+    backupStandard: "तेज़ और स्थिर",
+    backupBasic: "मानक गति",
+    backupDesc: "Google Drive और iCloud के साथ तेज़ सिंक"
+  },
+  Norwegian: {
+    broadband: "Bredbåndshastighetsdiagnostikk",
+    analyzer: "Nettverksytelsesanalysator",
+    subtitle: "Mål nøyaktig nedlastingskapasitet, opplastingsbåndbredde, jitter og pakkeforsinkelse i sanntid.",
+    hostServer: "Vertsserver",
+    autoOptimized: "Automatisk optimalisert",
+    start: "START",
+    beginTest: "Start test",
+    running: "Kjører diagnostikk...",
+    clickStart: "Klikk på startknappen i midten for å måle nettverkshastigheten i sanntid.",
+    downloadSpeed: "Nedlastingshastighet",
+    uploadSpeed: "Opplastingshastighet",
+    pingParams: "Ping-parametere",
+    latency: "Forsinkelse",
+    jitter: "Jitter",
+    diagnosticsRunning: "Kjører diagnostikk...",
+    retryBenchmark: "Kjør test på nytt",
+    runBenchmark: "Kjør hastighetstest",
+    latencyPhase: "forsinkelse",
+    downloadPhase: "nedlasting",
+    uploadPhase: "opplasting",
+    completePhase: "fullført",
+    serviceReadiness: "Tjenesteytelse og klarhet",
+    serviceSubtitle: "Sanntidsmålinger basert på din nåværende båndbredde og forsinkelse.",
+    broadbandGrade: "Operatørklasse A+",
+    streaming4k: "4K / 8K-strømming",
+    streamingDesc: "Bufferfri avspilling på YouTube & Netflix",
+    cloudGaming: "Online- & Skyspilling",
+    gamingExcellent: "Proffnivå",
+    gamingGood: "Jevn spilling",
+    gamingAverage: "Vanlig spilling",
+    gamingDesc: "Optimalisert for flerspiller med lav forsinkelse",
+    latencyTag: "forsinkelse",
+    videoConference: "Videokonferanser",
+    conferenceGrade: "HD Flerpartsamtale",
+    conferenceDesc: "Sømløst for Zoom, Teams & Google Meet",
+    cloudBackup: "Skysynkronisering & Store filer",
+    backupFast: "Ultrarask",
+    backupStandard: "Rask & Stabil",
+    backupBasic: "Standardhastighet",
+    backupDesc: "Rask synkronisering med Google Drive & iCloud"
+  },
+  Thai: {
+    broadband: "การวินิจฉัยความเร็วบรอดแบนด์",
+    analyzer: "ตัววิเคราะห์ประสิทธิภาพเครือข่าย",
+    subtitle: "วัดความเร็วดาวน์โหลด แบนด์วิดท์อัปโหลด จิตเตอร์ และความหน่วงแพ็กเก็ตแบบเรียลไทม์อย่างแม่นยำ",
+    hostServer: "เซิร์ฟเวอร์โฮสต์",
+    autoOptimized: "ปรับแต่งอัตโนมัติ",
+    start: "เริ่ม",
+    beginTest: "เริ่มทดสอบ",
+    running: "กำลังวินิจฉัย...",
+    clickStart: "คลิกปุ่มเริ่มตรงกลางเพื่อวัดความเร็วเครือข่ายแบบเรียลไทม์",
+    downloadSpeed: "ความเร็วดาวน์โหลด",
+    uploadSpeed: "ความเร็วอัปโหลด",
+    pingParams: "พารามิเตอร์ Ping",
+    latency: "ความหน่วง (Latency)",
+    jitter: "จิตเตอร์ (Jitter)",
+    diagnosticsRunning: "กำลังวินิจฉัย...",
+    retryBenchmark: "ทดสอบอีกครั้ง",
+    runBenchmark: "เริ่มทดสอบความเร็ว",
+    latencyPhase: "ความหน่วง",
+    downloadPhase: "ดาวน์โหลด",
+    uploadPhase: "อัปโหลด",
+    completePhase: "เสร็จสิ้น",
+    serviceReadiness: "ประสิทธิภาพบริการและความพร้อมใช้งาน",
+    serviceSubtitle: "เกณฑ์วัดประสิทธิภาพสดจากแบนด์วิดท์และความหน่วงปัจจุบันของคุณ",
+    broadbandGrade: "ระดับผู้ให้บริการ A+",
+    streaming4k: "สตรีมมิง 4K / 8K",
+    streamingDesc: "เล่นวิดีโอราบรื่นไม่สะดุดบน YouTube และ Netflix",
+    cloudGaming: "เกมออนไลน์และคลาวด์เกมมิง",
+    gamingExcellent: "ระดับแข่งขันมืออาชีพ",
+    gamingGood: "เล่นเกมลื่นไหล",
+    gamingAverage: "เล่นเกมทั่วไป",
+    gamingDesc: "ปรับแต่งเพื่อมัลติเพลเยอร์ที่มีความหน่วงต่ำ",
+    latencyTag: "ความหน่วง",
+    videoConference: "การประชุมทางวิดีโอ",
+    conferenceGrade: "HD หลายสายพร้อมกัน",
+    conferenceDesc: "ราบรื่นสำหรับ Zoom, Teams และ Google Meet",
+    cloudBackup: "ซิงค์คลาวด์และโอนไฟล์ขนาดใหญ่",
+    backupFast: "เร็วเป็นพิเศษ",
+    backupStandard: "เร็วและเสถียร",
+    backupBasic: "ความเร็วมาตรฐาน",
+    backupDesc: "ซิงค์รวดเร็วกับ Google Drive และ iCloud"
   }
 };
 
@@ -544,17 +796,17 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
         
         {/* BIG INTERACTIVE CIRCULAR GAUGE AND STATUS AREA */}
-        <div className="lg:col-span-8 flex flex-col justify-center items-center GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-[2.5rem] p-8 min-h-[480px] relative overflow-hidden">
+        <div className="lg:col-span-8 flex flex-col justify-center items-center GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl lg:rounded-[2.5rem] p-5 sm:p-8 min-h-[360px] sm:min-h-[420px] lg:min-h-[480px] relative overflow-hidden">
           <div className="absolute inset-0 bg-radial-gradient from-purple-500/5 via-transparent to-transparent opacity-60 pointer-events-none" />
           
           {/* Circular speeddial wrapper */}
-          <div className="relative w-72 h-72 flex items-center justify-center">
+          <div className="relative w-60 h-60 sm:w-68 sm:h-68 lg:w-72 lg:h-72 flex items-center justify-center">
             
             {/* Center core dial elements */}
-            <svg className="absolute inset-0 -rotate-90 w-full h-full p-4 pointer-events-none">
+            <svg viewBox="0 0 256 256" className="absolute inset-0 -rotate-90 w-full h-full p-4 pointer-events-none">
               <circle
                 cx="128"
                 cy="128"
@@ -630,10 +882,10 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
         </div>
 
         {/* METRICS RESULTS & DETAILED SYSTEM READOUTS */}
-        <div className="lg:col-span-4 flex flex-col gap-6">
+        <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4 sm:gap-5 lg:gap-6">
           
           {/* Main Download Metric Panel */}
-          <div className="p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
+          <div className="p-5 sm:p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[124px] lg:min-h-[140px]">
             <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 blur-[30px]" />
             <div className="flex justify-between items-center mb-4">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple-500 flex items-center gap-1.5">
@@ -651,7 +903,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
           </div>
 
           {/* Upload Metric Panel */}
-          <div className="p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
+          <div className="p-5 sm:p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[124px] lg:min-h-[140px]">
             <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 blur-[30px]" />
             <div className="flex justify-between items-center mb-4">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-500 flex items-center gap-1.5">
@@ -669,7 +921,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
           </div>
 
           {/* Jitter & Latency side parameters stats */}
-          <div className="p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl">
+          <div className="sm:col-span-2 lg:col-span-1 p-5 sm:p-6 GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl">
             <h3 className="text-[10px] font-extrabold uppercase tracking-widest opacity-40 word-color mb-4">{d.pingParams}</h3>
             <div className="grid grid-cols-2 gap-4">
               
@@ -695,7 +947,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
             onClick={runSpeedTest}
             disabled={isTestingSpeed}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className={`speedtest-action-button w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 cursor-pointer !text-white text-white ${
+            className={`speedtest-action-button sm:col-span-2 lg:col-span-1 w-full min-h-[48px] py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 cursor-pointer !text-white text-white ${
               isTestingSpeed
                 ? 'bg-black/10 dark:bg-white/11 !text-white text-white cursor-not-allowed border border-black/5 dark:border-white/5 opacity-80'
                 : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 !text-white text-white shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25'

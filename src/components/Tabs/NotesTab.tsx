@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Trash2, Search, X, FileText, PanelLeft, PanelLeftClose } from 'lucide-react';
+import { Plus, Trash2, Search, X, FileText, PanelLeft, PanelLeftClose, Pencil, Check } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import TipTapEditor from './TipTapEditor';
 
@@ -24,6 +24,12 @@ const DEFAULT_SECTIONS: Section[] = [
   { id: 'sec-personal', name: 'Personal Log', color: '#3b82f6' }, // Blue
   { id: 'sec-work', name: 'Work Log', color: '#8b5cf6' }         // Purple
 ];
+
+const DEFAULT_SECTION_IDS = new Set(DEFAULT_SECTIONS.map((s) => s.id));
+const DEFAULT_SECTION_NAMES = new Set(DEFAULT_SECTIONS.map((s) => s.name.trim().toLowerCase()));
+
+const isDefaultSection = (sec: Section) =>
+  DEFAULT_SECTION_IDS.has(sec.id) || DEFAULT_SECTION_NAMES.has(sec.name.trim().toLowerCase());
 
 const SECTION_COLORS = [
   '#4f46e5', '#2563eb', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'
@@ -203,6 +209,108 @@ const NOTES_T: Record<string, Record<string, string>> = {
     createNotesDesc: 'Erstellt Notizen, organiséiert Ordneren an designt formatéiert Blieder.',
     createPage: 'NOTIZ ERSTELLEN',
     sections: 'Beräicher'
+  },
+  Dutch: {
+    cancel: 'ANNULEREN',
+    create: 'MAKEN',
+    activeSpaces: 'actieve ruimtes',
+    sheetsList: 'Notities',
+    filterSheets: 'Notities filteren...',
+    noPageEntries: 'Geen notities in deze sectie',
+    untitledPage: 'Naamloze notitie',
+    noAdditionalText: 'Geen extra tekst',
+    addNewPage: 'NOTITIE MAKEN',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Notitietitel invoeren...',
+    noNotebook: 'Geen notitie geselecteerd',
+    createNotesDesc: 'Maak notities, organiseer mappen en maak opgemaakte werkbladen.',
+    createPage: 'NOTITIE MAKEN',
+    sections: 'Secties'
+  },
+  Swedish: {
+    cancel: 'AVBRYT',
+    create: 'SKAPA',
+    activeSpaces: 'aktiva ytor',
+    sheetsList: 'Anteckningar',
+    filterSheets: 'Filtrera anteckningar...',
+    noPageEntries: 'Inga anteckningar i detta avsnitt',
+    untitledPage: 'Namnlös anteckning',
+    noAdditionalText: 'Ingen ytterligare text',
+    addNewPage: 'SKAPA ANTECKNING',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Ange titel...',
+    noNotebook: 'Ingen anteckning vald',
+    createNotesDesc: 'Skapa anteckningar, organisera mappar och bygg formaterade arbetsblad.',
+    createPage: 'SKAPA ANTECKNING',
+    sections: 'Avsnitt'
+  },
+  Finnish: {
+    cancel: 'PERUUTA',
+    create: 'LUO',
+    activeSpaces: 'aktiivista tilaa',
+    sheetsList: 'Muistiinpanot',
+    filterSheets: 'Suodata muistiinpanoja...',
+    noPageEntries: 'Ei muistiinpanoja tässä osiossa',
+    untitledPage: 'Nimetön muistiinpano',
+    noAdditionalText: 'Ei lisätekstiä',
+    addNewPage: 'LUO MUISTIINPANO',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Kirjoita otsikko...',
+    noNotebook: 'Ei valittua muistiinpanoa',
+    createNotesDesc: 'Luo muistiinpanoja, järjestele kansioita ja muotoile työlehtiä.',
+    createPage: 'LUO MUISTIINPANO',
+    sections: 'Osiot'
+  },
+  Hindi: {
+    cancel: 'रद्द करें',
+    create: 'बनाएँ',
+    activeSpaces: 'सक्रिय अनुभाग',
+    sheetsList: 'नोट्स',
+    filterSheets: 'नोट्स फ़िल्टर करें...',
+    noPageEntries: 'इस अनुभाग में कोई नोट नहीं है',
+    untitledPage: 'शीर्षकहीन नोट',
+    noAdditionalText: 'कोई अतिरिक्त पाठ नहीं',
+    addNewPage: 'नोट बनाएँ',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'नोट शीर्षक दर्ज करें...',
+    noNotebook: 'कोई नोट चयनित नहीं',
+    createNotesDesc: 'नोट्स बनाएँ, फ़ोल्डर व्यवस्थित करें और फ़ॉर्मेट की गई वर्कशीट तैयार करें।',
+    createPage: 'नोट बनाएँ',
+    sections: 'अनुभाग'
+  },
+  Norwegian: {
+    cancel: 'AVBRYT',
+    create: 'OPPRETT',
+    activeSpaces: 'aktive områder',
+    sheetsList: 'Notater',
+    filterSheets: 'Filtrer notater...',
+    noPageEntries: 'Ingen notater i denne seksjonen',
+    untitledPage: 'Notat uten tittel',
+    noAdditionalText: 'Ingen ekstra tekst',
+    addNewPage: 'OPPRETT NOTAT',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Skriv inn tittel...',
+    noNotebook: 'Ingen notat valgt',
+    createNotesDesc: 'Opprett notater, organiser mapper og lag formaterte arbeidsark.',
+    createPage: 'OPPRETT NOTAT',
+    sections: 'Seksjoner'
+  },
+  Thai: {
+    cancel: 'ยกเลิก',
+    create: 'สร้าง',
+    activeSpaces: 'พื้นที่ที่ใช้งาน',
+    sheetsList: 'บันทึกย่อ',
+    filterSheets: 'กรองบันทึกย่อ...',
+    noPageEntries: 'ไม่มีบันทึกย่อในหมวดหมู่นี้',
+    untitledPage: 'บันทึกไม่มีชื่อ',
+    noAdditionalText: 'ไม่มีข้อความเพิ่มเติม',
+    addNewPage: 'สร้างบันทึก',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'กรอกชื่อบันทึก...',
+    noNotebook: 'ไม่ได้เลือกบันทึก',
+    createNotesDesc: 'สร้างบันทึก จัดระเบียบโฟลเดอร์ และจัดรูปแบบเอกสารการทำงานของคุณ',
+    createPage: 'สร้างบันทึก',
+    sections: 'หมวดหมู่'
   }
 };
 
@@ -235,11 +343,13 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     }
   }, []);
 
-  const [activeSectionId, setActiveSectionId] = useLocalStorage<string>('GeekTabs-one-active-sec', 'sec-quick');
+  const [activeSectionId, setActiveSectionId] = useState<string>('sec-quick');
   const [activeNoteId, setActiveNoteId] = useLocalStorage<string | null>('GeekTabs-one-active-note', null);
   
   const [newSectionName, setNewSectionName] = useState('');
   const [isCreatingSection, setIsCreatingSection] = useState(false);
+  const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
+  const [editingSectionName, setEditingSectionName] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -260,30 +370,72 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
 
   const handleCreateSection = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newSectionName.trim()) return;
+    const trimmed = newSectionName.trim();
+    if (!trimmed) return;
+    const existingDefault = sections.find(
+      (s) => s.name.trim().toLowerCase() === trimmed.toLowerCase() && isDefaultSection(s)
+    );
+    if (existingDefault) {
+      setActiveSectionId(existingDefault.id);
+      const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === existingDefault.id);
+      setActiveNoteId(secNotes[0]?.id || null);
+      setNewSectionName('');
+      setIsCreatingSection(false);
+      return;
+    }
     const newSec: Section = {
       id: 'sec-' + Date.now().toString(),
-      name: newSectionName.trim(),
+      name: trimmed,
       color: SECTION_COLORS[sections.length % SECTION_COLORS.length]
     };
     setSections([...sections, newSec]);
     setActiveSectionId(newSec.id);
+    setActiveNoteId(null);
     setNewSectionName('');
     setIsCreatingSection(false);
   };
 
+  const handleStartEditSection = (sec: Section, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isDefaultSection(sec)) return;
+    setEditingSectionId(sec.id);
+    setEditingSectionName(sec.name);
+  };
+
+  const handleSaveEditSection = (id: string, e?: React.FormEvent) => {
+    e?.preventDefault();
+    const target = sections.find((s) => s.id === id);
+    if (!target || isDefaultSection(target)) {
+      setEditingSectionId(null);
+      return;
+    }
+    const trimmed = editingSectionName.trim();
+    if (!trimmed || DEFAULT_SECTION_NAMES.has(trimmed.toLowerCase())) return;
+    setSections(sections.map(s => (s.id === id ? { ...s, name: trimmed } : s)));
+    setEditingSectionId(null);
+    setEditingSectionName('');
+  };
+
   const handleDeleteSection = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (sections.length <= 1) {
-      alert('You must have at least one notebook section.');
+    const target = sections.find((s) => s.id === id);
+    if (!target || isDefaultSection(target) || sections.length <= 1) {
       return;
     }
     const filtered = sections.filter(s => s.id !== id);
+    const remainingNotes = notes.filter(n => n.sectionId !== id);
     setSections(filtered);
-    setNotes(notes.filter(n => n.sectionId !== id));
-    
+    setNotes(remainingNotes);
+
+    if (editingSectionId === id) {
+      setEditingSectionId(null);
+      setEditingSectionName('');
+    }
     if (activeSectionId === id) {
-      setActiveSectionId(filtered[0].id);
+      const nextSecId = filtered[0]?.id || 'sec-quick';
+      setActiveSectionId(nextSecId);
+      const nextNote = remainingNotes.find(n => (n.sectionId || 'sec-quick') === nextSecId);
+      setActiveNoteId(nextNote ? nextNote.id : null);
     }
   };
 
@@ -337,18 +489,18 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
       {/* Mobile Backdrop */}
       {mobileSidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+          className="fixed top-14 inset-x-0 bottom-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
           onClick={() => setMobileSidebarOpen(false)}
         />
       )}
 
       {/* LEFT SIDEBAR (Gemini Chat Style) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+        className={`fixed top-14 bottom-0 left-0 md:inset-y-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 md:h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
           mobileSidebarOpen 
-            ? 'w-80 translate-x-0 shadow-2xl border-r' 
+            ? 'w-72 sm:w-80 translate-x-0 shadow-2xl border-r' 
             : sidebarOpen 
-              ? 'w-80 -translate-x-full md:translate-x-0 md:w-80 border-r opacity-100' 
+              ? 'w-72 sm:w-80 -translate-x-full md:translate-x-0 md:w-64 lg:w-80 border-r opacity-100' 
               : 'w-0 -translate-x-full md:translate-x-0 md:w-0 border-r-0 opacity-0 overflow-hidden pointer-events-none'
         }`}
       >
@@ -361,7 +513,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               if (typeof window !== 'undefined' && window.innerWidth < 768) setMobileSidebarOpen(false);
             }}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className="notes-create-page-btn w-full flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-colors cursor-pointer active:scale-98 select-none"
+            className="notes-create-page-btn w-full min-h-[44px] lg:min-h-0 flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-[#4f46e5] hover:bg-[#4338ca] !text-white text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#4f46e5]/35 transition-colors cursor-pointer active:scale-98 select-none"
           >
             <Plus size={15} strokeWidth={3} className="!text-white text-white" style={{ stroke: '#ffffff' }} />
             <span className="!text-white text-white font-black tracking-wider" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dictionary.addNewPage}</span>
@@ -369,7 +521,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           <button
             type="button"
             onClick={() => setMobileSidebarOpen(false)}
-            className="md:hidden p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
+            className="md:hidden p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
             title="Close sidebar"
           >
             <X size={18} />
@@ -409,7 +561,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   value={newSectionName}
                   onChange={(e) => setNewSectionName(e.target.value)}
                   placeholder="Section name..."
-                  className="w-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-xl px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] text-slate-900 dark:text-white"
+                  className="w-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-xl px-3 py-2 lg:py-1.5 text-base sm:text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] text-slate-900 dark:text-white"
                 />
                 <div className="flex gap-1.5 justify-end">
                   <button
@@ -437,25 +589,107 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           <div className="grid grid-cols-2 gap-2 pt-1 pb-1">
             {sections.map((sec) => {
               const active = currentSectionId === sec.id;
+              const isCustomSection = !isDefaultSection(sec);
+              const isEditing = isCustomSection && editingSectionId === sec.id;
+
+              if (isEditing) {
+                return (
+                  <form
+                    key={sec.id}
+                    onSubmit={(e) => handleSaveEditSection(sec.id, e)}
+                    className="col-span-2 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-black/5 dark:bg-white/10 border border-[#4f46e5]/40"
+                  >
+                    <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
+                    <input
+                      autoFocus
+                      type="text"
+                      value={editingSectionName}
+                      onChange={(e) => setEditingSectionName(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Escape') {
+                          e.preventDefault();
+                          setEditingSectionId(null);
+                          setEditingSectionName('');
+                        }
+                      }}
+                      className="flex-1 min-w-0 bg-white dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-lg px-2 py-1.5 lg:py-1 text-base sm:text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 text-slate-900 dark:text-white"
+                      placeholder="Section name..."
+                    />
+                    <button
+                      type="submit"
+                      disabled={!editingSectionName.trim()}
+                      className="p-1 rounded-lg bg-[#4f46e5] text-white hover:bg-[#4338ca] disabled:opacity-45 cursor-pointer shrink-0"
+                      title="Save section"
+                    >
+                      <Check size={12} style={{ stroke: '#ffffff', color: '#ffffff' }} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingSectionId(null);
+                        setEditingSectionName('');
+                      }}
+                      className="p-1 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 text-slate-500 cursor-pointer shrink-0"
+                      title="Cancel edit"
+                    >
+                      <X size={12} />
+                    </button>
+                  </form>
+                );
+              }
+
               return (
-                <button
+                <div
                   key={sec.id}
-                  type="button"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
                     setActiveSectionId(sec.id);
                     const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
                     setActiveNoteId(secNotes[0]?.id || null);
                   }}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer border select-none min-w-0 ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveSectionId(sec.id);
+                      const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
+                      setActiveNoteId(secNotes[0]?.id || null);
+                    }
+                  }}
+                  className={`group flex items-center justify-between gap-1.5 px-2.5 sm:px-3 py-2 min-h-[42px] lg:min-h-0 rounded-xl text-xs font-bold transition-colors cursor-pointer border select-none min-w-0 ${
                     active
                       ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-2xs'
                       : 'bg-black/5 dark:bg-white/5 border-transparent text-slate-600 dark:text-white/60 hover:text-slate-900 hover:dark:text-white hover:bg-black/10 dark:hover:bg-white/10'
                   }`}
                   title={sec.name}
                 >
-                  <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
-                  <span className="truncate">{sec.name}</span>
-                </button>
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
+                    <span className="truncate">{sec.name}</span>
+                  </div>
+                  {isCustomSection && (
+                    <div className="flex items-center gap-0.5 shrink-0">
+                      <button
+                        type="button"
+                        onClick={(e) => handleStartEditSection(sec, e)}
+                        className="p-1.5 lg:p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/15 opacity-80 lg:opacity-70 hover:opacity-100 cursor-pointer transition-opacity"
+                        title="Edit section"
+                        aria-label={`Edit ${sec.name}`}
+                      >
+                        <Pencil size={11} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => handleDeleteSection(sec.id, e)}
+                        className="p-1.5 lg:p-0.5 rounded hover:bg-red-500/15 hover:text-red-500 opacity-80 lg:opacity-70 hover:opacity-100 cursor-pointer transition-opacity"
+                        title="Delete section"
+                        aria-label={`Delete ${sec.name}`}
+                      >
+                        <Trash2 size={11} />
+                      </button>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -470,7 +704,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               placeholder={dictionary.filterSheets}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-8 pr-3 py-1.5 bg-black/5 dark:bg-white/5 text-xs text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] placeholder-slate-400 dark:placeholder-white/40"
+              className="w-full pl-8 pr-3 py-2 lg:py-1.5 bg-black/5 dark:bg-white/5 text-base sm:text-xs text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] placeholder-slate-400 dark:placeholder-white/40"
             />
           </div>
         </div>
@@ -508,7 +742,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     <button
                       type="button"
                       onClick={(e) => handleDeleteNote(note.id, e)}
-                      className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded transition-all shrink-0 cursor-pointer"
+                      className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 p-2 lg:p-1 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded transition-all shrink-0 cursor-pointer"
                       title="Delete note"
                     >
                       <Trash2 size={12} />
@@ -538,7 +772,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
       <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
         
         {/* Workspace Top Header Bar */}
-        <header className="h-16 px-6 sm:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+        <header className="h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
           {/* Left: Sidebar Toggle Button (Hide / Show) */}
           <div className="flex items-center gap-2 min-w-0">
             <button
@@ -550,7 +784,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   setSidebarOpen(prev => !prev);
                 }
               }}
-              className="p-2.5 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
+              className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
               title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
               aria-label="Toggle sidebar"
             >
@@ -559,8 +793,8 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           </div>
 
           {/* Centered section title */}
-          <div className="flex items-center justify-center">
-            <h2 className="text-sm font-bold text-slate-900 tracking-tight">
+          <div className="flex items-center justify-center min-w-0 px-2">
+            <h2 className="text-sm font-bold text-slate-900 tracking-tight truncate">
               {currentSectionInfo?.name || 'Quick Notes'}
             </h2>
           </div>
@@ -569,13 +803,13 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           <div className="flex items-center gap-2 shrink-0">
             {activeNote ? (
               <>
-                <span className="text-[11px] font-mono opacity-60 text-slate-700">
+                <span className="hidden sm:inline text-[11px] font-mono opacity-60 text-slate-700">
                   {formatDate(activeNote.updatedAt)}
                 </span>
                 <button
                   type="button"
                   onClick={(e) => handleDeleteNote(activeNote.id, e)}
-                  className="p-2 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-xl transition-colors cursor-pointer"
+                  className="p-2.5 lg:p-2 min-w-[42px] min-h-[42px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-xl transition-colors cursor-pointer"
                   title="Delete note"
                 >
                   <Trash2 size={16} />
@@ -590,7 +824,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         {/* Main Writing Canvas */}
         <main className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white">
           {activeNote ? (
-            <div className="flex-1 flex flex-col h-full px-6 sm:px-12 lg:px-16 py-6 sm:py-8 overflow-hidden">
+            <div className="flex-1 flex flex-col h-full px-4 sm:px-8 lg:px-16 py-5 sm:py-8 overflow-hidden">
               
               {/* Note Title Input with Modern Underline */}
               <div className="relative mb-5 shrink-0">

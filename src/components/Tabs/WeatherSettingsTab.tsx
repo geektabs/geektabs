@@ -187,6 +187,114 @@ const WEATHER_SETTINGS_T: Record<string, Record<string, string>> = {
     dailyDesc: 'Weist déi nächst 7 Deeg',
     previewTitle: 'Virschau',
     previewDesc: 'Astellunge ginn automatesch gespäichert.'
+  },
+  Dutch: {
+    title: 'Weerinstellingen',
+    subtitle: 'Configureer temperatuureenheden en het weergave-interval voor de verwachting.',
+    unitTitle: 'Temperatuureenheid',
+    unitDesc: 'Selecteer Celsius (°C) of Fahrenheit (°F) voor het actuele weer en verwachtingen.',
+    celsius: 'Celsius (°C)',
+    celsiusDesc: 'Metrische standaard wereldwijd gebruikt',
+    fahrenheit: 'Fahrenheit (°F)',
+    fahrenheitDesc: 'Imperiale standaard veelgebruikt in de VS',
+    forecastModeTitle: 'Verwachtingsweergave',
+    forecastModeDesc: 'Kies of het verwachtingsraster per uur of per dag wordt weergegeven.',
+    hourly: 'Uurverwachting',
+    hourlyDesc: 'Toont de komende 12 uur met weersomstandigheden en temperaturen',
+    daily: 'Dagverwachting',
+    dailyDesc: 'Toont de komende 7 dagen met hoogste en laagste temperaturen',
+    previewTitle: 'Live Voorkeursvoorbeeld',
+    previewDesc: 'Wijzigingen worden automatisch opgeslagen en direct weergegeven op de startpagina.'
+  },
+  Swedish: {
+    title: 'Väderinställningar',
+    subtitle: 'Konfigurera temperaturenheter och visningsläge för prognoser.',
+    unitTitle: 'Temperaturenhet',
+    unitDesc: 'Välj Celsius (°C) eller Fahrenheit (°F) för aktuellt väder och prognoser.',
+    celsius: 'Celsius (°C)',
+    celsiusDesc: 'Metrisk standard som används globalt',
+    fahrenheit: 'Fahrenheit (°F)',
+    fahrenheitDesc: 'Imperial standard vanlig i USA',
+    forecastModeTitle: 'Visningsläge för Prognos',
+    forecastModeDesc: 'Välj om prognosen ska visas timvis eller dagligen.',
+    hourly: 'Timprognos',
+    hourlyDesc: 'Visar de kommande 12 timmarna med förväntat väder och temperatur',
+    daily: 'Dygnsprognos',
+    dailyDesc: 'Visar de kommande 7 dagarna med högsta och lägsta temperatur',
+    previewTitle: 'Förhandsvisning',
+    previewDesc: 'Ändringar sparas automatiskt och visas omedelbart på startsidan.'
+  },
+  Finnish: {
+    title: 'Sääasetukset',
+    subtitle: 'Määritä lämpötilayksiköt ja ennusteen näyttöväli.',
+    unitTitle: 'Lämpötilayksikkö',
+    unitDesc: 'Valitse Celsius (°C) tai Fahrenheit (°F) säätietoihin ja ennusteisiin.',
+    celsius: 'Celsius (°C)',
+    celsiusDesc: 'Maailmanlaajuinen metrinen standardi',
+    fahrenheit: 'Fahrenheit (°F)',
+    fahrenheitDesc: 'Yhdysvalloissa yleisesti käytetty yksikkö',
+    forecastModeTitle: 'Ennusteen Näyttötila',
+    forecastModeDesc: 'Valitse näytetäänkö ennuste tunneittain vai päivittäin.',
+    hourly: 'Tuntiennuste',
+    hourlyDesc: 'Näyttää seuraavat 12 tuntia sääolosuhteineen ja lämpötiloineen',
+    daily: 'Päiväennuste',
+    dailyDesc: 'Näyttää seuraavat 7 päivää päivän ylimmillä ja alimmilla lämpötiloilla',
+    previewTitle: 'Asetusten Esikatselu',
+    previewDesc: 'Muutokset tallennetaan automaattisesti ja päivittyvät heti etusivulle.'
+  },
+  Hindi: {
+    title: 'मौसम सेटिंग्स',
+    subtitle: 'तापमान इकाई और पूर्वानुमान प्रदर्शन अंतराल कॉन्फ़िगर करें।',
+    unitTitle: 'तापमान इकाई',
+    unitDesc: 'वर्तमान मौसम और पूर्वानुमान के लिए सेल्सियस (°C) या फ़ारेनहाइट (°F) चुनें।',
+    celsius: 'सेल्सियस (°C)',
+    celsiusDesc: 'दुनिया भर में उपयोग किया जाने वाला मीट्रिक मानक',
+    fahrenheit: 'फ़ारेनहाइट (°F)',
+    fahrenheitDesc: 'अमेरिका में आमतौर पर उपयोग किया जाने वाला मानक',
+    forecastModeTitle: 'पूर्वानुमान प्रदर्शन मोड',
+    forecastModeDesc: 'चुनें कि पूर्वानुमान प्रति घंटा दिखाया जाए या दैनिक।',
+    hourly: 'प्रति घंटा पूर्वानुमान',
+    hourlyDesc: 'अपेक्षित स्थिति और तापमान के साथ अगले 12 घंटे दिखाता है',
+    daily: 'दैनिक पूर्वानुमान',
+    dailyDesc: 'दैनिक उच्च और निम्न तापमान के साथ अगले 7 दिन दिखाता है',
+    previewTitle: 'लाइव पूर्वावलोकन',
+    previewDesc: 'बदलाव स्वतः सहेजे जाते हैं और होम मौसम विजेट पर तुरंत दिखते हैं।'
+  },
+  Norwegian: {
+    title: 'Værinnstillinger',
+    subtitle: 'Konfigurer temperaturenheter og visningsintervall for værvarsel.',
+    unitTitle: 'Temperaturenhet',
+    unitDesc: 'Velg Celsius (°C) eller Fahrenheit (°F) for nåværende vær og varsler.',
+    celsius: 'Celsius (°C)',
+    celsiusDesc: 'Metrisk standard brukt over hele verden',
+    fahrenheit: 'Fahrenheit (°F)',
+    fahrenheitDesc: 'Imperial standard vanlig brukt i USA',
+    forecastModeTitle: 'Visningsmodus for Varsel',
+    forecastModeDesc: 'Velg om varselet skal vises time for time eller dag for dag.',
+    hourly: 'Timevarsel',
+    hourlyDesc: 'Viser de neste 12 timene med forventet vær og temperatur',
+    daily: 'Langtidsvarsel',
+    dailyDesc: 'Viser de neste 7 dagene med høyeste og laveste temperatur',
+    previewTitle: 'Forhåndsvisning',
+    previewDesc: 'Endringer lagres automatisk og vises umiddelbart på startsiden.'
+  },
+  Thai: {
+    title: 'ตั้งค่าสภาพอากาศ',
+    subtitle: 'กำหนดหน่วยอุณหภูมิและรูปแบบการแสดงพยากรณ์อากาศ',
+    unitTitle: 'หน่วยอุณหภูมิ',
+    unitDesc: 'เลือกองศาเซลเซียส (°C) หรือฟาเรนไฮต์ (°F) สำหรับสภาพอากาศและพยากรณ์',
+    celsius: 'เซลเซียส (°C)',
+    celsiusDesc: 'มาตรฐานสากลที่ใช้ทั่วโลก',
+    fahrenheit: 'ฟาเรนไฮต์ (°F)',
+    fahrenheitDesc: 'มาตรฐานที่นิยมใช้ในสหรัฐอเมริกา',
+    forecastModeTitle: 'โหมดแสดงพยากรณ์อากาศ',
+    forecastModeDesc: 'เลือกว่าต้องการแสดงพยากรณ์อากาศแบบรายชั่วโมงหรือรายวัน',
+    hourly: 'พยากรณ์รายชั่วโมง',
+    hourlyDesc: 'แสดงสภาพอากาศและอุณหภูมิล่วงหน้า 12 ชั่วโมง',
+    daily: 'พยากรณ์รายวัน',
+    dailyDesc: 'แสดงสภาพอากาศและอุณหภูมิสูงสุด/ต่ำสุดล่วงหน้า 7 วัน',
+    previewTitle: 'ตัวอย่างการตั้งค่า',
+    previewDesc: 'การเปลี่ยนแปลงจะถูกบันทึกอัตโนมัติและแสดงผลบนวิดเจ็ตหน้าแรกทันที'
   }
 };
 
@@ -318,12 +426,12 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
   return (
     <div className="max-w-2xl mx-auto space-y-6 sm:space-y-8">
       {/* Header */}
-      <div className="text-center flex flex-col items-center">
-        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-1 flex items-center justify-center gap-2.5">
-          <CloudSun className="text-indigo-500 w-6 h-6" />
+      <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
+        <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3 flex items-center justify-center gap-2.5">
+          <CloudSun className="text-indigo-500 w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
           <span>{d.title}</span>
         </h2>
-        <p className="text-slate-500 text-xs sm:text-sm font-medium">
+        <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">
           {d.subtitle}
         </p>
       </div>
@@ -341,7 +449,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
           <div className="max-w-xl w-full mx-auto space-y-3 text-left">
             {/* Current Active Location Card */}
-            <div className="p-4 rounded-2xl border border-black/10 bg-white flex items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl border border-black/10 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center shrink-0">
                   <MapPin size={18} />
@@ -356,12 +464,12 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={handleDetectLocation}
                   disabled={isDetecting}
-                  className="px-3 py-1.5 rounded-xl border border-black/10 hover:bg-black/5 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all cursor-pointer"
+                  className="flex-1 sm:flex-initial justify-center px-3 py-2 lg:py-1.5 min-h-[42px] lg:min-h-0 rounded-xl border border-black/10 hover:bg-black/5 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all cursor-pointer"
                   title="Detect Current Location"
                 >
                   {isDetecting ? (
@@ -369,13 +477,13 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   ) : (
                     <Navigation size={13} className="text-indigo-500" />
                   )}
-                  <span className="hidden sm:inline">Auto-Detect</span>
+                  <span>Auto-Detect</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setShowSearchBox(!showSearchBox)}
-                  className="px-3 py-1.5 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+                  className="flex-1 sm:flex-initial justify-center px-3 py-2 lg:py-1.5 min-h-[42px] lg:min-h-0 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center"
                 >
                   {showSearchBox ? 'Close' : 'Change'}
                 </button>
@@ -392,7 +500,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search city, postal code, or country (e.g. Miami, Paris, Tokyo, 90210)..."
-                    className="w-full bg-white border border-black/10 rounded-xl pl-9 pr-9 py-2 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-white border border-black/10 rounded-xl pl-9 pr-10 py-2.5 lg:py-2 text-base sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     autoFocus
                   />
                   {searchQuery && (
@@ -402,7 +510,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                         setSearchQuery('');
                         setSearchResults([]);
                       }}
-                      className="absolute right-2.5 p-1 text-slate-400 hover:text-slate-600"
+                      className="absolute right-1.5 p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-slate-400 hover:text-slate-600"
                     >
                       <X size={13} />
                     </button>
@@ -423,7 +531,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                         key={item.id}
                         type="button"
                         onClick={() => handleSelectLocation(item)}
-                        className="w-full text-left px-3.5 py-2.5 hover:bg-indigo-500/10 flex items-start gap-2.5 transition-colors cursor-pointer group"
+                        className="w-full text-left px-3.5 py-3 lg:py-2.5 min-h-[44px] lg:min-h-0 hover:bg-indigo-500/10 flex items-start gap-2.5 transition-colors cursor-pointer group"
                       >
                         <MapPin size={14} className="text-indigo-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                         <div className="flex-1 min-w-0">

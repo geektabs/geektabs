@@ -10,6 +10,12 @@ import quotesKorean from '../../data/quotes-Korean.json';
 import quotesItalian from '../../data/quotes-Italian.json';
 import quotesRussian from '../../data/quotes-Russian.json';
 import quotesLuxembourgish from '../../data/quotes-Luxembourgish.json';
+import quotesDutch from '../../data/quotes-Dutch.json';
+import quotesSwedish from '../../data/quotes-Swedish.json';
+import quotesFinnish from '../../data/quotes-Finnish.json';
+import quotesHindi from '../../data/quotes-Hindi.json';
+import quotesNorwegian from '../../data/quotes-Norwegian.json';
+import quotesThai from '../../data/quotes-Thai.json';
 
 const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   English: quotesEnglish,
@@ -22,6 +28,12 @@ const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   Italian: quotesItalian,
   Russian: quotesRussian,
   Luxembourgish: quotesLuxembourgish,
+  Dutch: quotesDutch,
+  Swedish: quotesSwedish,
+  Finnish: quotesFinnish,
+  Hindi: quotesHindi,
+  Norwegian: quotesNorwegian,
+  Thai: quotesThai,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_quote_history';
@@ -104,7 +116,13 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
     Korean: '오늘의 명언',
     Italian: 'Citazione Giornaliera',
     Russian: 'Цитата дня',
-    Luxembourgish: 'Deeglecht Zitat'
+    Luxembourgish: 'Deeglecht Zitat',
+    Dutch: 'Dagelijks Citaat',
+    Swedish: 'Dagens Citat',
+    Finnish: 'Päivän Sitaatti',
+    Hindi: 'दैनिक सुविचार',
+    Norwegian: 'Dagens Sitat',
+    Thai: 'คำคมประจำวัน'
   }[language] || 'Daily Quote';
 
   return (
@@ -125,7 +143,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
             e.stopPropagation();
             fetchInspiration();
           }}
-          className="p-1.5 sm:p-2 rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
+          className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
           title="Refresh quote"
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : 'transition-transform group-hover:rotate-45'} />
@@ -143,7 +161,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
       >
         <div className="my-auto py-1">
           <p 
-            className="daily-card-content-text text-xs sm:text-[13px] md:text-sm lg:text-base xl:text-[17px] font-normal leading-relaxed italic line-clamp-3 lg:line-clamp-4 select-text"
+            className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed italic line-clamp-none sm:line-clamp-4 lg:line-clamp-4 select-text"
           >
             {data?.quote}
           </p>
@@ -151,7 +169,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
 
         <div className="pt-2 border-t border-black/5 dark:border-white/5 mt-1">
           <p 
-            className="daily-card-content-text quote-author text-[11px] font-bold uppercase tracking-wider leading-snug line-clamp-1 select-text opacity-90"
+            className="daily-card-content-text quote-author text-xs lg:text-[11px] font-bold uppercase tracking-wider leading-snug line-clamp-1 select-text opacity-90"
           >
             &mdash; {data?.author}
           </p>

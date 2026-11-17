@@ -12,12 +12,12 @@ interface ThemesTabProps {
 
 const THEME_T: Record<string, Record<string, string>> = {
   English: {
-    title: 'THEME ENGINE',
+    title: 'Theme Engine',
     subtitle: 'PRESET COLOR CONFIGURATION',
     panelHeader: 'Color Palette Presets',
     panelSub: 'select a color for your favorite',
     resetButton: 'Reset to Pastel Waves',
-    restoreWhiteButton: 'Restore Default Light Grey',
+    restoreWhiteButton: 'Restore Default Background',
     groupDefault: 'default',
     groupLight: 'light',
     groupRegular: 'regular',
@@ -30,7 +30,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     panelHeader: '调色板预设',
     panelSub: '选择您最喜爱的背景颜色',
     resetButton: '重置为浅彩波纹',
-    restoreWhiteButton: '恢复默认浅灰背景',
+    restoreWhiteButton: '恢复默认背景',
     groupDefault: '默认',
     groupLight: '浅色',
     groupRegular: '常规',
@@ -38,12 +38,12 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupGradient: 'Mix'
   },
   Spanish: {
-    title: 'MOTOR DE TEMAS',
+    title: 'Motor de Temas',
     subtitle: 'CONFIGURACIÓN DE COLOR PREESTABLECIDA',
     panelHeader: 'Ajustes del Tema de Color',
     panelSub: 'selecciona un color de fondo preferido',
     resetButton: 'Restablecer a Ondas Pastel',
-    restoreWhiteButton: 'Restaurar Gris Claro (Predeterminado)',
+    restoreWhiteButton: 'Restaurar Fondo (Predeterminado)',
     groupDefault: 'por defecto',
     groupLight: 'claro',
     groupRegular: 'regular',
@@ -51,12 +51,12 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupGradient: 'Mix'
   },
   French: {
-    title: 'MOTEUR DE THÈMES',
+    title: 'Moteur de Thèmes',
     subtitle: 'CONFIGURATION DES COULEURS PRÉDÉFINIES',
     panelHeader: 'Palettes de Couleurs Prédéfinies',
     panelSub: 'sélectionnez une couleur de fond préférée',
     resetButton: 'Réinitialiser Vagues Pastel',
-    restoreWhiteButton: 'Restaurer Gris Clair (Défaut)',
+    restoreWhiteButton: 'Restaurer Fond (Défaut)',
     groupDefault: 'par défaut',
     groupLight: 'clair',
     groupRegular: 'régulier',
@@ -64,12 +64,12 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupGradient: 'Mix'
   },
   German: {
-    title: 'THEME-ENGINE',
+    title: 'Theme-Engine',
     subtitle: 'VOREINGESTELLTE FARBKONFIGURATION',
     panelHeader: 'Farbpaletten-Voreinstellungen',
     panelSub: 'Wählen Sie Ihre bevorzugte Hintergrundfarbe',
     resetButton: 'Auf Pastellwellen zurücksetzen',
-    restoreWhiteButton: 'Standard-Hellgrau wiederherstellen',
+    restoreWhiteButton: 'Standardhintergrund wiederherstellen',
     groupDefault: 'Standard',
     groupLight: 'Hell',
     groupRegular: 'Normal',
@@ -82,7 +82,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     panelHeader: 'カラーパレットプリセット',
     panelSub: 'お好みの背景色を選択してください',
     resetButton: 'パステルウェーブに戻す',
-    restoreWhiteButton: 'デフォルトのライトグレーに戻す',
+    restoreWhiteButton: 'デフォルト背景に戻す',
     groupDefault: 'デフォルト',
     groupLight: 'ライト',
     groupRegular: 'レギュラー',
@@ -95,7 +95,7 @@ const THEME_T: Record<string, Record<string, string>> = {
     panelHeader: '컬러 팔레트 프리셋',
     panelSub: '원하는 배경색을 선택하세요',
     resetButton: '파스텔 웨이브로 리셋',
-    restoreWhiteButton: '기본 라이트 그레이 복원',
+    restoreWhiteButton: '기본 배경 복원',
     groupDefault: '기본',
     groupLight: '밝은색',
     groupRegular: '일반색',
@@ -103,12 +103,12 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupGradient: 'Mix'
   },
   Italian: {
-    title: 'MOTORE DI TEMI',
+    title: 'Motore di Temi',
     subtitle: 'CONFIGURAZIONE DEI COLORI PREDEFINITI',
     panelHeader: 'Tavolozze di Colori Predefinite',
     panelSub: 'seleziona il colore di sfondo preferito',
     resetButton: 'Reimposta Onde Pastello',
-    restoreWhiteButton: 'Ripristina Grigio Chiaro (Predefinito)',
+    restoreWhiteButton: 'Ripristina Sfondo (Predefinito)',
     groupDefault: 'predefinito',
     groupLight: 'chiaro',
     groupRegular: 'regolare',
@@ -116,12 +116,12 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupGradient: 'Mix'
   },
   Russian: {
-    title: 'ДВИЖОК ТЕМ',
+    title: 'Движок тем',
     subtitle: 'НАСТРОЙКА ЦВЕТОВЫХ ПРЕСЕТОВ',
     panelHeader: 'Цветовые палитры',
     panelSub: 'выберите цвет для фона',
     resetButton: 'Сбросить на пастельные волны',
-    restoreWhiteButton: 'Восстановить светло-серый (по умолч.)',
+    restoreWhiteButton: 'Восстановить фон (по умолч.)',
     groupDefault: 'по умолчанию',
     groupLight: 'светлый',
     groupRegular: 'обычный',
@@ -129,17 +129,95 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupGradient: 'Mix'
   },
   Luxembourgish: {
-    title: 'THEME-ENGINE',
+    title: 'Theme-Engine',
     subtitle: 'Sproochen an Hannergrënn',
     panelHeader: 'Faarfpaletten-Voreinstellungen',
     panelSub: 'Wielt Är Liiblingshannergrondfaarf',
     resetButton: 'Op Pastellwellen zrécksetzen',
-    restoreWhiteButton: 'Hellgrau zrécksetzen (Standard)',
+    restoreWhiteButton: 'Standardhannergrond zrécksetzen',
     groupDefault: 'Standard',
     groupLight: 'Hell',
     groupRegular: 'Normal',
     groupDark: 'Däischter',
     groupGradient: 'Mix'
+  },
+  Dutch: {
+    title: 'Thema-Engine',
+    subtitle: 'VOORAF INGESTELDE KLEURCONFIGURATIE',
+    panelHeader: 'Kleurenpalet Voorkeuren',
+    panelSub: 'kies een favoriete achtergrondkleur',
+    resetButton: 'Herstellen naar Pastelgolven',
+    restoreWhiteButton: 'Standaardachtergrond herstellen',
+    groupDefault: 'standaard',
+    groupLight: 'licht',
+    groupRegular: 'normaal',
+    groupDark: 'donker',
+    groupGradient: 'Mix'
+  },
+  Swedish: {
+    title: 'Temamotor',
+    subtitle: 'FÖRINSTÄLLD FÄRGKONFIGURATION',
+    panelHeader: 'Färgpalettförinställningar',
+    panelSub: 'välj din favoritfärg för bakgrunden',
+    resetButton: 'Återställ till Pastellvågor',
+    restoreWhiteButton: 'Återställ standardbakgrund',
+    groupDefault: 'standard',
+    groupLight: 'ljus',
+    groupRegular: 'normal',
+    groupDark: 'mörk',
+    groupGradient: 'Mix'
+  },
+  Finnish: {
+    title: 'Teemamoottori',
+    subtitle: 'ESIASENNETUT VÄRIASETUKSET',
+    panelHeader: 'Väripaletin Esivalinnat',
+    panelSub: 'valitse suosikkitaustavärisi',
+    resetButton: 'Palauta Pastelliaallot',
+    restoreWhiteButton: 'Palauta oletustausta',
+    groupDefault: 'oletus',
+    groupLight: 'vaalea',
+    groupRegular: 'tavallinen',
+    groupDark: 'tumma',
+    groupGradient: 'Mix'
+  },
+  Hindi: {
+    title: 'थीम इंजन',
+    subtitle: 'प्रीसेट रंग कॉन्फ़िगरेशन',
+    panelHeader: 'कलर पैलेट प्रीसेट',
+    panelSub: 'अपनी पसंदीदा पृष्ठभूमि चुनें',
+    resetButton: 'पेस्टल वेव्स पर रीसेट करें',
+    restoreWhiteButton: 'डिफ़ॉल्ट पृष्ठभूमि बहाल करें',
+    groupDefault: 'डिफ़ॉल्ट',
+    groupLight: 'हल्का',
+    groupRegular: 'सामान्य',
+    groupDark: 'गहरा',
+    groupGradient: 'मिक्स'
+  },
+  Norwegian: {
+    title: 'Temamotor',
+    subtitle: 'FORHÅNDSINNSTILT FARGEKONFIGURASJON',
+    panelHeader: 'Fargepalett-forhåndsinnstillinger',
+    panelSub: 'velg en favorittfarge til bakgrunnen',
+    resetButton: 'Tilbakestill til Pastellbølger',
+    restoreWhiteButton: 'Gjenopprett standardbakgrunn',
+    groupDefault: 'standard',
+    groupLight: 'lys',
+    groupRegular: 'vanlig',
+    groupDark: 'mørk',
+    groupGradient: 'Mix'
+  },
+  Thai: {
+    title: 'เครื่องมือธีม',
+    subtitle: 'การตั้งค่าชุดสีสำเร็จรูป',
+    panelHeader: 'ชุดสีพื้นหลังสำเร็จรูป',
+    panelSub: 'เลือกสีหรือพื้นหลังที่คุณชื่นชอบ',
+    resetButton: 'รีเซ็ตเป็น Pastel Waves',
+    restoreWhiteButton: 'คืนค่าพื้นหลังเริ่มต้น',
+    groupDefault: 'ค่าเริ่มต้น',
+    groupLight: 'สีอ่อน',
+    groupRegular: 'สีทั่วไป',
+    groupDark: 'สีเข้ม',
+    groupGradient: 'มิกซ์'
   }
 };
 
@@ -151,13 +229,19 @@ interface Preset {
 
 const DEFAULT_PRESETS: Preset[] = [
   {
-    id: 'light-grey',
-    name: 'Light Grey (Default)',
-    color: '#f8fafc'
+    id: 'default-earth',
+    name: 'Default Background',
+    color: "url('/assets/aistudio/Gemini_Generated_Image_earth_8ba148bc.jpg') center/cover no-repeat"
+  },
+  {
+    id: 'pastel-waves',
+    name: 'Pastel Waves',
+    color: "url('/assets/aistudio/Gemini_Generated_Image_mix_b913d992.jpg') center/cover no-repeat"
   }
 ];
 
 const LIGHT_PRESETS: Preset[] = [
+  { id: 'light-grey', name: 'Light Grey', color: '#f8fafc' },
   { id: 'light-blue', name: 'Light Blue', color: '#f0f9ff' },
   { id: 'light-pink', name: 'Light Pink', color: '#fff1f2' },
   { id: 'light-green', name: 'Light Green', color: '#f0fdf4' },
@@ -167,7 +251,6 @@ const LIGHT_PRESETS: Preset[] = [
   { id: 'light-teal', name: 'Light Teal', color: '#f0fdfa' },
   { id: 'white-clean', name: 'White', color: '#ffffff' },
   { id: 'light-indigo', name: 'Light Indigo', color: '#f5f7ff' },
-  { id: 'light-stone', name: 'Light Stone', color: '#fafaf9' },
 ];
 
 const REGULAR_PRESETS: Preset[] = [
@@ -206,7 +289,7 @@ const MIXING_PRESETS: Preset[] = [
   { id: 'mix-forest', name: 'Decorated White', color: 'radial-gradient(circle at 20% 20%, #bae6fd 0%, #ffffff 50%, #ede9fe 100%)' },
   { id: 'mix-violetteal', name: 'Violet Teal', color: 'linear-gradient(135deg, #7c3aed, #0d9488)' },
   { id: 'mix-cottoncandy', name: 'Cotton Candy', color: 'linear-gradient(135deg, #f472b6, #38bdf8)' },
-  { id: 'mix-neonpurple', name: 'Pastel Waves', color: 'linear-gradient(135deg, #a7f3d0 0%, #bae6fd 30%, #fbcfe8 70%, #fed7aa 100%)' },
+  { id: 'mix-neonpurple', name: 'Pastel Waves', color: 'linear-gradient(135deg, #fceeff 0%, #eef2ff 50%, #e4f8fb 100%)' },
 ];
 
 export default function ThemesTab({
@@ -226,19 +309,21 @@ export default function ThemesTab({
         </div>
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-10 gap-2.5 sm:gap-3.5 md:gap-4 justify-items-center">
           {presets.map((p) => {
-            const isSelected = currentTheme === p.id || (p.id === 'light-grey' && (currentTheme === 'light-grey' || currentTheme === 'light-slate'));
+            const isSelected =
+              currentTheme === p.id ||
+              (p.id === 'light-grey' && (currentTheme === 'light-grey' || currentTheme === 'light-slate'));
             // Determine if check icon should be black or white for contrast
-            const isLightColor = p.id.startsWith('light-') || p.id === 'light-stone' || p.id === 'white-clean' || p.id === 'mix-forest' || p.id === 'mix-neonpurple';
+            const isLightColor = p.id.startsWith('light-') || p.id === 'white-clean' || p.id === 'mix-forest' || p.id === 'mix-neonpurple' || p.id === 'pastel-waves';
             
             return (
               <button
                 key={p.id}
                 onClick={() => setTheme(p.id)}
-                className="group w-full flex flex-col items-center justify-center transition-all duration-300 relative focus:outline-none cursor-pointer py-1"
+                className="group w-full min-h-[44px] min-w-[44px] lg:min-h-0 lg:min-w-0 flex flex-col items-center justify-center transition-all duration-300 relative focus:outline-none cursor-pointer py-1"
                 title={p.name}
               >
                 <div
-                  className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
+                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
                     isSelected
                       ? 'border-black scale-110 shadow-lg shadow-black/10 ring-2 ring-indigo-500/40'
                       : 'border-black/15 opacity-85 hover:opacity-100 hover:scale-105 shadow-inner'
@@ -266,9 +351,9 @@ export default function ThemesTab({
       animate={{ opacity: 1, y: 0 }}
       className="max-w-4xl mx-auto"
     >
-      <div className="mb-6 sm:mb-10 text-center">
-        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-2 italic">{tData.title}</h2>
-        <p className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">{tData.subtitle}</p>
+      <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
+        <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">{tData.title}</h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">{tData.subtitle}</p>
       </div>
 
       {/* Themes / Color Webcard - Always clean white card inside white Settings pane */}
@@ -290,22 +375,22 @@ export default function ThemesTab({
               <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{tData.panelSub}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="w-full sm:w-auto grid grid-cols-1 sm:flex sm:items-center gap-2 sm:flex-wrap">
             <button
-              onClick={() => setTheme('light-grey')}
-              className={`themes-tab-action-btn flex items-center gap-1.5 px-3.5 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
-                currentTheme === 'light-grey' || currentTheme === 'light-slate'
+              onClick={() => setTheme('default-earth')}
+              className={`themes-tab-action-btn w-full sm:w-auto flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[42px] lg:min-h-0 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
+                currentTheme === 'default-earth'
                   ? 'bg-neutral-200 text-black border-neutral-300 ring-2 ring-neutral-400/30'
                   : 'bg-neutral-100 hover:bg-neutral-200 text-black border-black/5'
               }`}
-              title="Restore default light grey background"
+              title="Restore default background"
             >
               <RotateCcw size={13} />
               {tData.restoreWhiteButton}
             </button>
             <button
               onClick={() => setTheme('pastel-waves')}
-              className={`themes-tab-action-btn flex items-center gap-1.5 px-3.5 py-2 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
+              className={`themes-tab-action-btn w-full sm:w-auto flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[42px] lg:min-h-0 border rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-[11px] ${
                 currentTheme === 'pastel-waves'
                   ? 'bg-indigo-100 text-indigo-900 border-indigo-300 ring-2 ring-indigo-400/30'
                   : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200/60'

@@ -6,9 +6,9 @@ interface WallpaperProps {
 }
 
 export const WALLPAPERS = [
-  { id: 'light-grey', name: 'Light Grey (Default)', overlay: '#f8fafc' },
+  { id: 'default-earth', name: 'Default', overlay: '/assets/aistudio/Gemini_Generated_Image_earth_8ba148bc.jpg' },
   { id: 'white-clean', name: 'White', overlay: '#ffffff' },
-  { id: 'pastel-waves', name: 'Pastel Waves', overlay: '/wallpapers/pastel-soothing-bg.jpg' },
+  { id: 'pastel-waves', name: 'Pastel Waves', overlay: '/assets/aistudio/Gemini_Generated_Image_mix_b913d992.jpg' },
   { id: 'immersive', name: 'Original', overlay: 'radial-gradient(circle at 20% 20%, #1e293b 0%, #0c0d12 100%), radial-gradient(circle at 80% 80%, #312e81 0%, transparent 50%)' },
   { id: 'cyan-yellow', name: 'Sky', overlay: 'linear-gradient(135deg, #00d2ff 0%, #f7ff00 100%)' },
   { id: 'soft-blue', name: 'Spring', overlay: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)' },
@@ -37,7 +37,7 @@ export const GRADIENTS_MAP: Record<string, string> = {
   'mix-forest': 'radial-gradient(circle at 20% 20%, #bae6fd 0%, #ffffff 50%, #ede9fe 100%)',
   'mix-violetteal': 'linear-gradient(135deg, #7c3aed, #0d9488)',
   'mix-cottoncandy': 'linear-gradient(135deg, #f472b6, #38bdf8)',
-  'mix-neonpurple': 'linear-gradient(135deg, #a7f3d0 0%, #bae6fd 30%, #fbcfe8 70%, #fed7aa 100%)',
+  'mix-neonpurple': 'linear-gradient(135deg, #fceeff 0%, #eef2ff 50%, #e4f8fb 100%)',
 };
 
 export const SOLIDS_MAP: Record<string, string> = {
@@ -92,33 +92,33 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
                (isCustom ? { id: 'custom', overlay: currentTheme } : WALLPAPERS[0]);
 
   let backgroundStyle: React.CSSProperties = {};
-  
+  let photoSrc: string | null = null;
+  let photoFallbackColor = '#063354';
+  const isScrollableDefaultPhoto = currentTheme === 'default-earth' || currentTheme === 'pastel-waves';
+
   if (isCustom) {
     let finalUrl = currentTheme;
     // Upgrade Unsplash URLs to 8K resolution
     if (finalUrl.includes('images.unsplash.com')) {
       finalUrl = finalUrl.replace('q=80', 'q=100').replace(/w=\d+/, 'w=7680');
     }
-    backgroundStyle = { backgroundImage: `url(${finalUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' };
+    photoSrc = finalUrl;
+    photoFallbackColor = '#0c0d12';
   } else if (isHex) {
     backgroundStyle = { backgroundColor: currentTheme };
+  } else if (currentTheme === 'default-earth') {
+    photoSrc = '/assets/aistudio/Gemini_Generated_Image_earth_8ba148bc.jpg';
+    photoFallbackColor = '#063354';
+  } else if (currentTheme === 'pastel-waves') {
+    photoSrc = '/assets/aistudio/Gemini_Generated_Image_mix_b913d992.jpg';
+    photoFallbackColor = '#b8c8ec';
+  } else if (currentTheme === 'mix-neonpurple') {
+    photoSrc = '/assets/aistudio/Gemini_Generated_Image_5_9379e872.jpg';
+    photoFallbackColor = '#eef4ff';
   } else if (isGradient) {
     backgroundStyle = { background: GRADIENTS_MAP[currentTheme] };
   } else if (isSolid) {
     backgroundStyle = { backgroundColor: SOLIDS_MAP[currentTheme] };
-  } else if (currentTheme === 'pastel-waves' || currentTheme === 'mix-neonpurple') {
-    backgroundStyle = {
-      backgroundColor: '#d8f0fa',
-      backgroundImage: `radial-gradient(ellipse at 15% 15%, rgba(142, 227, 239, 0.75) 0%, transparent 60%),
-                        radial-gradient(ellipse at 85% 15%, rgba(255, 198, 255, 0.75) 0%, transparent 60%),
-                        radial-gradient(ellipse at 25% 85%, rgba(216, 180, 254, 0.75) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 85%, rgba(167, 243, 208, 0.7) 0%, transparent 55%),
-                        url('/wallpapers/pastel-soothing-bg.jpg')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'top center',
-      backgroundRepeat: 'no-repeat',
-      backgroundAttachment: 'scroll',
-    };
   } else if (currentTheme === 'mix-forest') {
     backgroundStyle = {
       backgroundColor: '#ffffff',
@@ -149,7 +149,11 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
   }
 
   return (
-    <div className="absolute inset-0 w-full min-h-full h-full z-0 overflow-hidden transition-colors duration-500 pointer-events-none">
+    <div
+      className={`${
+        isScrollableDefaultPhoto ? 'absolute inset-0 w-full h-full' : 'fixed inset-0 w-full h-full'
+      } z-0 overflow-hidden transition-colors duration-500 pointer-events-none`}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={currentTheme + (isDarkMode ? 'dark' : 'light')}
@@ -157,9 +161,66 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6 }}
-          className="absolute inset-0 w-full min-h-full h-full"
-          style={backgroundStyle}
+          className="absolute inset-0 w-full h-full"
+          style={
+            currentTheme === 'default-earth'
+              ? { background: 'linear-gradient(180deg, #063354 0%, #052b48 55%, #031c31 100%)' }
+              : photoSrc
+              ? { backgroundColor: photoFallbackColor }
+              : backgroundStyle
+          }
         >
+          {photoSrc && currentTheme === 'default-earth' && (
+            <img
+              src={photoSrc}
+              alt=""
+              decoding="sync"
+              fetchPriority="high"
+              className="block w-full h-screen min-h-[700px] max-h-[1120px] object-cover object-center select-none pointer-events-none"
+              style={{
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden',
+                filter: 'contrast(1.03) saturate(1.04)',
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%)',
+              }}
+            />
+          )}
+          {photoSrc && currentTheme === 'pastel-waves' && (
+            <div className="flex flex-col w-full">
+              {[0, 1, 2, 3].map((tileIndex) => (
+                <img
+                  key={tileIndex}
+                  src={photoSrc}
+                  alt=""
+                  decoding="sync"
+                  fetchPriority={tileIndex === 0 ? 'high' : 'auto'}
+                  className={`block w-full h-screen min-h-[700px] shrink-0 object-cover object-center select-none pointer-events-none ${
+                    tileIndex > 0 ? '-mt-px' : ''
+                  }`}
+                  style={{
+                    transform: tileIndex % 2 === 1 ? 'scaleY(-1) translateZ(0)' : 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    filter: 'contrast(1.03) saturate(1.04)',
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          {photoSrc && !isScrollableDefaultPhoto && (
+            <img
+              src={photoSrc}
+              alt=""
+              decoding="sync"
+              fetchPriority="high"
+              className="w-full h-full object-cover object-center select-none pointer-events-none"
+              style={{
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden',
+                filter: 'contrast(1.03) saturate(1.04)',
+              }}
+            />
+          )}
           {currentTheme === 'mix-forest' && (
             <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
               {/* Soft decorative light blue & light purple atmospheric color glows */}

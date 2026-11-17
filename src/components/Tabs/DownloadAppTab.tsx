@@ -343,6 +343,204 @@ const appInstallGuides: Record<string, {
         'Öffent GeekTabs am eegenen App-Modus direkt vum Tablet-Bildschierm.'
       ]
     }
+  },
+  Dutch: {
+    pageTitle: 'Downloaden als App (PC / Telefoon / Tablet)',
+    pageSubtitle: 'Installeer GeekTabs als losse app met een eigen pictogram op je bureaublad of beginscherm.',
+    addressBarHint: 'PC-tip: Klik op het installatiepictogram rechts in de adresbalk van je browser.',
+    pc: {
+      label: 'PC / Mac (Desktop)',
+      heading: 'Downloaden op PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Open GeekTabs in Chrome, Edge of Brave op je computer.',
+        'Klik rechts in de adresbalk op het pictogram "GeekTabs Dashboard installeren".',
+        'Of klik op "App installeren" hierboven, of open menu ⋮ → Opslaan en delen → Pagina installeren als app.',
+        'Bevestig met "Installeren" om het GeekTabs-logo op je bureaublad of Dock te plaatsen.'
+      ]
+    },
+    phone: {
+      label: 'Telefoon (iOS & Android)',
+      heading: 'App-logo toevoegen op telefoon',
+      steps: [
+        'iPhone (Safari): Tik op Delen → "Zet op beginscherm" → "Voeg toe".',
+        'Android (Chrome / Edge): Tik op "App installeren" hierboven of menu ⋮ → "App installeren".',
+        'Start GeekTabs direct vanaf het logo op je beginscherm in volledig scherm.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad & Android)',
+      heading: 'App-logo toevoegen op tablet',
+      steps: [
+        'iPad (Safari): Tik rechtsboven op Delen → "Zet op beginscherm" → "Voeg toe".',
+        'Android-tablet (Chrome / Edge): Tik op het installatiepictogram in de adresbalk of ⋮ → "App installeren".',
+        'Open GeekTabs direct als zelfstandige app vanaf je tablet.'
+      ]
+    }
+  },
+  Swedish: {
+    pageTitle: 'Ladda ner som App (PC / Mobil / Surfplatta)',
+    pageSubtitle: 'Installera GeekTabs som en fristående app med egen ikon på skrivbordet eller hemskärmen.',
+    addressBarHint: 'Datortips: Leta efter installationsikonen längst till höger i webbläsarens adressfält.',
+    pc: {
+      label: 'PC / Mac',
+      heading: 'Ladda ner på PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Öppna GeekTabs i Chrome, Edge eller Brave på datorn.',
+        'Klicka på ikonen "Installera GeekTabs Dashboard" till höger i adressfältet.',
+        'Eller klicka på "Installera app" ovan, alternativt meny ⋮ → Spara och dela → Installera sidan som app.',
+        'Bekräfta med "Installera" för att placera GeekTabs-logotypen på skrivbordet eller i Dock.'
+      ]
+    },
+    phone: {
+      label: 'Mobil (iOS & Android)',
+      heading: 'Lägg till appikon på mobilen',
+      steps: [
+        'iPhone (Safari): Tryck på Dela → "Lägg till på hemskärmen" → "Lägg till".',
+        'Android (Chrome / Edge): Tryck på "Installera app" ovan eller meny ⋮ → "Installera app".',
+        'Öppna GeekTabs direkt från logotypen på hemskärmen i helskärmsläge.'
+      ]
+    },
+    tablet: {
+      label: 'Surfplatta (iPad & Android)',
+      heading: 'Lägg till appikon på surfplattan',
+      steps: [
+        'iPad (Safari): Tryck på Dela uppe till höger → "Lägg till på hemskärmen" → "Lägg till".',
+        'Android-surfplatta (Chrome / Edge): Tryck på installationsikonen i adressfältet eller ⋮ → "Installera app".',
+        'Använd GeekTabs i eget appfönster direkt från surfplattans skärm.'
+      ]
+    }
+  },
+  Finnish: {
+    pageTitle: 'Lataa Sovelluksena (PC / Puhelin / Tabletti)',
+    pageSubtitle: 'Asenna GeekTabs erilliseksi sovellukseksi omalla kuvakkeella työpöydälle tai aloitusnäytölle.',
+    addressBarHint: 'Tietokonevinkki: Etsi asennuskuvake selaimen osoitepalkin oikeasta reunasta.',
+    pc: {
+      label: 'PC / Mac',
+      heading: 'Lataa PC:lle / Macille (Chrome, Edge, Brave)',
+      steps: [
+        'Avaa GeekTabs Chrome-, Edge- tai Brave-selaimella.',
+        'Napsauta osoitepalkin oikeassa reunassa olevaa "Asenna GeekTabs Dashboard" -kuvaketta.',
+        'Tai paina yllä olevaa "Asenna sovellus" -painiketta tai valikkoa ⋮ → Tallenna ja jaa → Asenna sivu sovelluksena.',
+        'Vahvista valitsemalla "Asenna", niin GeekTabs-logo lisätään työpöydälle tai Dockiin.'
+      ]
+    },
+    phone: {
+      label: 'Puhelin (iOS & Android)',
+      heading: 'Lisää sovelluskuvake puhelimeen',
+      steps: [
+        'iPhone (Safari): Napauta Jaa → "Lisää Koti-valikkoon" → "Lisää".',
+        'Android (Chrome / Edge): Napauta yllä "Asenna sovellus" tai valikko ⋮ → "Asenna sovellus".',
+        'Käynnistä GeekTabs suoraan aloitusnäytön logosta koko näytön tilassa.'
+      ]
+    },
+    tablet: {
+      label: 'Tabletti (iPad & Android)',
+      heading: 'Lisää sovelluskuvake tablettiin',
+      steps: [
+        'iPad (Safari): Napauta Jaa oikeassa yläkulmassa → "Lisää Koti-valikkoon" → "Lisää".',
+        'Android-tabletti (Chrome / Edge): Napauta osoitepalkin asennuskuvaketta tai ⋮ → "Asenna sovellus".',
+        'Avaa GeekTabs omana sovelluksenaan suoraan tabletin näytöltä.'
+      ]
+    }
+  },
+  Hindi: {
+    pageTitle: 'ऐप के रूप में डाउनलोड करें (PC / फ़ोन / टैबलेट)',
+    pageSubtitle: 'अपने डेस्कटॉप या होम स्क्रीन लोगो के साथ GeekTabs को एक स्टैंडअलोन ऐप के रूप में इंस्टॉल करें।',
+    addressBarHint: 'डेस्कटॉप सुझाव: अपने ब्राउज़र के एड्रेस बार के दाहिने किनारे पर इंस्टॉल आइकन देखें।',
+    pc: {
+      label: 'PC / Mac (डेस्कटॉप)',
+      heading: 'PC / Mac पर डाउनलोड करें (Chrome, Edge, Brave)',
+      steps: [
+        'अपने कंप्यूटर पर Chrome, Edge या Brave में GeekTabs खोलें।',
+        'एड्रेस बार के दाईं ओर "Install GeekTabs Dashboard" डाउनलोड आइकन देखें।',
+        'इंस्टॉल आइकन या ऊपर "ऐप इंस्टॉल करें" बटन पर क्लिक करें (या मेनू ⋮ → सेव और शेयर → ऐप के रूप में इंस्टॉल करें)।',
+        'पॉपअप में "Install" पर क्लिक करें — GeekTabs आपके डेस्कटॉप या डॉक पर जुड़ जाएगा।'
+      ]
+    },
+    phone: {
+      label: 'फ़ोन (iOS और Android)',
+      heading: 'फ़ोन पर ऐप लोगो जोड़ें',
+      steps: [
+        'iPhone (Safari): शेयर आइकन पर टैप करें → "Add to Home Screen" → "Add" चुनें।',
+        'Android (Chrome / Edge): ऊपर "ऐप इंस्टॉल करें" या मेनू (⋮) → "Install app" पर टैप करें।',
+        'फ़ुल-स्क्रीन ऐप मोड में अपने फ़ोन की होम स्क्रीन से सीधे GeekTabs खोलें।'
+      ]
+    },
+    tablet: {
+      label: 'टैबलेट (iPad और Android)',
+      heading: 'टैबलेट पर ऐप लोगो जोड़ें',
+      steps: [
+        'iPad (Safari): ऊपर दाईं ओर शेयर आइकन → "Add to Home Screen" → "Add" पर टैप करें।',
+        'Android टैबलेट (Chrome / Edge): एड्रेस बार में इंस्टॉल आइकन या ⋮ → "Install app" पर टैप करें।',
+        'अपने टैबलेट की होम स्क्रीन से सीधे GeekTabs को एक स्वतंत्र ऐप विंडो में खोलें।'
+      ]
+    }
+  },
+  Norwegian: {
+    pageTitle: 'Last ned som App (PC / Mobil / Nettbrett)',
+    pageSubtitle: 'Installer GeekTabs som en egen app med eget ikon på skrivebordet eller hjem-skjermen.',
+    addressBarHint: 'PC-tips: Se etter installeringsikonet helt til høyre i nettleserens adressefelt.',
+    pc: {
+      label: 'PC / Mac',
+      heading: 'Last ned på PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Åpne GeekTabs i Chrome, Edge eller Brave på datamaskinen.',
+        'Klikk på ikonet «Installer GeekTabs Dashboard» til høyre i adressefeltet.',
+        'Eller klikk «Installer app» ovenfor, eller meny ⋮ → Lagre og del → Installer siden som app.',
+        'Bekreft med «Installer» for å legge GeekTabs-logoen på skrivebordet eller i Dock.'
+      ]
+    },
+    phone: {
+      label: 'Mobil (iOS & Android)',
+      heading: 'Legg til appikon på mobilen',
+      steps: [
+        'iPhone (Safari): Trykk på Del → «Legg til på Hjem-skjerm» → «Legg til».',
+        'Android (Chrome / Edge): Trykk «Installer app» ovenfor eller meny ⋮ → «Installer app».',
+        'Åpne GeekTabs direkte fra logoen på hjemskjermen i fullskjerm.'
+      ]
+    },
+    tablet: {
+      label: 'Nettbrett (iPad & Android)',
+      heading: 'Legg til appikon på nettbrettet',
+      steps: [
+        'iPad (Safari): Trykk Del øverst til høyre → «Legg til på Hjem-skjerm» → «Legg til».',
+        'Android-nettbrett (Chrome / Edge): Trykk på installeringsikonet i adressefeltet eller ⋮ → «Installer app».',
+        'Bruk GeekTabs i eget appvindu direkte fra nettbrettets hjemskjerm.'
+      ]
+    }
+  },
+  Thai: {
+    pageTitle: 'ดาวน์โหลดเป็นแอป (PC / มือถือ / แท็บเล็ต)',
+    pageSubtitle: 'ติดตั้ง GeekTabs เป็นแอปแยกต่างหากพร้อมโลโก้บนหน้าจอเดสก์ท็อปหรือหน้าจอโฮมของคุณ',
+    addressBarHint: 'เคล็ดลับสำหรับคอมพิวเตอร์: มองหาไอคอนติดตั้งที่มุมขวาของแถบที่อยู่เบราว์เซอร์',
+    pc: {
+      label: 'PC / Mac (คอมพิวเตอร์)',
+      heading: 'ดาวน์โหลดบน PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'เปิด GeekTabs ในเบราว์เซอร์ Chrome, Edge หรือ Brave บนคอมพิวเตอร์ของคุณ',
+        'คลิกไอคอน "ติดตั้ง GeekTabs Dashboard" ที่ด้านขวาของแถบที่อยู่',
+        'หรือคลิกปุ่ม "ติดตั้งแอป" ด้านบน หรือเปิดเมนู ⋮ → บันทึกและแชร์ → ติดตั้งหน้านี้เป็นแอป',
+        'คลิก "ติดตั้ง" เพื่อเพิ่มโลโก้ GeekTabs ลงบนเดสก์ท็อปหรือ Dock'
+      ]
+    },
+    phone: {
+      label: 'มือถือ (iOS และ Android)',
+      heading: 'เพิ่มโลโก้แอปบนมือถือ',
+      steps: [
+        'iPhone (Safari): แตะปุ่มแชร์ → "เพิ่มไปยังหน้าจอโฮม" → "เพิ่ม"',
+        'Android (Chrome / Edge): แตะปุ่ม "ติดตั้งแอป" ด้านบน หรือเมนู (⋮) → "ติดตั้งแอป"',
+        'เปิดใช้งาน GeekTabs จากโลโก้บนหน้าจอโฮมในโหมดแอปเต็มหน้าจอได้ทันที'
+      ]
+    },
+    tablet: {
+      label: 'แท็บเล็ต (iPad และ Android)',
+      heading: 'เพิ่มโลโก้แอปบนแท็บเล็ต',
+      steps: [
+        'iPad (Safari): แตะปุ่มแชร์มุมขวาบน → "เพิ่มไปยังหน้าจอโฮม" → "เพิ่ม"',
+        'แท็บเล็ต Android (Chrome / Edge): แตะไอคอนติดตั้งในแถบที่อยู่ หรือ ⋮ → "ติดตั้งแอป"',
+        'เปิด GeekTabs ในหน้าต่างแอปแยกได้ทันทีจากหน้าจอแท็บเล็ตของคุณ'
+      ]
+    }
   }
 };
 
@@ -353,17 +551,17 @@ export default function DownloadAppTab({ language = 'English' }: DownloadAppTabP
 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8 relative z-10 p-2 sm:p-4 select-none">
-      {/* Clean Centered Hero Header — matches Set Browser Homepage layout cleanly */}
-      <div className="flex flex-col items-center justify-center text-center gap-3 max-w-2xl mx-auto mb-1 sm:mb-2">
+      {/* Clean Centered Hero Header — matches Wallpaper head title styling */}
+      <div className="mb-2 sm:mb-4 flex flex-col items-center justify-center text-center max-w-2xl mx-auto">
         <img
           src="/icon.svg"
           alt="GeekTabs App Logo"
-          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl shadow-lg hover:scale-105 transition-transform duration-300"
+          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl shadow-lg hover:scale-105 transition-transform duration-300 mb-3 sm:mb-4"
         />
-        <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 mt-1">
+        <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">
           {guide.pageTitle}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed px-2">
+        </h2>
+        <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px] leading-relaxed max-w-xl px-2 mb-3">
           {guide.pageSubtitle}
         </p>
         <div className="pt-1">
@@ -388,7 +586,7 @@ export default function DownloadAppTab({ language = 'English' }: DownloadAppTabP
                   key={dev.id}
                   type="button"
                   onClick={() => setActiveDevice(dev.id)}
-                  className={`browser-nav-btn px-3 py-2.5 rounded-xl text-[11px] font-bold tracking-tight uppercase transition-all cursor-pointer text-center select-none flex items-center justify-center gap-1.5 min-h-[40px] border ${
+                  className={`browser-nav-btn px-3 py-2.5 rounded-xl text-xs lg:text-[11px] leading-tight font-bold tracking-tight uppercase transition-all cursor-pointer text-center select-none flex items-center justify-center gap-1.5 min-h-[44px] lg:min-h-[40px] border ${
                     isSelected
                       ? 'browser-nav-active-btn bg-violet-600 !text-white text-white border-violet-600 shadow-md shadow-violet-500/25 font-black scale-[1.01]'
                       : 'bg-white/80 dark:bg-white/5 text-[#6143f7] hover:text-[#4f32e6] hover:bg-white dark:hover:bg-white/10 border-black/5 dark:border-white/5'
@@ -401,7 +599,7 @@ export default function DownloadAppTab({ language = 'English' }: DownloadAppTabP
                     style={isSelected ? { stroke: '#ffffff', color: '#ffffff' } : { stroke: '#6143f7', color: '#6143f7' }}
                   />
                   <span
-                    className={`truncate whitespace-nowrap px-0.5 ${isSelected ? 'browser-nav-active-label !text-white text-white font-black' : ''}`}
+                    className={`whitespace-normal lg:whitespace-nowrap lg:truncate px-0.5 ${isSelected ? 'browser-nav-active-label !text-white text-white font-black' : ''}`}
                     style={isSelected ? { color: '#ffffff' } : { color: '#6143f7' }}
                   >
                     {dev.label}
@@ -431,7 +629,7 @@ export default function DownloadAppTab({ language = 'English' }: DownloadAppTabP
           >
             {currentDeviceGuide.steps.map((step: string, i: number) => (
               <li key={i} className="leading-relaxed font-semibold text-[#6143f7]" style={{ color: '#6143f7' }}>
-                <span className="ml-1 sm:ml-2 font-sans text-xs sm:text-[13px] text-[#6143f7]" style={{ color: '#6143f7' }}>{step}</span>
+                <span className="ml-1 sm:ml-2 font-sans text-[13px] sm:text-sm lg:text-[13px] text-[#6143f7]" style={{ color: '#6143f7' }}>{step}</span>
               </li>
             ))}
           </ol>

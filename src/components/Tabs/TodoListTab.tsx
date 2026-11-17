@@ -350,7 +350,199 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: 'Beschreiwung',
     addNotes: 'Notizen oder Beschreiwung derbäisetzen...',
     allLists: 'All Lëschten',
-  }
+  },
+  Dutch: {
+    title: 'Takenwerkruimte',
+    subtitle: 'Cloudplanner',
+    inbox: 'Inbox',
+    today: 'Vandaag',
+    personal: 'Persoonlijk',
+    shopping: 'Winkelen',
+    work: 'Werk',
+    meetings: 'Vergaderingen',
+    events: 'Evenementen',
+    addTask: 'TAAK MAKEN',
+    pending: 'taken openstaand',
+    noTasks: 'Geen taken in deze lijst.',
+    addPlaceholder: 'Wat moet er gebeuren?',
+    descriptionPlaceholder: 'Beschrijving (optioneel)',
+    addDescOptional: '+ Beschrijving toevoegen (optioneel)',
+    cancel: 'ANNULEREN',
+    save: 'OPSLAAN',
+    priority: 'Prioriteit',
+    sidebarHeader: 'Categorieën',
+    remaining: 'resterend',
+    taskSingular: 'taak',
+    taskPlural: 'taken',
+    noGoals: 'Geen taken in',
+    clickToCreate: 'Klik op "TAAK MAKEN" om er een aan te maken!',
+    deleteTitle: 'Taak verwijderen',
+    deleteMessage: 'Weet u zeker dat u deze taak definitief wilt verwijderen?',
+    taskName: 'Taaknaam',
+    description: 'Beschrijving',
+    addNotes: 'Notities of gedetailleerde beschrijving toevoegen...',
+    allLists: 'Alle lijsten',
+  },
+  Swedish: {
+    title: 'Uppgiftsyta',
+    subtitle: 'Molnplanerare',
+    inbox: 'Inkorg',
+    today: 'Idag',
+    personal: 'Privat',
+    shopping: 'Shopping',
+    work: 'Arbete',
+    meetings: 'Möten',
+    events: 'Händelser',
+    addTask: 'SKAPA UPPGIFT',
+    pending: 'uppgifter kvar',
+    noTasks: 'Inga uppgifter i den här listan.',
+    addPlaceholder: 'Vad behöver göras?',
+    descriptionPlaceholder: 'Beskrivning (valfritt)',
+    addDescOptional: '+ Lägg till beskrivning (valfritt)',
+    cancel: 'AVBRYT',
+    save: 'SPARA',
+    priority: 'Prioritet',
+    sidebarHeader: 'Kategorier',
+    remaining: 'kvar',
+    taskSingular: 'uppgift',
+    taskPlural: 'uppgifter',
+    noGoals: 'Inga uppgifter i',
+    clickToCreate: 'Klicka på "SKAPA UPPGIFT" för att skapa en!',
+    deleteTitle: 'Ta bort uppgift',
+    deleteMessage: 'Är du säker på att du vill ta bort den här uppgiften permanent?',
+    taskName: 'Uppgiftsnamn',
+    description: 'Beskrivning',
+    addNotes: 'Lägg till anteckningar eller beskrivning...',
+    allLists: 'Alla listor',
+  },
+  Finnish: {
+    title: 'Tehtävätila',
+    subtitle: 'Pilvisuunnittelija',
+    inbox: 'Saapuneet',
+    today: 'Tänään',
+    personal: 'Henkilökohtainen',
+    shopping: 'Ostokset',
+    work: 'Työ',
+    meetings: 'Kokoukset',
+    events: 'Tapahtumat',
+    addTask: 'LUO TEHTÄVÄ',
+    pending: 'tehtävää kesken',
+    noTasks: 'Tässä listassa ei ole tehtäviä.',
+    addPlaceholder: 'Mitä pitää tehdä?',
+    descriptionPlaceholder: 'Kuvaus (valinnainen)',
+    addDescOptional: '+ Lisää kuvaus (valinnainen)',
+    cancel: 'PERUUTA',
+    save: 'TALLENNA',
+    priority: 'Prioriteetti',
+    sidebarHeader: 'Kategoriat',
+    remaining: 'jäljellä',
+    taskSingular: 'tehtävä',
+    taskPlural: 'tehtävää',
+    noGoals: 'Ei tehtäviä kohteessa',
+    clickToCreate: 'Napsauta "LUO TEHTÄVÄ" luodaksesi uuden!',
+    deleteTitle: 'Poista tehtävä',
+    deleteMessage: 'Haluatko varmasti poistaa tämän tehtävän pysyvästi?',
+    taskName: 'Tehtävän nimi',
+    description: 'Kuvaus',
+    addNotes: 'Lisää muistiinpanoja tai kuvaus...',
+    allLists: 'Kaikki listat',
+  },
+  Hindi: {
+    title: 'कार्य क्षेत्र',
+    subtitle: 'क्लाउड प्लानर',
+    inbox: 'इनबॉक्स',
+    today: 'आज',
+    personal: 'व्यक्तिगत',
+    shopping: 'खरीदारी',
+    work: 'कार्य',
+    meetings: 'बैठकें',
+    events: 'कार्यक्रम',
+    addTask: 'कार्य बनाएँ',
+    pending: 'लंबित कार्य',
+    noTasks: 'इस सूची में कोई कार्य नहीं है।',
+    addPlaceholder: 'क्या करना है?',
+    descriptionPlaceholder: 'विवरण (वैकल्पिक)',
+    addDescOptional: '+ विवरण जोड़ें (वैकल्पिक)',
+    cancel: 'रद्द करें',
+    save: 'सहेजें',
+    priority: 'प्राथमिकता',
+    sidebarHeader: 'श्रेणियाँ',
+    remaining: 'शेष',
+    taskSingular: 'कार्य',
+    taskPlural: 'कार्य',
+    noGoals: 'इसमें कोई कार्य नहीं:',
+    clickToCreate: 'नया बनाने के लिए "कार्य बनाएँ" पर क्लिक करें!',
+    deleteTitle: 'कार्य हटाएँ',
+    deleteMessage: 'क्या आप वाकई इस कार्य को स्थायी रूप से हटाना चाहते हैं?',
+    taskName: 'कार्य का नाम',
+    description: 'विवरण',
+    addNotes: 'नोट्स या विस्तृत विवरण जोड़ें...',
+    allLists: 'सभी सूचियाँ',
+  },
+  Norwegian: {
+    title: 'Oppgaveområde',
+    subtitle: 'Skyplanlegger',
+    inbox: 'Innboks',
+    today: 'I dag',
+    personal: 'Personlig',
+    shopping: 'Shopping',
+    work: 'Arbeid',
+    meetings: 'Møter',
+    events: 'Hendelser',
+    addTask: 'OPPRETT OPPGAVE',
+    pending: 'ventende oppgaver',
+    noTasks: 'Ingen oppgaver i denne listen.',
+    addPlaceholder: 'Hva må gjøres?',
+    descriptionPlaceholder: 'Beskrivelse (valgfritt)',
+    addDescOptional: '+ Legg til beskrivelse (valgfritt)',
+    cancel: 'AVBRYT',
+    save: 'LAGRE',
+    priority: 'Prioritet',
+    sidebarHeader: 'Kategorier',
+    remaining: 'gjenstår',
+    taskSingular: 'oppgave',
+    taskPlural: 'oppgaver',
+    noGoals: 'Ingen oppgaver i',
+    clickToCreate: 'Klikk på "OPPRETT OPPGAVE" for å lage en!',
+    deleteTitle: 'Slett oppgave',
+    deleteMessage: 'Er du sikker på at du vil slette denne oppgaven permanent?',
+    taskName: 'Oppgavenavn',
+    description: 'Beskrivelse',
+    addNotes: 'Legg til notater eller beskrivelse...',
+    allLists: 'Alle lister',
+  },
+  Thai: {
+    title: 'พื้นที่จัดการงาน',
+    subtitle: 'ตัววางแผนคลาวด์',
+    inbox: 'กล่องขาเข้า',
+    today: 'วันนี้',
+    personal: 'ส่วนตัว',
+    shopping: 'ช้อปปิ้ง',
+    work: 'งาน',
+    meetings: 'การประชุม',
+    events: 'กิจกรรม',
+    addTask: 'สร้างงาน',
+    pending: 'งานที่ค้างอยู่',
+    noTasks: 'ไม่มีงานในรายการนี้',
+    addPlaceholder: 'มีอะไรที่ต้องทำบ้าง?',
+    descriptionPlaceholder: 'คำอธิบาย (ไม่บังคับ)',
+    addDescOptional: '+ เพิ่มคำอธิบาย (ไม่บังคับ)',
+    cancel: 'ยกเลิก',
+    save: 'บันทึก',
+    priority: 'ลำดับความสำคัญ',
+    sidebarHeader: 'หมวดหมู่',
+    remaining: 'คงเหลือ',
+    taskSingular: 'งาน',
+    taskPlural: 'งาน',
+    noGoals: 'ไม่มีงานใน',
+    clickToCreate: 'คลิก "สร้างงาน" เพื่อสร้างรายการใหม่!',
+    deleteTitle: 'ลบงาน',
+    deleteMessage: 'คุณแน่ใจหรือไม่ว่าต้องการลบงานนี้อย่างถาวร?',
+    taskName: 'ชื่องาน',
+    description: 'คำอธิบาย',
+    addNotes: 'เพิ่มบันทึกหรือรายละเอียด...',
+    allLists: 'รายการทั้งหมด',
+  },
 };
 
 const getProjectName = (id: string, lang: string) => {
@@ -369,7 +561,7 @@ const getProjectName = (id: string, lang: string) => {
 
 export default function TodoListTab({ language = 'English' }: TodoListProps) {
   const [tasks, setTasks] = useLocalStorage<Task[]>('GeekTabs-tasks', INITIAL_TASKS);
-  const [currentProject, setCurrentProject] = useState('Work');
+  const [currentProject, setCurrentProject] = useState('Today');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -461,18 +653,18 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
       {/* Mobile Drawer Backdrop */}
       {mobileSidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+          className="fixed top-14 inset-x-0 bottom-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
           onClick={() => setMobileSidebarOpen(false)}
         />
       )}
 
       {/* LEFT SIDEBAR (Gemini Chat Style with Hide/Show) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+        className={`fixed top-14 bottom-0 left-0 md:inset-y-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 md:h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
           mobileSidebarOpen 
-            ? 'w-80 translate-x-0 shadow-2xl border-r' 
+            ? 'w-72 sm:w-80 translate-x-0 shadow-2xl border-r' 
             : sidebarOpen 
-              ? 'w-80 -translate-x-full md:translate-x-0 md:w-80 border-r opacity-100' 
+              ? 'w-72 sm:w-80 -translate-x-full md:translate-x-0 md:w-64 lg:w-80 border-r opacity-100' 
               : 'w-0 -translate-x-full md:translate-x-0 md:w-0 border-r-0 opacity-0 overflow-hidden pointer-events-none'
         }`}
       >
@@ -508,7 +700,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                   setCurrentProject(proj.id);
                   setMobileSidebarOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl font-bold text-xs transition-colors cursor-pointer select-none ${
+                className={`w-full flex items-center justify-between px-3.5 py-3 lg:py-2.5 rounded-2xl font-bold text-xs transition-colors cursor-pointer select-none ${
                   active
                     ? 'bg-[#5438dc]/15 text-[#5438dc] dark:text-indigo-400 border border-[#5438dc]/30 shadow-xs'
                     : 'text-slate-700 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5 hover:text-[#5438dc] border border-transparent'
@@ -548,7 +740,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
       <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
         
         {/* Workspace Top Header Bar */}
-        <header className="h-16 px-6 sm:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+        <header className="h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
           {/* Left: Sidebar Toggle Button (Hide / Show) */}
           <div className="flex items-center gap-2 min-w-0">
             <button
@@ -560,7 +752,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                   setSidebarOpen(prev => !prev);
                 }
               }}
-              className="p-2.5 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
+              className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
               title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
               aria-label="Toggle sidebar"
             >
@@ -580,7 +772,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
         </header>
 
         {/* Main Scrollable Content */}
-        <main className="flex-1 overflow-y-auto px-6 sm:px-10 lg:px-16 py-6 sm:py-8 space-y-4 bg-white">
+        <main className="flex-1 overflow-y-auto px-4 sm:px-6 md:px-8 lg:px-16 py-6 sm:py-8 space-y-4 bg-white">
           <div className="max-w-4xl mx-auto space-y-4">
 
             {/* Inline Add Task Form */}
@@ -627,14 +819,14 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                         className="text-xs font-semibold text-[#5438dc] hover:text-[#472fc2] hover:underline flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <Plus size={12} />
-                        <span>{language === 'Chinese' ? '添加描述 (选填)' : '+ Add description (optional)'}</span>
+                        <span>{dict.addDescOptional || (language === 'Chinese' ? '添加描述 (选填)' : '+ Add description (optional)')}</span>
                       </button>
                     </div>
                   )}
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-black/5">
                     {/* Priority Selector */}
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#4f46e5] mr-1 shrink-0">
                         {dict.priority}
                       </span>
@@ -643,7 +835,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                           key={p}
                           type="button"
                           onClick={() => setNewTaskPriority(p)}
-                          className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 cursor-pointer ${
+                          className={`px-2.5 py-1.5 lg:py-1 min-h-[38px] lg:min-h-0 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 cursor-pointer ${
                             newTaskPriority === p
                               ? `${PRIORITY_COLORS[p].bg} ${PRIORITY_COLORS[p].border} ${PRIORITY_COLORS[p].text} shadow-xs`
                               : 'border-black/10 text-slate-600 hover:bg-black/5'
@@ -698,7 +890,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.18 }}
-                      className="group py-4 px-6 flex items-center justify-between bg-white border border-black/10 rounded-2xl transition-all shadow-xs hover:border-[#5438dc]/30"
+                      className="group py-3.5 px-4 sm:py-4 sm:px-6 flex items-center justify-between bg-white border border-black/10 rounded-2xl transition-all shadow-xs hover:border-[#5438dc]/30"
                     >
                       {isEditingThis ? (
                         <form onSubmit={handleEditSubmit} className="flex-1 w-full flex flex-col gap-2.5 bg-transparent">
@@ -707,14 +899,14 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                             type="text"
                             value={editValue}
                             onChange={(e) => setEditValue(e.target.value)}
-                            className="w-full px-3.5 py-2 bg-slate-50 border border-black/10 rounded-xl font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30 text-sm"
+                            className="w-full px-3.5 py-2 bg-slate-50 border border-black/10 rounded-xl font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30 text-base sm:text-sm"
                             placeholder={dict.taskName}
                           />
                           <input
                             type="text"
                             value={editDescValue}
                             onChange={(e) => setEditDescValue(e.target.value)}
-                            className="w-full px-3.5 py-1.5 bg-slate-50 border border-black/10 rounded-xl text-xs text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30"
+                            className="w-full px-3.5 py-2 lg:py-1.5 bg-slate-50 border border-black/10 rounded-xl text-base sm:text-xs text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30"
                             placeholder={dict.description}
                           />
                           <div className="flex gap-2 justify-end mt-1">
@@ -737,24 +929,29 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                         </form>
                       ) : (
                         <>
-                          <div className="flex-1 flex gap-4 items-center min-w-0 pr-2">
+                          <div className="flex-1 flex gap-3 sm:gap-4 items-center min-w-0 pr-2">
                             <button
                               type="button"
                               onClick={() => toggleTask(task.id)}
-                              className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 border-2 transition-all cursor-pointer ${
-                                task.completed
-                                  ? 'bg-[#5438dc] border-[#5438dc] text-white'
-                                  : 'border-slate-400 hover:border-[#5438dc]'
-                              }`}
+                              className="w-10 h-10 -m-2.5 lg:m-0 lg:w-5 lg:h-5 flex items-center justify-center shrink-0 cursor-pointer"
+                              aria-label={task.completed ? 'Mark incomplete' : 'Mark complete'}
                             >
-                              {task.completed && (
-                                <Check size={11} className="text-white" strokeWidth={3} />
-                              )}
+                              <span
+                                className={`w-5 h-5 rounded-full flex items-center justify-center border-2 transition-all ${
+                                  task.completed
+                                    ? 'bg-[#5438dc] border-[#5438dc] text-white'
+                                    : 'border-slate-400 hover:border-[#5438dc]'
+                                }`}
+                              >
+                                {task.completed && (
+                                  <Check size={11} className="text-white" strokeWidth={3} />
+                                )}
+                              </span>
                             </button>
 
                             <div className="flex-1 min-w-0">
                               <span
-                                className={`block font-semibold text-sm sm:text-base leading-snug select-text tracking-normal ${
+                                className={`block font-semibold text-sm sm:text-base leading-snug select-text tracking-normal break-words ${
                                   task.completed
                                     ? 'line-through text-emerald-700/40 font-normal'
                                     : 'text-emerald-600'
@@ -763,7 +960,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                                 {task.text}
                               </span>
                               {task.description && (
-                                <p className="text-sm sm:text-base text-slate-600 mt-1.5 select-text leading-relaxed font-normal">
+                                <p className="text-sm sm:text-base text-slate-600 mt-1.5 select-text leading-relaxed font-normal break-words">
                                   {task.description}
                                 </p>
                               )}
@@ -771,17 +968,17 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                           </div>
 
                           {/* Inline Controls */}
-                          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all shrink-0">
+                          <div className="flex items-center gap-0.5 sm:gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all shrink-0">
                             <button
                               onClick={() => startEdit(task)}
-                              className="p-1.5 hover:bg-black/5 text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer"
+                              className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-black/5 text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer"
                               title="Edit task"
                             >
                               <Pencil size={14} />
                             </button>
                             <button
                               onClick={() => setConfirmDeleteTask(task.id)}
-                              className="p-1.5 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-lg transition-all cursor-pointer"
+                              className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-lg transition-all cursor-pointer"
                               title="Delete task"
                             >
                               <Trash2 size={14} />

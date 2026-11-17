@@ -89,6 +89,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Manual',
     exchangeRate: 'Exchange Rate',
     manualRateLabel: 'Custom Rate',
+    usStateTaxRates: 'USA State Sales Tax Rates',
+    filterStates: 'Search state or code...',
+    noMatchingStates: 'No matching states found',
   },
   Spanish: {
     history: 'Historial',
@@ -123,6 +126,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Manual',
     exchangeRate: 'Tipo de cambio',
     manualRateLabel: 'Tasa personalizada',
+    usStateTaxRates: 'Tasas de impuestos por estado (EE. UU.)',
+    filterStates: 'Buscar estado o código...',
+    noMatchingStates: 'No se encontraron estados',
   },
   French: {
     history: 'Historique',
@@ -157,6 +163,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Manuel',
     exchangeRate: 'Taux de change',
     manualRateLabel: 'Taux personnalisé',
+    usStateTaxRates: 'Taxes de vente par État (USA)',
+    filterStates: 'Rechercher un État...',
+    noMatchingStates: 'Aucun État trouvé',
   },
   German: {
     history: 'Verlauf',
@@ -191,6 +200,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Manuell',
     exchangeRate: 'Wechselkurs',
     manualRateLabel: 'Eigener Kurs',
+    usStateTaxRates: 'US-Bundesstaaten Steuersätze',
+    filterStates: 'Bundesstaat suchen...',
+    noMatchingStates: 'Kein Bundesstaat gefunden',
   },
   Chinese: {
     history: '计算历史',
@@ -225,6 +237,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: '手动',
     exchangeRate: '汇率',
     manualRateLabel: '自定义汇率',
+    usStateTaxRates: '美国各州消费税率',
+    filterStates: '搜索州名或缩写...',
+    noMatchingStates: '未找到匹配的州',
   },
   Japanese: {
     history: '履歴',
@@ -259,6 +274,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: '手動',
     exchangeRate: '為替レート',
     manualRateLabel: '手動レート',
+    usStateTaxRates: '米国各州の消費税率',
+    filterStates: '州名またはコードで検索...',
+    noMatchingStates: '一致する州が見つかりません',
   },
   Korean: {
     history: '기록',
@@ -293,6 +311,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: '수동',
     exchangeRate: '환율',
     manualRateLabel: '직접 입력 환율',
+    usStateTaxRates: '미국 주별 판매세율',
+    filterStates: '주 이름 또는 코드 검색...',
+    noMatchingStates: '일치하는 주가 없습니다',
   },
   Italian: {
     history: 'Cronologia',
@@ -327,6 +348,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Manuale',
     exchangeRate: 'Tasso di cambio',
     manualRateLabel: 'Tasso personalizzato',
+    usStateTaxRates: 'Aliquote fiscali stati USA',
+    filterStates: 'Cerca stato o codice...',
+    noMatchingStates: 'Nessuno stato trovato',
   },
   Russian: {
     history: 'История',
@@ -361,6 +385,9 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Вручную',
     exchangeRate: 'Обменный курс',
     manualRateLabel: 'Свой курс',
+    usStateTaxRates: 'Налоговые ставки штатов США',
+    filterStates: 'Поиск штата или кода...',
+    noMatchingStates: 'Штаты не найдены',
   },
   Luxembourgish: {
     history: 'Verlaf',
@@ -395,6 +422,231 @@ const CALC_T: Record<string, Record<string, string>> = {
     manualMode: 'Manuell',
     exchangeRate: 'Wiesselcours',
     manualRateLabel: 'Eege Cours',
+    usStateTaxRates: 'US-Bundesstaat Steiersätz',
+    filterStates: 'Staat oder Code sichen...',
+    noMatchingStates: 'Kee Staat fonnt',
+  },
+  Dutch: {
+    history: 'Geschiedenis',
+    noHistory: 'Nog geen geschiedenis',
+    simple: 'Eenvoudig',
+    tax: 'Belasting',
+    tips: 'Fooi',
+    currency: 'Valuta',
+    shoppingAmount: 'Totaal winkelbedrag',
+    taxRate: 'Belastingtarief (%)',
+    subtotal: 'Subtotaal',
+    totalSalesTax: 'Totale belasting',
+    totalToPay: 'Totaal te betalen',
+    spentAmount: 'Totaal besteed bedrag',
+    tipsRate: 'Fooipercentage (%)',
+    baseSpending: 'Basisbedrag',
+    totalTips: 'Totale fooi',
+    totalWithTips: 'Totaal incl. fooi',
+    amount: 'Bedrag',
+    from: 'Van',
+    to: 'Naar',
+    convertedAmount: 'Omgerekend bedrag',
+    liveRate: 'Live koers',
+    majorPairs: 'Belangrijkste valutaparen',
+    refresh: 'Vernieuwen',
+    refreshed: 'Bijgewerkt',
+    loadingRates: 'Live koersen laden...',
+    rateError: 'Kon live koersen niet laden. Tik om opnieuw te proberen.',
+    reset: 'Herstellen',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Handmatig',
+    exchangeRate: 'Wisselkoers',
+    manualRateLabel: 'Aangepaste koers',
+    usStateTaxRates: 'Amerikaanse btw-tarieven per staat',
+    filterStates: 'Zoek staat of code...',
+    noMatchingStates: 'Geen overeenkomende staten gevonden',
+  },
+  Swedish: {
+    history: 'Historik',
+    noHistory: 'Ingen historik ännu',
+    simple: 'Enkel',
+    tax: 'Skatt',
+    tips: 'Dricks',
+    currency: 'Valuta',
+    shoppingAmount: 'Totalt köpbelopp',
+    taxRate: 'Skattesats (%)',
+    subtotal: 'Delsumma',
+    totalSalesTax: 'Total skatt',
+    totalToPay: 'Totalt att betala',
+    spentAmount: 'Totalt spenderat belopp',
+    tipsRate: 'Dricksprocent (%)',
+    baseSpending: 'Grundbelopp',
+    totalTips: 'Total dricks',
+    totalWithTips: 'Totalt inkl. dricks',
+    amount: 'Belopp',
+    from: 'Från',
+    to: 'Till',
+    convertedAmount: 'Omvandlat belopp',
+    liveRate: 'Livekurs',
+    majorPairs: 'Större valutapar i realtid',
+    refresh: 'Uppdatera',
+    refreshed: 'Uppdaterad',
+    loadingRates: 'Hämtar livekurser...',
+    rateError: 'Kunde inte hämta livekurser. Tryck för att försöka igen.',
+    reset: 'Återställ',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manuell',
+    exchangeRate: 'Växelkurs',
+    manualRateLabel: 'Anpassad kurs',
+    usStateTaxRates: 'Amerikanska delstaters skattesatser',
+    filterStates: 'Sök delstat eller kod...',
+    noMatchingStates: 'Inga matchande delstater hittades',
+  },
+  Finnish: {
+    history: 'Historia',
+    noHistory: 'Ei vielä historiaa',
+    simple: 'Perus',
+    tax: 'Vero',
+    tips: 'Juomaraha',
+    currency: 'Valuutta',
+    shoppingAmount: 'Ostosten loppusumma',
+    taxRate: 'Veroprosentti (%)',
+    subtotal: 'Välisumma',
+    totalSalesTax: 'Vero yhteensä',
+    totalToPay: 'Maksettava yhteensä',
+    spentAmount: 'Käytetty summa',
+    tipsRate: 'Juomaraha (%)',
+    baseSpending: 'Perussumma',
+    totalTips: 'Juomaraha yhteensä',
+    totalWithTips: 'Yhteensä juomarahan kanssa',
+    amount: 'Summa',
+    from: 'Mistä',
+    to: 'Mihin',
+    convertedAmount: 'Muunnettu summa',
+    liveRate: 'Reaaliaikainen kurssi',
+    majorPairs: 'Tärkeimmät valuuttaparit',
+    refresh: 'Päivitä',
+    refreshed: 'Päivitetty',
+    loadingRates: 'Ladataan kursseja...',
+    rateError: 'Kursseja ei voitu ladata. Yritä uudelleen.',
+    reset: 'Nollaa',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manuaalinen',
+    exchangeRate: 'Vaihtokurssi',
+    manualRateLabel: 'Mukautettu kurssi',
+    usStateTaxRates: 'Yhdysvaltain osavaltioiden verokannat',
+    filterStates: 'Hae osavaltiota tai koodia...',
+    noMatchingStates: 'Vastaavia osavaltioita ei löytynyt',
+  },
+  Hindi: {
+    history: 'इतिहास',
+    noHistory: 'अभी तक कोई इतिहास नहीं है',
+    simple: 'साधारण',
+    tax: 'कर',
+    tips: 'टिप',
+    currency: 'मुद्रा',
+    shoppingAmount: 'कुल खरीदारी राशि',
+    taxRate: 'बिक्री कर दर (%)',
+    subtotal: 'उप-योग',
+    totalSalesTax: 'कुल बिक्री कर',
+    totalToPay: 'भुगतान के लिए कुल राशि',
+    spentAmount: 'कुल खर्च राशि',
+    tipsRate: 'टिप दर (%)',
+    baseSpending: 'मूल खर्च',
+    totalTips: 'कुल टिप',
+    totalWithTips: 'टिप सहित कुल राशि',
+    amount: 'राशि',
+    from: 'से',
+    to: 'में',
+    convertedAmount: 'परिवर्तित राशि',
+    liveRate: 'लाइव दर',
+    majorPairs: 'प्रमुख विदेशी मुद्रा दरें',
+    refresh: 'रीफ़्रेश करें',
+    refreshed: 'अपडेट किया गया',
+    loadingRates: 'लाइव दरें लोड हो रही हैं...',
+    rateError: 'लाइव दरें लोड नहीं हो सकीं। पुनः प्रयास करें।',
+    reset: 'रीसेट',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'लाइव',
+    manualMode: 'मैनुअल',
+    exchangeRate: 'विनिमय दर',
+    manualRateLabel: 'कस्टम दर',
+    usStateTaxRates: 'अमेरिकी राज्य बिक्री कर दरें',
+    filterStates: 'राज्य या कोड खोजें...',
+    noMatchingStates: 'कोई मिलता राज्य नहीं मिला',
+  },
+  Norwegian: {
+    history: 'Historikk',
+    noHistory: 'Ingen historikk ennå',
+    simple: 'Enkel',
+    tax: 'Skatt',
+    tips: 'Tips',
+    currency: 'Valuta',
+    shoppingAmount: 'Totalt handlebeløp',
+    taxRate: 'Skattesats (%)',
+    subtotal: 'Delsum',
+    totalSalesTax: 'Total avgift',
+    totalToPay: 'Totalt å betale',
+    spentAmount: 'Totalt brukt beløp',
+    tipsRate: 'Tipsprosent (%)',
+    baseSpending: 'Grunnbeløp',
+    totalTips: 'Total tips',
+    totalWithTips: 'Totalt inkl. tips',
+    amount: 'Beløp',
+    from: 'Fra',
+    to: 'Til',
+    convertedAmount: 'Omregnet beløp',
+    liveRate: 'Sanntidskurs',
+    majorPairs: 'Største valutapar i sanntid',
+    refresh: 'Oppdater',
+    refreshed: 'Oppdatert',
+    loadingRates: 'Laster sanntidskurser...',
+    rateError: 'Kunne ikke laste kurser. Trykk for å prøve igjen.',
+    reset: 'Tilbakestill',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Manuell',
+    exchangeRate: 'Valutakurs',
+    manualRateLabel: 'Egendefinert kurs',
+    usStateTaxRates: 'Amerikanske delstaters skattesatser',
+    filterStates: 'Søk etter stat eller kode...',
+    noMatchingStates: 'Ingen samsvarende stater funnet',
+  },
+  Thai: {
+    history: 'ประวัติ',
+    noHistory: 'ยังไม่มีประวัติการคำนวณ',
+    simple: 'ทั่วไป',
+    tax: 'ภาษี',
+    tips: 'ทิป',
+    currency: 'สกุลเงิน',
+    shoppingAmount: 'ยอดซื้อสินค้าทั้งหมด',
+    taxRate: 'อัตราภาษี (%)',
+    subtotal: 'ยอดรวมย่อย',
+    totalSalesTax: 'ภาษีทั้งหมด',
+    totalToPay: 'ยอดชำระทั้งหมด',
+    spentAmount: 'ยอดค่าใช้จ่ายทั้งหมด',
+    tipsRate: 'อัตราทิป (%)',
+    baseSpending: 'ค่าใช้จ่ายพื้นฐาน',
+    totalTips: 'ยอดทิปทั้งหมด',
+    totalWithTips: 'ยอดรวมทิปทั้งหมด',
+    amount: 'จำนวนเงิน',
+    from: 'จาก',
+    to: 'เป็น',
+    convertedAmount: 'ผลลัพธ์ที่แปลงแล้ว',
+    liveRate: 'อัตราเรียลไทม์',
+    majorPairs: 'คู่สกุลเงินหลักเรียลไทม์',
+    refresh: 'รีเฟรช',
+    refreshed: 'อัปเดตแล้ว',
+    loadingRates: 'กำลังโหลดอัตราแลกเปลี่ยน...',
+    rateError: 'ไม่สามารถโหลดอัตราแลกเปลี่ยนได้ กรุณาลองใหม่',
+    reset: 'รีเซ็ต',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'เรียลไทม์',
+    manualMode: 'กำหนดเอง',
+    exchangeRate: 'อัตราแลกเปลี่ยน',
+    manualRateLabel: 'อัตราที่กำหนดเอง',
+    usStateTaxRates: 'อัตราภาษีขายแต่ละรัฐในสหรัฐฯ',
+    filterStates: 'ค้นหารัฐหรือรหัส...',
+    noMatchingStates: 'ไม่พบรัฐที่ตรงกัน',
   },
 };
 
@@ -409,10 +661,16 @@ const CALC_LOCALES: Record<string, string> = {
   Italian: 'it-IT',
   Russian: 'ru-RU',
   Luxembourgish: 'lb-LU',
+  Dutch: 'nl-NL',
+  Swedish: 'sv-SE',
+  Finnish: 'fi-FI',
+  Hindi: 'hi-IN',
+  Norwegian: 'nb-NO',
+  Thai: 'th-TH',
 };
 
-const TAX_PRESETS = ['2.5', '4', '5', '5.5', '6', '7'];
-const TIP_PRESETS = ['10', '15', '18', '20', '25'];
+const TAX_PRESETS = ['2.90', '4', '5', '6', '6.25', '7'];
+const TIP_PRESETS = ['5', '10', '15', '18', '20', '25'];
 
 const sanitizeDecimalInput = (raw: string): string | null => {
   const normalized = raw.replace(/,/g, '.');
@@ -422,10 +680,26 @@ const sanitizeDecimalInput = (raw: string): string | null => {
   return null;
 };
 
+const sanitizeTaxRateInput = (raw: string): string | null => {
+  const normalized = raw.replace(/,/g, '.');
+  if (/^\d*(\.\d{0,3})?$/.test(normalized)) {
+    return normalized;
+  }
+  return null;
+};
+
 const formatTwoDecimals = (raw: string, fallback = '0.00'): string => {
   const n = parseFloat(raw);
   if (!Number.isFinite(n) || n < 0) return fallback;
   return n.toFixed(2);
+};
+
+const formatTaxRate = (raw: string | number, fallback = '0.00'): string => {
+  const n = typeof raw === 'number' ? raw : parseFloat(raw);
+  if (!Number.isFinite(n) || n < 0) return fallback;
+  const rounded3 = Math.round(n * 1000) / 1000;
+  const hasThirdDecimal = Math.round(rounded3 * 1000) % 10 !== 0;
+  return hasThirdDecimal ? rounded3.toFixed(3) : rounded3.toFixed(2);
 };
 
 const formatMoney = (value: number) => {
@@ -459,11 +733,11 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
 
   // Tax Calculator State
   const [shoppingAmount, setShoppingAmount] = useState('100.00');
-  const [taxRate, setTaxRate] = useState('5.00');
+  const [taxRate, setTaxRate] = useState('6.25');
 
   // Tips Calculator State
   const [spentAmount, setSpentAmount] = useState('100.00');
-  const [tipsRate, setTipsRate] = useState('10.00');
+  const [tipsRate, setTipsRate] = useState('5.00');
 
   // Currency Converter State
   const [currencyMode, setCurrencyMode] = useState<'live' | 'manual'>('live');
@@ -948,14 +1222,6 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
       iconColor: 'text-indigo-500',
     },
     {
-      id: 'tax',
-      label: dictionary.tax,
-      icon: <Receipt size={15} />,
-      activeGradient: 'from-emerald-500 to-teal-600 shadow-emerald-500/30',
-      inactiveTint: 'hover:bg-emerald-500/10 border-emerald-500/20',
-      iconColor: 'text-emerald-500',
-    },
-    {
       id: 'tips',
       label: dictionary.tips,
       icon: <Coins size={15} />,
@@ -971,13 +1237,21 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
       inactiveTint: 'hover:bg-sky-500/10 border-sky-500/20',
       iconColor: 'text-sky-500',
     },
+    {
+      id: 'tax',
+      label: dictionary.tax,
+      icon: <Receipt size={15} />,
+      activeGradient: 'from-emerald-500 to-teal-600 shadow-emerald-500/30',
+      inactiveTint: 'hover:bg-emerald-500/10 border-emerald-500/20',
+      iconColor: 'text-emerald-500',
+    },
   ];
 
   return (
-    <div className="flex justify-center items-center h-full w-full max-w-[400px] sm:max-w-[460px] md:max-w-3xl mx-auto pb-20">
-      <div className="w-full rounded-2xl GeekTabs-card weather-huawei-style webcard-light-grey-bg calculator-tab-card overflow-hidden flex flex-col min-h-[590px] md:h-[600px]">
+    <div className="flex items-center justify-center w-full h-full max-w-[420px] sm:max-w-[540px] md:max-w-3xl mx-auto pb-16 lg:pb-20">
+      <div className="w-full rounded-2xl overflow-hidden GeekTabs-card weather-huawei-style webcard-light-grey-bg calculator-tab-card flex flex-col min-h-[540px] sm:min-h-[590px] md:h-[600px]">
         {/* Top Colorful Sub-Tabs Bar */}
-        <div className="calc-tabs-bar px-3 pt-3 pb-2.5 border-b border-black/10 dark:border-white/10 grid grid-cols-4 gap-2 shrink-0">
+        <div className="calc-tabs-bar px-3 pt-3 pb-2.5 border-b border-black/10 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
           {modeTabs.map((tab) => {
             const isActive = activeMode === tab.id;
             return (
@@ -986,7 +1260,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                 type="button"
                 onClick={() => setActiveMode(tab.id)}
                 style={isActive ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' } : undefined}
-                className={`flex items-center justify-center gap-1.5 py-2.5 px-2 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer select-none border ${
+                className={`flex items-center justify-center gap-1.5 min-h-[44px] sm:min-h-0 py-2.5 px-2.5 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer select-none border ${
                   isActive
                     ? `calc-mode-tab-active bg-gradient-to-r ${tab.activeGradient} text-white !text-white border-transparent shadow-md`
                     : `calc-mode-tab ${tab.inactiveTint} bg-black/5 dark:bg-white/5`
@@ -1167,7 +1441,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                     type="button"
                     onClick={() => {
                       setShoppingAmount('0.00');
-                      setTaxRate('5.00');
+                      setTaxRate('6.25');
                     }}
                     className="calc-subcard px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer transition-all"
                   >
@@ -1209,10 +1483,12 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                       inputMode="decimal"
                       value={taxRate}
                       onChange={(e) => {
-                        const v = sanitizeDecimalInput(e.target.value);
-                        if (v !== null) setTaxRate(v);
+                        const v = sanitizeTaxRateInput(e.target.value);
+                        if (v !== null) {
+                          setTaxRate(v);
+                        }
                       }}
-                      onBlur={() => setTaxRate((prev) => formatTwoDecimals(prev, '0.00'))}
+                      onBlur={() => setTaxRate((prev) => formatTaxRate(prev, '0.00'))}
                       placeholder="0.00"
                       className="w-full pl-4 pr-9 py-3 rounded-xl text-lg font-bold border focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all"
                     />
@@ -1229,13 +1505,15 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                         <button
                           key={preset}
                           type="button"
-                          onClick={() => setTaxRate(parseFloat(preset).toFixed(2))}
+                          onClick={() => {
+                            setTaxRate(formatTaxRate(preset));
+                          }}
                           style={
                             active
                               ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' }
                               : undefined
                           }
-                          className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          className={`min-h-[38px] lg:min-h-0 px-3 py-1.5 lg:px-2.5 lg:py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                             active
                               ? 'calc-rate-pill-active bg-gradient-to-r from-emerald-500 to-teal-600 text-white !text-white shadow-sm'
                               : 'calc-subcard hover:border-emerald-500/40'
@@ -1262,7 +1540,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
 
                 <div className="flex items-center justify-between py-2 border-b border-black/10 dark:border-white/10">
                   <span className="text-xs font-bold uppercase tracking-wider opacity-70">
-                    {dictionary.totalSalesTax} ({parsedTaxRate.toFixed(2)}%)
+                    {dictionary.totalSalesTax} ({formatTaxRate(parsedTaxRate)}%)
                   </span>
                   <span className="text-xl font-black font-mono text-emerald-500">
                     +${formatMoney(salesTaxAmount)}
@@ -1300,7 +1578,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                     type="button"
                     onClick={() => {
                       setSpentAmount('100.00');
-                      setTipsRate('10.00');
+                      setTipsRate('5.00');
                     }}
                     className="calc-subcard px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer transition-all"
                   >
@@ -1368,7 +1646,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                               ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' }
                               : undefined
                           }
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          className={`min-h-[38px] lg:min-h-0 px-3.5 py-1.5 lg:px-3 lg:py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                             active
                               ? 'calc-rate-pill-active bg-gradient-to-r from-amber-500 to-orange-500 text-white !text-white shadow-sm'
                               : 'calc-subcard hover:border-amber-500/40'
@@ -1724,7 +2002,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                 <p className="text-xs font-bold uppercase tracking-wider opacity-70">
                   {dictionary.majorPairs}
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
                   {majors.slice(0, 10).map((m) => (
                     <button
                       key={m.pair}

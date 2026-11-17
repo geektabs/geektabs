@@ -104,17 +104,38 @@ export default function HoroscopeInfo({ language = 'English' }: HoroscopeInfoPro
     } else if (language === 'Russian') {
       l1 = `Знак зодиака сегодня: ${sign.name} (${sign.range})`;
       l2 = `На этой неделе: ${weekNum} из 52 недель, ${dayOfYear} из ${totalDays} дней`;
+    } else if (language === 'Luxembourgish') {
+      l1 = `Heitegt Stärenzeechen: ${sign.name} (${sign.range})`;
+      l2 = `Dës Woch: Woch ${weekNum} vu 52, Dag ${dayOfYear} vun ${totalDays}`;
+    } else if (language === 'Dutch') {
+      l1 = `Sterrenbeeld van Vandaag: ${sign.name} (${sign.range})`;
+      l2 = `Deze week: ${weekNum} van 52 weken, ${dayOfYear} van ${totalDays} dagen`;
+    } else if (language === 'Swedish') {
+      l1 = `Dagens Stjärntecken: ${sign.name} (${sign.range})`;
+      l2 = `Denna vecka: ${weekNum} av 52 veckor, ${dayOfYear} av ${totalDays} dagar`;
+    } else if (language === 'Finnish') {
+      l1 = `Päivän Horoskooppimerkki: ${sign.name} (${sign.range})`;
+      l2 = `Tämä viikko: ${weekNum} / 52 viikkoa, ${dayOfYear} / ${totalDays} päivää`;
+    } else if (language === 'Hindi') {
+      l1 = `आज की राशि: ${sign.name} (${sign.range})`;
+      l2 = `यह सप्ताह: 52 में से ${weekNum}वां सप्ताह, ${totalDays} में से ${dayOfYear}वां दिन`;
+    } else if (language === 'Norwegian') {
+      l1 = `Dagens Stjernetegn: ${sign.name} (${sign.range})`;
+      l2 = `Denne uken: ${weekNum} av 52 uker, ${dayOfYear} av ${totalDays} dager`;
+    } else if (language === 'Thai') {
+      l1 = `ราศีประจำวันนี้: ${sign.name} (${sign.range})`;
+      l2 = `สัปดาห์นี้: สัปดาห์ที่ ${weekNum} จาก 52 สัปดาห์, วันที่ ${dayOfYear} จาก ${totalDays} วัน`;
     }
 
     return { line1: l1, line2: l2 };
   }, [currentDate, language]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-4 sm:my-5 text-center select-none flex flex-col items-center justify-center gap-1.5 sm:gap-2 px-4 transition-all horoscope-info-section">
-      <p className="text-sm sm:text-base md:text-lg font-semibold tracking-normal horoscope-line-text leading-snug drop-shadow-xs">
+    <div className="w-full max-w-4xl mx-auto my-4 sm:my-5 text-center select-none flex flex-col items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 transition-all horoscope-info-section">
+      <p className="text-[10.5px] min-[390px]:text-xs sm:text-base md:text-lg whitespace-nowrap sm:whitespace-normal font-semibold tracking-tight sm:tracking-normal horoscope-line-text leading-snug drop-shadow-xs max-w-full">
         {line1}
       </p>
-      <p className="text-sm sm:text-base md:text-lg font-semibold tracking-normal horoscope-line-text leading-snug drop-shadow-xs">
+      <p className="text-[10.5px] min-[390px]:text-xs sm:text-base md:text-lg whitespace-nowrap sm:whitespace-normal font-semibold tracking-tight sm:tracking-normal horoscope-line-text leading-snug drop-shadow-xs max-w-full">
         {line2}
       </p>
     </div>

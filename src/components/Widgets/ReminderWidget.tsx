@@ -10,6 +10,12 @@ import remindersKorean from '../../data/daily-reminders-Korean.json';
 import remindersItalian from '../../data/daily-reminders-Italian.json';
 import remindersRussian from '../../data/daily-reminders-Russian.json';
 import remindersLuxembourgish from '../../data/daily-reminders-Luxembourgish.json';
+import remindersDutch from '../../data/daily-reminders-Dutch.json';
+import remindersSwedish from '../../data/daily-reminders-Swedish.json';
+import remindersFinnish from '../../data/daily-reminders-Finnish.json';
+import remindersHindi from '../../data/daily-reminders-Hindi.json';
+import remindersNorwegian from '../../data/daily-reminders-Norwegian.json';
+import remindersThai from '../../data/daily-reminders-Thai.json';
 
 const remindersMap: Record<string, string[]> = {
   English: remindersEnglish,
@@ -22,6 +28,12 @@ const remindersMap: Record<string, string[]> = {
   Italian: remindersItalian,
   Russian: remindersRussian,
   Luxembourgish: remindersLuxembourgish,
+  Dutch: remindersDutch,
+  Swedish: remindersSwedish,
+  Finnish: remindersFinnish,
+  Hindi: remindersHindi,
+  Norwegian: remindersNorwegian,
+  Thai: remindersThai,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_reminder_history';
@@ -114,6 +126,12 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
       Italian: 'Promemoria Quotidiano',
       Russian: 'Напоминание дня',
       Luxembourgish: 'Deeglech Erënnerung',
+      Dutch: 'Dagelijkse Herinnering',
+      Swedish: 'Daglig Påminnelse',
+      Finnish: 'Päivän Muistutus',
+      Hindi: 'दैनिक अनुस्मारक',
+      Norwegian: 'Daglig Påminnelse',
+      Thai: 'ข้อคิดเตือนใจประจำวัน',
     }[language] || 'Daily Reminder';
 
   return (
@@ -134,7 +152,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
             e.stopPropagation();
             fetchReminder();
           }}
-          className="p-1.5 sm:p-2 rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
+          className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
           title="Refresh reminder"
         >
           <RefreshCw
@@ -153,7 +171,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
         className="flex-1 flex flex-col justify-center px-4 sm:px-5 py-4 sm:py-5 cursor-pointer select-none"
         title="Click to get new reminder"
       >
-        <p className="daily-card-content-text text-xs sm:text-[13px] md:text-sm lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-4 lg:line-clamp-5 select-text">
+        <p className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-none sm:line-clamp-5 lg:line-clamp-5 select-text">
           {reminder}
         </p>
       </div>

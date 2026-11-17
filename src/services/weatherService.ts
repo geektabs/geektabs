@@ -25,7 +25,7 @@ export interface LiveWeatherData {
 export const WMO_CODE_MAP: Record<number, { text: string; icon: string }> = {
   0: { text: 'Clear', icon: 'sun' },
   1: { text: 'Mainly Clear', icon: 'sun' },
-  2: { text: 'Partly Cloudy', icon: 'cloud' },
+  2: { text: 'Partly Cloudy', icon: 'partly-cloudy' },
   3: { text: 'Overcast', icon: 'cloud' },
   45: { text: 'Foggy', icon: 'cloud' },
   48: { text: 'Depositing Rime Fog', icon: 'cloud' },
@@ -362,7 +362,7 @@ export async function fetchLiveForecast(
       const hourNum = parseInt(isoTime.split('T')[1].split(':')[0], 10);
       const ampm = hourNum >= 12 ? 'PM' : 'AM';
       const displayHour = hourNum % 12 === 0 ? 12 : hourNum % 12;
-      const timeLabel = i === 0 ? (dictionary.now || 'Now') : `${displayHour} ${ampm}`;
+      const timeLabel = `${displayHour} ${ampm}`;
       const hCode = hCodes[idx] !== undefined ? hCodes[idx] : 0;
       const hTemp = Math.round(hTemps[idx] !== undefined ? hTemps[idx] : currentTemp);
       const hDetails = mapWmoCode(hCode, hourNum);

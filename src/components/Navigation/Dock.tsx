@@ -83,8 +83,13 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
               setIsMenuOpen(false);
             }}
           >
-            <div className="w-7 h-7 rounded-lg bg-linear-to-tr from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 [text-shadow:none]">
-              <span className="text-white font-extrabold text-xs antialiased [text-shadow:none]">G</span>
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#5438dc] to-[#6d4aff] flex items-center justify-center shadow-xs shrink-0 [text-shadow:none]">
+              <span
+                className="text-white font-extrabold text-xs antialiased leading-none [text-shadow:none]"
+                style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+              >
+                G
+              </span>
             </div>
             <span
               className={`font-bold tracking-tight text-sm [text-shadow:none] ${
@@ -135,7 +140,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
             <button
               id="mobile-tablet-menu-trigger"
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer shadow-xs active:scale-95 select-none ${
+              className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer shadow-xs active:scale-95 select-none ${
                 isMenuOpen
                   ? isDarkMode
                     ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 ring-2 ring-indigo-500/25'
@@ -206,7 +211,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: -6 }}
                   transition={{ duration: 0.18, ease: 'easeOut' }}
-                  className={`absolute right-4 sm:right-6 top-14 mt-1.5 w-72 sm:w-80 max-w-[calc(100vw-2rem)] rounded-2xl border shadow-2xl p-2 z-50 max-h-[calc(100vh-5rem)] overflow-y-auto scrollbar-thin xl:hidden [text-shadow:none] ${
+                  className={`absolute right-4 sm:right-6 top-14 mt-1.5 w-[300px] sm:w-80 max-w-[calc(100vw-2rem)] rounded-2xl border shadow-2xl p-2 z-50 max-h-[calc(100dvh-4.75rem)] sm:max-h-[calc(100vh-5rem)] overflow-y-auto scrollbar-thin xl:hidden [text-shadow:none] ${
                     isDarkMode
                       ? 'bg-slate-900/98 border-slate-700 text-white shadow-black/60'
                       : 'bg-white/98 border-slate-200/90 text-slate-900 shadow-slate-900/15'
@@ -214,7 +219,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                 >
                   {/* Menu List Header */}
                   <div
-                    className={`flex items-center justify-between px-3 py-2 mb-1 border-b ${
+                    className={`flex items-center justify-between px-3 py-1.5 sm:py-2 mb-1 border-b ${
                       isDarkMode ? 'border-slate-800' : 'border-slate-100'
                     }`}
                   >
@@ -234,7 +239,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                     <button
                       id="mobile-menu-close-button"
                       onClick={() => setIsMenuOpen(false)}
-                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                      className={`p-1.5 sm:p-2 min-w-[36px] min-h-[36px] sm:min-w-[38px] sm:min-h-[38px] flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
                         isDarkMode
                           ? 'text-slate-400 hover:text-white hover:bg-slate-800'
                           : 'text-slate-400 hover:text-slate-700 hover:bg-slate-100'
@@ -258,7 +263,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                             setActiveTab(item.key);
                             setIsMenuOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-left cursor-pointer group select-none ${
+                          className={`w-full flex items-center justify-between px-3 py-2.5 sm:py-3 rounded-xl text-[14.5px] sm:text-sm font-medium transition-all text-left cursor-pointer group select-none ${
                             isActive
                               ? isDarkMode
                                 ? 'bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-semibold shadow-xs'
@@ -270,7 +275,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                         >
                           <div className="flex items-center gap-3">
                             <div
-                              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors shrink-0 ${
+                              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors shrink-0 ${
                                 isActive
                                   ? 'bg-indigo-600 text-white shadow-xs'
                                   : isDarkMode
@@ -312,7 +317,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                       setActiveTab('settings');
                       setIsMenuOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-left cursor-pointer group select-none ${
+                    className={`w-full flex items-center justify-between px-3 py-2.5 sm:py-3 rounded-xl text-[14.5px] sm:text-sm font-medium transition-all text-left cursor-pointer group select-none ${
                       activeTab === 'settings'
                         ? isDarkMode
                           ? 'bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-semibold shadow-xs'
@@ -324,7 +329,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors shrink-0 ${
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors shrink-0 ${
                           activeTab === 'settings'
                             ? 'bg-indigo-600 text-white shadow-xs'
                             : isDarkMode

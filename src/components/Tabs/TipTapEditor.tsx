@@ -19,7 +19,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
-        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('bold') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
+        className={`p-2.5 lg:p-1.5 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-lg transition-colors text-slate-800 ${editor.isActive('bold') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Bold"
       >
         <Bold size={18} />
@@ -27,7 +27,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
-        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('italic') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
+        className={`p-2.5 lg:p-1.5 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-lg transition-colors text-slate-800 ${editor.isActive('italic') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Italic"
       >
         <Italic size={18} />
@@ -35,7 +35,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <button
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         disabled={!editor.can().chain().focus().toggleUnderline().run()}
-        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('underline') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
+        className={`p-2.5 lg:p-1.5 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-lg transition-colors text-slate-800 ${editor.isActive('underline') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Underline"
       >
         <UnderlineIcon size={18} />
@@ -44,7 +44,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         disabled={!editor.can().chain().focus().toggleBulletList().run()}
-        className={`p-1.5 rounded-lg transition-colors text-slate-800 ${editor.isActive('bulletList') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
+        className={`p-2.5 lg:p-1.5 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-lg transition-colors text-slate-800 ${editor.isActive('bulletList') ? 'bg-black/10' : 'hover:bg-black/5 opacity-60 hover:opacity-100'}`}
         title="Bullet List"
       >
         <List size={18} />
@@ -64,7 +64,7 @@ export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
     content,
     editorProps: {
       attributes: {
-        class: 'prose-mirror focus:outline-none min-h-[200px] text-lg leading-relaxed font-sans text-slate-900',
+        class: 'prose-mirror focus:outline-none min-h-[200px] text-base sm:text-lg leading-relaxed font-sans text-slate-900',
         style: 'font-family: Arial, Helvetica, sans-serif; color: #0f172a;',
       },
     },
