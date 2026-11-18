@@ -23,6 +23,7 @@ const languageToLocale: Record<string, string> = {
   Hindi: 'hi-IN',
   Norwegian: 'nb-NO',
   Thai: 'th-TH',
+  Portuguese: 'pt-PT',
 };
 
 export default function Clock({ language = 'English', customTextColor }: ClockProps) {

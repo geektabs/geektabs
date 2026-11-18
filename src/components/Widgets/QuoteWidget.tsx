@@ -16,6 +16,7 @@ import quotesFinnish from '../../data/quotes-Finnish.json';
 import quotesHindi from '../../data/quotes-Hindi.json';
 import quotesNorwegian from '../../data/quotes-Norwegian.json';
 import quotesThai from '../../data/quotes-Thai.json';
+import quotesPortuguese from '../../data/quotes-Portuguese.json';
 
 const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   English: quotesEnglish,
@@ -34,6 +35,7 @@ const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   Hindi: quotesHindi,
   Norwegian: quotesNorwegian,
   Thai: quotesThai,
+  Portuguese: quotesPortuguese,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_quote_history';
@@ -122,11 +124,12 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
     Finnish: 'Päivän Sitaatti',
     Hindi: 'दैनिक सुविचार',
     Norwegian: 'Dagens Sitat',
-    Thai: 'คำคมประจำวัน'
+    Thai: 'คำคมประจำวัน',
+    Portuguese: 'Citação Diária'
   }[language] || 'Daily Quote';
 
   return (
-    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:-translate-y-0.5">
+    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Orange Background */}
       <div className="daily-title-orange daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">

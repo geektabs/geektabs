@@ -28,8 +28,8 @@ export interface SettingsTabProps {
 
 const SETTINGS_T: Record<string, Record<string, string>> = {
   English: {
-    title: "SETTINGS",
-    generalSettings: "General Settings",
+    title: "SETTING",
+    generalSettings: "General Setting",
     managePreferences: "Manage basic preferences",
     customBoardName: "Custom Board Name",
     boardNameDesc: "This name will be displayed as an elegant brand signature on the home page. Defaults to a time-based greeting (Good Morning / Good Afternoon / Good Evening).",
@@ -618,6 +618,43 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     modalMessage: "การดำเนินการนี้ไม่สามารถย้อนกลับได้ และจะลบการตั้งค่า บุ๊กมาร์ก งาน และโน้ตทั้งหมดของคุณอย่างถาวร",
     modalConfirm: "ยืนยันการรีเซ็ต",
     modalCancel: "ยกเลิก"
+  },
+  Portuguese: {
+    title: "Definições",
+    generalSettings: "Definições Gerais",
+    managePreferences: "Gerir preferências principais",
+    customBoardName: "Nome Personalizado do Painel",
+    boardNameDesc: "Este nome será exibido como assinatura na página inicial. Por predefinição, mostra uma saudação consoante a hora.",
+    defaultPlaceholder: "Predefinição: ",
+    save: "Guardar",
+    saved: "Guardado",
+    languageSelection: "Seleção de Idioma",
+    langDesc: "Escolha o idioma preferido para os widgets e menus.",
+    cardStyle: "Estilo de Fundo dos Cartões",
+    cardDesc: "Escolha entre o estilo de cartão Claro (branco), Escuro (preto) ou Vidro (vidro fosco).",
+    whiteBg: "Claro",
+    darkBg: "Escuro",
+    darkGlass: "Vidro",
+    dataBackup: "Cópia de Segurança e Restauro",
+    dataDesc: "Exporte os seus marcadores, tarefas e notas para um ficheiro JSON ou importe uma cópia guardada anteriormente.",
+    exportBackup: "Exportar Cópia (Criar Ponto de Restauro)",
+    importBackup: "Importar Cópia (Restaurar Dados)",
+    resetTitle: "Repor Predefinições",
+    resetDesc: "Repor todo o painel para as definições de fábrica. Isto apagará permanentemente os seus temas, fundos, marcadores, tarefas e notas!",
+    resetButton: "Repor e Limpar Todos os Dados",
+    aboutTitle: "Sobre Nós",
+    aboutDesc: "Conheça a nossa história",
+    aboutWelcome: "Bem-vindo ao GeekTabs",
+    aboutText1: "O GeekTabs foi criado com um objetivo simples: transformar o separador habitual num painel bonito, pessoal e altamente funcional.",
+    aboutText2: "Focado num design limpo, funcionalidades úteis e personalização completa, o GeekTabs oferece um ponto de partida de excelência na web.",
+    supportContact: "Suporte e Contacto",
+    restoreSuccess: "Cópia de segurança restaurada! A página será recarregada.",
+    invalidBackup: "Ficheiro de cópia de segurança inválido.",
+    failParse: "Falha ao ler o ficheiro de cópia de segurança.",
+    modalTitle: "Repor todos os dados?",
+    modalMessage: "Esta ação não pode ser desfeita e apagará permanentemente todas as definições, marcadores, tarefas e notas.",
+    modalConfirm: "Confirmar Reposição",
+    modalCancel: "Cancelar"
   }
 };
 
@@ -803,6 +840,7 @@ export default function SettingsTab({
     { value: 'Korean', label: 'Korean' },
     { value: 'Italian', label: 'Italian' },
     { value: 'Russian', label: 'Russian' },
+    { value: 'Portuguese', label: 'Portuguese' },
     { value: 'Luxembourgish', label: 'Luxembourgish' },
   ];
 

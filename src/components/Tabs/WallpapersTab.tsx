@@ -1,11 +1,14 @@
 import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Upload, Trash2, Image as ImageIcon, Plus, Link, Check, HardDrive } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Upload, Trash2, Image as ImageIcon, Video, Plus, Link, Check, HardDrive, Sparkles } from 'lucide-react';
 import ConfirmModal from '../ConfirmModal';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import defaultWallpapersData from '../../data/wallpapers.json';
 import {
   CustomWallpaper,
+  detectWallpaperMediaType,
+  isGifWallpaperUrl,
+  upscaleImageTo8K,
   getAllUserWallpapers,
   saveUserWallpaper,
   deleteUserWallpaper,
@@ -22,6 +25,7 @@ interface WallpapersTabProps {
   isDarkMode: boolean;
   language?: string;
   cardBgMode?: 'white' | 'dark' | 'dark-glass';
+  initialCategory?: string;
 }
 
 const WALLPAPER_T: Record<string, Record<string, string>> = {
@@ -30,8 +34,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Your personal wallpaper gallery",
     uploadImage: "Upload File",
     addUrl: "Add via URL",
-    enterUrl: "Enter Image URL",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Enter Photo or Video URL",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF files are not supported as background. Please use a static photo or 4K video.",
     categoryEmpty: "Category is empty",
     saveWallpaper: "Save Wallpaper",
     chooseCategory: "Choose a category",
@@ -43,6 +48,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "All",
     catMyUploads: "My Uploads",
     catFavorites: "Favorites",
+    catTravel: "Travel",
+    catVideo: "Video",
     catNature: "Nature",
     catAbstract: "Abstract",
     catScience: "Science",
@@ -56,8 +63,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "您的专属个性壁纸画廊",
     uploadImage: "上传文件",
     addUrl: "添加在线链接",
-    enterUrl: "输入图片网络链接",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "输入照片或视频链接",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "不支持将 GIF 设为背景，请使用静态照片或视频。",
     categoryEmpty: "当前分类为空",
     saveWallpaper: "保存壁纸",
     chooseCategory: "选择一个分类",
@@ -69,6 +77,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "全部",
     catMyUploads: "我的上传",
     catFavorites: "最爱",
+    catTravel: "旅行",
+    catVideo: "视频",
     catNature: "自然",
     catAbstract: "抽象",
     catScience: "科学",
@@ -82,8 +92,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Tu galería de fondos de pantalla personal",
     uploadImage: "Subir Archivo",
     addUrl: "Añadir URL",
-    enterUrl: "Pegar URL de Imagen",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Pegar URL de Foto o Video",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "No se admiten archivos GIF como fondo. Usa una foto o video.",
     categoryEmpty: "La categoría está vacía",
     saveWallpaper: "Guardar Fondo",
     chooseCategory: "Elige una categoría",
@@ -95,6 +106,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Todo",
     catMyUploads: "Mis Subidas",
     catFavorites: "Favoritos",
+    catTravel: "Viajes",
+    catVideo: "Video",
     catNature: "Naturaleza",
     catAbstract: "Abstracto",
     catScience: "Ciencia",
@@ -108,8 +121,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Votre galerie de fonds d'écran personnelle",
     uploadImage: "Téléverser Fichier",
     addUrl: "Ajouter URL",
-    enterUrl: "Entrer l'URL de l'image",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Entrer l'URL (Photo ou Vidéo)",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "Les fichiers GIF ne sont pas pris en charge. Utilisez une photo ou vidéo.",
     categoryEmpty: "La catégorie est vide",
     saveWallpaper: "Enregistrer Fond",
     chooseCategory: "Choisir une catégorie",
@@ -121,6 +135,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Tout",
     catMyUploads: "Mes Téléversements",
     catFavorites: "Favoris",
+    catTravel: "Voyage",
+    catVideo: "Vidéo",
     catNature: "Nature",
     catAbstract: "Abstrait",
     catScience: "Science",
@@ -134,8 +150,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Ihre persönliche Hintergrundgalerie",
     uploadImage: "Datei hochladen",
     addUrl: "URL hinzufügen",
-    enterUrl: "Bild-URL eingeben",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Foto- oder Video-URL eingeben",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-Dateien werden nicht als Hintergrund unterstützt.",
     categoryEmpty: "Kategorie ist leer",
     saveWallpaper: "Hintergrund speichern",
     chooseCategory: "Kategorie auswählen",
@@ -147,6 +164,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Alle",
     catMyUploads: "Meine Uploads",
     catFavorites: "Favoriten",
+    catTravel: "Reisen",
+    catVideo: "Video",
     catNature: "Natur",
     catAbstract: "Abstrakt",
     catScience: "Wissenschaft",
@@ -160,8 +179,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "あなただけの壁紙ギャラリー",
     uploadImage: "ファイルをアップロード",
     addUrl: "URLから追加",
-    enterUrl: "画像URLを入力",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "写真・動画URLを入力",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIFファイルは背景としてサポートされていません。写真または動画を使用してください。",
     categoryEmpty: "カテゴリーは空です",
     saveWallpaper: "壁紙を保存",
     chooseCategory: "カテゴリーを選択",
@@ -173,6 +193,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "すべて",
     catMyUploads: "マイアップロード",
     catFavorites: "お気に入り",
+    catTravel: "旅行",
+    catVideo: "動画",
     catNature: "自然",
     catAbstract: "抽象",
     catScience: "科学",
@@ -186,8 +208,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "나만의 맞춤 배경화면 갤러리",
     uploadImage: "파일 업로드",
     addUrl: "URL로 추가",
-    enterUrl: "이미지 웹 URL 입력",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "사진 또는 동영상 URL 입력",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF 파일은 배경으로 지원되지 않습니다. 사진이나 동영상을 사용하세요.",
     categoryEmpty: "카테고리가 비어 있습니다",
     saveWallpaper: "배경화면 저장",
     chooseCategory: "카테고리 선택",
@@ -199,6 +222,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "전체",
     catMyUploads: "내 업로드",
     catFavorites: "즐겨찾기",
+    catTravel: "여행",
+    catVideo: "동영상",
     catNature: "자연",
     catAbstract: "추상",
     catScience: "과학",
@@ -212,8 +237,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "La tua galleria personale di sfondi",
     uploadImage: "Carica File",
     addUrl: "Aggiungi URL",
-    enterUrl: "Inserisci URL immagine",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Inserisci URL (Foto o Video)",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "I file GIF non sono supportati come sfondo. Usa una foto o un video.",
     categoryEmpty: "La categoria è vuota",
     saveWallpaper: "Salva Sfondo",
     chooseCategory: "Scegli una categoria",
@@ -225,6 +251,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Tutto",
     catMyUploads: "I Miei Caricamenti",
     catFavorites: "Preferiti",
+    catTravel: "Viaggi",
+    catVideo: "Video",
     catNature: "Natura",
     catAbstract: "Astratto",
     catScience: "Scienza",
@@ -238,8 +266,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Ваша личная галерея обоев",
     uploadImage: "Загрузить файл",
     addUrl: "Добавить по URL",
-    enterUrl: "Вставьте URL изображения",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Вставьте URL (фото или видео)",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "Файлы GIF не поддерживаются в качестве фона. Используйте фото или видео.",
     categoryEmpty: "Категория пуста",
     saveWallpaper: "Сохранить обои",
     chooseCategory: "Выберите категорию",
@@ -251,6 +280,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Все",
     catMyUploads: "Мои загрузки",
     catFavorites: "Избранное",
+    catTravel: "Путешествия",
+    catVideo: "Видео",
     catNature: "Природа",
     catAbstract: "Абстракция",
     catScience: "Наука",
@@ -264,8 +295,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Är perséinlech Hannergrondgalerie",
     uploadImage: "Datei eroplueden",
     addUrl: "URL derbäisetzen",
-    enterUrl: "Bild-URL aginn",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Foto- oder Video-URL aginn",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-Dateien ginn net als Hannergrond ënnerstëtzt.",
     categoryEmpty: "Kategorie ass eidel",
     saveWallpaper: "Hannergrond späicheren",
     chooseCategory: "Kategorie auswielen",
@@ -277,6 +309,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "All",
     catMyUploads: "Meng Eropluedungen",
     catFavorites: "Favoriten",
+    catTravel: "Reesen",
+    catVideo: "Video",
     catNature: "Natur",
     catAbstract: "Abstrakt",
     catScience: "Wëssenschaft",
@@ -290,8 +324,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Je persoonlijke achtergrondengalerij",
     uploadImage: "Bestand uploaden",
     addUrl: "Via URL toevoegen",
-    enterUrl: "Afbeeldings-URL invoeren",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Foto- of video-URL invoeren",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-bestanden worden niet ondersteund als achtergrond.",
     categoryEmpty: "Categorie is leeg",
     saveWallpaper: "Achtergrond opslaan",
     chooseCategory: "Kies een categorie",
@@ -303,6 +338,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Alles",
     catMyUploads: "Mijn uploads",
     catFavorites: "Favorieten",
+    catTravel: "Reizen",
+    catVideo: "Video",
     catNature: "Natuur",
     catAbstract: "Abstract",
     catScience: "Wetenschap",
@@ -316,8 +353,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Ditt personliga bakgrundsgalleri",
     uploadImage: "Ladda upp fil",
     addUrl: "Lägg till via URL",
-    enterUrl: "Ange bild-URL",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Ange foto- eller video-URL",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-filer stöds inte som bakgrund. Använd ett foto eller en video.",
     categoryEmpty: "Kategorin är tom",
     saveWallpaper: "Spara bakgrund",
     chooseCategory: "Välj en kategori",
@@ -329,6 +367,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Alla",
     catMyUploads: "Mina uppladdningar",
     catFavorites: "Favoriter",
+    catTravel: "Resor",
+    catVideo: "Video",
     catNature: "Natur",
     catAbstract: "Abstrakt",
     catScience: "Vetenskap",
@@ -342,8 +382,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Henkilökohtainen taustakuvagalleria",
     uploadImage: "Lataa tiedosto",
     addUrl: "Lisää URL-osoitteella",
-    enterUrl: "Syötä kuvan URL",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Syötä kuvan tai videon URL",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-tiedostoja ei tueta taustana. Käytä valokuvaa tai videota.",
     categoryEmpty: "Kategoria on tyhjä",
     saveWallpaper: "Tallenna taustakuva",
     chooseCategory: "Valitse kategoria",
@@ -355,6 +396,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Kaikki",
     catMyUploads: "Omat lataukset",
     catFavorites: "Suosikit",
+    catTravel: "Matkailu",
+    catVideo: "Video",
     catNature: "Luonto",
     catAbstract: "Abstrakti",
     catScience: "Tiede",
@@ -368,8 +411,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "आपकी व्यक्तिगत वॉलपेपर गैलरी",
     uploadImage: "फ़ाइल अपलोड करें",
     addUrl: "URL से जोड़ें",
-    enterUrl: "छवि URL दर्ज करें",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "फ़ोटो या वीडियो URL दर्ज करें",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF फ़ाइलें पृष्ठभूमि के रूप में समर्थित नहीं हैं। कृपया फ़ोटो या वीडियो का उपयोग करें।",
     categoryEmpty: "श्रेणी खाली है",
     saveWallpaper: "वॉलपेपर सहेजें",
     chooseCategory: "एक श्रेणी चुनें",
@@ -381,6 +425,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "सभी",
     catMyUploads: "मेरे अपलोड",
     catFavorites: "पसंदीदा",
+    catTravel: "यात्रा",
+    catVideo: "वीडियो",
     catNature: "प्रकृति",
     catAbstract: "अमूर्त",
     catScience: "विज्ञान",
@@ -394,8 +440,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "Ditt personlige bakgrunnsgalleri",
     uploadImage: "Last opp fil",
     addUrl: "Legg til via URL",
-    enterUrl: "Skriv inn bilde-URL",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "Skriv inn bilde- eller video-URL",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-filer støttes ikke som bakgrunn. Bruk et bilde eller en video.",
     categoryEmpty: "Kategorien er tom",
     saveWallpaper: "Lagre bakgrunn",
     chooseCategory: "Velg en kategori",
@@ -407,6 +454,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "Alle",
     catMyUploads: "Mine opplastinger",
     catFavorites: "Favoritter",
+    catTravel: "Reise",
+    catVideo: "Video",
     catNature: "Natur",
     catAbstract: "Abstrakt",
     catScience: "Vitenskap",
@@ -420,8 +469,9 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     subtitle: "แกลเลอรีวอลเปเปอร์ส่วนตัวของคุณ",
     uploadImage: "อัปโหลดไฟล์",
     addUrl: "เพิ่มผ่าน URL",
-    enterUrl: "ป้อน URL รูปภาพ",
-    urlPlaceholder: "https://images.unsplash.com/...",
+    enterUrl: "ป้อน URL รูปภาพหรือวิดีโอ",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "ไม่รองรับไฟล์ GIF เป็นพื้นหลัง กรุณาใช้รูปภาพหรือวิดีโอ",
     categoryEmpty: "หมวดหมู่นี้ว่างเปล่า",
     saveWallpaper: "บันทึกวอลเปเปอร์",
     chooseCategory: "เลือกหมวดหมู่",
@@ -433,6 +483,8 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catAll: "ทั้งหมด",
     catMyUploads: "อัปโหลดของฉัน",
     catFavorites: "รายการโปรด",
+    catTravel: "ท่องเที่ยว",
+    catVideo: "วิดีโอ",
     catNature: "ธรรมชาติ",
     catAbstract: "นามธรรม",
     catScience: "วิทยาศาสตร์",
@@ -440,45 +492,36 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catCreation: "สร้างสรรค์",
     catHoliday: "วันหยุด",
     catAnimal: "สัตว์"
+  },
+  Portuguese: {
+    title: "Biblioteca de Fundos",
+    subtitle: "A SUA GALERIA PESSOAL DE IMAGENS",
+    uploadImage: "Carregar Ficheiro",
+    addUrl: "Adicionar via URL",
+    enterUrl: "Introduzir URL de Foto ou Vídeo",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "Ficheiros GIF não são suportados como fundo. Utilize uma foto ou vídeo.",
+    categoryEmpty: "Esta categoria está vazia",
+    saveWallpaper: "Guardar Imagem",
+    chooseCategory: "Escolher Categoria",
+    categoryName: "Nome da Categoria",
+    cancel: "Cancelar",
+    save: "Guardar",
+    deleteTitle: "Eliminar Fundo",
+    deleteMsg: "Tem a certeza de que deseja eliminar este fundo? Esta ação não pode ser desfeita.",
+    catAll: "Todos",
+    catMyUploads: "Os Meus Envios",
+    catFavorites: "Favoritos",
+    catTravel: "Viagem",
+    catVideo: "Vídeo",
+    catNature: "Natureza",
+    catAbstract: "Abstrato",
+    catScience: "Ciência",
+    catArchitecture: "Arquitetura",
+    catCreation: "Criativo",
+    catHoliday: "Feriados",
+    catAnimal: "Animais"
   }
-};
-
-const compressImage = (base64Str: string, maxWidth = 1920, maxHeight = 1080, quality = 0.85): Promise<string> => {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => {
-      let width = img.width;
-      let height = img.height;
-
-      if (width > height) {
-        if (width > maxWidth) {
-          height = Math.round((height * maxWidth) / width);
-          width = maxWidth;
-        }
-      } else {
-        if (height > maxHeight) {
-          width = Math.round((width * maxHeight) / height);
-          height = maxHeight;
-        }
-      }
-
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL('image/jpeg', quality));
-      } else {
-        resolve(base64Str);
-      }
-    };
-    img.onerror = () => {
-      resolve(base64Str);
-    };
-    img.src = base64Str;
-  });
 };
 
 export default function WallpapersTab({ 
@@ -486,7 +529,8 @@ export default function WallpapersTab({
   setTheme, 
   isDarkMode = false,
   language = 'English',
-  cardBgMode = 'white'
+  cardBgMode = 'white',
+  initialCategory = 'All'
 }: WallpapersTabProps) {
   const isDarkGlass = cardBgMode === 'dark-glass';
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -497,14 +541,22 @@ export default function WallpapersTab({
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [uploadMode, setUploadMode] = useState<'file' | 'url'>('file');
   const [pendingUploadData, setPendingUploadData] = useState<string | null>(null);
+  const [pendingMediaType, setPendingMediaType] = useState<'image' | 'video'>('image');
+  const [pendingWasUpscaled, setPendingWasUpscaled] = useState(false);
+  const [isEnhancing8K, setIsEnhancing8K] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [urlInput, setUrlInput] = useState('');
   const [uploadCategory, setUploadCategory] = useState('Favorites');
   const [confirmDeleteWallpaper, setConfirmDeleteWallpaper] = useState<string | null>(null);
 
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
   const categoryBtnRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [uniformCategoryWidth, setUniformCategoryWidth] = useState<number | null>(null);
   const tData = WALLPAPER_T[language] || WALLPAPER_T['English'];
+
+  useEffect(() => {
+    setActiveCategory(initialCategory);
+  }, [initialCategory]);
 
   // Load user wallpapers from IndexedDB and auto-migrate any old localStorage items
   useEffect(() => {
@@ -515,7 +567,7 @@ export default function WallpapersTab({
         await migrateFromLocalStorage();
         const stored = await getAllUserWallpapers();
         if (isMounted) {
-          setUserWallpapers(stored);
+          setUserWallpapers(stored.filter((w) => !isGifWallpaperUrl(w.url)));
         }
       } catch (err) {
         console.error('Failed loading wallpapers from IndexedDB', err);
@@ -528,17 +580,21 @@ export default function WallpapersTab({
 
   // Filter default wallpapers by deleted list
   const activeDefaultWallpapers: CustomWallpaper[] = (defaultWallpapersData as any[]).filter(
-    (def) => !deletedDefaultIds.includes(def.id)
+    (def) => !deletedDefaultIds.includes(def.id) && !isGifWallpaperUrl(def.url)
   );
 
-  // Combined wallpapers list (user uploads first, then defaults)
-  const allWallpapers: CustomWallpaper[] = [...userWallpapers, ...activeDefaultWallpapers];
+  // Combined wallpapers list (user uploads first, then defaults; exclude GIFs)
+  const allWallpapers: CustomWallpaper[] = [...userWallpapers, ...activeDefaultWallpapers].filter(
+    (w) => !isGifWallpaperUrl(w.url)
+  );
 
   const categories = Array.from(
     new Set([
       'All',
       'My Uploads',
       'Favorites',
+      'Video',
+      'Travel',
       'Nature',
       'Abstract',
       'Science',
@@ -546,7 +602,9 @@ export default function WallpapersTab({
       'Creation',
       'Holiday',
       'Animal',
-      ...allWallpapers.map((w) => w.category),
+      ...allWallpapers
+        .map((w) => w.category)
+        .filter((c) => c !== 'GIF & Video' && c !== 'GIF'),
     ])
   );
 
@@ -554,6 +612,8 @@ export default function WallpapersTab({
     'All': tData.catAll,
     'My Uploads': tData.catMyUploads,
     'Favorites': tData.catFavorites,
+    'Video': tData.catVideo,
+    'Travel': tData.catTravel,
     'Nature': tData.catNature,
     'Abstract': tData.catAbstract,
     'Science': tData.catScience,
@@ -563,31 +623,88 @@ export default function WallpapersTab({
     'Animal': tData.catAnimal,
   };
 
+  const getThemeValueForWallpaper = (w: CustomWallpaper) => {
+    if (w.url.startsWith('data:video/') || w.url.length > 1_500_000) {
+      return `idb-wall://${w.id}`;
+    }
+    return w.url;
+  };
+
+  const getMixkitVideoPoster = (url: string): string | undefined => {
+    const match = url.match(/^https:\/\/assets\.mixkit\.co\/videos\/(\d+)\/\1-\d+\.mp4$/i);
+    if (match) {
+      return `https://assets.mixkit.co/videos/${match[1]}/${match[1]}-thumb-720-0.jpg`;
+    }
+    return undefined;
+  };
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const isGif = file.type === 'image/gif' || /\.gif$/i.test(file.name);
+      if (isGif) {
+        setUploadError(tData.gifNotAllowed || 'GIF files are not supported.');
+        e.target.value = '';
+        return;
+      }
+
+      const isVideo =
+        file.type.startsWith('video/') ||
+        /\.(mp4|webm|mov|m4v|ogv|ogg)$/i.test(file.name);
+
+      setUploadError(null);
+      setIsEnhancing8K(true);
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64String = reader.result as string;
         try {
-          const compressed = await compressImage(base64String);
-          setPendingUploadData(compressed);
-        } catch {
-          setPendingUploadData(base64String);
+          if (isVideo) {
+            // Preserve native full video quality in IndexedDB
+            setPendingUploadData(base64String);
+            setPendingMediaType('video');
+            setPendingWasUpscaled(false);
+          } else {
+            // Automatically upscale <8K (e.g. 2K/1080p/4K) static photos to 8K Ultra-HD (7680x4320)
+            const enhanced = await upscaleImageTo8K(base64String);
+            setPendingUploadData(enhanced.dataUrl);
+            setPendingMediaType('image');
+            setPendingWasUpscaled(enhanced.upscaled);
+          }
+          setUploadMode('file');
+          setUploadCategory(
+            isVideo
+              ? 'Video'
+              : activeCategory === 'All' || activeCategory === 'My Uploads'
+              ? 'Favorites'
+              : activeCategory
+          );
+          setShowUploadModal(true);
+        } finally {
+          setIsEnhancing8K(false);
         }
-        setUploadMode('file');
-        setUploadCategory(activeCategory === 'All' || activeCategory === 'My Uploads' ? 'Favorites' : activeCategory);
-        setShowUploadModal(true);
+      };
+      reader.onerror = () => {
+        setIsEnhancing8K(false);
       };
       reader.readAsDataURL(file);
     }
+    e.target.value = '';
   };
 
   const openUrlModal = () => {
     setUploadMode('url');
     setUrlInput('');
+    setUploadError(null);
     setPendingUploadData(null);
-    setUploadCategory(activeCategory === 'All' || activeCategory === 'My Uploads' ? 'Favorites' : activeCategory);
+    setPendingMediaType('image');
+    setPendingWasUpscaled(false);
+    setUploadCategory(
+      activeCategory === 'Video'
+        ? 'Video'
+        : activeCategory === 'All' || activeCategory === 'My Uploads'
+        ? 'Favorites'
+        : activeCategory
+    );
     setShowUploadModal(true);
   };
 
@@ -596,10 +713,21 @@ export default function WallpapersTab({
     const finalUrl = uploadMode === 'file' ? pendingUploadData : urlInput.trim();
     if (!finalUrl || !uploadCategory) return;
 
+    if (isGifWallpaperUrl(finalUrl)) {
+      setUploadError(tData.gifNotAllowed || 'GIF files are not supported.');
+      return;
+    }
+
+    const mediaType =
+      uploadMode === 'file'
+        ? pendingMediaType
+        : detectWallpaperMediaType(finalUrl);
+
     const newWallpaper: CustomWallpaper = {
       id: `user-wall-${Date.now()}`,
       url: finalUrl,
       category: uploadCategory,
+      mediaType,
       createdAt: Date.now(),
     };
 
@@ -607,9 +735,11 @@ export default function WallpapersTab({
       // Save directly into visitor's browser IndexedDB (zero server storage)
       await saveUserWallpaper(newWallpaper);
       setUserWallpapers((prev) => [newWallpaper, ...prev]);
-      setTheme(finalUrl);
+      setTheme(getThemeValueForWallpaper(newWallpaper));
       setShowUploadModal(false);
       setPendingUploadData(null);
+      setPendingWasUpscaled(false);
+      setUploadError(null);
       setUrlInput('');
       setActiveCategory(uploadCategory);
     } catch (err) {
@@ -628,7 +758,10 @@ export default function WallpapersTab({
       setDeletedDefaultIds([...deletedDefaultIds, id]);
     }
 
-    if (itemToDelete && currentTheme === itemToDelete.url) {
+    if (
+      itemToDelete &&
+      (currentTheme === itemToDelete.url || currentTheme === `idb-wall://${itemToDelete.id}`)
+    ) {
       setTheme('white-clean');
     }
     setConfirmDeleteWallpaper(null);
@@ -638,6 +771,12 @@ export default function WallpapersTab({
     if (activeCategory === 'All') return true;
     if (activeCategory === 'My Uploads') {
       return userWallpapers.some((uw) => uw.id === w.id);
+    }
+    if (activeCategory === 'Video') {
+      return (
+        w.category === 'Video' ||
+        detectWallpaperMediaType(w.url, w.mediaType) === 'video'
+      );
     }
     return w.category === activeCategory;
   });
@@ -724,16 +863,27 @@ export default function WallpapersTab({
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => fileInputRef.current?.click()}
-            className="wallpaper-upload-card wallpaper-upload-file-card aspect-[4/3] sm:aspect-[16/10] lg:aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2 sm:gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs"
+            onClick={() => !isEnhancing8K && fileInputRef.current?.click()}
+            disabled={isEnhancing8K}
+            className="wallpaper-upload-card wallpaper-upload-file-card aspect-[4/3] sm:aspect-[16/10] lg:aspect-video rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2 sm:gap-2.5 transition-all group cursor-pointer border-indigo-400/70 bg-white hover:border-indigo-600 hover:bg-indigo-50/80 shadow-xs disabled:opacity-70"
           >
             <div className="wallpaper-upload-icon-box w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-90 duration-300 transition-all bg-indigo-50 text-indigo-600 border border-indigo-200/80 shadow-xs">
-              <Plus className="wallpaper-upload-icon" size={20} />
+              {isEnhancing8K ? (
+                <Sparkles className="wallpaper-upload-icon animate-pulse" size={20} />
+              ) : (
+                <Plus className="wallpaper-upload-icon" size={20} />
+              )}
             </div>
             <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600 px-2 text-center">
-              {tData.uploadImage}
+              {isEnhancing8K ? '8K UHD...' : tData.uploadImage}
             </span>
-            <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept="image/*" className="hidden" />
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileUpload}
+              accept="image/jpeg,image/png,image/webp,image/avif,image/bmp,video/mp4,video/webm,video/quicktime,.jpg,.jpeg,.png,.webp,.avif,.mp4,.webm,.mov,.m4v,.ogv"
+              className="hidden"
+            />
           </motion.button>
 
           {/* Add via Web URL Card */}
@@ -752,23 +902,26 @@ export default function WallpapersTab({
           </motion.button>
         </div>
 
+        {uploadError && !showUploadModal && (
+          <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-semibold text-red-700 text-center">
+            {uploadError}
+          </div>
+        )}
+
         {/* Line 2+: Wallpapers List (4 per line on desktop, 2 on tablet, 1 on phone) */}
         {filteredWallpapers.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
-            <AnimatePresence mode="popLayout">
               {filteredWallpapers.map((w) => {
-                const isActive = currentTheme === w.url;
+                const isActive = currentTheme === w.url || currentTheme === `idb-wall://${w.id}`;
+                const mediaType = detectWallpaperMediaType(w.url, w.mediaType);
+                const videoPoster = mediaType === 'video' ? getMixkitVideoPoster(w.url) : undefined;
                 return (
-                  <motion.div
-                    layout
+                  <div
                     key={w.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="relative group animate-fade-in"
+                    className="relative group"
                   >
                     <button
-                      onClick={() => setTheme(w.url)}
+                      onClick={() => setTheme(getThemeValueForWallpaper(w))}
                       className={`w-full aspect-[16/10] sm:aspect-[16/10] lg:aspect-video relative block rounded-2xl overflow-hidden border-2 transition-all p-0 focus:outline-none cursor-pointer ${
                         isActive 
                           ? 'border-indigo-500 ring-4 ring-indigo-500/20 shadow-xl' 
@@ -776,12 +929,26 @@ export default function WallpapersTab({
                       }`}
                       style={{ backgroundColor: 'transparent', outline: 'none' }}
                     >
-                      <img
-                        src={w.url}
-                        className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all"
-                        alt=""
-                        loading="lazy"
-                      />
+                      {mediaType === 'video' ? (
+                        <video
+                          src={w.url}
+                          poster={videoPoster}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all pointer-events-none"
+                        />
+                      ) : (
+                        <img
+                          src={w.url}
+                          className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all"
+                          alt={w.title || ''}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 rounded-[14px] transition-colors" />
 
                       {/* Active Checkmark Badge */}
@@ -797,9 +964,33 @@ export default function WallpapersTab({
                         style={{ color: '#ffffff' }}
                       >
                         <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
-                          {catMap[w.category] || w.category}
+                          {w.category === 'GIF & Video'
+                            ? catMap['Video']
+                            : catMap[w.category] || w.category}
                         </span>
                       </div>
+
+                      {/* 8K / 4K Video Badge */}
+                      {mediaType === 'video' ? (
+                        <div
+                          className="wallpaper-card-badge absolute bottom-3 right-3 bg-indigo-600/90 backdrop-blur-md text-white text-[9px] font-extrabold uppercase tracking-wider px-2 py-1 rounded-lg border border-white/25 shadow-md pointer-events-none select-none flex items-center gap-1"
+                          style={{ color: '#ffffff' }}
+                        >
+                          <Video size={10} className="wallpaper-card-badge text-white stroke-white" />
+                          <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
+                            4K VIDEO
+                          </span>
+                        </div>
+                      ) : (
+                        <div
+                          className="wallpaper-card-badge absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white text-[8.5px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-lg border border-white/20 shadow-md pointer-events-none select-none"
+                          style={{ color: '#ffffff' }}
+                        >
+                          <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
+                            8K
+                          </span>
+                        </div>
+                      )}
                     </button>
                     
                     {/* Delete Button */}
@@ -814,10 +1005,9 @@ export default function WallpapersTab({
                     >
                       <Trash2 size={16} className="wallpaper-card-badge text-white stroke-white" />
                     </button>
-                  </motion.div>
+                  </div>
                 );
               })}
-            </AnimatePresence>
           </div>
         )}
       </div>
@@ -854,15 +1044,50 @@ export default function WallpapersTab({
                     type="url"
                     required
                     value={urlInput}
-                    onChange={(e) => setUrlInput(e.target.value)}
+                    onChange={(e) => {
+                      const nextUrl = e.target.value;
+                      setUrlInput(nextUrl);
+                      if (isGifWallpaperUrl(nextUrl)) {
+                        setUploadError(tData.gifNotAllowed || 'GIF files are not supported.');
+                      } else {
+                        setUploadError(null);
+                        const detected = detectWallpaperMediaType(nextUrl);
+                        if (detected === 'video') {
+                          setUploadCategory('Video');
+                        }
+                      }
+                    }}
                     placeholder={tData.urlPlaceholder}
                     className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-xs font-mono shadow-inner"
                   />
+                  {uploadError && (
+                    <p className="mt-2 text-xs font-semibold text-red-600">{uploadError}</p>
+                  )}
                 </div>
               ) : (
                 pendingUploadData && (
-                  <div className="w-full aspect-video rounded-2xl overflow-hidden border border-slate-300 dark:border-white/10 shadow-inner">
-                    <img src={pendingUploadData} alt="Preview" className="w-full h-full object-cover" />
+                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-300 dark:border-white/10 shadow-inner">
+                    {pendingMediaType === 'video' ? (
+                      <video
+                        src={pendingUploadData}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <img src={pendingUploadData} alt="Preview" className="w-full h-full object-cover" />
+                    )}
+                    <div
+                      className="wallpaper-card-badge absolute bottom-2.5 right-2.5 bg-indigo-600/90 backdrop-blur-md text-white text-[9px] font-extrabold uppercase tracking-wider px-2 py-1 rounded-lg border border-white/25 shadow-md flex items-center gap-1"
+                      style={{ color: '#ffffff' }}
+                    >
+                      <Sparkles size={10} className="wallpaper-card-badge text-white stroke-white" />
+                      <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
+                        {pendingWasUpscaled ? '8K UHD AUTO' : '8K UHD'}
+                      </span>
+                    </div>
                   </div>
                 )
               )}

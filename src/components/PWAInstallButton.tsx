@@ -212,6 +212,18 @@ const LABELS: Record<string, {
     close: 'เข้าใจแล้ว',
     offline: 'โหมดออฟไลน์ — กำลังใช้ข้อมูลแคช',
   },
+  Portuguese: {
+    installApp: 'Instalar Aplicação',
+    installOnIOS: 'Adicionar ao Ecrã Principal',
+    installedBadge: 'Instalada como Aplicação',
+    useAddressBar: 'Clique no ícone de instalação na barra de endereço do navegador',
+    iosModalTitle: 'Instalar GeekTabs no iPhone / iPad',
+    iosStep1: 'Toque no botão Partilhar na barra de ferramentas do Safari.',
+    iosStep2: 'Deslize para baixo e toque em "Ecrã principal".',
+    iosStep3: 'Toque em "Adicionar" para guardar o logótipo GeekTabs no seu ecrã.',
+    close: 'Entendido',
+    offline: 'Modo offline — Dados em cache ativos',
+  },
 };
 
 export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({

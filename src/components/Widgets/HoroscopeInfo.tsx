@@ -125,6 +125,9 @@ export default function HoroscopeInfo({ language = 'English' }: HoroscopeInfoPro
     } else if (language === 'Thai') {
       l1 = `ราศีประจำวันนี้: ${sign.name} (${sign.range})`;
       l2 = `สัปดาห์นี้: สัปดาห์ที่ ${weekNum} จาก 52 สัปดาห์, วันที่ ${dayOfYear} จาก ${totalDays} วัน`;
+    } else if (language === 'Portuguese') {
+      l1 = `Signo do Zodíaco de Hoje: ${sign.name} (${sign.range})`;
+      l2 = `Esta semana: semana ${weekNum} de 52, dia ${dayOfYear} de ${totalDays}`;
     }
 
     return { line1: l1, line2: l2 };

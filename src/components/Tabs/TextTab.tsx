@@ -317,6 +317,25 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleGreeting: 'สวัสดีตอนเช้า, GeekTabs',
     sampleDate: 'วันพฤหัสบดีที่ 10 กันยายน',
     sampleClock: '08:45'
+  },
+  Portuguese: {
+    title: 'Motor de Texto',
+    subtitle: 'CONFIGURAÇÃO DE CORES DE TEXTO PERSONALIZADAS',
+    panelHeader: 'Paletas de Cores de Texto',
+    panelSub: 'escolha uma cor de texto para combinar com o seu fundo',
+    resetButton: 'Repor Cor de Texto Predefinida',
+    groupDefault: 'predefinido (auto)',
+    groupLight: 'tons claros',
+    groupRegular: 'tons regulares',
+    groupDark: 'tons escuros',
+    groupVibrant: 'vibrantes e contraste',
+    previewTitle: '# Pré-visualização em Direto',
+    previewSub: 'Teste visual sobre o fundo atual',
+    customColorTitle: 'Cor Hex Personalizada',
+    customColorApply: 'Aplicar Cor',
+    sampleGreeting: 'Bom dia, GeekTabs',
+    sampleDate: 'Quinta-feira, 10 de setembro',
+    sampleClock: '08:45'
   }
 };
 
@@ -491,6 +510,7 @@ export default function TextTab({
     Hindi: 'hi-IN',
     Norwegian: 'nb-NO',
     Thai: 'th-TH',
+    Portuguese: 'pt-PT',
   };
 
   const locale = languageToLocale[language] || 'en-US';

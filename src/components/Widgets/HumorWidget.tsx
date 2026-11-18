@@ -16,6 +16,7 @@ import humorsFinnish from '../../data/humors-Finnish.json';
 import humorsHindi from '../../data/humors-Hindi.json';
 import humorsNorwegian from '../../data/humors-Norwegian.json';
 import humorsThai from '../../data/humors-Thai.json';
+import humorsPortuguese from '../../data/humors-Portuguese.json';
 
 const humorsMap: Record<string, string[]> = {
   English: humorsEnglish,
@@ -34,6 +35,7 @@ const humorsMap: Record<string, string[]> = {
   Hindi: humorsHindi,
   Norwegian: humorsNorwegian,
   Thai: humorsThai,
+  Portuguese: humorsPortuguese,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_humor_history';
@@ -130,11 +132,12 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
     Finnish: 'Päivän Huumori',
     Hindi: 'दैनिक हास्य',
     Norwegian: 'Daglig Humor',
-    Thai: 'อารมณ์ขันประจำวัน'
+    Thai: 'อารมณ์ขันประจำวัน',
+    Portuguese: 'Humor Diário'
   }[language] || 'Daily Humor';
 
   return (
-    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:-translate-y-0.5">
+    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Blue Background */}
       <div className="daily-title-blue daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">

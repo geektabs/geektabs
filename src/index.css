@@ -1848,6 +1848,7 @@ button.todolist-cancel-btn span,
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
   border-color: rgba(0, 0, 0, 0.14) !important;
+  color-scheme: light !important;
 }
 
 .card-style-white .GeekTabs-card:not(.settings-tab-card *) label,
@@ -2373,6 +2374,7 @@ button.todolist-cancel-btn span,
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
+  color-scheme: dark !important;
 }
 
 .card-style-dark .GeekTabs-card:not(.settings-tab-card *) label,
@@ -2864,7 +2866,7 @@ button.todolist-cancel-btn span,
 [data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) h2,
 [data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) p,
 [data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) .word-color,
-[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) button:not(.bg-indigo-500):not(.bg-red-500):not(.bookmark-cat-delete-btn):not(.GeekTabs-btn):not(.speedtest-start-button):not(.speedtest-start-btn):not(.speedtest-action-button):not(.calculator-equals-btn):not(.calc-mode-tab-active):not(.calc-rate-pill-active):not(.calc-swap-btn) {
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) button:not(.bg-indigo-500):not(.bg-red-500):not(.bookmark-cat-delete-btn):not(.GeekTabs-btn):not(.cal-modal-save-btn):not(.speedtest-start-button):not(.speedtest-start-btn):not(.speedtest-action-button):not(.calculator-equals-btn):not(.calc-mode-tab-active):not(.calc-rate-pill-active):not(.calc-swap-btn) {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
   opacity: 1 !important;
@@ -3438,6 +3440,8 @@ button.todolist-cancel-btn span,
 .GeekTabs-card button.bg-red-500 *,
 .GeekTabs-card .GeekTabs-btn,
 .GeekTabs-card .GeekTabs-btn *,
+.calendar-container .cal-modal-save-btn,
+.calendar-container .cal-modal-save-btn *,
 .weather-huawei-style button.bg-\[\#c8102e\],
 .weather-huawei-style button.bg-\[\#c8102e\] * {
   color: #ffffff !important;
@@ -4096,4 +4100,100 @@ input[type="number"].no-spinner {
   color: #facc15 !important;
   stroke: #facc15 !important;
 }
+
+/* Calendar Add Event / Reminder Modal across Light, Dark & Glass card modes */
+.cal-add-modal .cal-modal-save-btn,
+.card-style-white .cal-add-modal .cal-modal-save-btn,
+[data-card-bg-mode="white"] .cal-add-modal .cal-modal-save-btn,
+.card-style-dark .cal-add-modal .cal-modal-save-btn,
+[data-card-bg-mode="dark"] .cal-add-modal .cal-modal-save-btn,
+.card-style-dark-glass .cal-add-modal .cal-modal-save-btn,
+[data-card-bg-mode="dark-glass"] .cal-add-modal .cal-modal-save-btn {
+  background: linear-gradient(to top right, #5438dc, #6d4aff) !important;
+  background-color: #5438dc !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: none !important;
+}
+
+.card-style-white .cal-add-modal .cal-modal-type-track,
+[data-card-bg-mode="white"] .cal-add-modal .cal-modal-type-track {
+  background: #f1f5f9 !important;
+  background-color: #f1f5f9 !important;
+}
+
+.card-style-white .cal-add-modal .cal-modal-type-active,
+[data-card-bg-mode="white"] .cal-add-modal .cal-modal-type-active {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-style-white .cal-add-modal .cal-modal-type-inactive,
+[data-card-bg-mode="white"] .cal-add-modal .cal-modal-type-inactive {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #475569 !important;
+  -webkit-text-fill-color: #475569 !important;
+}
+
+.card-style-dark .cal-add-modal .cal-modal-type-track,
+[data-card-bg-mode="dark"] .cal-add-modal .cal-modal-type-track {
+  background: #141418 !important;
+  background-color: #141418 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.card-style-dark .cal-add-modal .cal-modal-type-active,
+[data-card-bg-mode="dark"] .cal-add-modal .cal-modal-type-active {
+  background: #27272a !important;
+  background-color: #27272a !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.card-style-dark .cal-add-modal .cal-modal-type-inactive,
+[data-card-bg-mode="dark"] .cal-add-modal .cal-modal-type-inactive {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.65) !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .cal-add-modal .cal-modal-type-track {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .cal-add-modal .cal-modal-type-active {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .cal-add-modal .cal-modal-type-inactive {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.65) !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .cal-add-modal .cal-modal-type-track {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .cal-add-modal .cal-modal-type-active {
+  background: #ffffff !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .cal-add-modal .cal-modal-type-inactive {
+  background: transparent !important;
+  color: #475569 !important;
+  -webkit-text-fill-color: #475569 !important;
+}
+
 

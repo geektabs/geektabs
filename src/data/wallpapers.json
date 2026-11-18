@@ -1,98 +1,222 @@
 [
   {
+    "id": "def-travel-1",
+    "title": "Maldives Tropical Palm Coast",
+    "category": "Travel",
+    "url": "https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-travel-2",
+    "title": "Santorini Blue-Domed Cliffs",
+    "category": "Travel",
+    "url": "https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-travel-3",
+    "title": "Misty Coastal Mountain Bay",
+    "category": "Travel",
+    "url": "https://images.pexels.com/photos/30604060/pexels-photo-30604060.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-travel-4",
+    "title": "Machu Picchu Andes Citadel",
+    "category": "Travel",
+    "url": "https://images.pexels.com/photos/37885473/pexels-photo-37885473.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
     "id": "def-nature-1",
-    "title": "Misty Alpine Lake",
+    "title": "Starry Snow-Capped Mountains",
     "category": "Nature",
-    "url": "https://images.unsplash.com/photo-1506744626753-dba37c25a1f1?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-nature-2",
-    "title": "Sunlit Mountain Peaks",
+    "title": "Mount Fuji Twilight & Maple Leaves",
     "category": "Nature",
-    "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-nature-3",
-    "title": "Deep Autumn Forest",
+    "title": "Aurora Borealis Over Arctic Peaks",
     "category": "Nature",
-    "url": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/1933239/pexels-photo-1933239.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-nature-4",
+    "title": "Alpine Peaks & Turquoise Lake",
+    "category": "Nature",
+    "url": "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-abstract-1",
-    "title": "Chromatic Liquid Wave",
+    "title": "Swirling Emerald Smoke",
     "category": "Abstract",
-    "url": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/28648054/pexels-photo-28648054.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-abstract-2",
-    "title": "Neon Iridescent Flow",
+    "title": "Iridescent Cosmic Gradient",
     "category": "Abstract",
-    "url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064"
+    "url": "https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-abstract-3",
-    "title": "Minimal Gradient Waves",
+    "title": "Purple & Lilac Fluid Swirls",
     "category": "Abstract",
-    "url": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-abstract-4",
+    "title": "Flowing Violet Blue Waves",
+    "category": "Abstract",
+    "url": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-science-1",
-    "title": "Earth From Orbit",
+    "title": "Deep Space Nebula & Milky Way",
     "category": "Science",
-    "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072"
+    "url": "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-science-2",
-    "title": "Cosmic Deep Space Nebula",
+    "title": "Milky Way Night Starfield",
     "category": "Science",
-    "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-science-3",
+    "title": "Crimson Lunar Eclipse Horizon",
+    "category": "Science",
+    "url": "https://images.pexels.com/photos/681467/pexels-photo-681467.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-science-4",
+    "title": "Microprocessor Circuit Board Macro",
+    "category": "Science",
+    "url": "https://images.pexels.com/photos/36169774/pexels-photo-36169774.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-architecture-1",
-    "title": "Futuristic Glass Facade",
+    "title": "Modern Geometric Glass Architecture",
     "category": "Architecture",
-    "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/1816030/pexels-photo-1816030.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-architecture-2",
-    "title": "Spiral Geometric Spiral",
+    "title": "Minimalist Spiral Staircase & Shadows",
     "category": "Architecture",
-    "url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069"
+    "url": "https://images.pexels.com/photos/39625372/pexels-photo-39625372.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-architecture-3",
+    "title": "Modern Glass Skyscraper",
+    "category": "Architecture",
+    "url": "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-architecture-4",
+    "title": "Gothic Cathedral Vaulted Ceiling",
+    "category": "Architecture",
+    "url": "https://images.pexels.com/photos/37972696/pexels-photo-37972696.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-creation-1",
-    "title": "Creative Studio Workspace",
+    "title": "Vibrant Acrylic Canvas",
     "category": "Creation",
-    "url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=2074"
+    "url": "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-creation-2",
-    "title": "Vibrant Powder Explosion",
+    "title": "Artist Paint Palette & Brushes",
     "category": "Creation",
-    "url": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-creation-3",
+    "title": "Watercolor Palette & Artist Brushes",
+    "category": "Creation",
+    "url": "https://images.pexels.com/photos/19196316/pexels-photo-19196316.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-creation-4",
+    "title": "Golden Textured Oil Painting Canvas",
+    "category": "Creation",
+    "url": "https://images.pexels.com/photos/29412595/pexels-photo-29412595.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-holiday-1",
-    "title": "Festive Golden Glow",
+    "title": "Golden Fireworks in Night Sky",
     "category": "Holiday",
-    "url": "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=2069"
+    "url": "https://images.pexels.com/photos/27051699/pexels-photo-27051699.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-holiday-2",
-    "title": "Warm Cozy Winter Lights",
+    "title": "Warm Festive Holiday Candles",
     "category": "Holiday",
-    "url": "https://images.unsplash.com/photo-1543258103-a62bdc069871?q=80&w=2069"
+    "url": "https://images.pexels.com/photos/14284269/pexels-photo-14284269.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-holiday-3",
+    "title": "Festive Holiday Gift Boxes",
+    "category": "Holiday",
+    "url": "https://images.pexels.com/photos/1303081/pexels-photo-1303081.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-holiday-4",
+    "title": "Christmas Tree Snowflake Ornament",
+    "category": "Holiday",
+    "url": "https://images.pexels.com/photos/257909/pexels-photo-257909.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-animal-1",
-    "title": "Majestic Snow Leopard",
+    "title": "Red Fox in Winter Snow",
     "category": "Animal",
-    "url": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/35986459/pexels-photo-35986459.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-animal-2",
-    "title": "Wild Eagle in Flight",
+    "title": "Savannah Lion in Lush Grass",
     "category": "Animal",
-    "url": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?q=80&w=2070"
+    "url": "https://images.pexels.com/photos/32196368/pexels-photo-32196368.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-animal-3",
+    "title": "Golden Puppies in Meadow",
+    "category": "Animal",
+    "url": "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-animal-4",
+    "title": "Bengal Tiger Resting in Water",
+    "category": "Animal",
+    "url": "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=srgb&w=7680"
+  },
+  {
+    "id": "def-video-sea-1",
+    "title": "Ocean Waves Rolling on Beach (4K)",
+    "category": "Video",
+    "mediaType": "video",
+    "url": "https://assets.mixkit.co/videos/5016/5016-2160.mp4"
+  },
+  {
+    "id": "def-video-waterfall-1",
+    "title": "Rocky Mountain Waterfall (4K)",
+    "category": "Video",
+    "mediaType": "video",
+    "url": "https://assets.mixkit.co/videos/25542/25542-2160.mp4"
+  },
+  {
+    "id": "def-video-mountain-1",
+    "title": "Swiss Alps Mountain Peaks (4K)",
+    "category": "Video",
+    "mediaType": "video",
+    "url": "https://assets.mixkit.co/videos/4132/4132-2160.mp4"
+  },
+  {
+    "id": "def-video-bay-1",
+    "title": "Turquoise Ocean Bay Aerial (4K)",
+    "category": "Video",
+    "mediaType": "video",
+    "url": "https://assets.mixkit.co/videos/5008/5008-2160.mp4"
   }
 ]

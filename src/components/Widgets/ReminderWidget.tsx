@@ -16,6 +16,7 @@ import remindersFinnish from '../../data/daily-reminders-Finnish.json';
 import remindersHindi from '../../data/daily-reminders-Hindi.json';
 import remindersNorwegian from '../../data/daily-reminders-Norwegian.json';
 import remindersThai from '../../data/daily-reminders-Thai.json';
+import remindersPortuguese from '../../data/daily-reminders-Portuguese.json';
 
 const remindersMap: Record<string, string[]> = {
   English: remindersEnglish,
@@ -34,6 +35,7 @@ const remindersMap: Record<string, string[]> = {
   Hindi: remindersHindi,
   Norwegian: remindersNorwegian,
   Thai: remindersThai,
+  Portuguese: remindersPortuguese,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_reminder_history';
@@ -132,10 +134,11 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
       Hindi: 'दैनिक अनुस्मारक',
       Norwegian: 'Daglig Påminnelse',
       Thai: 'ข้อคิดเตือนใจประจำวัน',
+      Portuguese: 'Lembrete Diário',
     }[language] || 'Daily Reminder';
 
   return (
-    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:-translate-y-0.5">
+    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Rose Red Background */}
       <div className="daily-title-rose daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">

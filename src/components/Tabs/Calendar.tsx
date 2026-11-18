@@ -28,6 +28,7 @@ const COUNTRIES = [
   { id: 'NLD', name: 'Netherlands', timezone: 'Europe/Amsterdam' },
   { id: 'NZL', name: 'New Zealand', timezone: 'Pacific/Auckland' },
   { id: 'NOR', name: 'Norway', timezone: 'Europe/Oslo' },
+  { id: 'PRT', name: 'Portugal', timezone: 'Europe/Lisbon' },
   { id: 'RUS', name: 'Russia', timezone: 'Europe/Moscow' },
   { id: 'SGP', name: 'Singapore', timezone: 'Asia/Singapore' },
   { id: 'ESP', name: 'Spain', timezone: 'Europe/Madrid' },
@@ -587,6 +588,22 @@ const getCountryHolidaysForYear = (countryId: string, year: number): Record<stri
       setHol('12-26', 'Second Day of Christmas');
       break;
     }
+    case 'PRT': {
+      setHol('01-01', "New Year's Day");
+      setHol(goodFriday, 'Good Friday');
+      setHol(easterSunday, 'Easter Sunday');
+      setHol('04-25', 'Freedom Day');
+      setHol('05-01', 'Labour Day');
+      setHol(formatMMDD(addDaysToDate(easter, 60)), 'Corpus Christi');
+      setHol('06-10', 'Portugal Day');
+      setHol('08-15', 'Assumption of Mary');
+      setHol('10-05', 'Republic Day');
+      setHol('11-01', "All Saints' Day");
+      setHol('12-01', 'Restoration of Independence');
+      setHol('12-08', 'Immaculate Conception');
+      setHol('12-25', 'Christmas Day');
+      break;
+    }
     case 'THA': {
       setHol('01-01', "New Year's Day");
       setHol('04-06', 'Chakri Memorial Day');
@@ -629,6 +646,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Netherlands',
     NZL: 'New Zealand',
     NOR: 'Norway',
+    PRT: 'Portugal',
     RUS: 'Russia',
     SGP: 'Singapore',
     ESP: 'Spain',
@@ -653,6 +671,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: '네덜란드',
     NZL: '뉴질랜드',
     NOR: '노르웨이',
+    PRT: '포르투갈',
     RUS: '러시아',
     SGP: '싱가포르',
     ESP: '스페인',
@@ -677,6 +696,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Países Bajos',
     NZL: 'Nueva Zelanda',
     NOR: 'Noruega',
+    PRT: 'Portugal',
     RUS: 'Rusia',
     SGP: 'Singapur',
     ESP: 'España',
@@ -701,6 +721,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Pays-Bas',
     NZL: 'Nouvelle-Zélande',
     NOR: 'Norvège',
+    PRT: 'Portugal',
     RUS: 'Russie',
     SGP: 'Singapour',
     ESP: 'Espagne',
@@ -725,6 +746,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Niederlande',
     NZL: 'Neuseeland',
     NOR: 'Norwegen',
+    PRT: 'Portugal',
     RUS: 'Russland',
     SGP: 'Singapur',
     ESP: 'Spanien',
@@ -749,6 +771,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: '荷兰',
     NZL: '新西兰',
     NOR: '挪威',
+    PRT: '葡萄牙',
     RUS: '俄罗斯',
     SGP: '新加坡',
     ESP: '西班牙',
@@ -773,6 +796,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'オランダ',
     NZL: 'ニュージーランド',
     NOR: 'ノルウェー',
+    PRT: 'ポルトガル',
     RUS: 'ロシア',
     SGP: 'シンガポール',
     ESP: 'スペイン',
@@ -797,6 +821,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Paesi Bassi',
     NZL: 'Nuova Zelanda',
     NOR: 'Norvegia',
+    PRT: 'Portogallo',
     RUS: 'Russia',
     SGP: 'Singapore',
     ESP: 'Spagna',
@@ -821,6 +846,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Нидерланды',
     NZL: 'Новая Зеландия',
     NOR: 'Норвегия',
+    PRT: 'Португалия',
     RUS: 'Россия',
     SGP: 'Сингапур',
     ESP: 'Испания',
@@ -845,6 +871,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Holland',
     NZL: 'Neiséiland',
     NOR: 'Norwegen',
+    PRT: 'Portugal',
     RUS: 'Russland',
     SGP: 'Singapur',
     ESP: 'Spuenien',
@@ -869,6 +896,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Nederland',
     NZL: 'Nieuw-Zeeland',
     NOR: 'Noorwegen',
+    PRT: 'Portugal',
     RUS: 'Rusland',
     SGP: 'Singapore',
     ESP: 'Spanje',
@@ -893,6 +921,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Nederländerna',
     NZL: 'Nya Zeeland',
     NOR: 'Norge',
+    PRT: 'Portugal',
     RUS: 'Ryssland',
     SGP: 'Singapore',
     ESP: 'Spanien',
@@ -917,6 +946,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Alankomaat',
     NZL: 'Uusi-Seelanti',
     NOR: 'Norja',
+    PRT: 'Portugali',
     RUS: 'Venäjä',
     SGP: 'Singapore',
     ESP: 'Espanja',
@@ -941,6 +971,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'नीदरलैंड्स',
     NZL: 'न्यूज़ीलैंड',
     NOR: 'नॉर्वे',
+    PRT: 'पुर्तगाल',
     RUS: 'रूस',
     SGP: 'सिंगापुर',
     ESP: 'स्पेन',
@@ -965,6 +996,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'Nederland',
     NZL: 'New Zealand',
     NOR: 'Norge',
+    PRT: 'Portugal',
     RUS: 'Russland',
     SGP: 'Singapore',
     ESP: 'Spania',
@@ -989,6 +1021,7 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     NLD: 'เนเธอร์แลนด์',
     NZL: 'นิวซีแลนด์',
     NOR: 'นอร์เวย์',
+    PRT: 'โปรตุเกส',
     RUS: 'รัสเซีย',
     SGP: 'สิงคโปร์',
     ESP: 'สเปน',
@@ -996,6 +1029,31 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     CHE: 'สวิตเซอร์แลนด์',
     THA: 'ไทย',
     USA: 'สหรัฐอเมริกา',
+  },
+  Portuguese: {
+    AUS: 'Austrália',
+    CHN: 'China',
+    FIN: 'Finlândia',
+    FRA: 'França',
+    DEU: 'Alemanha',
+    UK: 'Grã-Bretanha',
+    IND: 'Índia',
+    ITA: 'Itália',
+    JPN: 'Japão',
+    KOR: 'Coreia',
+    LUX: 'Luxemburgo',
+    MEX: 'México',
+    NLD: 'Países Baixos',
+    NZL: 'Nova Zelândia',
+    NOR: 'Noruega',
+    PRT: 'Portugal',
+    RUS: 'Rússia',
+    SGP: 'Singapura',
+    ESP: 'Espanha',
+    SWE: 'Suécia',
+    CHE: 'Suíça',
+    THA: 'Tailândia',
+    USA: 'Estados Unidos',
   },
 };
 
@@ -1018,6 +1076,7 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       Hindi: 'समान समय क्षेत्र',
       Norwegian: 'Samme tidssone',
       Thai: 'เขตเวลาเดียวกัน',
+      Portuguese: 'Mesmo fuso horário',
     };
     return sameMap[lang] || sameMap.English;
   }
@@ -1085,6 +1144,10 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       return diffHours > 0
         ? `${c1Name} เร็วกว่า ${c2Name} ${formatted} ชั่วโมง`
         : `${c1Name} ช้ากว่า ${c2Name} ${formatted} ชั่วโมง`;
+    case 'Portuguese':
+      return diffHours > 0
+        ? `${c1Name} está ${formatted} h à frente de ${c2Name}`
+        : `${c1Name} está ${formatted} h atrás de ${c2Name}`;
     default:
       return diffHours > 0 
         ? `${c1Name} is ${formatted} hr ahead of ${c2Name}`
@@ -1119,6 +1182,7 @@ const ISO_TO_COUNTRY_ID: Record<string, string> = {
   IN: 'IND',
   CH: 'CHE',
   TH: 'THA',
+  PT: 'PRT',
   AU: 'AUS',
 };
 
@@ -1183,6 +1247,7 @@ const guessCountryFromBrowserTimezone = (): string => {
     if (tz === 'Europe/Rome') return 'ITA';
     if (tz === 'Europe/Luxembourg') return 'LUX';
     if (tz === 'Europe/Madrid') return 'ESP';
+    if (tz === 'Europe/Lisbon' || tz === 'Atlantic/Madeira' || tz === 'Atlantic/Azores') return 'PRT';
     if (tz === 'Europe/Zurich') return 'CHE';
     if (
       tz.startsWith('Europe/Moscow') ||
@@ -1286,6 +1351,7 @@ const WEEKDAYS: Record<string, string[]> = {
   Hindi: ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'],
   Norwegian: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø'],
   Thai: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
+  Portuguese: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
 };
 
 const CAL_T: Record<string, Record<string, string>> = {
@@ -1577,6 +1643,24 @@ const CAL_T: Record<string, Record<string, string>> = {
     today: 'วันนี้',
     ipLocation: 'ตำแหน่ง IP',
   },
+  Portuguese: {
+    worldDates: 'Horários Mundiais',
+    events: 'Eventos e Lembretes',
+    holidaysMonth: 'Feriados deste Mês',
+    noEvents: 'Sem Eventos',
+    addEvent: 'Adicionar ao Calendário',
+    event: 'Evento',
+    reminder: 'Lembrete',
+    title: 'Título',
+    cancel: 'Cancelar',
+    save: 'Guardar',
+    deleteEvent: 'Eliminar Evento',
+    deleteConfirm: 'Tem a certeza de que deseja eliminar este evento?',
+    singleCalNone: '1 País (Nenhum)',
+    globalDefault: 'Calendário Oficial Global',
+    today: 'Hoje',
+    ipLocation: 'Localização IP',
+  },
 };
 
 const LOCALES: Record<string, string> = {
@@ -1596,6 +1680,7 @@ const LOCALES: Record<string, string> = {
   Hindi: 'hi-IN',
   Norwegian: 'nb-NO',
   Thai: 'th-TH',
+  Portuguese: 'pt-PT',
 };
 
 export default function Calendar({ language = 'English' }: CalendarProps) {
@@ -2261,15 +2346,35 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative z-10 GeekTabs-card p-8 rounded-[3rem] w-full max-w-sm shadow-2xl"
+              className="relative z-10 GeekTabs-card cal-add-modal p-8 rounded-[3rem] w-full max-w-sm shadow-2xl"
             >
               <h2 className="text-2xl font-bold word-color mb-1">{(CAL_T[language] || CAL_T['English']).addEvent}</h2>
               <p className="text-[10px] uppercase font-bold tracking-widest word-color opacity-40 mb-6">{selectedDateStr}</p>
               
               <form onSubmit={handleAddEvent} className="space-y-4">
-                <div className="flex gap-2 p-1 bg-black/5 dark:bg-white/5 rounded-2xl">
-                  <button type="button" onClick={() => setNewEvent({...newEvent, type: 'event'})} className={`flex-1 py-2 text-xs font-bold rounded-xl transition-colors ${newEvent.type === 'event' ? 'bg-white dark:bg-zinc-800 word-color shadow-sm' : 'word-color opacity-50'}`}>{(CAL_T[language] || CAL_T['English']).event}</button>
-                  <button type="button" onClick={() => setNewEvent({...newEvent, type: 'reminder'})} className={`flex-1 py-2 text-xs font-bold rounded-xl transition-colors ${newEvent.type === 'reminder' ? 'bg-white dark:bg-zinc-800 word-color shadow-sm' : 'word-color opacity-50'}`}>{(CAL_T[language] || CAL_T['English']).reminder}</button>
+                <div className="cal-modal-type-track flex gap-2 p-1 bg-black/5 dark:bg-white/5 rounded-2xl">
+                  <button
+                    type="button"
+                    onClick={() => setNewEvent({...newEvent, type: 'event'})}
+                    className={`cal-modal-type-btn flex-1 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+                      newEvent.type === 'event'
+                        ? 'cal-modal-type-active bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-sm'
+                        : 'cal-modal-type-inactive text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {(CAL_T[language] || CAL_T['English']).event}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setNewEvent({...newEvent, type: 'reminder'})}
+                    className={`cal-modal-type-btn flex-1 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+                      newEvent.type === 'reminder'
+                        ? 'cal-modal-type-active bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-sm'
+                        : 'cal-modal-type-inactive text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {(CAL_T[language] || CAL_T['English']).reminder}
+                  </button>
                 </div>
 
                  <div>
@@ -2293,8 +2398,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                 </div>
 
                 <div className="flex gap-3 pt-4">
-                  <button type="button" onClick={() => setShowAddModal(false)} className="flex-1 py-4 bg-black/5 dark:bg-white/5 word-color font-bold text-xs uppercase tracking-widest rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-colors">{(CAL_T[language] || CAL_T['English']).cancel}</button>
-                  <button type="submit" className="flex-1 py-4 GeekTabs-btn font-bold text-xs uppercase tracking-widest rounded-2xl">{(CAL_T[language] || CAL_T['English']).save}</button>
+                  <button type="button" onClick={() => setShowAddModal(false)} className="flex-1 py-4 bg-black/5 dark:bg-white/5 word-color font-bold text-xs uppercase tracking-widest rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-pointer">{(CAL_T[language] || CAL_T['English']).cancel}</button>
+                  <button type="submit" className="cal-modal-save-btn flex-1 py-4 bg-gradient-to-tr from-[#5438dc] to-[#6d4aff] hover:opacity-95 text-white font-bold text-xs uppercase tracking-widest rounded-2xl shadow-md shadow-[#5438dc]/25 transition-all cursor-pointer">{(CAL_T[language] || CAL_T['English']).save}</button>
                 </div>
               </form>
             </motion.div>

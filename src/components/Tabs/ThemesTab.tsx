@@ -218,6 +218,19 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupRegular: 'สีทั่วไป',
     groupDark: 'สีเข้ม',
     groupGradient: 'มิกซ์'
+  },
+  Portuguese: {
+    title: 'Motor de Temas',
+    subtitle: 'CONFIGURAÇÃO DE CORES PREDEFINIDAS',
+    panelHeader: 'Paletas de Cores Predefinidas',
+    panelSub: 'selecione uma cor para a sua favorita',
+    resetButton: 'Repor para Ondas Pastel',
+    restoreWhiteButton: 'Restaurar Fundo Predefinido',
+    groupDefault: 'predefinido',
+    groupLight: 'claro',
+    groupRegular: 'regular',
+    groupDark: 'escuro',
+    groupGradient: 'Mix'
   }
 };
 

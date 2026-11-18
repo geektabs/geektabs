@@ -9,7 +9,7 @@ export interface WeatherSettingsTabProps {
 
 const WEATHER_SETTINGS_T: Record<string, Record<string, string>> = {
   English: {
-    title: 'Weather Settings',
+    title: 'Weather Setting',
     subtitle: 'Configure temperature units and forecast display interval preferences.',
     unitTitle: 'Temperature Unit',
     unitDesc: 'Select Celsius (°C) or Fahrenheit (°F) for current weather and forecasts.',
@@ -295,6 +295,24 @@ const WEATHER_SETTINGS_T: Record<string, Record<string, string>> = {
     dailyDesc: 'แสดงสภาพอากาศและอุณหภูมิสูงสุด/ต่ำสุดล่วงหน้า 7 วัน',
     previewTitle: 'ตัวอย่างการตั้งค่า',
     previewDesc: 'การเปลี่ยนแปลงจะถูกบันทึกอัตโนมัติและแสดงผลบนวิดเจ็ตหน้าแรกทันที'
+  },
+  Portuguese: {
+    title: 'Definições de Meteorologia',
+    subtitle: 'CONFIGURAR UNIDADE DE TEMPERATURA E INTERVALO DE PREVISÃO',
+    unitTitle: 'Unidade de Temperatura',
+    unitDesc: 'Escolha entre Celsius (°C) ou Fahrenheit (°F) para a meteorologia atual e previsão.',
+    celsius: 'Celsius (°C)',
+    celsiusDesc: 'Unidade métrica padrão utilizada na maioria dos países',
+    fahrenheit: 'Fahrenheit (°F)',
+    fahrenheitDesc: 'Unidade padrão utilizada sobretudo nos Estados Unidos',
+    forecastModeTitle: 'Modo de Previsão',
+    forecastModeDesc: 'Escolha se pretende ver os detalhes da previsão por hora ou por dia.',
+    hourly: 'Previsão por Hora',
+    hourlyDesc: 'Mostra as próximas 12 horas com detalhes de estado do tempo e temperatura',
+    daily: 'Previsão por Dia',
+    dailyDesc: 'Mostra os próximos 7 dias com temperaturas máximas e mínimas diárias',
+    previewTitle: 'Pré-visualização em Direto',
+    previewDesc: 'As alterações são guardadas automaticamente e aplicadas ao widget na página inicial.'
   }
 };
 

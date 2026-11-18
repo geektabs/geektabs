@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { detectWallpaperMediaType, getUserWallpaperById, isGifWallpaperUrl, upgradeWallpaperUrlTo8K } from '../../services/wallpaperStorage';
 
 interface WallpaperProps {
   currentTheme: string;
@@ -90,31 +91,72 @@ export const SOLIDS_MAP: Record<string, string> = {
 };
 
 export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: string; isDarkMode: boolean }) {
-  const isCustom = currentTheme.startsWith('data:image') || 
-                   currentTheme.startsWith('http://') || 
-                   currentTheme.startsWith('https://') || 
-                   currentTheme.startsWith('/') || 
-                   currentTheme.startsWith('blob:');
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [resolvedIdb, setResolvedIdb] = useState<{
+    themeKey: string;
+    url: string;
+    mediaType: 'image' | 'video';
+  } | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (currentTheme.startsWith('idb-wall://')) {
+      const id = currentTheme.replace('idb-wall://', '');
+      getUserWallpaperById(id).then((wp) => {
+        if (!cancelled && wp?.url && !isGifWallpaperUrl(wp.url)) {
+          setResolvedIdb({
+            themeKey: currentTheme,
+            url: wp.url,
+            mediaType: detectWallpaperMediaType(wp.url, wp.mediaType),
+          });
+        }
+      });
+    } else {
+      setResolvedIdb(null);
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [currentTheme]);
+
+  const isIdbRef = currentTheme.startsWith('idb-wall://');
+  const isCustom =
+    !isGifWallpaperUrl(currentTheme) &&
+    (isIdbRef ||
+      currentTheme.startsWith('data:image') ||
+      currentTheme.startsWith('data:video') ||
+      currentTheme.startsWith('http://') ||
+      currentTheme.startsWith('https://') ||
+      currentTheme.startsWith('/') ||
+      currentTheme.startsWith('blob:'));
   const isHex = currentTheme.startsWith('#');
   const isGradient = GRADIENTS_MAP[currentTheme];
   const isSolid = SOLIDS_MAP[currentTheme];
-  
+
   const theme = WALLPAPERS.find(w => w.id === currentTheme) || 
                (isCustom ? { id: 'custom', overlay: currentTheme } : WALLPAPERS[0]);
 
   let backgroundStyle: React.CSSProperties = {};
   let photoSrc: string | null = null;
+  let mediaType: 'image' | 'video' = 'image';
   let photoFallbackColor = '#063354';
-  const isScrollableDefaultPhoto = currentTheme === 'default-earth' || currentTheme === 'pastel-waves';
 
   if (isCustom) {
-    let finalUrl = currentTheme;
-    // Upgrade Unsplash URLs to 8K resolution
-    if (finalUrl.includes('images.unsplash.com')) {
-      finalUrl = finalUrl.replace('q=80', 'q=100').replace(/w=\d+/, 'w=7680');
+    if (isIdbRef) {
+      if (resolvedIdb && resolvedIdb.themeKey === currentTheme) {
+        photoSrc = resolvedIdb.url;
+        mediaType = resolvedIdb.mediaType;
+      }
+    } else {
+      const finalUrl = upgradeWallpaperUrlTo8K(currentTheme);
+      photoSrc = finalUrl;
+      mediaType = detectWallpaperMediaType(finalUrl);
     }
-    photoSrc = finalUrl;
     photoFallbackColor = '#0c0d12';
+  } else if (isGifWallpaperUrl(currentTheme)) {
+    // Do not allow GIF as full-site background; fall back to default earth
+    photoSrc = '/assets/aistudio/Gemini_Generated_Image_earth_8ba148bc.jpg';
+    photoFallbackColor = '#063354';
   } else if (isHex) {
     backgroundStyle = { backgroundColor: currentTheme };
   } else if (currentTheme === 'default-earth') {
@@ -140,7 +182,7 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
         radial-gradient(ellipse 65% 50% at 12% 82%, rgba(237, 233, 254, 0.4) 0%, transparent 65%),
         radial-gradient(ellipse 65% 50% at 88% 85%, rgba(186, 230, 253, 0.4) 0%, transparent 65%)
       `,
-      backgroundAttachment: 'scroll',
+      backgroundAttachment: 'fixed',
       minHeight: '100%',
     };
   } else if (currentTheme === 'light-grey' || currentTheme === 'light-slate') {
@@ -161,10 +203,23 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
 
   return (
     <div
-      className={`${
-        isScrollableDefaultPhoto ? 'absolute inset-0 w-full h-full' : 'fixed inset-0 w-full h-full'
-      } z-0 overflow-hidden transition-colors duration-500 pointer-events-none`}
+      className="fixed inset-0 w-full h-full z-0 overflow-hidden transition-colors duration-500 pointer-events-none"
     >
+      {/* Real-time GPU 8K Ultra-HD clarity & edge sharpening filter for photos and videos */}
+      <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+        <defs>
+          <filter id="wallpaper-8k-enhance" colorInterpolationFilters="sRGB">
+            <feConvolveMatrix
+              order="3"
+              kernelMatrix="0 -0.10 0 -0.10 1.40 -0.10 0 -0.10 0"
+              divisor="1"
+              bias="0"
+              edgeMode="duplicate"
+              preserveAlpha="true"
+            />
+          </filter>
+        </defs>
+      </svg>
       <AnimatePresence mode="wait">
         <motion.div
           key={currentTheme + (isDarkMode ? 'dark' : 'light')}
@@ -174,51 +229,34 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
           transition={{ duration: 0.6 }}
           className="absolute inset-0 w-full h-full"
           style={
-            currentTheme === 'default-earth'
-              ? { background: 'linear-gradient(180deg, #063354 0%, #052b48 55%, #031c31 100%)' }
-              : photoSrc
+            photoSrc
               ? { backgroundColor: photoFallbackColor }
               : backgroundStyle
           }
         >
-          {photoSrc && currentTheme === 'default-earth' && (
-            <img
+          {photoSrc && mediaType === 'video' && (
+            <video
+              ref={videoRef}
+              key={photoSrc}
               src={photoSrc}
-              alt=""
-              decoding="sync"
-              fetchPriority="high"
-              className="block w-full h-screen min-h-[700px] max-h-[1120px] object-cover object-center select-none pointer-events-none"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              preload="auto"
+              onCanPlay={() => {
+                videoRef.current?.play().catch(() => {});
+              }}
+              className="w-full h-full object-cover object-center select-none pointer-events-none"
               style={{
                 transform: 'translateZ(0)',
                 backfaceVisibility: 'hidden',
-                filter: 'contrast(1.03) saturate(1.04)',
-                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 72%, rgba(0,0,0,0) 100%)',
+                filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
               }}
             />
           )}
-          {photoSrc && currentTheme === 'pastel-waves' && (
-            <div className="flex flex-col w-full">
-              {[0, 1, 2, 3].map((tileIndex) => (
-                <img
-                  key={tileIndex}
-                  src={photoSrc}
-                  alt=""
-                  decoding="sync"
-                  fetchPriority={tileIndex === 0 ? 'high' : 'auto'}
-                  className={`block w-full h-screen min-h-[700px] shrink-0 object-cover object-center select-none pointer-events-none ${
-                    tileIndex > 0 ? '-mt-px' : ''
-                  }`}
-                  style={{
-                    transform: tileIndex % 2 === 1 ? 'scaleY(-1) translateZ(0)' : 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    filter: 'contrast(1.03) saturate(1.04)',
-                  }}
-                />
-              ))}
-            </div>
-          )}
-          {photoSrc && !isScrollableDefaultPhoto && (
+          {photoSrc && mediaType !== 'video' && (
             <img
               src={photoSrc}
               alt=""
@@ -228,7 +266,8 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
               style={{
                 transform: 'translateZ(0)',
                 backfaceVisibility: 'hidden',
-                filter: 'contrast(1.03) saturate(1.04)',
+                imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
+                filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
               }}
             />
           )}

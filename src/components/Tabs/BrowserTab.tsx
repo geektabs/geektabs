@@ -821,6 +821,57 @@ const browserGuides: Record<string, any> = {
         'วาง URL ที่คัดลอกไว้แล้วคลิก "เพิ่ม"'
       ]
     }
+  },
+  Portuguese: {
+    title: 'Definir como Página Inicial',
+    subtitle: 'Defina este painel como a sua página inicial ou separador padrão para manter tudo organizado ao abrir o navegador.',
+    copyButton: 'Copiar URL',
+    copiedText: 'Copiado!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Abra o Chrome, clique no menu de três pontos no canto superior direito e selecione Definições.',
+        'Vá a "Ao iniciar" na barra lateral esquerda.',
+        'Selecione "Abrir uma página específica ou conjunto de páginas" e clique em "Adicionar uma nova página".',
+        'Cole o URL copiado acima e clique em "Adicionar".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Abra o Edge, clique no menu no canto superior direito e selecione Definições.',
+        'Clique em "Iniciar, página inicial e novos separadores" à esquerda.',
+        'Em "Quando o Edge iniciar", selecione "Abrir estas páginas".',
+        'Clique em "Adicionar uma nova página", cole o URL e clique em "Adicionar".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Abra o Firefox, clique no botão de menu no canto superior direito e selecione Definições.',
+        'Clique em "Início" no menu da esquerda.',
+        'Em "Página inicial e novas janelas", selecione "URLs personalizados...".',
+        'Cole o URL copiado acima e prima Enter para guardar.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Abra o Safari e escolha "Safari > Definições" na barra de menu.',
+        'No separador "Geral", procure o campo "Página inicial".',
+        'Defina "As novas janelas abrem com" para "Página inicial".',
+        'Cole o URL desta página e confirme.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Abra o Brave, clique no menu no canto superior direito e selecione Definições.',
+        'Navegue até "Ao iniciar" no menu da esquerda.',
+        'Escolha "Abrir uma página específica ou conjunto de páginas" e clique em "Adicionar uma nova página".',
+        'Cole o URL copiado acima e clique em "Adicionar".'
+      ]
+    }
   }
 };
 

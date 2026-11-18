@@ -541,6 +541,39 @@ const appInstallGuides: Record<string, {
         'เปิด GeekTabs ในหน้าต่างแอปแยกได้ทันทีจากหน้าจอแท็บเล็ตของคุณ'
       ]
     }
+  },
+  Portuguese: {
+    pageTitle: 'Transferir como Aplicação (PC / Telemóvel / Tablet)',
+    pageSubtitle: 'Instale o GeekTabs como uma aplicação autónoma com o seu próprio logótipo no ambiente de trabalho ou ecrã inicial.',
+    addressBarHint: 'Dica para Computador: Procure o ícone de instalação no lado direito da barra de endereço do seu navegador.',
+    pc: {
+      label: 'PC / Mac (Computador)',
+      heading: 'Transferir no PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Abra o GeekTabs no Chrome, Edge ou Brave no seu computador.',
+        'Clique no ícone "Instalar GeekTabs Dashboard" no lado direito da barra de endereço.',
+        'Ou clique no botão "Instalar App" acima, ou abra o menu ⋮ → Guardar e partilhar → Instalar página como aplicação.',
+        'Clique em "Instalar" para colocar o logótipo do GeekTabs no seu ambiente de trabalho ou Dock.'
+      ]
+    },
+    phone: {
+      label: 'Telemóvel (iOS e Android)',
+      heading: 'Adicionar logótipo da App no Telemóvel',
+      steps: [
+        'iPhone (Safari): Toque em Partilhar → "Adicionar ao Ecrã Principal" → "Adicionar".',
+        'Android (Chrome / Edge): Toque em "Instalar App" acima ou no menu (⋮) → "Instalar aplicação".',
+        'Inicie o GeekTabs diretamente a partir do logótipo no ecrã inicial em modo de ecrã inteiro.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad e Android)',
+      heading: 'Adicionar logótipo da App no Tablet',
+      steps: [
+        'iPad (Safari): Toque em Partilhar no canto superior direito → "Adicionar ao Ecrã Principal" → "Adicionar".',
+        'Tablet Android (Chrome / Edge): Toque no ícone de instalação na barra de endereço ou ⋮ → "Instalar aplicação".',
+        'Utilize o GeekTabs na sua própria janela de aplicação diretamente a partir do ecrã inicial do tablet.'
+      ]
+    }
   }
 };
 

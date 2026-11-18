@@ -16,6 +16,7 @@ import tipsFinnish from '../../data/life-tips-Finnish.json';
 import tipsHindi from '../../data/life-tips-Hindi.json';
 import tipsNorwegian from '../../data/life-tips-Norwegian.json';
 import tipsThai from '../../data/life-tips-Thai.json';
+import tipsPortuguese from '../../data/life-tips-Portuguese.json';
 
 const tipsMap: Record<string, string[]> = {
   English: tipsEnglish,
@@ -34,6 +35,7 @@ const tipsMap: Record<string, string[]> = {
   Hindi: tipsHindi,
   Norwegian: tipsNorwegian,
   Thai: tipsThai,
+  Portuguese: tipsPortuguese,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_tip_history';
@@ -130,11 +132,12 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
     Finnish: 'Päivän Vinkit',
     Hindi: 'दैनिक सुझाव',
     Norwegian: 'Daglige Tips',
-    Thai: 'เคล็ดลับประจำวัน'
+    Thai: 'เคล็ดลับประจำวัน',
+    Portuguese: 'Dicas Diárias'
   }[language] || 'Daily Tips';
 
   return (
-    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-all group hover:-translate-y-0.5">
+    <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Green Background */}
       <div className="daily-title-green daily-card-title-section w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-2.5">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">

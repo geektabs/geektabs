@@ -375,6 +375,27 @@ const NOTES_T: Record<string, Record<string, string>> = {
     manageSectionMsg: 'คุณต้องการแก้ไขหรือลบหมวดหมู่นี้หรือไม่?',
     editSectionBtn: 'แก้ไข',
     deleteSectionBtn: 'ลบ'
+  },
+  Portuguese: {
+    cancel: 'CANCELAR',
+    create: 'CRIAR',
+    activeSpaces: 'espaços ativos',
+    sheetsList: 'Notas',
+    filterSheets: 'Filtrar notas...',
+    noPageEntries: 'Nenhuma nota nesta secção',
+    untitledPage: 'Nota sem título',
+    noAdditionalText: 'Sem texto adicional',
+    addNewPage: 'CRIAR NOTA',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: 'Introduza o título da nota...',
+    noNotebook: 'Nenhuma Nota Selecionada',
+    createNotesDesc: 'Crie notas, organize pastas e construa folhas de trabalho formatadas.',
+    createPage: 'CRIAR NOTA',
+    sections: 'Secções',
+    manageSectionTitle: 'Opções da Secção',
+    manageSectionMsg: 'Deseja editar ou eliminar esta secção?',
+    editSectionBtn: 'Editar',
+    deleteSectionBtn: 'Eliminar'
   }
 };
 

@@ -608,6 +608,24 @@ const LINKS_T: Record<string, Record<string, string>> = {
     deleteBookmarkTitle: 'ลบบุ๊กมาร์ก',
     deleteBookmarkMsg: 'คุณแน่ใจหรือไม่ว่าต้องการลบบุ๊กมาร์กนี้?',
   },
+  Portuguese: {
+    addBookmark: 'Adicionar Marcador',
+    saveTo: 'Guardar Em',
+    titleLabel: 'Título',
+    urlLabel: 'URL',
+    placeholderTitle: 'ex. Painel de Trabalho',
+    placeholderUrl: 'ex. app.trabalho.com',
+    cancel: 'Cancelar',
+    newCategory: 'Nova Categoria',
+    createCategoryDesc: 'Criar uma nova categoria',
+    categoryName: 'Nome da Categoria',
+    placeholderCategory: 'ex. Compras',
+    create: 'Criar',
+    deleteCategoryTitle: 'Eliminar Categoria',
+    deleteCategoryMsg: 'Tem a certeza de que deseja eliminar esta categoria e todos os seus links? Esta ação não pode ser anulada.',
+    deleteBookmarkTitle: 'Eliminar Marcador',
+    deleteBookmarkMsg: 'Tem a certeza de que deseja eliminar este marcador?',
+  },
 };
 
 const getFavicon = (url: string) => {

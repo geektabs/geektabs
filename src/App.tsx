@@ -27,11 +27,12 @@ import SettingsTab from './components/Tabs/SettingsTab';
 import IpAddressTab from './components/Tabs/IpAddressTab';
 import SpeedTestTab from './components/Tabs/SpeedTestTab';
 import { t } from './i18n';
+import { isGifWallpaperUrl } from './services/wallpaperStorage';
 
 const DEFAULT_WALLPAPERS = [
-  { id: 'def-1', url: 'https://images.unsplash.com/photo-1506744626753-dba37c25a1f1?q=80&w=2070', category: 'Nature' },
-  { id: 'def-2', url: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=2070', category: 'Abstract' },
-  { id: 'def-3', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072', category: 'Science' },
+  { id: 'def-1', url: 'https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=srgb&w=7680', category: 'Nature' },
+  { id: 'def-2', url: 'https://images.pexels.com/photos/28648054/pexels-photo-28648054.jpeg?auto=compress&cs=srgb&w=7680', category: 'Abstract' },
+  { id: 'def-3', url: 'https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=srgb&w=7680', category: 'Science' },
 ];
 
 export default function App() {
@@ -76,10 +77,14 @@ export default function App() {
         }
         localStorage.setItem('GeekTabs-migrated-to-earth-default-v4', 'true');
       }
+
+      if (isGifWallpaperUrl(theme)) {
+        setTheme('default-earth');
+      }
     } catch (err) {
       console.warn('Background restore point initialization notice:', err);
     }
-  }, [setTheme]);
+  }, [setTheme, theme]);
 
   const getGreetingByTime = (): string => {
     const hour = new Date().getHours();
@@ -121,7 +126,13 @@ export default function App() {
   React.useEffect(() => {
     let isLight = false;
 
-    const isPhoto = theme.startsWith('data:image') || theme.startsWith('http') || theme === 'default-earth';
+    const isPhoto =
+      theme.startsWith('data:image') ||
+      theme.startsWith('data:video') ||
+      theme.startsWith('idb-wall://') ||
+      theme.startsWith('blob:') ||
+      theme.startsWith('http') ||
+      theme === 'default-earth';
     if (isPhoto) {
       isLight = false; 
     } else if (theme === 'light-grey' || theme === 'light-slate' || theme === 'white-clean' || theme === 'pastel-waves' || theme === 'mix-neonpurple') {
@@ -190,6 +201,8 @@ export default function App() {
   const isPhoto =
     theme === 'default-earth' ||
     theme.startsWith('data:image') ||
+    theme.startsWith('data:video') ||
+    theme.startsWith('idb-wall://') ||
     theme.startsWith('http') ||
     theme.startsWith('blob:') ||
     theme.startsWith('/');
@@ -256,6 +269,7 @@ export default function App() {
       Hindi: 'दैनिक सारांश',
       Norwegian: 'Daglig Sammendrag',
       Thai: 'สรุปประจำวัน',
+      Portuguese: 'Resumo Diário',
     }[language] || 'Daily Digest';
 
   const dailySectionHumorDesc =
@@ -292,6 +306,8 @@ export default function App() {
         'Smarte livstips så du slipper å gjette, milde påminnelser mot overtenking, en rask latter før kaffen blir kald og kloke sitater.',
       Thai:
         'เคล็ดลับชีวิตดีๆ ข้อคิดเตือนใจเบาๆ รอยยิ้มก่อนกาแฟเย็น และคำคมสร้างแรงบันดาลใจสำหรับทุกวันของคุณ',
+      Portuguese:
+        'Dicas práticas para improvisar menos, lembretes gentis para pensar demais um pouco menos, uma risada rápida antes do café arrefecer e citações sábias para o seu dia.',
     }[language] ||
     'Smart life tips so you wing it less, gentle reminders so you overthink less, a quick laugh before your coffee cools, and wise quotes to sound brilliant in meetings.';
 
