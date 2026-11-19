@@ -182,7 +182,6 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
         radial-gradient(ellipse 65% 50% at 12% 82%, rgba(237, 233, 254, 0.4) 0%, transparent 65%),
         radial-gradient(ellipse 65% 50% at 88% 85%, rgba(186, 230, 253, 0.4) 0%, transparent 65%)
       `,
-      backgroundAttachment: 'fixed',
       minHeight: '100%',
     };
   } else if (currentTheme === 'light-grey' || currentTheme === 'light-slate') {
@@ -201,9 +200,13 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
     backgroundStyle = { background: theme.overlay, minHeight: '100%' };
   }
 
+  const isVideoBackground = Boolean(photoSrc && mediaType === 'video');
+
   return (
     <div
-      className="fixed inset-0 w-full h-full z-0 overflow-hidden transition-colors duration-500 pointer-events-none"
+      className={`${
+        isVideoBackground ? 'fixed' : 'absolute'
+      } inset-0 w-full h-full z-0 overflow-hidden transition-colors duration-500 pointer-events-none`}
     >
       {/* Real-time GPU 8K Ultra-HD clarity & edge sharpening filter for photos and videos */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">

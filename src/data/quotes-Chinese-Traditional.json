@@ -1,0 +1,22 @@
+[
+  { "quote": "衝突越艱難，勝利就越偉大。", "author": "喬治·華盛頓", "category": "motivational" },
+  { "quote": "一個人決定自己有多快樂，往往就會有多快樂。", "author": "亞伯拉罕·林肯", "category": "positive" },
+  { "quote": "我們唯一值得恐懼的，就是恐懼本身。", "author": "富蘭克林·羅斯福", "category": "motivational" },
+  { "quote": "相信自己能做到，你就已經成功了一半。", "author": "西奧多·羅斯福", "category": "inspirational" },
+  { "quote": "誠實是智慧之書的第一章。", "author": "湯瑪斯·傑佛遜", "category": "wisdom" },
+  { "quote": "未來不屬於怯懦者，而屬於勇敢的人。", "author": "隆納·雷根", "category": "hope" },
+  { "quote": "價格是你付出的，價值是你得到的。", "author": "華倫·巴菲特", "category": "finance" },
+  { "quote": "永遠不要停止投資教育，知識的複利成長快於資本。", "author": "肯·格里芬", "category": "education" },
+  { "quote": "當一件事足夠重要，即便勝算渺茫也要去做。", "author": "伊隆·馬斯克", "category": "motivational" },
+  { "quote": "聰明是一種天賦，而善良是一種選擇。", "author": "傑夫·貝佐斯", "category": "relationship" },
+  { "quote": "掌控自己的時間，是金錢所能支付的最高紅利。", "author": "摩根·豪澤爾", "category": "freedom" },
+  { "quote": "在喧囂與變動之中，保持內心的寧靜。", "author": "迪帕克·喬普拉", "category": "health" },
+  { "quote": "千里之行，始於足下。", "author": "老子", "category": "motivational" },
+  { "quote": "只要不停下腳步，走得慢一點也無妨。", "author": "孔子", "category": "motivational" },
+  { "quote": "給我一個支點，我就能撬動整個地球。", "author": "阿基米德", "category": "motivational" },
+  { "quote": "幸福取決於我們自己。", "author": "亞里斯多德", "category": "positive" },
+  { "quote": "我沒有失敗，我只是找到了一萬種行不通的方法。", "author": "湯瑪斯·愛迪生", "category": "positive" },
+  { "quote": "如果我看得更遠，那是因為我站在巨人的肩膀上。", "author": "艾薩克·牛頓", "category": "wisdom" },
+  { "quote": "困難之中，往往隱藏著機遇。", "author": "阿爾伯特·愛因斯坦", "category": "inspirational" },
+  { "quote": "完成比完美更重要。", "author": "伊莉莎白·吉爾伯特", "category": "work" }
+]

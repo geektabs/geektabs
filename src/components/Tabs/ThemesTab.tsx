@@ -231,6 +231,71 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupRegular: 'regular',
     groupDark: 'escuro',
     groupGradient: 'Mix'
+  },
+  Vietnamese: {
+    title: 'Công cụ giao diện',
+    subtitle: 'THIẾT LẬP BẢNG MÀU CÀI SẴN',
+    panelHeader: 'Bảng màu cài sẵn',
+    panelSub: 'chọn một màu cho nền yêu thích của bạn',
+    resetButton: 'Đặt lại về Sóng Pastel',
+    restoreWhiteButton: 'Khôi phục nền mặc định',
+    groupDefault: 'mặc định',
+    groupLight: 'sáng',
+    groupRegular: 'thường',
+    groupDark: 'tối',
+    groupGradient: 'Pha trộn'
+  },
+  Polish: {
+    title: 'Silnik Motywów',
+    subtitle: 'USTAWIENIA GOTOWYCH PALET KOLORÓW',
+    panelHeader: 'Gotowe palety kolorów',
+    panelSub: 'wybierz ulubiony kolor tła',
+    resetButton: 'Przywróć Pastelowe Fale',
+    restoreWhiteButton: 'Przywróć domyślne tło',
+    groupDefault: 'domyślne',
+    groupLight: 'jasne',
+    groupRegular: 'standardowe',
+    groupDark: 'ciemne',
+    groupGradient: 'Mix'
+  },
+  Danish: {
+    title: 'Temamotor',
+    subtitle: 'FORUDINDSTILLEDE FARVEPALETTER',
+    panelHeader: 'Forudindstillede farvepaletter',
+    panelSub: 'vælg en yndlingsfarve til baggrunden',
+    resetButton: 'Nulstil til Pastel Waves',
+    restoreWhiteButton: 'Gendan standardbaggrund',
+    groupDefault: 'standard',
+    groupLight: 'lys',
+    groupRegular: 'almindelig',
+    groupDark: 'mørk',
+    groupGradient: 'Mix'
+  },
+  Turkish: {
+    title: 'Tema Motoru',
+    subtitle: 'HAZIR RENK PALETİ AYARI',
+    panelHeader: 'Hazır Renk Paletleri',
+    panelSub: 'favori arka plan renginizi seçin',
+    resetButton: 'Pastel Dalgalara Sıfırla',
+    restoreWhiteButton: 'Varsayılan Arka Planı Geri Yükle',
+    groupDefault: 'varsayılan',
+    groupLight: 'açık',
+    groupRegular: 'normal',
+    groupDark: 'koyu',
+    groupGradient: 'Karışım'
+  },
+  Greek: {
+    title: 'Μηχανή Θεμάτων',
+    subtitle: 'ΡΥΘΜΙΣΗ ΠΡΟΕΠΙΛΕΓΜΕΝΩΝ ΧΡΩΜΑΤΩΝ',
+    panelHeader: 'Προεπιλεγμένες Παλέτες Χρωμάτων',
+    panelSub: 'επιλέξτε ένα αγαπημένο χρώμα φόντου',
+    resetButton: 'Επαναφορά σε Pastel Waves',
+    restoreWhiteButton: 'Επαναφορά Προεπιλεγμένου Φόντου',
+    groupDefault: 'προεπιλογή',
+    groupLight: 'ανοιχτό',
+    groupRegular: 'κανονικό',
+    groupDark: 'σκούρο',
+    groupGradient: 'Μείξη'
   }
 };
 

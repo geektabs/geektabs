@@ -17,6 +17,11 @@ import humorsHindi from '../../data/humors-Hindi.json';
 import humorsNorwegian from '../../data/humors-Norwegian.json';
 import humorsThai from '../../data/humors-Thai.json';
 import humorsPortuguese from '../../data/humors-Portuguese.json';
+import humorsVietnamese from '../../data/humors-Vietnamese.json';
+import humorsPolish from '../../data/humors-Polish.json';
+import humorsDanish from '../../data/humors-Danish.json';
+import humorsTurkish from '../../data/humors-Turkish.json';
+import humorsGreek from '../../data/humors-Greek.json';
 
 const humorsMap: Record<string, string[]> = {
   English: humorsEnglish,
@@ -36,6 +41,11 @@ const humorsMap: Record<string, string[]> = {
   Norwegian: humorsNorwegian,
   Thai: humorsThai,
   Portuguese: humorsPortuguese,
+  Vietnamese: humorsVietnamese,
+  Polish: humorsPolish,
+  Danish: humorsDanish,
+  Turkish: humorsTurkish,
+  Greek: humorsGreek,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_humor_history';
@@ -133,7 +143,12 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
     Hindi: 'दैनिक हास्य',
     Norwegian: 'Daglig Humor',
     Thai: 'อารมณ์ขันประจำวัน',
-    Portuguese: 'Humor Diário'
+    Portuguese: 'Humor Diário',
+    Vietnamese: 'Hài Hước Hằng Ngày',
+    Polish: 'Dawka Humoru',
+    Danish: 'Dagens Humor',
+    Turkish: 'Günün Mizahı',
+    Greek: 'Χιούμορ Ημέρας',
   }[language] || 'Daily Humor';
 
   return (

@@ -17,6 +17,11 @@ import tipsHindi from '../../data/life-tips-Hindi.json';
 import tipsNorwegian from '../../data/life-tips-Norwegian.json';
 import tipsThai from '../../data/life-tips-Thai.json';
 import tipsPortuguese from '../../data/life-tips-Portuguese.json';
+import tipsVietnamese from '../../data/life-tips-Vietnamese.json';
+import tipsPolish from '../../data/life-tips-Polish.json';
+import tipsDanish from '../../data/life-tips-Danish.json';
+import tipsTurkish from '../../data/life-tips-Turkish.json';
+import tipsGreek from '../../data/life-tips-Greek.json';
 
 const tipsMap: Record<string, string[]> = {
   English: tipsEnglish,
@@ -36,6 +41,11 @@ const tipsMap: Record<string, string[]> = {
   Norwegian: tipsNorwegian,
   Thai: tipsThai,
   Portuguese: tipsPortuguese,
+  Vietnamese: tipsVietnamese,
+  Polish: tipsPolish,
+  Danish: tipsDanish,
+  Turkish: tipsTurkish,
+  Greek: tipsGreek,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_tip_history';
@@ -133,7 +143,12 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
     Hindi: 'दैनिक सुझाव',
     Norwegian: 'Daglige Tips',
     Thai: 'เคล็ดลับประจำวัน',
-    Portuguese: 'Dicas Diárias'
+    Portuguese: 'Dicas Diárias',
+    Vietnamese: 'Mẹo Hằng Ngày',
+    Polish: 'Codzienne Porady',
+    Danish: 'Daglige Tips',
+    Turkish: 'Günlük İpuçları',
+    Greek: 'Ημερήσιες Συμβουλές',
   }[language] || 'Daily Tips';
 
   return (

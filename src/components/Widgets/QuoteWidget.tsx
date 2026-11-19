@@ -17,6 +17,11 @@ import quotesHindi from '../../data/quotes-Hindi.json';
 import quotesNorwegian from '../../data/quotes-Norwegian.json';
 import quotesThai from '../../data/quotes-Thai.json';
 import quotesPortuguese from '../../data/quotes-Portuguese.json';
+import quotesVietnamese from '../../data/quotes-Vietnamese.json';
+import quotesPolish from '../../data/quotes-Polish.json';
+import quotesDanish from '../../data/quotes-Danish.json';
+import quotesTurkish from '../../data/quotes-Turkish.json';
+import quotesGreek from '../../data/quotes-Greek.json';
 
 const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   English: quotesEnglish,
@@ -36,6 +41,11 @@ const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   Norwegian: quotesNorwegian,
   Thai: quotesThai,
   Portuguese: quotesPortuguese,
+  Vietnamese: quotesVietnamese,
+  Polish: quotesPolish,
+  Danish: quotesDanish,
+  Turkish: quotesTurkish,
+  Greek: quotesGreek,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_quote_history';
@@ -125,7 +135,12 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
     Hindi: 'दैनिक सुविचार',
     Norwegian: 'Dagens Sitat',
     Thai: 'คำคมประจำวัน',
-    Portuguese: 'Citação Diária'
+    Portuguese: 'Citação Diária',
+    Vietnamese: 'Danh Ngôn Hằng Ngày',
+    Polish: 'Cytat Dnia',
+    Danish: 'Dagens Citat',
+    Turkish: 'Günün Sözü',
+    Greek: 'Απόφθεγμα Ημέρας',
   }[language] || 'Daily Quote';
 
   return (

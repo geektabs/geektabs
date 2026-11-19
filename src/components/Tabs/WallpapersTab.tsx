@@ -13,6 +13,10 @@ import {
   saveUserWallpaper,
   deleteUserWallpaper,
   migrateFromLocalStorage,
+  getWallpaperCardThumbnailUrl,
+  getMixkitVideoPosterUrl,
+  getWallpaperCardVideoPreviewUrl,
+  preloadWallpaperThumbnails,
 } from '../../services/wallpaperStorage';
 
 export type { CustomWallpaper };
@@ -521,6 +525,151 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catCreation: "Criativo",
     catHoliday: "Feriados",
     catAnimal: "Animais"
+  },
+  Vietnamese: {
+    title: "Thư viện hình nền",
+    subtitle: "BỘ SƯU TẬP HÌNH NỀN CÁ NHÂN CỦA BẠN",
+    uploadImage: "Tải tệp lên",
+    addUrl: "Thêm qua URL",
+    enterUrl: "Nhập URL ảnh hoặc video",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "Không hỗ trợ tệp GIF làm hình nền. Vui lòng dùng ảnh hoặc video.",
+    categoryEmpty: "Danh mục này trống",
+    saveWallpaper: "Lưu hình nền",
+    chooseCategory: "Chọn danh mục",
+    categoryName: "Tên danh mục",
+    cancel: "Hủy",
+    save: "Lưu",
+    deleteTitle: "Xóa hình nền",
+    deleteMsg: "Bạn có chắc chắn muốn xóa hình nền này không? Hành động này không thể hoàn tác.",
+    catAll: "Tất cả",
+    catMyUploads: "Tệp đã tải lên",
+    catFavorites: "Yêu thích",
+    catTravel: "Du lịch",
+    catVideo: "Video",
+    catNature: "Thiên nhiên",
+    catAbstract: "Trừu tượng",
+    catScience: "Khoa học",
+    catArchitecture: "Kiến trúc",
+    catCreation: "Sáng tạo",
+    catHoliday: "Kỳ nghỉ",
+    catAnimal: "Động vật"
+  },
+  Polish: {
+    title: "Biblioteka Tapet",
+    subtitle: "TWOJA OSOBISTA GALERIA OBRAZÓW",
+    uploadImage: "Prześlij plik",
+    addUrl: "Dodaj przez URL",
+    enterUrl: "Wpisz URL zdjęcia lub wideo",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "Pliki GIF nie są obsługiwane jako tapeta. Użyj zdjęcia lub wideo.",
+    categoryEmpty: "Ta kategoria jest pusta",
+    saveWallpaper: "Zapisz obraz",
+    chooseCategory: "Wybierz kategorię",
+    categoryName: "Nazwa kategorii",
+    cancel: "Anuluj",
+    save: "Zapisz",
+    deleteTitle: "Usuń tapetę",
+    deleteMsg: "Czy na pewno chcesz usunąć tę tapetę? Tej operacji nie można cofnąć.",
+    catAll: "Wszystkie",
+    catMyUploads: "Moje przesłane",
+    catFavorites: "Ulubione",
+    catTravel: "Podróże",
+    catVideo: "Wideo",
+    catNature: "Natura",
+    catAbstract: "Abstrakcja",
+    catScience: "Nauka",
+    catArchitecture: "Architektura",
+    catCreation: "Twórczość",
+    catHoliday: "Wakacje",
+    catAnimal: "Zwierzęta"
+  },
+  Danish: {
+    title: "Tapetbibliotek",
+    subtitle: "DIT PERSONLIGE BILLEDGALLERI",
+    uploadImage: "Upload fil",
+    addUrl: "Tilføj via URL",
+    enterUrl: "Indtast foto- eller video-URL",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-filer understøttes ikke som baggrund. Brug venligst et foto eller en video.",
+    categoryEmpty: "Denne kategori er tom",
+    saveWallpaper: "Gem billede",
+    chooseCategory: "Vælg kategori",
+    categoryName: "Kategorinavn",
+    cancel: "Annuller",
+    save: "Gem",
+    deleteTitle: "Slet tapet",
+    deleteMsg: "Er du sikker på, at du vil slette dette tapet? Denne handling kan ikke fortrydes.",
+    catAll: "Alle",
+    catMyUploads: "Mine uploads",
+    catFavorites: "Favoritter",
+    catTravel: "Rejser",
+    catVideo: "Video",
+    catNature: "Natur",
+    catAbstract: "Abstrakt",
+    catScience: "Videnskab",
+    catArchitecture: "Arkitektur",
+    catCreation: "Kreativ",
+    catHoliday: "Ferie",
+    catAnimal: "Dyr"
+  },
+  Turkish: {
+    title: "Duvar Kağıdı Kitaplığı",
+    subtitle: "KİŞİSEL GÖRSEL GALERİNİZ",
+    uploadImage: "Dosya Yükle",
+    addUrl: "URL ile Ekle",
+    enterUrl: "Fotoğraf veya Video URL'si Girin",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF dosyaları duvar kağıdı olarak desteklenmez. Lütfen fotoğraf veya video kullanın.",
+    categoryEmpty: "Bu kategori boş",
+    saveWallpaper: "Görseli Kaydet",
+    chooseCategory: "Kategori Seç",
+    categoryName: "Kategori Adı",
+    cancel: "İptal",
+    save: "Kaydet",
+    deleteTitle: "Duvar Kağıdını Sil",
+    deleteMsg: "Bu duvar kağıdını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    catAll: "Tümü",
+    catMyUploads: "Yüklediklerim",
+    catFavorites: "Favoriler",
+    catTravel: "Seyahat",
+    catVideo: "Video",
+    catNature: "Doğa",
+    catAbstract: "Soyut",
+    catScience: "Bilim",
+    catArchitecture: "Mimari",
+    catCreation: "Yaratıcılık",
+    catHoliday: "Tatil",
+    catAnimal: "Hayvanlar"
+  },
+  Greek: {
+    title: "Βιβλιοθήκη Ταπετσαριών",
+    subtitle: "Η ΠΡΟΣΩΠΙΚΗ ΣΑΣ ΣΥΛΛΟΓΗ ΕΙΚΟΝΩΝ",
+    uploadImage: "Μεταφόρτωση Αρχείου",
+    addUrl: "Προσθήκη μέσω URL",
+    enterUrl: "Εισαγάγετε URL Φωτογραφίας ή Βίντεο",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "Τα αρχεία GIF δεν υποστηρίζονται ως ταπετσαρία. Χρησιμοποιήστε φωτογραφία ή βίντεο.",
+    categoryEmpty: "Αυτή η κατηγορία είναι κενή",
+    saveWallpaper: "Αποθήκευση Εικόνας",
+    chooseCategory: "Επιλογή Κατηγορίας",
+    categoryName: "Όνομα Κατηγορίας",
+    cancel: "Ακύρωση",
+    save: "Αποθήκευση",
+    deleteTitle: "Διαγραφή Ταπετσαρίας",
+    deleteMsg: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την ταπετσαρία; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+    catAll: "Όλα",
+    catMyUploads: "Οι Μεταφορτώσεις μου",
+    catFavorites: "Αγαπημένα",
+    catTravel: "Ταξίδια",
+    catVideo: "Βίντεο",
+    catNature: "Φύση",
+    catAbstract: "Αφηρημένο",
+    catScience: "Επιστήμη",
+    catArchitecture: "Αρχιτεκτονική",
+    catCreation: "Δημιουργικό",
+    catHoliday: "Διακοπές",
+    catAnimal: "Ζώα"
   }
 };
 
@@ -630,13 +779,9 @@ export default function WallpapersTab({
     return w.url;
   };
 
-  const getMixkitVideoPoster = (url: string): string | undefined => {
-    const match = url.match(/^https:\/\/assets\.mixkit\.co\/videos\/(\d+)\/\1-\d+\.mp4$/i);
-    if (match) {
-      return `https://assets.mixkit.co/videos/${match[1]}/${match[1]}-thumb-720-0.jpg`;
-    }
-    return undefined;
-  };
+  useEffect(() => {
+    preloadWallpaperThumbnails(allWallpapers);
+  }, [allWallpapers.length]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -821,12 +966,7 @@ export default function WallpapersTab({
   }, [language, categoriesKey, categories.length]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      className="max-w-6xl mx-auto"
-    >
+    <div className="max-w-6xl mx-auto">
       <div className="mb-6 sm:mb-10 flex flex-col items-center text-center">
         <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3">{tData.title}</h2>
         <p className="text-slate-500 font-bold uppercase tracking-[0.25em] text-[10px]">{tData.subtitle}</p>
@@ -914,7 +1054,6 @@ export default function WallpapersTab({
               {filteredWallpapers.map((w) => {
                 const isActive = currentTheme === w.url || currentTheme === `idb-wall://${w.id}`;
                 const mediaType = detectWallpaperMediaType(w.url, w.mediaType);
-                const videoPoster = mediaType === 'video' ? getMixkitVideoPoster(w.url) : undefined;
                 return (
                   <div
                     key={w.id}
@@ -922,34 +1061,19 @@ export default function WallpapersTab({
                   >
                     <button
                       onClick={() => setTheme(getThemeValueForWallpaper(w))}
-                      className={`w-full aspect-[16/10] sm:aspect-[16/10] lg:aspect-video relative block rounded-2xl overflow-hidden border-2 transition-all p-0 focus:outline-none cursor-pointer ${
+                      className={`w-full aspect-[16/10] sm:aspect-[16/10] lg:aspect-video relative block rounded-2xl overflow-hidden border-2 transition-shadow duration-200 p-0 focus:outline-none cursor-pointer bg-slate-200/70 dark:bg-slate-800/60 ${
                         isActive 
                           ? 'border-indigo-500 ring-4 ring-indigo-500/20 shadow-xl' 
                           : 'border-transparent shadow-md hover:shadow-lg'
                       }`}
-                      style={{ backgroundColor: 'transparent', outline: 'none' }}
+                      style={{ outline: 'none' }}
                     >
-                      {mediaType === 'video' ? (
-                        <video
-                          src={w.url}
-                          poster={videoPoster}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="metadata"
-                          className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all pointer-events-none"
-                        />
-                      ) : (
-                        <img
-                          src={w.url}
-                          className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 duration-700 transition-all"
-                          alt={w.title || ''}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 rounded-[14px] transition-colors" />
+                      <WallpaperCardMedia
+                        url={w.url}
+                        title={w.title || ''}
+                        mediaType={mediaType}
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 rounded-[14px] transition-colors duration-200 pointer-events-none" />
 
                       {/* Active Checkmark Badge */}
                       {isActive && (
@@ -1147,6 +1271,101 @@ export default function WallpapersTab({
         onConfirm={() => confirmDeleteWallpaper && handleDeleteWallpaper(confirmDeleteWallpaper)}
         onCancel={() => setConfirmDeleteWallpaper(null)}
       />
-    </motion.div>
+    </div>
   );
 }
+
+function WallpaperCardMedia({
+  url,
+  title,
+  mediaType,
+}: {
+  url: string;
+  title: string;
+  mediaType: 'image' | 'video';
+}) {
+  const thumbUrl = mediaType === 'video' ? getMixkitVideoPosterUrl(url) : getWallpaperCardThumbnailUrl(url);
+  const videoPreviewUrl = mediaType === 'video' ? getWallpaperCardVideoPreviewUrl(url) : url;
+  const [imgSrc, setImgSrc] = useState(thumbUrl || url);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    setImgSrc(thumbUrl || url);
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setImgLoaded(true);
+    } else {
+      setImgLoaded(false);
+    }
+  }, [thumbUrl, url]);
+
+  useEffect(() => {
+    if (mediaType === 'video' && videoRef.current && videoRef.current.readyState >= 2) {
+      setVideoLoaded(true);
+      videoRef.current.play().catch(() => {});
+    } else {
+      setVideoLoaded(false);
+    }
+  }, [mediaType, videoPreviewUrl]);
+
+  if (mediaType === 'video') {
+    return (
+      <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-slate-200/70 dark:bg-slate-800/60">
+        {thumbUrl && (
+          <img
+            ref={imgRef}
+            src={thumbUrl}
+            alt={title}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            onLoad={() => setImgLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover rounded-[14px] group-hover:scale-105 transition-[transform,opacity] duration-300 ease-out pointer-events-none ${
+              imgLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        )}
+        <video
+          ref={videoRef}
+          src={videoPreviewUrl}
+          poster={thumbUrl}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          onLoadedData={() => {
+            setVideoLoaded(true);
+            videoRef.current?.play().catch(() => {});
+          }}
+          className={`relative z-[1] w-full h-full object-cover rounded-[14px] group-hover:scale-105 transition-[transform,opacity] duration-300 ease-out pointer-events-none ${
+            videoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      ref={imgRef}
+      src={imgSrc}
+      alt={title}
+      loading="eager"
+      decoding="async"
+      fetchPriority="high"
+      onLoad={() => setImgLoaded(true)}
+      onError={() => {
+        if (imgSrc !== url) {
+          setImgSrc(url);
+        }
+      }}
+      className={`w-full h-full object-cover rounded-[14px] group-hover:scale-105 transition-[transform,opacity] duration-300 ease-out ${
+        imgLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
+    />
+  );
+}
+

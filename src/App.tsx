@@ -30,7 +30,7 @@ import { t } from './i18n';
 import { isGifWallpaperUrl } from './services/wallpaperStorage';
 
 const DEFAULT_WALLPAPERS = [
-  { id: 'def-1', url: 'https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=srgb&w=7680', category: 'Nature' },
+  { id: 'def-1', url: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Lake_Wanaka_-_northern_part%2C_New_Zealand.jpg', category: 'Nature' },
   { id: 'def-2', url: 'https://images.pexels.com/photos/28648054/pexels-photo-28648054.jpeg?auto=compress&cs=srgb&w=7680', category: 'Abstract' },
   { id: 'def-3', url: 'https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=srgb&w=7680', category: 'Science' },
 ];
@@ -242,7 +242,11 @@ export default function App() {
   const isDefaultLightBg = theme === 'light-grey' || theme === 'light-slate' || theme === 'white-clean';
   const isExemptPage = activeTab === 'links' || activeTab === 'settings';
 
-  const isFullPageTab = activeTab === 'todo' || activeTab === 'notes' || activeTab === 'settings';
+  const isFullPageTab = activeTab === 'todo' || activeTab === 'notes';
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeTab]);
 
   const cardStyleClass =
     cardBgMode === 'dark-glass'
@@ -270,6 +274,11 @@ export default function App() {
       Norwegian: 'Daglig Sammendrag',
       Thai: 'สรุปประจำวัน',
       Portuguese: 'Resumo Diário',
+      Vietnamese: 'Tổng hợp hằng ngày',
+      Polish: 'Przegląd dnia',
+      Danish: 'Dagligt overblik',
+      Turkish: 'Günlük Özet',
+      Greek: 'Ημερήσια Σύνοψη',
     }[language] || 'Daily Digest';
 
   const dailySectionHumorDesc =
@@ -308,6 +317,16 @@ export default function App() {
         'เคล็ดลับชีวิตดีๆ ข้อคิดเตือนใจเบาๆ รอยยิ้มก่อนกาแฟเย็น และคำคมสร้างแรงบันดาลใจสำหรับทุกวันของคุณ',
       Portuguese:
         'Dicas práticas para improvisar menos, lembretes gentis para pensar demais um pouco menos, uma risada rápida antes do café arrefecer e citações sábias para o seu dia.',
+      Vietnamese:
+        'Mẹo sống hữu ích để bớt loay hoay, lời nhắc nhẹ nhàng để bớt nghĩ ngợi, tiếng cười nhanh trước khi cà phê nguội và câu nói hay truyền cảm hứng mỗi ngày.',
+      Polish:
+        'Praktyczne porady na co dzień, łagodne przypomnienia dla spokoju ducha, szybki uśmiech zanim kawa ostygnie oraz mądre cytaty na dobry dzień.',
+      Danish:
+        'Smarte hverdagstips, milde påmindelser mod overtænkning, et hurtigt grin før kaffen bliver kold og kloge citater til din dag.',
+      Turkish:
+        'Hayatı kolaylaştıran pratik ipuçları, zihni dinlendiren nazik hatırlatmalar, kahveniz soğumadan kısa bir tebessüm ve güne ilham veren sözler.',
+      Greek:
+        'Έξυπνες συμβουλές ζωής, ήπιες υπενθυμίσεις για ηρεμία, ένα γρήγορο χαμόγελο πριν κρυώσει ο καφές και σοφά αποφθέγματα για τη μέρα σας.',
     }[language] ||
     'Smart life tips so you wing it less, gentle reminders so you overthink less, a quick laugh before your coffee cools, and wise quotes to sound brilliant in meetings.';
 
@@ -577,11 +596,11 @@ export default function App() {
             <motion.div
               key="settings"
               data-tab="settings"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="w-full h-full flex flex-col overflow-hidden"
+              className="w-full flex-1 flex flex-col pt-14"
             >
               <SettingsTab 
                 currentTheme={theme}
@@ -612,6 +631,7 @@ export default function App() {
         setTheme={setTheme}
         isDarkMode={isDarkMode}
         language={language}
+        setLanguage={setLanguage}
       />
       <OfflineIndicator language={language} />
 

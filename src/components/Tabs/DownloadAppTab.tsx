@@ -574,6 +574,171 @@ const appInstallGuides: Record<string, {
         'Utilize o GeekTabs na sua própria janela de aplicação diretamente a partir do ecrã inicial do tablet.'
       ]
     }
+  },
+  Vietnamese: {
+    pageTitle: 'Tải xuống dưới dạng ứng dụng (PC / Điện thoại / Máy tính bảng)',
+    pageSubtitle: 'Cài đặt GeekTabs như một ứng dụng độc lập với biểu tượng riêng trên màn hình chính hoặc máy tính của bạn.',
+    addressBarHint: 'Mẹo trên máy tính: Tìm biểu tượng cài đặt ở phía bên phải thanh địa chỉ trình duyệt.',
+    pc: {
+      label: 'PC / Mac (Máy tính)',
+      heading: 'Tải xuống trên PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Mở GeekTabs trong Chrome, Edge hoặc Brave trên máy tính của bạn.',
+        'Nhấp vào biểu tượng "Cài đặt GeekTabs Dashboard" ở bên phải thanh địa chỉ.',
+        'Hoặc nhấn nút "Cài đặt ứng dụng" ở trên, hoặc mở menu ⋮ → Lưu và chia sẻ → Cài đặt trang dưới dạng ứng dụng.',
+        'Nhấp vào "Cài đặt" để đặt biểu tượng GeekTabs lên màn hình nền hoặc Dock.'
+      ]
+    },
+    phone: {
+      label: 'Điện thoại (iOS & Android)',
+      heading: 'Thêm biểu tượng ứng dụng trên điện thoại',
+      steps: [
+        'iPhone (Safari): Nhấn Chia sẻ → "Thêm vào Màn hình chính" → "Thêm".',
+        'Android (Chrome / Edge): Nhấn nút "Cài đặt ứng dụng" ở trên hoặc menu (⋮) → "Cài đặt ứng dụng".',
+        'Mở GeekTabs trực tiếp từ biểu tượng trên màn hình chính ở chế độ toàn màn hình.'
+      ]
+    },
+    tablet: {
+      label: 'Máy tính bảng (iPad & Android)',
+      heading: 'Thêm biểu tượng ứng dụng trên máy tính bảng',
+      steps: [
+        'iPad (Safari): Nhấn Chia sẻ ở góc trên bên phải → "Thêm vào Màn hình chính" → "Thêm".',
+        'Máy tính bảng Android (Chrome / Edge): Nhấn biểu tượng cài đặt trên thanh địa chỉ hoặc ⋮ → "Cài đặt ứng dụng".',
+        'Chạy GeekTabs trong cửa sổ ứng dụng riêng ngay từ màn hình chính máy tính bảng.'
+      ]
+    }
+  },
+  Polish: {
+    pageTitle: 'Pobierz jako aplikację (PC / Telefon / Tablet)',
+    pageSubtitle: 'Zainstaluj GeekTabs jako samodzielną aplikację z własnym logo na pulpicie lub ekranie głównym.',
+    addressBarHint: 'Wskazówka na komputer: poszukaj ikony instalacji po prawej stronie paska adresu w przeglądarce.',
+    pc: {
+      label: 'PC / Mac (Komputer)',
+      heading: 'Pobierz na PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Otwórz GeekTabs w Chrome, Edge lub Brave na swoim komputerze.',
+        'Kliknij ikonę „Zainstaluj GeekTabs Dashboard” po prawej stronie paska adresu.',
+        'Lub kliknij przycisk „Zainstaluj aplikację” powyżej albo otwórz menu ⋮ → Zapisz i udostępnij → Zainstaluj stronę jako aplikację.',
+        'Kliknij „Zainstaluj”, aby umieścić logo GeekTabs na pulpicie lub w Docku.'
+      ]
+    },
+    phone: {
+      label: 'Telefon (iOS i Android)',
+      heading: 'Dodaj logo aplikacji na telefonie',
+      steps: [
+        'iPhone (Safari): Stuknij Udostępnij → „Do ekranu początkowego” → „Dodaj”.',
+        'Android (Chrome / Edge): Stuknij „Zainstaluj aplikację” powyżej lub menu (⋮) → „Zainstaluj aplikację”.',
+        'Uruchamiaj GeekTabs bezpośrednio z ikony na ekranie głównym w trybie pełnoekranowym.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad i Android)',
+      heading: 'Dodaj logo aplikacji na tablecie',
+      steps: [
+        'iPad (Safari): Stuknij Udostępnij w prawym górnym rogu → „Do ekranu początkowego” → „Dodaj”.',
+        'Tablet Android (Chrome / Edge): Stuknij ikonę instalacji na pasku adresu lub ⋮ → „Zainstaluj aplikację”.',
+        'Korzystaj z GeekTabs w osobnym oknie aplikacji prosto z ekranu głównego tabletu.'
+      ]
+    }
+  },
+  Danish: {
+    pageTitle: 'Download som app (PC / Mobil / Tablet)',
+    pageSubtitle: 'Installer GeekTabs som en selvstændig app med eget app-logo på dit skrivebord eller din hjemmeskærm.',
+    addressBarHint: 'Tip til computer: Kig efter installationsikonet i højre side af din browsers adresselinje.',
+    pc: {
+      label: 'PC / Mac (Computer)',
+      heading: 'Download på PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Åbn GeekTabs i Chrome, Edge eller Brave på din computer.',
+        'Klik på ikonet "Installer GeekTabs Dashboard" i højre side af adresselinjen.',
+        'Eller klik på knappen "Installer app" ovenfor, eller åbn menuen ⋮ → Gem og del → Installer side som app.',
+        'Klik på "Installer" for at placere GeekTabs-logoet på dit skrivebord eller i Dock.'
+      ]
+    },
+    phone: {
+      label: 'Mobil (iOS & Android)',
+      heading: 'Tilføj app-logo på mobilen',
+      steps: [
+        'iPhone (Safari): Tryk på Del → "Føj til hjemmeskærm" → "Tilføj".',
+        'Android (Chrome / Edge): Tryk på "Installer app" ovenfor eller menuen (⋮) → "Installer app".',
+        'Start GeekTabs direkte fra hjemmeskærmens logo i fuld skærm.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad & Android)',
+      heading: 'Tilføj app-logo på tablet',
+      steps: [
+        'iPad (Safari): Tryk på Del øverst til højre → "Føj til hjemmeskærm" → "Tilføj".',
+        'Android-tablet (Chrome / Edge): Tryk på installationsikonet i adresselinjen eller ⋮ → "Installer app".',
+        'Kør GeekTabs i sit eget app-vindue direkte fra din tablets startskærm.'
+      ]
+    }
+  },
+  Turkish: {
+    pageTitle: 'Uygulama Olarak İndir (PC / Telefon / Tablet)',
+    pageSubtitle: 'GeekTabs’ı masaüstünüzde veya ana ekranınızda kendi uygulama logosuyla bağımsız bir uygulama olarak yükleyin.',
+    addressBarHint: 'Masaüstü İpucu: Tarayıcı adres çubuğunun sağ tarafındaki yükleme simgesini arayın.',
+    pc: {
+      label: 'PC / Mac (Masaüstü)',
+      heading: 'PC / Mac’e İndir (Chrome, Edge, Brave)',
+      steps: [
+        'Bilgisayarınızda Chrome, Edge veya Brave içinde GeekTabs’ı açın.',
+        'Adres çubuğunun sağ tarafındaki "GeekTabs Dashboard’u Yükle" simgesine tıklayın.',
+        'Veya yukarıdaki "Uygulamayı Yükle" düğmesine tıklayın ya da ⋮ menüsünü açın → Kaydet ve paylaş → Sayfayı uygulama olarak yükle.',
+        'GeekTabs logosunu masaüstünüze veya Dock’unuza eklemek için "Yükle"ye tıklayın.'
+      ]
+    },
+    phone: {
+      label: 'Telefon (iOS & Android)',
+      heading: 'Telefona Uygulama Logosu Ekle',
+      steps: [
+        'iPhone (Safari): Paylaş’a dokunun → "Ana Ekrana Ekle" → "Ekle".',
+        'Android (Chrome / Edge): Yukarıdaki "Uygulamayı Yükle"ye veya (⋮) menüsüne dokunun → "Uygulamayı yükle".',
+        'GeekTabs’ı ana ekranınızdaki logodan tam ekran uygulama modunda başlatın.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad & Android)',
+      heading: 'Tablete Uygulama Logosu Ekle',
+      steps: [
+        'iPad (Safari): Sağ üstten Paylaş’a dokunun → "Ana Ekrana Ekle" → "Ekle".',
+        'Android Tablet (Chrome / Edge): Adres çubuğundaki yükleme simgesine veya ⋮ → "Uygulamayı yükle"ye dokunun.',
+        'GeekTabs’ı doğrudan tabletinizin ana ekranından kendi uygulama penceresinde çalıştırın.'
+      ]
+    }
+  },
+  Greek: {
+    pageTitle: 'Λήψη ως Εφαρμογή (PC / Κινητό / Tablet)',
+    pageSubtitle: 'Εγκαταστήστε το GeekTabs ως αυτόνομη εφαρμογή με το δικό της λογότυπο στην επιφάνεια εργασίας ή την αρχική οθόνη σας.',
+    addressBarHint: 'Συμβουλή για υπολογιστή: Αναζητήστε το εικονίδιο εγκατάστασης στη δεξιά πλευρά της γραμμής διευθύνσεων.',
+    pc: {
+      label: 'PC / Mac (Υπολογιστής)',
+      heading: 'Λήψη σε PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Ανοίξτε το GeekTabs σε Chrome, Edge ή Brave στον υπολογιστή σας.',
+        'Κάντε κλικ στο εικονίδιο «Εγκατάσταση GeekTabs Dashboard» δεξιά στη γραμμή διευθύνσεων.',
+        'Ή κάντε κλικ στο κουμπί «Εγκατάσταση Εφαρμογής» παραπάνω, ή ανοίξτε το μενού ⋮ → Αποθήκευση και κοινοποίηση → Εγκατάσταση σελίδας ως εφαρμογή.',
+        'Κάντε κλικ στο «Εγκατάσταση» για να τοποθετήσετε το λογότυπο GeekTabs στην επιφάνεια εργασίας ή στο Dock.'
+      ]
+    },
+    phone: {
+      label: 'Κινητό (iOS & Android)',
+      heading: 'Προσθήκη Λογότυπου Εφαρμογής στο Κινητό',
+      steps: [
+        'iPhone (Safari): Πατήστε Κοινοποίηση → «Προσθήκη στην Οθόνη Αφετηρίας» → «Προσθήκη».',
+        'Android (Chrome / Edge): Πατήστε «Εγκατάσταση Εφαρμογής» παραπάνω ή το μενού (⋮) → «Εγκατάσταση εφαρμογής».',
+        'Εκκινήστε το GeekTabs απευθείας από το λογότυπο της αρχικής οθόνης σε λειτουργία πλήρους οθόνης.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad & Android)',
+      heading: 'Προσθήκη Λογότυπου Εφαρμογής στο Tablet',
+      steps: [
+        'iPad (Safari): Πατήστε Κοινοποίηση επάνω δεξιά → «Προσθήκη στην Οθόνη Αφετηρίας» → «Προσθήκη».',
+        'Android Tablet (Chrome / Edge): Πατήστε το εικονίδιο εγκατάστασης στη γραμμή διευθύνσεων ή ⋮ → «Εγκατάσταση εφαρμογής».',
+        'Χρησιμοποιήστε το GeekTabs στο δικό του παράθυρο εφαρμογής απευθείας από την αρχική οθόνη του tablet.'
+      ]
+    }
   }
 };
 

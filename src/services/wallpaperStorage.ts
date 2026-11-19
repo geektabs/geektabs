@@ -78,6 +78,91 @@ export function upgradeWallpaperUrlTo8K(url: string): string {
   return trimmed;
 }
 
+const preloadedThumbUrls = new Set<string>();
+
+/**
+ * Returns a fast-loading thumbnail URL for wallpaper gallery cards (~35-150KB)
+ * while keeping the full 8K/4K URL for the actual page background.
+ */
+export function getWallpaperCardThumbnailUrl(url: string): string {
+  if (!url) return url;
+  const trimmed = url.trim();
+  if (trimmed.startsWith('data:') || trimmed.startsWith('blob:') || trimmed.startsWith('/')) {
+    return trimmed;
+  }
+
+  try {
+    const parsed = new URL(trimmed);
+    if (parsed.hostname.includes('images.pexels.com')) {
+      parsed.searchParams.set('auto', 'compress');
+      parsed.searchParams.set('cs', 'tinysrgb');
+      parsed.searchParams.set('w', '720');
+      parsed.searchParams.delete('h');
+      parsed.searchParams.delete('dpr');
+      return parsed.toString();
+    }
+    if (parsed.hostname.includes('images.unsplash.com')) {
+      parsed.searchParams.set('w', '720');
+      parsed.searchParams.set('q', '80');
+      parsed.searchParams.delete('h');
+      parsed.searchParams.delete('dpr');
+      return parsed.toString();
+    }
+    if (parsed.hostname === 'upload.wikimedia.org') {
+      const match = parsed.pathname.match(/^\/wikipedia\/commons\/([a-f0-9])\/([a-f0-9]{2})\/([^/]+)$/i);
+      if (match && /\.(jpe?g|png|webp)$/i.test(match[3])) {
+        return `https://thumb.wikimedia.org/wikipedia/commons/thumb/${match[1]}/${match[2]}/${match[3]}/960px-${match[3]}`;
+      }
+    }
+  } catch {
+    // Return trimmed URL if parsing fails
+  }
+  return trimmed;
+}
+
+/**
+ * Extract lightweight Mixkit video poster JPEG URL for instant first-frame display.
+ */
+export function getMixkitVideoPosterUrl(url: string): string | undefined {
+  const match = (url || '').trim().match(/^https:\/\/assets\.mixkit\.co\/videos\/(\d+)\/\1-\d+\.mp4$/i);
+  if (match) {
+    return `https://assets.mixkit.co/videos/${match[1]}/${match[1]}-thumb-720-0.jpg`;
+  }
+  return undefined;
+}
+
+/**
+ * Map heavy 4K/1080p Mixkit URLs to lightweight 720p stream for smooth gallery card previews.
+ */
+export function getWallpaperCardVideoPreviewUrl(url: string): string {
+  const trimmed = (url || '').trim();
+  const match = trimmed.match(/^https:\/\/assets\.mixkit\.co\/videos\/(\d+)\/\1-(?:1080|2160)\.mp4$/i);
+  if (match) {
+    return `https://assets.mixkit.co/videos/${match[1]}/${match[1]}-720.mp4`;
+  }
+  return trimmed;
+}
+
+/**
+ * Preload lightweight card thumbnails and video posters into browser memory so opening
+ * the Wallpaper gallery or switching categories renders immediately without delay.
+ */
+export function preloadWallpaperThumbnails(items: Array<{ url: string; mediaType?: string }>): void {
+  if (typeof window === 'undefined' || typeof Image === 'undefined') return;
+  for (const item of items) {
+    if (!item?.url || isGifWallpaperUrl(item.url)) continue;
+    const type = detectWallpaperMediaType(item.url, item.mediaType);
+    const thumb = type === 'video'
+      ? getMixkitVideoPosterUrl(item.url)
+      : getWallpaperCardThumbnailUrl(item.url);
+    if (!thumb || preloadedThumbUrls.has(thumb)) continue;
+    preloadedThumbUrls.add(thumb);
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = thumb;
+  }
+}
+
 /**
  * Automatically upscales uploaded static photos (e.g. 1080p / 2K / 4K) to 8K Ultra-HD (7680x4320 max)
  * using progressive multi-pass high-quality resampling and subtle clarity enhancement.

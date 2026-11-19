@@ -24,6 +24,11 @@ const languageToLocale: Record<string, string> = {
   Norwegian: 'nb-NO',
   Thai: 'th-TH',
   Portuguese: 'pt-PT',
+  Vietnamese: 'vi-VN',
+  Polish: 'pl-PL',
+  Danish: 'da-DK',
+  Turkish: 'tr-TR',
+  Greek: 'el-GR',
 };
 
 export default function Clock({ language = 'English', customTextColor }: ClockProps) {

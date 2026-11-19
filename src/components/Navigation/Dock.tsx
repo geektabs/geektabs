@@ -15,7 +15,7 @@ import {
   Check,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { t } from '../../i18n';
+import { t, LANGUAGE_OPTIONS } from '../../i18n';
 import { PWAInstallButton } from '../PWAInstallButton';
 
 interface DockProps {
@@ -25,6 +25,7 @@ interface DockProps {
   setTheme: (theme: string) => void;
   isDarkMode: boolean;
   language: string;
+  setLanguage: (language: string) => void;
 }
 
 const NAV_ITEMS = [
@@ -40,9 +41,11 @@ const NAV_ITEMS = [
 
 const SETTINGS_ITEM = { key: 'settings', icon: Settings, labelKey: 'settings' };
 
-export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, isDarkMode, language }: DockProps) {
+export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, isDarkMode, language, setLanguage }: DockProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const langRef = useRef<HTMLDivElement>(null);
 
   const allItems = [...NAV_ITEMS, SETTINGS_ITEM];
   const currentItem = allItems.find((item) => item.key === activeTab) || NAV_ITEMS[0];
@@ -53,15 +56,31 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsMenuOpen(false);
+        setIsLangOpen(false);
       }
     };
-    if (isMenuOpen) {
+    if (isMenuOpen || isLangOpen) {
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isLangOpen]);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setIsLangOpen(false);
+      }
+    };
+    if (isLangOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isLangOpen]);
 
   return (
     <>
@@ -133,13 +152,16 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
             </div>
           </div>
 
-          {/* Right Controls: Compact PWA Install button + Mobile/Tablet Menu Trigger */}
+          {/* Right Controls: Compact PWA Install button + Mobile/Tablet Menu Trigger + Global Language Dropdown */}
           <div className="flex items-center gap-2 relative ml-auto z-10 shrink-0">
             <PWAInstallButton variant="compact" isDarkMode={isDarkMode} language={language} />
             <div className="xl:hidden">
             <button
               id="mobile-tablet-menu-trigger"
-              onClick={() => setIsMenuOpen((prev) => !prev)}
+              onClick={() => {
+                setIsLangOpen(false);
+                setIsMenuOpen((prev) => !prev);
+              }}
               className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer shadow-xs active:scale-95 select-none ${
                 isMenuOpen
                   ? isDarkMode
@@ -186,6 +208,95 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                 />
               </div>
             </button>
+            </div>
+
+            {/* Global Language Dropdown Button (Very Right Side) */}
+            <div className="relative" ref={langRef}>
+              <button
+                id="global-language-button"
+                type="button"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsLangOpen((prev) => !prev);
+                }}
+                title={language}
+                aria-label="Language"
+                aria-expanded={isLangOpen}
+                aria-haspopup="listbox"
+                className={`flex items-center gap-1.5 h-9 min-h-[36px] px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 select-none ${
+                  isLangOpen
+                    ? isDarkMode
+                      ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 ring-2 ring-indigo-500/25'
+                      : 'bg-indigo-50 border-indigo-200 text-indigo-700 ring-2 ring-indigo-500/20'
+                    : isDarkMode
+                    ? 'bg-slate-800/90 hover:bg-slate-700/80 border-slate-700 text-slate-100'
+                    : 'bg-slate-100/90 hover:bg-slate-200/80 border-slate-200/90 text-slate-800'
+                }`}
+              >
+                <Globe
+                  size={16}
+                  className={isLangOpen ? (isDarkMode ? 'text-indigo-400' : 'text-indigo-600') : ''}
+                />
+                <span className="hidden 2xl:inline max-w-[110px] truncate">{language}</span>
+                <ChevronDown
+                  size={13}
+                  className={`transition-transform duration-200 ${
+                    isLangOpen ? 'rotate-180' : 'opacity-70'
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div
+                    id="global-language-dropdown"
+                    role="listbox"
+                    aria-label="Language selection"
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                    transition={{ duration: 0.16, ease: 'easeOut' }}
+                    className={`absolute right-0 top-full mt-2 w-52 max-h-80 overflow-y-auto rounded-2xl border shadow-2xl p-1.5 z-50 scrollbar-thin ${
+                      isDarkMode
+                        ? 'bg-slate-900/98 border-slate-700 text-slate-100 shadow-black/60'
+                        : 'bg-white/98 border-slate-200 text-slate-800 shadow-slate-900/15'
+                    }`}
+                  >
+                    {LANGUAGE_OPTIONS.map((opt) => {
+                      const isSelected = language === opt.value;
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          role="option"
+                          aria-selected={isSelected}
+                          onClick={() => {
+                            setLanguage(opt.value);
+                            setIsLangOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2.5 lg:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors cursor-pointer text-left ${
+                            isSelected
+                              ? 'bg-indigo-500 text-white font-bold'
+                              : isDarkMode
+                              ? 'text-slate-200 hover:bg-slate-800 hover:text-white'
+                              : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
+                          }`}
+                          style={isSelected ? { color: '#ffffff' } : undefined}
+                        >
+                          <span className="truncate">{opt.label}</span>
+                          {isSelected && (
+                            <Check
+                              size={15}
+                              className="text-white shrink-0 ml-2"
+                              style={{ color: '#ffffff', stroke: '#ffffff' }}
+                            />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 

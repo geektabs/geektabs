@@ -872,6 +872,261 @@ const browserGuides: Record<string, any> = {
         'Cole o URL copiado acima e clique em "Adicionar".'
       ]
     }
+  },
+  Vietnamese: {
+    title: 'Đặt làm trang chủ',
+    subtitle: 'Đặt bảng điều khiển này làm trang chủ hoặc tab mặc định để giữ mọi thứ ngăn nắp ngay khi bạn mở trình duyệt.',
+    copyButton: 'Sao chép URL',
+    copiedText: 'Đã sao chép!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Mở Chrome, nhấp vào menu ba chấm ở góc trên bên phải và chọn Cài đặt.',
+        'Đi tới mục "Khi khởi động" ở thanh bên trái.',
+        'Chọn "Mở một trang cụ thể hoặc tập hợp các trang" và nhấp vào "Thêm trang mới".',
+        'Dán URL đã sao chép ở trên và nhấp vào "Thêm".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Mở Edge, nhấp vào menu ở góc trên bên phải và chọn Cài đặt.',
+        'Nhấp vào "Khởi động, trang chủ và các tab mới" ở bên trái.',
+        'Trong mục "Khi Edge khởi động", chọn "Mở các trang này".',
+        'Nhấp vào "Thêm trang mới", dán URL và nhấp vào "Thêm".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Mở Firefox, nhấp vào nút menu ở góc trên bên phải và chọn Cài đặt.',
+        'Nhấp vào "Trang chủ" ở menu bên trái.',
+        'Trong mục "Trang chủ và cửa sổ mới", chọn "URL tùy chỉnh...".',
+        'Dán URL đã sao chép ở trên và nhấn Enter để lưu.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Mở Safari và chọn "Safari > Cài đặt" từ thanh menu.',
+        'Trong tab "Cài đặt chung", tìm trường "Trang chủ".',
+        'Đặt "Cửa sổ mới mở bằng" thành "Trang chủ".',
+        'Dán URL của trang này và xác nhận.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Mở Brave, nhấp vào menu ở góc trên bên phải và chọn Cài đặt.',
+        'Chuyển đến "Khi khởi động" trong menu bên trái.',
+        'Chọn "Mở một trang cụ thể hoặc tập hợp các trang" và nhấp vào "Thêm trang mới".',
+        'Dán URL đã sao chép ở trên và nhấp vào "Thêm".'
+      ]
+    }
+  },
+  Polish: {
+    title: 'Ustaw jako stronę główną',
+    subtitle: 'Ustaw ten panel jako stronę główną lub domyślną kartę, aby zachować porządek zaraz po otwarciu przeglądarki.',
+    copyButton: 'Kopiuj URL',
+    copiedText: 'Skopiowano!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Otwórz Chrome, kliknij menu z trzema kropkami w prawym górnym rogu i wybierz Ustawienia.',
+        'Przejdź do sekcji „Po uruchomieniu” w lewym pasku bocznym.',
+        'Wybierz „Otwórz konkretną stronę lub zestaw stron” i kliknij „Dodaj nową stronę”.',
+        'Wklej skopiowany powyżej adres URL i kliknij „Dodaj”.'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Otwórz Edge, kliknij menu w prawym górnym rogu i wybierz Ustawienia.',
+        'Kliknij „Start, strona główna i nowe karty” po lewej stronie.',
+        'W sekcji „Po uruchomieniu przeglądarki Edge” wybierz „Otwórz te strony”.',
+        'Kliknij „Dodaj nową stronę”, wklej adres URL i kliknij „Dodaj”.'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Otwórz Firefox, kliknij przycisk menu w prawym górnym rogu i wybierz Ustawienia.',
+        'Kliknij „Strona główna” w lewym menu.',
+        'W sekcji „Strona główna i nowe okna” wybierz „Własne adresy URL...”.',
+        'Wklej skopiowany powyżej adres URL i naciśnij Enter, aby zapisać.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Otwórz Safari i wybierz „Safari > Ustawienia” z paska menu.',
+        'Na karcie „Ogólne” znajdź pole „Strona główna”.',
+        'Ustaw opcję „Nowe okna otwieraj z” na „Strona główna”.',
+        'Wklej adres URL tej strony i potwierdź.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Otwórz Brave, kliknij menu w prawym górnym rogu i wybierz Ustawienia.',
+        'Przejdź do „Po uruchomieniu” w lewym menu.',
+        'Wybierz „Otwórz konkretną stronę lub zestaw stron” i kliknij „Dodaj nową stronę”.',
+        'Wklej skopiowany powyżej adres URL i kliknij „Dodaj”.'
+      ]
+    }
+  },
+  Danish: {
+    title: 'Angiv som startside',
+    subtitle: 'Angiv dette dashboard som din startside eller standardfane for at holde alt organiseret, så snart du åbner din browser.',
+    copyButton: 'Kopiér URL',
+    copiedText: 'Kopieret!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Åbn Chrome, klik på menuen med tre prikker øverst til højre, og vælg Indstillinger.',
+        'Gå til "Ved opstart" i venstre sidebjælke.',
+        'Vælg "Åbn en bestemt side eller et sæt sider", og klik på "Tilføj en ny side".',
+        'Indsæt den kopierede URL ovenfor, og klik på "Tilføj".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Åbn Edge, klik på menuen øverst til højre, og vælg Indstillinger.',
+        'Klik på "Start, hjem og nye faner" til venstre.',
+        'Under "Når Edge starter" skal du vælge "Åbn disse sider".',
+        'Klik på "Tilføj en ny side", indsæt URL’en, og klik på "Tilføj".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Åbn Firefox, klik på menuknappen øverst til højre, og vælg Indstillinger.',
+        'Klik på "Hjem" i menuen til venstre.',
+        'Under "Startside og nye vinduer" skal du vælge "Brugerdefinerede URL’er...".',
+        'Indsæt den kopierede URL ovenfor, og tryk på Enter for at gemme.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Åbn Safari, og vælg "Safari > Indstillinger" i menulinjen.',
+        'På fanen "Generelt" skal du finde feltet "Startside".',
+        'Indstil "Nye vinduer åbnes med" til "Startside".',
+        'Indsæt sidens URL, og bekræft.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Åbn Brave, klik på menuen øverst til højre, og vælg Indstillinger.',
+        'Gå til "Ved opstart" i venstre menu.',
+        'Vælg "Åbn en bestemt side eller et sæt sider", og klik på "Tilføj en ny side".',
+        'Indsæt den kopierede URL ovenfor, og klik på "Tilføj".'
+      ]
+    }
+  },
+  Turkish: {
+    title: 'Ana Sayfa Olarak Ayarla',
+    subtitle: 'Tarayıcınızı açtığınız anda her şeyi düzenli tutmak için bu panoyu ana sayfanız veya varsayılan sekmeniz olarak ayarlayın.',
+    copyButton: 'URL’yi Kopyala',
+    copiedText: 'Kopyalandı!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Chrome’u açın, sağ üstteki üç nokta menüsüne tıklayın ve Ayarlar’ı seçin.',
+        'Sol kenar çubuğundan "Başlangıçta" bölümüne gidin.',
+        '"Belirli bir sayfayı veya sayfa grubunu aç"ı seçin ve "Yeni sayfa ekle"ye tıklayın.',
+        'Yukarıdan kopyaladığınız URL’yi yapıştırın ve "Ekle"ye tıklayın.'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Edge’i açın, sağ üstteki menüye tıklayın ve Ayarlar’ı seçin.',
+        'Soldaki "Başlat, giriş ve yeni sekmeler" seçeneğine tıklayın.',
+        '"Edge başladığında" altında "Bu sayfaları aç"ı seçin.',
+        '"Yeni bir sayfa ekle"ye tıklayın, URL’yi yapıştırın ve "Ekle"ye tıklayın.'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Firefox’u açın, sağ üstteki menü düğmesine tıklayın ve Ayarlar’ı seçin.',
+        'Sol menüden "Giriş"e tıklayın.',
+        '"Giriş sayfası ve yeni pencereler" altında "Özel URL’ler..."i seçin.',
+        'Yukarıdan kopyaladığınız URL’yi yapıştırın ve kaydetmek için Enter’a basın.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Safari’yi açın ve menü çubuğundan "Safari > Ayarlar"ı seçin.',
+        '"Genel" sekmesinde "Ana Sayfa" alanını bulun.',
+        '"Yeni pencereler şununla açılsın" ayarını "Ana Sayfa" yapın.',
+        'Bu sayfanın URL’sini yapıştırın ve onaylayın.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Brave’i açın, sağ üstteki menüye tıklayın ve Ayarlar’ı seçin.',
+        'Sol menüden "Başlangıçta" bölümüne gidin.',
+        '"Belirli bir sayfayı veya sayfa grubunu aç"ı seçin ve "Yeni sayfa ekle"ye tıklayın.',
+        'Yukarıdan kopyaladığınız URL’yi yapıştırın ve "Ekle"ye tıklayın.'
+      ]
+    }
+  },
+  Greek: {
+    title: 'Ορισμός ως Αρχική Σελίδα',
+    subtitle: 'Ορίστε αυτόν τον πίνακα ως αρχική σελίδα ή προεπιλεγμένη καρτέλα για να διατηρείτε τα πάντα οργανωμένα μόλις ανοίγετε το πρόγραμμα περιήγησης.',
+    copyButton: 'Αντιγραφή URL',
+    copiedText: 'Αντιγράφηκε!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Ανοίξτε το Chrome, κάντε κλικ στο μενού με τις τρεις τελείες επάνω δεξιά και επιλέξτε Ρυθμίσεις.',
+        'Μεταβείτε στην επιλογή «Κατά την εκκίνηση» στην αριστερή πλαϊνή γραμμή.',
+        'Επιλέξτε «Άνοιγμα συγκεκριμένης σελίδας ή συνόλου σελίδων» και κάντε κλικ στο «Προσθήκη νέας σελίδας».',
+        'Επικολλήστε το URL που αντιγράψατε παραπάνω και κάντε κλικ στο «Προσθήκη».'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Ανοίξτε το Edge, κάντε κλικ στο μενού επάνω δεξιά και επιλέξτε Ρυθμίσεις.',
+        'Κάντε κλικ στο «Έναρξη, αρχική σελίδα και νέες καρτέλες» στα αριστερά.',
+        'Στην ενότητα «Όταν ξεκινά το Edge», επιλέξτε «Άνοιγμα αυτών των σελίδων».',
+        'Κάντε κλικ στο «Προσθήκη νέας σελίδας», επικολλήστε το URL και κάντε κλικ στο «Προσθήκη».'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Ανοίξτε το Firefox, κάντε κλικ στο κουμπί μενού επάνω δεξιά και επιλέξτε Ρυθμίσεις.',
+        'Κάντε κλικ στην «Αρχική σελίδα» στο αριστερό μενού.',
+        'Στην ενότητα «Αρχική σελίδα και νέα παράθυρα», επιλέξτε «Προσαρμοσμένες διευθύνσεις URL...».',
+        'Επικολλήστε το URL που αντιγράψατε παραπάνω και πατήστε Enter για αποθήκευση.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Ανοίξτε το Safari και επιλέξτε «Safari > Ρυθμίσεις» από τη γραμμή μενού.',
+        'Στην καρτέλα «Γενικά», βρείτε το πεδίο «Αρχική σελίδα».',
+        'Ορίστε το «Τα νέα παράθυρα ανοίγουν με» σε «Αρχική σελίδα».',
+        'Επικολλήστε το URL αυτής της σελίδας και επιβεβαιώστε.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Ανοίξτε το Brave, κάντε κλικ στο μενού επάνω δεξιά και επιλέξτε Ρυθμίσεις.',
+        'Μεταβείτε στην επιλογή «Κατά την εκκίνηση» στο αριστερό μενού.',
+        'Επιλέξτε «Άνοιγμα συγκεκριμένης σελίδας ή συνόλου σελίδων» και κάντε κλικ στο «Προσθήκη νέας σελίδας».',
+        'Επικολλήστε το URL που αντιγράψατε παραπάνω και κάντε κλικ στο «Προσθήκη».'
+      ]
+    }
   }
 };
 

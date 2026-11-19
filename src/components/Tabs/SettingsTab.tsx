@@ -9,7 +9,9 @@ import DownloadAppTab from './DownloadAppTab';
 import WeatherSettingsTab from './WeatherSettingsTab';
 import { motion, AnimatePresence } from 'motion/react';
 import ConfirmModal from '../ConfirmModal';
-import { t } from '../../i18n';
+import { t, LANGUAGE_OPTIONS } from '../../i18n';
+import defaultWallpapersData from '../../data/wallpapers.json';
+import { preloadWallpaperThumbnails } from '../../services/wallpaperStorage';
 
 export interface SettingsTabProps {
   currentTheme: string;
@@ -655,6 +657,191 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     modalMessage: "Esta ação não pode ser desfeita e apagará permanentemente todas as definições, marcadores, tarefas e notas.",
     modalConfirm: "Confirmar Reposição",
     modalCancel: "Cancelar"
+  },
+  Vietnamese: {
+    title: "Cài đặt",
+    generalSettings: "Cài đặt chung",
+    managePreferences: "Quản lý tùy chọn cốt lõi",
+    customBoardName: "Tên bảng tùy chỉnh",
+    boardNameDesc: "Tên này sẽ hiển thị như chữ ký tinh tế trên trang chủ. Mặc định là lời chào theo thời gian trong ngày.",
+    defaultPlaceholder: "Mặc định: ",
+    save: "Lưu",
+    saved: "Đã lưu",
+    languageSelection: "Chọn ngôn ngữ",
+    langDesc: "Chọn ngôn ngữ ưa thích cho các tiện ích và điều khiển.",
+    cardStyle: "Kiểu nền thẻ",
+    cardDesc: "Chọn giữa kiểu nền thẻ Sáng (trắng), Tối (đen) hoặc Kính (kính mờ).",
+    whiteBg: "Sáng",
+    darkBg: "Tối",
+    darkGlass: "Kính",
+    dataBackup: "Sao lưu & Khôi phục dữ liệu",
+    dataDesc: "Xuất dấu trang, việc cần làm và ghi chú của bạn sang tệp JSON hoặc nhập bản sao lưu đã lưu trước đó.",
+    exportBackup: "Xuất bản sao lưu (Tạo điểm khôi phục)",
+    importBackup: "Nhập bản sao lưu (Khôi phục dữ liệu)",
+    resetTitle: "Đặt lại mặc định",
+    resetDesc: "Đặt lại toàn bộ bảng điều khiển về mặc định ban đầu. Thao tác này sẽ xóa vĩnh viễn giao diện, hình nền, dấu trang, công việc và ghi chú của bạn!",
+    resetButton: "Đặt lại & Xóa toàn bộ dữ liệu",
+    aboutTitle: "Giới thiệu",
+    aboutDesc: "Câu chuyện của chúng tôi",
+    aboutWelcome: "Chào mừng đến với GeekTabs",
+    aboutText1: "GeekTabs được tạo ra với một mục tiêu đơn giản: biến trang tab mới thông thường thành một bảng điều khiển đẹp mắt, cá nhân hóa và giàu tính năng.",
+    aboutText2: "Với thiết kế gọn gàng, tính năng chu đáo và khả năng tùy biến linh hoạt, GeekTabs mang đến một điểm khởi đầu tốt hơn trên web.",
+    supportContact: "Hỗ trợ & Liên hệ",
+    restoreSuccess: "Khôi phục bản sao lưu thành công! Đang tải lại trang.",
+    invalidBackup: "Tệp sao lưu không hợp lệ.",
+    failParse: "Không thể đọc tệp sao lưu.",
+    modalTitle: "Đặt lại toàn bộ dữ liệu?",
+    modalMessage: "Hành động này không thể hoàn tác và sẽ xóa vĩnh viễn mọi cài đặt, dấu trang, công việc và ghi chú của bạn.",
+    modalConfirm: "Xác nhận đặt lại",
+    modalCancel: "Hủy"
+  },
+  Polish: {
+    title: "Ustawienia",
+    generalSettings: "Ustawienia ogólne",
+    managePreferences: "Zarządzaj głównymi preferencjami",
+    customBoardName: "Własna nazwa tablicy",
+    boardNameDesc: "Ta nazwa będzie wyświetlana jako elegancki podpis na stronie głównej. Domyślnie pokazuje powitanie zależne od pory dnia.",
+    defaultPlaceholder: "Domyślnie: ",
+    save: "Zapisz",
+    saved: "Zapisano",
+    languageSelection: "Wybór języka",
+    langDesc: "Wybierz preferowany język widżetów i elementów sterujących.",
+    cardStyle: "Styl tła kart",
+    cardDesc: "Wybierz styl tła kart: Jasny (biały), Ciemny (czarny) lub Szkło (matowe szkło).",
+    whiteBg: "Jasny",
+    darkBg: "Ciemny",
+    darkGlass: "Szkło",
+    dataBackup: "Kopia zapasowa i przywracanie",
+    dataDesc: "Wyeksportuj zakładki, zadania i notatki do pliku JSON lub zaimportuj wcześniej zapisaną kopię zapasową.",
+    exportBackup: "Eksportuj kopię (Utwórz punkt przywracania)",
+    importBackup: "Importuj kopię (Przywróć dane)",
+    resetTitle: "Przywróć ustawienia domyślne",
+    resetDesc: "Przywróć cały panel do ustawień fabrycznych. Spowoduje to trwałe usunięcie motywów, tapet, zakładek, zadań i notatek!",
+    resetButton: "Resetuj i wyczyść wszystkie dane",
+    aboutTitle: "O nas",
+    aboutDesc: "Poznaj naszą historię",
+    aboutWelcome: "Witamy w GeekTabs",
+    aboutText1: "GeekTabs powstał z prostym celem: zamienić zwykłą stronę nowej karty w piękny, spersonalizowany i funkcjonalny pulpit.",
+    aboutText2: "Dzięki przejrzystemu projektowi, przemyślanym funkcjom i szerokiej personalizacji GeekTabs oferuje lepszy punkt startowy w sieci.",
+    supportContact: "Wsparcie i kontakt",
+    restoreSuccess: "Kopia zapasowa została przywrócona! Strona zostanie odświeżona.",
+    invalidBackup: "Nieprawidłowy plik kopii zapasowej.",
+    failParse: "Nie udało się odczytać pliku kopii zapasowej.",
+    modalTitle: "Zresetować wszystkie dane?",
+    modalMessage: "Tej operacji nie można cofnąć — trwale usunie ona wszystkie ustawienia, zakładki, zadania i notatki.",
+    modalConfirm: "Potwierdź reset",
+    modalCancel: "Anuluj"
+  },
+  Danish: {
+    title: "Indstillinger",
+    generalSettings: "Generelle indstillinger",
+    managePreferences: "Administrer kernepræferencer",
+    customBoardName: "Brugerdefineret tavlenavn",
+    boardNameDesc: "Dette navn vises som en elegant signatur på forsiden. Som standard vises en hilsen efter tidspunktet på dagen.",
+    defaultPlaceholder: "Standard: ",
+    save: "Gem",
+    saved: "Gemt",
+    languageSelection: "Valg af sprog",
+    langDesc: "Vælg dit foretrukne sprog til widgets og betjening.",
+    cardStyle: "Baggrundsstil for kort",
+    cardDesc: "Vælg mellem Lys (hvid), Mørk (sort) eller Glas (frostet glas) baggrundsstil for kort.",
+    whiteBg: "Lys",
+    darkBg: "Mørk",
+    darkGlass: "Glas",
+    dataBackup: "Sikkerhedskopiering og gendannelse",
+    dataDesc: "Eksporter dine bogmærker, opgaver og noter til en JSON-fil, eller importer en tidligere gemt sikkerhedskopi.",
+    exportBackup: "Eksporter kopi (Opret gendannelsespunkt)",
+    importBackup: "Importer kopi (Gendan data)",
+    resetTitle: "Nulstil til standard",
+    resetDesc: "Nulstil hele dashboardet til fabriksindstillinger. Dette sletter permanent dine temaer, baggrunde, bogmærker, opgaver og noter!",
+    resetButton: "Nulstil og ryd alle data",
+    aboutTitle: "Om os",
+    aboutDesc: "Lær historien bag at kende",
+    aboutWelcome: "Velkommen til GeekTabs",
+    aboutText1: "GeekTabs blev skabt med et enkelt mål: at forvandle den almindelige nye fane til et smukt, personligt og funktionelt dashboard.",
+    aboutText2: "Med et rent design, gennemtænkte funktioner og fleksibel tilpasning giver GeekTabs dig et bedre udgangspunkt på nettet.",
+    supportContact: "Support og kontakt",
+    restoreSuccess: "Sikkerhedskopi gendannet! Siden genindlæses.",
+    invalidBackup: "Ugyldig sikkerhedskopifil.",
+    failParse: "Kunne ikke læse sikkerhedskopifilen.",
+    modalTitle: "Nulstil alle data?",
+    modalMessage: "Denne handling kan ikke fortrydes og vil permanent slette alle dine indstillinger, bogmærker, opgaver og noter.",
+    modalConfirm: "Bekræft nulstilling",
+    modalCancel: "Annuller"
+  },
+  Turkish: {
+    title: "Ayarlar",
+    generalSettings: "Genel Ayarlar",
+    managePreferences: "Temel tercihleri yönetin",
+    customBoardName: "Özel Pano Adı",
+    boardNameDesc: "Bu ad ana sayfada zarif bir imza olarak görünür. Varsayılan olarak günün saatine göre bir selamlama gösterir.",
+    defaultPlaceholder: "Varsayılan: ",
+    save: "Kaydet",
+    saved: "Kaydedildi",
+    languageSelection: "Dil Seçimi",
+    langDesc: "Bileşenler ve kontroller için tercih ettiğiniz dili seçin.",
+    cardStyle: "Kart Arka Plan Stili",
+    cardDesc: "Açık (beyaz), Koyu (siyah) veya Cam (buzlu cam) kart arka plan stilleri arasından seçim yapın.",
+    whiteBg: "Açık",
+    darkBg: "Koyu",
+    darkGlass: "Cam",
+    dataBackup: "Veri Yedekleme ve Geri Yükleme",
+    dataDesc: "Yer imlerinizi, yapılacaklarınızı ve notlarınızı JSON dosyasına aktarın veya daha önce kaydedilmiş bir yedeği içe aktarın.",
+    exportBackup: "Yedeği Dışa Aktar (Geri Yükleme Noktası Oluştur)",
+    importBackup: "Yedeği İçe Aktar (Verileri Geri Yükle)",
+    resetTitle: "Varsayılanlara Sıfırla",
+    resetDesc: "Tüm panoyu fabrika varsayılanlarına sıfırlayın. Bu işlem temalarınızı, duvar kağıtlarınızı, yer imlerinizi, görevlerinizi ve notlarınızı kalıcı olarak siler!",
+    resetButton: "Sıfırla ve Tüm Verileri Temizle",
+    aboutTitle: "Hakkımızda",
+    aboutDesc: "Hikayemizi tanıyın",
+    aboutWelcome: "GeekTabs'a Hoş Geldiniz",
+    aboutText1: "GeekTabs basit bir amaçla oluşturuldu: sıradan yeni sekme sayfasını güzel, kişisel ve işlevsel bir panoya dönüştürmek.",
+    aboutText2: "Sade tasarım, özenli özellikler ve kapsamlı kişiselleştirme ile GeekTabs web'de daha iyi bir başlangıç noktası sunar.",
+    supportContact: "Destek ve İletişim",
+    restoreSuccess: "Yedek başarıyla geri yüklendi! Sayfa yeniden yükleniyor.",
+    invalidBackup: "Geçersiz yedekleme dosyası.",
+    failParse: "Yedekleme dosyası ayrıştırılamadı.",
+    modalTitle: "Tüm veriler sıfırlansın mı?",
+    modalMessage: "Bu işlem geri alınamaz ve tüm ayarlarınızı, yer imlerinizi, görevlerinizi ve notlarınızı kalıcı olarak siler.",
+    modalConfirm: "Sıfırlamayı Onayla",
+    modalCancel: "İptal"
+  },
+  Greek: {
+    title: "Ρυθμίσεις",
+    generalSettings: "Γενικές Ρυθμίσεις",
+    managePreferences: "Διαχείριση βασικών προτιμήσεων",
+    customBoardName: "Προσαρμοσμένο Όνομα Πίνακα",
+    boardNameDesc: "Αυτό το όνομα θα εμφανίζεται ως κομψή υπογραφή στην αρχική σελίδα. Από προεπιλογή εμφανίζει χαιρετισμό ανάλογα με την ώρα.",
+    defaultPlaceholder: "Προεπιλογή: ",
+    save: "Αποθήκευση",
+    saved: "Αποθηκεύτηκε",
+    languageSelection: "Επιλογή Γλώσσας",
+    langDesc: "Επιλέξτε την προτιμώμενη γλώσσα για τα widgets και τα χειριστήρια.",
+    cardStyle: "Στυλ Φόντου Καρτών",
+    cardDesc: "Επιλέξτε μεταξύ Φωτεινού (λευκό), Σκούρου (μαύρο) ή Γυάλινου (παγωμένο γυαλί) στυλ φόντου καρτών.",
+    whiteBg: "Φωτεινό",
+    darkBg: "Σκούρο",
+    darkGlass: "Γυαλί",
+    dataBackup: "Αντίγραφα Ασφαλείας & Επαναφορά",
+    dataDesc: "Εξαγάγετε τους σελιδοδείκτες, τις εργασίες και τις σημειώσεις σας σε αρχείο JSON ή εισαγάγετε ένα αποθηκευμένο αντίγραφο.",
+    exportBackup: "Εξαγωγή Αντιγράφου (Σημείο Επαναφοράς)",
+    importBackup: "Εισαγωγή Αντιγράφου (Επαναφορά Δεδομένων)",
+    resetTitle: "Επαναφορά Προεπιλογών",
+    resetDesc: "Επαναφέρετε ολόκληρο τον πίνακα στις εργοστασιακές ρυθμίσεις. Αυτό θα διαγράψει οριστικά τα θέματα, τις ταπετσαρίες, τους σελιδοδείκτες, τις εργασίες και τις σημειώσεις σας!",
+    resetButton: "Επαναφορά & Εκκαθάριση Όλων των Δεδομένων",
+    aboutTitle: "Σχετικά με εμάς",
+    aboutDesc: "Γνωρίστε την ιστορία μας",
+    aboutWelcome: "Καλώς ήρθατε στο GeekTabs",
+    aboutText1: "Το GeekTabs δημιουργήθηκε με έναν απλό στόχο: να μετατρέψει τη συνηθισμένη σελίδα νέας καρτέλας σε έναν όμορφο, προσωπικό και λειτουργικό πίνακα.",
+    aboutText2: "Με καθαρό σχεδιασμό, προσεγμένες λειτουργίες και ευέλικτη προσαρμογή, το GeekTabs προσφέρει ένα καλύτερο σημείο εκκίνησης στο διαδίκτυο.",
+    supportContact: "Υποστήριξη & Επικοινωνία",
+    restoreSuccess: "Το αντίγραφο επαναφέρθηκε με επιτυχία! Επαναφόρτωση σελίδας.",
+    invalidBackup: "Μη έγκυρο αρχείο αντιγράφου ασφαλείας.",
+    failParse: "Αποτυχία ανάγνωσης του αρχείου αντιγράφου ασφαλείας.",
+    modalTitle: "Επαναφορά όλων των δεδομένων;",
+    modalMessage: "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί και θα διαγράψει οριστικά όλες τις ρυθμίσεις, τους σελιδοδείκτες, τις εργασίες και τις σημειώσεις σας.",
+    modalConfirm: "Επιβεβαίωση Επαναφοράς",
+    modalCancel: "Ακύρωση"
   }
 };
 
@@ -798,6 +985,13 @@ export default function SettingsTab({
       setActiveTab(initialTab);
     }
   }, [initialTab]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      preloadWallpaperThumbnails(defaultWallpapersData as Array<{ url: string; mediaType?: string }>);
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, []);
   const [pageName, setPageName] = useLocalStorage('GeekTabs-page-name', '');
   const [localName, setLocalName] = useState(() => {
     const initial = pageName && pageName !== 'have a good day' ? pageName : getGreetingByTime();
@@ -824,25 +1018,7 @@ export default function SettingsTab({
   const tData = SETTINGS_T[language] || SETTINGS_T['English'];
   const isDarkGlass = cardBgMode === 'dark-glass';
 
-  const languageOptions: SettingsDropdownOption[] = [
-    { value: 'English', label: 'English' },
-    { value: 'Spanish', label: 'Spanish' },
-    { value: 'French', label: 'French' },
-    { value: 'German', label: 'German' },
-    { value: 'Dutch', label: 'Dutch' },
-    { value: 'Swedish', label: 'Swedish' },
-    { value: 'Finnish', label: 'Finnish' },
-    { value: 'Norwegian', label: 'Norwegian' },
-    { value: 'Hindi', label: 'Hindi' },
-    { value: 'Thai', label: 'Thai' },
-    { value: 'Chinese', label: 'Chinese' },
-    { value: 'Japanese', label: 'Japanese' },
-    { value: 'Korean', label: 'Korean' },
-    { value: 'Italian', label: 'Italian' },
-    { value: 'Russian', label: 'Russian' },
-    { value: 'Portuguese', label: 'Portuguese' },
-    { value: 'Luxembourgish', label: 'Luxembourgish' },
-  ];
+  const languageOptions: SettingsDropdownOption[] = LANGUAGE_OPTIONS;
 
   const cardStyleOptions: SettingsDropdownOption[] = [
     { value: 'white', label: tData.whiteBg },
@@ -949,7 +1125,7 @@ export default function SettingsTab({
   const CurrentIcon = currentNav.icon;
 
   return (
-    <div className="settings-tab-card w-full h-full flex flex-row overflow-hidden relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
+    <div className="settings-tab-card w-full min-h-[calc(100vh-3.5rem)] flex-1 flex flex-row relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
       
       {/* Mobile Backdrop */}
       {mobileSidebarOpen && (
@@ -961,7 +1137,7 @@ export default function SettingsTab({
 
       {/* LEFT SIDEBAR (Gemini Chat Style with Hide/Show) */}
       <aside
-        className={`fixed top-14 bottom-0 left-0 md:inset-y-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 md:h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+        className={`fixed top-14 bottom-0 left-0 z-50 md:sticky md:top-14 md:bottom-auto md:self-start md:h-[calc(100vh-3.5rem)] transition-[transform,width] duration-300 ease-in-out shrink-0 flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
           mobileSidebarOpen
             ? 'w-72 sm:w-80 translate-x-0 shadow-2xl border-r'
             : sidebarOpen
@@ -996,6 +1172,7 @@ export default function SettingsTab({
                 onClick={() => {
                   setActiveTab(item.id);
                   setMobileSidebarOpen(false);
+                  window.scrollTo(0, 0);
                 }}
                 className={`w-full flex items-center gap-3 px-3.5 py-3 lg:py-2.5 rounded-xl font-bold text-xs transition-colors cursor-pointer select-none text-left ${
                   isActive
@@ -1032,10 +1209,10 @@ export default function SettingsTab({
       </aside>
 
       {/* RIGHT CONTENT PANE - Always Pure Solid White */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
+      <div className="flex-1 flex flex-col min-h-[calc(100vh-3.5rem)] min-w-0 bg-white text-slate-900">
         
         {/* Workspace Top Header Bar */}
-        <header className="h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+        <header className="sticky top-14 z-20 h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
           {/* Left: Sidebar Toggle Button (Hide / Show - same as Notes page) */}
           <div className="flex items-center gap-2 min-w-0">
             <button
@@ -1076,7 +1253,7 @@ export default function SettingsTab({
         </header>
 
         {/* Main Settings Content Area - Always Pure Solid White */}
-        <main className="flex-1 overflow-y-auto px-4 sm:px-6 md:px-6 lg:px-16 py-6 sm:py-8 bg-white text-slate-900">
+        <main className="flex-1 px-4 sm:px-6 md:px-6 lg:px-16 py-6 sm:py-8 bg-white text-slate-900">
           <div className="max-w-6xl mx-auto space-y-8">
             <AnimatePresence mode="wait">
               {activeTab === 'general' && (

@@ -128,6 +128,21 @@ export default function HoroscopeInfo({ language = 'English' }: HoroscopeInfoPro
     } else if (language === 'Portuguese') {
       l1 = `Signo do Zodíaco de Hoje: ${sign.name} (${sign.range})`;
       l2 = `Esta semana: semana ${weekNum} de 52, dia ${dayOfYear} de ${totalDays}`;
+    } else if (language === 'Vietnamese') {
+      l1 = `Cung Hoàng Đạo Hôm Nay: ${sign.name} (${sign.range})`;
+      l2 = `Tuần này: tuần ${weekNum} / 52, ngày ${dayOfYear} / ${totalDays}`;
+    } else if (language === 'Polish') {
+      l1 = `Dzisiejszy Znak Zodiaku: ${sign.name} (${sign.range})`;
+      l2 = `Ten tydzień: ${weekNum} z 52 tygodni, ${dayOfYear} z ${totalDays} dni`;
+    } else if (language === 'Danish') {
+      l1 = `Dagens Stjernetegn: ${sign.name} (${sign.range})`;
+      l2 = `Denne uge: ${weekNum} af 52 uger, ${dayOfYear} af ${totalDays} dage`;
+    } else if (language === 'Turkish') {
+      l1 = `Bugünün Burcu: ${sign.name} (${sign.range})`;
+      l2 = `Bu hafta: 52 haftanın ${weekNum}. haftası, ${totalDays} günün ${dayOfYear}. günü`;
+    } else if (language === 'Greek') {
+      l1 = `Ζώδιο Σήμερα: ${sign.name} (${sign.range})`;
+      l2 = `Αυτή η εβδομάδα: ${weekNum} από 52 εβδομάδες, ${dayOfYear} από ${totalDays} ημέρες`;
     }
 
     return { line1: l1, line2: l2 };

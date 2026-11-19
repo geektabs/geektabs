@@ -10,7 +10,7 @@
 @layer base {
   body {
     background: #e2f2fc;
-    @apply transition-colors duration-500 overflow-x-hidden select-none;
+    @apply transition-colors duration-500 overflow-x-clip select-none;
   }
   
   .dark {

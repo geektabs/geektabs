@@ -1,75 +1,75 @@
 [
   {
     "id": "def-travel-1",
-    "title": "Maldives Tropical Palm Coast",
+    "title": "Milford Sound Mountain Reflection, New Zealand",
     "category": "Travel",
-    "url": "https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/797727/pexels-photo-797727.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-travel-2",
-    "title": "Santorini Blue-Domed Cliffs",
+    "title": "Twelve Apostles Ocean Cliffs, Australia",
     "category": "Travel",
-    "url": "https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/20721132/pexels-photo-20721132.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-travel-3",
-    "title": "Misty Coastal Mountain Bay",
+    "title": "Lake Lucerne Alpine Valley, Switzerland",
     "category": "Travel",
-    "url": "https://images.pexels.com/photos/30604060/pexels-photo-30604060.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/39343857/pexels-photo-39343857.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-travel-4",
-    "title": "Machu Picchu Andes Citadel",
+    "title": "Studlagil Basalt Canyon River, Iceland",
     "category": "Travel",
-    "url": "https://images.pexels.com/photos/37885473/pexels-photo-37885473.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/27063824/pexels-photo-27063824.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-nature-1",
-    "title": "Starry Snow-Capped Mountains",
+    "id": "def-nature-nz1",
+    "title": "Lake Wanaka & Southern Alps, New Zealand",
     "category": "Nature",
-    "url": "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Lake_Wanaka_-_northern_part%2C_New_Zealand.jpg"
   },
   {
-    "id": "def-nature-2",
-    "title": "Mount Fuji Twilight & Maple Leaves",
+    "id": "def-nature-au1",
+    "title": "Whitsundays Green Island & Coral Sea, Australia",
     "category": "Nature",
-    "url": "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/5326928/pexels-photo-5326928.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-nature-3",
-    "title": "Aurora Borealis Over Arctic Peaks",
+    "id": "def-nature-ch1",
+    "title": "Oeschinen Lake & Alpine Cliffs, Switzerland",
     "category": "Nature",
-    "url": "https://images.pexels.com/photos/1933239/pexels-photo-1933239.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/21283183/pexels-photo-21283183.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-nature-4",
-    "title": "Alpine Peaks & Turquoise Lake",
+    "id": "def-nature-is1",
+    "title": "Skogafoss Waterfall & Mossy Cliffs, Iceland",
     "category": "Nature",
-    "url": "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Sk%C3%B3gafoss_July_2014.JPG"
   },
   {
-    "id": "def-abstract-1",
+    "id": "def-abstract-v2-1",
     "title": "Swirling Emerald Smoke",
     "category": "Abstract",
     "url": "https://images.pexels.com/photos/28648054/pexels-photo-28648054.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-abstract-2",
+    "id": "def-abstract-v2-2",
     "title": "Iridescent Cosmic Gradient",
     "category": "Abstract",
     "url": "https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-abstract-3",
+    "id": "def-abstract-v2-3",
     "title": "Purple & Lilac Fluid Swirls",
     "category": "Abstract",
     "url": "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-abstract-4",
-    "title": "Flowing Violet Blue Waves",
+    "id": "def-abstract-v2-4",
+    "title": "Golden Amber Crystal Abstract",
     "category": "Abstract",
-    "url": "https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Texture_abstract.jpg"
   },
   {
     "id": "def-science-1",
@@ -79,69 +79,69 @@
   },
   {
     "id": "def-science-2",
-    "title": "Milky Way Night Starfield",
+    "title": "Futuristic AI Creation Citadel",
     "category": "Science",
-    "url": "https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/%27Greenwood_Estates_Vista_City%27_by_Midjourney.jpg"
   },
   {
     "id": "def-science-3",
-    "title": "Crimson Lunar Eclipse Horizon",
+    "title": "Modern Humanoid Robot",
     "category": "Science",
-    "url": "https://images.pexels.com/photos/681467/pexels-photo-681467.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/NAO_mars_2011_1.jpg"
   },
   {
     "id": "def-science-4",
-    "title": "Microprocessor Circuit Board Macro",
+    "title": "Glowing Fiber Optic Technology Lights",
     "category": "Science",
-    "url": "https://images.pexels.com/photos/36169774/pexels-photo-36169774.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/12932191/pexels-photo-12932191.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-architecture-1",
-    "title": "Modern Geometric Glass Architecture",
+    "title": "Sydney Opera House Blue Harbour",
     "category": "Architecture",
-    "url": "https://images.pexels.com/photos/1816030/pexels-photo-1816030.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/AUS_Sydney%2C_Central_Business_District%2C_Sydney_Harbour_Bridge%2C_View_011.jpg"
   },
   {
     "id": "def-architecture-2",
-    "title": "Minimalist Spiral Staircase & Shadows",
+    "title": "Marina Bay Sands Twilight Skyline",
     "category": "Architecture",
-    "url": "https://images.pexels.com/photos/39625372/pexels-photo-39625372.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/15480459/pexels-photo-15480459.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-architecture-3",
-    "title": "Modern Glass Skyscraper",
+    "title": "Walt Disney Concert Hall Curves",
     "category": "Architecture",
-    "url": "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/20028982/pexels-photo-20028982.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-architecture-4",
-    "title": "Gothic Cathedral Vaulted Ceiling",
+    "title": "Burj Al Arab Seafront Sail",
     "category": "Architecture",
-    "url": "https://images.pexels.com/photos/37972696/pexels-photo-37972696.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/19790158/pexels-photo-19790158.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-creation-1",
-    "title": "Vibrant Acrylic Canvas",
+    "title": "Modern Living Room Furniture",
     "category": "Creation",
-    "url": "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Living_room_%28Unsplash%29.jpg"
   },
   {
     "id": "def-creation-2",
-    "title": "Artist Paint Palette & Brushes",
+    "title": "Modern Lounge Furniture & Wall Art",
     "category": "Creation",
-    "url": "https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Lobby_lounge_of_Amantaka_Suite_Amantaka_luxury_Resort_%26_Hotel_Luang_Prabang_Laos.jpg"
   },
   {
     "id": "def-creation-3",
-    "title": "Watercolor Palette & Artist Brushes",
+    "title": "Colorful Geometric Origami Paper Craft DIY",
     "category": "Creation",
-    "url": "https://images.pexels.com/photos/19196316/pexels-photo-19196316.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/32594479/pexels-photo-32594479.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-creation-4",
-    "title": "Golden Textured Oil Painting Canvas",
+    "title": "Handcrafted Textured Ceramic Vases DIY",
     "category": "Creation",
-    "url": "https://images.pexels.com/photos/29412595/pexels-photo-29412595.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/7119222/pexels-photo-7119222.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-holiday-1",
@@ -169,54 +169,54 @@
   },
   {
     "id": "def-animal-1",
-    "title": "Red Fox in Winter Snow",
+    "title": "Ginger Tabby Cat Portrait",
     "category": "Animal",
-    "url": "https://images.pexels.com/photos/35986459/pexels-photo-35986459.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/39802060/pexels-photo-39802060.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
     "id": "def-animal-2",
-    "title": "Savannah Lion in Lush Grass",
-    "category": "Animal",
-    "url": "https://images.pexels.com/photos/32196368/pexels-photo-32196368.jpeg?auto=compress&cs=srgb&w=7680"
-  },
-  {
-    "id": "def-animal-3",
     "title": "Golden Puppies in Meadow",
     "category": "Animal",
     "url": "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-animal-4",
-    "title": "Bengal Tiger Resting in Water",
+    "id": "def-animal-3",
+    "title": "Savannah Lion in Lush Grass",
     "category": "Animal",
-    "url": "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=srgb&w=7680"
+    "url": "https://images.pexels.com/photos/32196368/pexels-photo-32196368.jpeg?auto=compress&cs=srgb&w=7680"
   },
   {
-    "id": "def-video-sea-1",
-    "title": "Ocean Waves Rolling on Beach (4K)",
-    "category": "Video",
-    "mediaType": "video",
-    "url": "https://assets.mixkit.co/videos/5016/5016-2160.mp4"
+    "id": "def-animal-4",
+    "title": "Fluffy White Rabbit in Forest",
+    "category": "Animal",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Bunny_at_Manali_forest.jpg"
   },
   {
-    "id": "def-video-waterfall-1",
-    "title": "Rocky Mountain Waterfall (4K)",
+    "id": "def-video-nz-1",
+    "title": "Cape Maria Coastal Headland, New Zealand",
     "category": "Video",
     "mediaType": "video",
-    "url": "https://assets.mixkit.co/videos/25542/25542-2160.mp4"
+    "url": "https://assets.mixkit.co/videos/10988/10988-720.mp4"
   },
   {
-    "id": "def-video-mountain-1",
-    "title": "Swiss Alps Mountain Peaks (4K)",
+    "id": "def-video-gm-1",
+    "title": "Emerald Green Mountain Cliffs Panorama (4K)",
     "category": "Video",
     "mediaType": "video",
-    "url": "https://assets.mixkit.co/videos/4132/4132-2160.mp4"
+    "url": "https://assets.mixkit.co/videos/5360/5360-2160.mp4"
   },
   {
-    "id": "def-video-bay-1",
-    "title": "Turquoise Ocean Bay Aerial (4K)",
+    "id": "def-video-gm-2",
+    "title": "Sunlit Green Forest Mountains & River Valley",
     "category": "Video",
     "mediaType": "video",
-    "url": "https://assets.mixkit.co/videos/5008/5008-2160.mp4"
+    "url": "https://assets.mixkit.co/videos/9967/9967-720.mp4"
+  },
+  {
+    "id": "def-video-is-1",
+    "title": "Skogafoss Waterfall & Green Cliffs, Iceland",
+    "category": "Video",
+    "mediaType": "video",
+    "url": "https://assets.mixkit.co/videos/8013/8013-720.mp4"
   }
 ]

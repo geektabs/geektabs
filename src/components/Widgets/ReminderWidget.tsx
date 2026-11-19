@@ -17,6 +17,11 @@ import remindersHindi from '../../data/daily-reminders-Hindi.json';
 import remindersNorwegian from '../../data/daily-reminders-Norwegian.json';
 import remindersThai from '../../data/daily-reminders-Thai.json';
 import remindersPortuguese from '../../data/daily-reminders-Portuguese.json';
+import remindersVietnamese from '../../data/daily-reminders-Vietnamese.json';
+import remindersPolish from '../../data/daily-reminders-Polish.json';
+import remindersDanish from '../../data/daily-reminders-Danish.json';
+import remindersTurkish from '../../data/daily-reminders-Turkish.json';
+import remindersGreek from '../../data/daily-reminders-Greek.json';
 
 const remindersMap: Record<string, string[]> = {
   English: remindersEnglish,
@@ -36,6 +41,11 @@ const remindersMap: Record<string, string[]> = {
   Norwegian: remindersNorwegian,
   Thai: remindersThai,
   Portuguese: remindersPortuguese,
+  Vietnamese: remindersVietnamese,
+  Polish: remindersPolish,
+  Danish: remindersDanish,
+  Turkish: remindersTurkish,
+  Greek: remindersGreek,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_reminder_history';
@@ -135,6 +145,11 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
       Norwegian: 'Daglig Påminnelse',
       Thai: 'ข้อคิดเตือนใจประจำวัน',
       Portuguese: 'Lembrete Diário',
+      Vietnamese: 'Nhắc Nhở Hằng Ngày',
+      Polish: 'Codzienne Przypomnienie',
+      Danish: 'Daglig Påmindelse',
+      Turkish: 'Günlük Hatırlatma',
+      Greek: 'Ημερήσια Υπενθύμιση',
     }[language] || 'Daily Reminder';
 
   return (
