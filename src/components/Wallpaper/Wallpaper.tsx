@@ -92,6 +92,9 @@ export const SOLIDS_MAP: Record<string, string> = {
 
 export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: string; isDarkMode: boolean }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const heroImageRef = useRef<HTMLImageElement | null>(null);
+  const [isTallerThanHero, setIsTallerThanHero] = useState(false);
   const [resolvedIdb, setResolvedIdb] = useState<{
     themeKey: string;
     url: string;
@@ -202,8 +205,28 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
 
   const isVideoBackground = Boolean(photoSrc && mediaType === 'video');
 
+  useEffect(() => {
+    const containerEl = containerRef.current;
+    const heroEl = heroImageRef.current;
+    if (!containerEl || !heroEl || isVideoBackground || !photoSrc) {
+      setIsTallerThanHero(false);
+      return;
+    }
+
+    const updateHeightState = () => {
+      setIsTallerThanHero(containerEl.clientHeight > heroEl.clientHeight + 4);
+    };
+    updateHeightState();
+
+    const observer = new ResizeObserver(updateHeightState);
+    observer.observe(containerEl);
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, [photoSrc, isVideoBackground, currentTheme]);
+
   return (
     <div
+      ref={containerRef}
       className={`${
         isVideoBackground ? 'fixed' : 'absolute'
       } inset-0 w-full h-full z-0 overflow-hidden transition-colors duration-500 pointer-events-none`}
@@ -261,45 +284,37 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
           )}
           {photoSrc && mediaType !== 'video' && (
             <div className="relative w-full h-full overflow-hidden">
-              {/* Soft ambient backdrop filling the lower portion of extra-tall scrollable pages */}
-              <img
-                src={photoSrc}
-                alt=""
-                aria-hidden="true"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover object-center scale-110 blur-3xl opacity-90 select-none pointer-events-none"
-              />
-              {/* Primary 16:9 (1920x1080) wallpaper + seamless vertically mirrored continuation below when scrolling */}
-              <div className="relative w-full flex flex-col">
-                <img
-                  src={photoSrc}
-                  alt=""
-                  decoding="sync"
-                  fetchPriority="high"
-                  className="w-full min-h-screen aspect-video object-cover object-center shrink-0 select-none pointer-events-none"
-                  style={{
-                    transform: 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
-                    filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
-                  }}
-                />
+              {isTallerThanHero && (
                 <img
                   src={photoSrc}
                   alt=""
                   aria-hidden="true"
                   decoding="async"
-                  className="w-full min-h-screen aspect-video object-cover object-center shrink-0 select-none pointer-events-none"
-                  style={{
-                    transform: 'scaleY(-1) translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
-                    filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%)',
-                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%)',
-                  }}
+                  className="absolute inset-0 w-full h-full object-cover object-bottom scale-125 blur-[72px] opacity-90 select-none pointer-events-none"
                 />
-              </div>
+              )}
+              <img
+                ref={heroImageRef}
+                src={photoSrc}
+                alt=""
+                decoding="sync"
+                fetchPriority="high"
+                className="relative w-full min-h-screen aspect-video object-cover object-center select-none pointer-events-none"
+                style={{
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
+                  filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
+                  ...(isTallerThanHero
+                    ? {
+                        WebkitMaskImage:
+                          'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,0) 100%)',
+                        maskImage:
+                          'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,0) 100%)',
+                      }
+                    : {}),
+                }}
+              />
             </div>
           )}
           {currentTheme === 'mix-forest' && (
