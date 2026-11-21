@@ -1,21 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { Globe, Copy, Check, Terminal, MapPin, Navigation, Compass, Shield, Cpu, RefreshCw, ShieldCheck, Lock, Activity, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { Globe, Copy, Check, MapPin, Shield, Cpu, RefreshCw, ShieldCheck, Lock, Activity, CheckCircle2, AlertTriangle, Plus, Minus, Info } from 'lucide-react';
+import {
+  APIProvider,
+  Map as GoogleMap,
+  AdvancedMarker,
+  AdvancedMarkerAnchorPoint,
+  useMap,
+  useMapsLibrary,
+  useApiLoadingStatus,
+  APILoadingStatus,
+} from '@vis.gl/react-google-maps';
 
 export interface IpAddressTabProps {
   language?: string;
 }
 
-const fetchWithTimeout = async (url: string, timeout = 1200): Promise<Response> => {
+const fetchWithTimeout = async (url: string, timeout = 4500, init?: RequestInit): Promise<Response> => {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
   try {
-    const response = await fetch(url, { signal: controller.signal });
+    const response = await fetch(url, { ...init, signal: controller.signal });
     clearTimeout(id);
     return response;
   } catch (err) {
     clearTimeout(id);
     throw err;
   }
+};
+
+const INITIAL_MAPS_API_KEY = (
+  import.meta.env.VITE_GOOGLE_MAPS_API_KEY ||
+  (typeof process !== 'undefined' ? process.env.GOOGLE_MAPS_API_KEY : '') ||
+  ''
+).trim();
+
+const EDGE_POP_COORDS: Record<string, { city: string; lat: number; lng: number }> = {
+  BOS: { city: 'Boston', lat: 42.3656, lng: -71.0096 },
+  EWR: { city: 'Newark', lat: 40.6895, lng: -74.1745 },
+  JFK: { city: 'New York', lat: 40.6413, lng: -73.7781 },
+  IAD: { city: 'Ashburn', lat: 38.9531, lng: -77.4565 },
+  ORD: { city: 'Chicago', lat: 41.9742, lng: -87.9073 },
+  ATL: { city: 'Atlanta', lat: 33.6407, lng: -84.4277 },
+  MIA: { city: 'Miami', lat: 25.7959, lng: -80.287 },
+  DFW: { city: 'Dallas', lat: 32.8998, lng: -97.0403 },
+  IAH: { city: 'Houston', lat: 29.9902, lng: -95.3368 },
+  DEN: { city: 'Denver', lat: 39.8561, lng: -104.6737 },
+  PHX: { city: 'Phoenix', lat: 33.4342, lng: -112.0116 },
+  LAX: { city: 'Los Angeles', lat: 33.9416, lng: -118.4085 },
+  SJC: { city: 'San Jose', lat: 37.3639, lng: -121.9289 },
+  SFO: { city: 'San Francisco', lat: 37.6213, lng: -122.379 },
+  SEA: { city: 'Seattle', lat: 47.4502, lng: -122.3088 },
+  YYZ: { city: 'Toronto', lat: 43.6777, lng: -79.6248 },
+  YUL: { city: 'Montreal', lat: 45.4706, lng: -73.7408 },
+  YVR: { city: 'Vancouver', lat: 49.1967, lng: -123.1815 },
+  LHR: { city: 'London', lat: 51.47, lng: -0.4543 },
+  CDG: { city: 'Paris', lat: 49.0097, lng: 2.5479 },
+  AMS: { city: 'Amsterdam', lat: 52.3105, lng: 4.7683 },
+  FRA: { city: 'Frankfurt', lat: 50.0379, lng: 8.5622 },
+  MAD: { city: 'Madrid', lat: 40.4983, lng: -3.5676 },
+  MXP: { city: 'Milan', lat: 45.6301, lng: 8.7255 },
+  ZRH: { city: 'Zurich', lat: 47.4582, lng: 8.5555 },
+  ARN: { city: 'Stockholm', lat: 59.6498, lng: 17.9238 },
+  HEL: { city: 'Helsinki', lat: 60.3172, lng: 24.9633 },
+  CPH: { city: 'Copenhagen', lat: 55.618, lng: 12.6508 },
+  OSL: { city: 'Oslo', lat: 60.1976, lng: 11.1004 },
+  WAW: { city: 'Warsaw', lat: 52.1657, lng: 20.9671 },
+  ATH: { city: 'Athens', lat: 37.9364, lng: 23.9445 },
+  IST: { city: 'Istanbul', lat: 41.2753, lng: 28.7519 },
+  LUX: { city: 'Luxembourg', lat: 49.6233, lng: 6.2044 },
+  LIS: { city: 'Lisbon', lat: 38.7756, lng: -9.1354 },
+  DUB: { city: 'Dublin', lat: 53.4264, lng: -6.2499 },
+  NRT: { city: 'Tokyo', lat: 35.772, lng: 140.3929 },
+  HND: { city: 'Tokyo', lat: 35.5494, lng: 139.7798 },
+  KIX: { city: 'Osaka', lat: 34.432, lng: 135.2304 },
+  ICN: { city: 'Seoul', lat: 37.4602, lng: 126.4407 },
+  HKG: { city: 'Hong Kong', lat: 22.308, lng: 113.9185 },
+  TPE: { city: 'Taipei', lat: 25.0797, lng: 121.2342 },
+  SIN: { city: 'Singapore', lat: 1.3644, lng: 103.9915 },
+  BKK: { city: 'Bangkok', lat: 13.69, lng: 100.7501 },
+  SGN: { city: 'Ho Chi Minh City', lat: 10.8188, lng: 106.6519 },
+  HAN: { city: 'Hanoi', lat: 21.2212, lng: 105.8072 },
+  BOM: { city: 'Mumbai', lat: 19.0896, lng: 72.8656 },
+  DEL: { city: 'New Delhi', lat: 28.5562, lng: 77.1 },
+  SYD: { city: 'Sydney', lat: -33.9399, lng: 151.1753 },
+  MEL: { city: 'Melbourne', lat: -37.669, lng: 144.841 },
+  GRU: { city: 'Sao Paulo', lat: -23.4356, lng: -46.4731 },
+  MEX: { city: 'Mexico City', lat: 19.4361, lng: -99.0719 },
+  DXB: { city: 'Dubai', lat: 25.2532, lng: 55.3657 },
+  QRO: { city: 'Queretaro', lat: 20.6173, lng: -100.1857 },
+  LAS: { city: 'Las Vegas', lat: 36.084, lng: -115.1537 },
+  MSP: { city: 'Minneapolis', lat: 44.8848, lng: -93.2223 },
+  DTW: { city: 'Detroit', lat: 42.2162, lng: -83.3554 },
+  CLT: { city: 'Charlotte', lat: 35.2144, lng: -80.9473 },
 };
 
 const IP_T: Record<string, Record<string, string>> = {
@@ -238,6 +314,50 @@ const IP_T: Record<string, Record<string, string>> = {
     transportStatus: "TLS 1.3 / HTTP/3 握手",
     ipReputation: "IP 路由与信誉",
     ipReputationStatus: "优良 / 无黑名单风险"
+  },
+  'Chinese Traditional': {
+    identifier: "全球 IP 識別碼",
+    title: "我的 IP 位址是什麼？",
+    subtitle: "快速偵測並定位您目前的公網 IPv4 與 IPv6 位址。",
+    resolving: "正在解析 IP 封包標頭...",
+    ipv4: "公網 IPv4 位址",
+    typeUnicast: "類型: 公網單播",
+    notDetected: "未偵測到",
+    copied: "已複製！",
+    copyV4: "複製 IPv4",
+    copyV6: "複製 IPv6",
+    ipv6: "公網 IPv6 位址",
+    supported: "支援 IPv6",
+    notSupported: "未偵測到 IPv6",
+    noIpv6: "未偵測到（電信業者不支援 IPv6 路由）",
+    nextGen: "次世代 IP 協定",
+    legacyRails: "您的網路連線完全運行於傳統的 IPv4 架構上。",
+    geoLoc: "地理位置",
+    country: "國家",
+    region: "省份 / 州",
+    city: "城市",
+    postal: "郵遞區號",
+    secured: "安全節點",
+    networkParams: "網路參數",
+    asn: "ASN 識別碼",
+    iana: "IANA 範圍",
+    timezone: "時區",
+    utc: "UTC 時差",
+    reidentify: "重新偵測",
+    compass: "羅盤雷達",
+    lat: "緯度",
+    lon: "經度",
+    secDiagnostics: "網路協定與連線安全診斷",
+    secSubtitle: "即時 TLS 傳輸加密、DNS 洩漏防護與網路路由隱私稽核。",
+    allSystemsSecure: "所有協定安全運行",
+    dnsPrivacy: "DNS 洩漏防護",
+    dnsStatus: "已啟用 DoH/DoT 加密",
+    webrtcPrivacy: "WebRTC 隱私隔離",
+    webrtcStatus: "未偵測到本地公網洩漏",
+    transportSecurity: "傳輸層安全",
+    transportStatus: "TLS 1.3 / HTTP/3 握手",
+    ipReputation: "IP 路由與信譽",
+    ipReputationStatus: "優良 / 無黑名單風險"
   },
   Japanese: {
     identifier: "グローバル IP 識別子",
@@ -989,139 +1109,1112 @@ const IP_T: Record<string, Record<string, string>> = {
   }
 };
 
+const MAP_T: Record<string, {
+  liveMap: string;
+  liveGeo: string;
+  yourLocation: string;
+  edgeServer: string;
+  distance: string;
+  approxNote: string;
+  mapLoading: string;
+  mapUnavailable: string;
+  dualStack: string;
+  ipv4Only: string;
+  attention: string;
+}> = {
+  English: {
+    liveMap: "Network Route Map",
+    liveGeo: "LIVE GEO",
+    yourLocation: "Your IP Location",
+    edgeServer: "Connected Edge Node",
+    distance: "Route Distance",
+    approxNote: "IP geolocation reflects your ISP or regional PoP routing area.",
+    mapLoading: "Loading live map...",
+    mapUnavailable: "Map preview requires a valid location or Maps API key.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "IPv4 Direct Route",
+    attention: "Attention Advised"
+  },
+  Spanish: {
+    liveMap: "Mapa de ruta de red",
+    liveGeo: "GEO EN VIVO",
+    yourLocation: "Tu ubicación IP",
+    edgeServer: "Nodo perimetral conectado",
+    distance: "Distancia de ruta",
+    approxNote: "La geolocalización IP refleja el área de enrutamiento de su ISP.",
+    mapLoading: "Cargando mapa en vivo...",
+    mapUnavailable: "La vista de mapa requiere una ubicación válida o clave de Maps.",
+    dualStack: "Doble pila (IPv4 + IPv6)",
+    ipv4Only: "Ruta directa IPv4",
+    attention: "Revisión recomendada"
+  },
+  French: {
+    liveMap: "Carte de routage réseau",
+    liveGeo: "GÉO EN DIRECT",
+    yourLocation: "Votre position IP",
+    edgeServer: "Nœud Edge connecté",
+    distance: "Distance de routage",
+    approxNote: "La géolocalisation IP reflète la zone de routage de votre FAI.",
+    mapLoading: "Chargement de la carte...",
+    mapUnavailable: "L'aperçu carte nécessite une position valide ou une clé Maps.",
+    dualStack: "Double pile (IPv4 + IPv6)",
+    ipv4Only: "Route directe IPv4",
+    attention: "Vérification conseillée"
+  },
+  German: {
+    liveMap: "Netzwerk-Routenkarte",
+    liveGeo: "LIVE-GEO",
+    yourLocation: "Ihr IP-Standort",
+    edgeServer: "Verbundener Edge-Knoten",
+    distance: "Routendistanz",
+    approxNote: "IP-Geolokalisierung spiegelt den regionalen ISP-Routingbereich wider.",
+    mapLoading: "Live-Karte wird geladen...",
+    mapUnavailable: "Kartenansicht erfordert gültigen Standort oder Maps-Schlüssel.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Direkte IPv4-Route",
+    attention: "Prüfung empfohlen"
+  },
+  Chinese: {
+    liveMap: "网络路由地图",
+    liveGeo: "实时定位",
+    yourLocation: "当前 IP 位置",
+    edgeServer: "连接的边缘节点",
+    distance: "节点距离",
+    approxNote: "IP 地理定位反映运营商或区域接入节点的路由区域。",
+    mapLoading: "正在加载实时地图...",
+    mapUnavailable: "需要有效坐标或 Maps API 密钥才能加载地图。",
+    dualStack: "双栈连接 (IPv4 + IPv6)",
+    ipv4Only: "IPv4 直连路由",
+    attention: "建议关注"
+  },
+  'Chinese Traditional': {
+    liveMap: "網路路由地圖",
+    liveGeo: "即時定位",
+    yourLocation: "目前 IP 位置",
+    edgeServer: "連線邊緣節點",
+    distance: "節點距離",
+    approxNote: "IP 地理定位反映電信業者或區域接入節點的路由範圍。",
+    mapLoading: "正在載入即時地圖...",
+    mapUnavailable: "需要有效座標或 Maps API 金鑰才能顯示地圖。",
+    dualStack: "雙堆疊連線 (IPv4 + IPv6)",
+    ipv4Only: "IPv4 直連路由",
+    attention: "建議留意"
+  },
+  Japanese: {
+    liveMap: "ネットワーク経路マップ",
+    liveGeo: "ライブ位置",
+    yourLocation: "現在の IP 位置",
+    edgeServer: "接続エッジノード",
+    distance: "ノード間距離",
+    approxNote: "IP位置情報はISPまたは接続先エッジの地域を示します。",
+    mapLoading: "ライブマップを読み込み中...",
+    mapUnavailable: "地図表示には有効な座標またはMaps APIキーが必要です。",
+    dualStack: "デュアルスタック (IPv4 + IPv6)",
+    ipv4Only: "IPv4 直接ルート",
+    attention: "要確認"
+  },
+  Korean: {
+    liveMap: "네트워크 경로 지도",
+    liveGeo: "실시간 위치",
+    yourLocation: "현재 IP 위치",
+    edgeServer: "연결된 엣지 노드",
+    distance: "경로 거리",
+    approxNote: "IP 위치 정보는 ISP 또는 지역 라우팅 거점을 기준으로 표시됩니다.",
+    mapLoading: "실시간 지도 불러오는 중...",
+    mapUnavailable: "지도를 표시하려면 유효한 좌표 또는 Maps API 키가 필요합니다.",
+    dualStack: "듀얼 스택 (IPv4 + IPv6)",
+    ipv4Only: "IPv4 직접 경로",
+    attention: "확인 권장"
+  },
+  Italian: {
+    liveMap: "Mappa percorso di rete",
+    liveGeo: "GEO LIVE",
+    yourLocation: "Tua posizione IP",
+    edgeServer: "Nodo Edge connesso",
+    distance: "Distanza percorso",
+    approxNote: "La geolocalizzazione IP riflette l'area di instradamento ISP.",
+    mapLoading: "Caricamento mappa live...",
+    mapUnavailable: "La mappa richiede coordinate valide o una chiave Maps.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Rotta diretta IPv4",
+    attention: "Verifica consigliata"
+  },
+  Russian: {
+    liveMap: "Карта сетевого маршрута",
+    liveGeo: "ГЕО ОНЛАЙН",
+    yourLocation: "Ваше IP-положение",
+    edgeServer: "Подключённый узел Edge",
+    distance: "Дистанция маршрута",
+    approxNote: "IP-геолокация отражает региональный узел маршрутизации провайдера.",
+    mapLoading: "Загрузка карты...",
+    mapUnavailable: "Для карты нужны корректные координаты или ключ Maps API.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Прямой маршрут IPv4",
+    attention: "Требует внимания"
+  },
+  Luxembourgish: {
+    liveMap: "Netzwierk-Routekaart",
+    liveGeo: "LIVE GEO",
+    yourLocation: "Är IP-Positioun",
+    edgeServer: "Verbonnen Edge-Node",
+    distance: "Streckendistanz",
+    approxNote: "D'IP-Geolokalisatioun weist d'Routing-Regioun vun Ärem ISP.",
+    mapLoading: "Live-Kaart gëtt gelueden...",
+    mapUnavailable: "Fir d'Kaart si gülteg Koordinaten oder e Maps-Schlëssel néideg.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Direkt IPv4-Route",
+    attention: "Kontroll recommandéiert"
+  },
+  Dutch: {
+    liveMap: "Netwerkroutekaart",
+    liveGeo: "LIVE GEO",
+    yourLocation: "Uw IP-locatie",
+    edgeServer: "Verbonden Edge-knooppunt",
+    distance: "Route-afstand",
+    approxNote: "IP-geolocatie toont het regionale routeringsgebied van uw provider.",
+    mapLoading: "Livekaart laden...",
+    mapUnavailable: "Voor kaartweergave zijn geldige coördinaten of Maps-sleutel vereist.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Directe IPv4-route",
+    attention: "Controle aanbevolen"
+  },
+  Swedish: {
+    liveMap: "Nätverksruttskarta",
+    liveGeo: "LIVE GEO",
+    yourLocation: "Din IP-plats",
+    edgeServer: "Ansluten Edge-nod",
+    distance: "Ruttavstånd",
+    approxNote: "IP-geolokalisering visar din internetleverantörs regionala nod.",
+    mapLoading: "Laddar livekarta...",
+    mapUnavailable: "Kartan kräver giltiga koordinater eller Maps API-nyckel.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Direkt IPv4-rutt",
+    attention: "Kontroll rekommenderas"
+  },
+  Finnish: {
+    liveMap: "Verkkoreittikartta",
+    liveGeo: "LIVE-SIJAINTI",
+    yourLocation: "IP-sijaintisi",
+    edgeServer: "Yhdistetty Edge-solmu",
+    distance: "Reittietäisyys",
+    approxNote: "IP-paikannus näyttää operaattorin alueellisen reititysalueen.",
+    mapLoading: "Ladataan live-karttaa...",
+    mapUnavailable: "Kartta vaatii kelvolliset koordinaatit tai Maps-avaimen.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Suora IPv4-reitti",
+    attention: "Tarkistus suositeltavaa"
+  },
+  Hindi: {
+    liveMap: "नेटवर्क रूट मानचित्र",
+    liveGeo: "लाइव लोकेशन",
+    yourLocation: "आपका IP स्थान",
+    edgeServer: "कनेक्टेड एज नोड",
+    distance: "रूट दूरी",
+    approxNote: "IP जियोलोकेशन आपके ISP के क्षेत्रीय रूटिंग क्षेत्र को दर्शाता है।",
+    mapLoading: "लाइव मानचित्र लोड हो रहा है...",
+    mapUnavailable: "मानचित्र के लिए मान्य स्थान या Maps API कुंजी आवश्यक है।",
+    dualStack: "डुअल-स्टैक (IPv4 + IPv6)",
+    ipv4Only: "प्रत्यक्ष IPv4 रूट",
+    attention: "ध्यान देना उचित"
+  },
+  Norwegian: {
+    liveMap: "Nettverksrutekart",
+    liveGeo: "LIVE GEO",
+    yourLocation: "Din IP-plassering",
+    edgeServer: "Tilkoblet Edge-node",
+    distance: "Ruteavstand",
+    approxNote: "IP-geolokalisering viser internettleverandørens regionale rutingområde.",
+    mapLoading: "Laster live-kart...",
+    mapUnavailable: "Kartvisning krever gyldige koordinater eller Maps API-nøkkel.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Direkte IPv4-rute",
+    attention: "Gjennomgang anbefales"
+  },
+  Thai: {
+    liveMap: "แผนที่เส้นทางเครือข่าย",
+    liveGeo: "ตำแหน่งสด",
+    yourLocation: "ตำแหน่ง IP ของคุณ",
+    edgeServer: "โหนด Edge ที่เชื่อมต่อ",
+    distance: "ระยะทางเส้นทาง",
+    approxNote: "ตำแหน่ง IP อ้างอิงจากพื้นที่กำหนดเส้นทางของผู้ให้บริการเครือข่าย",
+    mapLoading: "กำลังโหลดแผนที่สด...",
+    mapUnavailable: "ต้องมีพิกัดที่ถูกต้องหรือ Maps API Key เพื่อแสดงแผนที่",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "เส้นทาง IPv4 โดยตรง",
+    attention: "ควรตรวจสอบ"
+  },
+  Portuguese: {
+    liveMap: "Mapa de Rota de Rede",
+    liveGeo: "GEO AO VIVO",
+    yourLocation: "A Sua Localização IP",
+    edgeServer: "Nó Edge Ligado",
+    distance: "Distância da Rota",
+    approxNote: "A geolocalização IP reflete a área regional de encaminhamento do ISP.",
+    mapLoading: "A carregar mapa em direto...",
+    mapUnavailable: "O mapa requer coordenadas válidas ou chave Maps API.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Rota Direta IPv4",
+    attention: "Atenção Recomendada"
+  },
+  Vietnamese: {
+    liveMap: "Bản đồ tuyến mạng",
+    liveGeo: "ĐỊNH VỊ TRỰC TIẾP",
+    yourLocation: "Vị trí IP của bạn",
+    edgeServer: "Nút Edge đang kết nối",
+    distance: "Khoảng cách tuyến",
+    approxNote: "Định vị IP phản ánh khu vực định tuyến của nhà mạng.",
+    mapLoading: "Đang tải bản đồ trực tiếp...",
+    mapUnavailable: "Cần tọa độ hợp lệ hoặc khóa Maps API để hiển thị bản đồ.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Tuyến trực tiếp IPv4",
+    attention: "Nên kiểm tra"
+  },
+  Polish: {
+    liveMap: "Mapa trasy sieci",
+    liveGeo: "GEO NA ŻYWO",
+    yourLocation: "Twoja lokalizacja IP",
+    edgeServer: "Połączony węzeł Edge",
+    distance: "Dystans trasy",
+    approxNote: "Geolokalizacja IP odzwierciedla regionalny obszar routingu dostawcy.",
+    mapLoading: "Ładowanie mapy na żywo...",
+    mapUnavailable: "Mapa wymaga prawidłowych współrzędnych lub klucza Maps API.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Bezpośrednia trasa IPv4",
+    attention: "Zalecana uwaga"
+  },
+  Danish: {
+    liveMap: "Netværksrutekort",
+    liveGeo: "LIVE GEO",
+    yourLocation: "Din IP-placering",
+    edgeServer: "Tilsluttet Edge-node",
+    distance: "Ruteafstand",
+    approxNote: "IP-geolokalisering afspejler internetudbyderens regionale område.",
+    mapLoading: "Indlæser live-kort...",
+    mapUnavailable: "Kortvisning kræver gyldige koordinater eller Maps API-nøgle.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Direkte IPv4-rute",
+    attention: "Kontrol anbefales"
+  },
+  Turkish: {
+    liveMap: "Ağ Rota Haritası",
+    liveGeo: "CANLI KONUM",
+    yourLocation: "IP Konumunuz",
+    edgeServer: "Bağlı Edge Düğümü",
+    distance: "Rota Mesafesi",
+    approxNote: "IP konumu, İSS veya bölgesel yönlendirme alanını yansıtır.",
+    mapLoading: "Canlı harita yükleniyor...",
+    mapUnavailable: "Harita için geçerli konum veya Maps API anahtarı gerekir.",
+    dualStack: "Çift Yığın (IPv4 + IPv6)",
+    ipv4Only: "Doğrudan IPv4 Rotası",
+    attention: "Kontrol Önerilir"
+  },
+  Greek: {
+    liveMap: "Χάρτης Διαδρομής Δικτύου",
+    liveGeo: "ΖΩΝΤΑΝΗ ΘΕΣΗ",
+    yourLocation: "Η Τοποθεσία IP σας",
+    edgeServer: "Συνδεδεμένος Κόμβος Edge",
+    distance: "Απόσταση Διαδρομής",
+    approxNote: "Η γεωτοποθεσία IP αντικατοπτρίζει την περιοχή δρομολόγησης του παρόχου.",
+    mapLoading: "Φόρτωση ζωντανού χάρτη...",
+    mapUnavailable: "Απαιτούνται έγκυρες συντεταγμένες ή κλειδί Maps API.",
+    dualStack: "Dual-Stack (IPv4 + IPv6)",
+    ipv4Only: "Άμεση διαδρομή IPv4",
+    attention: "Συνιστάται έλεγχος"
+  }
+};
+
+interface NormalizedIpData {
+  ip: string;
+  country_name: string;
+  country_code: string;
+  region: string;
+  city: string;
+  postal: string;
+  org: string;
+  asn: string;
+  network?: string;
+  timezone: string;
+  utc_offset: string;
+  latitude: number | null;
+  longitude: number | null;
+  colo?: string;
+  coloCoords?: { code: string; city: string; lat: number; lng: number } | null;
+  tls?: string;
+  http?: string;
+  isProxyOrVpn?: boolean;
+}
+
+interface SecurityDiagnostics {
+  dnsStatus: string;
+  dnsDetail: string;
+  dnsOk: boolean;
+  webrtcStatus: string;
+  webrtcDetail: string;
+  webrtcOk: boolean;
+  transportStatus: string;
+  transportDetail: string;
+  transportOk: boolean;
+  reputationStatus: string;
+  reputationDetail: string;
+  reputationOk: boolean;
+}
+
+function resolveCountryName(code?: string, fallbackName?: string): string {
+  if (fallbackName && fallbackName.length > 2) return fallbackName;
+  if (code && code.length === 2) {
+    try {
+      const display = new Intl.DisplayNames(['en'], { type: 'region' });
+      return display.of(code.toUpperCase()) || code.toUpperCase();
+    } catch {
+      return code.toUpperCase();
+    }
+  }
+  return fallbackName || 'N/A';
+}
+
+function computeUtcOffsetFromTimezone(tz?: string, rawOffset?: string): string {
+  if (rawOffset && /^[+-]\d{2}:?\d{2}$/.test(rawOffset.trim())) {
+    const clean = rawOffset.trim();
+    const formatted = clean.includes(':') ? clean : `${clean.slice(0, 3)}:${clean.slice(3)}`;
+    return `UTC${formatted}`;
+  }
+  if (!tz) return 'N/A';
+  try {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      timeZoneName: 'shortOffset',
+    }).formatToParts(new Date());
+    const offsetPart = parts.find((p) => p.type === 'timeZoneName')?.value;
+    if (offsetPart) {
+      return offsetPart.replace('GMT', 'UTC');
+    }
+  } catch {
+    // ignore invalid timezone
+  }
+  return 'N/A';
+}
+
+function classifyIanaRange(ipv4: string | null, ipv6: string | null, networkCidr?: string): string {
+  if (networkCidr) {
+    return networkCidr;
+  }
+  if (ipv4 && ipv4.includes('.')) {
+    const parts = ipv4.split('.').map(Number);
+    if (parts[0] === 10 || (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31) || (parts[0] === 192 && parts[1] === 168)) {
+      return 'Private RFC 1918';
+    }
+    if (parts[0] === 100 && parts[1] >= 64 && parts[1] <= 127) {
+      return 'CGNAT RFC 6598';
+    }
+    if (ipv6) return 'Dual-Stack Global Unicast';
+    return 'IPv4 Global Unicast';
+  }
+  if (ipv6) return 'IPv6 Global Unicast';
+  return 'N/A';
+}
+
+function formatCoord(val: number | null | undefined, posDir: string, negDir: string): string {
+  if (val === null || val === undefined || !Number.isFinite(val)) return 'N/A';
+  const dir = val >= 0 ? posDir : negDir;
+  return `${Math.abs(val).toFixed(4)}° ${dir}`;
+}
+
+function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const R = 6371;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const sinDLat = Math.sin(dLat / 2);
+  const sinDLng = Math.sin(dLng / 2);
+  const h = sinDLat * sinDLat + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * sinDLng * sinDLng;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+async function probeDnsOverHttps(): Promise<{ ok: boolean; status: string; detail: string }> {
+  try {
+    const t0 = performance.now();
+    const res = await fetchWithTimeout(
+      'https://cloudflare-dns.com/dns-query?name=cloudflare.com&type=A',
+      2500,
+      { headers: { Accept: 'application/dns-json' }, cache: 'no-store' }
+    );
+    const rtt = Math.max(1, Math.round(performance.now() - t0));
+    if (res.ok) {
+      const json = await res.json();
+      if (json && json.Status === 0) {
+        return {
+          ok: true,
+          status: 'DoH Verified (1.1.1.1)',
+          detail: `DNSSEC Ready • ${rtt} ms RTT`,
+        };
+      }
+    }
+  } catch {
+    // fallback if blocked
+  }
+  return {
+    ok: true,
+    status: 'Standard System DNS',
+    detail: 'DoH probe blocked or offline',
+  };
+}
+
+async function probeWebRtcLeak(publicV4: string | null, publicV6: string | null): Promise<{ ok: boolean; status: string; detail: string }> {
+  if (typeof window === 'undefined' || typeof RTCPeerConnection === 'undefined') {
+    return {
+      ok: true,
+      status: 'WebRTC Disabled',
+      detail: 'PeerConnection API unavailable',
+    };
+  }
+  return new Promise((resolve) => {
+    let pc: RTCPeerConnection | null = null;
+    let settled = false;
+    const foundPublic = new Set<string>();
+    const foundMdns = new Set<string>();
+    const foundLocal = new Set<string>();
+
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      try {
+        pc?.close();
+      } catch {
+        // ignore close errors
+      }
+      const externalCandidates = Array.from(foundPublic).filter((ip) => ip !== publicV4 && ip !== publicV6);
+      if (externalCandidates.length > 0) {
+        resolve({
+          ok: false,
+          status: `ICE Exposed (${externalCandidates[0]})`,
+          detail: 'Differs from HTTP public IP',
+        });
+      } else if (foundPublic.size > 0) {
+        resolve({
+          ok: true,
+          status: 'Matched Public STUN',
+          detail: `${foundMdns.size > 0 ? 'mDNS LAN masked' : 'Same as public IP'}`,
+        });
+      } else if (foundMdns.size > 0) {
+        resolve({
+          ok: true,
+          status: 'mDNS Isolated',
+          detail: `${foundMdns.size} masked .local ICE host`,
+        });
+      } else if (foundLocal.size > 0) {
+        resolve({
+          ok: false,
+          status: `LAN IP Exposed (${Array.from(foundLocal)[0]})`,
+          detail: 'Local host ICE candidate visible',
+        });
+      } else {
+        resolve({
+          ok: true,
+          status: 'No STUN Leaks',
+          detail: 'Zero exposed host candidates',
+        });
+      }
+    };
+
+    try {
+      pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+      pc.createDataChannel('probe');
+      pc.onicecandidate = (event) => {
+        if (!event.candidate) {
+          finish();
+          return;
+        }
+        const cand = event.candidate.candidate || '';
+        const mdnsMatch = cand.match(/([a-f0-9-]+\.local)/i);
+        if (mdnsMatch) {
+          foundMdns.add(mdnsMatch[1]);
+        }
+        const ipMatch = cand.match(/(\d{1,3}(?:\.\d{1,3}){3})|([0-9a-f]{1,4}(?::[0-9a-f]{0,4}){2,7})/i);
+        if (ipMatch) {
+          const ip = ipMatch[0];
+          if (
+            ip.startsWith('10.') ||
+            ip.startsWith('192.168.') ||
+            /^172\.(1[6-9]|2\d|3[01])\./.test(ip) ||
+            ip.startsWith('127.') ||
+            ip.startsWith('fe80:')
+          ) {
+            foundLocal.add(ip);
+          } else {
+            foundPublic.add(ip);
+          }
+        }
+      };
+      pc.createOffer()
+        .then((offer) => pc?.setLocalDescription(offer))
+        .catch(() => finish());
+      setTimeout(finish, 1800);
+    } catch {
+      finish();
+    }
+  });
+}
+
+function IpRouteMapInner({
+  userPos,
+  edgeNode,
+  mapLabels,
+}: {
+  userPos: { lat: number; lng: number };
+  edgeNode: { code: string; city: string; lat: number; lng: number } | null;
+  mapLabels: typeof MAP_T['English'];
+}) {
+  const map = useMap();
+  const mapsLib = useMapsLibrary('maps');
+  const coreLib = useMapsLibrary('core');
+  const apiStatus = useApiLoadingStatus();
+  const [showInfo, setShowInfo] = useState(false);
+
+  const hasDistinctEdge = useMemo(() => {
+    if (!edgeNode) return false;
+    return haversineKm(userPos, { lat: edgeNode.lat, lng: edgeNode.lng }) > 2;
+  }, [userPos, edgeNode]);
+
+  const distanceKm = useMemo(() => {
+    if (!edgeNode || !hasDistinctEdge) return null;
+    return haversineKm(userPos, { lat: edgeNode.lat, lng: edgeNode.lng });
+  }, [userPos, edgeNode, hasDistinctEdge]);
+
+  useEffect(() => {
+    if (!map || !coreLib) return;
+    if (edgeNode && hasDistinctEdge) {
+      const bounds = new coreLib.LatLngBounds();
+      bounds.extend(userPos);
+      bounds.extend({ lat: edgeNode.lat, lng: edgeNode.lng });
+      map.fitBounds(bounds, { top: 32, right: 54, bottom: 38, left: 32 });
+    } else {
+      map.setCenter(userPos);
+      map.setZoom(10);
+    }
+  }, [map, coreLib, userPos, edgeNode, hasDistinctEdge]);
+
+  useEffect(() => {
+    if (!map || !mapsLib || !edgeNode || !hasDistinctEdge) return;
+    const routeLine = new mapsLib.Polyline({
+      path: [userPos, { lat: edgeNode.lat, lng: edgeNode.lng }],
+      geodesic: false,
+      strokeColor: '#d97745',
+      strokeOpacity: 0.92,
+      strokeWeight: 2.2,
+    });
+    routeLine.setMap(map);
+    return () => {
+      routeLine.setMap(null);
+    };
+  }, [map, mapsLib, userPos, edgeNode, hasDistinctEdge]);
+
+  const handleZoomIn = useCallback(() => {
+    if (!map) return;
+    const z = map.getZoom() ?? 8;
+    map.setZoom(Math.min(18, z + 1));
+  }, [map]);
+
+  const handleZoomOut = useCallback(() => {
+    if (!map) return;
+    const z = map.getZoom() ?? 8;
+    map.setZoom(Math.max(2, z - 1));
+  }, [map]);
+
+  if (apiStatus === APILoadingStatus.FAILED || apiStatus === APILoadingStatus.AUTH_FAILURE) {
+    return (
+      <div className="w-full h-full flex items-center justify-center p-4 text-center text-xs word-color opacity-60 bg-black/5 dark:bg-white/5">
+        {mapLabels.mapUnavailable}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <GoogleMap
+        mapId="DEMO_MAP_ID"
+        defaultCenter={userPos}
+        defaultZoom={8}
+        colorScheme="LIGHT"
+        disableDefaultUI={true}
+        gestureHandling="cooperative"
+        internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <AdvancedMarker
+          position={userPos}
+          anchorPoint={AdvancedMarkerAnchorPoint.BOTTOM}
+          title={mapLabels.yourLocation}
+        >
+          <div className="ip-map-marker drop-shadow-md" aria-label={mapLabels.yourLocation}>
+            <svg width="26" height="34" viewBox="0 0 26 34" fill="none">
+              <path
+                d="M13 1C6.925 1 2 5.925 2 12c0 7.75 11 20.5 11 20.5S24 19.75 24 12C24 5.925 19.075 1 13 1z"
+                fill="#c81e1e"
+                stroke="#ffffff"
+                strokeWidth="1.6"
+              />
+              <circle cx="13" cy="12" r="4" fill="#ffffff" />
+            </svg>
+          </div>
+        </AdvancedMarker>
+
+        {edgeNode && hasDistinctEdge && (
+          <AdvancedMarker
+            position={{ lat: edgeNode.lat, lng: edgeNode.lng }}
+            anchorPoint={AdvancedMarkerAnchorPoint.CENTER}
+            title={`${mapLabels.edgeServer}: ${edgeNode.city} (${edgeNode.code})`}
+          >
+            <div className="ip-map-marker drop-shadow-sm" aria-label={`${edgeNode.city} (${edgeNode.code})`}>
+              <svg width="34" height="22" viewBox="0 0 40 24" fill="none">
+                <path
+                  d="M27.8 20H8.6C4.95 20 2 17.15 2 13.65c0-3.15 2.4-5.78 5.52-6.26C8.62 3.74 12.1 1 16.25 1c4.52 0 8.27 3.2 8.99 7.42.73-.29 1.53-.45 2.36-.45 3.31 0 6 2.61 6 5.83 0 .28-.02.55-.07.82C36.02 15.16 38 17.34 38 20H27.8z"
+                  fill="#f38020"
+                  stroke="#ffffff"
+                  strokeWidth="1.4"
+                />
+                <path
+                  d="M31.6 14.6a4.4 4.4 0 0 1 4.4 4.4v1h-7.8v-4.2c1.05-.76 2.18-1.2 3.4-1.2z"
+                  fill="#fbbf24"
+                />
+              </svg>
+            </div>
+          </AdvancedMarker>
+        )}
+      </GoogleMap>
+
+      {/* Custom Bottom-Right Zoom & Info Controls matching iptest_4053d726.jpg */}
+      <div className="absolute bottom-6 right-2.5 z-10 flex flex-col items-center gap-2">
+        <div className="ip-map-control-group rounded-lg shadow-md overflow-hidden flex flex-col w-8 bg-white border border-black/15">
+          <button
+            type="button"
+            onClick={handleZoomIn}
+            title="Zoom in"
+            aria-label="Zoom in"
+            className="ip-map-control-btn w-8 h-8 flex items-center justify-center cursor-pointer transition-colors"
+          >
+            <Plus size={15} strokeWidth={2.5} />
+          </button>
+          <div className="h-px w-full bg-slate-200" />
+          <button
+            type="button"
+            onClick={handleZoomOut}
+            title="Zoom out"
+            aria-label="Zoom out"
+            className="ip-map-control-btn w-8 h-8 flex items-center justify-center cursor-pointer transition-colors"
+          >
+            <Minus size={15} strokeWidth={2.5} />
+          </button>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setShowInfo((v) => !v)}
+          title={mapLabels.liveMap}
+          aria-label={mapLabels.liveMap}
+          aria-expanded={showInfo}
+          className="ip-map-info-btn w-8 h-8 rounded-full shadow-md flex items-center justify-center cursor-pointer transition-colors bg-white border border-black/15"
+        >
+          <Info size={15} strokeWidth={2.2} />
+        </button>
+      </div>
+
+      {showInfo && (
+        <div className="absolute top-2.5 left-2.5 right-12 z-20 rounded-xl bg-white/95 text-slate-800 border border-slate-200 shadow-lg p-3 text-left text-[11px] leading-snug backdrop-blur-sm">
+          <div className="flex items-center justify-between gap-2 font-bold text-slate-900 mb-1">
+            <span>{mapLabels.liveMap}</span>
+            <button
+              type="button"
+              onClick={() => setShowInfo(false)}
+              className="text-slate-400 hover:text-slate-700 text-xs font-bold px-1 cursor-pointer"
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </div>
+          <div className="space-y-0.5 font-mono text-[10px] text-slate-600">
+            <div>
+              <span className="inline-block w-2 h-2 rounded-full bg-red-600 mr-1.5" />
+              {mapLabels.yourLocation}: {userPos.lat.toFixed(4)}, {userPos.lng.toFixed(4)}
+            </div>
+            {edgeNode && hasDistinctEdge && (
+              <div>
+                <span className="inline-block w-2 h-2 rounded-full bg-orange-500 mr-1.5" />
+                {mapLabels.edgeServer}: {edgeNode.city} ({edgeNode.code})
+              </div>
+            )}
+            {distanceKm !== null && (
+              <div>
+                {mapLabels.distance}: {distanceKm.toFixed(1)} km ({(distanceKm * 0.621371).toFixed(1)} mi)
+              </div>
+            )}
+          </div>
+          <p className="text-[10px] text-slate-500 mt-1.5">{mapLabels.approxNote}</p>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function IpAddressTab({ language = 'English' }: IpAddressTabProps = {}) {
   const d = IP_T[language] || IP_T['English'];
+  const mT = MAP_T[language] || MAP_T['English'];
   const [ipv4Address, setIpv4Address] = useState<string | null>(null);
   const [ipv6Address, setIpv6Address] = useState<string | null>(null);
-  const [ipData, setIpData] = useState<any>(null);
+  const [ipData, setIpData] = useState<NormalizedIpData | null>(null);
+  const [secDiag, setSecDiag] = useState<SecurityDiagnostics | null>(null);
+  const [mapsApiKey, setMapsApiKey] = useState<string>(INITIAL_MAPS_API_KEY);
   const [isLoadingIp, setIsLoadingIp] = useState(true);
   const [copiedV4, setCopiedV4] = useState(false);
   const [copiedV6, setCopiedV6] = useState(false);
 
   useEffect(() => {
-    fetchIp();
-  }, []);
+    if (!mapsApiKey) {
+      fetch('/api/maps-config', { cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((cfg) => {
+          if (cfg?.apiKey && typeof cfg.apiKey === 'string') {
+            setMapsApiKey(cfg.apiKey.trim());
+          }
+        })
+        .catch(() => {});
+    }
+  }, [mapsApiKey]);
 
-  const fetchIp = async () => {
+  const fetchIp = useCallback(async () => {
     setIsLoadingIp(true);
     setIpv4Address(null);
     setIpv6Address(null);
-    
+    setSecDiag(null);
+
     let resolvedV4: string | null = null;
     let resolvedV6: string | null = null;
-    let geoData: any = null;
+    let traceColo: string | undefined;
+    let traceTls: string | undefined;
+    let traceHttp: string | undefined;
+    let traceLoc: string | undefined;
 
-    // 1. Fetch from ipapi.co (primary geolocation and IP info)
+    interface CfMetaPayload {
+      clientIp?: string;
+      httpProtocol?: string;
+      asn?: number | string;
+      asOrganization?: string;
+      country?: string;
+      city?: string;
+      region?: string;
+      postalCode?: string;
+      latitude?: number | string;
+      longitude?: number | string;
+      colo?: {
+        iata?: string;
+        city?: string;
+        lat?: number | string;
+        lon?: number | string;
+      };
+    }
+
+    let cfMeta: CfMetaPayload | null = null;
+    let metaColoCoords: { code: string; city: string; lat: number; lng: number } | null = null;
+
+    // 1. Query IPv4, IPv6, Cloudflare Edge Trace, and Cloudflare /meta Geolocation in parallel
+    const [ipifyV4Res, ipifyV6Res, cfTraceRes, cfMetaRes] = await Promise.allSettled([
+      fetchWithTimeout('https://api.ipify.org?format=json', 4500, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)),
+      fetchWithTimeout('https://api6.ipify.org?format=json', 3500, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)),
+      fetchWithTimeout('https://www.cloudflare.com/cdn-cgi/trace', 4000, { cache: 'no-store' }).then((r) => (r.ok ? r.text() : '')),
+      fetchWithTimeout('https://speed.cloudflare.com/meta', 4500, { cache: 'no-store' }).then(async (r) => {
+        if (!r.ok) return null;
+        const txt = await r.text();
+        return txt ? (JSON.parse(txt) as CfMetaPayload) : null;
+      }),
+    ]);
+
+    if (ipifyV4Res.status === 'fulfilled' && ipifyV4Res.value?.ip && !String(ipifyV4Res.value.ip).includes(':')) {
+      resolvedV4 = String(ipifyV4Res.value.ip).trim();
+    }
+    if (ipifyV6Res.status === 'fulfilled' && ipifyV6Res.value?.ip && String(ipifyV6Res.value.ip).includes(':')) {
+      resolvedV6 = String(ipifyV6Res.value.ip).trim();
+    }
+    if (cfTraceRes.status === 'fulfilled' && cfTraceRes.value) {
+      const lines = cfTraceRes.value.split('\n');
+      const kv: Record<string, string> = {};
+      for (const line of lines) {
+        const idx = line.indexOf('=');
+        if (idx > 0) kv[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
+      }
+      if (kv.ip) {
+        if (kv.ip.includes(':')) {
+          if (!resolvedV6) resolvedV6 = kv.ip;
+        } else if (!resolvedV4) {
+          resolvedV4 = kv.ip;
+        }
+      }
+      if (kv.colo) traceColo = kv.colo.toUpperCase();
+      if (kv.tls) traceTls = kv.tls;
+      if (kv.http) traceHttp = kv.http.toUpperCase();
+      if (kv.loc) traceLoc = kv.loc.toUpperCase();
+    }
+    if (cfMetaRes.status === 'fulfilled' && cfMetaRes.value && typeof cfMetaRes.value === 'object') {
+      cfMeta = cfMetaRes.value;
+      if (cfMeta.clientIp) {
+        const cip = String(cfMeta.clientIp).trim();
+        if (cip.includes(':')) {
+          if (!resolvedV6) resolvedV6 = cip;
+        } else if (!resolvedV4) {
+          resolvedV4 = cip;
+        }
+      }
+      if (cfMeta.httpProtocol && !traceHttp) {
+        traceHttp = String(cfMeta.httpProtocol).toUpperCase();
+      }
+      if (cfMeta.colo?.iata) {
+        const code = String(cfMeta.colo.iata).toUpperCase();
+        if (!traceColo) traceColo = code;
+        const cLat = Number(cfMeta.colo.lat);
+        const cLng = Number(cfMeta.colo.lon);
+        if (Number.isFinite(cLat) && Number.isFinite(cLng)) {
+          metaColoCoords = {
+            code,
+            city: cfMeta.colo.city || EDGE_POP_COORDS[code]?.city || code,
+            lat: cLat,
+            lng: cLng,
+          };
+        }
+      }
+    }
+
+    // 2. Fetch auxiliary ASN/Timezone/Security metadata and backup geolocation
+    const targetIp = resolvedV4 || resolvedV6 || '';
+    let auxGeo: NormalizedIpData | null = null;
+
+    // Auxiliary 1: ipwho.is (timezone, security flags, backup geo)
     try {
-      const response = await fetchWithTimeout('https://ipapi.co/json/');
-      if (response.ok) {
-        const data = await response.json();
-        // If rate limited, ipapi.co might return 200/400 containing `error: true`
-        if (data && !data.error && data.ip) {
-          geoData = data;
-          if (data.ip.includes(':')) {
-            resolvedV6 = data.ip;
-          } else {
-            resolvedV4 = data.ip;
+      const url = targetIp ? `https://ipwho.is/${encodeURIComponent(targetIp)}` : 'https://ipwho.is/';
+      const res = await fetchWithTimeout(url, 4500, { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.success !== false && data.ip) {
+          if (String(data.ip).includes(':')) {
+            if (!resolvedV6) resolvedV6 = String(data.ip);
+          } else if (!resolvedV4) {
+            resolvedV4 = String(data.ip);
           }
-        } else {
-          throw new Error('ipapi rate limited or invalid response');
+          const asnRaw = data.connection?.asn ? `AS${String(data.connection.asn).replace(/^AS/i, '')}` : 'N/A';
+          const orgRaw = data.connection?.isp || data.connection?.org || '';
+          const tzId = data.timezone?.id || '';
+          auxGeo = {
+            ip: data.ip,
+            country_code: (data.country_code || traceLoc || '').toUpperCase(),
+            country_name: resolveCountryName(data.country_code || traceLoc, data.country),
+            region: data.region || 'N/A',
+            city: data.city || 'N/A',
+            postal: data.postal || 'N/A',
+            org: orgRaw,
+            asn: asnRaw,
+            timezone: tzId || 'N/A',
+            utc_offset: computeUtcOffsetFromTimezone(tzId, data.timezone?.utc),
+            latitude: typeof data.latitude === 'number' && Number.isFinite(data.latitude) ? data.latitude : null,
+            longitude: typeof data.longitude === 'number' && Number.isFinite(data.longitude) ? data.longitude : null,
+            colo: traceColo,
+            coloCoords: metaColoCoords,
+            tls: traceTls,
+            http: traceHttp,
+            isProxyOrVpn: Boolean(data.security?.proxy || data.security?.vpn || data.security?.tor),
+          };
         }
-      } else {
-        throw new Error('ipapi request failing');
       }
-    } catch (e) {
-      console.warn('Primary ipapi.co endpoint failed, falling back to other provider chains:', e);
+    } catch {
+      // fall through to ipapi.co
     }
 
-    // 2. Fallback secondary geolocation (ipinfo.io) if ipapi failed
-    if (!geoData) {
+    // Auxiliary 2: ipapi.co (also provides CIDR network range if needed)
+    if (!auxGeo) {
       try {
-        const response = await fetchWithTimeout('https://ipinfo.io/json');
-        if (response.ok) {
-          const data = await response.json();
-          if (data && data.ip) {
-            geoData = {
-              ip: data.ip,
-              city: data.city,
-              region: data.region,
-              country_name: data.country === 'US' ? 'United States' : data.country,
-              country_code: data.country,
-              postal: data.postal,
-              org: data.org,
-              timezone: data.timezone,
-              latitude: data.loc ? data.loc.split(',')[0] : null,
-              longitude: data.loc ? data.loc.split(',')[1] : null,
-            };
-            if (data.ip.includes(':')) {
-              resolvedV6 = data.ip;
-            } else {
-              resolvedV4 = data.ip;
-            }
-          }
-        }
-      } catch (e) {
-        console.warn('Secondary ipinfo.io backup failed:', e);
-      }
-    }
-
-    // 3. Keep standard golden path IPv4 detection via api.ipify.org
-    if (!resolvedV4) {
-      try {
-        const res = await fetchWithTimeout('https://api.ipify.org?format=json');
+        const url = targetIp ? `https://ipapi.co/${encodeURIComponent(targetIp)}/json/` : 'https://ipapi.co/json/';
+        const res = await fetchWithTimeout(url, 4500, { cache: 'no-store' });
         if (res.ok) {
-          const resData = await res.json();
-          if (resData && resData.ip) {
-            resolvedV4 = resData.ip;
-          }
-        }
-      } catch (err) {
-        console.warn('api.ipify.org IPv4 resolver failed:', err);
-      }
-    }
-
-    // 4. Trace IPv6 via api6.ipify.org
-    try {
-      const ipv6Response = await fetchWithTimeout('https://api6.ipify.org?format=json');
-      if (ipv6Response.ok) {
-        const data = await ipv6Response.json();
-        if (data && data.ip && data.ip.includes(':')) {
-          resolvedV6 = data.ip;
-        }
-      }
-    } catch (e) {
-      console.log('IPv6 not supported or accessible on this client route.');
-    }
-
-    // 5. Ultimate Cloudflare Tracer Fallback on failure
-    if (!resolvedV4 || !resolvedV6) {
-      try {
-        const traceRes = await fetchWithTimeout('https://www.cloudflare.com/cdn-cgi/trace');
-        if (traceRes.ok) {
-          const text = await traceRes.text();
-          const ipLine = text.split('\n').find(line => line.startsWith('ip='));
-          if (ipLine) {
-            const detectedIp = ipLine.split('=')[1]?.trim();
-            if (detectedIp) {
-              if (detectedIp.includes(':')) {
-                if (!resolvedV6) resolvedV6 = detectedIp;
-              } else {
-                if (!resolvedV4) resolvedV4 = detectedIp;
-              }
+          const data = await res.json();
+          if (data && !data.error && data.ip) {
+            if (String(data.ip).includes(':')) {
+              if (!resolvedV6) resolvedV6 = String(data.ip);
+            } else if (!resolvedV4) {
+              resolvedV4 = String(data.ip);
             }
+            const lat = Number(data.latitude);
+            const lng = Number(data.longitude);
+            auxGeo = {
+              ip: data.ip,
+              country_code: (data.country_code || traceLoc || '').toUpperCase(),
+              country_name: resolveCountryName(data.country_code || traceLoc, data.country_name),
+              region: data.region || 'N/A',
+              city: data.city || 'N/A',
+              postal: data.postal || 'N/A',
+              org: data.org || '',
+              asn: data.asn || 'N/A',
+              network: data.network || undefined,
+              timezone: data.timezone || 'N/A',
+              utc_offset: computeUtcOffsetFromTimezone(data.timezone, data.utc_offset),
+              latitude: Number.isFinite(lat) ? lat : null,
+              longitude: Number.isFinite(lng) ? lng : null,
+              colo: traceColo,
+              coloCoords: metaColoCoords,
+              tls: traceTls,
+              http: traceHttp,
+            };
           }
         }
-      } catch (e) {
-        console.warn('Cloudflare trace resolver failed:', e);
+      } catch {
+        // fall through to ipinfo.io
       }
     }
 
-    // Final commits to React state
-    setIpv4Address(resolvedV4 || d.notDetected);
-    setIpv6Address(resolvedV6 || null);
-    setIpData(geoData || (resolvedV4 ? { ip: resolvedV4 } : resolvedV6 ? { ip: resolvedV6 } : null));
+    // Auxiliary 3: ipinfo.io
+    if (!auxGeo) {
+      try {
+        const url = targetIp ? `https://ipinfo.io/${encodeURIComponent(targetIp)}/json` : 'https://ipinfo.io/json';
+        const res = await fetchWithTimeout(url, 4500, { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.ip) {
+            if (String(data.ip).includes(':')) {
+              if (!resolvedV6) resolvedV6 = String(data.ip);
+            } else if (!resolvedV4) {
+              resolvedV4 = String(data.ip);
+            }
+            const [latStr, lngStr] = typeof data.loc === 'string' ? data.loc.split(',') : [];
+            const lat = Number(latStr);
+            const lng = Number(lngStr);
+            const orgStr = String(data.org || '');
+            const asnMatch = orgStr.match(/^(AS\d+)\s*(.*)$/i);
+            const cc = (data.country || traceLoc || '').toUpperCase();
+            auxGeo = {
+              ip: data.ip,
+              country_code: cc,
+              country_name: resolveCountryName(cc),
+              region: data.region || 'N/A',
+              city: data.city || 'N/A',
+              postal: data.postal || 'N/A',
+              org: asnMatch ? asnMatch[2] || orgStr : orgStr,
+              asn: asnMatch ? asnMatch[1].toUpperCase() : 'N/A',
+              timezone: data.timezone || 'N/A',
+              utc_offset: computeUtcOffsetFromTimezone(data.timezone),
+              latitude: Number.isFinite(lat) ? lat : null,
+              longitude: Number.isFinite(lng) ? lng : null,
+              colo: traceColo,
+              coloCoords: metaColoCoords,
+              tls: traceTls,
+              http: traceHttp,
+            };
+          }
+        }
+      } catch {
+        // fallback minimal object below
+      }
+    }
+
+    // 3. Prioritize Cloudflare /meta geolocation when present (matches Cloudflare IP check)
+    let normalized: NormalizedIpData | null = auxGeo;
+    const cfLat = cfMeta?.latitude !== undefined ? Number(cfMeta.latitude) : NaN;
+    const cfLng = cfMeta?.longitude !== undefined ? Number(cfMeta.longitude) : NaN;
+    const hasCfGeo = Boolean(cfMeta && (cfMeta.city || (Number.isFinite(cfLat) && Number.isFinite(cfLng))));
+
+    if (hasCfGeo && cfMeta) {
+      const cfCountryCode = (cfMeta.country || traceLoc || auxGeo?.country_code || '').toUpperCase();
+      const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      const tz = auxGeo?.timezone && auxGeo.timezone !== 'N/A' ? auxGeo.timezone : browserTz || 'N/A';
+      const utcOffset =
+        auxGeo?.utc_offset && auxGeo.utc_offset !== 'N/A'
+          ? auxGeo.utc_offset
+          : computeUtcOffsetFromTimezone(tz !== 'N/A' ? tz : undefined);
+      const cfAsn = cfMeta.asn ? `AS${String(cfMeta.asn).replace(/^AS/i, '')}` : auxGeo?.asn || 'N/A';
+
+      normalized = {
+        ip: resolvedV4 || resolvedV6 || cfMeta.clientIp || auxGeo?.ip || '',
+        country_code: cfCountryCode,
+        country_name: resolveCountryName(cfCountryCode, auxGeo?.country_code === cfCountryCode ? auxGeo?.country_name : undefined),
+        region: cfMeta.region || auxGeo?.region || 'N/A',
+        city: cfMeta.city || auxGeo?.city || 'N/A',
+        postal: cfMeta.postalCode || auxGeo?.postal || 'N/A',
+        org: cfMeta.asOrganization || auxGeo?.org || '',
+        asn: cfAsn,
+        network: auxGeo?.network,
+        timezone: tz,
+        utc_offset: utcOffset,
+        latitude: Number.isFinite(cfLat) ? cfLat : auxGeo?.latitude ?? null,
+        longitude: Number.isFinite(cfLng) ? cfLng : auxGeo?.longitude ?? null,
+        colo: traceColo,
+        coloCoords: metaColoCoords,
+        tls: traceTls,
+        http: traceHttp,
+        isProxyOrVpn: auxGeo?.isProxyOrVpn,
+      };
+    }
+
+    if (!normalized && (resolvedV4 || resolvedV6)) {
+      const cc = traceLoc || '';
+      const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      normalized = {
+        ip: resolvedV4 || resolvedV6 || '',
+        country_code: cc,
+        country_name: resolveCountryName(cc),
+        region: 'N/A',
+        city: 'N/A',
+        postal: 'N/A',
+        org: '',
+        asn: 'N/A',
+        timezone: browserTz || 'N/A',
+        utc_offset: computeUtcOffsetFromTimezone(browserTz),
+        latitude: null,
+        longitude: null,
+        colo: traceColo,
+        coloCoords: metaColoCoords,
+        tls: traceTls,
+        http: traceHttp,
+      };
+    }
+
+    setIpv4Address(resolvedV4);
+    setIpv6Address(resolvedV6);
+    setIpData(normalized);
     setIsLoadingIp(false);
-  };
+
+    // 3. Real Browser & Network Security Probes (DNS-over-HTTPS + WebRTC ICE + Navigation TLS)
+    const [dohProbe, webrtcProbe] = await Promise.all([
+      probeDnsOverHttps(),
+      probeWebRtcLeak(resolvedV4, resolvedV6),
+    ]);
+
+    const navEntries = typeof performance !== 'undefined'
+      ? (performance.getEntriesByType('navigation') as PerformanceNavigationTiming[])
+      : [];
+    const navProto = navEntries?.[0]?.nextHopProtocol;
+    const isHttps = typeof window !== 'undefined' && (window.location.protocol === 'https:' || window.isSecureContext);
+    const liveProtoParts = [
+      traceTls || (isHttps ? 'HTTPS / TLS' : 'HTTP Unencrypted'),
+      traceHttp || (navProto ? navProto.toUpperCase() : ''),
+    ].filter(Boolean);
+
+    setSecDiag({
+      dnsStatus: dohProbe.status,
+      dnsDetail: dohProbe.detail,
+      dnsOk: dohProbe.ok,
+      webrtcStatus: webrtcProbe.status,
+      webrtcDetail: webrtcProbe.detail,
+      webrtcOk: webrtcProbe.ok,
+      transportStatus: liveProtoParts.join(' / '),
+      transportDetail: isHttps ? 'Secure Browser Context Verified' : 'Insecure Origin Context',
+      transportOk: isHttps,
+      reputationStatus: normalized?.isProxyOrVpn
+        ? 'Proxy / VPN Relay'
+        : resolvedV4 && resolvedV6
+        ? mT.dualStack
+        : mT.ipv4Only,
+      reputationDetail: normalized?.org || normalized?.asn || 'Direct ISP Routing',
+      reputationOk: !normalized?.isProxyOrVpn,
+    });
+  }, [mT.dualStack, mT.ipv4Only]);
+
+  useEffect(() => {
+    fetchIp();
+  }, [fetchIp]);
 
   const copyV4 = () => {
     if (!ipv4Address) return;
@@ -1136,6 +2229,32 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
     setCopiedV6(true);
     setTimeout(() => setCopiedV6(false), 2000);
   };
+
+  const userPos = useMemo(() => {
+    if (
+      ipData?.latitude !== null &&
+      ipData?.latitude !== undefined &&
+      ipData?.longitude !== null &&
+      ipData?.longitude !== undefined
+    ) {
+      return { lat: ipData.latitude, lng: ipData.longitude };
+    }
+    return null;
+  }, [ipData?.latitude, ipData?.longitude]);
+
+  const edgeNode = useMemo(() => {
+    if (ipData?.coloCoords) {
+      return ipData.coloCoords;
+    }
+    if (ipData?.colo && EDGE_POP_COORDS[ipData.colo]) {
+      return { code: ipData.colo, ...EDGE_POP_COORDS[ipData.colo] };
+    }
+    return null;
+  }, [ipData?.coloCoords, ipData?.colo]);
+
+  const allSecOk = Boolean(
+    secDiag && secDiag.dnsOk && secDiag.webrtcOk && secDiag.transportOk && secDiag.reputationOk
+  );
 
   return (
     <div className="w-full max-w-5xl mx-auto ipaddress-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
@@ -1258,7 +2377,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
 
           </div>
 
-          {/* 2. Detail Rows Grid containing Geolocation, Networks, and Radar sidebar */}
+          {/* 2. Detail Rows Grid containing Geolocation, Networks, and Live Map sidebar */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             
             {/* Geolocation Details Card */}
@@ -1271,15 +2390,18 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 <div className="flex flex-col gap-4 font-mono text-xs">
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.country}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.country_name || 'Detecting...'} ({ipData?.country_code || 'US'})</span>
+                    <span className="font-bold word-color text-right break-words">
+                      {ipData?.country_name || 'N/A'}
+                      {ipData?.country_code ? ` (${ipData.country_code})` : ''}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.region}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.region || 'Detecting...'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.region || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.city}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.city || 'Detecting...'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.city || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 pb-1">
                     <span className="opacity-50 word-color shrink-0">{d.postal}</span>
@@ -1304,11 +2426,13 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 <div className="flex flex-col gap-4 font-mono text-xs">
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.asn}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.asn || 'Detecting...'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.asn || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.iana}</span>
-                    <span className="font-bold word-color text-right break-words">Public Unicast</span>
+                    <span className="font-bold word-color text-right break-words">
+                      {classifyIanaRange(ipv4Address, ipv6Address, ipData?.network)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.timezone}</span>
@@ -1331,41 +2455,37 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
               </button>
             </div>
 
-            {/* Location Radar Sidebar Card */}
+            {/* Live Network Route Map Card */}
             <div className="p-6 GeekTabs-card webcard-light-grey-bg rounded-3xl flex flex-col justify-between items-center text-center md:col-span-2 lg:col-span-1">
-              <div className="w-full flex justify-between items-center mb-4">
-                <div className="flex items-center gap-1.5">
-                  <Compass size={14} className="text-indigo-500 animate-spin" style={{ animationDuration: '4s' }} />
-                  <span className="text-xs uppercase font-extrabold tracking-wider word-color opacity-70">{d.compass}</span>
-                </div>
-                {ipData?.latitude && (
-                  <span className="text-[9px] font-mono font-bold bg-indigo-500/10 text-indigo-500 px-2 py-0.5 rounded-md">
-                    GPS LOCK
-                  </span>
+              <div className="w-full flex items-center gap-1.5 mb-4">
+                <MapPin size={14} className="text-indigo-500 shrink-0" />
+                <span className="text-xs uppercase font-extrabold tracking-wider word-color opacity-70 truncate">
+                  {mT.liveMap}
+                </span>
+              </div>
+
+              {/* Interactive Google Map Visual */}
+              <div className="w-full h-[230px] sm:h-[250px] rounded-2xl overflow-hidden relative border border-black/10 dark:border-white/10 mb-4 bg-slate-100 dark:bg-slate-900/40">
+                {userPos && mapsApiKey ? (
+                  <APIProvider apiKey={mapsApiKey}>
+                    <IpRouteMapInner userPos={userPos} edgeNode={edgeNode} mapLabels={mT} />
+                  </APIProvider>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center p-4 text-center text-xs word-color opacity-60">
+                    {!mapsApiKey ? mT.mapLoading : mT.mapUnavailable}
+                  </div>
                 )}
               </div>
 
-              {/* Animated Radar Visual */}
-              <div className="w-full aspect-square max-w-[150px] relative flex items-center justify-center border border-black/10 dark:border-white/10 rounded-full mb-4">
-                <div className="absolute inset-2 border border-indigo-500/10 dark:border-indigo-500/20 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
-                <div className="absolute inset-8 border border-black/10 dark:border-white/10 rounded-full" />
-                <div className="absolute inset-14 border border-black/10 dark:border-white/10 rounded-full" />
-                <div className="absolute inset-0 rounded-full bg-conic-sweep opacity-10 pointer-events-none animate-spin" style={{ animationDuration: '6s', backgroundImage: 'conic-gradient(from 0deg, transparent, #6366f1)' }} />
-                
-                <div className="relative z-10 p-2 text-white bg-indigo-500 rounded-full shadow-lg">
-                  <Navigation size={16} className="rotate-45" />
-                </div>
-              </div>
-
-              {/* Coordinates */}
+              {/* Live Coordinates */}
               <div className="w-full grid grid-cols-2 gap-2 text-center font-mono text-[11px] border-t border-black/5 dark:border-white/5 pt-3">
                 <div>
                   <span className="opacity-40 word-color block">{d.lat}</span>
-                  <span className="font-bold word-color">{ipData?.latitude ? `${ipData.latitude}°` : '37.38° N'}</span>
+                  <span className="font-bold word-color">{formatCoord(ipData?.latitude, 'N', 'S')}</span>
                 </div>
                 <div>
                   <span className="opacity-40 word-color block">{d.lon}</span>
-                  <span className="font-bold word-color">{ipData?.longitude ? `${ipData.longitude}°` : '-122.08° W'}</span>
+                  <span className="font-bold word-color">{formatCoord(ipData?.longitude, 'E', 'W')}</span>
                 </div>
               </div>
             </div>
@@ -1384,10 +2504,22 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <p className="text-xs opacity-50 word-color mt-0.5">{d.secSubtitle}</p>
                 </div>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold self-start sm:self-auto shrink-0">
-                <CheckCircle2 size={13} />
-                <span>{d.allSystemsSecure}</span>
-              </div>
+              {!secDiag ? (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-500 text-xs font-bold self-start sm:self-auto shrink-0">
+                  <Activity size={13} className="animate-pulse" />
+                  <span>Probing...</span>
+                </div>
+              ) : allSecOk ? (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold self-start sm:self-auto shrink-0">
+                  <CheckCircle2 size={13} />
+                  <span>{d.allSystemsSecure}</span>
+                </div>
+              ) : (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-bold self-start sm:self-auto shrink-0">
+                  <AlertTriangle size={13} />
+                  <span>{mT.attention}</span>
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -1398,10 +2530,10 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <Shield size={14} className="text-blue-500" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span className="text-sm font-bold word-color">{d.dnsStatus}</span>
+                  <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.dnsOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.dnsStatus : 'Probing...'}</span>
                 </div>
-                <span className="text-[10px] font-mono opacity-40 word-color mt-2">Cloudflare / Quad9 Validated</span>
+                <span className="text-[10px] font-mono opacity-40 word-color mt-2">{secDiag ? secDiag.dnsDetail : '--'}</span>
               </div>
 
               {/* Item 2: WebRTC Privacy */}
@@ -1411,10 +2543,10 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <Lock size={14} className="text-emerald-500" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span className="text-sm font-bold word-color">{d.webrtcStatus}</span>
+                  <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.webrtcOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.webrtcStatus : 'Probing...'}</span>
                 </div>
-                <span className="text-[10px] font-mono opacity-40 word-color mt-2">mDNS STUN Isolation Active</span>
+                <span className="text-[10px] font-mono opacity-40 word-color mt-2">{secDiag ? secDiag.webrtcDetail : '--'}</span>
               </div>
 
               {/* Item 3: Transport Security */}
@@ -1424,10 +2556,10 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <Activity size={14} className="text-purple-500" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span className="text-sm font-bold word-color">{d.transportStatus}</span>
+                  <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.transportOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.transportStatus : 'Probing...'}</span>
                 </div>
-                <span className="text-[10px] font-mono opacity-40 word-color mt-2">ChaCha20-Poly1305 / 256-bit</span>
+                <span className="text-[10px] font-mono opacity-40 word-color mt-2">{secDiag ? secDiag.transportDetail : '--'}</span>
               </div>
 
               {/* Item 4: IP Reputation */}
@@ -1437,10 +2569,12 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <Globe size={14} className="text-indigo-500" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span className="text-sm font-bold word-color">{d.ipReputationStatus}</span>
+                  <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.reputationOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.reputationStatus : 'Probing...'}</span>
                 </div>
-                <span className="text-[10px] font-mono opacity-40 word-color mt-2">{ipData?.org ? String(ipData.org).substring(0, 24) : 'ISP Clean Route'}</span>
+                <span className="text-[10px] font-mono opacity-40 word-color mt-2 break-words">
+                  {secDiag ? secDiag.reputationDetail : '--'}
+                </span>
               </div>
             </div>
           </div>

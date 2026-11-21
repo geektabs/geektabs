@@ -145,6 +145,27 @@ const NOTES_T: Record<string, Record<string, string>> = {
     editSectionBtn: '编辑',
     deleteSectionBtn: '删除'
   },
+  'Chinese Traditional': {
+    cancel: '取消',
+    create: '建立',
+    activeSpaces: '個活躍分區',
+    sheetsList: '筆記',
+    filterSheets: '搜尋篩選筆記...',
+    noPageEntries: '目前分區尚無筆記',
+    untitledPage: '無標題筆記',
+    noAdditionalText: '暫無附加文字',
+    addNewPage: '建立筆記',
+    oneNoteWorkspace: 'NOTE WORKSPACE',
+    enterPageTitle: '輸入筆記標題...',
+    noNotebook: '未選擇任何筆記',
+    createNotesDesc: '在此記錄您的靈感日記、企劃方案或個人備忘，分區隨心整理。',
+    createPage: '建立筆記',
+    sections: '分區',
+    manageSectionTitle: '分區操作',
+    manageSectionMsg: '您想要編輯還是刪除此分區？',
+    editSectionBtn: '編輯',
+    deleteSectionBtn: '刪除'
+  },
   Japanese: {
     cancel: 'キャンセル',
     create: '作成',

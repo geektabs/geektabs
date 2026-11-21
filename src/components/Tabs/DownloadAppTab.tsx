@@ -80,6 +80,39 @@ const appInstallGuides: Record<string, {
       ]
     }
   },
+  'Chinese Traditional': {
+    pageTitle: '下載為獨立應用程式（電腦 / 手機 / 平板）',
+    pageSubtitle: '將 GeekTabs 安裝為獨立桌面或主畫面應用程式圖示 — 就像安裝 Google AI Studio 一樣便利。',
+    addressBarHint: '電腦端提示：在 Chrome / Edge 瀏覽器網址列最右側會出現「安裝 GeekTabs Dashboard」下載圖示。',
+    pc: {
+      label: '電腦 PC / Mac',
+      heading: '在電腦端下載為桌面應用程式（Chrome / Edge / Brave）',
+      steps: [
+        '使用 Chrome、Edge 或 Brave 瀏覽器開啟 GeekTabs 首頁。',
+        '查看瀏覽器網址列最右側彈出的「安裝 GeekTabs Dashboard」下載小圖示（類似安裝 Google AI Studio 的圖示）。',
+        '點擊該網址列安裝圖示（或直接點擊上方的「下載應用程式」按鈕，也可於右上角 ⋮ 選單 → 投放、儲存及分享 / 應用程式 → 將此網站安裝為應用程式）。',
+        '在彈窗中點擊「安裝」，GeekTabs 將作為獨立應用程式視窗開啟，並在桌面、工作列或 Mac Dock 建立應用程式 Logo 圖示。'
+      ]
+    },
+    phone: {
+      label: '手機（iPhone / Android）',
+      heading: '在手機主畫面新增應用程式圖示',
+      steps: [
+        'iPhone（Safari 瀏覽器）：點擊工具列的「分享」按鈕（帶向上箭頭的方框）→ 向下滑動點擊「加入主畫面」→ 點擊右上角「新增」。',
+        'Android 手機（Chrome / Edge）：點擊上方「下載應用程式」按鈕，或點擊瀏覽器右上角選單 (⋮) →「安裝應用程式 / 加到主畫面」→ 點擊「安裝」。',
+        '安裝完成後，即可在手機桌面直接點擊 GeekTabs Logo 圖示以全螢幕 App 方式開啟。'
+      ]
+    },
+    tablet: {
+      label: '平板（iPad / Android 平板）',
+      heading: '在平板電腦主畫面新增應用程式圖示',
+      steps: [
+        'iPad（iPadOS Safari）：點擊瀏覽器右上角的「分享」圖示 → 選擇「加入主畫面」→ 點擊「新增」，即可在主畫面建立應用程式 Logo。',
+        'Android 平板（Chrome / Edge）：點擊網址列中的安裝圖示或 ⋮ 選單 →「安裝應用程式」（或點擊上方「下載應用程式」按鈕）→ 確認安裝。',
+        '之後即可從平板主畫面或 Dock 一鍵啟動獨立應用程式樣式的 GeekTabs。'
+      ]
+    }
+  },
   Korean: {
     pageTitle: '앱으로 다운로드 (PC / 모바일 / 태블릿)',
     pageSubtitle: 'Google AI Studio 설치 아이콘처럼 브라우저 주소창에서 GeekTabs를 독립 실행형 앱 로고로 설치하세요.',

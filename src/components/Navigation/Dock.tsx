@@ -212,39 +212,45 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
 
             {/* Global Language Dropdown Button (Very Right Side) */}
             <div className="relative" ref={langRef}>
-              <button
-                id="global-language-button"
-                type="button"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setIsLangOpen((prev) => !prev);
-                }}
-                title={language}
-                aria-label="Language"
-                aria-expanded={isLangOpen}
-                aria-haspopup="listbox"
-                className={`flex items-center gap-1.5 h-9 min-h-[36px] px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 select-none ${
-                  isLangOpen
-                    ? isDarkMode
-                      ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 ring-2 ring-indigo-500/25'
-                      : 'bg-indigo-50 border-indigo-200 text-indigo-700 ring-2 ring-indigo-500/20'
-                    : isDarkMode
-                    ? 'bg-slate-800/90 hover:bg-slate-700/80 border-slate-700 text-slate-100'
-                    : 'bg-slate-100/90 hover:bg-slate-200/80 border-slate-200/90 text-slate-800'
-                }`}
-              >
-                <Globe
-                  size={16}
-                  className={isLangOpen ? (isDarkMode ? 'text-indigo-400' : 'text-indigo-600') : ''}
-                />
-                <span className="hidden 2xl:inline max-w-[110px] truncate">{language}</span>
-                <ChevronDown
-                  size={13}
-                  className={`transition-transform duration-200 ${
-                    isLangOpen ? 'rotate-180' : 'opacity-70'
-                  }`}
-                />
-              </button>
+              {(() => {
+                const selectedOpt = LANGUAGE_OPTIONS.find((o) => o.value === language) || LANGUAGE_OPTIONS[0];
+                const displayBadge = selectedOpt.nativeLabel || selectedOpt.label;
+                return (
+                  <button
+                    id="global-language-button"
+                    type="button"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsLangOpen((prev) => !prev);
+                    }}
+                    title={selectedOpt.nativeLabel ? `${selectedOpt.nativeLabel} (${selectedOpt.label})` : selectedOpt.label}
+                    aria-label="Language"
+                    aria-expanded={isLangOpen}
+                    aria-haspopup="listbox"
+                    className={`flex items-center gap-1.5 h-9 min-h-[36px] px-2.5 sm:px-3 rounded-xl border text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 select-none ${
+                      isLangOpen
+                        ? isDarkMode
+                          ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 ring-2 ring-indigo-500/25'
+                          : 'bg-indigo-50 border-indigo-200 text-indigo-700 ring-2 ring-indigo-500/20'
+                        : isDarkMode
+                        ? 'bg-slate-800/90 hover:bg-slate-700/80 border-slate-700 text-slate-100'
+                        : 'bg-slate-100/90 hover:bg-slate-200/80 border-slate-200/90 text-slate-800'
+                    }`}
+                  >
+                    <Globe
+                      size={16}
+                      className={isLangOpen ? (isDarkMode ? 'text-indigo-400' : 'text-indigo-600') : ''}
+                    />
+                    <span className="hidden 2xl:inline max-w-[130px] truncate">{displayBadge}</span>
+                    <ChevronDown
+                      size={13}
+                      className={`transition-transform duration-200 ${
+                        isLangOpen ? 'rotate-180' : 'opacity-70'
+                      }`}
+                    />
+                  </button>
+                );
+              })()}
 
               <AnimatePresence>
                 {isLangOpen && (
@@ -256,7 +262,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -6, scale: 0.97 }}
                     transition={{ duration: 0.16, ease: 'easeOut' }}
-                    className={`absolute right-0 top-full mt-2 w-52 max-h-80 overflow-y-auto rounded-2xl border shadow-2xl p-1.5 z-50 scrollbar-thin ${
+                    className={`absolute right-0 top-full mt-2 w-60 max-h-80 overflow-y-auto rounded-2xl border shadow-2xl p-1.5 z-50 scrollbar-thin ${
                       isDarkMode
                         ? 'bg-slate-900/98 border-slate-700 text-slate-100 shadow-black/60'
                         : 'bg-white/98 border-slate-200 text-slate-800 shadow-slate-900/15'
@@ -274,16 +280,34 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                             setLanguage(opt.value);
                             setIsLangOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between px-3 py-2.5 lg:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors cursor-pointer text-left ${
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-xl transition-colors cursor-pointer text-left ${
                             isSelected
-                              ? 'bg-indigo-500 text-white font-bold'
+                              ? 'bg-indigo-500 text-white'
                               : isDarkMode
                               ? 'text-slate-200 hover:bg-slate-800 hover:text-white'
-                              : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
+                              : 'text-slate-800 hover:bg-slate-100 hover:text-slate-950'
                           }`}
                           style={isSelected ? { color: '#ffffff' } : undefined}
                         >
-                          <span className="truncate">{opt.label}</span>
+                          <div className="flex flex-col min-w-0">
+                            <span className={`truncate text-sm leading-tight ${isSelected ? 'font-bold' : 'font-semibold'}`}>
+                              {opt.nativeLabel || opt.label}
+                            </span>
+                            {opt.nativeLabel && (
+                              <span
+                                className={`truncate text-[11px] font-medium leading-tight mt-0.5 ${
+                                  isSelected
+                                    ? 'text-white/85'
+                                    : isDarkMode
+                                    ? 'text-slate-400'
+                                    : 'text-slate-500'
+                                }`}
+                                style={isSelected ? { color: 'rgba(255,255,255,0.85)' } : undefined}
+                              >
+                                {opt.label}
+                              </span>
+                            )}
+                          </div>
                           {isSelected && (
                             <Check
                               size={15}

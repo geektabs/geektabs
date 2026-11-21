@@ -2347,7 +2347,9 @@ button.todolist-cancel-btn span,
 .card-style-dark .ipaddress-tab-card .bg-black\/5,
 [data-card-bg-mode="dark"] .ipaddress-tab-card .bg-black\/5,
 .card-style-dark .speedtest-tab-card .bg-black\/5,
-[data-card-bg-mode="dark"] .speedtest-tab-card .bg-black\/5 {
+[data-card-bg-mode="dark"] .speedtest-tab-card .bg-black\/5,
+.card-style-dark .speedtest-tab-card .nqs-rate-card,
+[data-card-bg-mode="dark"] .speedtest-tab-card .nqs-rate-card {
   background: #141418 !important;
   background-color: #141418 !important;
   border-color: rgba(255, 255, 255, 0.14) !important;
@@ -2492,6 +2494,19 @@ button.todolist-cancel-btn span,
   -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
   border: 1px solid rgba(255, 255, 255, 0.26) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26) !important;
+  opacity: 1 !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .speedtest-tab-card .nqs-rate-card,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .speedtest-tab-card .nqs-rate-card,
+[data-glass-bg="dark"].card-style-dark-glass .speedtest-tab-card .nqs-details-card,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .speedtest-tab-card .nqs-details-card {
+  background: linear-gradient(145deg, rgba(147, 197, 253, 0.30) 0%, rgba(96, 165, 250, 0.18) 52%, rgba(56, 189, 248, 0.14) 100%) !important;
+  background-color: rgba(125, 190, 255, 0.20) !important;
+  backdrop-filter: blur(22px) saturate(185%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(185%) !important;
+  border: 1px solid rgba(186, 230, 253, 0.46) !important;
+  box-shadow: inset 0 1.5px 1px rgba(224, 242, 254, 0.50), 0 8px 24px -6px rgba(14, 165, 233, 0.22) !important;
   opacity: 1 !important;
 }
 
@@ -2751,6 +2766,19 @@ button.todolist-cancel-btn span,
   -webkit-backdrop-filter: blur(18px) saturate(175%) !important;
   border: 1px solid rgba(255, 255, 255, 0.78) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+  opacity: 1 !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .speedtest-tab-card .nqs-rate-card,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .speedtest-tab-card .nqs-rate-card,
+[data-glass-bg="light"].card-style-dark-glass .speedtest-tab-card .nqs-details-card,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .speedtest-tab-card .nqs-details-card {
+  background: linear-gradient(145deg, rgba(219, 234, 254, 0.66) 0%, rgba(186, 230, 253, 0.48) 55%, rgba(224, 242, 254, 0.58) 100%) !important;
+  background-color: rgba(191, 219, 254, 0.54) !important;
+  backdrop-filter: blur(22px) saturate(185%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(185%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.72) !important;
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.88), 0 8px 22px -6px rgba(59, 130, 246, 0.16) !important;
   opacity: 1 !important;
 }
 
@@ -4196,4 +4224,233 @@ input[type="number"].no-spinner {
   -webkit-text-fill-color: #475569 !important;
 }
 
+/* Speed Test: Network Quality Score purple learn-more link & star icons protected across card styles */
+.speedtest-tab-card .nqs-learn-more,
+[data-card-bg-mode] .speedtest-tab-card .nqs-learn-more,
+[data-glass-bg] .speedtest-tab-card .nqs-learn-more {
+  color: #7c3aed !important;
+  -webkit-text-fill-color: #7c3aed !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
 
+.card-style-dark .speedtest-tab-card .nqs-learn-more,
+[data-glass-bg="dark"].card-style-dark-glass .speedtest-tab-card .nqs-learn-more {
+  color: #a855f7 !important;
+  -webkit-text-fill-color: #a855f7 !important;
+}
+
+.speedtest-tab-card .nqs-star,
+[data-glass-bg] .speedtest-tab-card .nqs-star {
+  stroke: none !important;
+}
+
+/* IP Address Map: custom white zoom/info controls and markers stay crisp in Light, Dark, and Glass modes */
+.ipaddress-tab-card .ip-map-control-group,
+[data-glass-bg] .ipaddress-tab-card .ip-map-control-group {
+  background: rgba(255, 255, 255, 0.96) !important;
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: none !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+}
+
+.ipaddress-tab-card .ip-map-control-btn,
+[data-glass-bg] .ipaddress-tab-card .ip-map-control-btn,
+.ipaddress-tab-card .ip-map-info-btn,
+[data-glass-bg] .ipaddress-tab-card .ip-map-info-btn {
+  background: rgba(255, 255, 255, 0.96) !important;
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+.ipaddress-tab-card .ip-map-info-btn,
+[data-glass-bg] .ipaddress-tab-card .ip-map-info-btn {
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+}
+
+.ipaddress-tab-card .ip-map-control-btn:hover,
+.ipaddress-tab-card .ip-map-info-btn:hover {
+  background: #f1f5f9 !important;
+  background-color: #f1f5f9 !important;
+}
+
+.ipaddress-tab-card .ip-map-control-btn svg,
+.ipaddress-tab-card .ip-map-info-btn svg {
+  color: #1e293b !important;
+  stroke: #1e293b !important;
+}
+
+.ipaddress-tab-card .ip-map-marker svg,
+[data-glass-bg] .ipaddress-tab-card .ip-map-marker svg {
+  color: initial !important;
+  stroke: initial !important;
+}
+
+/* -------------------------------------------------------------------------
+   GLASS CARD STYLE: FLAT JELLY CATEGORY MENUS (Bookmarks & Calculator Tabs)
+   Applies exclusively when Glass card style (.card-style-dark-glass /
+   [data-card-bg-mode="dark-glass"]) is active across light & dark wallpapers.
+   Flat translucent jelly capsules with zero 3D keycap bevels or pop-up lift.
+   ------------------------------------------------------------------------- */
+
+/* Shared flat jelly capsule shape & soft squish physics */
+.card-style-dark-glass .bookmark-cat-pill,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill,
+.card-style-dark-glass .bookmark-add-cat-btn,
+[data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn,
+.card-style-dark-glass .calculator-tab-card .calc-category-tab,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab {
+  border-radius: 9999px !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  box-shadow: none !important;
+  transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, color 0.2s ease !important;
+}
+
+.card-style-dark-glass .bookmark-cat-pill:hover,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill:hover,
+.card-style-dark-glass .bookmark-add-cat-btn:hover,
+[data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn:hover,
+.card-style-dark-glass .calculator-tab-card .calc-category-tab:hover,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:hover {
+  transform: scale(1.015) !important;
+}
+
+.card-style-dark-glass .bookmark-cat-pill:active,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill:active,
+.card-style-dark-glass .bookmark-add-cat-btn:active,
+[data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn:active,
+.card-style-dark-glass .calculator-tab-card .calc-category-tab:active,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:active {
+  transform: scale(0.96) !important;
+}
+
+/* Inactive Flat Jelly Capsules — LIGHT Glass Background */
+[data-glass-bg="light"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500),
+[data-glass-bg="light"].card-style-dark-glass .bookmark-add-cat-btn,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active) {
+  background: rgba(255, 255, 255, 0.44) !important;
+  background-color: rgba(255, 255, 255, 0.44) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  box-shadow: none !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  opacity: 1 !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500):hover,
+[data-glass-bg="light"].card-style-dark-glass .bookmark-add-cat-btn:hover,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn:hover,
+[data-glass-bg="light"].card-style-dark-glass .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active):hover,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active):hover {
+  background: rgba(255, 255, 255, 0.66) !important;
+  background-color: rgba(255, 255, 255, 0.66) !important;
+  border-color: rgba(165, 180, 252, 0.75) !important;
+  box-shadow: none !important;
+  color: #3730a3 !important;
+  -webkit-text-fill-color: #3730a3 !important;
+}
+
+/* Inactive Flat Jelly Capsules — DARK Glass Background */
+[data-glass-bg="dark"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500),
+[data-glass-bg="dark"].card-style-dark-glass .bookmark-add-cat-btn,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active) {
+  background: rgba(255, 255, 255, 0.14) !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .bookmark-cat-pill:not(.bg-indigo-500):hover,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-cat-pill:not(.bg-indigo-500):hover,
+[data-glass-bg="dark"].card-style-dark-glass .bookmark-add-cat-btn:hover,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-add-cat-btn:hover,
+[data-glass-bg="dark"].card-style-dark-glass .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active):hover,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active):hover {
+  background: rgba(255, 255, 255, 0.24) !important;
+  background-color: rgba(255, 255, 255, 0.24) !important;
+  border-color: rgba(255, 255, 255, 0.42) !important;
+  box-shadow: none !important;
+}
+
+/* Active Flat Jelly Pill — Bookmark Category */
+.card-style-dark-glass .bookmark-cat-pill.bg-indigo-500,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill.bg-indigo-500 {
+  background: rgba(99, 102, 241, 0.80) !important;
+  background-color: rgba(99, 102, 241, 0.80) !important;
+  border: 1px solid rgba(199, 210, 254, 0.55) !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.card-style-dark-glass .bookmark-cat-pill.bg-indigo-500 *,
+[data-card-bg-mode="dark-glass"] .bookmark-cat-pill.bg-indigo-500 * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Active Flat Jelly Tabs — Calculator Categories (per category color) */
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="simple"],
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="simple"] {
+  background: rgba(99, 102, 241, 0.82) !important;
+  background-color: rgba(99, 102, 241, 0.82) !important;
+  border: 1px solid rgba(199, 210, 254, 0.55) !important;
+  box-shadow: none !important;
+}
+
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="tips"],
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="tips"] {
+  background: rgba(245, 158, 11, 0.84) !important;
+  background-color: rgba(245, 158, 11, 0.84) !important;
+  border: 1px solid rgba(254, 243, 199, 0.55) !important;
+  box-shadow: none !important;
+}
+
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="currency"],
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="currency"] {
+  background: rgba(14, 165, 233, 0.84) !important;
+  background-color: rgba(14, 165, 233, 0.84) !important;
+  border: 1px solid rgba(224, 242, 254, 0.55) !important;
+  box-shadow: none !important;
+}
+
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="tax"],
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active[data-calc-tab="tax"] {
+  background: rgba(16, 185, 129, 0.84) !important;
+  background-color: rgba(16, 185, 129, 0.84) !important;
+  border: 1px solid rgba(209, 250, 229, 0.55) !important;
+  box-shadow: none !important;
+}
+
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active,
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active *,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.card-style-dark-glass .calculator-tab-card .calc-category-tab.calc-mode-tab-active svg,
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab.calc-mode-tab-active svg {
+  stroke: #ffffff !important;
+}
+
+.card-style-dark-glass .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active) > span[class*="text-"],
+[data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active) > span[class*="text-"] {
+  -webkit-text-fill-color: currentColor !important;
+}

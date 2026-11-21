@@ -103,6 +103,43 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     modalConfirm: "确认重置",
     modalCancel: "取消"
   },
+  'Chinese Traditional': {
+    title: "系統設定",
+    generalSettings: "一般設定",
+    managePreferences: "管理您的基礎偏好設定",
+    customBoardName: "自訂首頁看板名稱",
+    boardNameDesc: "此名稱將作為精美的品牌簽名顯示在首頁。預設將顯示隨時間變化的問候語（早安 / 午安 / 晚安）。",
+    defaultPlaceholder: "預設值：",
+    save: "儲存",
+    saved: "已儲存",
+    languageSelection: "語言選擇",
+    langDesc: "為所有小工具和控制面板選擇您的偏好語言。",
+    cardStyle: "卡片背景樣式",
+    cardDesc: "在淺色（白色卡片）、深色（黑色卡片）與玻璃（霧面玻璃卡片）之間進行選擇。",
+    whiteBg: "淺色 (Light)",
+    darkBg: "深色 (Dark)",
+    darkGlass: "玻璃 (Glass)",
+    dataBackup: "資料備份與還原（還原點）",
+    dataDesc: "匯出您所有的書籤、待辦事項和筆記資料，或匯入先前備份的 JSON 檔案以還原至當時的狀態。",
+    exportBackup: "匯出備份（建立還原點）",
+    importBackup: "匯入備份（還原至該點）",
+    resetTitle: "恢復預設設定",
+    resetDesc: "重置整個網站至原始預設設定。您的所有個人化設定、書籤、待辦事項和筆記資料都將被永久刪除！",
+    resetButton: "重置並清除所有資料",
+    aboutTitle: "關於我們",
+    aboutDesc: "探索我們的故事",
+    aboutWelcome: "歡迎來到 GeekTabs",
+    aboutText1: "GeekTabs 秉持著一個簡單的使命而建立：將平淡無奇的「新分頁」轉變為精美、個人化且功能強大的儀表板。我們深信數位環境會深深影響您的工作效率與創造力。",
+    aboutText2: "專注於簡約設計、貼心功能與深度自訂，GeekTabs 伴您開啟每一次網路之旅。無論您需要每日靈感、組織任務，還是優雅的時間顯示，我們都能滿足您的期待。",
+    supportContact: "支援與聯絡",
+    restoreSuccess: "備份還原成功！網頁即將重新整理。",
+    invalidBackup: "無效的備份檔案。",
+    failParse: "解析備份檔案失敗。",
+    modalTitle: "確認重置所有資料？",
+    modalMessage: "此操作無法復原。這將永久刪除您的所有自訂設定、書籤（Bookmarks）、待辦事項（To-Do）以及筆記（Notes）。重置後頁面將重新載入。",
+    modalConfirm: "確認重置",
+    modalCancel: "取消"
+  },
   Spanish: {
     title: "CONFIGURACIÓN",
     generalSettings: "Ajustes Generales",
@@ -848,6 +885,7 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
 interface SettingsDropdownOption {
   value: string;
   label: string;
+  nativeLabel?: string;
 }
 
 interface SettingsDropdownProps {
@@ -898,7 +936,11 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
         onClick={() => setIsOpen(!isOpen)}
         className={`settings-dropdown w-full flex items-center justify-between rounded-xl px-4 py-2.5 min-h-[44px] lg:min-h-0 font-semibold text-sm transition-all outline-none cursor-pointer text-left bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-300 text-slate-900 shadow-sm ${isOpen ? 'ring-2 ring-indigo-500 border-transparent' : ''}`}
       >
-        <span className="truncate pr-2 text-slate-900">{selectedOption?.label}</span>
+        <span className="truncate pr-2 text-slate-900">
+          {selectedOption?.nativeLabel
+            ? `${selectedOption.nativeLabel} (${selectedOption.label})`
+            : selectedOption?.label}
+        </span>
         <ChevronDown
           size={16}
           className={`shrink-0 transition-transform duration-200 text-neutral-600 ${isOpen ? 'rotate-180 text-indigo-500 opacity-100' : 'opacity-70'}`}
@@ -924,13 +966,26 @@ function SettingsDropdown({ value, onChange, options, isDarkGlass }: SettingsDro
                     onChange(opt.value);
                     setIsOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-3.5 py-3 lg:py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer text-left ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 lg:py-2 rounded-xl transition-all cursor-pointer text-left ${
                     isSelected
-                      ? 'settings-option-selected bg-indigo-500 text-white font-bold'
-                      : 'text-slate-700 hover:bg-black/5 hover:text-black'
+                      ? 'settings-option-selected bg-indigo-500 text-white'
+                      : 'text-slate-800 hover:bg-black/5 hover:text-black'
                   }`}
                 >
-                  <span className="truncate">{opt.label}</span>
+                  <div className="flex flex-col min-w-0">
+                    <span className={`truncate text-sm leading-tight ${isSelected ? 'font-bold' : 'font-semibold'}`}>
+                      {opt.nativeLabel || opt.label}
+                    </span>
+                    {opt.nativeLabel && (
+                      <span
+                        className={`truncate text-xs font-medium leading-tight mt-0.5 ${
+                          isSelected ? 'text-white/85' : 'text-slate-500'
+                        }`}
+                      >
+                        {opt.label}
+                      </span>
+                    )}
+                  </div>
                   {isSelected && (
                     <Check
                       size={16}
@@ -1200,7 +1255,7 @@ export default function SettingsTab({
         {/* Sidebar Footer */}
         <div className="p-4 border-t border-black/10 dark:border-white/10 text-xs font-semibold text-slate-500 dark:text-white/45 flex items-center justify-between select-none">
           <span className="text-[11px] uppercase tracking-wider font-bold">
-            {language}
+            {(LANGUAGE_OPTIONS.find((o) => o.value === language)?.nativeLabel) || language}
           </span>
           <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5">
             {cardBgMode === 'dark' ? tData.darkBg : cardBgMode === 'dark-glass' ? tData.darkGlass : tData.whiteBg}

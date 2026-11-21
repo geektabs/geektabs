@@ -44,6 +44,24 @@ const WEATHER_SETTINGS_T: Record<string, Record<string, string>> = {
     previewTitle: '设置预览',
     previewDesc: '所有修改已自动保存，并即时同步到首页天气卡片上。'
   },
+  'Chinese Traditional': {
+    title: '天氣設定',
+    subtitle: '設定天氣小工具的溫度單位與預報顯示模式。',
+    unitTitle: '溫度單位',
+    unitDesc: '選擇攝氏 (°C) 或華氏 (°F) 來顯示目前氣溫與預報。',
+    celsius: '攝氏 (°C)',
+    celsiusDesc: '全球公制標準單位',
+    fahrenheit: '華氏 (°F)',
+    fahrenheitDesc: '美國等地區常用英制單位',
+    forecastModeTitle: '天氣預報顯示模式',
+    forecastModeDesc: '選擇天氣卡片按「逐小時」或按「天」顯示天氣預報。',
+    hourly: '按小時預報 (Hourly)',
+    hourlyDesc: '顯示未來 12 小時的天氣狀況與逐時氣溫',
+    daily: '按天預報 (Daily)',
+    dailyDesc: '顯示未來 7 天的每日天氣狀況與最高/最低氣溫',
+    previewTitle: '設定預覽',
+    previewDesc: '所有修改已自動儲存，並即時同步到首頁天氣卡片上。'
+  },
   Spanish: {
     title: 'Configuración del Clima',
     subtitle: 'Configura las unidades de temperatura y el intervalo de visualización del pronóstico.',

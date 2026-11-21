@@ -5,6 +5,7 @@ import tipsSpanish from '../../data/life-tips-Spanish.json';
 import tipsFrench from '../../data/life-tips-French.json';
 import tipsGerman from '../../data/life-tips-German.json';
 import tipsChinese from '../../data/life-tips-Chinese.json';
+import tipsChineseTraditional from '../../data/life-tips-Chinese-Traditional.json';
 import tipsJapanese from '../../data/life-tips-Japanese.json';
 import tipsKorean from '../../data/life-tips-Korean.json';
 import tipsItalian from '../../data/life-tips-Italian.json';
@@ -29,6 +30,7 @@ const tipsMap: Record<string, string[]> = {
   French: tipsFrench,
   German: tipsGerman,
   Chinese: tipsChinese,
+  'Chinese Traditional': tipsChineseTraditional,
   Japanese: tipsJapanese,
   Korean: tipsKorean,
   Italian: tipsItalian,
@@ -132,6 +134,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
     French: 'Conseils Quotidiens',
     German: 'Tägliche Tipps',
     Chinese: '每日小贴士',
+    'Chinese Traditional': '每日小撇步',
     Japanese: '今日のヒント',
     Korean: '일일 팁',
     Italian: 'Consigli Giornalieri',

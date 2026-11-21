@@ -44,6 +44,18 @@ const LABELS: Record<string, {
     close: '知道了',
     offline: '离线模式 — 正在使用缓存数据',
   },
+  'Chinese Traditional': {
+    installApp: '下載應用程式',
+    installOnIOS: '加入主畫面',
+    installedBadge: '已安裝為應用程式',
+    useAddressBar: '點擊瀏覽器網址列右側的「安裝」圖示即可安裝',
+    iosModalTitle: '在 iPhone / iPad 上安裝 GeekTabs',
+    iosStep1: '點擊 Safari 工具列中的「分享」圖示。',
+    iosStep2: '向下滑動並選擇「加入主畫面」。',
+    iosStep3: '點擊「新增」，將 GeekTabs 圖示儲存到桌面。',
+    close: '知道了',
+    offline: '離線模式 — 正在使用快取資料',
+  },
   Korean: {
     installApp: '앱 설치',
     installOnIOS: '홈 화면에 추가',

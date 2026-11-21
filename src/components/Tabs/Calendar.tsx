@@ -780,6 +780,31 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     THA: '泰国',
     USA: '美国',
   },
+  'Chinese Traditional': {
+    AUS: '澳洲',
+    CHN: '中國',
+    FIN: '芬蘭',
+    FRA: '法國',
+    DEU: '德國',
+    UK: '大不列顛',
+    IND: '印度',
+    ITA: '義大利',
+    JPN: '日本',
+    KOR: '韓國',
+    LUX: '盧森堡',
+    MEX: '墨西哥',
+    NLD: '荷蘭',
+    NZL: '紐西蘭',
+    NOR: '挪威',
+    PRT: '葡萄牙',
+    RUS: '俄羅斯',
+    SGP: '新加坡',
+    ESP: '西班牙',
+    SWE: '瑞典',
+    CHE: '瑞士',
+    THA: '泰國',
+    USA: '美國',
+  },
   Japanese: {
     AUS: 'オーストラリア',
     CHN: '中国',
@@ -1187,6 +1212,7 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
     const sameMap: Record<string, string> = {
       English: 'Same time zone',
       Chinese: '相同时区',
+      'Chinese Traditional': '相同時區',
       Korean: '동일한 시간대',
       Spanish: 'Misma zona horaria',
       French: 'Même fuseau horaire',
@@ -1218,6 +1244,10 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       return diffHours > 0 
         ? `${c1Name} 比 ${c2Name} 快 ${formatted} 小时`
         : `${c1Name} 比 ${c2Name} 慢 ${formatted} 小时`;
+    case 'Chinese Traditional':
+      return diffHours > 0
+        ? `${c1Name} 比 ${c2Name} 快 ${formatted} 小時`
+        : `${c1Name} 比 ${c2Name} 慢 ${formatted} 小時`;
     case 'Korean':
       return diffHours > 0 
         ? `${c1Name}이(가) ${c2Name}보다 ${formatted}시간 빠릅니다`
@@ -1490,6 +1520,7 @@ const WEEKDAYS: Record<string, string[]> = {
   French: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
   German: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
   Chinese: ['日', '一', '二', '三', '四', '五', '六'],
+  'Chinese Traditional': ['日', '一', '二', '三', '四', '五', '六'],
   Japanese: ['日', '月', '火', '水', '木', '金', '土'],
   Korean: ['일', '월', '화', '수', '목', '금', '토'],
   Italian: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
@@ -1615,6 +1646,24 @@ const CAL_T: Record<string, Record<string, string>> = {
     deleteConfirm: '您确定要删除此日程吗？',
     singleCalNone: '单国家 (无第二国家)',
     globalDefault: '全球官方日历',
+    today: '今天',
+    ipLocation: 'IP 所在地',
+  },
+  'Chinese Traditional': {
+    worldDates: '世界時間',
+    events: '行程與提醒',
+    holidaysMonth: '本月節假日',
+    noEvents: '暫無行程',
+    addEvent: '新增至行事曆',
+    event: '事件',
+    reminder: '提醒',
+    title: '標題',
+    cancel: '取消',
+    save: '儲存',
+    deleteEvent: '刪除行程',
+    deleteConfirm: '您確定要刪除此行程嗎？',
+    singleCalNone: '單一國家 (無第二國家)',
+    globalDefault: '全球官方行事曆',
     today: '今天',
     ipLocation: 'IP 所在地',
   },
@@ -1914,6 +1963,7 @@ const LOCALES: Record<string, string> = {
   French: 'fr-FR',
   German: 'de-DE',
   Chinese: 'zh-CN',
+  'Chinese Traditional': 'zh-TW',
   Japanese: 'ja-JP',
   Korean: 'ko-KR',
   Italian: 'it-IT',

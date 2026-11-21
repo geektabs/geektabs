@@ -12,6 +12,7 @@ const languageToLocale: Record<string, string> = {
   French: 'fr-FR',
   German: 'de-DE',
   Chinese: 'zh-CN',
+  'Chinese Traditional': 'zh-TW',
   Japanese: 'ja-JP',
   Korean: 'ko-KR',
   Italian: 'it-IT',

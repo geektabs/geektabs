@@ -3,7 +3,6 @@ import { ExternalLink, Plus, X } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { motion, AnimatePresence } from 'motion/react';
 import Clock from '../Clock/Clock';
-import ConfirmModal from '../ConfirmModal';
 
 interface Link {
   id: string;
@@ -328,11 +327,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'e.g. Work Dashboard',
     placeholderUrl: 'e.g. app.work.com',
     cancel: 'Cancel',
+    save: 'Save',
+    delete: 'Delete',
     newCategory: 'New Category',
     createCategoryDesc: 'Create a new category',
     categoryName: 'Category Name',
     placeholderCategory: 'e.g. Shopping',
     create: 'Create',
+    editCategoryTitle: 'Edit Category',
+    editCategoryDesc: 'Rename or delete this category',
+    editBookmarkTitle: 'Edit Bookmark',
     deleteCategoryTitle: 'Delete Category',
     deleteCategoryMsg: 'Are you sure you want to delete this category and all its links? This action cannot be undone.',
     deleteBookmarkTitle: 'Delete Bookmark',
@@ -346,11 +350,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: '예: 회사 대시보드',
     placeholderUrl: '예: app.work.com',
     cancel: '취소',
+    save: '저장',
+    delete: '삭제',
     newCategory: '새 카테고리',
     createCategoryDesc: '새로운 카테고리를 생성합니다',
     categoryName: '카테고리 이름',
     placeholderCategory: '예: 쇼핑',
     create: '생성',
+    editCategoryTitle: '카테고리 편집',
+    editCategoryDesc: '카테고리 이름 변경 또는 삭제',
+    editBookmarkTitle: '북마크 편집',
     deleteCategoryTitle: '카테고리 삭제',
     deleteCategoryMsg: '이 카테고리와 모든 링크를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
     deleteBookmarkTitle: '북마크 삭제',
@@ -364,11 +373,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'p. ej. Panel de trabajo',
     placeholderUrl: 'p. ej. app.trabajo.com',
     cancel: 'Cancelar',
+    save: 'Guardar',
+    delete: 'Eliminar',
     newCategory: 'Nueva categoría',
     createCategoryDesc: 'Crear una nueva categoría',
     categoryName: 'Nombre de categoría',
     placeholderCategory: 'p. ej. Compras',
     create: 'Crear',
+    editCategoryTitle: 'Editar categoría',
+    editCategoryDesc: 'Renombrar o eliminar esta categoría',
+    editBookmarkTitle: 'Editar marcador',
     deleteCategoryTitle: 'Eliminar categoría',
     deleteCategoryMsg: '¿Estás seguro de que deseas eliminar esta categoría y todos sus enlaces? Esta acción no se puede deshacer.',
     deleteBookmarkTitle: 'Eliminar marcador',
@@ -382,11 +396,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'ex. Tableau de bord',
     placeholderUrl: 'ex. app.travail.com',
     cancel: 'Annuler',
+    save: 'Enregistrer',
+    delete: 'Supprimer',
     newCategory: 'Nouvelle catégorie',
     createCategoryDesc: 'Créer une nouvelle catégorie',
     categoryName: 'Nom de la catégorie',
     placeholderCategory: 'ex. Achats',
     create: 'Créer',
+    editCategoryTitle: 'Modifier la catégorie',
+    editCategoryDesc: 'Renommer ou supprimer cette catégorie',
+    editBookmarkTitle: 'Modifier le favori',
     deleteCategoryTitle: 'Supprimer la catégorie',
     deleteCategoryMsg: 'Êtes-vous sûr de vouloir supprimer cette catégorie et tous ses liens ? Cette action est irréversible.',
     deleteBookmarkTitle: 'Supprimer le favori',
@@ -400,11 +419,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'z. B. Arbeits-Dashboard',
     placeholderUrl: 'z. B. app.arbeit.com',
     cancel: 'Abbrechen',
+    save: 'Speichern',
+    delete: 'Löschen',
     newCategory: 'Neue Kategorie',
     createCategoryDesc: 'Eine neue Kategorie erstellen',
     categoryName: 'Kategorie-Name',
     placeholderCategory: 'z. B. Einkaufen',
     create: 'Erstellen',
+    editCategoryTitle: 'Kategorie bearbeiten',
+    editCategoryDesc: 'Kategorie umbenennen oder löschen',
+    editBookmarkTitle: 'Lesezeichen bearbeiten',
     deleteCategoryTitle: 'Kategorie löschen',
     deleteCategoryMsg: 'Sind Sie sicher, dass Sie diese Kategorie und alle ihre Links löschen möchten? Dies kann nicht rückgängig gemacht werden.',
     deleteBookmarkTitle: 'Lesezeichen löschen',
@@ -418,15 +442,43 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: '例如：工作仪表盘',
     placeholderUrl: '例如：app.work.com',
     cancel: '取消',
+    save: '保存',
+    delete: '删除',
     newCategory: '新建分类',
     createCategoryDesc: '创建一个新的书签分类',
     categoryName: '分类名称',
     placeholderCategory: '例如：日常购物',
     create: '创建',
+    editCategoryTitle: '编辑分类',
+    editCategoryDesc: '修改分类名称或删除此分类',
+    editBookmarkTitle: '编辑书签',
     deleteCategoryTitle: '删除分类',
     deleteCategoryMsg: '您确定要删除此分类及其中的所有书签吗？该操作无法撤销。',
     deleteBookmarkTitle: '删除书签',
     deleteBookmarkMsg: '您确定要删除此书签吗？',
+  },
+  'Chinese Traditional': {
+    addBookmark: '新增書籤',
+    saveTo: '儲存至',
+    titleLabel: '名稱標題',
+    urlLabel: '網頁連結',
+    placeholderTitle: '例如：工作儀表板',
+    placeholderUrl: '例如：app.work.com',
+    cancel: '取消',
+    save: '儲存',
+    delete: '刪除',
+    newCategory: '新增分類',
+    createCategoryDesc: '建立一個新的書籤分類',
+    categoryName: '分類名稱',
+    placeholderCategory: '例如：日常購物',
+    create: '建立',
+    editCategoryTitle: '編輯分類',
+    editCategoryDesc: '修改分類名稱或刪除此分類',
+    editBookmarkTitle: '編輯書籤',
+    deleteCategoryTitle: '刪除分類',
+    deleteCategoryMsg: '您確定要刪除此分類及其中的所有書籤嗎？此操作無法復原。',
+    deleteBookmarkTitle: '刪除書籤',
+    deleteBookmarkMsg: '您確定要刪除此書籤嗎？',
   },
   Japanese: {
     addBookmark: 'ブックマークを追加',
@@ -436,11 +488,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: '例：仕事用ダッシュボード',
     placeholderUrl: '例：app.work.com',
     cancel: 'キャンセル',
+    save: '保存',
+    delete: '削除',
     newCategory: '新規カテゴリー',
     createCategoryDesc: '新しいカテゴリーを作成します',
     categoryName: 'カテゴリー名',
     placeholderCategory: '例：ショッピング',
     create: '作成',
+    editCategoryTitle: 'カテゴリーを編集',
+    editCategoryDesc: 'カテゴリー名の変更または削除',
+    editBookmarkTitle: 'ブックマークを編集',
     deleteCategoryTitle: 'カテゴリーの削除',
     deleteCategoryMsg: 'このカテゴリーと含まれるすべてのリンクを削除してもよろしいですか？この操作は元に戻せません。',
     deleteBookmarkTitle: 'ブックマークの削除',
@@ -454,11 +511,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'es. Cruscotto di lavoro',
     placeholderUrl: 'es. app.lavoro.com',
     cancel: 'Annulla',
+    save: 'Salva',
+    delete: 'Elimina',
     newCategory: 'Nuova categoria',
     createCategoryDesc: 'Crea una nuova categoria',
     categoryName: 'Nome categoria',
     placeholderCategory: 'es. Shopping',
     create: 'Crea',
+    editCategoryTitle: 'Modifica categoria',
+    editCategoryDesc: 'Rinomina o elimina questa categoria',
+    editBookmarkTitle: 'Modifica preferito',
     deleteCategoryTitle: 'Elimina categoria',
     deleteCategoryMsg: 'Sei sicuro di voler eliminare questa categoria e tutti i suoi link? Questa azione non può essere annullata.',
     deleteBookmarkTitle: 'Elimina preferito',
@@ -472,11 +534,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'например, Рабочая панель',
     placeholderUrl: 'например, app.work.com',
     cancel: 'Отмена',
+    save: 'Сохранить',
+    delete: 'Удалить',
     newCategory: 'Новая категория',
     createCategoryDesc: 'Создать новую категорию',
     categoryName: 'Название категории',
     placeholderCategory: 'например, Покупки',
     create: 'Создать',
+    editCategoryTitle: 'Редактировать категорию',
+    editCategoryDesc: 'Переименовать или удалить категорию',
+    editBookmarkTitle: 'Редактировать закладку',
     deleteCategoryTitle: 'Удалить категорию',
     deleteCategoryMsg: 'Вы уверены, что хотите удалить эту категорию и все ее ссылки? Это действие нельзя отменить.',
     deleteBookmarkTitle: 'Удалить закладку',
@@ -490,11 +557,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'z. B. Aarbechts-Dashboard',
     placeholderUrl: 'z. B. app.work.com',
     cancel: 'Ofbriechen',
+    save: 'Späicheren',
+    delete: 'Läschen',
     newCategory: 'Nei Kategorie',
     createCategoryDesc: 'Eng nei Kategorie erstellen',
     categoryName: 'Kategorienumm',
     placeholderCategory: 'z. B. Shopping',
     create: 'Erstellen',
+    editCategoryTitle: 'Kategorie änneren',
+    editCategoryDesc: 'Kategorie ëmbenennen oder läschen',
+    editBookmarkTitle: 'Bookmark änneren',
     deleteCategoryTitle: 'Kategorie läschen',
     deleteCategoryMsg: 'Sidd Dir sécher, datt Dir dës Kategorie an all hir Linke läsche wëllt? Dës Aktioun kann net réckgängeg gemaach ginn.',
     deleteBookmarkTitle: 'Bookmark läschen',
@@ -508,11 +580,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'bijv. Werkdashboard',
     placeholderUrl: 'bijv. app.werk.com',
     cancel: 'Annuleren',
+    save: 'Opslaan',
+    delete: 'Verwijderen',
     newCategory: 'Nieuwe categorie',
     createCategoryDesc: 'Een nieuwe categorie maken',
     categoryName: 'Categorienaam',
     placeholderCategory: 'bijv. Winkelen',
     create: 'Maken',
+    editCategoryTitle: 'Categorie bewerken',
+    editCategoryDesc: 'Deze categorie hernoemen of verwijderen',
+    editBookmarkTitle: 'Bladwijzer bewerken',
     deleteCategoryTitle: 'Categorie verwijderen',
     deleteCategoryMsg: 'Weet u zeker dat u deze categorie en alle bijbehorende links wilt verwijderen? Dit kan niet ongedaan worden gemaakt.',
     deleteBookmarkTitle: 'Bladwijzer verwijderen',
@@ -526,11 +603,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 't.ex. Arbetsdashboard',
     placeholderUrl: 't.ex. app.arbete.com',
     cancel: 'Avbryt',
+    save: 'Spara',
+    delete: 'Ta bort',
     newCategory: 'Ny kategori',
     createCategoryDesc: 'Skapa en ny kategori',
     categoryName: 'Kategorinamn',
     placeholderCategory: 't.ex. Shopping',
     create: 'Skapa',
+    editCategoryTitle: 'Redigera kategori',
+    editCategoryDesc: 'Byt namn på eller ta bort kategorin',
+    editBookmarkTitle: 'Redigera bokmärke',
     deleteCategoryTitle: 'Ta bort kategori',
     deleteCategoryMsg: 'Är du säker på att du vill ta bort den här kategorin och alla dess länkar? Åtgärden kan inte ångras.',
     deleteBookmarkTitle: 'Ta bort bokmärke',
@@ -544,11 +626,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'esim. Työpöytä',
     placeholderUrl: 'esim. app.tyo.com',
     cancel: 'Peruuta',
+    save: 'Tallenna',
+    delete: 'Poista',
     newCategory: 'Uusi kategoria',
     createCategoryDesc: 'Luo uusi kategoria',
     categoryName: 'Kategorian nimi',
     placeholderCategory: 'esim. Ostokset',
     create: 'Luo',
+    editCategoryTitle: 'Muokkaa kategoriaa',
+    editCategoryDesc: 'Nimeä kategoria uudelleen tai poista se',
+    editBookmarkTitle: 'Muokkaa kirjanmerkkiä',
     deleteCategoryTitle: 'Poista kategoria',
     deleteCategoryMsg: 'Haluatko varmasti poistaa tämän kategorian ja kaikki sen linkit? Tätä toimintoa ei voi perua.',
     deleteBookmarkTitle: 'Poista kirjanmerkki',
@@ -562,11 +649,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'जैसे: कार्य डैशबोर्ड',
     placeholderUrl: 'जैसे: app.work.com',
     cancel: 'रद्द करें',
+    save: 'सहेजें',
+    delete: 'हटाएँ',
     newCategory: 'नई श्रेणी',
     createCategoryDesc: 'एक नई श्रेणी बनाएँ',
     categoryName: 'श्रेणी का नाम',
     placeholderCategory: 'जैसे: खरीदारी',
     create: 'बनाएँ',
+    editCategoryTitle: 'श्रेणी संपादित करें',
+    editCategoryDesc: 'श्रेणी का नाम बदलें या इसे हटाएँ',
+    editBookmarkTitle: 'बुकमार्क संपादित करें',
     deleteCategoryTitle: 'श्रेणी हटाएँ',
     deleteCategoryMsg: 'क्या आप वाकई इस श्रेणी और इसके सभी लिंक को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।',
     deleteBookmarkTitle: 'बुकमार्क हटाएँ',
@@ -580,11 +672,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'f.eks. Arbeidsoversikt',
     placeholderUrl: 'f.eks. app.arbeid.com',
     cancel: 'Avbryt',
+    save: 'Lagre',
+    delete: 'Slett',
     newCategory: 'Ny kategori',
     createCategoryDesc: 'Opprett en ny kategori',
     categoryName: 'Kategorinavn',
     placeholderCategory: 'f.eks. Shopping',
     create: 'Opprett',
+    editCategoryTitle: 'Rediger kategori',
+    editCategoryDesc: 'Gi nytt navn til eller slett denne kategorien',
+    editBookmarkTitle: 'Rediger bokmerke',
     deleteCategoryTitle: 'Slett kategori',
     deleteCategoryMsg: 'Er du sikker på at du vil slette denne kategorien og alle dens lenker? Denne handlingen kan ikke angres.',
     deleteBookmarkTitle: 'Slett bokmerke',
@@ -598,11 +695,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'เช่น แดชบอร์ดงาน',
     placeholderUrl: 'เช่น app.work.com',
     cancel: 'ยกเลิก',
+    save: 'บันทึก',
+    delete: 'ลบ',
     newCategory: 'หมวดหมู่ใหม่',
     createCategoryDesc: 'สร้างหมวดหมู่ใหม่',
     categoryName: 'ชื่อหมวดหมู่',
     placeholderCategory: 'เช่น ช้อปปิ้ง',
     create: 'สร้าง',
+    editCategoryTitle: 'แก้ไขหมวดหมู่',
+    editCategoryDesc: 'เปลี่ยนชื่อหรือลบหมวดหมู่นี้',
+    editBookmarkTitle: 'แก้ไขบุ๊กมาร์ก',
     deleteCategoryTitle: 'ลบหมวดหมู่',
     deleteCategoryMsg: 'คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้และลิงก์ทั้งหมด? การดำเนินการนี้ไม่สามารถย้อนกลับได้',
     deleteBookmarkTitle: 'ลบบุ๊กมาร์ก',
@@ -616,11 +718,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'ex. Painel de Trabalho',
     placeholderUrl: 'ex. app.trabalho.com',
     cancel: 'Cancelar',
+    save: 'Guardar',
+    delete: 'Eliminar',
     newCategory: 'Nova Categoria',
     createCategoryDesc: 'Criar uma nova categoria',
     categoryName: 'Nome da Categoria',
     placeholderCategory: 'ex. Compras',
     create: 'Criar',
+    editCategoryTitle: 'Editar Categoria',
+    editCategoryDesc: 'Renomear ou eliminar esta categoria',
+    editBookmarkTitle: 'Editar Marcador',
     deleteCategoryTitle: 'Eliminar Categoria',
     deleteCategoryMsg: 'Tem a certeza de que deseja eliminar esta categoria e todos os seus links? Esta ação não pode ser anulada.',
     deleteBookmarkTitle: 'Eliminar Marcador',
@@ -634,11 +741,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'vd: Bảng điều khiển công việc',
     placeholderUrl: 'vd: app.work.com',
     cancel: 'Hủy',
+    save: 'Lưu',
+    delete: 'Xóa',
     newCategory: 'Danh mục mới',
     createCategoryDesc: 'Tạo một danh mục mới',
     categoryName: 'Tên danh mục',
     placeholderCategory: 'vd: Mua sắm',
     create: 'Tạo',
+    editCategoryTitle: 'Chỉnh sửa danh mục',
+    editCategoryDesc: 'Đổi tên hoặc xóa danh mục này',
+    editBookmarkTitle: 'Chỉnh sửa dấu trang',
     deleteCategoryTitle: 'Xóa danh mục',
     deleteCategoryMsg: 'Bạn có chắc chắn muốn xóa danh mục này và toàn bộ liên kết bên trong? Hành động này không thể hoàn tác.',
     deleteBookmarkTitle: 'Xóa dấu trang',
@@ -652,11 +764,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'np. Panel pracy',
     placeholderUrl: 'np. app.work.com',
     cancel: 'Anuluj',
+    save: 'Zapisz',
+    delete: 'Usuń',
     newCategory: 'Nowa kategoria',
     createCategoryDesc: 'Utwórz nową kategorię',
     categoryName: 'Nazwa kategorii',
     placeholderCategory: 'np. Zakupy',
     create: 'Utwórz',
+    editCategoryTitle: 'Edytuj kategorię',
+    editCategoryDesc: 'Zmień nazwę lub usuń tę kategorię',
+    editBookmarkTitle: 'Edytuj zakładkę',
     deleteCategoryTitle: 'Usuń kategorię',
     deleteCategoryMsg: 'Czy na pewno chcesz usunąć tę kategorię i wszystkie jej linki? Tej operacji nie można cofnąć.',
     deleteBookmarkTitle: 'Usuń zakładkę',
@@ -670,11 +787,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'f.eks. Arbejdsdashboard',
     placeholderUrl: 'f.eks. app.work.com',
     cancel: 'Annuller',
+    save: 'Gem',
+    delete: 'Slet',
     newCategory: 'Ny kategori',
     createCategoryDesc: 'Opret en ny kategori',
     categoryName: 'Kategorinavn',
     placeholderCategory: 'f.eks. Indkøb',
     create: 'Opret',
+    editCategoryTitle: 'Rediger kategori',
+    editCategoryDesc: 'Omdøb eller slet denne kategori',
+    editBookmarkTitle: 'Rediger bogmærke',
     deleteCategoryTitle: 'Slet kategori',
     deleteCategoryMsg: 'Er du sikker på, at du vil slette denne kategori og alle dens links? Denne handling kan ikke fortrydes.',
     deleteBookmarkTitle: 'Slet bogmærke',
@@ -688,11 +810,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'ör. İş Panosu',
     placeholderUrl: 'ör. app.work.com',
     cancel: 'İptal',
+    save: 'Kaydet',
+    delete: 'Sil',
     newCategory: 'Yeni Kategori',
     createCategoryDesc: 'Yeni bir kategori oluştur',
     categoryName: 'Kategori Adı',
     placeholderCategory: 'ör. Alışveriş',
     create: 'Oluştur',
+    editCategoryTitle: 'Kategoriyi Düzenle',
+    editCategoryDesc: 'Bu kategoriyi yeniden adlandırın veya silin',
+    editBookmarkTitle: 'Yer İmini Düzenle',
     deleteCategoryTitle: 'Kategoriyi Sil',
     deleteCategoryMsg: 'Bu kategoriyi ve içindeki tüm bağlantıları silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.',
     deleteBookmarkTitle: 'Yer İmini Sil',
@@ -706,11 +833,16 @@ const LINKS_T: Record<string, Record<string, string>> = {
     placeholderTitle: 'π.χ. Πίνακας εργασίας',
     placeholderUrl: 'π.χ. app.work.com',
     cancel: 'Ακύρωση',
+    save: 'Αποθήκευση',
+    delete: 'Διαγραφή',
     newCategory: 'Νέα κατηγορία',
     createCategoryDesc: 'Δημιουργία νέας κατηγορίας',
     categoryName: 'Όνομα κατηγορίας',
     placeholderCategory: 'π.χ. Αγορές',
     create: 'Δημιουργία',
+    editCategoryTitle: 'Επεξεργασία κατηγορίας',
+    editCategoryDesc: 'Μετονομασία ή διαγραφή αυτής της κατηγορίας',
+    editBookmarkTitle: 'Επεξεργασία σελιδοδείκτη',
     deleteCategoryTitle: 'Διαγραφή κατηγορίας',
     deleteCategoryMsg: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την κατηγορία και όλους τους συνδέσμους της; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
     deleteBookmarkTitle: 'Διαγραφή σελιδοδείκτη',
@@ -1885,8 +2017,11 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
   const [newUrl, setNewUrl] = useState('');
   const [newCategoryName, setNewCategoryName] = useState('');
   
-  const [confirmDeleteCat, setConfirmDeleteCat] = useState<string | null>(null);
-  const [confirmDeleteLinkItem, setConfirmDeleteLinkItem] = useState<string | null>(null);
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
+  const [editCategoryName, setEditCategoryName] = useState('');
+  const [editingLinkId, setEditingLinkId] = useState<string | null>(null);
+  const [editLinkTitle, setEditLinkTitle] = useState('');
+  const [editLinkUrl, setEditLinkUrl] = useState('');
   const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
   const cardsGridRef = useRef<HTMLDivElement>(null);
 
@@ -1951,13 +2086,41 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
     setShowAdd(false);
   };
 
+  const openEditLink = (link: Link) => {
+    setEditingLinkId(link.id);
+    setEditLinkTitle(link.title);
+    setEditLinkUrl(link.url);
+  };
+
+  const saveLinkEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedTitle = editLinkTitle.trim();
+    const trimmedUrl = editLinkUrl.trim();
+    if (!editingLinkId || !trimmedTitle || !trimmedUrl) return;
+    const normalizedUrl = /^https?:\/\//i.test(trimmedUrl) ? trimmedUrl : `https://${trimmedUrl}`;
+
+    setCategories(categories.map(c =>
+      c.id === activeCategoryId
+        ? {
+            ...c,
+            links: c.links.map(l =>
+              l.id === editingLinkId
+                ? { ...l, title: trimmedTitle, url: normalizedUrl }
+                : l
+            ),
+          }
+        : c
+    ));
+    setEditingLinkId(null);
+  };
+
   const removeLink = (id: string) => {
     setCategories(categories.map(c => 
       c.id === activeCategoryId 
         ? { ...c, links: c.links.filter(l => l.id !== id) }
         : c
     ));
-    setConfirmDeleteLinkItem(null);
+    setEditingLinkId(null);
   };
 
   const addCategory = (e: React.FormEvent) => {
@@ -1974,6 +2137,21 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
     setShowAddCategory(false);
   };
 
+  const openEditCategory = (cat: Category) => {
+    setEditingCategoryId(cat.id);
+    setEditCategoryName(cat.name);
+  };
+
+  const saveCategoryEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = editCategoryName.trim();
+    if (!editingCategoryId || !trimmedName) return;
+    setCategories(categories.map(c =>
+      c.id === editingCategoryId ? { ...c, name: trimmedName } : c
+    ));
+    setEditingCategoryId(null);
+  };
+
   const removeCategory = (id: string) => {
     if (categories.length <= 1) return;
     const newCats = categories.filter(c => c.id !== id);
@@ -1981,7 +2159,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
     if (activeCategoryId === id) {
       setActiveCategoryId(newCats[0].id);
     }
-    setConfirmDeleteCat(null);
+    setEditingCategoryId(null);
   };
 
   return (
@@ -2020,7 +2198,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                 onClick={() => setActiveCategoryId(cat.id)}
                 style={isTabletOrDesktop ? { width: `${standardCategoryWidth}px`, height: '44px' } : undefined}
                 className={`bookmark-cat-pill w-full min-h-[44px] h-[44px] ${
-                  categories.length > 1 && activeCategoryId === cat.id ? 'pl-3 pr-9 sm:pl-4 sm:pr-9' : 'px-3 sm:px-4'
+                  activeCategoryId === cat.id ? 'pl-3 pr-9 sm:pl-4 sm:pr-9' : 'px-3 sm:px-4'
                 } rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center cursor-pointer select-none ${
                   activeCategoryId === cat.id
                     ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
@@ -2030,11 +2208,11 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
               >
                 <span className="truncate whitespace-nowrap px-1">{cat.name}</span>
               </button>
-              {categories.length > 1 && activeCategoryId === cat.id && (
+              {activeCategoryId === cat.id && (
                 <button
-                  onClick={(e) => { e.stopPropagation(); setConfirmDeleteCat(cat.id); }}
+                  onClick={(e) => { e.stopPropagation(); openEditCategory(cat); }}
                   className="bookmark-cat-delete-btn absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6 bg-slate-200/90 hover:bg-slate-300 text-slate-600 hover:text-slate-800 rounded-lg flex items-center justify-center transition-all shadow-xs cursor-pointer z-10"
-                  aria-label={`Delete ${cat.name}`}
+                  aria-label={`Edit or delete ${cat.name}`}
                 >
                   <X size={11} />
                 </button>
@@ -2089,13 +2267,13 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                   </span>
                 </a>
                 <button
-                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); setConfirmDeleteLinkItem(link.id); }}
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); openEditLink(link); }}
                   className={`absolute top-1.5 right-1.5 w-7 h-7 lg:w-5 lg:h-5 bg-black/10 hover:bg-red-500 hover:text-white rounded-lg flex items-center justify-center transition-all dark:text-white/60 z-10 cursor-pointer ${
                     isLinkSelected
                       ? 'opacity-100 pointer-events-auto'
                       : 'opacity-0 pointer-events-none [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto'
                   }`}
-                  aria-label={`Delete ${link.title}`}
+                  aria-label={`Edit or delete ${link.title}`}
                 >
                   <X size={12} className="lg:w-2.5 lg:h-2.5" />
                 </button>
@@ -2230,21 +2408,133 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
           </motion.div>
         </div>
       )}
-      <ConfirmModal
-        isOpen={!!confirmDeleteCat}
-        title={LINKS_T[language]?.deleteCategoryTitle || LINKS_T.English.deleteCategoryTitle}
-        message={LINKS_T[language]?.deleteCategoryMsg || LINKS_T.English.deleteCategoryMsg}
-        onConfirm={() => confirmDeleteCat && removeCategory(confirmDeleteCat)}
-        onCancel={() => setConfirmDeleteCat(null)}
-      />
+      {/* Edit / Delete Category Modal */}
+      {editingCategoryId && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setEditingCategoryId(null)} />
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            className="relative z-10 p-6 sm:p-8 lg:p-10 rounded-3xl lg:rounded-[3rem] w-full max-w-md shadow-2xl GeekTabs-card"
+          >
+            <h2 className="text-xl sm:text-2xl font-bold word-color mb-1">
+              {LINKS_T[language]?.editCategoryTitle || LINKS_T.English.editCategoryTitle}
+            </h2>
+            <p className="text-[10px] uppercase font-bold tracking-widest word-color opacity-50 mb-6 sm:mb-8">
+              {LINKS_T[language]?.editCategoryDesc || LINKS_T.English.editCategoryDesc}
+            </p>
+            <form onSubmit={saveCategoryEdit} className="space-y-5 sm:space-y-6">
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest word-color opacity-60 mb-2 sm:mb-3 font-bold">
+                  {LINKS_T[language]?.categoryName || LINKS_T.English.categoryName}
+                </label>
+                <input
+                  autoFocus
+                  type="text"
+                  value={editCategoryName}
+                  onChange={(e) => setEditCategoryName(e.target.value)}
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-sm lg:text-base word-color focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  placeholder={LINKS_T[language]?.placeholderCategory || LINKS_T.English.placeholderCategory}
+                />
+              </div>
+              <div className={`flex flex-col-reverse sm:grid ${categories.length > 1 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-2.5 sm:gap-3 pt-3 sm:pt-4 text-xs sm:text-[11px] font-bold tracking-wider uppercase`}>
+                {categories.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeCategory(editingCategoryId)}
+                    className="w-full h-[46px] min-h-[46px] px-2.5 bg-red-500 hover:bg-red-600 text-white rounded-2xl transition-all font-bold cursor-pointer shadow-lg shadow-red-500/20 flex items-center justify-center text-center whitespace-nowrap truncate"
+                  >
+                    {LINKS_T[language]?.delete || LINKS_T.English.delete}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setEditingCategoryId(null)}
+                  className="w-full h-[46px] min-h-[46px] px-2.5 bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold cursor-pointer flex items-center justify-center text-center whitespace-nowrap truncate"
+                >
+                  {LINKS_T[language]?.cancel || LINKS_T.English.cancel}
+                </button>
+                <button
+                  type="submit"
+                  disabled={!editCategoryName.trim()}
+                  className="w-full h-[46px] min-h-[46px] px-2.5 bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white rounded-2xl font-bold transition-all cursor-pointer flex items-center justify-center text-center whitespace-nowrap truncate"
+                >
+                  {LINKS_T[language]?.save || LINKS_T.English.save}
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      )}
 
-      <ConfirmModal
-        isOpen={!!confirmDeleteLinkItem}
-        title={LINKS_T[language]?.deleteBookmarkTitle || LINKS_T.English.deleteBookmarkTitle}
-        message={LINKS_T[language]?.deleteBookmarkMsg || LINKS_T.English.deleteBookmarkMsg}
-        onConfirm={() => confirmDeleteLinkItem && removeLink(confirmDeleteLinkItem)}
-        onCancel={() => setConfirmDeleteLinkItem(null)}
-      />
+      {/* Edit / Delete Bookmark Modal */}
+      {editingLinkId && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setEditingLinkId(null)} />
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            className="relative z-10 p-6 sm:p-8 lg:p-10 rounded-3xl lg:rounded-[3rem] w-full max-w-md shadow-2xl GeekTabs-card"
+          >
+            <h2 className="text-xl sm:text-2xl font-bold word-color mb-1">
+              {LINKS_T[language]?.editBookmarkTitle || LINKS_T.English.editBookmarkTitle}
+            </h2>
+            <p className="text-[10px] uppercase font-bold tracking-widest word-color opacity-50 mb-6 sm:mb-8">
+              {activeCategory.name}
+            </p>
+            <form onSubmit={saveLinkEdit} className="space-y-5 sm:space-y-6">
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest word-color opacity-60 mb-2 sm:mb-3 font-bold">
+                  {LINKS_T[language]?.titleLabel || LINKS_T.English.titleLabel}
+                </label>
+                <input
+                  autoFocus
+                  type="text"
+                  value={editLinkTitle}
+                  onChange={(e) => setEditLinkTitle(e.target.value)}
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-sm lg:text-base word-color focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  placeholder={LINKS_T[language]?.placeholderTitle || LINKS_T.English.placeholderTitle}
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest word-color opacity-60 mb-2 sm:mb-3 font-bold">
+                  {LINKS_T[language]?.urlLabel || LINKS_T.English.urlLabel}
+                </label>
+                <input
+                  type="text"
+                  value={editLinkUrl}
+                  onChange={(e) => setEditLinkUrl(e.target.value)}
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 text-base sm:text-sm lg:text-base word-color focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  placeholder={LINKS_T[language]?.placeholderUrl || LINKS_T.English.placeholderUrl}
+                />
+              </div>
+              <div className="flex flex-col-reverse sm:grid sm:grid-cols-3 gap-2.5 sm:gap-3 pt-3 sm:pt-4 text-xs sm:text-[11px] font-bold tracking-wider uppercase">
+                <button
+                  type="button"
+                  onClick={() => removeLink(editingLinkId)}
+                  className="w-full h-[46px] min-h-[46px] px-2.5 bg-red-500 hover:bg-red-600 text-white rounded-2xl transition-all font-bold cursor-pointer shadow-lg shadow-red-500/20 flex items-center justify-center text-center whitespace-nowrap truncate"
+                >
+                  {LINKS_T[language]?.delete || LINKS_T.English.delete}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEditingLinkId(null)}
+                  className="w-full h-[46px] min-h-[46px] px-2.5 bg-black/5 dark:bg-white/5 word-color rounded-2xl hover:bg-black/10 dark:hover:bg-white/10 transition-all font-bold cursor-pointer flex items-center justify-center text-center whitespace-nowrap truncate"
+                >
+                  {LINKS_T[language]?.cancel || LINKS_T.English.cancel}
+                </button>
+                <button
+                  type="submit"
+                  disabled={!editLinkTitle.trim() || !editLinkUrl.trim()}
+                  className="w-full h-[46px] min-h-[46px] px-2.5 bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white rounded-2xl font-bold transition-all cursor-pointer flex items-center justify-center text-center whitespace-nowrap truncate"
+                >
+                  {LINKS_T[language]?.save || LINKS_T.English.save}
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

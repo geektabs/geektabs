@@ -46,6 +46,13 @@ export default function App() {
   const [language, setLanguage] = useLocalStorage('GeekTabs-language', 'English');
   const [cardBgMode, setCardBgMode] = useLocalStorage<'white' | 'dark' | 'dark-glass'>('GeekTabs-card-bg-mode', 'white');
   const [textColor, setTextColor] = useLocalStorage('GeekTabs-text-color', 'default');
+  const [gmpQuotaExceeded, setGmpQuotaExceeded] = useState(false);
+
+  React.useEffect(() => {
+    const handleQuotaExceeded = () => setGmpQuotaExceeded(true);
+    window.addEventListener('gmp-quota-exceeded', handleQuotaExceeded);
+    return () => window.removeEventListener('gmp-quota-exceeded', handleQuotaExceeded);
+  }, []);
 
   // Initialize Default background and restore points
   React.useEffect(() => {
@@ -259,6 +266,7 @@ export default function App() {
     {
       English: 'Daily Digest',
       Chinese: '每日精选',
+      'Chinese Traditional': '每日精選',
       Spanish: 'Resumen Diario',
       French: 'Le Quatuor du Jour',
       German: 'Tagesbriefing',
@@ -287,6 +295,8 @@ export default function App() {
         'Smart life tips so you wing it less, gentle reminders so you overthink less, a quick laugh before your coffee cools, and wise quotes to sound brilliant in meetings.',
       Chinese:
         '实用生活贴士让你少走弯路，温柔觉悟提醒让你少点内耗，咖啡凉前先笑一笑，名言金句帮你开会随时金句频出。',
+      'Chinese Traditional':
+        '實用生活小撇步讓你少走彎路，溫柔覺察提醒讓你少點內耗，咖啡涼前先笑一笑，名言金句幫你開會隨時金句連發。',
       Spanish:
         'Trucos útiles para improvisar menos, recordatorios suaves para pensar de más un poco menos, una risa rápida antes de que se enfríe el café y citas brillantes para lucirte.',
       French:
@@ -346,6 +356,22 @@ export default function App() {
       data-active-tab={activeTab}
       data-page-theme={isExemptPage ? 'exempt' : 'blue-purple-mix'}
     >
+      {gmpQuotaExceeded && (
+        <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
+          <span>
+            Google Maps Platform quota reached. If you are the app owner, visit{' '}
+            <a
+              href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold text-amber-950 hover:text-amber-800"
+            >
+              maps developer site
+            </a>{' '}
+            for instructions to update your account.
+          </span>
+        </div>
+      )}
       <Wallpaper currentTheme={theme} isDarkMode={isDarkMode} />
 
       <main 

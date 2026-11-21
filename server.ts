@@ -62,6 +62,16 @@ async function startServer() {
     }
   });
 
+  app.get("/api/maps-config", (_req, res) => {
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+    res.json({
+      apiKey:
+        process.env.VITE_GOOGLE_MAPS_API_KEY ||
+        process.env.GOOGLE_MAPS_API_KEY ||
+        "",
+    });
+  });
+
   // Live Forex Rates Cache & Endpoint
   let forexCache: {
     timestamp: number;

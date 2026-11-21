@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 interface ZodiacSign {
   name: string;
   zhName: string;
+  zhTwName: string;
   startMonth: number;
   startDay: number;
   endMonth: number;
@@ -11,18 +12,18 @@ interface ZodiacSign {
 }
 
 const ZODIAC_SIGNS: ZodiacSign[] = [
-  { name: 'Capricorn', zhName: '摩羯座', startMonth: 12, startDay: 22, endMonth: 1, endDay: 19, range: '12-22 - 01-19' },
-  { name: 'Aquarius', zhName: '水瓶座', startMonth: 1, startDay: 20, endMonth: 2, endDay: 18, range: '01-20 - 02-18' },
-  { name: 'Pisces', zhName: '双鱼座', startMonth: 2, startDay: 19, endMonth: 3, endDay: 20, range: '02-19 - 03-20' },
-  { name: 'Aries', zhName: '白羊座', startMonth: 3, startDay: 21, endMonth: 4, endDay: 19, range: '03-21 - 04-19' },
-  { name: 'Taurus', zhName: '金牛座', startMonth: 4, startDay: 20, endMonth: 5, endDay: 20, range: '04-20 - 05-20' },
-  { name: 'Gemini', zhName: '双子座', startMonth: 5, startDay: 21, endMonth: 6, endDay: 20, range: '05-21 - 06-20' },
-  { name: 'Cancer', zhName: '巨蟹座', startMonth: 6, startDay: 21, endMonth: 7, endDay: 22, range: '06-21 - 07-22' },
-  { name: 'Leo', zhName: '狮子座', startMonth: 7, startDay: 23, endMonth: 8, endDay: 22, range: '07-23 - 08-22' },
-  { name: 'Virgo', zhName: '处女座', startMonth: 8, startDay: 23, endMonth: 9, endDay: 22, range: '08-23 - 09-22' },
-  { name: 'Libra', zhName: '天秤座', startMonth: 9, startDay: 23, endMonth: 10, endDay: 23, range: '09-23 - 10-23' },
-  { name: 'Scorpio', zhName: '天蝎座', startMonth: 10, startDay: 24, endMonth: 11, endDay: 21, range: '10-24 - 11-21' },
-  { name: 'Sagittarius', zhName: '射手座', startMonth: 11, startDay: 22, endMonth: 12, endDay: 21, range: '11-22 - 12-21' },
+  { name: 'Capricorn', zhName: '摩羯座', zhTwName: '摩羯座', startMonth: 12, startDay: 22, endMonth: 1, endDay: 19, range: '12-22 - 01-19' },
+  { name: 'Aquarius', zhName: '水瓶座', zhTwName: '水瓶座', startMonth: 1, startDay: 20, endMonth: 2, endDay: 18, range: '01-20 - 02-18' },
+  { name: 'Pisces', zhName: '双鱼座', zhTwName: '雙魚座', startMonth: 2, startDay: 19, endMonth: 3, endDay: 20, range: '02-19 - 03-20' },
+  { name: 'Aries', zhName: '白羊座', zhTwName: '牡羊座', startMonth: 3, startDay: 21, endMonth: 4, endDay: 19, range: '03-21 - 04-19' },
+  { name: 'Taurus', zhName: '金牛座', zhTwName: '金牛座', startMonth: 4, startDay: 20, endMonth: 5, endDay: 20, range: '04-20 - 05-20' },
+  { name: 'Gemini', zhName: '双子座', zhTwName: '雙子座', startMonth: 5, startDay: 21, endMonth: 6, endDay: 20, range: '05-21 - 06-20' },
+  { name: 'Cancer', zhName: '巨蟹座', zhTwName: '巨蟹座', startMonth: 6, startDay: 21, endMonth: 7, endDay: 22, range: '06-21 - 07-22' },
+  { name: 'Leo', zhName: '狮子座', zhTwName: '獅子座', startMonth: 7, startDay: 23, endMonth: 8, endDay: 22, range: '07-23 - 08-22' },
+  { name: 'Virgo', zhName: '处女座', zhTwName: '處女座', startMonth: 8, startDay: 23, endMonth: 9, endDay: 22, range: '08-23 - 09-22' },
+  { name: 'Libra', zhName: '天秤座', zhTwName: '天秤座', startMonth: 9, startDay: 23, endMonth: 10, endDay: 23, range: '09-23 - 10-23' },
+  { name: 'Scorpio', zhName: '天蝎座', zhTwName: '天蠍座', startMonth: 10, startDay: 24, endMonth: 11, endDay: 21, range: '10-24 - 11-21' },
+  { name: 'Sagittarius', zhName: '射手座', zhTwName: '射手座', startMonth: 11, startDay: 22, endMonth: 12, endDay: 21, range: '11-22 - 12-21' },
 ];
 
 function getHoroscopeSign(month: number, day: number): ZodiacSign {
@@ -80,7 +81,10 @@ export default function HoroscopeInfo({ language = 'English' }: HoroscopeInfoPro
     let l1 = `Today's Horoscope Sign: ${sign.name} (${sign.range})`;
     let l2 = `This Week: ${weekNum} of 52 weeks, ${dayOfYear} of ${totalDays} days`;
 
-    if (isZh) {
+    if (language === 'Chinese Traditional') {
+      l1 = `今日星座：${sign.zhTwName} (${sign.range})`;
+      l2 = `本週：52 週中的第 ${weekNum} 週，${totalDays} 天中的第 ${dayOfYear} 天`;
+    } else if (isZh) {
       l1 = `今日星座：${sign.zhName} (${sign.range})`;
       l2 = `本周：52 周中的 ${weekNum} 周，${totalDays} 天中的 ${dayOfYear}`;
     } else if (language === 'Spanish') {

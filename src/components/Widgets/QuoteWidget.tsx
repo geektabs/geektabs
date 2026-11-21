@@ -5,6 +5,7 @@ import quotesSpanish from '../../data/quotes-Spanish.json';
 import quotesFrench from '../../data/quotes-French.json';
 import quotesGerman from '../../data/quotes-German.json';
 import quotesChinese from '../../data/quotes-Chinese.json';
+import quotesChineseTraditional from '../../data/quotes-Chinese-Traditional.json';
 import quotesJapanese from '../../data/quotes-Japanese.json';
 import quotesKorean from '../../data/quotes-Korean.json';
 import quotesItalian from '../../data/quotes-Italian.json';
@@ -29,6 +30,7 @@ const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   French: quotesFrench,
   German: quotesGerman,
   Chinese: quotesChinese,
+  'Chinese Traditional': quotesChineseTraditional,
   Japanese: quotesJapanese,
   Korean: quotesKorean,
   Italian: quotesItalian,
@@ -124,6 +126,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
     French: 'Citation Quotidienne',
     German: 'Tägliches Zitat',
     Chinese: '每日名言',
+    'Chinese Traditional': '每日名言',
     Japanese: '今日の名言',
     Korean: '오늘의 명언',
     Italian: 'Citazione Giornaliera',

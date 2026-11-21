@@ -37,6 +37,19 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupDark: '深色',
     groupGradient: 'Mix'
   },
+  'Chinese Traditional': {
+    title: '主題引擎',
+    subtitle: '預設顏色設定',
+    panelHeader: '調色盤預設',
+    panelSub: '選擇您最喜愛的背景顏色',
+    resetButton: '重置為粉彩波紋',
+    restoreWhiteButton: '恢復預設背景',
+    groupDefault: '預設',
+    groupLight: '淺色',
+    groupRegular: '常規',
+    groupDark: '深色',
+    groupGradient: 'Mix'
+  },
   Spanish: {
     title: 'Motor de Temas',
     subtitle: 'CONFIGURACIÓN DE COLOR PREESTABLECIDA',

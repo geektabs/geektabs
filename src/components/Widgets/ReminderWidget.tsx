@@ -5,6 +5,7 @@ import remindersSpanish from '../../data/daily-reminders-Spanish.json';
 import remindersFrench from '../../data/daily-reminders-French.json';
 import remindersGerman from '../../data/daily-reminders-German.json';
 import remindersChinese from '../../data/daily-reminders-Chinese.json';
+import remindersChineseTraditional from '../../data/daily-reminders-Chinese-Traditional.json';
 import remindersJapanese from '../../data/daily-reminders-Japanese.json';
 import remindersKorean from '../../data/daily-reminders-Korean.json';
 import remindersItalian from '../../data/daily-reminders-Italian.json';
@@ -29,6 +30,7 @@ const remindersMap: Record<string, string[]> = {
   French: remindersFrench,
   German: remindersGerman,
   Chinese: remindersChinese,
+  'Chinese Traditional': remindersChineseTraditional,
   Japanese: remindersJapanese,
   Korean: remindersKorean,
   Italian: remindersItalian,
@@ -133,6 +135,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
       French: 'Rappel Quotidien',
       German: 'Tägliche Erinnerung',
       Chinese: '日常觉悟提醒',
+      'Chinese Traditional': '日常覺察提醒',
       Japanese: '毎日のリマインダー',
       Korean: '오늘의 깨달음',
       Italian: 'Promemoria Quotidiano',

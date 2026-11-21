@@ -52,6 +52,25 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleDate: '星期四，9月10日',
     sampleClock: '08:45'
   },
+  'Chinese Traditional': {
+    title: '文字顏色引擎',
+    subtitle: '自訂頁面文字顏色設定',
+    panelHeader: '文字調色盤預設',
+    panelSub: '選擇適合背景或桌布的文字顏色',
+    resetButton: '恢復預設文字顏色',
+    groupDefault: '預設 (自動)',
+    groupLight: '淺色色調',
+    groupRegular: '常規色調',
+    groupDark: '深色色調',
+    groupVibrant: '鮮豔高對比色調',
+    previewTitle: '# 即時頁面視覺預覽',
+    previewSub: '在目前背景與桌布上的效果展示',
+    customColorTitle: '自訂 Hex 顏色',
+    customColorApply: '套用顏色',
+    sampleGreeting: '早安，GeekTabs',
+    sampleDate: '星期四，9月10日',
+    sampleClock: '08:45'
+  },
   Spanish: {
     title: 'Motor de Color de Texto',
     subtitle: 'CONFIGURACIÓN DE COLOR DE TEXTO PERSONALIZADA',
@@ -594,6 +613,7 @@ export default function TextTab({
     French: 'fr-FR',
     German: 'de-DE',
     Chinese: 'zh-CN',
+    'Chinese Traditional': 'zh-TW',
     Japanese: 'ja-JP',
     Korean: 'ko-KR',
     Italian: 'it-IT',

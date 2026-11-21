@@ -5,6 +5,7 @@ import humorsSpanish from '../../data/humors-Spanish.json';
 import humorsFrench from '../../data/humors-French.json';
 import humorsGerman from '../../data/humors-German.json';
 import humorsChinese from '../../data/humors-Chinese.json';
+import humorsChineseTraditional from '../../data/humors-Chinese-Traditional.json';
 import humorsJapanese from '../../data/humors-Japanese.json';
 import humorsKorean from '../../data/humors-Korean.json';
 import humorsItalian from '../../data/humors-Italian.json';
@@ -29,6 +30,7 @@ const humorsMap: Record<string, string[]> = {
   French: humorsFrench,
   German: humorsGerman,
   Chinese: humorsChinese,
+  'Chinese Traditional': humorsChineseTraditional,
   Japanese: humorsJapanese,
   Korean: humorsKorean,
   Italian: humorsItalian,
@@ -132,6 +134,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
     French: 'Humour Quotidien',
     German: 'Täglicher Humor',
     Chinese: '每日幽默',
+    'Chinese Traditional': '每日幽默',
     Japanese: '今日のジョーク',
     Korean: '일일 유머',
     Italian: 'Umorismo Giornaliero',

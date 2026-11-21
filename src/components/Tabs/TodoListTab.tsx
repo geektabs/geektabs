@@ -235,6 +235,37 @@ const TODO_T: Record<string, Record<string, string>> = {
     addNotes: '添加备注或详细描述...',
     allLists: '所有清单',
   },
+  'Chinese Traditional': {
+    title: '任務空間',
+    subtitle: '待辦計畫管理',
+    inbox: '收件匣',
+    today: '今天',
+    personal: '個人',
+    shopping: '購物',
+    work: '工作',
+    meetings: '會議',
+    events: '事件',
+    addTask: '新增任務',
+    pending: '項待辦',
+    noTasks: '目前清單無待辦任務。',
+    addPlaceholder: '有什麼需要做的？',
+    descriptionPlaceholder: '備註說明 (選填)',
+    cancel: '取消',
+    save: '儲存',
+    priority: '優先順序',
+    sidebarHeader: '分類清單',
+    remaining: '待完成',
+    taskSingular: '個任務',
+    taskPlural: '個任務',
+    noGoals: '無待辦任務於',
+    clickToCreate: '點擊「新增任務」來建立吧！',
+    deleteTitle: '刪除任務',
+    deleteMessage: '您確定要永久刪除此任務嗎？',
+    taskName: '任務名稱',
+    description: '備註',
+    addNotes: '新增備註或詳細說明...',
+    allLists: '所有清單',
+  },
   Japanese: {
     title: 'タスク機能',
     subtitle: 'クラウドプランナー',
@@ -743,10 +774,10 @@ const getProjectName = (id: string, lang: string) => {
     case 'Inbox': return dictionary.inbox;
     case 'Today': return dictionary.today;
     case 'Personal': return dictionary.personal;
-    case 'Shopping': return dictionary.shopping || (lang === 'Chinese' ? '购物' : 'Shopping');
+    case 'Shopping': return dictionary.shopping || (lang === 'Chinese' ? '购物' : lang === 'Chinese Traditional' ? '購物' : 'Shopping');
     case 'Work': return dictionary.work;
-    case 'Meetings': return dictionary.meetings || (lang === 'Chinese' ? '会议' : 'Meetings');
-    case 'Events': return dictionary.events || (lang === 'Chinese' ? '事件' : 'Events');
+    case 'Meetings': return dictionary.meetings || (lang === 'Chinese' ? '会议' : lang === 'Chinese Traditional' ? '會議' : 'Meetings');
+    case 'Events': return dictionary.events || (lang === 'Chinese' ? '事件' : lang === 'Chinese Traditional' ? '事件' : 'Events');
     default: return id;
   }
 };
@@ -831,7 +862,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
   let remainingText = '';
   if (language === 'Japanese') {
     remainingText = `${dict.remaining} ${count} ${count === 1 ? dict.taskSingular : dict.taskPlural}`;
-  } else if (language === 'Chinese') {
+  } else if (language === 'Chinese' || language === 'Chinese Traditional') {
     remainingText = `${count} ${dict.taskPlural}${dict.remaining}`;
   } else if (language === 'Korean') {
     remainingText = `${count}${dict.taskSingular} ${dict.remaining}`;
@@ -1020,7 +1051,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                         className="text-xs font-semibold text-[#5438dc] hover:text-[#472fc2] hover:underline flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <Plus size={12} />
-                        <span>{dict.addDescOptional || (language === 'Chinese' ? '添加描述 (选填)' : '+ Add description (optional)')}</span>
+                        <span>{dict.addDescOptional || (language === 'Chinese' ? '添加描述 (选填)' : language === 'Chinese Traditional' ? '新增說明 (選填)' : '+ Add description (optional)')}</span>
                       </button>
                     </div>
                   )}

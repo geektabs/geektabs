@@ -241,6 +241,43 @@ const CALC_T: Record<string, Record<string, string>> = {
     filterStates: '搜索州名或缩写...',
     noMatchingStates: '未找到匹配的州',
   },
+  'Chinese Traditional': {
+    history: '計算紀錄',
+    noHistory: '暫無計算紀錄',
+    simple: '標準',
+    tax: '稅費',
+    tips: '小費',
+    currency: '匯率',
+    shoppingAmount: '購物總金額',
+    taxRate: '消費稅率 (%)',
+    subtotal: '商品金額',
+    totalSalesTax: '總稅額',
+    totalToPay: '應付總額',
+    spentAmount: '消費總金額',
+    tipsRate: '小費比例 (%)',
+    baseSpending: '消費本金',
+    totalTips: '小費金額',
+    totalWithTips: '含小費總額',
+    amount: '金額',
+    from: '兌換貨幣',
+    to: '目標貨幣',
+    convertedAmount: '兌換結果',
+    liveRate: '即時匯率',
+    majorPairs: '即時主要外匯匯率',
+    refresh: '重新整理',
+    refreshed: '已更新',
+    loadingRates: '正在取得即時匯率...',
+    rateError: '取得即時匯率失敗，請重試。',
+    reset: '重設',
+    sourceLabel: 'Investing.com 即時外匯',
+    liveMode: '即時',
+    manualMode: '手動',
+    exchangeRate: '匯率',
+    manualRateLabel: '自訂匯率',
+    usStateTaxRates: '美國各州消費稅率',
+    filterStates: '搜尋州名或縮寫...',
+    noMatchingStates: '找不到符合的州別',
+  },
   Japanese: {
     history: '履歴',
     noHistory: '履歴はまだありません',
@@ -878,6 +915,7 @@ const CALC_LOCALES: Record<string, string> = {
   French: 'fr-FR',
   German: 'de-DE',
   Chinese: 'zh-CN',
+  'Chinese Traditional': 'zh-TW',
   Japanese: 'ja-JP',
   Korean: 'ko-KR',
   Italian: 'it-IT',
@@ -1486,9 +1524,10 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
               <button
                 key={tab.id}
                 type="button"
+                data-calc-tab={tab.id}
                 onClick={() => setActiveMode(tab.id)}
                 style={isActive ? { color: '#ffffff', WebkitTextFillColor: '#ffffff' } : undefined}
-                className={`flex items-center justify-center gap-1.5 min-h-[44px] sm:min-h-0 py-2.5 px-2.5 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer select-none border ${
+                className={`calc-category-tab flex items-center justify-center gap-1.5 min-h-[44px] sm:min-h-0 py-2.5 px-2.5 sm:px-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer select-none border ${
                   isActive
                     ? `calc-mode-tab-active bg-gradient-to-r ${tab.activeGradient} text-white !text-white border-transparent shadow-md`
                     : `calc-mode-tab ${tab.inactiveTint} bg-black/5 dark:bg-white/5`
