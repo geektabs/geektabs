@@ -260,19 +260,47 @@ export default function Wallpaper({ currentTheme, isDarkMode }: { currentTheme: 
             />
           )}
           {photoSrc && mediaType !== 'video' && (
-            <img
-              src={photoSrc}
-              alt=""
-              decoding="sync"
-              fetchPriority="high"
-              className="w-full h-full object-cover object-center select-none pointer-events-none"
-              style={{
-                transform: 'translateZ(0)',
-                backfaceVisibility: 'hidden',
-                imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
-                filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
-              }}
-            />
+            <div className="relative w-full h-full overflow-hidden">
+              {/* Soft ambient backdrop filling the lower portion of extra-tall scrollable pages */}
+              <img
+                src={photoSrc}
+                alt=""
+                aria-hidden="true"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover object-center scale-110 blur-3xl opacity-90 select-none pointer-events-none"
+              />
+              {/* Primary 16:9 (1920x1080) wallpaper + seamless vertically mirrored continuation below when scrolling */}
+              <div className="relative w-full flex flex-col">
+                <img
+                  src={photoSrc}
+                  alt=""
+                  decoding="sync"
+                  fetchPriority="high"
+                  className="w-full min-h-screen aspect-video object-cover object-center shrink-0 select-none pointer-events-none"
+                  style={{
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
+                    filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
+                  }}
+                />
+                <img
+                  src={photoSrc}
+                  alt=""
+                  aria-hidden="true"
+                  decoding="async"
+                  className="w-full min-h-screen aspect-video object-cover object-center shrink-0 select-none pointer-events-none"
+                  style={{
+                    transform: 'scaleY(-1) translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    imageRendering: 'high-quality' as React.CSSProperties['imageRendering'],
+                    filter: 'url(#wallpaper-8k-enhance) contrast(1.03) saturate(1.04)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%)',
+                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 100%)',
+                  }}
+                />
+              </div>
+            </div>
           )}
           {currentTheme === 'mix-forest' && (
             <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">

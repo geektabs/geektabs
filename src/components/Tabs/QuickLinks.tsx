@@ -22,17 +22,17 @@ const DEFAULT_CATEGORIES: Category[] = [
     id: 'default',
     name: 'Home',
     links: [
-      { id: '1', title: 'Reddit', url: 'https://reddit.com' },
       { id: 'h2', title: 'Facebook', url: 'https://facebook.com' },
       { id: 'h3', title: 'Instagram', url: 'https://instagram.com' },
       { id: 'h4', title: 'Threads', url: 'https://threads.net' },
       { id: 'h5', title: 'TikTok', url: 'https://tiktok.com' },
+      { id: '1', title: 'Reddit', url: 'https://reddit.com' },
+      { id: 'h11', title: 'X (Twitter)', url: 'https://x.com' },
       { id: 'h6', title: 'LinkedIn', url: 'https://linkedin.com' },
       { id: 'h7', title: 'Discord', url: 'https://discord.com' },
       { id: 'h8', title: 'Quora', url: 'https://quora.com' },
       { id: 'h9', title: 'Medium', url: 'https://medium.com' },
       { id: 'h10', title: 'Pinterest', url: 'https://pinterest.com' },
-      { id: 'h11', title: 'X (Twitter)', url: 'https://x.com' },
       { id: 'h_substack', title: 'Substack', url: 'https://substack.com' },
       { id: 'h14', title: 'Discovery', url: 'https://wisenavigation.dpdns.org/', description: 'Wise Navigation web portal and navigation services.' },
       { id: 'h15', title: 'PurestWay', url: 'https://purestway.substack.com/', description: 'PurestWay publication on Substack.' }
@@ -1499,7 +1499,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
       }
     }
 
-    // Ensure home category links are updated: remove Amazon, Walmart and old defaults, ensure Discovery and PurestWay are present
+    // Ensure home category links are updated: remove Amazon, Walmart and old defaults, ensure Discovery and PurestWay are present, and order Reddit after TikTok and X.com before LinkedIn
     const homeIndex = updated.findIndex(cat => cat.id === 'default' || cat.name === 'Home');
     if (homeIndex !== -1) {
       const homeCat = updated[homeIndex];
@@ -1523,10 +1523,53 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
         const missingLinks = defaultHome.links.filter(
           defLink => !existingUrls.has(defLink.url.toLowerCase().replace(/\/$/, '')) && !existingTitles.has(defLink.title.toLowerCase())
         );
-        if (missingLinks.length > 0 || hasAmazonOrWalmart || hasOldDefaults) {
+
+        let mergedHomeLinks = [...baseLinks, ...missingLinks];
+        let homeOrderChanged = false;
+
+        const isDomain = (url: string, domain: string) => {
+          try {
+            const host = new URL(url.startsWith('http') ? url : `https://${url}`).hostname.toLowerCase();
+            return host === domain || host === `www.${domain}`;
+          } catch {
+            return false;
+          }
+        };
+
+        const redditIdx = mergedHomeLinks.findIndex(
+          l => l.id === '1' || l.title.toLowerCase() === 'reddit' || isDomain(l.url, 'reddit.com')
+        );
+        const tiktokIdx = mergedHomeLinks.findIndex(
+          l => l.id === 'h5' || l.title.toLowerCase() === 'tiktok' || isDomain(l.url, 'tiktok.com')
+        );
+        if (redditIdx !== -1 && tiktokIdx !== -1 && redditIdx !== tiktokIdx + 1) {
+          const [redditItem] = mergedHomeLinks.splice(redditIdx, 1);
+          const newTiktokIdx = mergedHomeLinks.findIndex(
+            l => l.id === 'h5' || l.title.toLowerCase() === 'tiktok' || isDomain(l.url, 'tiktok.com')
+          );
+          mergedHomeLinks.splice(newTiktokIdx + 1, 0, redditItem);
+          homeOrderChanged = true;
+        }
+
+        const xIdx = mergedHomeLinks.findIndex(
+          l => l.id === 'h11' || isDomain(l.url, 'x.com') || l.title.toLowerCase() === 'x (twitter)'
+        );
+        const linkedinIdx = mergedHomeLinks.findIndex(
+          l => l.id === 'h6' || l.title.toLowerCase() === 'linkedin' || isDomain(l.url, 'linkedin.com')
+        );
+        if (xIdx !== -1 && linkedinIdx !== -1 && xIdx !== linkedinIdx - 1) {
+          const [xItem] = mergedHomeLinks.splice(xIdx, 1);
+          const newLinkedinIdx = mergedHomeLinks.findIndex(
+            l => l.id === 'h6' || l.title.toLowerCase() === 'linkedin' || isDomain(l.url, 'linkedin.com')
+          );
+          mergedHomeLinks.splice(newLinkedinIdx, 0, xItem);
+          homeOrderChanged = true;
+        }
+
+        if (missingLinks.length > 0 || hasAmazonOrWalmart || hasOldDefaults || homeOrderChanged) {
           updated[homeIndex] = {
             ...homeCat,
-            links: [...baseLinks, ...missingLinks]
+            links: mergedHomeLinks
           };
           changed = true;
         }
