@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
@@ -271,8 +272,77 @@ async function startServer() {
     }
   });
 
+  const configuredAppUrl =
+    process.env.APP_URL && process.env.APP_URL !== "MY_APP_URL"
+      ? process.env.APP_URL.replace(/\/+$/, "")
+      : "";
+  const isPrivateDevOrigin = (url: string) => /ais-dev-/i.test(url);
+
+  app.get("/api/share-health", async (req, res) => {
+    try {
+      const requested = typeof req.query.url === "string" ? req.query.url.trim() : "";
+      const fallbackShared = configuredAppUrl
+        ? configuredAppUrl.replace(/^https?:\/\/ais-dev-/i, "https://ais-pre-")
+        : "";
+      const targetUrl = requested || fallbackShared;
+      if (!targetUrl || !/^https?:\/\//i.test(targetUrl)) {
+        return res.json({ crawlable: false, reason: "invalid-url", status: 0 });
+      }
+      if (isPrivateDevOrigin(targetUrl)) {
+        return res.json({ crawlable: false, reason: "private-dev", status: 302 });
+      }
+      const probe = await fetch(targetUrl, {
+        method: "GET",
+        redirect: "manual",
+        headers: { "User-Agent": "LinkedInBot/1.0" },
+        signal: AbortSignal.timeout(3500),
+      });
+      const location = probe.headers.get("location") || "";
+      if (probe.status >= 300 && probe.status < 400 && /cookie_check/i.test(location)) {
+        return res.json({ crawlable: false, reason: "cookie-check", status: probe.status });
+      }
+      if (probe.status === 404) {
+        return res.json({ crawlable: false, reason: "not-published", status: 404 });
+      }
+      if (!probe.ok) {
+        return res.json({ crawlable: false, reason: "unreachable", status: probe.status });
+      }
+      const html = await probe.text();
+      const hasOgImage = /property=["']og:image["']/i.test(html);
+      return res.json({
+        crawlable: hasOgImage,
+        reason: hasOgImage ? "ok" : "missing-og",
+        status: probe.status,
+      });
+    } catch {
+      return res.json({ crawlable: false, reason: "unreachable", status: 0 });
+    }
+  });
+
+  const injectShareMetaUrls = (html: string, origin: string) => {
+    if (!origin) return html;
+    const cleanOrigin = origin.replace(/\/+$/, "");
+    let updated = html
+      .replaceAll('content="/og-share.png"', `content="${cleanOrigin}/og-share.png"`)
+      .replaceAll('href="/og-share.png"', `href="${cleanOrigin}/og-share.png"`);
+    if (!updated.includes('property="og:url"')) {
+      const secureImageTag = cleanOrigin.startsWith("https://")
+        ? `\n    <meta property="og:image:secure_url" content="${cleanOrigin}/og-share.png" />`
+        : "";
+      updated = updated.replace(
+        "</head>",
+        `    <meta property="og:url" content="${cleanOrigin}/" />${secureImageTag}\n    <link rel="canonical" href="${cleanOrigin}/" />\n  </head>`
+      );
+    }
+    return updated;
+  };
+
+  const isProduction =
+    process.env.NODE_ENV === "production" ||
+    process.argv.some((arg) => arg.endsWith("server.cjs"));
+
   // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
+  if (!isProduction) {
     const vite = await createViteServer({
       server: { middlewareMode: true, hmr: false, watch: null },
       appType: "spa",
@@ -295,14 +365,47 @@ async function startServer() {
             }
           },
         },
+        {
+          name: "inject-absolute-og-urls",
+          transformIndexHtml(html) {
+            return configuredAppUrl && !isPrivateDevOrigin(configuredAppUrl)
+              ? injectShareMetaUrls(html, configuredAppUrl)
+              : html;
+          },
+        },
       ],
     });
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
+    const distIndexPath = path.join(distPath, 'index.html');
+    app.use(
+      express.static(distPath, {
+        index: false,
+        setHeaders(res, filePath) {
+          if (filePath.endsWith("og-share.png")) {
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader("Cache-Control", "public, max-age=3600");
+          }
+        },
+      })
+    );
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const forwardedProto = typeof req.headers['x-forwarded-proto'] === 'string'
+        ? req.headers['x-forwarded-proto'].split(',')[0].trim()
+        : req.protocol;
+      const host = req.get('host') || '';
+      const isLocalHost = /^localhost(?::|$)|^127\.0\.0\.1(?::|$)/.test(host);
+      const proto = !isLocalHost && forwardedProto === 'http' ? 'https' : forwardedProto;
+      const requestOrigin = host ? `${proto}://${host}` : '';
+      const publicConfiguredUrl =
+        configuredAppUrl && !isPrivateDevOrigin(configuredAppUrl) ? configuredAppUrl : '';
+      const origin =
+        (requestOrigin && !isPrivateDevOrigin(requestOrigin) ? requestOrigin : '') ||
+        publicConfiguredUrl;
+      const rawHtml = fs.readFileSync(distIndexPath, 'utf-8');
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.send(injectShareMetaUrls(rawHtml, origin));
     });
   }
 

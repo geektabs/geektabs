@@ -51,19 +51,28 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
   const langRef = useRef<HTMLDivElement>(null);
   const shareRef = useRef<HTMLDivElement>(null);
 
-  const shareUrl =
+  const rawOrigin =
     typeof window !== 'undefined' && window.location.origin
       ? window.location.origin
       : 'https://geektabs.com';
-  const shareTitle = 'GeekTabs — Bookmarks, Calendar, Notes & Productivity Workspace';
+  const isPrivateDevPreview =
+    typeof window !== 'undefined' && /^ais-dev-/i.test(window.location.hostname);
+  const defaultShareUrl = isPrivateDevPreview
+    ? rawOrigin.replace(/^https?:\/\/ais-dev-/i, 'https://ais-pre-')
+    : rawOrigin;
+  const [customShareUrl, setCustomShareUrl] = useState(defaultShareUrl);
+  const shareUrl = (customShareUrl || defaultShareUrl).trim();
+  const shareTitle = 'GeekTabs';
+  const shareDescription =
+    'A minimalist productivity dashboard for bookmarks, calendar, notes, to-dos, and everyday utilities with immersive wallpapers.';
   const encodedShareUrl = encodeURIComponent(shareUrl);
-  const encodedShareTitle = encodeURIComponent(shareTitle);
+  const encodedShareText = encodeURIComponent(`${shareTitle} — ${shareDescription}`);
 
   const sharePlatforms = [
     {
       id: 'facebook',
       name: 'Meta (Facebook)',
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}&quote=${encodedShareText}`,
       icon: (
         <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#1877F2" aria-hidden="true">
           <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
@@ -83,7 +92,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
     {
       id: 'x',
       name: 'X',
-      href: `https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedShareTitle}`,
+      href: `https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedShareText}`,
       icon: (
         <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="#0F172A" aria-hidden="true">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -93,7 +102,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
     {
       id: 'reddit',
       name: 'Reddit',
-      href: `https://www.reddit.com/submit?url=${encodedShareUrl}&title=${encodedShareTitle}`,
+      href: `https://www.reddit.com/submit?url=${encodedShareUrl}&title=${encodedShareText}`,
       icon: (
         <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#FF4500" aria-hidden="true">
           <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm5.92 11.11a1.59 1.59 0 0 1-.47 1.13c-.1.99-.68 1.88-1.64 2.53a7.17 7.17 0 0 1-3.81 1.03 7.17 7.17 0 0 1-3.81-1.03c-.96-.65-1.54-1.54-1.64-2.53a1.61 1.61 0 0 1-.47-1.13 1.56 1.56 0 0 1 2.41-1.31 6.72 6.72 0 0 1 3.1-.88l.53-2.49a.34.34 0 0 1 .41-.26l1.75.37a1.12 1.12 0 1 1-.14.68l-1.48-.31-.44 2.09a6.69 6.69 0 0 1 3.04.88 1.56 1.56 0 0 1 2.26 1.3zm-8.44-.11a1.12 1.12 0 1 0 1.12 1.12A1.12 1.12 0 0 0 9.48 13zm5.04 0a1.12 1.12 0 1 0 1.12 1.12A1.12 1.12 0 0 0 14.52 13zm-4.4 2.86a.34.34 0 0 0 0 .48 2.91 2.91 0 0 0 3.76 0 .34.34 0 1 0-.48-.48 2.24 2.24 0 0 1-2.8 0 .34.34 0 0 0-.48 0z" />
@@ -103,7 +112,7 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
     {
       id: 'substack',
       name: 'Substack',
-      href: `https://substack.com/notes?text=${encodeURIComponent(`${shareTitle} ${shareUrl}`)}`,
+      href: `https://substack.com/notes?text=${encodeURIComponent(`${shareTitle} — ${shareDescription} ${shareUrl}`)}`,
       icon: (
         <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="#FF6719" aria-hidden="true">
           <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
@@ -349,21 +358,61 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                         : 'bg-white border-slate-200 text-slate-900 shadow-slate-900/15'
                     }`}
                   >
-                    <div className="mb-4">
+                    <div className="mb-3.5">
                       <h3
                         className={`text-lg font-black tracking-tight leading-snug ${
                           isDarkMode ? 'text-white' : 'text-slate-900'
                         }`}
                       >
-                        Show Us Some Love
+                        Share Us
                       </h3>
                       <p
-                        className={`text-xs sm:text-sm font-normal mt-0.5 ${
+                        className={`text-xs font-normal mt-0.5 ${
                           isDarkMode ? 'text-slate-400' : 'text-slate-500'
                         }`}
                       >
-                        Tell the world about GeekTabs
+                        Share GeekTabs with friends and colleagues
                       </p>
+                    </div>
+
+                    {/* Social Share Preview Card (Default G Logo + Default Home Background + Brief Description) */}
+                    <div className="relative rounded-xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 mb-4 shadow-xs select-none">
+                      <img
+                        src="/assets/aistudio/Gemini_Generated_Image_earth_8ba148bc.jpg"
+                        alt="GeekTabs default homepage background"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            'linear-gradient(105deg, rgba(7, 17, 36, 0.88) 0%, rgba(10, 23, 48, 0.78) 65%, rgba(7, 17, 36, 0.45) 100%)',
+                        }}
+                      />
+                      <div className="relative z-10 p-3.5 flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#5438dc] to-[#6d4aff] flex items-center justify-center shadow-md shrink-0">
+                          <span
+                            className="font-extrabold text-base leading-none"
+                            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                          >
+                            G
+                          </span>
+                        </div>
+                        <div className="min-w-0">
+                          <div
+                            className="text-sm font-bold leading-tight tracking-tight"
+                            style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                          >
+                            GeekTabs
+                          </div>
+                          <p
+                            className="text-[11px] leading-relaxed mt-1"
+                            style={{ color: '#e2e8f0', WebkitTextFillColor: '#e2e8f0' }}
+                          >
+                            A minimalist productivity dashboard for bookmarks, calendar, notes, to-dos, and utilities with immersive wallpapers.
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
                     <div className="flex items-center justify-between gap-2.5 mb-5">
@@ -384,19 +433,21 @@ export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, 
                     </div>
 
                     <div
-                      className={`flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-xl border ${
+                      className={`flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl border ${
                         isDarkMode
                           ? 'bg-slate-800/80 border-slate-700'
                           : 'bg-white border-slate-200'
                       }`}
                     >
-                      <span
-                        className={`text-xs sm:text-sm font-medium truncate select-all ${
+                      <input
+                        type="url"
+                        value={customShareUrl}
+                        onChange={(e) => setCustomShareUrl(e.target.value)}
+                        aria-label="Share link URL"
+                        className={`flex-1 min-w-0 bg-transparent text-xs sm:text-sm font-medium outline-none ${
                           isDarkMode ? 'text-slate-200' : 'text-slate-600'
                         }`}
-                      >
-                        {shareUrl}
-                      </span>
+                      />
                       <button
                         type="button"
                         onClick={handleCopyShareLink}
