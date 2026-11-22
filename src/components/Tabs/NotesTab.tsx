@@ -1,6 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Trash2, Search, X, FileText, PanelLeft, PanelLeftClose, Pencil, Check } from 'lucide-react';
+import {
+  Plus,
+  Trash2,
+  X,
+  FileText,
+  PanelLeft,
+  PanelLeftClose,
+  Pencil,
+  Check,
+  Save,
+  Zap,
+  User,
+  Sparkles,
+  Briefcase,
+  UtensilsCrossed,
+  Plane,
+  FolderOpen
+} from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import TipTapEditor from './TipTapEditor';
 
@@ -19,17 +36,73 @@ interface Note {
 }
 
 const DEFAULT_SECTIONS: Section[] = [
-  { id: 'sec-quick', name: 'Quick Notes', color: '#4f46e5' },    // Royal Indigo
-  { id: 'sec-ideas', name: 'Creative Ideas', color: '#10b981' },  // Emerald
-  { id: 'sec-personal', name: 'Personal Log', color: '#3b82f6' }, // Blue
-  { id: 'sec-work', name: 'Work Log', color: '#8b5cf6' }         // Purple
+  { id: 'sec-quick', name: 'Quick Notes', color: '#4f46e5' }, // Royal Indigo
+  { id: 'sec-personal', name: 'Personal', color: '#3b82f6' }, // Blue
+  { id: 'sec-ideas', name: 'Creative', color: '#10b981' },    // Emerald
+  { id: 'sec-work', name: 'Work', color: '#8b5cf6' },         // Purple
+  { id: 'sec-recipes', name: 'Recipe', color: '#f59e0b' },    // Amber
+  { id: 'sec-travel', name: 'Travel', color: '#06b6d4' }      // Cyan
 ];
+
+const LEGACY_DEFAULT_NAME_TO_ID: Record<string, string> = {
+  'quick notes': 'sec-quick',
+  'personal': 'sec-personal',
+  'personal log': 'sec-personal',
+  'creative': 'sec-ideas',
+  'creative ideas': 'sec-ideas',
+  'work': 'sec-work',
+  'work log': 'sec-work',
+  'work project': 'sec-work',
+  'recipe': 'sec-recipes',
+  'recipes': 'sec-recipes',
+  'travel': 'sec-travel'
+};
 
 const DEFAULT_SECTION_IDS = new Set(DEFAULT_SECTIONS.map((s) => s.id));
 const DEFAULT_SECTION_NAMES = new Set(DEFAULT_SECTIONS.map((s) => s.name.trim().toLowerCase()));
 
 const isDefaultSection = (sec: Section) =>
   DEFAULT_SECTION_IDS.has(sec.id) || DEFAULT_SECTION_NAMES.has(sec.name.trim().toLowerCase());
+
+const getSectionLandingMeta = (sec?: Section) => {
+  switch (sec?.id) {
+    case 'sec-quick':
+      return {
+        Icon: Zap,
+        description: 'Capture quick thoughts, daily reminders, short snippets, and sudden ideas you want to jot down right away.'
+      };
+    case 'sec-personal':
+      return {
+        Icon: User,
+        description: 'Keep personal reflections, journal entries, private goals, health logs, and everyday life notes organized.'
+      };
+    case 'sec-ideas':
+      return {
+        Icon: Sparkles,
+        description: 'Brainstorm concepts, story drafts, design inspiration, and creative projects whenever sparks strike.'
+      };
+    case 'sec-work':
+      return {
+        Icon: Briefcase,
+        description: 'Organize meeting notes, project plans, action items, documentation, and work-related references.'
+      };
+    case 'sec-recipes':
+      return {
+        Icon: UtensilsCrossed,
+        description: 'Save favorite recipes, ingredient lists, cooking steps, meal prep ideas, and kitchen experiments.'
+      };
+    case 'sec-travel':
+      return {
+        Icon: Plane,
+        description: 'Plan upcoming trips, itineraries, packing checklists, booking details, and memorable travel notes.'
+      };
+    default:
+      return {
+        Icon: FolderOpen,
+        description: `Use ${sec?.name || 'this section'} to organize your notes, checklists, photos, and reference links in one place.`
+      };
+  }
+};
 
 const SECTION_COLORS = [
   '#4f46e5', '#2563eb', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899'
@@ -51,7 +124,7 @@ const NOTES_T: Record<string, Record<string, string>> = {
     noAdditionalText: 'No additional text',
     addNewPage: 'CREATE NOTE',
     oneNoteWorkspace: 'NOTE WORKSPACE',
-    enterPageTitle: 'Enter Note Title...',
+    enterPageTitle: 'Enter Note Title',
     noNotebook: 'No Note Selected',
     createNotesDesc: 'Create notes, organize folders, and build formatted workspace sheets.',
     createPage: 'CREATE NOTE',
@@ -531,54 +604,99 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   const [sections, setSections] = useLocalStorage<Section[]>('GeekTabs-one-sections', DEFAULT_SECTIONS);
   const [notes, setNotes] = useLocalStorage<Note[]>('GeekTabs-one-notes', []);
 
-  // One-time upgrade: ensure all 4 default folders exist in order
+  // Ensure default sections are normalized to Quick Notes / Personal / Creative / Work / Recipe / Travel
   useEffect(() => {
-    let updated = false;
-    const newSecs = sections.map(sec => {
-      if (sec.id === 'sec-work' && sec.name === 'Work Project') {
-        updated = true;
-        return { ...sec, name: 'Work Log', color: '#8b5cf6' };
-      }
-      return sec;
+    const idRemap: Record<string, string> = {};
+    setSections((prev) => {
+      const customSections: Section[] = [];
+      const seenCustomIds = new Set<string>();
+
+      prev.forEach((sec) => {
+        const mappedById = DEFAULT_SECTION_IDS.has(sec.id) ? sec.id : undefined;
+        const mappedByName = LEGACY_DEFAULT_NAME_TO_ID[sec.name.trim().toLowerCase()];
+        const canonicalId = mappedById || mappedByName;
+
+        if (canonicalId) {
+          if (sec.id !== canonicalId) {
+            idRemap[sec.id] = canonicalId;
+          }
+        } else if (!seenCustomIds.has(sec.id)) {
+          seenCustomIds.add(sec.id);
+          customSections.push(sec);
+        }
+      });
+
+      const normalized = [...DEFAULT_SECTIONS, ...customSections];
+      const isSame =
+        normalized.length === prev.length &&
+        normalized.every(
+          (s, idx) =>
+            prev[idx].id === s.id &&
+            prev[idx].name === s.name &&
+            prev[idx].color === s.color
+        );
+
+      return isSame ? prev : normalized;
     });
 
-    DEFAULT_SECTIONS.forEach(defSec => {
-      if (!newSecs.some(s => s.name.toLowerCase() === defSec.name.toLowerCase() || s.id === defSec.id)) {
-        newSecs.push(defSec);
-        updated = true;
-      }
-    });
-
-    if (updated) {
-      setSections(newSecs);
+    if (Object.keys(idRemap).length > 0) {
+      setNotes((prev) => {
+        let changed = false;
+        const mapped = prev.map((n) => {
+          const targetId = idRemap[n.sectionId];
+          if (targetId && targetId !== n.sectionId) {
+            changed = true;
+            return { ...n, sectionId: targetId };
+          }
+          return n;
+        });
+        return changed ? mapped : prev;
+      });
     }
-  }, []);
+  }, [setSections, setNotes]);
 
   const [activeSectionId, setActiveSectionId] = useState<string>('sec-quick');
-  const [activeNoteId, setActiveNoteId] = useLocalStorage<string | null>('GeekTabs-one-active-note', null);
-  
+  const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
+
   const [newSectionName, setNewSectionName] = useState('');
   const [isCreatingSection, setIsCreatingSection] = useState(false);
   const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
   const [editingSectionName, setEditingSectionName] = useState('');
   const [sectionMenuTarget, setSectionMenuTarget] = useState<Section | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [noteToDelete, setNoteToDelete] = useState<Note | null>(null);
+  const [savedNoticeId, setSavedNoticeId] = useState<string | null>(null);
+  const [editorResetKey, setEditorResetKey] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
+  const savedSnapshotsRef = useRef<Record<string, { title: string; content: string; isNew: boolean }>>({});
 
   // Ensure activeSectionId fallback exists
   const activeSectionExists = sections.some(s => s.id === activeSectionId);
   const currentSectionId = activeSectionExists ? activeSectionId : (sections[0]?.id || 'sec-quick');
 
   const notesBySection = notes.filter(n => (n.sectionId || 'sec-quick') === currentSectionId);
-  const activeNote = notes.find(n => n.id === activeNoteId && (n.sectionId || 'sec-quick') === currentSectionId) || notesBySection[0];
+  const activeNote = activeNoteId
+    ? notes.find(n => n.id === activeNoteId && (n.sectionId || 'sec-quick') === currentSectionId) || null
+    : null;
 
-  // Sync activeNoteId if it gets lost
+  // Clear activeNoteId if the selected note no longer exists in the active section
   useEffect(() => {
-    if (activeNote && activeNote.id !== activeNoteId) {
-      setActiveNoteId(activeNote.id);
+    if (activeNoteId && !notes.some(n => n.id === activeNoteId && (n.sectionId || 'sec-quick') === currentSectionId)) {
+      setActiveNoteId(null);
     }
-  }, [activeNote, activeNoteId, setActiveNoteId]);
+  }, [activeNoteId, notes, currentSectionId]);
+
+  // Record saved snapshot for existing notes when opened
+  useEffect(() => {
+    if (activeNote && !savedSnapshotsRef.current[activeNote.id]) {
+      savedSnapshotsRef.current[activeNote.id] = {
+        title: activeNote.title,
+        content: activeNote.content,
+        isNew: false,
+      };
+    }
+  }, [activeNote]);
 
   const handleCreateSection = (e: React.FormEvent) => {
     e.preventDefault();
@@ -589,8 +707,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     );
     if (existingDefault) {
       setActiveSectionId(existingDefault.id);
-      const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === existingDefault.id);
-      setActiveNoteId(secNotes[0]?.id || null);
+      setActiveNoteId(null);
       setNewSectionName('');
       setIsCreatingSection(false);
       return;
@@ -646,8 +763,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
     if (activeSectionId === id) {
       const nextSecId = filtered[0]?.id || 'sec-quick';
       setActiveSectionId(nextSecId);
-      const nextNote = remainingNotes.find(n => (n.sectionId || 'sec-quick') === nextSecId);
-      setActiveNoteId(nextNote ? nextNote.id : null);
+      setActiveNoteId(null);
     }
   };
 
@@ -659,34 +775,98 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
       updatedAt: Date.now(),
       sectionId: currentSectionId,
     };
-    setNotes([newNote, ...notes]);
+    savedSnapshotsRef.current[newNote.id] = {
+      title: '',
+      content: '',
+      isNew: true,
+    };
+    setNotes((prev) => {
+      const next = [newNote, ...prev];
+      try {
+        window.localStorage.setItem('GeekTabs-one-notes', JSON.stringify(next));
+      } catch {
+        // Handled by useLocalStorage
+      }
+      return next;
+    });
     setActiveNoteId(newNote.id);
   };
 
   const handleDeleteNote = (id: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
-    const updated = notes.filter(n => n.id !== id);
-    setNotes(updated);
-    if (activeNoteId === id) {
-      const nextNote = updated.find(n => (n.sectionId || 'sec-quick') === currentSectionId);
-      setActiveNoteId(nextNote ? nextNote.id : null);
-    }
+    delete savedSnapshotsRef.current[id];
+    setNotes((prev) => {
+      const updated = prev.filter((n) => n.id !== id);
+      if (activeNoteId === id) {
+        setActiveNoteId(null);
+      }
+      try {
+        window.localStorage.setItem('GeekTabs-one-notes', JSON.stringify(updated));
+      } catch {
+        // Handled by useLocalStorage
+      }
+      return updated;
+    });
   };
 
   const updateNote = (id: string, updates: Partial<Note>) => {
-    setNotes(notes.map(n => {
-      if (n.id === id) {
-        return { ...n, ...updates, updatedAt: Date.now() };
-      }
-      return n;
-    }));
+    setNotes((prev) =>
+      prev.map((n) => {
+        if (n.id === id) {
+          return { ...n, ...updates, updatedAt: Date.now() };
+        }
+        return n;
+      })
+    );
   };
 
-  const filteredNotes = notesBySection.filter(n => {
-    const strippedContent = n.content ? n.content.replace(/<[^>]*>?/gm, '') : '';
-    return n.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-           strippedContent.toLowerCase().includes(searchQuery.toLowerCase());
-  });
+  const handleSaveNoteNow = (id: string) => {
+    setNotes((prev) => {
+      const next = prev.map((n) => {
+        if (n.id === id) {
+          savedSnapshotsRef.current[id] = {
+            title: n.title,
+            content: n.content,
+            isNew: false,
+          };
+          return { ...n, updatedAt: Date.now() };
+        }
+        return n;
+      });
+      try {
+        window.localStorage.setItem('GeekTabs-one-notes', JSON.stringify(next));
+      } catch {
+        // Handled by useLocalStorage
+      }
+      return next;
+    });
+    setSavedNoticeId(id);
+    window.setTimeout(() => {
+      setSavedNoticeId((curr) => (curr === id ? null : curr));
+    }, 1800);
+  };
+
+  const handleCancelNote = (id: string) => {
+    const snap = savedSnapshotsRef.current[id];
+    if (snap?.isNew) {
+      handleDeleteNote(id);
+      return;
+    }
+    if (snap) {
+      setNotes((prev) => {
+        const next = prev.map((n) =>
+          n.id === id ? { ...n, title: snap.title, content: snap.content } : n
+        );
+        try {
+          window.localStorage.setItem('GeekTabs-one-notes', JSON.stringify(next));
+        } catch {
+          // Handled by useLocalStorage
+        }
+        return next;
+      });
+      setEditorResetKey((k) => k + 1);
+    }
+  };
 
   const formatDate = (ts: number) => {
     const d = new Date(ts);
@@ -694,9 +874,12 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   };
 
   const currentSectionInfo = sections.find(s => s.id === currentSectionId);
+  const currentLandingMeta = getSectionLandingMeta(currentSectionInfo);
+  const SectionLandingIcon = currentLandingMeta.Icon;
 
   return (
-    <div className="notes-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
+    <>
+    <div className="notes-tab-container w-full min-h-[calc(100vh-3.5rem)] flex-1 flex flex-row relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
       
       {/* Mobile Backdrop */}
       {mobileSidebarOpen && (
@@ -706,9 +889,9 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         />
       )}
 
-      {/* LEFT SIDEBAR (Gemini Chat Style) */}
+      {/* LEFT SIDEBAR (Sticky alongside page scroll like Settings) */}
       <aside
-        className={`fixed top-14 bottom-0 left-0 md:inset-y-0 z-50 md:relative transition-[transform,width] duration-300 ease-in-out shrink-0 md:h-full flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
+        className={`fixed top-14 bottom-0 left-0 z-50 md:sticky md:top-14 md:bottom-auto md:self-start md:h-[calc(100vh-3.5rem)] transition-[transform,width] duration-300 ease-in-out shrink-0 flex flex-col border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0e131d]/95 md:bg-black/[0.02] md:dark:bg-black/30 backdrop-blur-2xl ${
           mobileSidebarOpen 
             ? 'w-72 sm:w-80 translate-x-0 shadow-2xl border-r' 
             : sidebarOpen 
@@ -857,15 +1040,13 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   tabIndex={0}
                   onClick={() => {
                     setActiveSectionId(sec.id);
-                    const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
-                    setActiveNoteId(secNotes[0]?.id || null);
+                    setActiveNoteId(null);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       setActiveSectionId(sec.id);
-                      const secNotes = notes.filter(n => (n.sectionId || 'sec-quick') === sec.id);
-                      setActiveNoteId(secNotes[0]?.id || null);
+                      setActiveNoteId(null);
                     }
                   }}
                   className={`group flex items-center justify-between gap-1 md:gap-1.5 px-2 md:px-3 py-1.5 md:py-2 min-h-[38px] md:min-h-[42px] lg:min-h-0 rounded-xl text-[10px] sm:text-[11px] md:text-xs font-bold transition-colors cursor-pointer border select-none min-w-0 ${
@@ -899,32 +1080,18 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="p-3 border-b border-black/5 dark:border-white/5">
-          <div className="relative">
-            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-400" size={13} />
-            <input
-              type="text"
-              placeholder={dictionary.filterSheets}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-8 pr-3 py-2 lg:py-1.5 bg-black/5 dark:bg-white/5 text-base sm:text-xs text-slate-800 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] placeholder-slate-400 dark:placeholder-white/40"
-            />
-          </div>
-        </div>
-
         {/* Note Pages List in Section */}
         <div className="flex-1 overflow-y-auto p-2.5 space-y-1 scrollbar-thin">
           <div className="px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-white/70">
             {dictionary.sheetsList}
           </div>
 
-          {filteredNotes.length === 0 ? (
+          {notesBySection.length === 0 ? (
             <div className="p-6 text-center text-xs font-semibold text-slate-400 dark:text-white/40 select-none">
               {dictionary.noPageEntries}
             </div>
           ) : (
-            filteredNotes.map((note) => {
+            notesBySection.map((note) => {
               const active = activeNoteId === note.id;
               return (
                 <div
@@ -945,7 +1112,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                     </span>
                     <button
                       type="button"
-                      onClick={(e) => handleDeleteNote(note.id, e)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setNoteToDelete(note);
+                      }}
                       className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 p-2 lg:p-1 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded transition-all shrink-0 cursor-pointer"
                       title="Delete note"
                     >
@@ -964,7 +1134,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         {/* Sidebar Footer */}
         <div className="p-4 border-t border-black/10 dark:border-white/10 text-xs font-semibold text-slate-500 dark:text-white/45 flex items-center justify-between select-none">
           <span className="text-[11px] uppercase tracking-wider font-bold">
-            {filteredNotes.length} {dictionary.sheetsList}
+            {notesBySection.length} {dictionary.sheetsList}
           </span>
           <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5">
             {currentSectionInfo?.name}
@@ -973,10 +1143,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
       </aside>
 
       {/* RIGHT CONTENT EDITOR PANE - Always Pure Solid White */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white text-slate-900">
+      <div className="flex-1 flex flex-col min-h-[calc(100vh-3.5rem)] min-w-0 bg-white text-slate-900">
         
-        {/* Workspace Top Header Bar */}
-        <header className="h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
+        {/* Workspace Top Header Bar (Sticky under top navbar like Settings) */}
+        <header className="sticky top-14 z-20 h-16 px-4 sm:px-6 lg:px-8 border-b border-black/10 flex items-center justify-between shrink-0 bg-white">
           {/* Left: Sidebar Toggle Button (Hide / Show) */}
           <div className="flex items-center gap-2 min-w-0">
             <button
@@ -1003,32 +1173,14 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
             </h2>
           </div>
 
-          {/* Right side: Note update date & delete icon */}
-          <div className="flex items-center gap-2 shrink-0">
-            {activeNote ? (
-              <>
-                <span className="hidden sm:inline text-[11px] font-mono opacity-60 text-slate-700">
-                  {formatDate(activeNote.updatedAt)}
-                </span>
-                <button
-                  type="button"
-                  onClick={(e) => handleDeleteNote(activeNote.id, e)}
-                  className="p-2.5 lg:p-2 min-w-[42px] min-h-[42px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-xl transition-colors cursor-pointer"
-                  title="Delete note"
-                >
-                  <Trash2 size={16} />
-                </button>
-              </>
-            ) : (
-              <div className="w-10 pointer-events-none" />
-            )}
-          </div>
+          {/* Right spacer to keep section title centered */}
+          <div className="w-10 pointer-events-none shrink-0" />
         </header>
 
         {/* Main Writing Canvas */}
-        <main className="flex-1 flex flex-col h-full overflow-hidden min-w-0 bg-white">
+        <main className="flex-1 flex flex-col min-w-0 bg-white">
           {activeNote ? (
-            <div className="flex-1 flex flex-col h-full px-4 sm:px-8 lg:px-16 py-5 sm:py-8 overflow-hidden">
+            <div className="flex-1 flex flex-col px-4 sm:px-8 lg:px-16 py-5 sm:py-8">
               
               {/* Note Title Input with Modern Underline */}
               <div className="relative mb-5 shrink-0">
@@ -1042,26 +1194,114 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                 <div className="h-[2px] w-full bg-linear-to-r from-[#4f46e5] to-[#7c3aed] rounded-full opacity-60" />
               </div>
 
-              {/* Rich TipTap Editor filling the canvas */}
-              <div className="flex-1 overflow-hidden flex flex-col">
+              {/* Rich TipTap Editor with status bar actions on the right */}
+              <div className="flex-1 flex flex-col">
                 <TipTapEditor
-                  key={activeNote.id}
+                  key={`${activeNote.id}-${editorResetKey}`}
                   content={activeNote.content}
                   onChange={(content) => updateNote(activeNote.id, { content })}
+                  statusActions={
+                    <>
+                      <span className="hidden lg:inline text-[11px] font-mono opacity-60 text-slate-700 mr-1">
+                        {formatDate(activeNote.updatedAt)}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleCancelNote(activeNote.id)}
+                        className="px-3 py-1.5 min-h-[34px] lg:min-h-0 flex items-center gap-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border bg-slate-100 hover:bg-slate-200 border-black/10 text-slate-700"
+                        title="Cancel changes"
+                      >
+                        <X size={14} />
+                        <span>Cancel</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleSaveNoteNow(activeNote.id)}
+                        className={`px-3 py-1.5 min-h-[34px] lg:min-h-0 flex items-center gap-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                          savedNoticeId === activeNote.id
+                            ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                            : 'bg-indigo-600 hover:bg-indigo-700 border-indigo-600 text-white shadow-xs'
+                        }`}
+                        title="Save note"
+                      >
+                        {savedNoticeId === activeNote.id ? (
+                          <>
+                            <Check size={14} />
+                            <span>Saved</span>
+                          </>
+                        ) : (
+                          <>
+                            <Save size={14} />
+                            <span>Save</span>
+                          </>
+                        )}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setNoteToDelete(activeNote);
+                        }}
+                        className="p-2 lg:p-1.5 min-w-[36px] min-h-[36px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-xl transition-colors cursor-pointer"
+                        title="Delete note"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </>
+                  }
                 />
               </div>
             </div>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-center p-8 select-none">
-              <div className="w-16 h-16 rounded-2xl bg-[#4f46e5]/10 flex items-center justify-center text-[#4f46e5] mb-4">
-                <FileText size={32} strokeWidth={1.5} />
+            <div className="flex-1 flex flex-col items-center justify-center text-center p-6 sm:p-10 select-none">
+              <div
+                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                style={{
+                  backgroundColor: `${currentSectionInfo?.color || '#4f46e5'}18`,
+                  color: currentSectionInfo?.color || '#4f46e5',
+                }}
+              >
+                <SectionLandingIcon size={30} strokeWidth={1.75} />
               </div>
-              <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 mb-1">
-                {dictionary.noNotebook}
+              <h3 className="text-lg sm:text-xl font-black tracking-tight text-slate-900 mb-2">
+                {currentSectionInfo?.name || 'Quick Notes'}
               </h3>
-              <p className="text-xs text-slate-500 max-w-xs mb-4">
-                {dictionary.createNotesDesc}
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mb-5 leading-relaxed">
+                {currentLandingMeta.description}
               </p>
+
+              {notesBySection.length > 0 ? (
+                <div className="w-full max-w-lg mb-6">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-3">
+                    Select a note from the menu or choose below ({notesBySection.length})
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-left">
+                    {notesBySection.map((note) => (
+                      <button
+                        key={note.id}
+                        type="button"
+                        onClick={() => setActiveNoteId(note.id)}
+                        className="group p-3.5 rounded-2xl border border-black/10 bg-slate-50/70 hover:bg-indigo-50/70 hover:border-indigo-300 transition-all cursor-pointer flex flex-col gap-1"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <FileText size={14} className="text-indigo-500 shrink-0" />
+                          <span className="font-bold text-xs text-slate-900 group-hover:text-indigo-700 truncate">
+                            {note.title.trim() || dictionary.untitledPage}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-500">
+                          {formatDate(note.updatedAt)}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <p className="text-xs text-slate-400 mb-5">
+                  {dictionary.noPageEntries}
+                </p>
+              )}
+
               <button
                 type="button"
                 onClick={handleCreateNote}
@@ -1075,6 +1315,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
         </main>
 
       </div>
+    </div>
 
       {/* Section Edit / Delete Choice Modal */}
       <AnimatePresence>
@@ -1147,7 +1388,61 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
             </motion.div>
           </div>
         )}
+
+        {noteToDelete && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setNoteToDelete(null)}
+            />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative z-10 bg-white dark:bg-slate-900 border border-black/10 dark:border-white/15 p-6 sm:p-8 rounded-3xl w-full max-w-sm shadow-2xl text-center"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center mx-auto mb-4">
+                <Trash2 size={22} />
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
+                Delete Note?
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-6 font-medium">
+                Are you sure you want to delete{' '}
+                <span className="font-bold text-slate-900 dark:text-white">
+                  &ldquo;{noteToDelete.title.trim() || dictionary.untitledPage}&rdquo;
+                </span>
+                ? This action cannot be undone.
+              </p>
+
+              <div className="flex gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => setNoteToDelete(null)}
+                  className="flex-1 px-4 py-3 min-h-[44px] bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white rounded-2xl hover:bg-slate-200 dark:hover:bg-white/20 transition-all font-bold text-sm cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const targetId = noteToDelete.id;
+                    setNoteToDelete(null);
+                    handleDeleteNote(targetId);
+                  }}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] bg-red-500 text-white rounded-2xl hover:bg-red-600 transition-all font-bold text-sm shadow-lg shadow-red-500/20 cursor-pointer"
+                >
+                  <Trash2 size={15} />
+                  <span>Delete</span>
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }

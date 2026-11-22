@@ -395,6 +395,35 @@ export async function deleteUserWallpaper(id: string): Promise<void> {
 }
 
 /**
+ * Replace all user-uploaded wallpapers in IndexedDB (used when restoring a backup).
+ */
+export async function replaceAllUserWallpapers(wallpapers: CustomWallpaper[]): Promise<void> {
+  try {
+    const db = await openWallpaperDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      const clearReq = store.clear();
+      clearReq.onsuccess = () => {
+        for (const wp of wallpapers) {
+          if (wp && wp.id && wp.url) {
+            store.put({
+              ...wp,
+              createdAt: wp.createdAt || Date.now(),
+            });
+          }
+        }
+      };
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch (err) {
+    console.error('Failed to restore wallpapers to IndexedDB', err);
+    throw err;
+  }
+}
+
+/**
  * One-time smooth migration from old localStorage wallpapers to IndexedDB
  * to preserve any user wallpapers without consuming localStorage quota.
  */

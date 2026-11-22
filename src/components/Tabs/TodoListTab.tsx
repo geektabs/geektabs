@@ -397,7 +397,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Geen taken in deze lijst.',
     addPlaceholder: 'Wat moet er gebeuren?',
     descriptionPlaceholder: 'Beschrijving (optioneel)',
-    addDescOptional: '+ Beschrijving toevoegen (optioneel)',
+    addDescOptional: 'Voeg beschrijving toe (optioneel)',
     cancel: 'ANNULEREN',
     save: 'OPSLAAN',
     priority: 'Prioriteit',
@@ -429,7 +429,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Inga uppgifter i den här listan.',
     addPlaceholder: 'Vad behöver göras?',
     descriptionPlaceholder: 'Beskrivning (valfritt)',
-    addDescOptional: '+ Lägg till beskrivning (valfritt)',
+    addDescOptional: 'Lägg till beskrivning (valfritt)',
     cancel: 'AVBRYT',
     save: 'SPARA',
     priority: 'Prioritet',
@@ -461,7 +461,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Tässä listassa ei ole tehtäviä.',
     addPlaceholder: 'Mitä pitää tehdä?',
     descriptionPlaceholder: 'Kuvaus (valinnainen)',
-    addDescOptional: '+ Lisää kuvaus (valinnainen)',
+    addDescOptional: 'Lisää kuvaus (valinnainen)',
     cancel: 'PERUUTA',
     save: 'TALLENNA',
     priority: 'Prioriteetti',
@@ -493,7 +493,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'इस सूची में कोई कार्य नहीं है।',
     addPlaceholder: 'क्या करना है?',
     descriptionPlaceholder: 'विवरण (वैकल्पिक)',
-    addDescOptional: '+ विवरण जोड़ें (वैकल्पिक)',
+    addDescOptional: 'विवरण जोड़ें (वैकल्पिक)',
     cancel: 'रद्द करें',
     save: 'सहेजें',
     priority: 'प्राथमिकता',
@@ -525,7 +525,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Ingen oppgaver i denne listen.',
     addPlaceholder: 'Hva må gjøres?',
     descriptionPlaceholder: 'Beskrivelse (valgfritt)',
-    addDescOptional: '+ Legg til beskrivelse (valgfritt)',
+    addDescOptional: 'Legg til beskrivelse (valgfritt)',
     cancel: 'AVBRYT',
     save: 'LAGRE',
     priority: 'Prioritet',
@@ -557,7 +557,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'ไม่มีงานในรายการนี้',
     addPlaceholder: 'มีอะไรที่ต้องทำบ้าง?',
     descriptionPlaceholder: 'คำอธิบาย (ไม่บังคับ)',
-    addDescOptional: '+ เพิ่มคำอธิบาย (ไม่บังคับ)',
+    addDescOptional: 'เพิ่มคำอธิบาย (ไม่บังคับ)',
     cancel: 'ยกเลิก',
     save: 'บันทึก',
     priority: 'ลำดับความสำคัญ',
@@ -589,7 +589,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Nenhuma tarefa nesta lista.',
     addPlaceholder: 'O que precisa de ser feito?',
     descriptionPlaceholder: 'Descrição (opcional)',
-    addDescOptional: '+ Adicionar descrição (opcional)',
+    addDescOptional: 'Adicionar descrição (opcional)',
     cancel: 'CANCELAR',
     save: 'GUARDAR',
     priority: 'Prioridade',
@@ -621,7 +621,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Không có công việc nào trong danh sách này.',
     addPlaceholder: 'Cần làm gì?',
     descriptionPlaceholder: 'Mô tả (tùy chọn)',
-    addDescOptional: '+ Thêm mô tả (tùy chọn)',
+    addDescOptional: 'Thêm mô tả (tùy chọn)',
     cancel: 'HỦY',
     save: 'LƯU',
     priority: 'Mức độ ưu tiên',
@@ -653,7 +653,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Brak zadań na tej liście.',
     addPlaceholder: 'Co trzeba zrobić?',
     descriptionPlaceholder: 'Opis (opcjonalnie)',
-    addDescOptional: '+ Dodaj opis (opcjonalnie)',
+    addDescOptional: 'Dodaj opis (opcjonalnie)',
     cancel: 'ANULUJ',
     save: 'ZAPISZ',
     priority: 'Priorytet',
@@ -685,7 +685,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Ingen opgaver på denne liste.',
     addPlaceholder: 'Hvad skal der gøres?',
     descriptionPlaceholder: 'Beskrivelse (valgfri)',
-    addDescOptional: '+ Tilføj beskrivelse (valgfri)',
+    addDescOptional: 'Tilføj beskrivelse (valgfri)',
     cancel: 'ANNULLER',
     save: 'GEM',
     priority: 'Prioritet',
@@ -717,7 +717,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Bu listede görev yok.',
     addPlaceholder: 'Ne yapılması gerekiyor?',
     descriptionPlaceholder: 'Açıklama (isteğe bağlı)',
-    addDescOptional: '+ Açıklama ekle (isteğe bağlı)',
+    addDescOptional: 'Açıklama ekle (isteğe bağlı)',
     cancel: 'İPTAL',
     save: 'KAYDET',
     priority: 'Öncelik',
@@ -749,7 +749,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: 'Δεν υπάρχουν εργασίες σε αυτήν τη λίστα.',
     addPlaceholder: 'Τι πρέπει να γίνει;',
     descriptionPlaceholder: 'Περιγραφή (προαιρετικό)',
-    addDescOptional: '+ Προσθήκη περιγραφής (προαιρετικό)',
+    addDescOptional: 'Προσθήκη περιγραφής (προαιρετικό)',
     cancel: 'ΑΚΥΡΩΣΗ',
     save: 'ΑΠΟΘΗΚΕΥΣΗ',
     priority: 'Προτεραιότητα',
@@ -806,6 +806,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
   const [editDescValue, setEditDescValue] = useState('');
+  const [editPriority, setEditPriority] = useState<1 | 2 | 3 | 4>(4);
   const editInputRef = useRef<HTMLInputElement>(null);
 
   // Filter tasks based on current category/project
@@ -842,12 +843,24 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
     setEditingId(task.id);
     setEditValue(task.text);
     setEditDescValue(task.description || '');
+    setEditPriority(task.priority || 4);
   };
 
   const handleEditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editingId && editValue.trim() !== '') {
-      setTasks(tasks.map(t => t.id === editingId ? { ...t, text: editValue.trim(), description: editDescValue.trim() || undefined } : t));
+      setTasks(
+        tasks.map(t =>
+          t.id === editingId
+            ? {
+                ...t,
+                text: editValue.trim(),
+                description: editDescValue.trim() || undefined,
+                priority: editPriority,
+              }
+            : t
+        )
+      );
     }
     setEditingId(null);
   };
@@ -871,6 +884,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
   }
 
   return (
+    <>
     <div className="todolist-tab-container w-full h-full flex flex-row overflow-hidden relative z-10 bg-white/85 dark:bg-[#0c1017]/85 text-slate-800 dark:text-slate-100">
       
       {/* Mobile Drawer Backdrop */}
@@ -1031,11 +1045,11 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                   {showDescInput ? (
                     <div className="w-full">
                       <textarea
-                        rows={2}
+                        rows={3}
                         value={newTaskDesc}
                         onChange={(e) => setNewTaskDesc(e.target.value)}
                         placeholder={dict.descriptionPlaceholder}
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-black/10 rounded-xl text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] transition-all resize-none leading-relaxed"
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-black/10 rounded-xl text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] transition-all resize-y leading-relaxed"
                         onKeyDown={(e) => {
                           if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
                             addTask(e);
@@ -1051,7 +1065,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                         className="text-xs font-semibold text-[#5438dc] hover:text-[#472fc2] hover:underline flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <Plus size={12} />
-                        <span>{dict.addDescOptional || (language === 'Chinese' ? '添加描述 (选填)' : language === 'Chinese Traditional' ? '新增說明 (選填)' : '+ Add description (optional)')}</span>
+                        <span>{(dict.addDescOptional || (language === 'Chinese' ? '添加描述 (选填)' : language === 'Chinese Traditional' ? '新增說明 (選填)' : 'Add description (optional)')).replace(/^\+\s*/, '')}</span>
                       </button>
                     </div>
                   )}
@@ -1113,7 +1127,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
             <div className="space-y-3.5">
               <AnimatePresence mode="popLayout">
                 {filteredTasks.map((task) => {
-                  const isEditingThis = editingId === task.id;
+                  const pColor = PRIORITY_COLORS[task.priority || 4];
 
                   return (
                     <motion.div
@@ -1122,102 +1136,74 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.18 }}
-                      className="group py-3.5 px-4 sm:py-4 sm:px-6 flex items-center justify-between bg-white border border-black/10 rounded-2xl transition-all shadow-xs hover:border-[#5438dc]/30"
+                      className="group py-3.5 px-4 sm:py-4 sm:px-6 flex items-start justify-between gap-3 bg-white border border-black/10 rounded-2xl transition-all shadow-xs hover:border-[#5438dc]/30"
                     >
-                      {isEditingThis ? (
-                        <form onSubmit={handleEditSubmit} className="flex-1 w-full flex flex-col gap-2.5 bg-transparent">
-                          <input
-                            ref={editInputRef}
-                            type="text"
-                            value={editValue}
-                            onChange={(e) => setEditValue(e.target.value)}
-                            className="w-full px-3.5 py-2 bg-slate-50 border border-black/10 rounded-xl font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30 text-base sm:text-sm"
-                            placeholder={dict.taskName}
-                          />
-                          <input
-                            type="text"
-                            value={editDescValue}
-                            onChange={(e) => setEditDescValue(e.target.value)}
-                            className="w-full px-3.5 py-2 lg:py-1.5 bg-slate-50 border border-black/10 rounded-xl text-base sm:text-xs text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30"
-                            placeholder={dict.description}
-                          />
-                          <div className="flex gap-2 justify-end mt-1">
-                            <button
-                              type="button"
-                              onClick={() => setEditingId(null)}
-                              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-                              className="todolist-cancel-btn px-3 py-1.5 rounded-xl text-xs uppercase tracking-wider font-bold bg-slate-500 hover:bg-slate-600 transition-all !text-white text-white cursor-pointer"
-                            >
-                              <span className="!text-white text-white font-bold" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.cancel}</span>
-                            </button>
-                            <button
-                              type="submit"
-                              style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-                              className="todolist-action-btn px-4 py-1.5 rounded-2xl text-xs bg-[#5438dc] hover:bg-[#472fc2] !text-white text-white uppercase tracking-wider font-black transition-all shadow-md shadow-[#5438dc]/35 cursor-pointer select-none"
-                            >
-                              <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.save}</span>
-                            </button>
-                          </div>
-                        </form>
-                      ) : (
-                        <>
-                          <div className="flex-1 flex gap-3 sm:gap-4 items-center min-w-0 pr-2">
-                            <button
-                              type="button"
-                              onClick={() => toggleTask(task.id)}
-                              className="w-10 h-10 -m-2.5 lg:m-0 lg:w-5 lg:h-5 flex items-center justify-center shrink-0 cursor-pointer"
-                              aria-label={task.completed ? 'Mark incomplete' : 'Mark complete'}
-                            >
-                              <span
-                                className={`w-5 h-5 rounded-full flex items-center justify-center border-2 transition-all ${
-                                  task.completed
-                                    ? 'bg-[#5438dc] border-[#5438dc] text-white'
-                                    : 'border-slate-400 hover:border-[#5438dc]'
-                                }`}
-                              >
-                                {task.completed && (
-                                  <Check size={11} className="text-white" strokeWidth={3} />
-                                )}
-                              </span>
-                            </button>
+                      <div className="flex-1 flex gap-3 sm:gap-4 items-start min-w-0">
+                        <button
+                          type="button"
+                          onClick={() => toggleTask(task.id)}
+                          className="w-10 h-10 -m-2.5 lg:m-0 lg:mt-0.5 lg:w-5 lg:h-5 flex items-center justify-center shrink-0 cursor-pointer"
+                          aria-label={task.completed ? 'Mark incomplete' : 'Mark complete'}
+                        >
+                          <span
+                            className={`w-5 h-5 rounded-full flex items-center justify-center border-2 transition-all ${
+                              task.completed
+                                ? 'bg-[#5438dc] border-[#5438dc] text-white'
+                                : 'border-slate-400 hover:border-[#5438dc]'
+                            }`}
+                          >
+                            {task.completed && (
+                              <Check size={11} className="text-white" strokeWidth={3} />
+                            )}
+                          </span>
+                        </button>
 
-                            <div className="flex-1 min-w-0">
-                              <span
-                                className={`block font-semibold text-sm sm:text-base leading-snug select-text tracking-normal break-words ${
-                                  task.completed
-                                    ? 'line-through text-emerald-700/40 font-normal'
-                                    : 'text-emerald-600'
-                                }`}
-                              >
-                                {task.text}
-                              </span>
-                              {task.description && (
-                                <p className="text-sm sm:text-base text-slate-600 mt-1.5 select-text leading-relaxed font-normal break-words">
-                                  {task.description}
-                                </p>
-                              )}
-                            </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <span
+                              className={`block font-semibold text-sm sm:text-base leading-snug select-text tracking-normal break-words ${
+                                task.completed
+                                  ? 'line-through text-emerald-700/40 font-normal'
+                                  : 'text-emerald-600'
+                              }`}
+                            >
+                              {task.text}
+                            </span>
+                            <span
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-bold border shrink-0 mt-0.5 ${pColor.bg} ${pColor.border} ${pColor.text}`}
+                              title={`${dict.priority} P${task.priority || 4}`}
+                            >
+                              <Flag size={11} className="fill-current text-current" />
+                              <span>P{task.priority || 4}</span>
+                            </span>
                           </div>
+                          {task.description && (
+                            <p className="text-sm sm:text-base text-slate-600 mt-1.5 select-text leading-relaxed font-normal whitespace-pre-wrap break-words">
+                              {task.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
 
-                          {/* Inline Controls */}
-                          <div className="flex items-center gap-0.5 sm:gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all shrink-0">
-                            <button
-                              onClick={() => startEdit(task)}
-                              className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-black/5 text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer"
-                              title="Edit task"
-                            >
-                              <Pencil size={14} />
-                            </button>
-                            <button
-                              onClick={() => setConfirmDeleteTask(task.id)}
-                              className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-lg transition-all cursor-pointer"
-                              title="Delete task"
-                            >
-                              <Trash2 size={14} />
-                            </button>
-                          </div>
-                        </>
-                      )}
+                      {/* Inline Controls */}
+                      <div className="flex items-center gap-0.5 sm:gap-1 opacity-100 lg:opacity-60 lg:group-hover:opacity-100 transition-all shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => startEdit(task)}
+                          className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-black/5 text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer"
+                          title="Edit task"
+                        >
+                          <Pencil size={14} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setConfirmDeleteTask(task.id)}
+                          className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-lg transition-all cursor-pointer"
+                          title="Delete task"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                     </motion.div>
                   );
                 })}
@@ -1258,5 +1244,112 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
         onCancel={() => setConfirmDeleteTask(null)}
       />
     </div>
+
+    {/* Popup Edit Task Modal */}
+    <AnimatePresence>
+      {editingId && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setEditingId(null)}
+          />
+          <motion.form
+            initial={{ scale: 0.94, opacity: 0, y: 16 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.94, opacity: 0, y: 16 }}
+            onSubmit={handleEditSubmit}
+            className="relative z-10 bg-white border border-black/10 rounded-3xl w-full max-w-lg p-6 sm:p-7 shadow-2xl flex flex-col gap-4"
+          >
+            <div className="flex items-center justify-between">
+              <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
+                Edit Task
+              </h3>
+              <button
+                type="button"
+                onClick={() => setEditingId(null)}
+                className="p-1.5 rounded-xl hover:bg-black/5 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
+                aria-label="Close edit modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                {dict.taskName}
+              </label>
+              <input
+                ref={editInputRef}
+                autoFocus
+                type="text"
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-black/10 rounded-xl font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30 focus:border-[#5438dc] text-base sm:text-sm"
+                placeholder={dict.taskName}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                {dict.description}
+              </label>
+              <textarea
+                rows={5}
+                value={editDescValue}
+                onChange={(e) => setEditDescValue(e.target.value)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-black/10 rounded-xl text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#5438dc]/30 focus:border-[#5438dc] leading-relaxed resize-y min-h-[120px]"
+                placeholder={dict.addNotes || dict.descriptionPlaceholder}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                {dict.priority}
+              </span>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {([1, 2, 3, 4] as const).map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => setEditPriority(p)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-1 cursor-pointer ${
+                      editPriority === p
+                        ? `${PRIORITY_COLORS[p].bg} ${PRIORITY_COLORS[p].border} ${PRIORITY_COLORS[p].text} shadow-xs`
+                        : 'border-black/10 text-slate-600 hover:bg-black/5'
+                    }`}
+                  >
+                    <Flag size={11} className="fill-current text-current" />
+                    <span>P{p}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-black/5">
+              <button
+                type="button"
+                onClick={() => setEditingId(null)}
+                style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                className="todolist-cancel-btn px-4 py-2 rounded-2xl text-xs uppercase tracking-wider font-bold bg-slate-500 hover:bg-slate-600 transition-all !text-white text-white cursor-pointer"
+              >
+                <span className="!text-white text-white font-bold" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.cancel}</span>
+              </button>
+              <button
+                type="submit"
+                disabled={!editValue.trim()}
+                style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
+                className="todolist-action-btn px-5 py-2 rounded-2xl text-xs bg-[#5438dc] hover:bg-[#472fc2] !text-white text-white uppercase tracking-wider font-black transition-all shadow-md shadow-[#5438dc]/35 cursor-pointer disabled:opacity-45 select-none"
+              >
+                <span className="!text-white text-white font-black" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>{dict.save}</span>
+              </button>
+            </div>
+          </motion.form>
+        </div>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

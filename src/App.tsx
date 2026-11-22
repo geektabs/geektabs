@@ -249,7 +249,7 @@ export default function App() {
   const isDefaultLightBg = theme === 'light-grey' || theme === 'light-slate' || theme === 'white-clean';
   const isExemptPage = activeTab === 'links' || activeTab === 'settings';
 
-  const isFullPageTab = activeTab === 'todo' || activeTab === 'notes';
+  const isFullPageTab = activeTab === 'todo';
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -586,7 +586,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.25 }}
-              className="w-full h-full flex flex-col overflow-hidden"
+              className="w-full flex-1 flex flex-col pt-14"
             >
               <NotesTab language={language} />
             </motion.div>

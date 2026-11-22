@@ -11,7 +11,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import ConfirmModal from '../ConfirmModal';
 import { t, LANGUAGE_OPTIONS } from '../../i18n';
 import defaultWallpapersData from '../../data/wallpapers.json';
-import { preloadWallpaperThumbnails } from '../../services/wallpaperStorage';
+import {
+  getAllUserWallpapers,
+  preloadWallpaperThumbnails,
+  replaceAllUserWallpapers,
+} from '../../services/wallpaperStorage';
 
 export interface SettingsTabProps {
   currentTheme: string;
@@ -46,7 +50,7 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
     darkBg: "Dark",
     darkGlass: "Glass",
     dataBackup: "Data Backup & Restore Point",
-    dataDesc: "Export your bookmarks, to-do list items, and personal notes into a JSON file, or import a previously saved backup to restore your data completely.",
+    dataDesc: "Export your manually entered data—Bookmarks, Calendar (events & reminders), To-Do items, Notes, and Settings (including Wallpapers)—into a JSON restore point file, or import a backup to restore everything.",
     exportBackup: "Export Backup (Create Restore Point)",
     importBackup: "Import Backup (Restore to Point)",
     resetTitle: "Reset to Default",
@@ -1060,6 +1064,8 @@ export default function SettingsTab({
   });
   const [saved, setSaved] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [backupFeedback, setBackupFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [isBackupBusy, setIsBackupBusy] = useState(false);
 
   useEffect(() => {
     if (pageName === 'Good morning') setPageName('Good Morning');
@@ -1093,56 +1099,185 @@ export default function SettingsTab({
     setPageName('');
   };
 
-  const handleExportData = () => {
+  const parseLocalStorageJson = (key: string) => {
     try {
-      const bookmarks = localStorage.getItem('GeekTabs-link-categories');
-      const todo = localStorage.getItem('GeekTabs-tasks');
-      const notesSections = localStorage.getItem('GeekTabs-one-sections');
-      const notesList = localStorage.getItem('GeekTabs-one-notes');
+      const raw = localStorage.getItem(key);
+      return raw !== null ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const handleExportData = async () => {
+    try {
+      setIsBackupBusy(true);
+      setBackupFeedback(null);
+
+      const userWallpapers = await getAllUserWallpapers();
 
       const exportObj = {
-        bookmarks: bookmarks ? JSON.parse(bookmarks) : null,
-        todo: todo ? JSON.parse(todo) : null,
-        notes: {
-          sections: notesSections ? JSON.parse(notesSections) : null,
-          notes: notesList ? JSON.parse(notesList) : null
-        },
+        appName: "GeekTabs",
+        backupVersion: 2,
         exportedAt: new Date().toISOString(),
-        appName: "GeekTabs"
+        bookmarks: parseLocalStorageJson('GeekTabs-link-categories'),
+        calendar: {
+          events: parseLocalStorageJson('GeekTabs-events'),
+          country1Mode: parseLocalStorageJson('GeekTabs-cal-country1-mode'),
+          country1: parseLocalStorageJson('GeekTabs-cal-country1'),
+          country2: parseLocalStorageJson('GeekTabs-cal-country2-v3'),
+          calendarCountry: parseLocalStorageJson('GeekTabs-cal-country-v4'),
+        },
+        todo: parseLocalStorageJson('GeekTabs-tasks'),
+        notes: {
+          sections: parseLocalStorageJson('GeekTabs-one-sections'),
+          notes: parseLocalStorageJson('GeekTabs-one-notes'),
+          activeNoteId: parseLocalStorageJson('GeekTabs-one-active-note'),
+        },
+        settings: {
+          theme: parseLocalStorageJson('GeekTabs-theme'),
+          isDarkMode: parseLocalStorageJson('GeekTabs-dark-mode'),
+          cardBgMode: parseLocalStorageJson('GeekTabs-card-bg-mode'),
+          textColor: parseLocalStorageJson('GeekTabs-text-color'),
+          pageName: parseLocalStorageJson('GeekTabs-page-name'),
+          language: parseLocalStorageJson('GeekTabs-language'),
+          searchEngine: parseLocalStorageJson('GeekTabs-search-engine'),
+          deletedDefaultWallpapers: parseLocalStorageJson('GeekTabs-deleted-default-wallpapers'),
+          weatherTempUnit: parseLocalStorageJson('GeekTabs-weather-temp-unit'),
+          weatherForecastMode: parseLocalStorageJson('GeekTabs-weather-forecast-mode'),
+          weatherLocation: parseLocalStorageJson('GeekTabs-location'),
+          weatherInputs: parseLocalStorageJson('GeekTabs-weather-inputs'),
+        },
+        wallpapers: userWallpapers,
       };
 
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+      const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
+      const blobUrl = URL.createObjectURL(blob);
       const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("href", blobUrl);
       downloadAnchor.setAttribute("download", `GeekTabs_Backup_${new Date().toISOString().split('T')[0]}.json`);
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+
+      setBackupFeedback({
+        type: 'success',
+        message: 'Backup created (Bookmarks, Calendar Events & Reminders, To-Do, Notes, Settings & Wallpapers).',
+      });
     } catch (e) {
       console.error("Export failed", e);
+      setBackupFeedback({
+        type: 'error',
+        message: 'Failed to export backup file.',
+      });
+    } finally {
+      setIsBackupBusy(false);
     }
   };
 
   const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    e.target.value = '';
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       try {
+        setIsBackupBusy(true);
+        setBackupFeedback(null);
         const importObj = JSON.parse(event.target?.result as string);
-        if (importObj.appName === "GeekTabs") {
-          if (importObj.bookmarks) localStorage.setItem('GeekTabs-link-categories', JSON.stringify(importObj.bookmarks));
-          if (importObj.todo) localStorage.setItem('GeekTabs-tasks', JSON.stringify(importObj.todo));
-          if (importObj.notes?.sections) localStorage.setItem('GeekTabs-one-sections', JSON.stringify(importObj.notes.sections));
-          if (importObj.notes?.notes) localStorage.setItem('GeekTabs-one-notes', JSON.stringify(importObj.notes.notes));
-          alert(tData.restoreSuccess);
-          window.location.reload();
+        if (importObj && importObj.appName === "GeekTabs") {
+          // 1. Bookmarks
+          if (importObj.bookmarks !== undefined && importObj.bookmarks !== null) {
+            localStorage.setItem('GeekTabs-link-categories', JSON.stringify(importObj.bookmarks));
+          }
+
+          // 2. Calendar (Events & Reminders + Region Settings)
+          if (importObj.calendar) {
+            if (Array.isArray(importObj.calendar.events)) {
+              localStorage.setItem('GeekTabs-events', JSON.stringify(importObj.calendar.events));
+            }
+            if (importObj.calendar.country1Mode !== null && importObj.calendar.country1Mode !== undefined) {
+              localStorage.setItem('GeekTabs-cal-country1-mode', JSON.stringify(importObj.calendar.country1Mode));
+            }
+            if (importObj.calendar.country1 !== null && importObj.calendar.country1 !== undefined) {
+              localStorage.setItem('GeekTabs-cal-country1', JSON.stringify(importObj.calendar.country1));
+            }
+            if (importObj.calendar.country2 !== null && importObj.calendar.country2 !== undefined) {
+              localStorage.setItem('GeekTabs-cal-country2-v3', JSON.stringify(importObj.calendar.country2));
+            }
+            if (importObj.calendar.calendarCountry !== null && importObj.calendar.calendarCountry !== undefined) {
+              localStorage.setItem('GeekTabs-cal-country-v4', JSON.stringify(importObj.calendar.calendarCountry));
+            }
+          }
+
+          // 3. To-Do
+          if (importObj.todo !== undefined && importObj.todo !== null) {
+            localStorage.setItem('GeekTabs-tasks', JSON.stringify(importObj.todo));
+          }
+
+          // 4. Notes
+          if (importObj.notes?.sections) {
+            localStorage.setItem('GeekTabs-one-sections', JSON.stringify(importObj.notes.sections));
+          }
+          if (importObj.notes?.notes) {
+            localStorage.setItem('GeekTabs-one-notes', JSON.stringify(importObj.notes.notes));
+          }
+          if (importObj.notes?.activeNoteId !== undefined) {
+            localStorage.setItem('GeekTabs-one-active-note', JSON.stringify(importObj.notes.activeNoteId));
+          }
+
+          // 5. Settings & Wallpapers
+          if (importObj.settings) {
+            const s = importObj.settings;
+            if (s.theme !== null && s.theme !== undefined) localStorage.setItem('GeekTabs-theme', JSON.stringify(s.theme));
+            if (s.isDarkMode !== null && s.isDarkMode !== undefined) localStorage.setItem('GeekTabs-dark-mode', JSON.stringify(s.isDarkMode));
+            if (s.cardBgMode !== null && s.cardBgMode !== undefined) localStorage.setItem('GeekTabs-card-bg-mode', JSON.stringify(s.cardBgMode));
+            if (s.textColor !== null && s.textColor !== undefined) localStorage.setItem('GeekTabs-text-color', JSON.stringify(s.textColor));
+            if (s.pageName !== null && s.pageName !== undefined) localStorage.setItem('GeekTabs-page-name', JSON.stringify(s.pageName));
+            if (s.language !== null && s.language !== undefined) localStorage.setItem('GeekTabs-language', JSON.stringify(s.language));
+            if (s.searchEngine !== null && s.searchEngine !== undefined) localStorage.setItem('GeekTabs-search-engine', JSON.stringify(s.searchEngine));
+            if (s.deletedDefaultWallpapers !== null && s.deletedDefaultWallpapers !== undefined) {
+              localStorage.setItem('GeekTabs-deleted-default-wallpapers', JSON.stringify(s.deletedDefaultWallpapers));
+            }
+            if (s.weatherTempUnit !== null && s.weatherTempUnit !== undefined) {
+              localStorage.setItem('GeekTabs-weather-temp-unit', JSON.stringify(s.weatherTempUnit));
+            }
+            if (s.weatherForecastMode !== null && s.weatherForecastMode !== undefined) {
+              localStorage.setItem('GeekTabs-weather-forecast-mode', JSON.stringify(s.weatherForecastMode));
+            }
+            if (s.weatherLocation !== null && s.weatherLocation !== undefined) {
+              localStorage.setItem('GeekTabs-location', JSON.stringify(s.weatherLocation));
+            }
+            if (s.weatherInputs !== null && s.weatherInputs !== undefined) {
+              localStorage.setItem('GeekTabs-weather-inputs', JSON.stringify(s.weatherInputs));
+            }
+          }
+
+          if (Array.isArray(importObj.wallpapers)) {
+            await replaceAllUserWallpapers(importObj.wallpapers);
+          }
+
+          setBackupFeedback({
+            type: 'success',
+            message: tData.restoreSuccess,
+          });
+          window.setTimeout(() => {
+            window.location.reload();
+          }, 800);
         } else {
-          alert(tData.invalidBackup);
+          setBackupFeedback({
+            type: 'error',
+            message: tData.invalidBackup,
+          });
         }
       } catch (err) {
         console.error(err);
-        alert(tData.failParse);
+        setBackupFeedback({
+          type: 'error',
+          message: tData.failParse,
+        });
+      } finally {
+        setIsBackupBusy(false);
       }
     };
     reader.readAsText(file);
@@ -1424,8 +1559,10 @@ export default function SettingsTab({
                       </p>
                       <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center w-full">
                         <button
+                          type="button"
                           onClick={handleExportData}
-                          className="w-full sm:w-auto px-5 py-3 min-h-[44px] lg:min-h-0 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-slate-800 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                          disabled={isBackupBusy}
+                          className="w-full sm:w-auto px-5 py-3 min-h-[44px] lg:min-h-0 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-slate-800 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-60"
                         >
                           <Download size={14} />
                           {tData.exportBackup}
@@ -1442,11 +1579,21 @@ export default function SettingsTab({
                           <input 
                             type="file" 
                             accept=".json" 
-                            onChange={handleImportData} 
+                            onChange={handleImportData}
+                            disabled={isBackupBusy}
                             className="hidden"
                           />
                         </label>
                       </div>
+                      {backupFeedback && (
+                        <p
+                          className={`mt-3 text-xs font-semibold ${
+                            backupFeedback.type === 'success' ? 'text-emerald-600' : 'text-red-600'
+                          }`}
+                        >
+                          {backupFeedback.message}
+                        </p>
+                      )}
                     </div>
 
                     {/* Reset to Default Section */}
