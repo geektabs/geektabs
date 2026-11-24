@@ -1,0 +1,3 @@
+# Google AdSense ads.txt configuration
+# Replace pub-0000000000000000 with your active Google AdSense Publisher ID (keeping "pub-" prefix) and remove the leading "# " before deploying for review:
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

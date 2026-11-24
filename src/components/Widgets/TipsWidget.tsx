@@ -154,6 +154,32 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
     Greek: 'Ημερήσιες Συμβουλές',
   }[language] || 'Daily Tips';
 
+  const tipTooltips = {
+    English: { refresh: 'Refresh tip', next: 'Click to get new tip' },
+    Chinese: { refresh: '刷新小贴士', next: '点击获取新贴士' },
+    'Chinese Traditional': { refresh: '重新整理小撇步', next: '點擊取得新撇步' },
+    Spanish: { refresh: 'Actualizar consejo', next: 'Haz clic para ver un nuevo consejo' },
+    French: { refresh: 'Actualiser le conseil', next: 'Cliquez pour un nouveau conseil' },
+    German: { refresh: 'Tipp aktualisieren', next: 'Für einen neuen Tipp klicken' },
+    Japanese: { refresh: 'ヒントを更新', next: 'クリックして新しいヒントを表示' },
+    Korean: { refresh: '팁 새로고침', next: '클릭하여 새 팁 보기' },
+    Italian: { refresh: 'Aggiorna consiglio', next: 'Clicca per un nuovo consiglio' },
+    Russian: { refresh: 'Обновить совет', next: 'Нажмите для нового совета' },
+    Luxembourgish: { refresh: 'Tipp aktualiséieren', next: 'Klickt fir en neien Tipp' },
+    Dutch: { refresh: 'Tip vernieuwen', next: 'Klik voor een nieuwe tip' },
+    Swedish: { refresh: 'Uppdatera tips', next: 'Klicka för ett nytt tips' },
+    Finnish: { refresh: 'Päivitä vinkki', next: 'Napsauta saadaksesi uuden vinkin' },
+    Hindi: { refresh: 'सुझाव रीफ़्रेश करें', next: 'नया सुझाव पाने के लिए क्लिक करें' },
+    Norwegian: { refresh: 'Oppdater tips', next: 'Klikk for å få et nytt tips' },
+    Thai: { refresh: 'รีเฟรชเคล็ดลับ', next: 'คลิกเพื่อรับเคล็ดลับใหม่' },
+    Portuguese: { refresh: 'Atualizar dica', next: 'Clique para obter uma nova dica' },
+    Vietnamese: { refresh: 'Làm mới mẹo', next: 'Nhấp để xem mẹo mới' },
+    Polish: { refresh: 'Odśwież poradę', next: 'Kliknij, aby zobaczyć nową poradę' },
+    Danish: { refresh: 'Opdater tip', next: 'Klik for at få et nyt tip' },
+    Turkish: { refresh: 'İpucunu yenile', next: 'Yeni ipucu için tıklayın' },
+    Greek: { refresh: 'Ανανέωση συμβουλής', next: 'Κάντε κλικ για νέα συμβουλή' },
+  }[language] || { refresh: 'Refresh tip', next: 'Click to get new tip' };
+
   return (
     <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Green Background */}
@@ -173,7 +199,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
             fetchTip();
           }}
           className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
-          title="Refresh tip"
+          title={tipTooltips.refresh}
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : 'transition-transform group-hover:rotate-45'} />
         </button>
@@ -186,7 +212,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
       <div 
         onClick={fetchTip}
         className="flex-1 flex flex-col justify-center px-4 sm:px-5 py-4 sm:py-5 cursor-pointer select-none"
-        title="Click to get new tip"
+        title={tipTooltips.next}
       >
         <p 
           className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-none sm:line-clamp-5 lg:line-clamp-5 select-text"

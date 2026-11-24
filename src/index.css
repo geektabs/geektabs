@@ -4491,3 +4491,243 @@ input[type="number"].no-spinner {
 [data-card-bg-mode="dark-glass"] .calculator-tab-card .calc-category-tab:not(.calc-mode-tab-active) > span[class*="text-"] {
   -webkit-text-fill-color: currentColor !important;
 }
+
+/* =========================================================================
+   AUTHORITATIVE WEBCARD TEXT CONTRAST GUARDRAIL (ALL PAGES & MODES)
+   - Light webcards (Light mode, or Glass on light/mix/default backgrounds):
+     NO white card text; force crisp dark (#000000) text & legible subcards.
+   - Dark webcards (Dark mode, or Glass on dark backgrounds/wallpapers):
+     NO black card text; force crisp white (#ffffff) text & legible subcards.
+   Overrides .dark/.light/.word-color & custom page text color inside cards.
+   ========================================================================= */
+
+/* 0. IP Map Info Popup: Always white overlay with dark text regardless of Dark/Glass card mode */
+.ipaddress-tab-card .ip-map-info-popup,
+[data-card-bg-mode] .ipaddress-tab-card .ip-map-info-popup {
+  background: rgba(255, 255, 255, 0.96) !important;
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
+
+.ipaddress-tab-card .ip-map-info-popup *,
+[data-card-bg-mode] .ipaddress-tab-card .ip-map-info-popup * {
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+.ipaddress-tab-card .ip-map-info-popup .text-slate-500,
+.ipaddress-tab-card .ip-map-info-popup .text-slate-600 {
+  color: #475569 !important;
+  -webkit-text-fill-color: #475569 !important;
+}
+
+/* 1. LIGHT WEBCARDS (card-style-white & Light Glass) — NO WHITE TEXT */
+.card-style-white .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400, .text-slate-200, .text-slate-300):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-card-bg-mode="white"] .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400, .text-slate-200, .text-slate-300):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400, .text-slate-200, .text-slate-300):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400, .text-slate-200, .text-slate-300):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+.card-style-white .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-card-bg-mode="white"] .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="light"].card-style-dark-glass .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-white"], .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]) {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.card-style-white .bookmark-webcard + button:not(:hover),
+[data-card-bg-mode="white"] .bookmark-webcard + button:not(:hover),
+[data-glass-bg="light"].card-style-dark-glass .bookmark-webcard + button:not(:hover),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .bookmark-webcard + button:not(:hover) {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+  color: #334155 !important;
+  -webkit-text-fill-color: #334155 !important;
+}
+
+.card-style-white .weather-subcard .bg-slate-50\/70,
+.card-style-white .weather-subcard .bg-slate-100,
+.card-style-white .weather-subcard .bg-slate-200,
+[data-card-bg-mode="white"] .weather-subcard .bg-slate-50\/70,
+[data-card-bg-mode="white"] .weather-subcard .bg-slate-100,
+[data-card-bg-mode="white"] .weather-subcard .bg-slate-200,
+[data-glass-bg="light"].card-style-dark-glass .weather-subcard .bg-slate-50\/70,
+[data-glass-bg="light"].card-style-dark-glass .weather-subcard .bg-slate-100,
+[data-glass-bg="light"].card-style-dark-glass .weather-subcard .bg-slate-200 {
+  background-color: #f1f5f9 !important;
+  background: #f1f5f9 !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-style-white .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea),
+[data-card-bg-mode="white"] .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea) {
+  background-color: #f8fafc !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  color-scheme: light !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea) {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  color-scheme: light !important;
+}
+
+.card-style-white .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder,
+[data-card-bg-mode="white"] .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder,
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder {
+  color: rgba(0, 0, 0, 0.45) !important;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.card-style-white .GeekTabs-card:not(.settings-tab-card *) select option,
+[data-card-bg-mode="white"] .GeekTabs-card:not(.settings-tab-card *) select option,
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) select option,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) select option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.card-style-white .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5,
+[data-card-bg-mode="white"] .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5 {
+  background-color: #f8fafc !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5,
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5 {
+  background-color: rgba(255, 255, 255, 0.42) !important;
+  border-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.card-style-white .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t),
+[data-card-bg-mode="white"] .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t),
+[data-glass-bg="light"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t),
+[data-glass-bg="light"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t) {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-style-white .speedtest-tab-card .nqs-rate-card,
+[data-card-bg-mode="white"] .speedtest-tab-card .nqs-rate-card,
+.card-style-white .speedtest-tab-card .nqs-details-card,
+[data-card-bg-mode="white"] .speedtest-tab-card .nqs-details-card {
+  background: #f8fafc !important;
+  background-color: #f8fafc !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 2. DARK WEBCARDS (card-style-dark & Dark Glass) — NO BLACK TEXT */
+.card-style-dark .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400, .text-neutral-900, .text-neutral-800, .text-neutral-700, .text-neutral-600, .text-neutral-500, .text-neutral-400, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.ip-map-control-btn):not(.ip-map-control-btn *):not(.ip-map-info-btn):not(.ip-map-info-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-card-bg-mode="dark"] .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400, .text-neutral-900, .text-neutral-800, .text-neutral-700, .text-neutral-600, .text-neutral-500, .text-neutral-400, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.ip-map-control-btn):not(.ip-map-control-btn *):not(.ip-map-info-btn):not(.ip-map-info-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="dark"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400, .text-neutral-900, .text-neutral-800, .text-neutral-700, .text-neutral-600, .text-neutral-500, .text-neutral-400, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.ip-map-control-btn):not(.ip-map-control-btn *):not(.ip-map-info-btn):not(.ip-map-info-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(h1, h2, h3, h4, h5, h6, p, span, li, code, label, button, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400, .text-neutral-900, .text-neutral-800, .text-neutral-700, .text-neutral-600, .text-neutral-500, .text-neutral-400, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600):not(.preview-vision-box):not(.preview-vision-box *):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.cal-modal-save-btn):not(.cal-modal-save-btn *):not(.cal-modal-type-active):not(.cal-modal-type-active *):not(.cal-modal-type-inactive):not(.wallpaper-card-badge):not(.wallpaper-card-badge *):not(.ip-map-info-popup):not(.ip-map-info-popup *):not(.ip-map-control-btn):not(.ip-map-control-btn *):not(.ip-map-info-btn):not(.ip-map-info-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-indigo-600):not(.bg-indigo-600 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-red-500):not(.bg-red-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not(.bg-\[\#6143f7\]):not(.bg-\[\#6143f7\] *):not(.bg-\[\#4f46e5\]):not(.bg-\[\#4f46e5\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+.card-style-dark .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-card-bg-mode="dark"] .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style :is(h1, h2, h3, h4, h5, h6, p, span, label, .word-color, [class*="text-black"], .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500, .text-slate-400):not(.daily-card-title-section):not(.daily-card-title-section *):not(.daily-card-icon-badge):not(.daily-card-icon-badge *):not(.cal-today-circle):not(.cal-today-circle *):not(.cal-holiday-dot):not(.speedtest-center-circle):not(.speedtest-center-circle *):not(.speedtest-start-button):not(.speedtest-start-button *):not(.speedtest-action-button):not(.speedtest-action-button *):not(.calculator-equals-btn):not(.calculator-equals-btn *):not(.calc-mode-tab-active):not(.calc-mode-tab-active *):not(.calc-rate-pill-active):not(.calc-rate-pill-active *):not(.calc-swap-btn):not(.calc-swap-btn *):not(.bg-indigo-500):not(.bg-indigo-500 *):not(.bg-\[\#c8102e\]):not(.bg-\[\#c8102e\] *):not([class*="text-indigo-"]):not([class*="text-purple-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-amber-"]):not([class*="text-sky-"]):not([class*="text-blue-"]):not([class*="text-red-"]):not([class*="text-rose-"]):not([class*="text-yellow-"]):not([class*="text-orange-"]):not([class*="text-[#"]) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.card-style-dark .bookmark-webcard + button:not(:hover),
+[data-card-bg-mode="dark"] .bookmark-webcard + button:not(:hover),
+[data-glass-bg="dark"].card-style-dark-glass .bookmark-webcard + button:not(:hover),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .bookmark-webcard + button:not(:hover) {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style .bg-white.dark\:bg-slate-900,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style .bg-white.dark\:bg-slate-900 {
+  background-color: #141418 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style button[type="submit"],
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style button[type="submit"] {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .weather-huawei-style button:not(.bg-\[\#c8102e\]):not(.weather-subcard):not(.bg-indigo-500):not(.daily-card-title-section button),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .weather-huawei-style button:not(.bg-\[\#c8102e\]):not(.weather-subcard):not(.bg-indigo-500):not(.daily-card-title-section button) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.card-style-dark .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea),
+[data-card-bg-mode="dark"] .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea) {
+  background-color: #141418 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color-scheme: dark !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(input, select, textarea) {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  color-scheme: dark !important;
+}
+
+.card-style-dark .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder,
+[data-card-bg-mode="dark"] .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder,
+[data-glass-bg="dark"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(input, textarea)::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.card-style-dark .GeekTabs-card:not(.settings-tab-card *) select option,
+[data-card-bg-mode="dark"] .GeekTabs-card:not(.settings-tab-card *) select option,
+[data-glass-bg="dark"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) select option,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) select option {
+  background-color: #141418 !important;
+  color: #ffffff !important;
+}
+
+.card-style-dark .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5,
+[data-card-bg-mode="dark"] .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5 {
+  background-color: #141418 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+[data-glass-bg="dark"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5,
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) .bg-black\/5 {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.card-style-dark .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t),
+[data-card-bg-mode="dark"] .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t),
+[data-glass-bg="dark"].card-style-dark-glass .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t),
+[data-glass-bg="dark"][data-card-bg-mode="dark-glass"] .GeekTabs-card:not(.settings-tab-card *) :is(.border-black\/5, .border-black\/10, .border-b, .border-t) {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.card-style-dark .speedtest-tab-card .nqs-rate-card,
+[data-card-bg-mode="dark"] .speedtest-tab-card .nqs-rate-card,
+.card-style-dark .speedtest-tab-card .nqs-details-card,
+[data-card-bg-mode="dark"] .speedtest-tab-card .nqs-details-card {
+  background: #141418 !important;
+  background-color: #141418 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+

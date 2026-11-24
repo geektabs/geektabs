@@ -73,6 +73,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Thu',
     fri: 'Fri',
     sat: 'Sat',
+    globalNetwork: 'global weather network',
+    forecastSwitchAria: 'Forecast interval switch',
+    errWeather: 'Could not retrieve live weather data. Please try again.',
+    am: 'AM',
+    pm: 'PM',
   },
   Chinese: {
     title: "天气",
@@ -122,6 +127,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: '周四',
     fri: '周五',
     sat: '周六',
+    globalNetwork: '全球气象网络',
+    forecastSwitchAria: '预报周期切换',
+    errWeather: '无法获取实时天气数据，请重试。',
+    am: '上午',
+    pm: '下午',
   },
   'Chinese Traditional': {
     title: "天氣",
@@ -171,6 +181,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: '週四',
     fri: '週五',
     sat: '週六',
+    globalNetwork: '全球氣象網路',
+    forecastSwitchAria: '預報週期切換',
+    errWeather: '無法取得即時天氣資料，請重試。',
+    am: '上午',
+    pm: '下午',
   },
   Spanish: {
     title: "Clima",
@@ -220,6 +235,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Jue',
     fri: 'Vie',
     sat: 'Sáb',
+    globalNetwork: 'red meteorológica global',
+    forecastSwitchAria: 'Selector de intervalo del pronóstico',
+    errWeather: 'No se pudieron obtener los datos meteorológicos. Inténtalo de nuevo.',
+    am: 'AM',
+    pm: 'PM',
   },
   French: {
     title: "Météo",
@@ -269,6 +289,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Jeu',
     fri: 'Ven',
     sat: 'Sam',
+    globalNetwork: 'réseau météo mondial',
+    forecastSwitchAria: 'Sélecteur d’intervalle de prévision',
+    errWeather: 'Impossible de récupérer les données météo. Veuillez réessayer.',
+    am: 'AM',
+    pm: 'PM',
   },
   German: {
     title: "Wetter",
@@ -318,6 +343,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Do',
     fri: 'Fr',
     sat: 'Sa',
+    globalNetwork: 'globales Wetternetzwerk',
+    forecastSwitchAria: 'Vorhersageintervall umschalten',
+    errWeather: 'Live-Wetterdaten konnten nicht abgerufen werden. Bitte erneut versuchen.',
+    am: 'AM',
+    pm: 'PM',
   },
   Japanese: {
     title: "天気",
@@ -367,6 +397,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: '木',
     fri: '金',
     sat: '土',
+    globalNetwork: 'グローバル気象ネットワーク',
+    forecastSwitchAria: '予報間隔の切り替え',
+    errWeather: 'リアルタイムの天気データを取得できませんでした。もう一度お試しください。',
+    am: '午前',
+    pm: '午後',
   },
   Korean: {
     title: "날씨",
@@ -416,6 +451,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: '목',
     fri: '금',
     sat: '토',
+    globalNetwork: '글로벌 기상 네트워크',
+    forecastSwitchAria: '예보 간격 전환',
+    errWeather: '실시간 날씨 데이터를 가져오지 못했습니다. 다시 시도해주세요.',
+    am: '오전',
+    pm: '오후',
   },
   Italian: {
     title: "Meteo",
@@ -465,6 +505,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Gio',
     fri: 'Ven',
     sat: 'Sab',
+    globalNetwork: 'rete meteo globale',
+    forecastSwitchAria: 'Selettore intervallo previsioni',
+    errWeather: 'Impossibile recuperare i dati meteo. Riprova.',
+    am: 'AM',
+    pm: 'PM',
   },
   Russian: {
     title: "Погода",
@@ -514,6 +559,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Чт',
     fri: 'Пт',
     sat: 'Сб',
+    globalNetwork: 'глобальная сеть погоды',
+    forecastSwitchAria: 'Переключатель интервала прогноза',
+    errWeather: 'Не удалось получить данные о погоде. Повторите попытку.',
+    am: 'AM',
+    pm: 'PM',
   },
   Luxembourgish: {
     title: "Wieder",
@@ -563,6 +613,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Do',
     fri: 'Fr',
     sat: 'Sa',
+    globalNetwork: 'globalt Wiedernetzwierk',
+    forecastSwitchAria: 'Prognos-Intervall wiesselen',
+    errWeather: 'Live-Wiederdaten konnten net geluede ginn. Probéiert wgl. nach eng Kéier.',
+    am: 'AM',
+    pm: 'PM',
   },
   Dutch: {
     title: "Weer",
@@ -612,6 +667,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Do',
     fri: 'Vr',
     sat: 'Za',
+    globalNetwork: 'wereldwijd weernetwerk',
+    forecastSwitchAria: 'Schakelaar verwachtingsinterval',
+    errWeather: 'Kan live weergegevens niet ophalen. Probeer het opnieuw.',
+    am: 'AM',
+    pm: 'PM',
   },
   Swedish: {
     title: "Väder",
@@ -661,6 +721,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Tor',
     fri: 'Fre',
     sat: 'Lör',
+    globalNetwork: 'globalt vädernätverk',
+    forecastSwitchAria: 'Växla prognosintervall',
+    errWeather: 'Kunde inte hämta väderdata. Försök igen.',
+    am: 'AM',
+    pm: 'PM',
   },
   Finnish: {
     title: "Sää",
@@ -710,6 +775,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'To',
     fri: 'Pe',
     sat: 'La',
+    globalNetwork: 'maailmanlaajuinen sääverkosto',
+    forecastSwitchAria: 'Ennustevälin vaihto',
+    errWeather: 'Säätietojen nouto epäonnistui. Yritä uudelleen.',
+    am: 'ap',
+    pm: 'ip',
   },
   Hindi: {
     title: "मौसम",
@@ -759,6 +829,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'गुरु',
     fri: 'शुक्र',
     sat: 'शनि',
+    globalNetwork: 'वैश्विक मौसम नेटवर्क',
+    forecastSwitchAria: 'पूर्वानुमान अंतराल स्विच',
+    errWeather: 'लाइव मौसम डेटा प्राप्त नहीं हो सका। कृपया पुनः प्रयास करें।',
+    am: 'पूर्वाह्न',
+    pm: 'अपराह्न',
   },
   Norwegian: {
     title: "Vær",
@@ -808,6 +883,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Tor',
     fri: 'Fre',
     sat: 'Lør',
+    globalNetwork: 'globalt værnettverk',
+    forecastSwitchAria: 'Bytt varselintervall',
+    errWeather: 'Kunne ikke hente værdata. Prøv igjen.',
+    am: 'AM',
+    pm: 'PM',
   },
   Thai: {
     title: "สภาพอากาศ",
@@ -857,6 +937,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'พฤ.',
     fri: 'ศ.',
     sat: 'ส.',
+    globalNetwork: 'เครือข่ายสภาพอากาศโลก',
+    forecastSwitchAria: 'ตัวสลับช่วงเวลาพยากรณ์',
+    errWeather: 'ไม่สามารถดึงข้อมูลสภาพอากาศสดได้ โปรดลองอีกครั้ง',
+    am: 'น.',
+    pm: 'น.',
   },
   Portuguese: {
     title: "Clima",
@@ -906,6 +991,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Qui',
     fri: 'Sex',
     sat: 'Sáb',
+    globalNetwork: 'rede meteorológica global',
+    forecastSwitchAria: 'Alternador de intervalo da previsão',
+    errWeather: 'Não foi possível obter os dados meteorológicos. Tente novamente.',
+    am: 'AM',
+    pm: 'PM',
   },
   Vietnamese: {
     title: "Thời tiết",
@@ -955,6 +1045,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'T5',
     fri: 'T6',
     sat: 'T7',
+    globalNetwork: 'mạng lưới thời tiết toàn cầu',
+    forecastSwitchAria: 'Chuyển khoảng dự báo',
+    errWeather: 'Không thể tải dữ liệu thời tiết trực tiếp. Vui lòng thử lại.',
+    am: 'SA',
+    pm: 'CH',
   },
   Polish: {
     title: "Pogoda",
@@ -1004,6 +1099,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Cz',
     fri: 'Pt',
     sat: 'Sb',
+    globalNetwork: 'globalna sieć pogodowa',
+    forecastSwitchAria: 'Przełącznik interwału prognozy',
+    errWeather: 'Nie udało się pobrać danych pogodowych. Spróbuj ponownie.',
+    am: 'AM',
+    pm: 'PM',
   },
   Danish: {
     title: "Vejr",
@@ -1053,6 +1153,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Tor',
     fri: 'Fre',
     sat: 'Lør',
+    globalNetwork: 'globalt vejrnetværk',
+    forecastSwitchAria: 'Skift vejrudsigtsinterval',
+    errWeather: 'Kunne ikke hente vejrdata. Prøv igen.',
+    am: 'AM',
+    pm: 'PM',
   },
   Turkish: {
     title: "Hava Durumu",
@@ -1102,6 +1207,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Per',
     fri: 'Cum',
     sat: 'Cmt',
+    globalNetwork: 'küresel hava durumu ağı',
+    forecastSwitchAria: 'Tahmin aralığı anahtarı',
+    errWeather: 'Canlı hava durumu verileri alınamadı. Lütfen tekrar deneyin.',
+    am: 'ÖÖ',
+    pm: 'ÖS',
   },
   Greek: {
     title: "Καιρός",
@@ -1151,6 +1261,11 @@ export const WEATHER_T: Record<string, Record<string, string>> = {
     thu: 'Πέμ',
     fri: 'Παρ',
     sat: 'Σάβ',
+    globalNetwork: 'παγκόσμιο δίκτυο καιρού',
+    forecastSwitchAria: 'Εναλλαγή διαστήματος πρόγνωσης',
+    errWeather: 'Αδυναμία ανάκτησης δεδομένων καιρού. Δοκιμάστε ξανά.',
+    am: 'π.μ.',
+    pm: 'μ.μ.',
   }
 };
 
@@ -1219,6 +1334,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
   const searchTimeoutRef = useRef<any>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
@@ -1276,6 +1392,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
     zCode: string
   ) => {
     setLoading(true);
+    setLocationError(null);
     try {
       const liveData = await fetchLiveForecast(lat, lon, tempUnit, dictionary);
       setWeather(liveData);
@@ -1318,7 +1435,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
       }));
     } catch (err) {
       console.error('Failed to fetch live weather:', err);
-      alert(dictionary.errDetect || 'Could not retrieve live weather data. Please try again.');
+      setLocationError(dictionary.errWeather || dictionary.errDetect);
     } finally {
       setLoading(false);
     }
@@ -1343,15 +1460,16 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
     if (!searchQuery.trim()) return;
 
     setIsSearching(true);
+    setLocationError(null);
     try {
       const results = await searchGlobalLocations(searchQuery);
       if (results.length > 0) {
         handleSelectLocation(results[0]);
       } else {
-        alert(dictionary.noResults || 'No locations found for this query.');
+        setLocationError(dictionary.noResults);
       }
     } catch {
-      alert(dictionary.errDetect);
+      setLocationError(dictionary.errDetect);
     } finally {
       setIsSearching(false);
     }
@@ -1365,11 +1483,12 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
     const zClean = zipcode.trim();
 
     if (!cClean && !zClean) {
-      alert(dictionary.errInput);
+      setLocationError(dictionary.errInput);
       return;
     }
 
     setLoading(true);
+    setLocationError(null);
     try {
       // Build search query prioritizing the user's specific inputs
       const queryCandidates: string[] = [];
@@ -1413,11 +1532,11 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
           found.postcode || zClean
         );
       } else {
-        alert(dictionary.noResults || 'Could not find coordinates for this address.');
+        setLocationError(dictionary.noResults);
       }
     } catch (err) {
       console.error('Detailed search error:', err);
-      alert(dictionary.errDetect);
+      setLocationError(dictionary.errDetect);
     } finally {
       setLoading(false);
     }
@@ -1426,6 +1545,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
   // Auto-detect current location
   const handleAutoDetect = async () => {
     setLoading(true);
+    setLocationError(null);
     try {
       const detected = await detectCurrentLocation();
       await applyLocationAndFetch(
@@ -1439,7 +1559,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
       );
     } catch (err) {
       console.warn('Auto-detect error:', err);
-      alert(dictionary.errDetect);
+      setLocationError(dictionary.errDetect);
     } finally {
       setLoading(false);
     }
@@ -1473,14 +1593,14 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
     }
   };
 
-  // Initial load and unit sync
+  // Initial load, unit sync, and language sync
   useEffect(() => {
     const lat = weatherInputs?.lat || 42.3601;
     const lon = weatherInputs?.lon || -71.0589;
     fetchLiveForecast(lat, lon, tempUnit, dictionary)
       .then(data => setWeather(data))
       .catch(e => console.warn('Live forecast init error:', e));
-  }, [tempUnit]);
+  }, [tempUnit, language]);
 
   // Listen to external location updates (e.g. from WeatherSettingsTab)
   useEffect(() => {
@@ -1520,9 +1640,13 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
       case 'Light Drizzle':
       case 'Moderate Drizzle':
       case 'Dense Drizzle':
+      case 'Freezing Drizzle':
+      case 'Dense Freezing Drizzle':
       case 'Slight Rain':
       case 'Moderate Rain':
       case 'Heavy Rain':
+      case 'Freezing Rain':
+      case 'Heavy Freezing Rain':
       case 'Slight Rain Showers':
       case 'Moderate Rain Showers':
       case 'Violent Rain Showers':
@@ -1547,7 +1671,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
   // Default placeholders for first render before API response
   const defaultHrDetails = Array.from({ length: 12 }).map((_, i) => {
     const hour = (new Date().getHours() + i) % 24;
-    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const ampm = hour >= 12 ? (dictionary.pm || 'PM') : (dictionary.am || 'AM');
     const displayHour = hour % 12 === 0 ? 12 : hour % 12;
     const baseF = 65 + (i % 3 === 0 ? 4 : -2);
     const tempVal = tempUnit === 'C' ? Math.round(((baseF - 32) * 5) / 9) : baseF;
@@ -1636,11 +1760,13 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
   const formatHourlyTime = (time: string, idx: number) => {
     if (idx === 0 && (time === 'Now' || time === dictionary.now)) {
       const h = new Date().getHours();
-      const ampm = h >= 12 ? 'PM' : 'AM';
+      const ampm = h >= 12 ? (dictionary.pm || 'PM') : (dictionary.am || 'AM');
       const displayHour = h % 12 === 0 ? 12 : h % 12;
       return `${displayHour} ${ampm}`;
     }
-    return time;
+    return time
+      .replace(/\bAM\b/g, dictionary.am || 'AM')
+      .replace(/\bPM\b/g, dictionary.pm || 'PM');
   };
 
   return (
@@ -1664,6 +1790,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
               onClick={() => {
                 setIsEditing(false);
                 setShowSuggestions(false);
+                setLocationError(null);
               }}
               className="inline-flex items-center gap-1.5 text-xs text-[#c8102e] dark:text-red-400 hover:underline font-extrabold mt-4 uppercase tracking-wider transition-colors cursor-pointer"
             >
@@ -1673,11 +1800,16 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
 
           {/* Right Column: Unified Smart Location Search & Detailed Options */}
           <div className="flex-1 min-w-0 weather-subcard rounded-2xl p-5 sm:p-6 space-y-4 relative">
+            {locationError && (
+              <div className="rounded-xl bg-red-500/10 border border-red-500/30 px-3.5 py-2 text-xs font-semibold text-red-700 dark:text-red-300">
+                {locationError}
+              </div>
+            )}
             {/* Smart Search Bar (Weather.com-style Instant Geocoding) */}
             <div ref={searchContainerRef} className="relative">
               <label className="block text-[11px] font-black uppercase tracking-wider text-slate-800 dark:text-slate-200 mb-1.5 flex items-center justify-between">
                 <span>{dictionary.quickSearch}</span>
-                <span className="text-[10px] font-bold text-slate-400 lowercase">global weather network</span>
+                <span className="text-[10px] font-bold text-slate-400 lowercase">{dictionary.globalNetwork}</span>
               </label>
 
               <form onSubmit={handleSmartSearchSubmit} className="relative flex items-center">
@@ -1877,7 +2009,7 @@ export default function WeatherWidget({ language = 'English' }: { language?: str
 
             <div
               role="group"
-              aria-label="Forecast interval switch"
+              aria-label={dictionary.forecastSwitchAria}
               className="inline-flex items-center p-0.5 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 shrink-0"
             >
               <button

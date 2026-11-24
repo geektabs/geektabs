@@ -64,43 +64,506 @@ const DEFAULT_SECTION_NAMES = new Set(DEFAULT_SECTIONS.map((s) => s.name.trim().
 const isDefaultSection = (sec: Section) =>
   DEFAULT_SECTION_IDS.has(sec.id) || DEFAULT_SECTION_NAMES.has(sec.name.trim().toLowerCase());
 
-const getSectionLandingMeta = (sec?: Section) => {
+const NOTES_LOCALES: Record<string, string> = {
+  English: 'en-US',
+  Chinese: 'zh-CN',
+  'Chinese Traditional': 'zh-TW',
+  Spanish: 'es-ES',
+  French: 'fr-FR',
+  German: 'de-DE',
+  Japanese: 'ja-JP',
+  Korean: 'ko-KR',
+  Italian: 'it-IT',
+  Russian: 'ru-RU',
+  Luxembourgish: 'lb-LU',
+  Dutch: 'nl-NL',
+  Swedish: 'sv-SE',
+  Finnish: 'fi-FI',
+  Hindi: 'hi-IN',
+  Norwegian: 'nb-NO',
+  Thai: 'th-TH',
+  Portuguese: 'pt-PT',
+  Vietnamese: 'vi-VN',
+  Polish: 'pl-PL',
+  Danish: 'da-DK',
+  Turkish: 'tr-TR',
+  Greek: 'el-GR',
+};
+
+interface NotesExtraLocale {
+  sections: Record<string, string>;
+  descs: Record<string, string>;
+  customDesc: (name: string) => string;
+  closeSidebar: string;
+  hideSidebar: string;
+  showSidebar: string;
+  toggleSidebar: string;
+  addSectionTitle: string;
+  newBtn: string;
+  sectionNamePlaceholder: string;
+  saveSectionTitle: string;
+  cancelEditTitle: string;
+  deleteNoteTitle: string;
+  cancelChangesTitle: string;
+  cancelBtn: string;
+  saveNoteTitle: string;
+  saveBtn: string;
+  savedBtn: string;
+  chooseNoteHint: string;
+  deleteNoteModalTitle: string;
+  deleteNoteConfirmPrefix: string;
+  deleteNoteConfirmSuffix: string;
+  deleteModalCancel: string;
+  deleteModalConfirm: string;
+}
+
+const NOTES_EXTRA_T: Record<string, NotesExtraLocale> = {
+  English: {
+    sections: { 'sec-quick': 'Quick Notes', 'sec-personal': 'Personal', 'sec-ideas': 'Creative', 'sec-work': 'Work', 'sec-recipes': 'Recipe', 'sec-travel': 'Travel' },
+    descs: {
+      'sec-quick': 'Capture quick thoughts, daily reminders, short snippets, and sudden ideas you want to jot down right away.',
+      'sec-personal': 'Keep personal reflections, journal entries, private goals, health logs, and everyday life notes organized.',
+      'sec-ideas': 'Brainstorm concepts, story drafts, design inspiration, and creative projects whenever sparks strike.',
+      'sec-work': 'Organize meeting notes, project plans, action items, documentation, and work-related references.',
+      'sec-recipes': 'Save favorite recipes, ingredient lists, cooking steps, meal prep ideas, and kitchen experiments.',
+      'sec-travel': 'Plan upcoming trips, itineraries, packing checklists, booking details, and memorable travel notes.',
+    },
+    customDesc: (name) => `Use ${name} to organize your notes, checklists, photos, and reference links in one place.`,
+    closeSidebar: 'Close sidebar', hideSidebar: 'Hide sidebar', showSidebar: 'Show sidebar', toggleSidebar: 'Toggle sidebar',
+    addSectionTitle: 'Add Section', newBtn: 'New', sectionNamePlaceholder: 'Section name...', saveSectionTitle: 'Save section', cancelEditTitle: 'Cancel edit',
+    deleteNoteTitle: 'Delete note', cancelChangesTitle: 'Cancel changes', cancelBtn: 'Cancel', saveNoteTitle: 'Save note', saveBtn: 'Save', savedBtn: 'Saved',
+    chooseNoteHint: 'Select a note from the menu or choose below',
+    deleteNoteModalTitle: 'Delete Note?', deleteNoteConfirmPrefix: 'Are you sure you want to delete', deleteNoteConfirmSuffix: '? This action cannot be undone.',
+    deleteModalCancel: 'Cancel', deleteModalConfirm: 'Delete',
+  },
+  Chinese: {
+    sections: { 'sec-quick': '快速笔记', 'sec-personal': '个人', 'sec-ideas': '创意', 'sec-work': '工作', 'sec-recipes': '食谱', 'sec-travel': '旅行' },
+    descs: {
+      'sec-quick': '随时记录灵光乍现的想法、每日提醒、简短片段和突发灵感。',
+      'sec-personal': '整理个人随笔、日记记录、私人目标、健康日志和日常生活备忘。',
+      'sec-ideas': '灵感涌现时，收集概念构思、故事草稿、设计参考与创意项目。',
+      'sec-work': '梳理会议纪要、项目规划、待办事项、文档资料与工作参考。',
+      'sec-recipes': '保存喜爱的食谱、食材清单、烹饪步骤、备餐思路与厨房实验。',
+      'sec-travel': '规划即将到来的旅行、行程路线、行李清单、预订详情与旅途见闻。',
+    },
+    customDesc: (name) => `在「${name}」中统一整理您的笔记、清单、图片和参考链接。`,
+    closeSidebar: '关闭侧边栏', hideSidebar: '隐藏侧边栏', showSidebar: '显示侧边栏', toggleSidebar: '切换侧边栏',
+    addSectionTitle: '添加分区', newBtn: '新建', sectionNamePlaceholder: '分区名称...', saveSectionTitle: '保存分区', cancelEditTitle: '取消编辑',
+    deleteNoteTitle: '删除笔记', cancelChangesTitle: '放弃更改', cancelBtn: '取消', saveNoteTitle: '保存笔记', saveBtn: '保存', savedBtn: '已保存',
+    chooseNoteHint: '从左侧菜单或下方选择笔记',
+    deleteNoteModalTitle: '删除笔记？', deleteNoteConfirmPrefix: '确定要删除', deleteNoteConfirmSuffix: ' 吗？此操作无法撤销。',
+    deleteModalCancel: '取消', deleteModalConfirm: '删除',
+  },
+  'Chinese Traditional': {
+    sections: { 'sec-quick': '快速筆記', 'sec-personal': '個人', 'sec-ideas': '創意', 'sec-work': '工作', 'sec-recipes': '食譜', 'sec-travel': '旅行' },
+    descs: {
+      'sec-quick': '隨時記錄靈光一現的想法、每日提醒、簡短片段與突發靈感。',
+      'sec-personal': '整理個人隨筆、日記紀錄、私人目標、健康日誌與日常生活備忘。',
+      'sec-ideas': '靈感湧現時，收集概念構思、故事草稿、設計參考與創意專案。',
+      'sec-work': '梳理會議紀錄、專案規劃、待辦事項、文件資料與工作參考。',
+      'sec-recipes': '儲存喜愛的食譜、食材清單、烹飪步驟、備餐想法與廚房實驗。',
+      'sec-travel': '規劃即將到來的旅行、行程路線、行李清單、預訂詳情與旅途筆記。',
+    },
+    customDesc: (name) => `在「${name}」中統一整理您的筆記、清單、圖片與參考連結。`,
+    closeSidebar: '關閉側邊欄', hideSidebar: '隱藏側邊欄', showSidebar: '顯示側邊欄', toggleSidebar: '切換側邊欄',
+    addSectionTitle: '新增分區', newBtn: '新增', sectionNamePlaceholder: '分區名稱...', saveSectionTitle: '儲存分區', cancelEditTitle: '取消編輯',
+    deleteNoteTitle: '刪除筆記', cancelChangesTitle: '放棄變更', cancelBtn: '取消', saveNoteTitle: '儲存筆記', saveBtn: '儲存', savedBtn: '已儲存',
+    chooseNoteHint: '從選單或下方選擇筆記',
+    deleteNoteModalTitle: '刪除筆記？', deleteNoteConfirmPrefix: '確定要刪除', deleteNoteConfirmSuffix: ' 嗎？此操作無法復原。',
+    deleteModalCancel: '取消', deleteModalConfirm: '刪除',
+  },
+  Spanish: {
+    sections: { 'sec-quick': 'Notas rápidas', 'sec-personal': 'Personal', 'sec-ideas': 'Creativo', 'sec-work': 'Trabajo', 'sec-recipes': 'Recetas', 'sec-travel': 'Viajes' },
+    descs: {
+      'sec-quick': 'Captura pensamientos rápidos, recordatorios diarios, fragmentos breves e ideas repentinas al instante.',
+      'sec-personal': 'Mantén organizadas tus reflexiones personales, entradas de diario, metas privadas y notas cotidianas.',
+      'sec-ideas': 'Haz lluvia de ideas, borradores de historias, inspiración de diseño y proyectos creativos.',
+      'sec-work': 'Organiza notas de reuniones, planes de proyectos, acciones pendientes y referencias laborales.',
+      'sec-recipes': 'Guarda recetas favoritas, listas de ingredientes, pasos de cocina e ideas de menú.',
+      'sec-travel': 'Planifica próximos viajes, itinerarios, listas de equipaje, reservas y recuerdos.',
+    },
+    customDesc: (name) => `Usa ${name} para organizar tus notas, listas, fotos y enlaces en un solo lugar.`,
+    closeSidebar: 'Cerrar barra lateral', hideSidebar: 'Ocultar barra lateral', showSidebar: 'Mostrar barra lateral', toggleSidebar: 'Alternar barra lateral',
+    addSectionTitle: 'Añadir sección', newBtn: 'Nueva', sectionNamePlaceholder: 'Nombre de sección...', saveSectionTitle: 'Guardar sección', cancelEditTitle: 'Cancelar edición',
+    deleteNoteTitle: 'Eliminar nota', cancelChangesTitle: 'Descartar cambios', cancelBtn: 'Cancelar', saveNoteTitle: 'Guardar nota', saveBtn: 'Guardar', savedBtn: 'Guardado',
+    chooseNoteHint: 'Selecciona una nota del menú o elige abajo',
+    deleteNoteModalTitle: '¿Eliminar nota?', deleteNoteConfirmPrefix: '¿Seguro que quieres eliminar', deleteNoteConfirmSuffix: '? Esta acción no se puede deshacer.',
+    deleteModalCancel: 'Cancelar', deleteModalConfirm: 'Eliminar',
+  },
+  French: {
+    sections: { 'sec-quick': 'Notes rapides', 'sec-personal': 'Personnel', 'sec-ideas': 'Créatif', 'sec-work': 'Travail', 'sec-recipes': 'Recettes', 'sec-travel': 'Voyages' },
+    descs: {
+      'sec-quick': 'Notez vos pensées rapides, rappels quotidiens, courts extraits et idées soudaines sur le vif.',
+      'sec-personal': 'Organisez vos réflexions personnelles, journaux, objectifs privés, suivis santé et notes du quotidien.',
+      'sec-ideas': 'Explorez des concepts, brouillons, inspirations design et projets créatifs dès que l’étincelle jaillit.',
+      'sec-work': 'Structurez comptes rendus, plans de projet, actions, documentation et références professionnelles.',
+      'sec-recipes': 'Enregistrez vos recettes préférées, ingrédients, étapes de préparation et idées culinaires.',
+      'sec-travel': 'Planifiez vos prochains voyages, itinéraires, bagages, réservations et souvenirs.',
+    },
+    customDesc: (name) => `Utilisez ${name} pour regrouper vos notes, listes, photos et liens au même endroit.`,
+    closeSidebar: 'Fermer le panneau', hideSidebar: 'Masquer le panneau', showSidebar: 'Afficher le panneau', toggleSidebar: 'Basculer le panneau',
+    addSectionTitle: 'Ajouter une section', newBtn: 'Nouveau', sectionNamePlaceholder: 'Nom de section...', saveSectionTitle: 'Enregistrer la section', cancelEditTitle: 'Annuler la modification',
+    deleteNoteTitle: 'Supprimer la note', cancelChangesTitle: 'Annuler les modifications', cancelBtn: 'Annuler', saveNoteTitle: 'Enregistrer la note', saveBtn: 'Enregistrer', savedBtn: 'Enregistré',
+    chooseNoteHint: 'Sélectionnez une note dans le menu ou ci-dessous',
+    deleteNoteModalTitle: 'Supprimer la note ?', deleteNoteConfirmPrefix: 'Voulez-vous vraiment supprimer', deleteNoteConfirmSuffix: ' ? Cette action est irréversible.',
+    deleteModalCancel: 'Annuler', deleteModalConfirm: 'Supprimer',
+  },
+  German: {
+    sections: { 'sec-quick': 'Schnellnotizen', 'sec-personal': 'Privat', 'sec-ideas': 'Kreativ', 'sec-work': 'Arbeit', 'sec-recipes': 'Rezepte', 'sec-travel': 'Reisen' },
+    descs: {
+      'sec-quick': 'Halten Sie spontane Gedanken, tägliche Erinnerungen, kurze Schnipsel und plötzliche Ideen sofort fest.',
+      'sec-personal': 'Verwalten Sie persönliche Gedanken, Tagebucheinträge, Ziele, Gesundheitsnotizen und Alltägliches.',
+      'sec-ideas': 'Sammeln Sie Konzepte, Entwürfe, Design-Inspirationen und kreative Projekte an einem Ort.',
+      'sec-work': 'Strukturieren Sie Besprechungsnotizen, Projektpläne, Aufgaben und Arbeitsunterlagen.',
+      'sec-recipes': 'Speichern Sie Lieblingsrezepte, Zutatenlisten, Zubereitungsschritte und Küchenideen.',
+      'sec-travel': 'Planen Sie kommende Reisen, Routen, Packlisten, Buchungsdetails und Reiseerinnerungen.',
+    },
+    customDesc: (name) => `Nutzen Sie ${name}, um Notizen, Checklisten, Fotos und Links übersichtlich zu ordnen.`,
+    closeSidebar: 'Seitenleiste schließen', hideSidebar: 'Seitenleiste ausblenden', showSidebar: 'Seitenleiste einblenden', toggleSidebar: 'Seitenleiste umschalten',
+    addSectionTitle: 'Bereich hinzufügen', newBtn: 'Neu', sectionNamePlaceholder: 'Bereichsname...', saveSectionTitle: 'Bereich speichern', cancelEditTitle: 'Bearbeitung abbrechen',
+    deleteNoteTitle: 'Notiz löschen', cancelChangesTitle: 'Änderungen verwerfen', cancelBtn: 'Abbrechen', saveNoteTitle: 'Notiz speichern', saveBtn: 'Speichern', savedBtn: 'Gespeichert',
+    chooseNoteHint: 'Notiz aus dem Menü oder unten auswählen',
+    deleteNoteModalTitle: 'Notiz löschen?', deleteNoteConfirmPrefix: 'Möchten Sie wirklich löschen:', deleteNoteConfirmSuffix: '? Diese Aktion kann nicht rückgängig gemacht werden.',
+    deleteModalCancel: 'Abbrechen', deleteModalConfirm: 'Löschen',
+  },
+  Japanese: {
+    sections: { 'sec-quick': 'クイックメモ', 'sec-personal': '個人', 'sec-ideas': 'クリエイティブ', 'sec-work': '仕事', 'sec-recipes': 'レシピ', 'sec-travel': '旅行' },
+    descs: {
+      'sec-quick': '思いついた考えや日々のリマインダー、短いメモをその場ですぐに書き留めます。',
+      'sec-personal': '日々の記録や日記、プライベートな目標、健康ログなどを整理できます。',
+      'sec-ideas': 'ひらめいたコンセプト、ストーリーの下書き、デザインの着想をまとめます。',
+      'sec-work': '会議メモ、プロジェクト計画、タスク、ドキュメントや業務資料を整理します。',
+      'sec-recipes': 'お気に入りのレシピ、材料リスト、作り方、料理のアイデアを保存します。',
+      'sec-travel': '旅行の計画、日程表、持ち物チェックリスト、予約情報や思い出を残します。',
+    },
+    customDesc: (name) => `「${name}」にメモ、チェックリスト、写真、参考リンクをまとめて整理できます。`,
+    closeSidebar: 'サイドバーを閉じる', hideSidebar: 'サイドバーを隠す', showSidebar: 'サイドバーを表示', toggleSidebar: 'サイドバーを切り替え',
+    addSectionTitle: 'セクションを追加', newBtn: '新規', sectionNamePlaceholder: 'セクション名...', saveSectionTitle: 'セクションを保存', cancelEditTitle: '編集をキャンセル',
+    deleteNoteTitle: 'ノートを削除', cancelChangesTitle: '変更を破棄', cancelBtn: 'キャンセル', saveNoteTitle: 'ノートを保存', saveBtn: '保存', savedBtn: '保存済み',
+    chooseNoteHint: 'メニューまたは下からノートを選択してください',
+    deleteNoteModalTitle: 'ノートを削除しますか？', deleteNoteConfirmPrefix: '本当に削除してもよろしいですか：', deleteNoteConfirmSuffix: '？この操作は取り消せません。',
+    deleteModalCancel: 'キャンセル', deleteModalConfirm: '削除',
+  },
+  Korean: {
+    sections: { 'sec-quick': '빠른 메모', 'sec-personal': '개인', 'sec-ideas': '크리에이티브', 'sec-work': '업무', 'sec-recipes': '레시피', 'sec-travel': '여행' },
+    descs: {
+      'sec-quick': '문득 떠오른 생각, 일일 알림, 짧은 메모와 아이디어를 바로 기록해 보세요.',
+      'sec-personal': '개인적인 회고, 일기, 목표, 건강 기록과 일상 메모를 깔끔하게 정리하세요.',
+      'sec-ideas': '영감이 떠오를 때마다 아이디어, 스토리 초안, 디자인 영감을 자유롭게 모아보세요.',
+      'sec-work': '회의록, 프로젝트 계획, 할 일 항목, 문서 및 업무 참고 자료를 체계적으로 관리하세요.',
+      'sec-recipes': '좋아하는 레시피, 재료 목록, 조리 순서와 식단 아이디어를 저장해 보세요.',
+      'sec-travel': '다가오는 여행 일정, 준비물 체크리스트, 예약 정보와 여행 기록을 계획하세요.',
+    },
+    customDesc: (name) => `${name} 섹션에 메모, 체크리스트, 사진, 참고 링크를 한곳에 정리하세요.`,
+    closeSidebar: '사이드바 닫기', hideSidebar: '사이드바 숨기기', showSidebar: '사이드바 표시', toggleSidebar: '사이드바 전환',
+    addSectionTitle: '섹션 추가', newBtn: '새로 만들기', sectionNamePlaceholder: '섹션 이름...', saveSectionTitle: '섹션 저장', cancelEditTitle: '편집 취소',
+    deleteNoteTitle: '노트 삭제', cancelChangesTitle: '변경 취소', cancelBtn: '취소', saveNoteTitle: '노트 저장', saveBtn: '저장', savedBtn: '저장됨',
+    chooseNoteHint: '메뉴나 아래 목록에서 노트를 선택하세요',
+    deleteNoteModalTitle: '노트를 삭제할까요?', deleteNoteConfirmPrefix: '정말 삭제하시겠습니까:', deleteNoteConfirmSuffix: '? 이 작업은 되돌릴 수 없습니다.',
+    deleteModalCancel: '취소', deleteModalConfirm: '삭제',
+  },
+  Italian: {
+    sections: { 'sec-quick': 'Note rapide', 'sec-personal': 'Personale', 'sec-ideas': 'Creativo', 'sec-work': 'Lavoro', 'sec-recipes': 'Ricette', 'sec-travel': 'Viaggi' },
+    descs: {
+      'sec-quick': 'Annota al volo pensieri rapidi, promemoria quotidiani, brevi appunti e idee improvvise.',
+      'sec-personal': 'Tieni in ordine riflessioni personali, pagine di diario, obiettivi privati e note quotidiane.',
+      'sec-ideas': 'Raccogli concetti, bozze, ispirazioni di design e progetti creativi ogni volta che nasce un’idea.',
+      'sec-work': 'Organizza appunti di riunioni, piani di progetto, attività e documenti di lavoro.',
+      'sec-recipes': 'Salva ricette preferite, liste degli ingredienti, passaggi e idee per i pasti.',
+      'sec-travel': 'Pianifica viaggi futuri, itinerari, liste valigia, prenotazioni e ricordi di viaggio.',
+    },
+    customDesc: (name) => `Usa ${name} per organizzare note, liste, foto e link di riferimento in un unico posto.`,
+    closeSidebar: 'Chiudi barra laterale', hideSidebar: 'Nascondi barra laterale', showSidebar: 'Mostra barra laterale', toggleSidebar: 'Attiva/disattiva barra laterale',
+    addSectionTitle: 'Aggiungi sezione', newBtn: 'Nuova', sectionNamePlaceholder: 'Nome sezione...', saveSectionTitle: 'Salva sezione', cancelEditTitle: 'Annulla modifica',
+    deleteNoteTitle: 'Elimina nota', cancelChangesTitle: 'Annulla modifiche', cancelBtn: 'Annulla', saveNoteTitle: 'Salva nota', saveBtn: 'Salva', savedBtn: 'Salvata',
+    chooseNoteHint: 'Seleziona una nota dal menu o scegli qui sotto',
+    deleteNoteModalTitle: 'Eliminare la nota?', deleteNoteConfirmPrefix: 'Sei sicuro di voler eliminare', deleteNoteConfirmSuffix: '? Questa azione è irreversibile.',
+    deleteModalCancel: 'Annulla', deleteModalConfirm: 'Elimina',
+  },
+  Russian: {
+    sections: { 'sec-quick': 'Быстрые заметки', 'sec-personal': 'Личное', 'sec-ideas': 'Творчество', 'sec-work': 'Работа', 'sec-recipes': 'Рецепты', 'sec-travel': 'Путешествия' },
+    descs: {
+      'sec-quick': 'Мгновенно записывайте быстрые мысли, ежедневные напоминания, короткие фразы и внезапные идеи.',
+      'sec-personal': 'Храните личные размышления, дневниковые записи, цели, дневник здоровья и бытовые заметки.',
+      'sec-ideas': 'Собирайте концепции, черновики историй, идеи дизайна и творческие проекты.',
+      'sec-work': 'Упорядочивайте итоги встреч, планы проектов, задачи, документацию и рабочие материалы.',
+      'sec-recipes': 'Сохраняйте любимые рецепты, списки продуктов, этапы готовки и кулинарные эксперименты.',
+      'sec-travel': 'Планируйте поездки, маршруты, списки вещей, бронирования и путевые заметки.',
+    },
+    customDesc: (name) => `Используйте «${name}», чтобы упорядочить заметки, списки, фото и ссылки в одном месте.`,
+    closeSidebar: 'Закрыть панель', hideSidebar: 'Скрыть панель', showSidebar: 'Показать панель', toggleSidebar: 'Переключить панель',
+    addSectionTitle: 'Добавить раздел', newBtn: 'Создать', sectionNamePlaceholder: 'Название раздела...', saveSectionTitle: 'Сохранить раздел', cancelEditTitle: 'Отменить правку',
+    deleteNoteTitle: 'Удалить заметку', cancelChangesTitle: 'Отменить изменения', cancelBtn: 'Отмена', saveNoteTitle: 'Сохранить заметку', saveBtn: 'Сохранить', savedBtn: 'Сохранено',
+    chooseNoteHint: 'Выберите заметку в меню или ниже',
+    deleteNoteModalTitle: 'Удалить заметку?', deleteNoteConfirmPrefix: 'Вы уверены, что хотите удалить', deleteNoteConfirmSuffix: '? Это действие нельзя отменить.',
+    deleteModalCancel: 'Отмена', deleteModalConfirm: 'Удалить',
+  },
+  Luxembourgish: {
+    sections: { 'sec-quick': 'Séier Notizen', 'sec-personal': 'Perséinlech', 'sec-ideas': 'Kreativ', 'sec-work': 'Aarbecht', 'sec-recipes': 'Rezepter', 'sec-travel': 'Reesen' },
+    descs: {
+      'sec-quick': 'Halt séier Gedanken, deeglech Erënnerungen, kuerz Texter a spontan Iddien direkt fest.',
+      'sec-personal': 'Organiséiert perséinlech Reflexiounen, Dagbichereien, Ziler an Alldagsnotizen.',
+      'sec-ideas': 'Sammelt Konzepter, Entwërf, Design-Inspiratiounen a kreativ Projeten.',
+      'sec-work': 'Strukturéiert Versammlungsnotizen, Projetpläng, Aufgaben a berufflech Dokumenter.',
+      'sec-recipes': 'Späichert Liiblingsrezepter, Zutatenlëschten, Kachschrëtt a Kicheniddien.',
+      'sec-travel': 'Plangt Reesrouten, Paklëschten, Reservatiounen a schéi Reeserënnerungen.',
+    },
+    customDesc: (name) => `Benotzt ${name} fir Är Notizen, Lëschten, Fotoen a Linken op enger Plaz ze organiséieren.`,
+    closeSidebar: 'Säiteläischt zoumaachen', hideSidebar: 'Säiteläischt verstoppen', showSidebar: 'Säiteläischt weisen', toggleSidebar: 'Säiteläischt ëmschalten',
+    addSectionTitle: 'Beräich derbäisetzen', newBtn: 'Nei', sectionNamePlaceholder: 'Beräichsnumm...', saveSectionTitle: 'Beräich späicheren', cancelEditTitle: 'Ännerung ofbriechen',
+    deleteNoteTitle: 'Notiz läschen', cancelChangesTitle: 'Ännerungen ofbriechen', cancelBtn: 'Ofbriechen', saveNoteTitle: 'Notiz späicheren', saveBtn: 'Späicheren', savedBtn: 'Gespäichert',
+    chooseNoteHint: 'Wielt eng Notiz aus dem Menü oder hei ënnen',
+    deleteNoteModalTitle: 'Notiz läschen?', deleteNoteConfirmPrefix: 'Sidd Dir sécher, datt Dir läsche wëllt:', deleteNoteConfirmSuffix: '? Dës Aktioun kann net réckgängeg gemaach ginn.',
+    deleteModalCancel: 'Ofbriechen', deleteModalConfirm: 'Läschen',
+  },
+  Dutch: {
+    sections: { 'sec-quick': 'Snelle notities', 'sec-personal': 'Persoonlijk', 'sec-ideas': 'Creatief', 'sec-work': 'Werk', 'sec-recipes': 'Recepten', 'sec-travel': 'Reizen' },
+    descs: {
+      'sec-quick': 'Leg snelle gedachten, dagelijkse herinneringen, korte fragmenten en plotselinge ideeën direct vast.',
+      'sec-personal': 'Houd persoonlijke reflecties, dagboeknotities, doelen, gezondheidslogs en dagelijkse notities geordend.',
+      'sec-ideas': 'Brainstorm concepten, verhaalschetsen, ontwerpinspiratie en creatieve projecten.',
+      'sec-work': 'Orden vergadernotities, projectplannen, actiepunten, documentatie en werkreferenties.',
+      'sec-recipes': 'Bewaar favoriete recepten, ingrediëntenlijsten, bereidingsstappen en keukenideeën.',
+      'sec-travel': 'Plan komende reizen, routes, paklijsten, boekingen en reisverslagen.',
+    },
+    customDesc: (name) => `Gebruik ${name} om notities, checklists, foto’s en links op één plek te bewaren.`,
+    closeSidebar: 'Zijbalk sluiten', hideSidebar: 'Zijbalk verbergen', showSidebar: 'Zijbalk tonen', toggleSidebar: 'Zijbalk wisselen',
+    addSectionTitle: 'Sectie toevoegen', newBtn: 'Nieuw', sectionNamePlaceholder: 'Sectienaam...', saveSectionTitle: 'Sectie opslaan', cancelEditTitle: 'Bewerken annuleren',
+    deleteNoteTitle: 'Notitie verwijderen', cancelChangesTitle: 'Wijzigingen annuleren', cancelBtn: 'Annuleren', saveNoteTitle: 'Notitie opslaan', saveBtn: 'Opslaan', savedBtn: 'Opgeslagen',
+    chooseNoteHint: 'Selecteer een notitie uit het menu of kies hieronder',
+    deleteNoteModalTitle: 'Notitie verwijderen?', deleteNoteConfirmPrefix: 'Weet u zeker dat u wilt verwijderen:', deleteNoteConfirmSuffix: '? Dit kan niet ongedaan worden gemaakt.',
+    deleteModalCancel: 'Annuleren', deleteModalConfirm: 'Verwijderen',
+  },
+  Swedish: {
+    sections: { 'sec-quick': 'Snabbanteckningar', 'sec-personal': 'Privat', 'sec-ideas': 'Kreativt', 'sec-work': 'Arbete', 'sec-recipes': 'Recept', 'sec-travel': 'Resor' },
+    descs: {
+      'sec-quick': 'Fånga snabba tankar, dagliga påminnelser, korta utdrag och plötsliga idéer direkt.',
+      'sec-personal': 'Håll ordning på personliga reflektioner, dagboksanteckningar, mål och vardagsnoteringar.',
+      'sec-ideas': 'Samla koncept, utkast, designinspiration och kreativa projekt när inspirationen slår till.',
+      'sec-work': 'Organisera mötesanteckningar, projektplaner, åtgärder och arbetsreferenser.',
+      'sec-recipes': 'Spara favoritrecept, ingredienslistor, tillagningssteg och köksidéer.',
+      'sec-travel': 'Planera kommande resor, resplaner, packlistor, bokningar och reseminnen.',
+    },
+    customDesc: (name) => `Använd ${name} för att organisera anteckningar, checklistor, foton och länkar på ett ställe.`,
+    closeSidebar: 'Stäng sidopanel', hideSidebar: 'Dölj sidopanel', showSidebar: 'Visa sidopanel', toggleSidebar: 'Växla sidopanel',
+    addSectionTitle: 'Lägg till avsnitt', newBtn: 'Nytt', sectionNamePlaceholder: 'Avsnittsnamn...', saveSectionTitle: 'Spara avsnitt', cancelEditTitle: 'Avbryt redigering',
+    deleteNoteTitle: 'Ta bort anteckning', cancelChangesTitle: 'Ångra ändringar', cancelBtn: 'Avbryt', saveNoteTitle: 'Spara anteckning', saveBtn: 'Spara', savedBtn: 'Sparad',
+    chooseNoteHint: 'Välj en anteckning i menyn eller nedan',
+    deleteNoteModalTitle: 'Ta bort anteckning?', deleteNoteConfirmPrefix: 'Är du säker på att du vill ta bort', deleteNoteConfirmSuffix: '? Åtgärden kan inte ångras.',
+    deleteModalCancel: 'Avbryt', deleteModalConfirm: 'Ta bort',
+  },
+  Finnish: {
+    sections: { 'sec-quick': 'Pikamuistiot', 'sec-personal': 'Henkilökohtainen', 'sec-ideas': 'Luova', 'sec-work': 'Työ', 'sec-recipes': 'Reseptit', 'sec-travel': 'Matkat' },
+    descs: {
+      'sec-quick': 'Kirjaa nopeat ajatukset, päivittäiset muistutukset, lyhyet otteet ja äkilliset ideat heti ylös.',
+      'sec-personal': 'Pidä henkilökohtaiset pohdinnat, päiväkirjat, tavoitteet ja arjen muistiinpanot järjestyksessä.',
+      'sec-ideas': 'Hahmottele konsepteja, tarinaluonnoksia, suunnitteluideoita ja luovia projekteja.',
+      'sec-work': 'Järjestele kokousmuistiinpanot, projektisuunnitelmat, tehtävät ja työasiakirjat.',
+      'sec-recipes': 'Tallenna suosikkireseptit, ainesosaluettelot, valmistusvaiheet ja keittiökokeilut.',
+      'sec-travel': 'Suunnittele tulevat matkat, reitit, pakkauslistat, varaukset ja matkamuistot.',
+    },
+    customDesc: (name) => `Käytä osiota ${name} muistiinpanojen, listojen, kuvien ja linkkien järjestämiseen.`,
+    closeSidebar: 'Sulje sivupalkki', hideSidebar: 'Piilota sivupalkki', showSidebar: 'Näytä sivupalkki', toggleSidebar: 'Vaihda sivupalkki',
+    addSectionTitle: 'Lisää osio', newBtn: 'Uusi', sectionNamePlaceholder: 'Osion nimi...', saveSectionTitle: 'Tallenna osio', cancelEditTitle: 'Peruuta muokkaus',
+    deleteNoteTitle: 'Poista muistiinpano', cancelChangesTitle: 'Peruuta muutokset', cancelBtn: 'Peruuta', saveNoteTitle: 'Tallenna muistiinpano', saveBtn: 'Tallenna', savedBtn: 'Tallennettu',
+    chooseNoteHint: 'Valitse muistiinpano valikosta tai alta',
+    deleteNoteModalTitle: 'Poistetaanko muistiinpano?', deleteNoteConfirmPrefix: 'Haluatko varmasti poistaa kohteen', deleteNoteConfirmSuffix: '? Tätä toimintoa ei voi kumota.',
+    deleteModalCancel: 'Peruuta', deleteModalConfirm: 'Poista',
+  },
+  Hindi: {
+    sections: { 'sec-quick': 'त्वरित नोट्स', 'sec-personal': 'व्यक्तिगत', 'sec-ideas': 'रचनात्मक', 'sec-work': 'कार्य', 'sec-recipes': 'व्यंजन', 'sec-travel': 'यात्रा' },
+    descs: {
+      'sec-quick': 'त्वरित विचार, दैनिक अनुस्मारक, छोटे अंश और अचानक आए विचारों को तुरंत लिखें।',
+      'sec-personal': 'व्यक्तिगत विचार, डायरी प्रविष्टियाँ, निजी लक्ष्य, स्वास्थ्य लॉग और दैनिक नोट्स सहेजें।',
+      'sec-ideas': 'जब भी प्रेरणा मिले, अवधारणाएँ, कहानी के ड्राफ़्ट और रचनात्मक प्रोजेक्ट संजोएँ।',
+      'sec-work': 'मीटिंग नोट्स, प्रोजेक्ट योजनाएँ, कार्य सूची, दस्तावेज़ और कार्य संदर्भ व्यवस्थित करें।',
+      'sec-recipes': 'पसंदीदा व्यंजन, सामग्री सूची, पकाने की विधि और रसोई के प्रयोग सहेजें।',
+      'sec-travel': 'आगामी यात्राओं, कार्यक्रमों, पैकिंग सूचियों, बुकिंग विवरण और यादों की योजना बनाएँ।',
+    },
+    customDesc: (name) => `एक ही स्थान पर अपने नोट्स, सूचियाँ, फ़ोटो और लिंक व्यवस्थित करने के लिए ${name} का उपयोग करें।`,
+    closeSidebar: 'साइडबार बंद करें', hideSidebar: 'साइडबार छिपाएँ', showSidebar: 'साइडबार दिखाएँ', toggleSidebar: 'साइडबार टॉगल करें',
+    addSectionTitle: 'अनुभाग जोड़ें', newBtn: 'नया', sectionNamePlaceholder: 'अनुभाग का नाम...', saveSectionTitle: 'अनुभाग सहेजें', cancelEditTitle: 'संपादन रद्द करें',
+    deleteNoteTitle: 'नोट हटाएँ', cancelChangesTitle: 'बदलाव रद्द करें', cancelBtn: 'रद्द करें', saveNoteTitle: 'नोट सहेजें', saveBtn: 'सहेजें', savedBtn: 'सहेजा गया',
+    chooseNoteHint: 'मेनू से चुनें या नीचे से कोई नोट चुनें',
+    deleteNoteModalTitle: 'नोट हटाएँ?', deleteNoteConfirmPrefix: 'क्या आप वाकई हटाना चाहते हैं:', deleteNoteConfirmSuffix: '? यह क्रिया पूर्ववत नहीं की जा सकती।',
+    deleteModalCancel: 'रद्द करें', deleteModalConfirm: 'हटाएँ',
+  },
+  Norwegian: {
+    sections: { 'sec-quick': 'Hurtignotater', 'sec-personal': 'Personlig', 'sec-ideas': 'Kreativt', 'sec-work': 'Arbeid', 'sec-recipes': 'Oppskrifter', 'sec-travel': 'Reise' },
+    descs: {
+      'sec-quick': 'Fang opp raske tanker, daglige påminnelser, korte utdrag og plutselige ideer med en gang.',
+      'sec-personal': 'Hold orden på personlige refleksjoner, dagboknotater, mål, helselogg og hverdagsnotater.',
+      'sec-ideas': 'Idémyldre konsepter, utkast, designinspirasjon og kreative prosjekter når inspirasjonen kommer.',
+      'sec-work': 'Organiser møtenotater, prosjektplaner, gjøremål, dokumentasjon og arbeidsreferanser.',
+      'sec-recipes': 'Lagre favorittoppskrifter, ingredienslister, fremgangsmåter og kjøkkeneksperimenter.',
+      'sec-travel': 'Planlegg kommende reiser, reiseruter, pakkelister, bestillinger og reiseminner.',
+    },
+    customDesc: (name) => `Bruk ${name} til å organisere notater, sjekklister, bilder og lenker på ett sted.`,
+    closeSidebar: 'Lukk sidefelt', hideSidebar: 'Skjul sidefelt', showSidebar: 'Vis sidefelt', toggleSidebar: 'Veksle sidefelt',
+    addSectionTitle: 'Legg til seksjon', newBtn: 'Ny', sectionNamePlaceholder: 'Seksjonsnavn...', saveSectionTitle: 'Lagre seksjon', cancelEditTitle: 'Avbryt redigering',
+    deleteNoteTitle: 'Slett notat', cancelChangesTitle: 'Avbryt endringer', cancelBtn: 'Avbryt', saveNoteTitle: 'Lagre notat', saveBtn: 'Lagre', savedBtn: 'Lagret',
+    chooseNoteHint: 'Velg et notat fra menyen eller nedenfor',
+    deleteNoteModalTitle: 'Slette notat?', deleteNoteConfirmPrefix: 'Er du sikker på at du vil slette', deleteNoteConfirmSuffix: '? Denne handlingen kan ikke angres.',
+    deleteModalCancel: 'Avbryt', deleteModalConfirm: 'Slett',
+  },
+  Thai: {
+    sections: { 'sec-quick': 'บันทึกด่วน', 'sec-personal': 'ส่วนตัว', 'sec-ideas': 'สร้างสรรค์', 'sec-work': 'งาน', 'sec-recipes': 'สูตรอาหาร', 'sec-travel': 'ท่องเที่ยว' },
+    descs: {
+      'sec-quick': 'จดบันทึกความคิดด่วน การแจ้งเตือนรายวัน ข้อความสั้นๆ และไอเดียฉับพลันได้ทันที',
+      'sec-personal': 'จัดระเบียบบันทึกส่วนตัว ไดอารี่ เป้าหมาย บันทึกสุขภาพ และเรื่องราวประจำวัน',
+      'sec-ideas': 'ระดมความคิด โครงเรื่อง แรงบันดาลใจด้านการออกแบบ และโปรเจกต์สร้างสรรค์ต่างๆ',
+      'sec-work': 'จัดระเบียบบันทึกการประชุม แผนโปรเจกต์ รายการสิ่งที่ต้องทำ และเอกสารอ้างอิง',
+      'sec-recipes': 'บันทึกสูตรอาหารโปรด รายการวัตถุดิบ ขั้นตอนการทำอาหาร และไอเดียในครัว',
+      'sec-travel': 'วางแผนการเดินทาง กำหนดการ รายการสัมภาระ การจอง และความทรงจำระหว่างทริป',
+    },
+    customDesc: (name) => `ใช้ ${name} เพื่อจัดระเบียบบันทึก รายการตรวจสอบ รูปภาพ และลิงก์อ้างอิงไว้ในที่เดียว`,
+    closeSidebar: 'ปิดแถบด้านข้าง', hideSidebar: 'ซ่อนแถบด้านข้าง', showSidebar: 'แสดงแถบด้านข้าง', toggleSidebar: 'สลับแถบด้านข้าง',
+    addSectionTitle: 'เพิ่มหมวดหมู่', newBtn: 'ใหม่', sectionNamePlaceholder: 'ชื่อหมวดหมู่...', saveSectionTitle: 'บันทึกหมวดหมู่', cancelEditTitle: 'ยกเลิกการแก้ไข',
+    deleteNoteTitle: 'ลบบันทึก', cancelChangesTitle: 'ยกเลิกการเปลี่ยนแปลง', cancelBtn: 'ยกเลิก', saveNoteTitle: 'บันทึกโน้ต', saveBtn: 'บันทึก', savedBtn: 'บันทึกแล้ว',
+    chooseNoteHint: 'เลือกบันทึกจากเมนูหรือเลือกด้านล่าง',
+    deleteNoteModalTitle: 'ลบบันทึกหรือไม่?', deleteNoteConfirmPrefix: 'คุณแน่ใจหรือไม่ว่าต้องการลบ', deleteNoteConfirmSuffix: '? การดำเนินการนี้ไม่สามารถย้อนกลับได้',
+    deleteModalCancel: 'ยกเลิก', deleteModalConfirm: 'ลบ',
+  },
+  Portuguese: {
+    sections: { 'sec-quick': 'Notas rápidas', 'sec-personal': 'Pessoal', 'sec-ideas': 'Criativo', 'sec-work': 'Trabalho', 'sec-recipes': 'Receitas', 'sec-travel': 'Viagens' },
+    descs: {
+      'sec-quick': 'Registe pensamentos rápidos, lembretes diários, excertos curtos e ideias súbitas de imediato.',
+      'sec-personal': 'Mantenha organizadas reflexões pessoais, entradas de diário, objetivos e notas do dia a dia.',
+      'sec-ideas': 'Explore conceitos, rascunhos de histórias, inspiração de design e projetos criativos.',
+      'sec-work': 'Organize atas de reuniões, planos de projeto, tarefas, documentação e referências.',
+      'sec-recipes': 'Guarde receitas favoritas, listas de ingredientes, passos culinários e ideias de refeições.',
+      'sec-travel': 'Planeie próximas viagens, itinerários, listas de bagagem, reservas e memórias.',
+    },
+    customDesc: (name) => `Use ${name} para organizar notas, listas, fotos e ligações de referência num só lugar.`,
+    closeSidebar: 'Fechar barra lateral', hideSidebar: 'Ocultar barra lateral', showSidebar: 'Mostrar barra lateral', toggleSidebar: 'Alternar barra lateral',
+    addSectionTitle: 'Adicionar secção', newBtn: 'Nova', sectionNamePlaceholder: 'Nome da secção...', saveSectionTitle: 'Guardar secção', cancelEditTitle: 'Cancelar edição',
+    deleteNoteTitle: 'Eliminar nota', cancelChangesTitle: 'Cancelar alterações', cancelBtn: 'Cancelar', saveNoteTitle: 'Guardar nota', saveBtn: 'Guardar', savedBtn: 'Guardado',
+    chooseNoteHint: 'Selecione uma nota no menu ou escolha abaixo',
+    deleteNoteModalTitle: 'Eliminar nota?', deleteNoteConfirmPrefix: 'Tem a certeza de que deseja eliminar', deleteNoteConfirmSuffix: '? Esta ação não pode ser anulada.',
+    deleteModalCancel: 'Cancelar', deleteModalConfirm: 'Eliminar',
+  },
+  Vietnamese: {
+    sections: { 'sec-quick': 'Ghi chú nhanh', 'sec-personal': 'Cá nhân', 'sec-ideas': 'Sáng tạo', 'sec-work': 'Công việc', 'sec-recipes': 'Công thức', 'sec-travel': 'Du lịch' },
+    descs: {
+      'sec-quick': 'Ghi lại ngay các suy nghĩ nhanh, lời nhắc hằng ngày, đoạn ngắn và ý tưởng bất chợt.',
+      'sec-personal': 'Lưu giữ suy ngẫm cá nhân, nhật ký, mục tiêu riêng, nhật ký sức khỏe và ghi chú đời sống.',
+      'sec-ideas': 'Phác thảo ý tưởng, bản nháp câu chuyện, cảm hứng thiết kế và các dự án sáng tạo.',
+      'sec-work': 'Sắp xếp biên bản họp, kế hoạch dự án, việc cần làm, tài liệu và tham khảo công việc.',
+      'sec-recipes': 'Lưu công thức nấu ăn yêu thích, danh sách nguyên liệu, các bước chế biến và thử nghiệm bếp núc.',
+      'sec-travel': 'Lên kế hoạch chuyến đi, lịch trình, danh sách hành lý, đặt chỗ và kỷ niệm hành trình.',
+    },
+    customDesc: (name) => `Dùng ${name} để sắp xếp ghi chú, danh sách, ảnh và liên kết tham khảo tại một nơi.`,
+    closeSidebar: 'Đóng thanh bên', hideSidebar: 'Ẩn thanh bên', showSidebar: 'Hiện thanh bên', toggleSidebar: 'Bật/tắt thanh bên',
+    addSectionTitle: 'Thêm mục', newBtn: 'Mới', sectionNamePlaceholder: 'Tên mục...', saveSectionTitle: 'Lưu mục', cancelEditTitle: 'Hủy chỉnh sửa',
+    deleteNoteTitle: 'Xóa ghi chú', cancelChangesTitle: 'Hủy thay đổi', cancelBtn: 'Hủy', saveNoteTitle: 'Lưu ghi chú', saveBtn: 'Lưu', savedBtn: 'Đã lưu',
+    chooseNoteHint: 'Chọn một ghi chú từ menu hoặc bên dưới',
+    deleteNoteModalTitle: 'Xóa ghi chú?', deleteNoteConfirmPrefix: 'Bạn có chắc chắn muốn xóa', deleteNoteConfirmSuffix: '? Hành động này không thể hoàn tác.',
+    deleteModalCancel: 'Hủy', deleteModalConfirm: 'Xóa',
+  },
+  Polish: {
+    sections: { 'sec-quick': 'Szybkie notatki', 'sec-personal': 'Osobiste', 'sec-ideas': 'Kreatywne', 'sec-work': 'Praca', 'sec-recipes': 'Przepisy', 'sec-travel': 'Podróże' },
+    descs: {
+      'sec-quick': 'Zapisuj od razu szybkie myśli, codzienne przypomnienia, krótkie fragmenty i nagłe pomysły.',
+      'sec-personal': 'Porządkuj osobiste przemyślenia, wpisy do dziennika, prywatne cele i codzienne notatki.',
+      'sec-ideas': 'Zbieraj koncepcje, szkice opowiadań, inspiracje projektowe i twórcze projekty.',
+      'sec-work': 'Organizuj notatki ze spotkań, plany projektów, zadania, dokumentację i materiały robocze.',
+      'sec-recipes': 'Zapisuj ulubione przepisy, listy składników, kroki przygotowania i kuchenne pomysły.',
+      'sec-travel': 'Planuj nadchodzące wyjazdy, trasy, listy pakowania, rezerwacje i wspomnienia.',
+    },
+    customDesc: (name) => `Użyj sekcji ${name}, aby uporządkować notatki, listy, zdjęcia i linki w jednym miejscu.`,
+    closeSidebar: 'Zamknij panel boczny', hideSidebar: 'Ukryj panel boczny', showSidebar: 'Pokaż panel boczny', toggleSidebar: 'Przełącz panel boczny',
+    addSectionTitle: 'Dodaj sekcję', newBtn: 'Nowa', sectionNamePlaceholder: 'Nazwa sekcji...', saveSectionTitle: 'Zapisz sekcję', cancelEditTitle: 'Anuluj edycję',
+    deleteNoteTitle: 'Usuń notatkę', cancelChangesTitle: 'Odrzuć zmiany', cancelBtn: 'Anuluj', saveNoteTitle: 'Zapisz notatkę', saveBtn: 'Zapisz', savedBtn: 'Zapisano',
+    chooseNoteHint: 'Wybierz notatkę z menu lub poniżej',
+    deleteNoteModalTitle: 'Usunąć notatkę?', deleteNoteConfirmPrefix: 'Czy na pewno chcesz usunąć', deleteNoteConfirmSuffix: '? Tej operacji nie można cofnąć.',
+    deleteModalCancel: 'Anuluj', deleteModalConfirm: 'Usuń',
+  },
+  Danish: {
+    sections: { 'sec-quick': 'Hurtignoter', 'sec-personal': 'Personlig', 'sec-ideas': 'Kreativ', 'sec-work': 'Arbejde', 'sec-recipes': 'Opskrifter', 'sec-travel': 'Rejser' },
+    descs: {
+      'sec-quick': 'Fang hurtige tanker, daglige påmindelser, korte uddrag og pludselige idéer med det samme.',
+      'sec-personal': 'Hold styr på personlige refleksioner, dagbogsindlæg, mål, sundhedslogs og hverdagsnoter.',
+      'sec-ideas': 'Brainstorm koncepter, historieudkast, designinspiration og kreative projekter.',
+      'sec-work': 'Organiser mødenoter, projektplaner, handlingspunkter, dokumentation og arbejdsreferencer.',
+      'sec-recipes': 'Gem yndlingsopskrifter, ingredienslister, tilberedningstrin og køkkeneksperimenter.',
+      'sec-travel': 'Planlæg kommende rejser, rejseplaner, pakkelister, bookinger og rejseminder.',
+    },
+    customDesc: (name) => `Brug ${name} til at organisere noter, tjeklister, billeder og referencelinks ét sted.`,
+    closeSidebar: 'Luk sidebjælke', hideSidebar: 'Skjul sidebjælke', showSidebar: 'Vis sidebjælke', toggleSidebar: 'Skift sidebjælke',
+    addSectionTitle: 'Tilføj sektion', newBtn: 'Ny', sectionNamePlaceholder: 'Sektionsnavn...', saveSectionTitle: 'Gem sektion', cancelEditTitle: 'Annuller redigering',
+    deleteNoteTitle: 'Slet note', cancelChangesTitle: 'Fortryd ændringer', cancelBtn: 'Annuller', saveNoteTitle: 'Gem note', saveBtn: 'Gem', savedBtn: 'Gemt',
+    chooseNoteHint: 'Vælg en note fra menuen eller nedenfor',
+    deleteNoteModalTitle: 'Slet note?', deleteNoteConfirmPrefix: 'Er du sikker på, at du vil slette', deleteNoteConfirmSuffix: '? Denne handling kan ikke fortrydes.',
+    deleteModalCancel: 'Annuller', deleteModalConfirm: 'Slet',
+  },
+  Turkish: {
+    sections: { 'sec-quick': 'Hızlı Notlar', 'sec-personal': 'Kişisel', 'sec-ideas': 'Yaratıcı', 'sec-work': 'İş', 'sec-recipes': 'Tarifler', 'sec-travel': 'Seyahat' },
+    descs: {
+      'sec-quick': 'Anlık düşünceleri, günlük hatırlatıcıları, kısa notları ve ani fikirleri hemen kaydedin.',
+      'sec-personal': 'Kişisel düşünceleri, günlük yazılarını, hedefleri, sağlık kayıtlarını ve günlük notları düzenleyin.',
+      'sec-ideas': 'İlham geldiğinde fikir fırtınası yapın, taslaklar oluşturun ve yaratıcı projeleri toplayın.',
+      'sec-work': 'Toplantı notlarını, proje planlarını, yapılacakları, belgeleri ve iş kaynaklarını düzenleyin.',
+      'sec-recipes': 'Favori tarifleri, malzeme listelerini, pişirme adımlarını ve mutfak fikirlerini saklayın.',
+      'sec-travel': 'Yaklaşan seyahatleri, rotaları, bavul listelerini, rezervasyonları ve anıları planlayın.',
+    },
+    customDesc: (name) => `Notlarınızı, listelerinizi, fotoğraflarınızı ve bağlantılarınızı tek yerde düzenlemek için ${name} bölümünü kullanın.`,
+    closeSidebar: 'Kenar çubuğunu kapat', hideSidebar: 'Kenar çubuğunu gizle', showSidebar: 'Kenar çubuğunu göster', toggleSidebar: 'Kenar çubuğunu aç/kapat',
+    addSectionTitle: 'Bölüm Ekle', newBtn: 'Yeni', sectionNamePlaceholder: 'Bölüm adı...', saveSectionTitle: 'Bölümü kaydet', cancelEditTitle: 'Düzenlemeyi iptal et',
+    deleteNoteTitle: 'Notu sil', cancelChangesTitle: 'Değişiklikleri iptal et', cancelBtn: 'İptal', saveNoteTitle: 'Notu kaydet', saveBtn: 'Kaydet', savedBtn: 'Kaydedildi',
+    chooseNoteHint: 'Menüden veya aşağıdan bir not seçin',
+    deleteNoteModalTitle: 'Not Silinsin mi?', deleteNoteConfirmPrefix: 'Şunu silmek istediğinizden emin misiniz:', deleteNoteConfirmSuffix: '? Bu işlem geri alınamaz.',
+    deleteModalCancel: 'İptal', deleteModalConfirm: 'Sil',
+  },
+  Greek: {
+    sections: { 'sec-quick': 'Γρήγορες Σημειώσεις', 'sec-personal': 'Προσωπικά', 'sec-ideas': 'Δημιουργικά', 'sec-work': 'Εργασία', 'sec-recipes': 'Συνταγές', 'sec-travel': 'Ταξίδια' },
+    descs: {
+      'sec-quick': 'Καταγράψτε γρήγορες σκέψεις, καθημερινές υπενθυμίσεις, σύντομα αποσπάσματα και ξαφνικές ιδέες.',
+      'sec-personal': 'Οργανώστε προσωπικές σκέψεις, ημερολόγιο, στόχους, καταγραφές υγείας και καθημερινές σημειώσεις.',
+      'sec-ideas': 'Συγκεντρώστε ιδέες, προσχέδια ιστοριών, έμπνευση σχεδιασμού και δημιουργικά έργα.',
+      'sec-work': 'Οργανώστε πρακτικά συναντήσεων, πλάνα έργων, εκκρεμότητες, έγγραφα και επαγγελματικές αναφορές.',
+      'sec-recipes': 'Αποθηκεύστε αγαπημένες συνταγές, λίστες υλικών, βήματα μαγειρικής και ιδέες γευμάτων.',
+      'sec-travel': 'Σχεδιάστε επερχόμενα ταξίδια, διαδρομές, λίστες αποσκευών, κρατήσεις και ταξιδιωτικές αναμνήσεις.',
+    },
+    customDesc: (name) => `Χρησιμοποιήστε την ενότητα ${name} για να οργανώσετε σημειώσεις, λίστες, φωτογραφίες και συνδέσμους.`,
+    closeSidebar: 'Κλείσιμο πλευρικής μπάρας', hideSidebar: 'Απόκρυψη πλευρικής μπάρας', showSidebar: 'Εμφάνιση πλευρικής μπάρας', toggleSidebar: 'Εναλλαγή πλευρικής μπάρας',
+    addSectionTitle: 'Προσθήκη Ενότητας', newBtn: 'Νέα', sectionNamePlaceholder: 'Όνομα ενότητας...', saveSectionTitle: 'Αποθήκευση ενότητας', cancelEditTitle: 'Ακύρωση επεξεργασίας',
+    deleteNoteTitle: 'Διαγραφή σημείωσης', cancelChangesTitle: 'Ακύρωση αλλαγών', cancelBtn: 'Ακύρωση', saveNoteTitle: 'Αποθήκευση σημείωσης', saveBtn: 'Αποθήκευση', savedBtn: 'Αποθηκεύτηκε',
+    chooseNoteHint: 'Επιλέξτε μια σημείωση από το μενού ή παρακάτω',
+    deleteNoteModalTitle: 'Διαγραφή σημείωσης;', deleteNoteConfirmPrefix: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε', deleteNoteConfirmSuffix: '; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
+    deleteModalCancel: 'Ακύρωση', deleteModalConfirm: 'Διαγραφή',
+  },
+};
+
+const getSectionDisplayName = (sec: Section | undefined, extra: NotesExtraLocale) => {
+  if (!sec) return extra.sections['sec-quick'] || 'Quick Notes';
+  if (isDefaultSection(sec)) {
+    const canonicalId = DEFAULT_SECTION_IDS.has(sec.id)
+      ? sec.id
+      : LEGACY_DEFAULT_NAME_TO_ID[sec.name.trim().toLowerCase()];
+    if (canonicalId && extra.sections[canonicalId]) {
+      return extra.sections[canonicalId];
+    }
+  }
+  return sec.name;
+};
+
+const getSectionLandingMeta = (sec: Section | undefined, extra: NotesExtraLocale) => {
+  const displayName = getSectionDisplayName(sec, extra);
   switch (sec?.id) {
     case 'sec-quick':
-      return {
-        Icon: Zap,
-        description: 'Capture quick thoughts, daily reminders, short snippets, and sudden ideas you want to jot down right away.'
-      };
+      return { Icon: Zap, description: extra.descs['sec-quick'] };
     case 'sec-personal':
-      return {
-        Icon: User,
-        description: 'Keep personal reflections, journal entries, private goals, health logs, and everyday life notes organized.'
-      };
+      return { Icon: User, description: extra.descs['sec-personal'] };
     case 'sec-ideas':
-      return {
-        Icon: Sparkles,
-        description: 'Brainstorm concepts, story drafts, design inspiration, and creative projects whenever sparks strike.'
-      };
+      return { Icon: Sparkles, description: extra.descs['sec-ideas'] };
     case 'sec-work':
-      return {
-        Icon: Briefcase,
-        description: 'Organize meeting notes, project plans, action items, documentation, and work-related references.'
-      };
+      return { Icon: Briefcase, description: extra.descs['sec-work'] };
     case 'sec-recipes':
-      return {
-        Icon: UtensilsCrossed,
-        description: 'Save favorite recipes, ingredient lists, cooking steps, meal prep ideas, and kitchen experiments.'
-      };
+      return { Icon: UtensilsCrossed, description: extra.descs['sec-recipes'] };
     case 'sec-travel':
-      return {
-        Icon: Plane,
-        description: 'Plan upcoming trips, itineraries, packing checklists, booking details, and memorable travel notes.'
-      };
+      return { Icon: Plane, description: extra.descs['sec-travel'] };
     default:
-      return {
-        Icon: FolderOpen,
-        description: `Use ${sec?.name || 'this section'} to organize your notes, checklists, photos, and reference links in one place.`
-      };
+      return { Icon: FolderOpen, description: extra.customDesc(displayName) };
   }
 };
 
@@ -600,6 +1063,8 @@ const NOTES_T: Record<string, Record<string, string>> = {
 
 export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
   const dictionary = NOTES_T[language] || NOTES_T['English'];
+  const extraT = NOTES_EXTRA_T[language] || NOTES_EXTRA_T['English'];
+  const locale = NOTES_LOCALES[language] || 'en-US';
 
   const [sections, setSections] = useLocalStorage<Section[]>('GeekTabs-one-sections', DEFAULT_SECTIONS);
   const [notes, setNotes] = useLocalStorage<Note[]>('GeekTabs-one-notes', []);
@@ -870,11 +1335,12 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
 
   const formatDate = (ts: number) => {
     const d = new Date(ts);
-    return `${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} at ${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    return d.toLocaleString(locale, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   };
 
   const currentSectionInfo = sections.find(s => s.id === currentSectionId);
-  const currentLandingMeta = getSectionLandingMeta(currentSectionInfo);
+  const currentSectionTitle = getSectionDisplayName(currentSectionInfo, extraT);
+  const currentLandingMeta = getSectionLandingMeta(currentSectionInfo, extraT);
   const SectionLandingIcon = currentLandingMeta.Icon;
 
   return (
@@ -917,7 +1383,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
             type="button"
             onClick={() => setMobileSidebarOpen(false)}
             className="md:hidden p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
-            title="Close sidebar"
+            title={extraT.closeSidebar}
           >
             <X size={18} />
           </button>
@@ -933,10 +1399,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               type="button"
               onClick={() => setIsCreatingSection(!isCreatingSection)}
               className="px-2 md:px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 hover:bg-[#4f46e5]/10 text-slate-600 dark:text-white/70 hover:text-[#4f46e5] border border-black/5 dark:border-white/10 cursor-pointer text-[9.5px] md:text-[10px] font-bold flex items-center gap-1 transition-all shadow-xs"
-              title="Add Section"
+              title={extraT.addSectionTitle}
             >
               <Plus size={10} strokeWidth={2.5} className="md:w-[11px] md:h-[11px]" />
-              <span>New</span>
+              <span>{extraT.newBtn}</span>
             </button>
           </div>
 
@@ -955,7 +1421,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   type="text"
                   value={newSectionName}
                   onChange={(e) => setNewSectionName(e.target.value)}
-                  placeholder="Section name..."
+                  placeholder={extraT.sectionNamePlaceholder}
                   className="w-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-xl px-3 py-2 lg:py-1.5 text-base sm:text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 focus:border-[#4f46e5] text-slate-900 dark:text-white"
                 />
                 <div className="flex gap-1.5 justify-end">
@@ -1008,13 +1474,13 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                         }
                       }}
                       className="flex-1 min-w-0 bg-white dark:bg-black/30 border border-black/10 dark:border-white/15 rounded-lg px-2 py-1.5 lg:py-1 text-base sm:text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#4f46e5]/30 text-slate-900 dark:text-white"
-                      placeholder="Section name..."
+                      placeholder={extraT.sectionNamePlaceholder}
                     />
                     <button
                       type="submit"
                       disabled={!editingSectionName.trim()}
                       className="p-1 rounded-lg bg-[#4f46e5] text-white hover:bg-[#4338ca] disabled:opacity-45 cursor-pointer shrink-0"
-                      title="Save section"
+                      title={extraT.saveSectionTitle}
                     >
                       <Check size={12} style={{ stroke: '#ffffff', color: '#ffffff' }} />
                     </button>
@@ -1025,13 +1491,15 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                         setEditingSectionName('');
                       }}
                       className="p-1 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 text-slate-500 cursor-pointer shrink-0"
-                      title="Cancel edit"
+                      title={extraT.cancelEditTitle}
                     >
                       <X size={12} />
                     </button>
                   </form>
                 );
               }
+
+              const secLabel = getSectionDisplayName(sec, extraT);
 
               return (
                 <div
@@ -1054,11 +1522,11 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                       ? 'bg-[#4f46e5]/15 text-[#4f46e5] dark:text-indigo-400 border-[#4f46e5]/30 shadow-2xs'
                       : 'bg-black/5 dark:bg-white/5 border-transparent text-slate-600 dark:text-white/60 hover:text-slate-900 hover:dark:text-white hover:bg-black/10 dark:hover:bg-white/10'
                   }`}
-                  title={sec.name}
+                  title={secLabel}
                 >
                   <div className="flex items-center gap-1.5 md:gap-2 min-w-0 flex-1">
                     <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
-                    <span className="truncate leading-tight">{sec.name}</span>
+                    <span className="truncate leading-tight">{secLabel}</span>
                   </div>
                   {isCustomSection && (
                     <button
@@ -1069,7 +1537,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                       }}
                       className="p-1 md:p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/15 opacity-80 lg:opacity-70 hover:opacity-100 cursor-pointer transition-opacity shrink-0"
                       title={dictionary.manageSectionTitle}
-                      aria-label={`${dictionary.manageSectionTitle}: ${sec.name}`}
+                      aria-label={`${dictionary.manageSectionTitle}: ${secLabel}`}
                     >
                       <X size={11} />
                     </button>
@@ -1117,7 +1585,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                         setNoteToDelete(note);
                       }}
                       className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 p-2 lg:p-1 hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded transition-all shrink-0 cursor-pointer"
-                      title="Delete note"
+                      title={extraT.deleteNoteTitle}
                     >
                       <Trash2 size={12} />
                     </button>
@@ -1137,7 +1605,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
             {notesBySection.length} {dictionary.sheetsList}
           </span>
           <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5">
-            {currentSectionInfo?.name}
+            {currentSectionTitle}
           </span>
         </div>
       </aside>
@@ -1159,8 +1627,8 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                 }
               }}
               className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
-              title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
-              aria-label="Toggle sidebar"
+              title={sidebarOpen ? extraT.hideSidebar : extraT.showSidebar}
+              aria-label={extraT.toggleSidebar}
             >
               {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeft size={20} />}
             </button>
@@ -1169,7 +1637,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
           {/* Centered section title */}
           <div className="flex items-center justify-center min-w-0 px-2">
             <h2 className="text-sm font-bold text-slate-900 tracking-tight truncate">
-              {currentSectionInfo?.name || 'Quick Notes'}
+              {currentSectionTitle}
             </h2>
           </div>
 
@@ -1200,6 +1668,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   key={`${activeNote.id}-${editorResetKey}`}
                   content={activeNote.content}
                   onChange={(content) => updateNote(activeNote.id, { content })}
+                  language={language}
                   statusActions={
                     <>
                       <span className="hidden lg:inline text-[11px] font-mono opacity-60 text-slate-700 mr-1">
@@ -1209,10 +1678,10 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                         type="button"
                         onClick={() => handleCancelNote(activeNote.id)}
                         className="px-3 py-1.5 min-h-[34px] lg:min-h-0 flex items-center gap-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border bg-slate-100 hover:bg-slate-200 border-black/10 text-slate-700"
-                        title="Cancel changes"
+                        title={extraT.cancelChangesTitle}
                       >
                         <X size={14} />
-                        <span>Cancel</span>
+                        <span>{extraT.cancelBtn}</span>
                       </button>
                       <button
                         type="button"
@@ -1222,17 +1691,17 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                             ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
                             : 'bg-indigo-600 hover:bg-indigo-700 border-indigo-600 text-white shadow-xs'
                         }`}
-                        title="Save note"
+                        title={extraT.saveNoteTitle}
                       >
                         {savedNoticeId === activeNote.id ? (
                           <>
                             <Check size={14} />
-                            <span>Saved</span>
+                            <span>{extraT.savedBtn}</span>
                           </>
                         ) : (
                           <>
                             <Save size={14} />
-                            <span>Save</span>
+                            <span>{extraT.saveBtn}</span>
                           </>
                         )}
                       </button>
@@ -1243,7 +1712,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                           setNoteToDelete(activeNote);
                         }}
                         className="p-2 lg:p-1.5 min-w-[36px] min-h-[36px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-xl transition-colors cursor-pointer"
-                        title="Delete note"
+                        title={extraT.deleteNoteTitle}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -1264,7 +1733,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                 <SectionLandingIcon size={30} strokeWidth={1.75} />
               </div>
               <h3 className="text-lg sm:text-xl font-black tracking-tight text-slate-900 mb-2">
-                {currentSectionInfo?.name || 'Quick Notes'}
+                {currentSectionTitle}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 max-w-md mb-5 leading-relaxed">
                 {currentLandingMeta.description}
@@ -1273,7 +1742,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
               {notesBySection.length > 0 ? (
                 <div className="w-full max-w-lg mb-6">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-3">
-                    Select a note from the menu or choose below ({notesBySection.length})
+                    {extraT.chooseNoteHint} ({notesBySection.length})
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-left">
                     {notesBySection.map((note) => (
@@ -1340,7 +1809,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   style={{ backgroundColor: sectionMenuTarget.color }}
                 />
                 <span className="text-xs font-bold word-color truncate">
-                  {sectionMenuTarget.name}
+                  {getSectionDisplayName(sectionMenuTarget, extraT)}
                 </span>
               </div>
               <h2 className="text-lg sm:text-xl font-bold word-color mb-2">
@@ -1408,14 +1877,14 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                 <Trash2 size={22} />
               </div>
               <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
-                Delete Note?
+                {extraT.deleteNoteModalTitle}
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-6 font-medium">
-                Are you sure you want to delete{' '}
+                {extraT.deleteNoteConfirmPrefix}{' '}
                 <span className="font-bold text-slate-900 dark:text-white">
                   &ldquo;{noteToDelete.title.trim() || dictionary.untitledPage}&rdquo;
                 </span>
-                ? This action cannot be undone.
+                {extraT.deleteNoteConfirmSuffix}
               </p>
 
               <div className="flex gap-2.5">
@@ -1424,7 +1893,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   onClick={() => setNoteToDelete(null)}
                   className="flex-1 px-4 py-3 min-h-[44px] bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white rounded-2xl hover:bg-slate-200 dark:hover:bg-white/20 transition-all font-bold text-sm cursor-pointer"
                 >
-                  Cancel
+                  {extraT.deleteModalCancel}
                 </button>
                 <button
                   type="button"
@@ -1436,7 +1905,7 @@ export default function NotesTab({ language = 'English' }: NotesTabProps = {}) {
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] bg-red-500 text-white rounded-2xl hover:bg-red-600 transition-all font-bold text-sm shadow-lg shadow-red-500/20 cursor-pointer"
                 >
                   <Trash2 size={15} />
-                  <span>Delete</span>
+                  <span>{extraT.deleteModalConfirm}</span>
                 </button>
               </div>
             </motion.div>

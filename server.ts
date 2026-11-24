@@ -319,20 +319,158 @@ async function startServer() {
     }
   });
 
-  const injectShareMetaUrls = (html: string, origin: string) => {
-    if (!origin) return html;
-    const cleanOrigin = origin.replace(/\/+$/, "");
-    let updated = html
-      .replaceAll('content="/og-share.png"', `content="${cleanOrigin}/og-share.png"`)
-      .replaceAll('href="/og-share.png"', `href="${cleanOrigin}/og-share.png"`);
-    if (!updated.includes('property="og:url"')) {
-      const secureImageTag = cleanOrigin.startsWith("https://")
-        ? `\n    <meta property="og:image:secure_url" content="${cleanOrigin}/og-share.png" />`
-        : "";
-      updated = updated.replace(
-        "</head>",
-        `    <meta property="og:url" content="${cleanOrigin}/" />${secureImageTag}\n    <link rel="canonical" href="${cleanOrigin}/" />\n  </head>`
-      );
+  const ROUTE_META: Record<string, { title: string; description: string }> = {
+    "/": {
+      title: "GeekTabs Dashboard",
+      description:
+        "A minimalist, aesthetic productivity dashboard with immersive wallpapers, smart widgets, and integrated search.",
+    },
+    "/bookmarks": {
+      title: "Bookmarks & Quick Links – GeekTabs",
+      description:
+        "Organize favorite websites, office suites, AI tools, and personal shortcuts into categorized visual bookmarks.",
+    },
+    "/calendar": {
+      title: "Calendar & Regional Holidays – GeekTabs",
+      description:
+        "Plan events, timed reminders, and track multi-country public holidays in a clean monthly calendar.",
+    },
+    "/calculator": {
+      title: "Calculator & Live Currency Converter – GeekTabs",
+      description:
+        "Perform scientific calculations and convert currencies using live market exchange rates or custom manual rates.",
+    },
+    "/todo": {
+      title: "To-Do List – GeekTabs",
+      description: "Manage daily tasks, priorities, and checklists inside your GeekTabs workspace.",
+    },
+    "/notes": {
+      title: "Notes – GeekTabs",
+      description: "Write and organize rich formatted notes across customizable sections in GeekTabs.",
+    },
+    "/ip": {
+      title: "IP Address & Connection Diagnostics – GeekTabs",
+      description:
+        "Inspect your public IPv4 and IPv6 addresses, ISP geolocation, ASN details, and network security diagnostics.",
+    },
+    "/speed": {
+      title: "Broadband Speed Test – GeekTabs",
+      description:
+        "Measure real-time download speed, upload bandwidth, ping latency, jitter, and network quality scores.",
+    },
+    "/settings": {
+      title: "Settings – GeekTabs",
+      description: "Customize GeekTabs themes, wallpapers, card styles, language, and data backups.",
+    },
+    "/privacy": {
+      title: "Privacy Policy – GeekTabs",
+      description:
+        "Learn how GeekTabs handles local browser storage, utility network requests, cookies, and Google AdSense disclosures.",
+    },
+    "/terms": {
+      title: "Terms of Service – GeekTabs",
+      description:
+        "Read the GeekTabs Terms of Service covering acceptable use, local data backups, and third-party links.",
+    },
+    "/about": {
+      title: "About GeekTabs – Minimalist Productivity Workspace",
+      description:
+        "Discover GeekTabs: an all-in-one productivity dashboard featuring bookmarks, calendar, calculator, notes, and network tools.",
+    },
+    "/contact": {
+      title: "Contact Us – GeekTabs",
+      description:
+        "Get in touch with the GeekTabs team for support, feedback, bug reports, or privacy inquiries.",
+    },
+  };
+
+  const PUBLIC_SITEMAP_ROUTES = [
+    "/",
+    "/bookmarks",
+    "/calendar",
+    "/calculator",
+    "/ip",
+    "/speed",
+    "/about",
+    "/privacy",
+    "/terms",
+    "/contact",
+  ];
+
+  const resolveRequestOrigin = (req: express.Request) => {
+    const forwardedProto =
+      typeof req.headers["x-forwarded-proto"] === "string"
+        ? req.headers["x-forwarded-proto"].split(",")[0].trim()
+        : req.protocol;
+    const host = req.get("host") || "";
+    const isLocalHost = /^localhost(?::|$)|^127\.0\.0\.1(?::|$)/.test(host);
+    const proto = !isLocalHost && forwardedProto === "http" ? "https" : forwardedProto;
+    const requestOrigin = host ? `${proto}://${host}` : "";
+    const publicConfiguredUrl =
+      configuredAppUrl && !isPrivateDevOrigin(configuredAppUrl) ? configuredAppUrl : "";
+    return (
+      (requestOrigin && !isPrivateDevOrigin(requestOrigin) ? requestOrigin : "") ||
+      publicConfiguredUrl ||
+      requestOrigin
+    );
+  };
+
+  app.get("/robots.txt", (req, res) => {
+    const origin = resolveRequestOrigin(req).replace(/\/+$/, "");
+    const sitemapLine = origin ? `Sitemap: ${origin}/sitemap.xml` : "Sitemap: /sitemap.xml";
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.send(
+      `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /todo\nDisallow: /notes\nDisallow: /settings\n\n${sitemapLine}\n`
+    );
+  });
+
+  app.get("/sitemap.xml", (req, res) => {
+    const origin = resolveRequestOrigin(req).replace(/\/+$/, "");
+    const today = new Date().toISOString().split("T")[0];
+    const urls = PUBLIC_SITEMAP_ROUTES.map((routePath) => {
+      const loc = origin ? `${origin}${routePath}` : routePath;
+      const priority = routePath === "/" ? "1.0" : ["/about", "/privacy", "/terms", "/contact"].includes(routePath) ? "0.6" : "0.8";
+      return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    }).join("\n");
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.send(
+      `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+    );
+  });
+
+  const escapeHtmlAttr = (val: string) =>
+    val.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  const injectShareMetaUrls = (html: string, origin: string, reqPath = "/") => {
+    let updated = html;
+    const normalizedPath = reqPath.replace(/\/+$/, "") || "/";
+    const routeMeta = ROUTE_META[normalizedPath];
+    if (routeMeta) {
+      updated = updated
+        .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtmlAttr(routeMeta.title)}</title>`)
+        .replace(
+          /<meta\s+name=["']description["']\s+content=["'][^"']*["']\s*\/?>/i,
+          `<meta name="description" content="${escapeHtmlAttr(routeMeta.description)}" />`
+        );
+    }
+
+    if (origin) {
+      const cleanOrigin = origin.replace(/\/+$/, "");
+      const canonicalUrl = `${cleanOrigin}${normalizedPath}`;
+      updated = updated
+        .replaceAll('content="/og-share.png"', `content="${cleanOrigin}/og-share.png"`)
+        .replaceAll('href="/og-share.png"', `href="${cleanOrigin}/og-share.png"`);
+      if (!updated.includes('property="og:url"')) {
+        const secureImageTag = cleanOrigin.startsWith("https://")
+          ? `\n    <meta property="og:image:secure_url" content="${cleanOrigin}/og-share.png" />`
+          : "";
+        updated = updated.replace(
+          "</head>",
+          `    <meta property="og:url" content="${canonicalUrl}" />${secureImageTag}\n    <link rel="canonical" href="${canonicalUrl}" />\n  </head>`
+        );
+      }
     }
     return updated;
   };
@@ -367,10 +505,18 @@ async function startServer() {
         },
         {
           name: "inject-absolute-og-urls",
-          transformIndexHtml(html) {
-            return configuredAppUrl && !isPrivateDevOrigin(configuredAppUrl)
-              ? injectShareMetaUrls(html, configuredAppUrl)
-              : html;
+          transformIndexHtml(html, ctx) {
+            const targetOrigin =
+              configuredAppUrl && !isPrivateDevOrigin(configuredAppUrl) ? configuredAppUrl : "";
+            let reqPath = "/";
+            if (ctx?.originalUrl) {
+              try {
+                reqPath = new URL(ctx.originalUrl, "http://localhost").pathname;
+              } catch {
+                reqPath = "/";
+              }
+            }
+            return injectShareMetaUrls(html, targetOrigin, reqPath);
           },
         },
       ],
@@ -386,26 +532,18 @@ async function startServer() {
           if (filePath.endsWith("og-share.png")) {
             res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Cache-Control", "public, max-age=3600");
+          } else if (filePath.endsWith("ads.txt") || filePath.endsWith("robots.txt")) {
+            res.setHeader("Content-Type", "text/plain; charset=utf-8");
+            res.setHeader("Cache-Control", "public, max-age=3600");
           }
         },
       })
     );
     app.get('*', (req, res) => {
-      const forwardedProto = typeof req.headers['x-forwarded-proto'] === 'string'
-        ? req.headers['x-forwarded-proto'].split(',')[0].trim()
-        : req.protocol;
-      const host = req.get('host') || '';
-      const isLocalHost = /^localhost(?::|$)|^127\.0\.0\.1(?::|$)/.test(host);
-      const proto = !isLocalHost && forwardedProto === 'http' ? 'https' : forwardedProto;
-      const requestOrigin = host ? `${proto}://${host}` : '';
-      const publicConfiguredUrl =
-        configuredAppUrl && !isPrivateDevOrigin(configuredAppUrl) ? configuredAppUrl : '';
-      const origin =
-        (requestOrigin && !isPrivateDevOrigin(requestOrigin) ? requestOrigin : '') ||
-        publicConfiguredUrl;
+      const origin = resolveRequestOrigin(req);
       const rawHtml = fs.readFileSync(distIndexPath, 'utf-8');
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.send(injectShareMetaUrls(rawHtml, origin));
+      res.send(injectShareMetaUrls(rawHtml, origin, req.path));
     });
   }
 

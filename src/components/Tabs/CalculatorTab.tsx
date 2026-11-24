@@ -909,6 +909,32 @@ const CALC_T: Record<string, Record<string, string>> = {
   },
 };
 
+const CALC_EXTRA_T: Record<string, { swapCurrencies: string; sourceLabel?: string }> = {
+  English: { swapCurrencies: 'Swap currencies', sourceLabel: 'Investing.com Majors' },
+  Spanish: { swapCurrencies: 'Intercambiar divisas', sourceLabel: 'Investing.com Divisas principales' },
+  French: { swapCurrencies: 'Inverser les devises', sourceLabel: 'Investing.com Paires majeures' },
+  German: { swapCurrencies: 'Währungen tauschen', sourceLabel: 'Investing.com Hauptwährungen' },
+  Chinese: { swapCurrencies: '交换货币', sourceLabel: 'Investing.com 实时外汇' },
+  'Chinese Traditional': { swapCurrencies: '交換貨幣', sourceLabel: 'Investing.com 即時外匯' },
+  Japanese: { swapCurrencies: '通貨を入れ替える', sourceLabel: 'Investing.com 主要通貨' },
+  Korean: { swapCurrencies: '통화 전환', sourceLabel: 'Investing.com 주요 외환' },
+  Italian: { swapCurrencies: 'Inverti valute', sourceLabel: 'Investing.com Principali' },
+  Russian: { swapCurrencies: 'Поменять валюты местами', sourceLabel: 'Investing.com Основные пары' },
+  Luxembourgish: { swapCurrencies: 'Währungen tauschen', sourceLabel: 'Investing.com Haaptwährungen' },
+  Dutch: { swapCurrencies: 'Valuta’s omwisselen', sourceLabel: 'Investing.com Belangrijkste valuta' },
+  Swedish: { swapCurrencies: 'Byt valutor', sourceLabel: 'Investing.com Större valutor' },
+  Finnish: { swapCurrencies: 'Vaihda valuutat', sourceLabel: 'Investing.com Päävaluutat' },
+  Hindi: { swapCurrencies: 'मुद्राएँ बदलें', sourceLabel: 'Investing.com प्रमुख मुद्राएँ' },
+  Norwegian: { swapCurrencies: 'Bytt valutaer', sourceLabel: 'Investing.com Hovedvalutaer' },
+  Thai: { swapCurrencies: 'สลับสกุลเงิน', sourceLabel: 'Investing.com สกุลเงินหลัก' },
+  Portuguese: { swapCurrencies: 'Trocar moedas', sourceLabel: 'Investing.com Principais pares' },
+  Vietnamese: { swapCurrencies: 'Đổi chiều tiền tệ', sourceLabel: 'Investing.com Các cặp tiền chính' },
+  Polish: { swapCurrencies: 'Zamień waluty', sourceLabel: 'Investing.com Główne pary' },
+  Danish: { swapCurrencies: 'Byt valutaer', sourceLabel: 'Investing.com Vigtigste valutaer' },
+  Turkish: { swapCurrencies: 'Para birimlerini değiştir', sourceLabel: 'Investing.com Majör Pariteler' },
+  Greek: { swapCurrencies: 'Εναλλαγή νομισμάτων', sourceLabel: 'Investing.com Κύρια Ζεύγη' },
+};
+
 const CALC_LOCALES: Record<string, string> = {
   English: 'en-US',
   Spanish: 'es-ES',
@@ -987,7 +1013,13 @@ const formatConverted = (value: number, code: string) => {
 };
 
 export default function CalculatorTab({ language = 'English' }: CalculatorTabProps = {}) {
-  const dictionary = CALC_T[language] || CALC_T['English'];
+  const baseDict = CALC_T[language] || CALC_T['English'];
+  const extraDict = CALC_EXTRA_T[language] || CALC_EXTRA_T['English'];
+  const dictionary: Record<string, string> = {
+    ...baseDict,
+    sourceLabel: extraDict.sourceLabel || baseDict.sourceLabel,
+    swapCurrencies: extraDict.swapCurrencies,
+  };
   const [activeMode, setActiveMode] = useState<CalcMode>('simple');
 
   // Simple Calculator State
@@ -1448,6 +1480,23 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
     activeCurrencyRate !== null ? parsedCurrencyAmt * activeCurrencyRate : null;
 
   const locale = CALC_LOCALES[language] || 'en-US';
+  const currencyDisplay = useMemo(() => {
+    try {
+      return new Intl.DisplayNames([locale], { type: 'currency' });
+    } catch {
+      return null;
+    }
+  }, [locale]);
+  const getCurrencyDisplayName = useCallback(
+    (code: string, fallbackName: string) => {
+      try {
+        return currencyDisplay?.of(code) || fallbackName;
+      } catch {
+        return fallbackName;
+      }
+    },
+    [currencyDisplay]
+  );
   const formattedUpdatedDateTime = useMemo(() => {
     if (!ratesUpdatedAt) return '';
     const d = new Date(ratesUpdatedAt);
@@ -1514,7 +1563,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
   ];
 
   return (
-    <div className="flex justify-center w-full max-w-[420px] sm:max-w-[540px] md:max-w-3xl mx-auto">
+    <div className="flex justify-center w-full max-w-6xl mx-auto">
       <div className="w-full rounded-2xl overflow-hidden GeekTabs-card weather-huawei-style webcard-light-grey-bg calculator-tab-card flex flex-col min-h-[540px] sm:min-h-[590px] md:h-[600px]">
         {/* Top Colorful Sub-Tabs Bar */}
         <div className="calc-tabs-bar px-3 pt-3 pb-2.5 border-b border-black/10 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
@@ -2099,7 +2148,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                     >
                       {CURRENCIES.map((c) => (
                         <option key={c.code} value={c.code}>
-                          {c.code} — {c.name}
+                          {c.code} — {getCurrencyDisplayName(c.code, c.name)}
                         </option>
                       ))}
                     </select>
@@ -2114,7 +2163,8 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                       }}
                       style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
                       className="calc-swap-btn w-full md:w-11 h-11 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white flex items-center justify-center shadow-md cursor-pointer active:scale-95 transition-transform"
-                      title="Swap currencies"
+                      title={dictionary.swapCurrencies}
+                      aria-label={dictionary.swapCurrencies}
                     >
                       <ArrowLeftRight size={17} />
                     </button>
@@ -2131,7 +2181,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                     >
                       {CURRENCIES.map((c) => (
                         <option key={c.code} value={c.code}>
-                          {c.code} — {c.name}
+                          {c.code} — {getCurrencyDisplayName(c.code, c.name)}
                         </option>
                       ))}
                     </select>
@@ -2185,7 +2235,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                     >
                       {CURRENCIES.map((c) => (
                         <option key={c.code} value={c.code}>
-                          {c.code} — {c.name}
+                          {c.code} — {getCurrencyDisplayName(c.code, c.name)}
                         </option>
                       ))}
                     </select>
@@ -2203,7 +2253,8 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                       }}
                       style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
                       className="calc-swap-btn w-full md:w-11 h-11 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white !text-white flex items-center justify-center shadow-md cursor-pointer active:scale-95 transition-transform"
-                      title="Swap currencies"
+                      title={dictionary.swapCurrencies}
+                      aria-label={dictionary.swapCurrencies}
                     >
                       <ArrowLeftRight size={17} />
                     </button>
@@ -2220,7 +2271,7 @@ export default function CalculatorTab({ language = 'English' }: CalculatorTabPro
                     >
                       {CURRENCIES.map((c) => (
                         <option key={c.code} value={c.code}>
-                          {c.code} — {c.name}
+                          {c.code} — {getCurrencyDisplayName(c.code, c.name)}
                         </option>
                       ))}
                     </select>

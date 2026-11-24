@@ -424,8 +424,395 @@ const WEATHER_SETTINGS_T: Record<string, Record<string, string>> = {
   }
 };
 
+const WEATHER_SETTINGS_EXTRA_T: Record<string, {
+  weatherLocation: string;
+  weatherLocationDesc: string;
+  currentLocation: string;
+  detectTitle: string;
+  autoDetect: string;
+  close: string;
+  change: string;
+  searchPlaceholder: string;
+  searching: string;
+  detectError: string;
+  unitLabel: string;
+  viewLabel: string;
+  hourlyShort: string;
+  dailyShort: string;
+}> = {
+  English: {
+    weatherLocation: 'Weather Location',
+    weatherLocationDesc: 'Configure your global city, region, or postal code to accurately fetch live weather data for the home page.',
+    currentLocation: 'Current Location',
+    detectTitle: 'Detect Current Location',
+    autoDetect: 'Auto-Detect',
+    close: 'Close',
+    change: 'Change',
+    searchPlaceholder: 'Search city, postal code, or country (e.g. Miami, Paris, Tokyo, 90210)...',
+    searching: 'Searching global weather locations...',
+    detectError: 'Could not detect location. Please check your browser permissions.',
+    unitLabel: 'Unit',
+    viewLabel: 'View',
+    hourlyShort: 'Hourly (12h)',
+    dailyShort: 'Daily (7d)',
+  },
+  Chinese: {
+    weatherLocation: '天气城市位置',
+    weatherLocationDesc: '设置全球城市、地区或邮政编码，为首页准确获取实时天气数据。',
+    currentLocation: '当前位置',
+    detectTitle: '检测当前位置',
+    autoDetect: '自动定位',
+    close: '关闭',
+    change: '更改',
+    searchPlaceholder: '搜索城市、邮编或国家（例如：北京、上海、Tokyo、90210）...',
+    searching: '正在搜索全球天气位置...',
+    detectError: '无法检测当前位置，请检查浏览器定位权限。',
+    unitLabel: '单位',
+    viewLabel: '视图',
+    hourlyShort: '逐小时 (12h)',
+    dailyShort: '按天 (7d)',
+  },
+  'Chinese Traditional': {
+    weatherLocation: '天氣城市位置',
+    weatherLocationDesc: '設定全球城市、地區或郵遞區號，為首頁準確取得即時天氣資料。',
+    currentLocation: '目前位置',
+    detectTitle: '偵測目前位置',
+    autoDetect: '自動定位',
+    close: '關閉',
+    change: '變更',
+    searchPlaceholder: '搜尋城市、郵遞區號或國家（例如：台北、東京、90210）...',
+    searching: '正在搜尋全球天氣位置...',
+    detectError: '無法偵測目前位置，請檢查瀏覽器定位權限。',
+    unitLabel: '單位',
+    viewLabel: '檢視',
+    hourlyShort: '逐小時 (12h)',
+    dailyShort: '按天 (7d)',
+  },
+  Spanish: {
+    weatherLocation: 'Ubicación del Clima',
+    weatherLocationDesc: 'Configura tu ciudad, región o código postal global para obtener datos meteorológicos precisos en la página de inicio.',
+    currentLocation: 'Ubicación Actual',
+    detectTitle: 'Detectar Ubicación Actual',
+    autoDetect: 'Detección automática',
+    close: 'Cerrar',
+    change: 'Cambiar',
+    searchPlaceholder: 'Buscar ciudad, código postal o país (ej. Madrid, París, Tokio, 90210)...',
+    searching: 'Buscando ubicaciones meteorológicas globales...',
+    detectError: 'No se pudo detectar la ubicación. Revisa los permisos del navegador.',
+    unitLabel: 'Unidad',
+    viewLabel: 'Vista',
+    hourlyShort: 'Por hora (12h)',
+    dailyShort: 'Diario (7d)',
+  },
+  French: {
+    weatherLocation: 'Localisation Météo',
+    weatherLocationDesc: 'Configurez votre ville, région ou code postal dans le monde pour afficher la météo en direct sur la page d’accueil.',
+    currentLocation: 'Position Actuelle',
+    detectTitle: 'Détecter la Position Actuelle',
+    autoDetect: 'Détection auto',
+    close: 'Fermer',
+    change: 'Modifier',
+    searchPlaceholder: 'Rechercher une ville, code postal ou pays (ex. Paris, Tokyo, 90210)...',
+    searching: 'Recherche de lieux météo dans le monde...',
+    detectError: 'Impossible de détecter la position. Veuillez vérifier les autorisations du navigateur.',
+    unitLabel: 'Unité',
+    viewLabel: 'Vue',
+    hourlyShort: 'Horaire (12h)',
+    dailyShort: 'Quotidien (7j)',
+  },
+  German: {
+    weatherLocation: 'Wetterstandort',
+    weatherLocationDesc: 'Legen Sie Stadt, Region oder Postleitzahl weltweit fest, um genaue Live-Wetterdaten für die Startseite abzurufen.',
+    currentLocation: 'Aktueller Standort',
+    detectTitle: 'Aktuellen Standort ermitteln',
+    autoDetect: 'Automatisch erkennen',
+    close: 'Schließen',
+    change: 'Ändern',
+    searchPlaceholder: 'Stadt, Postleitzahl oder Land suchen (z. B. Berlin, Paris, Tokio, 90210)...',
+    searching: 'Globale Wetterstandorte werden gesucht...',
+    detectError: 'Standort konnte nicht ermittelt werden. Bitte prüfen Sie die Browserberechtigungen.',
+    unitLabel: 'Einheit',
+    viewLabel: 'Ansicht',
+    hourlyShort: 'Stündlich (12h)',
+    dailyShort: 'Täglich (7T)',
+  },
+  Japanese: {
+    weatherLocation: '天気の場所',
+    weatherLocationDesc: '世界中の都市、地域、郵便番号を設定して、ホーム画面に正確なリアルタイム天気を表示します。',
+    currentLocation: '現在の場所',
+    detectTitle: '現在地を検出',
+    autoDetect: '自動検出',
+    close: '閉じる',
+    change: '変更',
+    searchPlaceholder: '都市名、郵便番号、国名を検索（例：東京、パリ、90210）...',
+    searching: '世界中の天気エリアを検索中...',
+    detectError: '現在地を検出できませんでした。ブラウザの位置情報権限をご確認ください。',
+    unitLabel: '単位',
+    viewLabel: '表示',
+    hourlyShort: '時間ごと (12h)',
+    dailyShort: '日ごと (7d)',
+  },
+  Korean: {
+    weatherLocation: '날씨 위치',
+    weatherLocationDesc: '홈 화면에 정확한 실시간 날씨 정보를 표시할 전 세계 도시, 지역 또는 우편번호를 설정하세요.',
+    currentLocation: '현재 위치',
+    detectTitle: '현재 위치 감지',
+    autoDetect: '자동 감지',
+    close: '닫기',
+    change: '변경',
+    searchPlaceholder: '도시, 우편번호 또는 국가 검색 (예: 서울, 파리, 도쿄, 90210)...',
+    searching: '전 세계 날씨 위치 검색 중...',
+    detectError: '위치를 감지할 수 없습니다. 브라우저 위치 권한을 확인해 주세요.',
+    unitLabel: '단위',
+    viewLabel: '보기',
+    hourlyShort: '시간별 (12h)',
+    dailyShort: '일별 (7d)',
+  },
+  Italian: {
+    weatherLocation: 'Località Meteo',
+    weatherLocationDesc: 'Configura città, regione o codice postale nel mondo per ricevere dati meteo precisi sulla pagina iniziale.',
+    currentLocation: 'Posizione Attuale',
+    detectTitle: 'Rileva Posizione Attuale',
+    autoDetect: 'Rileva automaticamente',
+    close: 'Chiudi',
+    change: 'Cambia',
+    searchPlaceholder: 'Cerca città, CAP o paese (es. Roma, Parigi, Tokyo, 90210)...',
+    searching: 'Ricerca località meteo globali in corso...',
+    detectError: 'Impossibile rilevare la posizione. Controlla i permessi del browser.',
+    unitLabel: 'Unità',
+    viewLabel: 'Vista',
+    hourlyShort: 'Oraria (12h)',
+    dailyShort: 'Giornaliera (7g)',
+  },
+  Russian: {
+    weatherLocation: 'Местоположение погоды',
+    weatherLocationDesc: 'Укажите город, регион или почтовый индекс в любой точке мира для точного прогноза на главной странице.',
+    currentLocation: 'Текущее местоположение',
+    detectTitle: 'Определить текущее местоположение',
+    autoDetect: 'Автоопределение',
+    close: 'Закрыть',
+    change: 'Изменить',
+    searchPlaceholder: 'Поиск города, индекса или страны (напр., Москва, Париж, Токио)...',
+    searching: 'Поиск городов и регионов...',
+    detectError: 'Не удалось определить местоположение. Проверьте разрешения браузера.',
+    unitLabel: 'Единица',
+    viewLabel: 'Режим',
+    hourlyShort: 'По часам (12ч)',
+    dailyShort: 'По дням (7д)',
+  },
+  Luxembourgish: {
+    weatherLocation: 'Wieder-Standuert',
+    weatherLocationDesc: 'Konfiguréiert Är Stad, Regioun oder Postleitzuel weltwäit fir genee Live-Wiederdaten op der Startsäit.',
+    currentLocation: 'Aktuelle Standuert',
+    detectTitle: 'Aktuelle Standuert erkennen',
+    autoDetect: 'Automatesch erkennen',
+    close: 'Zoumaachen',
+    change: 'Änneren',
+    searchPlaceholder: 'Stad, Postleitzuel oder Land sichen (z. B. Lëtzebuerg, Paräis, 90210)...',
+    searching: 'Globale Wieder-Standuerter ginn gesicht...',
+    detectError: 'De Standuert konnt net erkannt ginn. Préift w.e.g. d’Browser-Berechtegungen.',
+    unitLabel: 'Eenheet',
+    viewLabel: 'Usiicht',
+    hourlyShort: 'Stëndlech (12h)',
+    dailyShort: 'Deeglech (7D)',
+  },
+  Dutch: {
+    weatherLocation: 'Weerlocatie',
+    weatherLocationDesc: 'Stel je stad, regio of postcode wereldwijd in om nauwkeurige live weergegevens voor de startpagina op te halen.',
+    currentLocation: 'Huidige locatie',
+    detectTitle: 'Huidige locatie detecteren',
+    autoDetect: 'Automatisch detecteren',
+    close: 'Sluiten',
+    change: 'Wijzigen',
+    searchPlaceholder: 'Zoek stad, postcode of land (bijv. Amsterdam, Parijs, Tokio, 90210)...',
+    searching: 'Wereldwijde weerlocaties zoeken...',
+    detectError: 'Kan locatie niet detecteren. Controleer de browsermachtigingen.',
+    unitLabel: 'Eenheid',
+    viewLabel: 'Weergave',
+    hourlyShort: 'Per uur (12u)',
+    dailyShort: 'Per dag (7d)',
+  },
+  Swedish: {
+    weatherLocation: 'Väderplats',
+    weatherLocationDesc: 'Ange valfri stad, region eller postnummer för att hämta exakta väderdata till startsidan.',
+    currentLocation: 'Nuvarande plats',
+    detectTitle: 'Upptäck nuvarande plats',
+    autoDetect: 'Automatisk plats',
+    close: 'Stäng',
+    change: 'Ändra',
+    searchPlaceholder: 'Sök stad, postnummer eller land (t.ex. Stockholm, Paris, Tokyo, 90210)...',
+    searching: 'Söker globala väderplatser...',
+    detectError: 'Kunde inte hämta plats. Kontrollera webbläsarens behörigheter.',
+    unitLabel: 'Enhet',
+    viewLabel: 'Visning',
+    hourlyShort: 'Timvis (12h)',
+    dailyShort: 'Dagligen (7d)',
+  },
+  Finnish: {
+    weatherLocation: 'Sääsijainti',
+    weatherLocationDesc: 'Määritä kaupunki, alue tai postinumero saadaksesi tarkat reaaliaikaiset säätiedot etusivulle.',
+    currentLocation: 'Nykyinen sijainti',
+    detectTitle: 'Tunnista nykyinen sijainti',
+    autoDetect: 'Tunnista automaattisesti',
+    close: 'Sulje',
+    change: 'Vaihda',
+    searchPlaceholder: 'Hae kaupunkia, postinumeroa tai maata (esim. Helsinki, Pariisi, 90210)...',
+    searching: 'Haetaan maailmanlaajuisia sääkohteita...',
+    detectError: 'Sijaintia ei voitu tunnistaa. Tarkista selaimen käyttöoikeudet.',
+    unitLabel: 'Yksikkö',
+    viewLabel: 'Näkymä',
+    hourlyShort: 'Tunneittain (12h)',
+    dailyShort: 'Päivittäin (7pv)',
+  },
+  Hindi: {
+    weatherLocation: 'मौसम स्थान',
+    weatherLocationDesc: 'होम पेज पर सटीक लाइव मौसम डेटा प्राप्त करने के लिए अपना शहर, क्षेत्र या पिन कोड सेट करें।',
+    currentLocation: 'वर्तमान स्थान',
+    detectTitle: 'वर्तमान स्थान पहचानें',
+    autoDetect: 'स्वतः पहचानें',
+    close: 'बंद करें',
+    change: 'बदलें',
+    searchPlaceholder: 'शहर, पिन कोड या देश खोजें (उदा. दिल्ली, पेरिस, टोक्यो, 90210)...',
+    searching: 'वैश्विक मौसम स्थान खोजे जा रहे हैं...',
+    detectError: 'स्थान की पहचान नहीं हो सकी। कृपया ब्राउज़र अनुमतियाँ जांचें।',
+    unitLabel: 'इकाई',
+    viewLabel: 'दृश्य',
+    hourlyShort: 'प्रति घंटा (12h)',
+    dailyShort: 'दैनिक (7d)',
+  },
+  Norwegian: {
+    weatherLocation: 'Værsted',
+    weatherLocationDesc: 'Angi by, region eller postnummer verden over for å hente nøyaktige værdata til startsiden.',
+    currentLocation: 'Nåværende posisjon',
+    detectTitle: 'Finn nåværende posisjon',
+    autoDetect: 'Finn automatisk',
+    close: 'Lukk',
+    change: 'Endre',
+    searchPlaceholder: 'Søk etter by, postnummer eller land (f.eks. Oslo, Paris, Tokyo, 90210)...',
+    searching: 'Søker etter globale værsteder...',
+    detectError: 'Kunne ikke finne posisjon. Kontroller nettleserens tillatelser.',
+    unitLabel: 'Enhet',
+    viewLabel: 'Visning',
+    hourlyShort: 'Timevis (12t)',
+    dailyShort: 'Daglig (7d)',
+  },
+  Thai: {
+    weatherLocation: 'ตำแหน่งสภาพอากาศ',
+    weatherLocationDesc: 'ตั้งค่าเมือง ภูมิภาค หรือรหัสไปรษณีย์ทั่วโลกเพื่อดึงข้อมูลสภาพอากาศแบบเรียลไทม์บนหน้าแรกอย่างแม่นยำ',
+    currentLocation: 'ตำแหน่งปัจจุบัน',
+    detectTitle: 'ตรวจจับตำแหน่งปัจจุบัน',
+    autoDetect: 'ตรวจจับอัตโนมัติ',
+    close: 'ปิด',
+    change: 'เปลี่ยน',
+    searchPlaceholder: 'ค้นหาเมือง รหัสไปรษณีย์ หรือประเทศ (เช่น กรุงเทพฯ, ปารีส, โตเกียว)...',
+    searching: 'กำลังค้นหาตำแหน่งสภาพอากาศทั่วโลก...',
+    detectError: 'ไม่สามารถตรวจจับตำแหน่งได้ โปรดตรวจสอบสิทธิ์ของเบราว์เซอร์',
+    unitLabel: 'หน่วย',
+    viewLabel: 'มุมมอง',
+    hourlyShort: 'รายชั่วโมง (12 ชม.)',
+    dailyShort: 'รายวัน (7 วัน)',
+  },
+  Portuguese: {
+    weatherLocation: 'Localização Meteorológica',
+    weatherLocationDesc: 'Configure a sua cidade, região ou código postal global para obter dados meteorológicos em direto na página inicial.',
+    currentLocation: 'Localização Atual',
+    detectTitle: 'Detetar Localização Atual',
+    autoDetect: 'Deteção automática',
+    close: 'Fechar',
+    change: 'Alterar',
+    searchPlaceholder: 'Pesquisar cidade, código postal ou país (ex.: Lisboa, Paris, Tóquio, 90210)...',
+    searching: 'A pesquisar localizações meteorológicas globais...',
+    detectError: 'Não foi possível detetar a localização. Verifique as permissões do navegador.',
+    unitLabel: 'Unidade',
+    viewLabel: 'Vista',
+    hourlyShort: 'Por hora (12h)',
+    dailyShort: 'Diário (7d)',
+  },
+  Vietnamese: {
+    weatherLocation: 'Vị trí thời tiết',
+    weatherLocationDesc: 'Thiết lập thành phố, khu vực hoặc mã bưu chính toàn cầu để lấy dữ liệu thời tiết trực tiếp chính xác cho trang chủ.',
+    currentLocation: 'Vị trí hiện tại',
+    detectTitle: 'Xác định vị trí hiện tại',
+    autoDetect: 'Tự động định vị',
+    close: 'Đóng',
+    change: 'Thay đổi',
+    searchPlaceholder: 'Tìm thành phố, mã bưu chính hoặc quốc gia (vd: Hà Nội, Paris, Tokyo)...',
+    searching: 'Đang tìm vị trí thời tiết toàn cầu...',
+    detectError: 'Không thể xác định vị trí. Vui lòng kiểm tra quyền truy cập của trình duyệt.',
+    unitLabel: 'Đơn vị',
+    viewLabel: 'Chế độ xem',
+    hourlyShort: 'Theo giờ (12h)',
+    dailyShort: 'Theo ngày (7d)',
+  },
+  Polish: {
+    weatherLocation: 'Lokalizacja pogody',
+    weatherLocationDesc: 'Ustaw dowolne miasto, region lub kod pocztowy na świecie, aby pobierać dokładne dane pogodowe na stronie głównej.',
+    currentLocation: 'Bieżąca lokalizacja',
+    detectTitle: 'Wykryj bieżącą lokalizację',
+    autoDetect: 'Wykryj automatycznie',
+    close: 'Zamknij',
+    change: 'Zmień',
+    searchPlaceholder: 'Szukaj miasta, kodu pocztowego lub kraju (np. Warszawa, Paryż, Tokio)...',
+    searching: 'Wyszukiwanie lokalizacji pogodowych na świecie...',
+    detectError: 'Nie udało się wykryć lokalizacji. Sprawdź uprawnienia przeglądarki.',
+    unitLabel: 'Jednostka',
+    viewLabel: 'Widok',
+    hourlyShort: 'Godzinowa (12h)',
+    dailyShort: 'Dzienna (7d)',
+  },
+  Danish: {
+    weatherLocation: 'Vejrplacering',
+    weatherLocationDesc: 'Indstil din by, region eller postnummer globalt for at hente nøjagtige live vejrdata til forsiden.',
+    currentLocation: 'Nuværende placering',
+    detectTitle: 'Registrer nuværende placering',
+    autoDetect: 'Automatisk registrering',
+    close: 'Luk',
+    change: 'Skift',
+    searchPlaceholder: 'Søg efter by, postnummer eller land (f.eks. København, Paris, Tokyo)...',
+    searching: 'Søger globale vejrplaceringer...',
+    detectError: 'Kunne ikke registrere placering. Tjek venligst browserens tilladelser.',
+    unitLabel: 'Enhed',
+    viewLabel: 'Visning',
+    hourlyShort: 'Timevis (12t)',
+    dailyShort: 'Daglig (7d)',
+  },
+  Turkish: {
+    weatherLocation: 'Hava Durumu Konumu',
+    weatherLocationDesc: 'Ana sayfada doğru canlı hava durumu verileri almak için küresel şehir, bölge veya posta kodunuzu yapılandırın.',
+    currentLocation: 'Mevcut Konum',
+    detectTitle: 'Mevcut Konumu Algıla',
+    autoDetect: 'Otomatik Algıla',
+    close: 'Kapat',
+    change: 'Değiştir',
+    searchPlaceholder: 'Şehir, posta kodu veya ülke arayın (ör. İstanbul, Paris, Tokyo, 90210)...',
+    searching: 'Küresel hava durumu konumları aranıyor...',
+    detectError: 'Konum algılanamadı. Lütfen tarayıcı izinlerinizi kontrol edin.',
+    unitLabel: 'Birim',
+    viewLabel: 'Görünüm',
+    hourlyShort: 'Saatlik (12s)',
+    dailyShort: 'Günlük (7g)',
+  },
+  Greek: {
+    weatherLocation: 'Τοποθεσία Καιρού',
+    weatherLocationDesc: 'Ρυθμίστε την πόλη, την περιοχή ή τον ταχυδρομικό κώδικά σας παγκοσμίως για ακριβή ζωντανά δεδομένα καιρού στην αρχική σελίδα.',
+    currentLocation: 'Τρέχουσα Τοποθεσία',
+    detectTitle: 'Εντοπισμός Τρέχουσας Τοποθεσίας',
+    autoDetect: 'Αυτόματος εντοπισμός',
+    close: 'Κλείσιμο',
+    change: 'Αλλαγή',
+    searchPlaceholder: 'Αναζήτηση πόλης, Τ.Κ. ή χώρας (π.χ. Αθήνα, Παρίσι, Τόκιο)...',
+    searching: 'Αναζήτηση παγκόσμιων τοποθεσιών καιρού...',
+    detectError: 'Δεν ήταν δυνατός ο εντοπισμός τοποθεσίας. Ελέγξτε τα δικαιώματα του προγράμματος περιήγησης.',
+    unitLabel: 'Μονάδα',
+    viewLabel: 'Προβολή',
+    hourlyShort: 'Ωριαία (12ω)',
+    dailyShort: 'Ημερήσια (7η)',
+  },
+};
+
 export default function WeatherSettingsTab({ language = 'English' }: WeatherSettingsTabProps) {
   const d = WEATHER_SETTINGS_T[language] || WEATHER_SETTINGS_T['English'];
+  const extra = WEATHER_SETTINGS_EXTRA_T[language] || WEATHER_SETTINGS_EXTRA_T['English'];
 
   // Global Weather Preferences synced across app
   const [tempUnit, setTempUnit] = useLocalStorage<'C' | 'F'>('GeekTabs-weather-temp-unit', 'F');
@@ -461,6 +848,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
   const [searchResults, setSearchResults] = useState<GeoLocationResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isDetecting, setIsDetecting] = useState(false);
+  const [detectError, setDetectError] = useState<string | null>(null);
   const [showSearchBox, setShowSearchBox] = useState(false);
   const searchTimeoutRef = useRef<any>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -517,6 +905,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
     setShowSearchBox(false);
     setSearchQuery('');
     setSearchResults([]);
+    setDetectError(null);
 
     window.dispatchEvent(new CustomEvent('geektabs-weather-location-updated', {
       detail: { location: item.formattedAddress, inputs: newInputs }
@@ -525,6 +914,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
 
   const handleDetectLocation = async () => {
     setIsDetecting(true);
+    setDetectError(null);
     try {
       const detected = await detectCurrentLocation();
       const newInputs = {
@@ -543,7 +933,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
         detail: { location: detected.formattedAddress, inputs: newInputs }
       }));
     } catch {
-      alert('Could not detect location. Please check your browser permissions.');
+      setDetectError(extra.detectError);
     } finally {
       setIsDetecting(false);
     }
@@ -567,10 +957,10 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
         <div className="pt-2 flex flex-col items-center text-center">
           <label className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2 flex items-center justify-center gap-2">
             <MapPin size={15} />
-            <span>Weather Location</span>
+            <span>{extra.weatherLocation}</span>
           </label>
           <p className="text-xs text-slate-600 mb-4 leading-relaxed max-w-xl mx-auto">
-            Configure your global city, region, or postal code to accurately fetch live weather data for the home page.
+            {extra.weatherLocationDesc}
           </p>
 
           <div className="max-w-xl w-full mx-auto space-y-3 text-left">
@@ -582,7 +972,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                    Current Location
+                    {extra.currentLocation}
                   </p>
                   <p className="text-sm font-bold text-slate-900 truncate">
                     {location}
@@ -596,14 +986,14 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   onClick={handleDetectLocation}
                   disabled={isDetecting}
                   className="flex-1 sm:flex-initial justify-center px-3 py-2 lg:py-1.5 min-h-[42px] lg:min-h-0 rounded-xl border border-black/10 hover:bg-black/5 text-xs font-bold text-slate-700 flex items-center gap-1.5 transition-all cursor-pointer"
-                  title="Detect Current Location"
+                  title={extra.detectTitle}
                 >
                   {isDetecting ? (
                     <Loader2 size={13} className="animate-spin text-indigo-500" />
                   ) : (
                     <Navigation size={13} className="text-indigo-500" />
                   )}
-                  <span>Auto-Detect</span>
+                  <span>{extra.autoDetect}</span>
                 </button>
 
                 <button
@@ -611,10 +1001,16 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                   onClick={() => setShowSearchBox(!showSearchBox)}
                   className="flex-1 sm:flex-initial justify-center px-3 py-2 lg:py-1.5 min-h-[42px] lg:min-h-0 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center"
                 >
-                  {showSearchBox ? 'Close' : 'Change'}
+                  {showSearchBox ? extra.close : extra.change}
                 </button>
               </div>
             </div>
+
+            {detectError && (
+              <p className="px-3 py-2 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-red-600 text-center">
+                {detectError}
+              </p>
+            )}
 
             {/* Smart Search Dropdown in Settings */}
             {showSearchBox && (
@@ -625,7 +1021,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search city, postal code, or country (e.g. Miami, Paris, Tokyo, 90210)..."
+                    placeholder={extra.searchPlaceholder}
                     className="w-full bg-white border border-black/10 rounded-xl pl-9 pr-10 py-2.5 lg:py-2 text-base sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     autoFocus
                   />
@@ -646,7 +1042,7 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
                 {isSearching && (
                   <div className="flex items-center gap-2 text-xs text-slate-500 px-2 py-1">
                     <Loader2 size={13} className="animate-spin text-indigo-500" />
-                    <span>Searching global weather locations...</span>
+                    <span>{extra.searching}</span>
                   </div>
                 )}
 
@@ -837,10 +1233,10 @@ export default function WeatherSettingsTab({ language = 'English' }: WeatherSett
               </p>
               <div className="mt-2.5 flex items-center justify-center gap-2 text-[11px] font-mono">
                 <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 font-bold">
-                  Unit: °{tempUnit}
+                  {extra.unitLabel}: °{tempUnit}
                 </span>
                 <span className="px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-600 font-bold">
-                  View: {forecastMode === 'hr' ? 'Hourly (12h)' : 'Daily (7d)'}
+                  {extra.viewLabel}: {forecastMode === 'hr' ? extra.hourlyShort : extra.dailyShort}
                 </span>
               </div>
             </div>

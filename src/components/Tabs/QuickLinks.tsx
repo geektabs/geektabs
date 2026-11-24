@@ -850,6 +850,321 @@ const LINKS_T: Record<string, Record<string, string>> = {
   },
 };
 
+const DEFAULT_CAT_EN_BY_ID: Record<string, string> = {
+  default: 'Home',
+  'my-folders': 'AI Apps',
+  'google-apps': 'Google',
+  'ms-office': 'Microsoft',
+  tech: 'Technology',
+  music: 'Music',
+  finance: 'Finance',
+  travel: 'Travel',
+  shopping: 'Shopping',
+  tools: 'Tools',
+};
+
+const DEFAULT_CAT_NAMES: Record<string, Record<string, string>> = {
+  English: DEFAULT_CAT_EN_BY_ID,
+  Chinese: {
+    default: '首页',
+    'my-folders': 'AI 应用',
+    'google-apps': 'Google',
+    'ms-office': '微软',
+    tech: '科技',
+    music: '音乐',
+    finance: '金融',
+    travel: '旅行',
+    shopping: '购物',
+    tools: '工具',
+  },
+  'Chinese Traditional': {
+    default: '首頁',
+    'my-folders': 'AI 應用',
+    'google-apps': 'Google',
+    'ms-office': '微軟',
+    tech: '科技',
+    music: '音樂',
+    finance: '金融',
+    travel: '旅遊',
+    shopping: '購物',
+    tools: '工具',
+  },
+  Spanish: {
+    default: 'Inicio',
+    'my-folders': 'Apps IA',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Tecnología',
+    music: 'Música',
+    finance: 'Finanzas',
+    travel: 'Viajes',
+    shopping: 'Compras',
+    tools: 'Herramientas',
+  },
+  French: {
+    default: 'Accueil',
+    'my-folders': 'Apps IA',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Technologie',
+    music: 'Musique',
+    finance: 'Finance',
+    travel: 'Voyages',
+    shopping: 'Achats',
+    tools: 'Outils',
+  },
+  German: {
+    default: 'Start',
+    'my-folders': 'KI-Apps',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Technologie',
+    music: 'Musik',
+    finance: 'Finanzen',
+    travel: 'Reisen',
+    shopping: 'Einkaufen',
+    tools: 'Werkzeuge',
+  },
+  Japanese: {
+    default: 'ホーム',
+    'my-folders': 'AI アプリ',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'テクノロジー',
+    music: '音楽',
+    finance: 'ファイナンス',
+    travel: '旅行',
+    shopping: 'ショッピング',
+    tools: 'ツール',
+  },
+  Korean: {
+    default: '홈',
+    'my-folders': 'AI 앱',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: '테크',
+    music: '음악',
+    finance: '금융',
+    travel: '여행',
+    shopping: '쇼핑',
+    tools: '도구',
+  },
+  Italian: {
+    default: 'Home',
+    'my-folders': 'App IA',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Tecnologia',
+    music: 'Musica',
+    finance: 'Finanza',
+    travel: 'Viaggi',
+    shopping: 'Shopping',
+    tools: 'Strumenti',
+  },
+  Russian: {
+    default: 'Главная',
+    'my-folders': 'ИИ-сервисы',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Технологии',
+    music: 'Музыка',
+    finance: 'Финансы',
+    travel: 'Путешествия',
+    shopping: 'Покупки',
+    tools: 'Инструменты',
+  },
+  Luxembourgish: {
+    default: 'Startsäit',
+    'my-folders': 'KI-Apps',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Technologie',
+    music: 'Musek',
+    finance: 'Finanzen',
+    travel: 'Reesen',
+    shopping: 'Akafen',
+    tools: 'Tools',
+  },
+  Dutch: {
+    default: 'Start',
+    'my-folders': 'AI-apps',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Technologie',
+    music: 'Muziek',
+    finance: 'Financiën',
+    travel: 'Reizen',
+    shopping: 'Winkelen',
+    tools: 'Hulpmiddelen',
+  },
+  Swedish: {
+    default: 'Hem',
+    'my-folders': 'AI-appar',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Teknik',
+    music: 'Musik',
+    finance: 'Ekonomi',
+    travel: 'Resor',
+    shopping: 'Shopping',
+    tools: 'Verktyg',
+  },
+  Finnish: {
+    default: 'Koti',
+    'my-folders': 'Tekoälysovellukset',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Teknologia',
+    music: 'Musiikki',
+    finance: 'Talous',
+    travel: 'Matkailu',
+    shopping: 'Ostokset',
+    tools: 'Työkalut',
+  },
+  Hindi: {
+    default: 'होम',
+    'my-folders': 'AI ऐप्स',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'प्रौद्योगिकी',
+    music: 'संगीत',
+    finance: 'वित्त',
+    travel: 'यात्रा',
+    shopping: 'खरीदारी',
+    tools: 'उपकरण',
+  },
+  Norwegian: {
+    default: 'Hjem',
+    'my-folders': 'AI-apper',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Teknologi',
+    music: 'Musikk',
+    finance: 'Finans',
+    travel: 'Reise',
+    shopping: 'Shopping',
+    tools: 'Verktøy',
+  },
+  Thai: {
+    default: 'หน้าหลัก',
+    'my-folders': 'แอป AI',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'เทคโนโลยี',
+    music: 'ดนตรี',
+    finance: 'การเงิน',
+    travel: 'ท่องเที่ยว',
+    shopping: 'ช้อปปิ้ง',
+    tools: 'เครื่องมือ',
+  },
+  Portuguese: {
+    default: 'Início',
+    'my-folders': 'Apps de IA',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Tecnologia',
+    music: 'Música',
+    finance: 'Finanças',
+    travel: 'Viagens',
+    shopping: 'Compras',
+    tools: 'Ferramentas',
+  },
+  Vietnamese: {
+    default: 'Trang chủ',
+    'my-folders': 'Ứng dụng AI',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Công nghệ',
+    music: 'Âm nhạc',
+    finance: 'Tài chính',
+    travel: 'Du lịch',
+    shopping: 'Mua sắm',
+    tools: 'Công cụ',
+  },
+  Polish: {
+    default: 'Start',
+    'my-folders': 'Aplikacje AI',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Technologia',
+    music: 'Muzyka',
+    finance: 'Finanse',
+    travel: 'Podróże',
+    shopping: 'Zakupy',
+    tools: 'Narzędzia',
+  },
+  Danish: {
+    default: 'Hjem',
+    'my-folders': 'AI-apps',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Teknologi',
+    music: 'Musik',
+    finance: 'Finans',
+    travel: 'Rejser',
+    shopping: 'Shopping',
+    tools: 'Værktøjer',
+  },
+  Turkish: {
+    default: 'Ana Sayfa',
+    'my-folders': 'YZ Uygulamaları',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Teknoloji',
+    music: 'Müzik',
+    finance: 'Finans',
+    travel: 'Seyahat',
+    shopping: 'Alışveriş',
+    tools: 'Araçlar',
+  },
+  Greek: {
+    default: 'Αρχική',
+    'my-folders': 'Εφαρμογές AI',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Τεχνολογία',
+    music: 'Μουσική',
+    finance: 'Οικονομικά',
+    travel: 'Ταξίδια',
+    shopping: 'Αγορές',
+    tools: 'Εργαλεία',
+  },
+};
+
+const LINKS_EXTRA_T: Record<string, { addCategory: string; editOrDelete: string }> = {
+  English: { addCategory: 'Add Category', editOrDelete: 'Edit or delete' },
+  Chinese: { addCategory: '添加分类', editOrDelete: '编辑或删除' },
+  'Chinese Traditional': { addCategory: '新增分類', editOrDelete: '編輯或刪除' },
+  Spanish: { addCategory: 'Añadir categoría', editOrDelete: 'Editar o eliminar' },
+  French: { addCategory: 'Ajouter une catégorie', editOrDelete: 'Modifier ou supprimer' },
+  German: { addCategory: 'Kategorie hinzufügen', editOrDelete: 'Bearbeiten oder löschen' },
+  Japanese: { addCategory: 'カテゴリーを追加', editOrDelete: '編集または削除' },
+  Korean: { addCategory: '카테고리 추가', editOrDelete: '편집 또는 삭제' },
+  Italian: { addCategory: 'Aggiungi categoria', editOrDelete: 'Modifica o elimina' },
+  Russian: { addCategory: 'Добавить категорию', editOrDelete: 'Изменить или удалить' },
+  Luxembourgish: { addCategory: 'Kategorie derbäisetzen', editOrDelete: 'Änneren oder läschen' },
+  Dutch: { addCategory: 'Categorie toevoegen', editOrDelete: 'Bewerken of verwijderen' },
+  Swedish: { addCategory: 'Lägg till kategori', editOrDelete: 'Redigera eller ta bort' },
+  Finnish: { addCategory: 'Lisää kategoria', editOrDelete: 'Muokkaa tai poista' },
+  Hindi: { addCategory: 'श्रेणी जोड़ें', editOrDelete: 'संपादित करें या हटाएँ' },
+  Norwegian: { addCategory: 'Legg til kategori', editOrDelete: 'Rediger eller slett' },
+  Thai: { addCategory: 'เพิ่มหมวดหมู่', editOrDelete: 'แก้ไขหรือลบ' },
+  Portuguese: { addCategory: 'Adicionar Categoria', editOrDelete: 'Editar ou eliminar' },
+  Vietnamese: { addCategory: 'Thêm danh mục', editOrDelete: 'Chỉnh sửa hoặc xóa' },
+  Polish: { addCategory: 'Dodaj kategorię', editOrDelete: 'Edytuj lub usuń' },
+  Danish: { addCategory: 'Tilføj kategori', editOrDelete: 'Rediger eller slet' },
+  Turkish: { addCategory: 'Kategori Ekle', editOrDelete: 'Düzenle veya sil' },
+  Greek: { addCategory: 'Προσθήκη κατηγορίας', editOrDelete: 'Επεξεργασία ή διαγραφή' },
+};
+
+const getCategoryDisplayName = (cat: Category, language: string): string => {
+  const defaultEn = DEFAULT_CAT_EN_BY_ID[cat.id];
+  if (defaultEn && cat.name === defaultEn) {
+    return DEFAULT_CAT_NAMES[language]?.[cat.id] || cat.name;
+  }
+  return cat.name;
+};
+
 const getFavicon = (url: string) => {
   try {
     const domain = new URL(url).hostname;
@@ -2096,6 +2411,8 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const extraT = LINKS_EXTRA_T[language] || LINKS_EXTRA_T.English;
+
   useEffect(() => {
     if (!hiddenMeasureRef.current) return;
     const children = Array.from(hiddenMeasureRef.current.children) as HTMLElement[];
@@ -2105,7 +2422,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
       if (w > maxW) maxW = w;
     });
     setStandardCategoryWidth(maxW);
-  }, [categories]);
+  }, [categories, language]);
 
   const activeCategory = categories.find(c => c.id === activeCategoryId) || categories[0];
 
@@ -2182,7 +2499,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
 
   const openEditCategory = (cat: Category) => {
     setEditingCategoryId(cat.id);
-    setEditCategoryName(cat.name);
+    setEditCategoryName(getCategoryDisplayName(cat, language));
   };
 
   const saveCategoryEdit = (e: React.FormEvent) => {
@@ -2218,7 +2535,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
             key={`measure-${cat.id}`}
             className="pl-4 pr-10 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap"
           >
-            {cat.name}
+            {getCategoryDisplayName(cat, language)}
           </div>
         ))}
         <div className="pl-4 pr-10 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap">
@@ -2229,47 +2546,50 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
       {/* Category Tabs */}
       <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center sm:items-center gap-2.5 w-full mb-8 sm:mb-10 lg:mb-12">
         <AnimatePresence>
-          {categories.map((cat) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="relative group/cat w-full sm:w-auto shrink-0"
-            >
-              <button
-                onClick={() => setActiveCategoryId(cat.id)}
-                style={isTabletOrDesktop ? { width: `${standardCategoryWidth}px`, height: '44px' } : undefined}
-                className={`bookmark-cat-pill w-full min-h-[44px] h-[44px] ${
-                  activeCategoryId === cat.id ? 'pl-3 pr-9 sm:pl-4 sm:pr-9' : 'px-3 sm:px-4'
-                } rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center cursor-pointer select-none ${
-                  activeCategoryId === cat.id
-                    ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
-                    : 'bg-white dark:bg-[#202025] text-neutral-800 dark:text-white/90 border border-neutral-200/80 dark:border-white/10 opacity-70 hover:opacity-100'
-                }`}
-                title={cat.name}
+          {categories.map((cat) => {
+            const catDisplayName = getCategoryDisplayName(cat, language);
+            return (
+              <motion.div
+                key={cat.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="relative group/cat w-full sm:w-auto shrink-0"
               >
-                <span className="truncate whitespace-nowrap px-1">{cat.name}</span>
-              </button>
-              {activeCategoryId === cat.id && (
                 <button
-                  onClick={(e) => { e.stopPropagation(); openEditCategory(cat); }}
-                  className="bookmark-cat-delete-btn absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6 bg-slate-200/90 hover:bg-slate-300 text-slate-600 hover:text-slate-800 rounded-lg flex items-center justify-center transition-all shadow-xs cursor-pointer z-10"
-                  aria-label={`Edit or delete ${cat.name}`}
+                  onClick={() => setActiveCategoryId(cat.id)}
+                  style={isTabletOrDesktop ? { width: `${standardCategoryWidth}px`, height: '44px' } : undefined}
+                  className={`bookmark-cat-pill w-full min-h-[44px] h-[44px] ${
+                    activeCategoryId === cat.id ? 'pl-3 pr-9 sm:pl-4 sm:pr-9' : 'px-3 sm:px-4'
+                  } rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center cursor-pointer select-none ${
+                    activeCategoryId === cat.id
+                      ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
+                      : 'bg-white dark:bg-[#202025] text-neutral-800 dark:text-white/90 border border-neutral-200/80 dark:border-white/10 opacity-70 hover:opacity-100'
+                  }`}
+                  title={catDisplayName}
                 >
-                  <X size={11} />
+                  <span className="truncate whitespace-nowrap px-1">{catDisplayName}</span>
                 </button>
-              )}
-            </motion.div>
-          ))}
+                {activeCategoryId === cat.id && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); openEditCategory(cat); }}
+                    className="bookmark-cat-delete-btn absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6 bg-slate-200/90 hover:bg-slate-300 text-slate-600 hover:text-slate-800 rounded-lg flex items-center justify-center transition-all shadow-xs cursor-pointer z-10"
+                    aria-label={`${extraT.editOrDelete} ${catDisplayName}`}
+                  >
+                    <X size={11} />
+                  </button>
+                )}
+              </motion.div>
+            );
+          })}
           {categories.length < 15 && (
             <div className="w-full sm:w-auto flex justify-center shrink-0">
               <button
                 onClick={() => setShowAddCategory(true)}
                 style={isTabletOrDesktop ? { width: `${standardCategoryWidth}px`, height: '44px' } : undefined}
                 className="bookmark-cat-pill bookmark-add-cat-btn w-full min-h-[44px] h-[44px] px-4 rounded-full border border-dashed border-neutral-300 dark:border-white/20 text-neutral-800 dark:text-white/90 opacity-70 hover:opacity-100 hover:border-indigo-500/50 hover:text-indigo-500 transition-all bg-white dark:bg-[#202025] flex items-center justify-center shrink-0 cursor-pointer select-none"
-                title="Add Category"
-                aria-label="Add Category"
+                title={extraT.addCategory}
+                aria-label={extraT.addCategory}
               >
                 <Plus size={16} />
               </button>
@@ -2316,7 +2636,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
                       ? 'opacity-100 pointer-events-auto'
                       : 'opacity-0 pointer-events-none [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto'
                   }`}
-                  aria-label={`Edit or delete ${link.title}`}
+                  aria-label={`${extraT.editOrDelete} ${link.title}`}
                 >
                   <X size={12} className="lg:w-2.5 lg:h-2.5" />
                 </button>
@@ -2355,7 +2675,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
               {LINKS_T[language]?.addBookmark || LINKS_T.English.addBookmark}
             </h2>
             <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-white/30 mb-6 sm:mb-8">
-              {LINKS_T[language]?.saveTo || LINKS_T.English.saveTo} {activeCategory.name}
+              {LINKS_T[language]?.saveTo || LINKS_T.English.saveTo} {getCategoryDisplayName(activeCategory, language)}
             </p>
             <form onSubmit={addLink} className="space-y-5 sm:space-y-6">
               <div>
@@ -2523,7 +2843,7 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
               {LINKS_T[language]?.editBookmarkTitle || LINKS_T.English.editBookmarkTitle}
             </h2>
             <p className="text-[10px] uppercase font-bold tracking-widest word-color opacity-50 mb-6 sm:mb-8">
-              {activeCategory.name}
+              {getCategoryDisplayName(activeCategory, language)}
             </p>
             <form onSubmit={saveLinkEdit} className="space-y-5 sm:space-y-6">
               <div>

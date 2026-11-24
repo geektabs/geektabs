@@ -155,6 +155,32 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
       Greek: 'Ημερήσια Υπενθύμιση',
     }[language] || 'Daily Reminder';
 
+  const reminderTooltips = {
+    English: { refresh: 'Refresh reminder', next: 'Click to get new reminder' },
+    Chinese: { refresh: '刷新提醒', next: '点击获取新提醒' },
+    'Chinese Traditional': { refresh: '重新整理提醒', next: '點擊取得新提醒' },
+    Spanish: { refresh: 'Actualizar recordatorio', next: 'Haz clic para ver otro recordatorio' },
+    French: { refresh: 'Actualiser le rappel', next: 'Cliquez pour un nouveau rappel' },
+    German: { refresh: 'Erinnerung aktualisieren', next: 'Für eine neue Erinnerung klicken' },
+    Japanese: { refresh: 'リマインダーを更新', next: 'クリックして新しいリマインダーを表示' },
+    Korean: { refresh: '리마인더 새로고침', next: '클릭하여 새 리마인더 보기' },
+    Italian: { refresh: 'Aggiorna promemoria', next: 'Clicca per un nuovo promemoria' },
+    Russian: { refresh: 'Обновить напоминание', next: 'Нажмите для нового напоминания' },
+    Luxembourgish: { refresh: 'Erënnerung aktualiséieren', next: 'Klickt fir eng nei Erënnerung' },
+    Dutch: { refresh: 'Herinnering vernieuwen', next: 'Klik voor een nieuwe herinnering' },
+    Swedish: { refresh: 'Uppdatera påminnelse', next: 'Klicka för en ny påminnelse' },
+    Finnish: { refresh: 'Päivitä muistutus', next: 'Napsauta saadaksesi uuden muistutuksen' },
+    Hindi: { refresh: 'अनुस्मारक रीफ़्रेश करें', next: 'नया अनुस्मारक पाने के लिए क्लिक करें' },
+    Norwegian: { refresh: 'Oppdater påminnelse', next: 'Klikk for å få en ny påminnelse' },
+    Thai: { refresh: 'รีเฟรชข้อคิดเตือนใจ', next: 'คลิกเพื่อรับข้อคิดเตือนใจใหม่' },
+    Portuguese: { refresh: 'Atualizar lembrete', next: 'Clique para obter um novo lembrete' },
+    Vietnamese: { refresh: 'Làm mới nhắc nhở', next: 'Nhấp để xem nhắc nhở mới' },
+    Polish: { refresh: 'Odśwież przypomnienie', next: 'Kliknij, aby zobaczyć nowe przypomnienie' },
+    Danish: { refresh: 'Opdater påmindelse', next: 'Klik for at få en ny påmindelse' },
+    Turkish: { refresh: 'Hatırlatmayı yenile', next: 'Yeni hatırlatma için tıklayın' },
+    Greek: { refresh: 'Ανανέωση υπενθύμισης', next: 'Κάντε κλικ για νέα υπενθύμιση' },
+  }[language] || { refresh: 'Refresh reminder', next: 'Click to get new reminder' };
+
   return (
     <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Rose Red Background */}
@@ -174,7 +200,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
             fetchReminder();
           }}
           className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
-          title="Refresh reminder"
+          title={reminderTooltips.refresh}
         >
           <RefreshCw
             size={14}
@@ -190,7 +216,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
       <div
         onClick={fetchReminder}
         className="flex-1 flex flex-col justify-center px-4 sm:px-5 py-4 sm:py-5 cursor-pointer select-none"
-        title="Click to get new reminder"
+        title={reminderTooltips.next}
       >
         <p className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-none sm:line-clamp-5 lg:line-clamp-5 select-text">
           {reminder}

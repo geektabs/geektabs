@@ -87,6 +87,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: 'Description',
     addNotes: 'Add notes or detailed description...',
     allLists: 'All Lists',
+    addDescOptional: 'Add description (optional)',
   },
   Korean: {
     title: '할 일 관리',
@@ -96,8 +97,10 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: '개인',
     shopping: '쇼핑',
     work: '업무',
+    meetings: '회의',
+    events: '일정',
     addTask: '할 일 만들기',
-    pending: '개 남음',
+    pending: '개 대기 중',
     noTasks: '할 일이 없습니다.',
     addPlaceholder: '어떤 일을 해야 하나요?',
     descriptionPlaceholder: '설명 (선택사항)',
@@ -116,6 +119,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: '설명',
     addNotes: '설명 또는 메모 추가...',
     allLists: '전체 목록',
+    addDescOptional: '설명 추가 (선택사항)',
   },
   Spanish: {
     title: 'Área de Tareas',
@@ -125,6 +129,8 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'Personal',
     shopping: 'Compras',
     work: 'Trabajo',
+    meetings: 'Reuniones',
+    events: 'Eventos',
     addTask: 'CREAR TAREA',
     pending: 'tareas pendientes',
     noTasks: 'No hay tareas en esta lista.',
@@ -145,6 +151,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: 'Descripción',
     addNotes: 'Agregar notas o descripción...',
     allLists: 'Todas las listas',
+    addDescOptional: 'Añadir descripción (opcional)',
   },
   French: {
     title: 'Espace Tâches',
@@ -154,6 +161,8 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'Personnel',
     shopping: 'Achats',
     work: 'Travail',
+    meetings: 'Réunions',
+    events: 'Événements',
     addTask: 'CRÉER TÂCHE',
     pending: 'tâches en attente',
     noTasks: 'Aucune tâche dans cette liste.',
@@ -174,6 +183,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: 'Description',
     addNotes: 'Ajouter des notes ou une description...',
     allLists: 'Toutes les listes',
+    addDescOptional: 'Ajouter une description (optionnel)',
   },
   German: {
     title: 'Aufgaben-Workspace',
@@ -183,6 +193,8 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'Privat',
     shopping: 'Einkaufen',
     work: 'Arbeit',
+    meetings: 'Besprechungen',
+    events: 'Termine',
     addTask: 'AUFGABE ERSTELLEN',
     pending: 'Aufgaben offen',
     noTasks: 'Keine Aufgaben in dieser Liste.',
@@ -203,6 +215,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: 'Beschreibung',
     addNotes: 'Notizen oder Beschreibung hinzufügen...',
     allLists: 'Alle Listen',
+    addDescOptional: 'Beschreibung hinzufügen (optional)',
   },
   Chinese: {
     title: '任务空间',
@@ -219,6 +232,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: '当前列表无待办任务。',
     addPlaceholder: '有什么需要做的？',
     descriptionPlaceholder: '备注描述 (选填)',
+    addDescOptional: '添加描述 (选填)',
     cancel: '取消',
     save: '保存',
     priority: '优先级',
@@ -250,6 +264,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     noTasks: '目前清單無待辦任務。',
     addPlaceholder: '有什麼需要做的？',
     descriptionPlaceholder: '備註說明 (選填)',
+    addDescOptional: '新增說明 (選填)',
     cancel: '取消',
     save: '儲存',
     priority: '優先順序',
@@ -274,6 +289,8 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'プライベート',
     shopping: 'ショッピング',
     work: 'ワーク',
+    meetings: '会議',
+    events: 'イベント',
     addTask: 'タスクを作成',
     pending: '件の未完了タスク',
     noTasks: 'このカテゴリーのタスクはありません。',
@@ -294,6 +311,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: '説明',
     addNotes: 'メモまたは説明を追加...',
     allLists: 'すべてのリスト',
+    addDescOptional: '説明を追加 (任意)',
   },
   Italian: {
     title: 'Spazio delle Attività',
@@ -303,11 +321,14 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'Personale',
     shopping: 'Spesa',
     work: 'Lavoro',
+    meetings: 'Riunioni',
+    events: 'Eventi',
     addTask: 'CREA ATTIVITÀ',
     pending: 'attività in sospeso',
     noTasks: 'Nessuna attività in questo elenco.',
     addPlaceholder: 'Cosa c\'è da fare?',
     descriptionPlaceholder: 'Descrizione (opzionale)',
+    addDescOptional: 'Aggiungi descrizione (opzionale)',
     cancel: 'ANNULLA',
     save: 'SALVA',
     priority: 'Priorità',
@@ -332,11 +353,14 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'Личное',
     shopping: 'Покупки',
     work: 'Работа',
+    meetings: 'Встречи',
+    events: 'События',
     addTask: 'СОЗДАТЬ ЗАДАЧУ',
     pending: 'задач в списке',
     noTasks: 'В этом списке нет задач.',
     addPlaceholder: 'Что нужно сделать?',
     descriptionPlaceholder: 'Описание (необязательно)',
+    addDescOptional: 'Добавить описание (необязательно)',
     cancel: 'ОТМЕНА',
     save: 'СОХРАНИТЬ',
     priority: 'Приоритет',
@@ -361,6 +385,8 @@ const TODO_T: Record<string, Record<string, string>> = {
     personal: 'Perséinlech',
     shopping: 'Akafen',
     work: 'Aarbecht',
+    meetings: 'Versammlungen',
+    events: 'Evenementer',
     addTask: 'AUFGAB ERSTELLEN',
     pending: 'Aufgaben am Waardestand',
     noTasks: 'Keng Aufgaben an dëser Lëscht.',
@@ -381,6 +407,7 @@ const TODO_T: Record<string, Record<string, string>> = {
     description: 'Beschreiwung',
     addNotes: 'Notizen oder Beschreiwung derbäisetzen...',
     allLists: 'All Lëschten',
+    addDescOptional: 'Beschreiwung derbäisetzen (optional)',
   },
   Dutch: {
     title: 'Takenwerkruimte',
@@ -768,21 +795,60 @@ const TODO_T: Record<string, Record<string, string>> = {
   },
 };
 
+const TODO_EXTRA_T: Record<string, {
+  closeSidebar: string;
+  hideSidebar: string;
+  showSidebar: string;
+  toggleSidebar: string;
+  markComplete: string;
+  markIncomplete: string;
+  editTaskTitle: string;
+  editTaskBtn: string;
+  deleteTaskBtn: string;
+  closeEditModal: string;
+  deleteConfirmBtn: string;
+}> = {
+  English: { closeSidebar: 'Close sidebar', hideSidebar: 'Hide sidebar', showSidebar: 'Show sidebar', toggleSidebar: 'Toggle sidebar', markComplete: 'Mark complete', markIncomplete: 'Mark incomplete', editTaskTitle: 'Edit Task', editTaskBtn: 'Edit task', deleteTaskBtn: 'Delete task', closeEditModal: 'Close edit modal', deleteConfirmBtn: 'Delete' },
+  Chinese: { closeSidebar: '关闭侧边栏', hideSidebar: '隐藏侧边栏', showSidebar: '显示侧边栏', toggleSidebar: '切换侧边栏', markComplete: '标记为已完成', markIncomplete: '标记为未完成', editTaskTitle: '编辑任务', editTaskBtn: '编辑任务', deleteTaskBtn: '删除任务', closeEditModal: '关闭编辑弹窗', deleteConfirmBtn: '删除' },
+  'Chinese Traditional': { closeSidebar: '關閉側邊欄', hideSidebar: '隱藏側邊欄', showSidebar: '顯示側邊欄', toggleSidebar: '切換側邊欄', markComplete: '標記為已完成', markIncomplete: '標記為未完成', editTaskTitle: '編輯任務', editTaskBtn: '編輯任務', deleteTaskBtn: '刪除任務', closeEditModal: '關閉編輯視窗', deleteConfirmBtn: '刪除' },
+  Spanish: { closeSidebar: 'Cerrar barra lateral', hideSidebar: 'Ocultar barra lateral', showSidebar: 'Mostrar barra lateral', toggleSidebar: 'Alternar barra lateral', markComplete: 'Marcar como completada', markIncomplete: 'Marcar como incompleta', editTaskTitle: 'Editar tarea', editTaskBtn: 'Editar tarea', deleteTaskBtn: 'Eliminar tarea', closeEditModal: 'Cerrar ventana de edición', deleteConfirmBtn: 'Eliminar' },
+  French: { closeSidebar: 'Fermer le panneau', hideSidebar: 'Masquer le panneau', showSidebar: 'Afficher le panneau', toggleSidebar: 'Basculer le panneau', markComplete: 'Marquer comme terminée', markIncomplete: 'Marquer comme non terminée', editTaskTitle: 'Modifier la tâche', editTaskBtn: 'Modifier la tâche', deleteTaskBtn: 'Supprimer la tâche', closeEditModal: 'Fermer la fenêtre d’édition', deleteConfirmBtn: 'Supprimer' },
+  German: { closeSidebar: 'Seitenleiste schließen', hideSidebar: 'Seitenleiste ausblenden', showSidebar: 'Seitenleiste einblenden', toggleSidebar: 'Seitenleiste umschalten', markComplete: 'Als erledigt markieren', markIncomplete: 'Als unerledigt markieren', editTaskTitle: 'Aufgabe bearbeiten', editTaskBtn: 'Aufgabe bearbeiten', deleteTaskBtn: 'Aufgabe löschen', closeEditModal: 'Bearbeitungsfenster schließen', deleteConfirmBtn: 'Löschen' },
+  Japanese: { closeSidebar: 'サイドバーを閉じる', hideSidebar: 'サイドバーを隠す', showSidebar: 'サイドバーを表示', toggleSidebar: 'サイドバーを切り替え', markComplete: '完了にする', markIncomplete: '未完了に戻す', editTaskTitle: 'タスクを編集', editTaskBtn: 'タスクを編集', deleteTaskBtn: 'タスクを削除', closeEditModal: '編集モーダルを閉じる', deleteConfirmBtn: '削除' },
+  Korean: { closeSidebar: '사이드바 닫기', hideSidebar: '사이드바 숨기기', showSidebar: '사이드바 표시', toggleSidebar: '사이드바 전환', markComplete: '완료로 표시', markIncomplete: '미완료로 표시', editTaskTitle: '할 일 수정', editTaskBtn: '할 일 수정', deleteTaskBtn: '할 일 삭제', closeEditModal: '수정 창 닫기', deleteConfirmBtn: '삭제' },
+  Italian: { closeSidebar: 'Chiudi barra laterale', hideSidebar: 'Nascondi barra laterale', showSidebar: 'Mostra barra laterale', toggleSidebar: 'Attiva/disattiva barra laterale', markComplete: 'Segna come completata', markIncomplete: 'Segna come incompleta', editTaskTitle: 'Modifica attività', editTaskBtn: 'Modifica attività', deleteTaskBtn: 'Elimina attività', closeEditModal: 'Chiudi finestra di modifica', deleteConfirmBtn: 'Elimina' },
+  Russian: { closeSidebar: 'Закрыть панель', hideSidebar: 'Скрыть панель', showSidebar: 'Показать панель', toggleSidebar: 'Переключить панель', markComplete: 'Отметить выполненной', markIncomplete: 'Отметить невыполненной', editTaskTitle: 'Редактировать задачу', editTaskBtn: 'Редактировать задачу', deleteTaskBtn: 'Удалить задачу', closeEditModal: 'Закрыть окно редактирования', deleteConfirmBtn: 'Удалить' },
+  Luxembourgish: { closeSidebar: 'Säiteläischt zoumaachen', hideSidebar: 'Säiteläischt verstoppen', showSidebar: 'Säiteläischt weisen', toggleSidebar: 'Säiteläischt ëmschalten', markComplete: 'Als fäerdeg markéieren', markIncomplete: 'Als net fäerdeg markéieren', editTaskTitle: 'Aufgab änneren', editTaskBtn: 'Aufgab änneren', deleteTaskBtn: 'Aufgab läschen', closeEditModal: 'Beaarbechtungsfënster zoumaachen', deleteConfirmBtn: 'Läschen' },
+  Dutch: { closeSidebar: 'Zijbalk sluiten', hideSidebar: 'Zijbalk verbergen', showSidebar: 'Zijbalk tonen', toggleSidebar: 'Zijbalk wisselen', markComplete: 'Markeren als voltooid', markIncomplete: 'Markeren als onvoltooid', editTaskTitle: 'Taak bewerken', editTaskBtn: 'Taak bewerken', deleteTaskBtn: 'Taak verwijderen', closeEditModal: 'Bewerkvenster sluiten', deleteConfirmBtn: 'Verwijderen' },
+  Swedish: { closeSidebar: 'Stäng sidopanel', hideSidebar: 'Dölj sidopanel', showSidebar: 'Visa sidopanel', toggleSidebar: 'Växla sidopanel', markComplete: 'Markera som klar', markIncomplete: 'Markera som ej klar', editTaskTitle: 'Redigera uppgift', editTaskBtn: 'Redigera uppgift', deleteTaskBtn: 'Ta bort uppgift', closeEditModal: 'Stäng redigeringsfönster', deleteConfirmBtn: 'Ta bort' },
+  Finnish: { closeSidebar: 'Sulje sivupalkki', hideSidebar: 'Piilota sivupalkki', showSidebar: 'Näytä sivupalkki', toggleSidebar: 'Vaihda sivupalkki', markComplete: 'Merkitse valmiiksi', markIncomplete: 'Merkitse keskeneräiseksi', editTaskTitle: 'Muokkaa tehtävää', editTaskBtn: 'Muokkaa tehtävää', deleteTaskBtn: 'Poista tehtävä', closeEditModal: 'Sulje muokkausikkuna', deleteConfirmBtn: 'Poista' },
+  Hindi: { closeSidebar: 'साइडबार बंद करें', hideSidebar: 'साइडबार छिपाएँ', showSidebar: 'साइडबार दिखाएँ', toggleSidebar: 'साइडबार टॉगल करें', markComplete: 'पूर्ण चिह्नित करें', markIncomplete: 'अपूर्ण चिह्नित करें', editTaskTitle: 'कार्य संपादित करें', editTaskBtn: 'कार्य संपादित करें', deleteTaskBtn: 'कार्य हटाएँ', closeEditModal: 'संपादन विंडो बंद करें', deleteConfirmBtn: 'हटाएँ' },
+  Norwegian: { closeSidebar: 'Lukk sidefelt', hideSidebar: 'Skjul sidefelt', showSidebar: 'Vis sidefelt', toggleSidebar: 'Veksle sidefelt', markComplete: 'Merk som fullført', markIncomplete: 'Merk som ufullført', editTaskTitle: 'Rediger oppgave', editTaskBtn: 'Rediger oppgave', deleteTaskBtn: 'Slett oppgave', closeEditModal: 'Lukk redigeringsvindu', deleteConfirmBtn: 'Slett' },
+  Thai: { closeSidebar: 'ปิดแถบด้านข้าง', hideSidebar: 'ซ่อนแถบด้านข้าง', showSidebar: 'แสดงแถบด้านข้าง', toggleSidebar: 'สลับแถบด้านข้าง', markComplete: 'ทำเครื่องหมายว่าเสร็จสิ้น', markIncomplete: 'ทำเครื่องหมายว่ายังไม่เสร็จ', editTaskTitle: 'แก้ไขงาน', editTaskBtn: 'แก้ไขงาน', deleteTaskBtn: 'ลบงาน', closeEditModal: 'ปิดหน้าต่างแก้ไข', deleteConfirmBtn: 'ลบ' },
+  Portuguese: { closeSidebar: 'Fechar barra lateral', hideSidebar: 'Ocultar barra lateral', showSidebar: 'Mostrar barra lateral', toggleSidebar: 'Alternar barra lateral', markComplete: 'Marcar como concluída', markIncomplete: 'Marcar como incompleta', editTaskTitle: 'Editar Tarefa', editTaskBtn: 'Editar tarefa', deleteTaskBtn: 'Eliminar tarefa', closeEditModal: 'Fechar janela de edição', deleteConfirmBtn: 'Eliminar' },
+  Vietnamese: { closeSidebar: 'Đóng thanh bên', hideSidebar: 'Ẩn thanh bên', showSidebar: 'Hiện thanh bên', toggleSidebar: 'Bật/tắt thanh bên', markComplete: 'Đánh dấu hoàn thành', markIncomplete: 'Đánh dấu chưa hoàn thành', editTaskTitle: 'Chỉnh sửa công việc', editTaskBtn: 'Chỉnh sửa công việc', deleteTaskBtn: 'Xóa công việc', closeEditModal: 'Đóng hộp thoại sửa', deleteConfirmBtn: 'Xóa' },
+  Polish: { closeSidebar: 'Zamknij panel boczny', hideSidebar: 'Ukryj panel boczny', showSidebar: 'Pokaż panel boczny', toggleSidebar: 'Przełącz panel boczny', markComplete: 'Oznacz jako ukończone', markIncomplete: 'Oznacz jako nieukończone', editTaskTitle: 'Edytuj zadanie', editTaskBtn: 'Edytuj zadanie', deleteTaskBtn: 'Usuń zadanie', closeEditModal: 'Zamknij okno edycji', deleteConfirmBtn: 'Usuń' },
+  Danish: { closeSidebar: 'Luk sidebjælke', hideSidebar: 'Skjul sidebjælke', showSidebar: 'Vis sidebjælke', toggleSidebar: 'Skift sidebjælke', markComplete: 'Marker som fuldført', markIncomplete: 'Marker som ufuldført', editTaskTitle: 'Rediger opgave', editTaskBtn: 'Rediger opgave', deleteTaskBtn: 'Slet opgave', closeEditModal: 'Luk redigeringsvindue', deleteConfirmBtn: 'Slet' },
+  Turkish: { closeSidebar: 'Kenar çubuğunu kapat', hideSidebar: 'Kenar çubuğunu gizle', showSidebar: 'Kenar çubuğunu göster', toggleSidebar: 'Kenar çubuğunu aç/kapat', markComplete: 'Tamamlandı olarak işaretle', markIncomplete: 'Tamamlanmadı olarak işaretle', editTaskTitle: 'Görevi Düzenle', editTaskBtn: 'Görevi düzenle', deleteTaskBtn: 'Görevi sil', closeEditModal: 'Düzenleme penceresini kapat', deleteConfirmBtn: 'Sil' },
+  Greek: { closeSidebar: 'Κλείσιμο πλευρικής μπάρας', hideSidebar: 'Απόκρυψη πλευρικής μπάρας', showSidebar: 'Εμφάνιση πλευρικής μπάρας', toggleSidebar: 'Εναλλαγή πλευρικής μπάρας', markComplete: 'Σήμανση ως ολοκληρωμένη', markIncomplete: 'Σήμανση ως ημιτελής', editTaskTitle: 'Επεξεργασία Εργασίας', editTaskBtn: 'Επεξεργασία εργασίας', deleteTaskBtn: 'Διαγραφή εργασίας', closeEditModal: 'Κλείσιμο παραθύρου επεξεργασίας', deleteConfirmBtn: 'Διαγραφή' },
+};
+
 const getProjectName = (id: string, lang: string) => {
   const dictionary = TODO_T[lang] || TODO_T['English'];
   switch (id) {
     case 'Inbox': return dictionary.inbox;
     case 'Today': return dictionary.today;
     case 'Personal': return dictionary.personal;
-    case 'Shopping': return dictionary.shopping || (lang === 'Chinese' ? '购物' : lang === 'Chinese Traditional' ? '購物' : 'Shopping');
+    case 'Shopping': return dictionary.shopping;
     case 'Work': return dictionary.work;
-    case 'Meetings': return dictionary.meetings || (lang === 'Chinese' ? '会议' : lang === 'Chinese Traditional' ? '會議' : 'Meetings');
-    case 'Events': return dictionary.events || (lang === 'Chinese' ? '事件' : lang === 'Chinese Traditional' ? '事件' : 'Events');
+    case 'Meetings': return dictionary.meetings;
+    case 'Events': return dictionary.events;
     default: return id;
   }
 };
 
 export default function TodoListTab({ language = 'English' }: TodoListProps) {
+  const todoExtra = TODO_EXTRA_T[language] || TODO_EXTRA_T['English'];
   const [tasks, setTasks] = useLocalStorage<Task[]>('GeekTabs-tasks', INITIAL_TASKS);
   const [currentProject, setCurrentProject] = useState('Today');
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -923,8 +989,8 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
             type="button"
             onClick={() => setMobileSidebarOpen(false)}
             className="md:hidden p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
-            title="Close sidebar"
-            aria-label="Close sidebar"
+            title={todoExtra.closeSidebar}
+            aria-label={todoExtra.closeSidebar}
           >
             <X size={18} />
           </button>
@@ -976,7 +1042,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
         <div className="p-6 text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider select-none">
           <span className="text-[11px] uppercase tracking-wider font-black">
             {language === 'Korean' 
-              ? `${tasks.filter(t => !t.completed).length}개 대기 중` 
+              ? `${tasks.filter(t => !t.completed).length}${dict.pending}` 
               : `${tasks.filter(t => !t.completed).length} ${dict.pending}`}
           </span>
         </div>
@@ -999,8 +1065,8 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                 }
               }}
               className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
-              title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
-              aria-label="Toggle sidebar"
+              title={sidebarOpen ? todoExtra.hideSidebar : todoExtra.showSidebar}
+              aria-label={todoExtra.toggleSidebar}
             >
               {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeft size={20} />}
             </button>
@@ -1065,7 +1131,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                         className="text-xs font-semibold text-[#5438dc] hover:text-[#472fc2] hover:underline flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <Plus size={12} />
-                        <span>{(dict.addDescOptional || (language === 'Chinese' ? '添加描述 (选填)' : language === 'Chinese Traditional' ? '新增說明 (選填)' : 'Add description (optional)')).replace(/^\+\s*/, '')}</span>
+                        <span>{dict.addDescOptional.replace(/^\+\s*/, '')}</span>
                       </button>
                     </div>
                   )}
@@ -1143,7 +1209,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                           type="button"
                           onClick={() => toggleTask(task.id)}
                           className="w-10 h-10 -m-2.5 lg:m-0 lg:mt-0.5 lg:w-5 lg:h-5 flex items-center justify-center shrink-0 cursor-pointer"
-                          aria-label={task.completed ? 'Mark incomplete' : 'Mark complete'}
+                          aria-label={task.completed ? todoExtra.markIncomplete : todoExtra.markComplete}
                         >
                           <span
                             className={`w-5 h-5 rounded-full flex items-center justify-center border-2 transition-all ${
@@ -1191,7 +1257,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                           type="button"
                           onClick={() => startEdit(task)}
                           className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-black/5 text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer"
-                          title="Edit task"
+                          title={todoExtra.editTaskBtn}
                         >
                           <Pencil size={14} />
                         </button>
@@ -1199,7 +1265,7 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
                           type="button"
                           onClick={() => setConfirmDeleteTask(task.id)}
                           className="p-2.5 lg:p-1.5 min-w-[38px] min-h-[38px] lg:min-w-0 lg:min-h-0 flex items-center justify-center hover:bg-red-500/10 text-neutral-400 hover:text-red-500 rounded-lg transition-all cursor-pointer"
-                          title="Delete task"
+                          title={todoExtra.deleteTaskBtn}
                         >
                           <Trash2 size={14} />
                         </button>
@@ -1240,6 +1306,8 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
         isOpen={!!confirmDeleteTask}
         title={dict.deleteTitle}
         message={dict.deleteMessage}
+        confirmText={todoExtra.deleteConfirmBtn}
+        cancelText={dict.cancel}
         onConfirm={() => confirmDeleteTask && deleteTask(confirmDeleteTask)}
         onCancel={() => setConfirmDeleteTask(null)}
       />
@@ -1265,13 +1333,13 @@ export default function TodoListTab({ language = 'English' }: TodoListProps) {
           >
             <div className="flex items-center justify-between">
               <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
-                Edit Task
+                {todoExtra.editTaskTitle}
               </h3>
               <button
                 type="button"
                 onClick={() => setEditingId(null)}
                 className="p-1.5 rounded-xl hover:bg-black/5 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
-                aria-label="Close edit modal"
+                aria-label={todoExtra.closeEditModal}
               >
                 <X size={18} />
               </button>

@@ -3,6 +3,7 @@ import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Plus, MapPin, Bell
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import ConfirmModal from '../ConfirmModal';
+import { translateHolidayName } from '../../data/holidayTranslations';
 
 interface EventItem {
   id: string;
@@ -2001,7 +2002,41 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   const [newEvent, setNewEvent] = useState({ title: '', time: '', type: 'event' as 'event' | 'reminder' });
   const [confirmDeleteEvent, setConfirmDeleteEvent] = useState<string | null>(null);
 
+const CAL_EXTRA_T: Record<string, {
+  prevMonth: string;
+  nextMonth: string;
+  countrySelector: string;
+  addEventBtn: string;
+  deleteEventPrefix: string;
+  deleteConfirmBtn: string;
+}> = {
+  English: { prevMonth: 'Previous month', nextMonth: 'Next month', countrySelector: 'Calendar country selector', addEventBtn: 'Add event or reminder', deleteEventPrefix: 'Delete', deleteConfirmBtn: 'Delete' },
+  Chinese: { prevMonth: '上个月', nextMonth: '下个月', countrySelector: '日历国家选择', addEventBtn: '添加事件或提醒', deleteEventPrefix: '删除', deleteConfirmBtn: '删除' },
+  'Chinese Traditional': { prevMonth: '上個月', nextMonth: '下個月', countrySelector: '行事曆國家選擇', addEventBtn: '新增事件或提醒', deleteEventPrefix: '刪除', deleteConfirmBtn: '刪除' },
+  Spanish: { prevMonth: 'Mes anterior', nextMonth: 'Mes siguiente', countrySelector: 'Selector de país del calendario', addEventBtn: 'Añadir evento o recordatorio', deleteEventPrefix: 'Eliminar', deleteConfirmBtn: 'Eliminar' },
+  French: { prevMonth: 'Mois précédent', nextMonth: 'Mois suivant', countrySelector: 'Sélecteur de pays du calendrier', addEventBtn: 'Ajouter un événement ou rappel', deleteEventPrefix: 'Supprimer', deleteConfirmBtn: 'Supprimer' },
+  German: { prevMonth: 'Vorheriger Monat', nextMonth: 'Nächster Monat', countrySelector: 'Kalender-Länderauswahl', addEventBtn: 'Termin oder Erinnerung hinzufügen', deleteEventPrefix: 'Löschen', deleteConfirmBtn: 'Löschen' },
+  Japanese: { prevMonth: '前の月', nextMonth: '次の月', countrySelector: 'カレンダー国選択', addEventBtn: '予定・リマインダーを追加', deleteEventPrefix: '削除', deleteConfirmBtn: '削除' },
+  Korean: { prevMonth: '이전 달', nextMonth: '다음 달', countrySelector: '달력 국가 선택', addEventBtn: '일정 또는 알림 추가', deleteEventPrefix: '삭제', deleteConfirmBtn: '삭제' },
+  Italian: { prevMonth: 'Mese precedente', nextMonth: 'Mese successivo', countrySelector: 'Selettore paese calendario', addEventBtn: 'Aggiungi evento o promemoria', deleteEventPrefix: 'Elimina', deleteConfirmBtn: 'Elimina' },
+  Russian: { prevMonth: 'Предыдущий месяц', nextMonth: 'Следующий месяц', countrySelector: 'Выбор страны календаря', addEventBtn: 'Добавить событие или напоминание', deleteEventPrefix: 'Удалить', deleteConfirmBtn: 'Удалить' },
+  Luxembourgish: { prevMonth: 'Viregte Mount', nextMonth: 'Nächste Mount', countrySelector: 'Kalenner-Land auswielen', addEventBtn: 'Evenement oder Erënnerung derbäisetzen', deleteEventPrefix: 'Läschen', deleteConfirmBtn: 'Läschen' },
+  Dutch: { prevMonth: 'Vorige maand', nextMonth: 'Volgende maand', countrySelector: 'Landselector voor kalender', addEventBtn: 'Afspraak of herinnering toevoegen', deleteEventPrefix: 'Verwijderen', deleteConfirmBtn: 'Verwijderen' },
+  Swedish: { prevMonth: 'Föregående månad', nextMonth: 'Nästa månad', countrySelector: 'Kalenderns landsväljare', addEventBtn: 'Lägg till händelse eller påminnelse', deleteEventPrefix: 'Ta bort', deleteConfirmBtn: 'Ta bort' },
+  Finnish: { prevMonth: 'Edellinen kuukausi', nextMonth: 'Seuraava kuukausi', countrySelector: 'Kalenterin maan valitsin', addEventBtn: 'Lisää tapahtuma tai muistutus', deleteEventPrefix: 'Poista', deleteConfirmBtn: 'Poista' },
+  Hindi: { prevMonth: 'पिछला महीना', nextMonth: 'अगला महीना', countrySelector: 'कैलेंडर देश चयनकर्ता', addEventBtn: 'ईवेंट या रिमाइंडर जोड़ें', deleteEventPrefix: 'हटाएँ', deleteConfirmBtn: 'हटाएँ' },
+  Norwegian: { prevMonth: 'Forrige månad', nextMonth: 'Neste måned', countrySelector: 'Landvelger for kalender', addEventBtn: 'Legg til hendelse eller påminnelse', deleteEventPrefix: 'Slett', deleteConfirmBtn: 'Slett' },
+  Thai: { prevMonth: 'เดือนก่อนหน้า', nextMonth: 'เดือนถัดไป', countrySelector: 'ตัวเลือกประเทศในปฏิทิน', addEventBtn: 'เพิ่มกิจกรรมหรือการแจ้งเตือน', deleteEventPrefix: 'ลบ', deleteConfirmBtn: 'ลบ' },
+  Portuguese: { prevMonth: 'Mês anterior', nextMonth: 'Mês seguinte', countrySelector: 'Seletor de país do calendário', addEventBtn: 'Adicionar evento ou lembrete', deleteEventPrefix: 'Eliminar', deleteConfirmBtn: 'Eliminar' },
+  Vietnamese: { prevMonth: 'Tháng trước', nextMonth: 'Tháng sau', countrySelector: 'Bộ chọn quốc gia lịch', addEventBtn: 'Thêm sự kiện hoặc lời nhắc', deleteEventPrefix: 'Xóa', deleteConfirmBtn: 'Xóa' },
+  Polish: { prevMonth: 'Poprzedni miesiąc', nextMonth: 'Następny miesiąc', countrySelector: 'Wybór kraju kalendarza', addEventBtn: 'Dodaj wydarzenie lub przypomnienie', deleteEventPrefix: 'Usuń', deleteConfirmBtn: 'Usuń' },
+  Danish: { prevMonth: 'Forrige måned', nextMonth: 'Næste måned', countrySelector: 'Landevælger til kalender', addEventBtn: 'Tilføj begivenhed eller påmindelse', deleteEventPrefix: 'Slet', deleteConfirmBtn: 'Slet' },
+  Turkish: { prevMonth: 'Önceki ay', nextMonth: 'Sonraki ay', countrySelector: 'Takvim ülke seçici', addEventBtn: 'Etkinlik veya hatırlatıcı ekle', deleteEventPrefix: 'Sil', deleteConfirmBtn: 'Sil' },
+  Greek: { prevMonth: 'Προηγούμενος μήνας', nextMonth: 'Επόμενος μήνας', countrySelector: 'Επιλογέας χώρας ημερολογίου', addEventBtn: 'Προσθήκη εκδήλωσης ή υπενθύμισης', deleteEventPrefix: 'Διαγραφή', deleteConfirmBtn: 'Διαγραφή' },
+};
+
   const calText = CAL_T[language] || CAL_T['English'];
+  const calExtra = CAL_EXTRA_T[language] || CAL_EXTRA_T['English'];
   const locale = LOCALES[language] || 'en-US';
   const monthName = currentDate.toLocaleString(locale, { month: 'long' });
   const year = currentDate.getFullYear();
@@ -2109,7 +2144,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
     for (const cId of countriesList) {
       const hols = getCountryHolidaysForYear(cId, y);
       if (hols[mmdd]) {
-        result.push(`${cId}: ${hols[mmdd]}`);
+        const cName = COUNTRY_NAMES[language]?.[cId] || cId;
+        result.push(`${cName}: ${translateHolidayName(hols[mmdd], language)}`);
       }
     }
     return result;
@@ -2132,14 +2168,14 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
           list.push({
             day: parseInt(mmdd.slice(3), 10),
             countryId: cId,
-            name,
+            name: translateHolidayName(name, language),
           });
         }
       }
     }
     list.sort((a, b) => a.day - b.day || a.countryId.localeCompare(b.countryId));
     return list;
-  }, [currentDate, activeHolidayCountries]);
+  }, [currentDate, activeHolidayCountries, language]);
 
   // 42-cell (6 weeks x 7 days) month matrix
   const calendarCells = useMemo(() => {
@@ -2250,7 +2286,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
   };
 
   return (
-    <div className="calendar-container flex flex-col lg:flex-row gap-5 sm:gap-6 lg:gap-7 mx-auto w-full max-w-6xl px-0 sm:px-4 lg:px-6">
+    <div className="calendar-container flex flex-col lg:flex-row gap-5 sm:gap-6 lg:gap-7 mx-auto w-full max-w-6xl">
       {/* Main Calendar Card */}
       <div className="w-full lg:flex-[1.75] xl:flex-[2.05] GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl overflow-hidden flex flex-col">
         {/* Top Date Header Strip + Today Button */}
@@ -2300,8 +2336,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                 type="button"
                 onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
                 className="calendar-nav-arrow w-10 h-10 bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-full transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
-                title="Previous month"
-                aria-label="Previous Month"
+                title={calExtra.prevMonth}
+                aria-label={calExtra.prevMonth}
               >
                 <ChevronLeft size={18} />
               </button>
@@ -2309,8 +2345,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                 type="button"
                 onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
                 className="calendar-nav-arrow w-10 h-10 bg-black/[0.04] hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 active:scale-95 rounded-full transition-all border border-black/10 dark:border-white/15 flex items-center justify-center cursor-pointer"
-                title="Next month"
-                aria-label="Next Month"
+                title={calExtra.nextMonth}
+                aria-label={calExtra.nextMonth}
               >
                 <ChevronRight size={18} />
               </button>
@@ -2322,7 +2358,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             <select
               value={calendarCountry}
               onChange={(e) => setCalendarCountry(e.target.value)}
-              aria-label="Calendar country selector"
+              aria-label={calExtra.countrySelector}
               className="world-dates-select min-h-[40px] lg:min-h-0 bg-black/[0.04] dark:bg-white/10 border border-black/10 dark:border-white/15 rounded-xl px-3.5 py-2 lg:py-1.5 text-xs font-bold text-black dark:text-white outline-none cursor-pointer"
             >
               <option value="GLOBAL" className="bg-white dark:bg-[#1e2029] text-black dark:text-white">
@@ -2541,8 +2577,8 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             <button
               onClick={() => setShowAddModal(true)}
               className="w-10 h-10 lg:w-8 lg:h-8 rounded-full bg-[#6143f7] hover:opacity-90 text-white flex items-center justify-center hover:scale-105 transition-all shrink-0 cursor-pointer shadow-sm"
-              title="Add event or reminder"
-              aria-label="Add Event"
+              title={calExtra.addEventBtn}
+              aria-label={calExtra.addEventBtn}
             >
               <Plus size={16} />
             </button>
@@ -2593,7 +2629,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
                   <button
                     onClick={() => setConfirmDeleteEvent(evt.id)}
                     className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 text-black dark:text-white hover:text-rose-500 transition-all p-2 lg:p-1 cursor-pointer"
-                    aria-label={`Delete ${evt.title}`}
+                    aria-label={`${calExtra.deleteEventPrefix} ${evt.title}`}
                   >
                     <Plus size={16} className="rotate-45" />
                   </button>
@@ -2605,7 +2641,7 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
             {viewedMonthHolidays.length > 0 && (
               <div className="pt-2 border-t border-black/10 dark:border-white/15 space-y-2">
                 <p className="text-[10px] uppercase font-bold tracking-widest text-black/65 dark:text-white/70 px-1">
-                  {calText.holidaysMonth} · {activeHolidayCountries.join(' / ')}
+                  {calText.holidaysMonth} · {activeHolidayCountries.map((cId) => COUNTRY_NAMES[language]?.[cId] || cId).join(' / ')}
                 </p>
                 <div className="space-y-1.5">
                   {viewedMonthHolidays.map((h, idx) => (
@@ -2709,8 +2745,10 @@ export default function Calendar({ language = 'English' }: CalendarProps) {
 
       <ConfirmModal
         isOpen={!!confirmDeleteEvent}
-        title={(CAL_T[language] || CAL_T['English']).deleteEvent}
-        message={(CAL_T[language] || CAL_T['English']).deleteConfirm}
+        title={calText.deleteEvent}
+        message={calText.deleteConfirm}
+        confirmText={calExtra.deleteConfirmBtn}
+        cancelText={calText.cancel}
         onConfirm={() => {
           if (confirmDeleteEvent) {
              setEvents(events.filter(e => e.id !== confirmDeleteEvent));

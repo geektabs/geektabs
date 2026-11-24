@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /todo
+Disallow: /notes
+Disallow: /settings
+
+Sitemap: /sitemap.xml

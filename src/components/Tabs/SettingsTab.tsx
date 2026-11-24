@@ -886,6 +886,248 @@ const SETTINGS_T: Record<string, Record<string, string>> = {
   }
 };
 
+const SETTINGS_EXTRA_T: Record<string, {
+  preferences: string;
+  closeNav: string;
+  hideSidebar: string;
+  showSidebar: string;
+  toggleSidebar: string;
+  removeName: string;
+  exportSuccess: string;
+  exportFailed: string;
+}> = {
+  English: {
+    preferences: 'Preferences',
+    closeNav: 'Close navigation',
+    hideSidebar: 'Hide sidebar',
+    showSidebar: 'Show sidebar',
+    toggleSidebar: 'Toggle sidebar',
+    removeName: 'Remove Name',
+    exportSuccess: 'Backup created (Bookmarks, Calendar Events & Reminders, To-Do, Notes, Settings & Wallpapers).',
+    exportFailed: 'Failed to export backup file.',
+  },
+  Chinese: {
+    preferences: '偏好设置',
+    closeNav: '关闭导航',
+    hideSidebar: '隐藏侧边栏',
+    showSidebar: '显示侧边栏',
+    toggleSidebar: '切换侧边栏',
+    removeName: '清除名称',
+    exportSuccess: '备份已创建（书签、日历日程与提醒、待办事项、笔记、设置及壁纸）。',
+    exportFailed: '导出备份文件失败。',
+  },
+  'Chinese Traditional': {
+    preferences: '偏好設定',
+    closeNav: '關閉導覽',
+    hideSidebar: '隱藏側邊欄',
+    showSidebar: '顯示側邊欄',
+    toggleSidebar: '切換側邊欄',
+    removeName: '清除名稱',
+    exportSuccess: '備份已建立（書籤、行事曆行程與提醒、待辦事項、筆記、設定與桌布）。',
+    exportFailed: '匯出備份檔案失敗。',
+  },
+  Spanish: {
+    preferences: 'Preferencias',
+    closeNav: 'Cerrar navegación',
+    hideSidebar: 'Ocultar barra lateral',
+    showSidebar: 'Mostrar barra lateral',
+    toggleSidebar: 'Alternar barra lateral',
+    removeName: 'Eliminar nombre',
+    exportSuccess: 'Copia creada (Marcadores, Eventos y Recordatorios de Calendario, Tareas, Notas, Ajustes y Fondos).',
+    exportFailed: 'Error al exportar el archivo de copia de seguridad.',
+  },
+  French: {
+    preferences: 'Préférences',
+    closeNav: 'Fermer la navigation',
+    hideSidebar: 'Masquer la barre latérale',
+    showSidebar: 'Afficher la barre latérale',
+    toggleSidebar: 'Basculer la barre latérale',
+    removeName: 'Supprimer le nom',
+    exportSuccess: 'Sauvegarde créée (Signets, Événements et Rappels du Calendrier, Tâches, Notes, Paramètres et Fonds d’écran).',
+    exportFailed: 'Échec de l’exportation du fichier de sauvegarde.',
+  },
+  German: {
+    preferences: 'Einstellungen',
+    closeNav: 'Navigation schließen',
+    hideSidebar: 'Seitenleiste ausblenden',
+    showSidebar: 'Seitenleiste einblenden',
+    toggleSidebar: 'Seitenleiste umschalten',
+    removeName: 'Namen entfernen',
+    exportSuccess: 'Sicherung erstellt (Lesezeichen, Kalendertermine & Erinnerungen, Aufgaben, Notizen, Einstellungen & Hintergründe).',
+    exportFailed: 'Sicherung konnte nicht exportiert werden.',
+  },
+  Japanese: {
+    preferences: '環境設定',
+    closeNav: 'ナビゲーションを閉じる',
+    hideSidebar: 'サイドバーを非表示',
+    showSidebar: 'サイドバーを表示',
+    toggleSidebar: 'サイドバーを切り替え',
+    removeName: '名前を削除',
+    exportSuccess: 'バックアップを作成しました（ブックマーク、カレンダー予定・リマインダー、To-Do、メモ、設定、壁紙）。',
+    exportFailed: 'バックアップファイルのエクスポートに失敗しました。',
+  },
+  Korean: {
+    preferences: '환경설정',
+    closeNav: '탐색 닫기',
+    hideSidebar: '사이드바 숨기기',
+    showSidebar: '사이드바 표시',
+    toggleSidebar: '사이드바 전환',
+    removeName: '이름 지우기',
+    exportSuccess: '백업이 생성되었습니다(북마크, 캘린더 일정 및 알림, 할 일, 노트, 설정 및 배경화면).',
+    exportFailed: '백업 파일 내보내기에 실패했습니다.',
+  },
+  Italian: {
+    preferences: 'Preferenze',
+    closeNav: 'Chiudi navigazione',
+    hideSidebar: 'Nascondi barra laterale',
+    showSidebar: 'Mostra barra laterale',
+    toggleSidebar: 'Attiva/disattiva barra laterale',
+    removeName: 'Rimuovi nome',
+    exportSuccess: 'Backup creato (Segnalibri, Eventi e Promemoria del Calendario, Cose da fare, Note, Impostazioni e Sfondi).',
+    exportFailed: 'Esportazione del file di backup non riuscita.',
+  },
+  Russian: {
+    preferences: 'Параметры',
+    closeNav: 'Закрыть меню',
+    hideSidebar: 'Скрыть боковую панель',
+    showSidebar: 'Показать боковую панель',
+    toggleSidebar: 'Переключить боковую панель',
+    removeName: 'Удалить имя',
+    exportSuccess: 'Резервная копия создана (Закладки, События и Напоминания, Задачи, Заметки, Настройки и Обои).',
+    exportFailed: 'Не удалось экспортировать файл резервной копии.',
+  },
+  Luxembourgish: {
+    preferences: 'Preferenzen',
+    closeNav: 'Navigatioun zoumaachen',
+    hideSidebar: 'Säiteleiste verstoppen',
+    showSidebar: 'Säiteleiste weisen',
+    toggleSidebar: 'Säiteleiste ëmschalten',
+    removeName: 'Numm läschen',
+    exportSuccess: 'Backup erstallt (Lesezeechen, Kalenner-Eventer & Erënnerungen, Aufgaben, Notizen, Astellungen & Hannergrënn).',
+    exportFailed: 'De Backup konnt net exportéiert ginn.',
+  },
+  Dutch: {
+    preferences: 'Voorkeuren',
+    closeNav: 'Navigatie sluiten',
+    hideSidebar: 'Zijbalk verbergen',
+    showSidebar: 'Zijbalk tonen',
+    toggleSidebar: 'Zijbalk schakelen',
+    removeName: 'Naam verwijderen',
+    exportSuccess: 'Back-up gemaakt (Bladwijzers, Agenda-afspraken & Herinneringen, Taken, Notities, Instellingen & Achtergronden).',
+    exportFailed: 'Exporteren van back-upbestand mislukt.',
+  },
+  Swedish: {
+    preferences: 'Inställningar',
+    closeNav: 'Stäng navigering',
+    hideSidebar: 'Dölj sidofält',
+    showSidebar: 'Visa sidofält',
+    toggleSidebar: 'Växla sidofält',
+    removeName: 'Ta bort namn',
+    exportSuccess: 'Säkerhetskopia skapad (Bokmärken, Kalenderhändelser & Påminnelser, Att göra, Anteckningar, Inställningar & Bakgrunder).',
+    exportFailed: 'Misslyckades med att exportera säkerhetskopian.',
+  },
+  Finnish: {
+    preferences: 'Asetukset',
+    closeNav: 'Sulje valikko',
+    hideSidebar: 'Piilota sivupalkki',
+    showSidebar: 'Näytä sivupalkki',
+    toggleSidebar: 'Vaihda sivupalkki',
+    removeName: 'Poista nimi',
+    exportSuccess: 'Varmuuskopio luotu (Kirjanmerkit, Kalenteritapahtumat ja Muistutukset, Tehtävät, Muistiinpanot, Asetukset ja Taustakuvat).',
+    exportFailed: 'Varmuuskopiotiedoston vienti epäonnistui.',
+  },
+  Hindi: {
+    preferences: 'प्राथमिकताएँ',
+    closeNav: 'नेविगेशन बंद करें',
+    hideSidebar: 'साइडबार छिपाएं',
+    showSidebar: 'साइडबार दिखाएं',
+    toggleSidebar: 'साइडबार टॉगल करें',
+    removeName: 'नाम हटाएं',
+    exportSuccess: 'बैकअप बन गया (बुकमार्क, कैलेंडर ईवेंट और रिमाइंडर, कार्य, नोट्स, सेटिंग्स और वॉलपेपर)।',
+    exportFailed: 'बैकअप फ़ाइल निर्यात करने में विफल।',
+  },
+  Norwegian: {
+    preferences: 'Innstillinger',
+    closeNav: 'Lukk navigasjon',
+    hideSidebar: 'Skjul sidepanel',
+    showSidebar: 'Vis sidepanel',
+    toggleSidebar: 'Veksle sidepanel',
+    removeName: 'Fjern navn',
+    exportSuccess: 'Sikkerhetskopi opprettet (Bokmerker, Kalenderhendelser & Påminnelser, Gjøremål, Notater, Innstillinger & Bakgrunner).',
+    exportFailed: 'Kunne ikke eksportere sikkerhetskopifil.',
+  },
+  Thai: {
+    preferences: 'การตั้งค่า',
+    closeNav: 'ปิดเมนูนำทาง',
+    hideSidebar: 'ซ่อนแถบด้านข้าง',
+    showSidebar: 'แสดงแถบด้านข้าง',
+    toggleSidebar: 'สลับแถบด้านข้าง',
+    removeName: 'ลบชื่อ',
+    exportSuccess: 'สร้างไฟล์สำรองข้อมูลแล้ว (บุ๊กมาร์ก, กิจกรรมและเตือนความจำปฏิทิน, สิ่งที่ต้องทำ, โน้ต, การตั้งค่า และวอลเปเปอร์)',
+    exportFailed: 'ส่งออกไฟล์สำรองข้อมูลไม่สำเร็จ',
+  },
+  Portuguese: {
+    preferences: 'Preferências',
+    closeNav: 'Fechar navegação',
+    hideSidebar: 'Ocultar barra lateral',
+    showSidebar: 'Mostrar barra lateral',
+    toggleSidebar: 'Alternar barra lateral',
+    removeName: 'Remover Nome',
+    exportSuccess: 'Cópia de segurança criada (Marcadores, Eventos e Lembretes de Calendário, Tarefas, Notas, Definições e Fundos).',
+    exportFailed: 'Falha ao exportar o ficheiro de cópia de segurança.',
+  },
+  Vietnamese: {
+    preferences: 'Tùy chọn',
+    closeNav: 'Đóng điều hướng',
+    hideSidebar: 'Ẩn thanh bên',
+    showSidebar: 'Hiện thanh bên',
+    toggleSidebar: 'Bật/tắt thanh bên',
+    removeName: 'Xóa tên',
+    exportSuccess: 'Đã tạo bản sao lưu (Dấu trang, Sự kiện & Nhắc nhở Lịch, Việc cần làm, Ghi chú, Cài đặt & Hình nền).',
+    exportFailed: 'Xuất tệp sao lưu thất bại.',
+  },
+  Polish: {
+    preferences: 'Preferencje',
+    closeNav: 'Zamknij nawigację',
+    hideSidebar: 'Ukryj pasek boczny',
+    showSidebar: 'Pokaż pasek boczny',
+    toggleSidebar: 'Przełącz pasek boczny',
+    removeName: 'Usuń nazwę',
+    exportSuccess: 'Utworzono kopię zapasową (Zakładki, Wydarzenia i Przypomnienia Kalendarza, Zadania, Notatki, Ustawienia i Tapety).',
+    exportFailed: 'Nie udało się wyeksportować pliku kopii zapasowej.',
+  },
+  Danish: {
+    preferences: 'Præferencer',
+    closeNav: 'Luk navigation',
+    hideSidebar: 'Skjul sidepanel',
+    showSidebar: 'Vis sidepanel',
+    toggleSidebar: 'Skift sidepanel',
+    removeName: 'Fjern navn',
+    exportSuccess: 'Sikkerhedskopi oprettet (Bogmærker, Kalenderbegivenheder & Påmindelser, Opgaver, Noter, Indstillinger & Baggrunde).',
+    exportFailed: 'Kunne ikke eksportere sikkerhedskopifil.',
+  },
+  Turkish: {
+    preferences: 'Tercihler',
+    closeNav: 'Gezinmeyi kapat',
+    hideSidebar: 'Kenar çubuğunu gizle',
+    showSidebar: 'Kenar çubuğunu göster',
+    toggleSidebar: 'Kenar çubuğunu aç/kapat',
+    removeName: 'Adı Kaldır',
+    exportSuccess: 'Yedek oluşturuldu (Yer İmleri, Takvim Etkinlikleri ve Hatırlatıcılar, Yapılacaklar, Notlar, Ayarlar ve Duvar Kağıtları).',
+    exportFailed: 'Yedekleme dosyası dışa aktarılamadı.',
+  },
+  Greek: {
+    preferences: 'Προτιμήσεις',
+    closeNav: 'Κλείσιμο πλοήγησης',
+    hideSidebar: 'Απόκρυψη πλαϊνής γραμμής',
+    showSidebar: 'Εμφάνιση πλαϊνής γραμμής',
+    toggleSidebar: 'Εναλλαγή πλαϊνής γραμμής',
+    removeName: 'Αφαίρεση ονόματος',
+    exportSuccess: 'Το αντίγραφο ασφαλείας δημιουργήθηκε (Σελιδοδείκτες, Συμβάντα & Υπενθυμίσεις Ημερολογίου, Εργασίες, Σημειώσεις, Ρυθμίσεις & Ταπετσαρίες).',
+    exportFailed: 'Αποτυχία εξαγωγής του αρχείου αντιγράφου ασφαλείας.',
+  },
+};
+
 interface SettingsDropdownOption {
   value: string;
   label: string;
@@ -1077,6 +1319,7 @@ export default function SettingsTab({
   }, [pageName, setPageName]);
 
   const tData = SETTINGS_T[language] || SETTINGS_T['English'];
+  const extraT = SETTINGS_EXTRA_T[language] || SETTINGS_EXTRA_T['English'];
   const isDarkGlass = cardBgMode === 'dark-glass';
 
   const languageOptions: SettingsDropdownOption[] = LANGUAGE_OPTIONS;
@@ -1162,13 +1405,13 @@ export default function SettingsTab({
 
       setBackupFeedback({
         type: 'success',
-        message: 'Backup created (Bookmarks, Calendar Events & Reminders, To-Do, Notes, Settings & Wallpapers).',
+        message: extraT.exportSuccess,
       });
     } catch (e) {
       console.error("Export failed", e);
       setBackupFeedback({
         type: 'error',
-        message: 'Failed to export backup file.',
+        message: extraT.exportFailed,
       });
     } finally {
       setIsBackupBusy(false);
@@ -1338,13 +1581,13 @@ export default function SettingsTab({
         {/* Top of Sidebar - Preferences title aligned with right header's divider line */}
         <div className="h-16 px-4 sm:px-5 border-b border-black/10 dark:border-white/10 flex items-center justify-between shrink-0">
           <span className="text-base sm:text-lg font-black uppercase tracking-wider text-slate-700 dark:text-white truncate">
-            Preferences
+            {extraT.preferences}
           </span>
           <button
             type="button"
             onClick={() => setMobileSidebarOpen(false)}
             className="md:hidden p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer shrink-0"
-            title="Close navigation"
+            title={extraT.closeNav}
           >
             <X size={18} />
           </button>
@@ -1415,8 +1658,8 @@ export default function SettingsTab({
                 }
               }}
               className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 rounded-xl hover:bg-black/5 text-slate-700 transition-colors cursor-pointer flex items-center justify-center border border-transparent hover:border-black/5"
-              title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
-              aria-label="Toggle sidebar"
+              title={sidebarOpen ? extraT.hideSidebar : extraT.showSidebar}
+              aria-label={extraT.toggleSidebar}
             >
               {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeft size={20} />}
             </button>
@@ -1502,7 +1745,7 @@ export default function SettingsTab({
                           <button
                             onClick={handleDelete}
                             className="p-2.5 min-w-[44px] min-h-[44px] lg:min-w-0 lg:min-h-0 bg-red-100 hover:bg-red-200 text-red-600 rounded-xl flex items-center justify-center transition-all cursor-pointer"
-                            title="Remove Name"
+                            title={extraT.removeName}
                           >
                             <Trash2 size={16} />
                           </button>

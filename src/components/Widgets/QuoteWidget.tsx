@@ -146,6 +146,32 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
     Greek: 'Απόφθεγμα Ημέρας',
   }[language] || 'Daily Quote';
 
+  const quoteTooltips = {
+    English: { refresh: 'Refresh quote', next: 'Click to get new quote' },
+    Chinese: { refresh: '换一条名言', next: '点击获取新名言' },
+    'Chinese Traditional': { refresh: '換一則名言', next: '點擊取得新名言' },
+    Spanish: { refresh: 'Actualizar cita', next: 'Haz clic para ver otra cita' },
+    French: { refresh: 'Actualiser la citation', next: 'Cliquez pour une nouvelle citation' },
+    German: { refresh: 'Zitat aktualisieren', next: 'Für ein neues Zitat klicken' },
+    Japanese: { refresh: '名言を更新', next: 'クリックして新しい名言を表示' },
+    Korean: { refresh: '명언 새로고침', next: '클릭하여 새 명언 보기' },
+    Italian: { refresh: 'Aggiorna citazione', next: 'Clicca per una nuova citazione' },
+    Russian: { refresh: 'Обновить цитату', next: 'Нажмите для новой цитаты' },
+    Luxembourgish: { refresh: 'Zitat aktualiséieren', next: 'Klickt fir en neit Zitat' },
+    Dutch: { refresh: 'Citaat vernieuwen', next: 'Klik voor een nieuw citaat' },
+    Swedish: { refresh: 'Uppdatera citat', next: 'Klicka för ett nytt citat' },
+    Finnish: { refresh: 'Päivitä sitaatti', next: 'Napsauta saadaksesi uuden sitaatin' },
+    Hindi: { refresh: 'सुविचार रीफ़्रेश करें', next: 'नया सुविचार पाने के लिए क्लिक करें' },
+    Norwegian: { refresh: 'Oppdater sitat', next: 'Klikk for å få et nytt sitat' },
+    Thai: { refresh: 'รีเฟรชคำคม', next: 'คลิกเพื่อรับคำคมใหม่' },
+    Portuguese: { refresh: 'Atualizar citação', next: 'Clique para obter uma nova citação' },
+    Vietnamese: { refresh: 'Làm mới danh ngôn', next: 'Nhấp để xem danh ngôn mới' },
+    Polish: { refresh: 'Odśwież cytat', next: 'Kliknij, aby zobaczyć nowy cytat' },
+    Danish: { refresh: 'Opdater citat', next: 'Klik for at få et nyt citat' },
+    Turkish: { refresh: 'Sözü yenile', next: 'Yeni söz için tıklayın' },
+    Greek: { refresh: 'Ανανέωση αποφθέγματος', next: 'Κάντε κλικ για νέο απόφθεγμα' },
+  }[language] || { refresh: 'Refresh quote', next: 'Click to get new quote' };
+
   return (
     <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Orange Background */}
@@ -165,7 +191,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
             fetchInspiration();
           }}
           className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
-          title="Refresh quote"
+          title={quoteTooltips.refresh}
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : 'transition-transform group-hover:rotate-45'} />
         </button>
@@ -178,7 +204,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
       <div 
         onClick={fetchInspiration}
         className="flex-1 flex flex-col justify-between px-4 sm:px-5 py-4 sm:py-5 cursor-pointer select-none"
-        title="Click to get new quote"
+        title={quoteTooltips.next}
       >
         <div className="my-auto py-1">
           <p 

@@ -517,6 +517,196 @@ const VIBRANT_TEXT_PRESETS: TextPreset[] = [
   { id: '#e2e8f0', name: 'Silver Mist', color: '#e2e8f0' },
 ];
 
+const TEXT_PRESET_NAMES: Record<string, Record<string, string>> = {
+  English: {
+    default: 'Default (#6143f7)',
+    '#ffffff': 'Pure White', '#f8fafc': 'Snow White', '#fffbeb': 'Warm Cream', '#e0f2fe': 'Pale Sky', '#dcfce7': 'Pale Mint', '#ffe4e6': 'Pale Rose', '#f3e8ff': 'Pale Lavender', '#fef9c3': 'Pale Lemon', '#ffedd5': 'Pale Peach', '#cffafe': 'Pale Cyan',
+    '#6143f7': 'Iris Violet (Default)', '#7c3aed': 'Royal Purple', '#38bdf8': 'Sky Blue', '#3b82f6': 'Electric Blue', '#6366f1': 'Royal Indigo', '#a855f7': 'Violet Purple', '#ec4899': 'Pink Rose', '#f43f5e': 'Coral Red', '#f97316': 'Vibrant Orange', '#eab308': 'Golden Sun',
+    '#000000': 'Jet Black', '#0f172a': 'Dark Slate', '#1e293b': 'Dark Charcoal', '#172554': 'Deep Navy', '#451a03': 'Deep Bronze', '#4c0519': 'Deep Ruby', '#064e3b': 'Deep Forest', '#3b0764': 'Deep Violet', '#292524': 'Dark Stone', '#020617': 'Midnight',
+    '#facc15': 'Neon Yellow', '#4ade80': 'Neon Lime', '#2dd4bf': 'Bright Aqua', '#67e8f9': 'Bright Cyan', '#c084fc': 'Neon Lilac', '#f472b6': 'Neon Pink', '#fb7185': 'Neon Coral', '#fb923c': 'Neon Tangerine', '#93c5fd': 'Light Azure', '#e2e8f0': 'Silver Mist',
+  },
+  Chinese: {
+    default: '默认 (#6143f7)',
+    '#ffffff': '纯白', '#f8fafc': '雪白', '#fffbeb': '暖奶油色', '#e0f2fe': '淡天蓝', '#dcfce7': '淡薄荷绿', '#ffe4e6': '淡玫瑰粉', '#f3e8ff': '淡薰衣草紫', '#fef9c3': '淡柠檬黄', '#ffedd5': '淡蜜桃橙', '#cffafe': '淡青色',
+    '#6143f7': '鸢尾紫（默认）', '#7c3aed': '皇家紫', '#38bdf8': '天蓝色', '#3b82f6': '电光蓝', '#6366f1': '皇家靛蓝', '#a855f7': '紫罗兰紫', '#ec4899': '玫瑰粉', '#f43f5e': '珊瑚红', '#f97316': '亮橙色', '#eab308': '金阳黄',
+    '#000000': '墨黑', '#0f172a': '深岩灰', '#1e293b': '深炭灰', '#172554': '深海蓝', '#451a03': '深古铜', '#4c0519': '深红宝石', '#064e3b': '深森林绿', '#3b0764': '深紫罗兰', '#292524': '深石灰', '#020617': '午夜黑',
+    '#facc15': '霓虹黄', '#4ade80': '霓虹青柠', '#2dd4bf': '亮水绿', '#67e8f9': '亮青色', '#c084fc': '霓虹丁香紫', '#f472b6': '霓虹粉', '#fb7185': '霓虹珊瑚', '#fb923c': '霓虹橘', '#93c5fd': '浅蔚蓝', '#e2e8f0': '银雾灰',
+  },
+  'Chinese Traditional': {
+    default: '預設 (#6143f7)',
+    '#ffffff': '純白', '#f8fafc': '雪白', '#fffbeb': '暖奶油色', '#e0f2fe': '淡天藍', '#dcfce7': '淡薄荷綠', '#ffe4e6': '淡玫瑰粉', '#f3e8ff': '淡薰衣草紫', '#fef9c3': '淡檸檬黃', '#ffedd5': '淡蜜桃橙', '#cffafe': '淡青色',
+    '#6143f7': '鳶尾紫（預設）', '#7c3aed': '皇家紫', '#38bdf8': '天藍色', '#3b82f6': '電光藍', '#6366f1': '皇家靛藍', '#a855f7': '紫羅蘭紫', '#ec4899': '玫瑰粉', '#f43f5e': '珊瑚紅', '#f97316': '亮橙色', '#eab308': '金陽黃',
+    '#000000': '墨黑', '#0f172a': '深岩灰', '#1e293b': '深炭灰', '#172554': '深海藍', '#451a03': '深古銅', '#4c0519': '深紅寶石', '#064e3b': '深森林綠', '#3b0764': '深紫羅蘭', '#292524': '深石灰', '#020617': '午夜黑',
+    '#facc15': '霓虹黃', '#4ade80': '霓虹青檸', '#2dd4bf': '亮水綠', '#67e8f9': '亮青色', '#c084fc': '霓虹丁香紫', '#f472b6': '霓虹粉', '#fb7185': '霓虹珊瑚', '#fb923c': '霓虹橘', '#93c5fd': '淺蔚藍', '#e2e8f0': '銀霧灰',
+  },
+  Spanish: {
+    default: 'Predeterminado (#6143f7)',
+    '#ffffff': 'Blanco puro', '#f8fafc': 'Blanco nieve', '#fffbeb': 'Crema cálido', '#e0f2fe': 'Cielo pálido', '#dcfce7': 'Menta pálida', '#ffe4e6': 'Rosa pálido', '#f3e8ff': 'Lavanda pálida', '#fef9c3': 'Limón pálido', '#ffedd5': 'Melocotón pálido', '#cffafe': 'Cian pálido',
+    '#6143f7': 'Violeta iris (Predet.)', '#7c3aed': 'Púrpura real', '#38bdf8': 'Azul cielo', '#3b82f6': 'Azul eléctrico', '#6366f1': 'Índigo real', '#a855f7': 'Púrpura violeta', '#ec4899': 'Rosa intenso', '#f43f5e': 'Rojo coral', '#f97316': 'Naranja vibrante', '#eab308': 'Sol dorado',
+    '#000000': 'Negro azabache', '#0f172a': 'Pizarra oscuro', '#1e293b': 'Carbón oscuro', '#172554': 'Azul marino oscuro', '#451a03': 'Bronce oscuro', '#4c0519': 'Rubí oscuro', '#064e3b': 'Bosque oscuro', '#3b0764': 'Violeta profundo', '#292524': 'Piedra oscura', '#020617': 'Medianoche',
+    '#facc15': 'Amarillo neón', '#4ade80': 'Lima neón', '#2dd4bf': 'Agua brillante', '#67e8f9': 'Cian brillante', '#c084fc': 'Lila neón', '#f472b6': 'Rosa neón', '#fb7185': 'Coral neón', '#fb923c': 'Mandarina neón', '#93c5fd': 'Azur claro', '#e2e8f0': 'Niebla plateada',
+  },
+  French: {
+    default: 'Par défaut (#6143f7)',
+    '#ffffff': 'Blanc pur', '#f8fafc': 'Blanc neige', '#fffbeb': 'Crème chaud', '#e0f2fe': 'Ciel pâle', '#dcfce7': 'Menthe pâle', '#ffe4e6': 'Rose pâle', '#f3e8ff': 'Lavande pâle', '#fef9c3': 'Citron pâle', '#ffedd5': 'Pêche pâle', '#cffafe': 'Cyan pâle',
+    '#6143f7': 'Violet iris (Défaut)', '#7c3aed': 'Pourpre royal', '#38bdf8': 'Bleu ciel', '#3b82f6': 'Bleu électrique', '#6366f1': 'Indigo royal', '#a855f7': 'Violet pourpre', '#ec4899': 'Rose vif', '#f43f5e': 'Rouge corail', '#f97316': 'Orange vif', '#eab308': 'Soleil doré',
+    '#000000': 'Noir jais', '#0f172a': 'Ardoise foncé', '#1e293b': 'Charbon foncé', '#172554': 'Marine profond', '#451a03': 'Bronze profond', '#4c0519': 'Rubis profond', '#064e3b': 'Forêt profonde', '#3b0764': 'Violet profond', '#292524': 'Pierre foncée', '#020617': 'Minuit',
+    '#facc15': 'Jaune néon', '#4ade80': 'Citron vert néon', '#2dd4bf': 'Aqua vif', '#67e8f9': 'Cyan vif', '#c084fc': 'Lilas néon', '#f472b6': 'Rose néon', '#fb7185': 'Corail néon', '#fb923c': 'Mandarine néon', '#93c5fd': 'Azur clair', '#e2e8f0': 'Brume argentée',
+  },
+  German: {
+    default: 'Standard (#6143f7)',
+    '#ffffff': 'Reinweiß', '#f8fafc': 'Schneeweiß', '#fffbeb': 'Warmcreme', '#e0f2fe': 'Blasshimmel', '#dcfce7': 'Blassminze', '#ffe4e6': 'Blassrosa', '#f3e8ff': 'Blasslavendel', '#fef9c3': 'Blasszitrone', '#ffedd5': 'Blasspfirsich', '#cffafe': 'Blasscyan',
+    '#6143f7': 'Irisviolett (Standard)', '#7c3aed': 'Königspurpur', '#38bdf8': 'Himmelblau', '#3b82f6': 'Elektrischblau', '#6366f1': 'Königsindigo', '#a855f7': 'Violettpurpur', '#ec4899': 'Rosarot', '#f43f5e': 'Korallenrot', '#f97316': 'Leuchtorange', '#eab308': 'Goldsonne',
+    '#000000': 'Tiefschwarz', '#0f172a': 'Dunkelschiefer', '#1e293b': 'Dunkelanthrazit', '#172554': 'Tiefmarine', '#451a03': 'Tiefbronze', '#4c0519': 'Tiefrubin', '#064e3b': 'Tiefwald', '#3b0764': 'Tiefviolett', '#292524': 'Dunkelstein', '#020617': 'Mitternacht',
+    '#facc15': 'Neongelb', '#4ade80': 'Neonlimette', '#2dd4bf': 'Hellaqua', '#67e8f9': 'Hellcyan', '#c084fc': 'Neonflieder', '#f472b6': 'Neonpink', '#fb7185': 'Neonkoralle', '#fb923c': 'Neonmandarine', '#93c5fd': 'Hellazur', '#e2e8f0': 'Silbernebel',
+  },
+  Japanese: {
+    default: 'デフォルト (#6143f7)',
+    '#ffffff': 'ピュアホワイト', '#f8fafc': 'スノーホワイト', '#fffbeb': 'ウォームクリーム', '#e0f2fe': 'ペールスカイ', '#dcfce7': 'ペールミント', '#ffe4e6': 'ペールローズ', '#f3e8ff': 'ペールラベンダー', '#fef9c3': 'ペールレモン', '#ffedd5': 'ペールピーチ', '#cffafe': 'ペールシアン',
+    '#6143f7': 'アイリスバイオレット（標準）', '#7c3aed': 'ロイヤルパープル', '#38bdf8': 'スカイブルー', '#3b82f6': 'エレクトリックブルー', '#6366f1': 'ロイヤルインディゴ', '#a855f7': 'バイオレットパープル', '#ec4899': 'ピンクローズ', '#f43f5e': 'コーラルレッド', '#f97316': 'ビビッドオレンジ', '#eab308': 'ゴールデンサン',
+    '#000000': 'ジェットブラック', '#0f172a': 'ダークスレート', '#1e293b': 'ダークチャコール', '#172554': 'ディープネイビー', '#451a03': 'ディープブロンズ', '#4c0519': 'ディープルビー', '#064e3b': 'ディープフォレスト', '#3b0764': 'ディープバイオレット', '#292524': 'ダークストーン', '#020617': 'ミッドナイト',
+    '#facc15': 'ネオンイエロー', '#4ade80': 'ネオンライム', '#2dd4bf': 'ブライトアクア', '#67e8f9': 'ブライトシアン', '#c084fc': 'ネオンライラック', '#f472b6': 'ネオンピンク', '#fb7185': 'ネオンコーラル', '#fb923c': 'ネオンタンジェリン', '#93c5fd': 'ライトアジュール', '#e2e8f0': 'シルバーミスト',
+  },
+  Korean: {
+    default: '기본 (#6143f7)',
+    '#ffffff': '퓨어 화이트', '#f8fafc': '스노우 화이트', '#fffbeb': '웜 크림', '#e0f2fe': '페일 스카이', '#dcfce7': '페일 민트', '#ffe4e6': '페일 로즈', '#f3e8ff': '페일 라벤더', '#fef9c3': '페일 레몬', '#ffedd5': '페일 피치', '#cffafe': '페일 시안',
+    '#6143f7': '아이리스 바이올렛 (기본)', '#7c3aed': '로열 퍼플', '#38bdf8': '스카이 블루', '#3b82f6': '일렉트릭 블루', '#6366f1': '로열 인디고', '#a855f7': '바이올렛 퍼플', '#ec4899': '핑크 로즈', '#f43f5e': '코랄 레드', '#f97316': '선명한 오렌지', '#eab308': '골든 선',
+    '#000000': '제트 블랙', '#0f172a': '다크 슬레이트', '#1e293b': '다크 차콜', '#172554': '딥 네이비', '#451a03': '딥 브론즈', '#4c0519': '딥 루비', '#064e3b': '딥 포레스트', '#3b0764': '딥 바이올렛', '#292524': '다크 스톤', '#020617': '미드나잇',
+    '#facc15': '네온 옐로우', '#4ade80': '네온 라임', '#2dd4bf': '브라이트 아쿠아', '#67e8f9': '브라이트 시안', '#c084fc': '네온 라일락', '#f472b6': '네온 핑크', '#fb7185': '네온 코랄', '#fb923c': '네온 탠저린', '#93c5fd': '라이트 아주르', '#e2e8f0': '실버 미스트',
+  },
+  Italian: {
+    default: 'Predefinito (#6143f7)',
+    '#ffffff': 'Bianco puro', '#f8fafc': 'Bianco neve', '#fffbeb': 'Crema caldo', '#e0f2fe': 'Cielo pallido', '#dcfce7': 'Menta pallida', '#ffe4e6': 'Rosa pallido', '#f3e8ff': 'Lavanda pallida', '#fef9c3': 'Limone pallido', '#ffedd5': 'Pesca pallido', '#cffafe': 'Ciano pallido',
+    '#6143f7': 'Viola iris (Predef.)', '#7c3aed': 'Porpora reale', '#38bdf8': 'Blu cielo', '#3b82f6': 'Blu elettrico', '#6366f1': 'Indaco reale', '#a855f7': 'Viola porpora', '#ec4899': 'Rosa intenso', '#f43f5e': 'Rosso corallo', '#f97316': 'Arancione vivido', '#eab308': 'Sole dorato',
+    '#000000': 'Nero corvino', '#0f172a': 'Ardesia scuro', '#1e293b': 'Carbone scuro', '#172554': 'Blu marino scuro', '#451a03': 'Bronzo scuro', '#4c0519': 'Rubino scuro', '#064e3b': 'Foresta scura', '#3b0764': 'Viola intenso', '#292524': 'Pietra scura', '#020617': 'Mezzanotte',
+    '#facc15': 'Giallo neon', '#4ade80': 'Lime neon', '#2dd4bf': 'Acqua brillante', '#67e8f9': 'Ciano brillante', '#c084fc': 'Lillà neon', '#f472b6': 'Rosa neon', '#fb7185': 'Corallo neon', '#fb923c': 'Mandarino neon', '#93c5fd': 'Azzurro chiaro', '#e2e8f0': 'Nebbia argento',
+  },
+  Russian: {
+    default: 'По умолчанию (#6143f7)',
+    '#ffffff': 'Чистый белый', '#f8fafc': 'Белоснежный', '#fffbeb': 'Тёплый кремовый', '#e0f2fe': 'Бледно-небесный', '#dcfce7': 'Бледно-мятный', '#ffe4e6': 'Бледно-розовый', '#f3e8ff': 'Бледно-лавандовый', '#fef9c3': 'Бледно-лимонный', '#ffedd5': 'Бледно-персиковый', '#cffafe': 'Бледно-голубой',
+    '#6143f7': 'Ирисовый фиолетовый', '#7c3aed': 'Королевский пурпурный', '#38bdf8': 'Небесно-голубой', '#3b82f6': 'Электрик синий', '#6366f1': 'Королевский индиго', '#a855f7': 'Фиолетово-пурпурный', '#ec4899': 'Ярко-розовый', '#f43f5e': 'Кораллово-красный', '#f97316': 'Ярко-оранжевый', '#eab308': 'Золотое солнце',
+    '#000000': 'Угольно-чёрный', '#0f172a': 'Тёмный сланец', '#1e293b': 'Тёмный уголь', '#172554': 'Тёмно-синий', '#451a03': 'Тёмная бронза', '#4c0519': 'Тёмный рубин', '#064e3b': 'Тёмный лес', '#3b0764': 'Тёмно-фиолетовый', '#292524': 'Тёмный камень', '#020617': 'Полночь',
+    '#facc15': 'Неоновый жёлтый', '#4ade80': 'Неоновый лайм', '#2dd4bf': 'Яркая бирюза', '#67e8f9': 'Яркий циан', '#c084fc': 'Неоновая сирень', '#f472b6': 'Неоновый розовый', '#fb7185': 'Неоновый коралл', '#fb923c': 'Неоновый мандарин', '#93c5fd': 'Светлая лазурь', '#e2e8f0': 'Серебристая дымка',
+  },
+  Luxembourgish: {
+    default: 'Standard (#6143f7)',
+    '#ffffff': 'Rengwäiss', '#f8fafc': 'Schnéiwäiss', '#fffbeb': 'Waarm Crème', '#e0f2fe': 'Blasshimmel', '#dcfce7': 'Blassminz', '#ffe4e6': 'Blassrosa', '#f3e8ff': 'Blasslavendel', '#fef9c3': 'Blasszitroun', '#ffedd5': 'Blasspiisch', '#cffafe': 'Blasscyan',
+    '#6143f7': 'Irismof (Standard)', '#7c3aed': 'Kinnekspurpur', '#38bdf8': 'Himmelblo', '#3b82f6': 'Elektreschblo', '#6366f1': 'Kinneksindigo', '#a855f7': 'Mofpurpur', '#ec4899': 'Rosa', '#f43f5e': 'Korallerout', '#f97316': 'Knallorange', '#eab308': 'Gëllen Sonn',
+    '#000000': 'Déifschwaarz', '#0f172a': 'Däischterschiefer', '#1e293b': 'Däischterkuel', '#172554': 'Déifmarine', '#451a03': 'Déifbronz', '#4c0519': 'Déifrubin', '#064e3b': 'Déifbësch', '#3b0764': 'Déifmof', '#292524': 'Däischtersteen', '#020617': 'Mëtternuecht',
+    '#facc15': 'Neongiel', '#4ade80': 'Neonlimett', '#2dd4bf': 'Hellaqua', '#67e8f9': 'Hellcyan', '#c084fc': 'Neonlila', '#f472b6': 'Neonrosa', '#fb7185': 'Neonkorall', '#fb923c': 'Neonmandarin', '#93c5fd': 'Hellazur', '#e2e8f0': 'Sëlwerdonscht',
+  },
+  Dutch: {
+    default: 'Standaard (#6143f7)',
+    '#ffffff': 'Zuiver wit', '#f8fafc': 'Sneeuwwit', '#fffbeb': 'Warm crème', '#e0f2fe': 'Bleek hemelsblauw', '#dcfce7': 'Bleek munt', '#ffe4e6': 'Bleek roze', '#f3e8ff': 'Bleek lavendel', '#fef9c3': 'Bleek citroen', '#ffedd5': 'Bleek perzik', '#cffafe': 'Bleek cyaan',
+    '#6143f7': 'Irisviolet (Standaard)', '#7c3aed': 'Koningspaars', '#38bdf8': 'Hemelsblauw', '#3b82f6': 'Elektrisch blauw', '#6366f1': 'Koningsindigo', '#a855f7': 'Violetpaars', '#ec4899': 'Rozenrood', '#f43f5e': 'Koraalrood', '#f97316': 'Levendig oranje', '#eab308': 'Goudzon',
+    '#000000': 'Gitzwart', '#0f172a': 'Donker leisteen', '#1e293b': 'Donker antraciet', '#172554': 'Diep marineblauw', '#451a03': 'Diep brons', '#4c0519': 'Diep robijn', '#064e3b': 'Diep bosgroen', '#3b0764': 'Diep violet', '#292524': 'Donker steen', '#020617': 'Middernacht',
+    '#facc15': 'Neon geel', '#4ade80': 'Neon limoen', '#2dd4bf': 'Helder aqua', '#67e8f9': 'Helder cyaan', '#c084fc': 'Neon lila', '#f472b6': 'Neon roze', '#fb7185': 'Neon koraal', '#fb923c': 'Neon mandarijn', '#93c5fd': 'Licht azuur', '#e2e8f0': 'Zilvermist',
+  },
+  Swedish: {
+    default: 'Standard (#6143f7)',
+    '#ffffff': 'Ren vit', '#f8fafc': 'Snövit', '#fffbeb': 'Varm grädde', '#e0f2fe': 'Blek himmel', '#dcfce7': 'Blek mint', '#ffe4e6': 'Blek ros', '#f3e8ff': 'Blek lavendel', '#fef9c3': 'Blek citron', '#ffedd5': 'Blek persika', '#cffafe': 'Blek cyan',
+    '#6143f7': 'Irisviolett (Standard)', '#7c3aed': 'Kunglig lila', '#38bdf8': 'Himmelsblå', '#3b82f6': 'Elektrisk blå', '#6366f1': 'Kunglig indigo', '#a855f7': 'Violett lila', '#ec4899': 'Rosa ros', '#f43f5e': 'Korallröd', '#f97316': 'Stark orange', '#eab308': 'Gyllene sol',
+    '#000000': 'Kolsvart', '#0f172a': 'Mörk skiffer', '#1e293b': 'Mörkt träkol', '#172554': 'Djup marinblå', '#451a03': 'Djup brons', '#4c0519': 'Djup rubin', '#064e3b': 'Djup skog', '#3b0764': 'Djup violett', '#292524': 'Mörk sten', '#020617': 'Midnatt',
+    '#facc15': 'Neongul', '#4ade80': 'Neonlime', '#2dd4bf': 'Klar aqua', '#67e8f9': 'Klar cyan', '#c084fc': 'Neonlila', '#f472b6': 'Neonrosa', '#fb7185': 'Neonkorall', '#fb923c': 'Neonmandarin', '#93c5fd': 'Ljus azur', '#e2e8f0': 'Silverdimma',
+  },
+  Finnish: {
+    default: 'Oletus (#6143f7)',
+    '#ffffff': 'Puhdas valkoinen', '#f8fafc': 'Lumivalkoinen', '#fffbeb': 'Lämmin kerma', '#e0f2fe': 'Vaalea taivas', '#dcfce7': 'Vaalea minttu', '#ffe4e6': 'Vaalea ruusu', '#f3e8ff': 'Vaalea laventeli', '#fef9c3': 'Vaalea sitruuna', '#ffedd5': 'Vaalea persikka', '#cffafe': 'Vaalea syaani',
+    '#6143f7': 'Iirisvioletti (Oletus)', '#7c3aed': 'Kuninkaallinen purppura', '#38bdf8': 'Taivaansininen', '#3b82f6': 'Sähkönsininen', '#6366f1': 'Kuninkaallinen indigo', '#a855f7': 'Violetti purppura', '#ec4899': 'Ruusunpunainen', '#f43f5e': 'Korallinpunainen', '#f97316': 'Kirkas oranssi', '#eab308': 'Kultainen aurinko',
+    '#000000': 'Sysimusta', '#0f172a': 'Tumma liuskekivi', '#1e293b': 'Tumma hiili', '#172554': 'Syvä laivasto', '#451a03': 'Syvä pronssi', '#4c0519': 'Syvä rubiini', '#064e3b': 'Syvä metsä', '#3b0764': 'Syvä violetti', '#292524': 'Tumma kivi', '#020617': 'Keskiyö',
+    '#facc15': 'Neonkeltainen', '#4ade80': 'Neonlime', '#2dd4bf': 'Kirkas aqua', '#67e8f9': 'Kirkas syaani', '#c084fc': 'Neonliila', '#f472b6': 'Neonpinkki', '#fb7185': 'Neonkoralli', '#fb923c': 'Neonmandariini', '#93c5fd': 'Vaalea taivaansini', '#e2e8f0': 'Hopeasumu',
+  },
+  Hindi: {
+    default: 'डिफ़ॉल्ट (#6143f7)',
+    '#ffffff': 'शुद्ध सफ़ेद', '#f8fafc': 'हिम श्वेत', '#fffbeb': 'गर्म क्रीम', '#e0f2fe': 'हल्का आकाश', '#dcfce7': 'हल्का पुदीना', '#ffe4e6': 'हल्का गुलाब', '#f3e8ff': 'हल्का लैवेंडर', '#fef9c3': 'हल्का नींबू', '#ffedd5': 'हल्का आड़ू', '#cffafe': 'हल्का सियान',
+    '#6143f7': 'आइरिस वायलेट (डिफ़ॉल्ट)', '#7c3aed': 'रॉयल पर्पल', '#38bdf8': 'स्काई ब्लू', '#3b82f6': 'इलेक्ट्रिक ब्लू', '#6366f1': 'रॉयल इंडिगो', '#a855f7': 'वायलेट पर्पल', '#ec4899': 'पिंक रोज़', '#f43f5e': 'कोरल रेड', '#f97316': 'चमकीला नारंगी', '#eab308': 'सुनहरा सूरज',
+    '#000000': 'जेट ब्लैक', '#0f172a': 'डार्क स्लेट', '#1e293b': 'डार्क चारकोल', '#172554': 'डीप नेवी', '#451a03': 'डीप ब्रॉन्ज़', '#4c0519': 'डीप रूबी', '#064e3b': 'डीप फ़ॉरेस्ट', '#3b0764': 'डीप वायलेट', '#292524': 'डार्क स्टोन', '#020617': 'मिडनाइट',
+    '#facc15': 'नियॉन पीला', '#4ade80': 'नियॉन लाइम', '#2dd4bf': 'ब्राइट एक्वा', '#67e8f9': 'ब्राइट सियान', '#c084fc': 'नियॉन लाइलैक', '#f472b6': 'नियॉन गुलाबी', '#fb7185': 'नियॉन कोरल', '#fb923c': 'नियॉन टैंजरीन', '#93c5fd': 'हल्का अज़ूर', '#e2e8f0': 'सिल्वर मिस्ट',
+  },
+  Norwegian: {
+    default: 'Standard (#6143f7)',
+    '#ffffff': 'Ren hvit', '#f8fafc': 'Snøhvit', '#fffbeb': 'Varm krem', '#e0f2fe': 'Blek himmel', '#dcfce7': 'Blek mynte', '#ffe4e6': 'Blek rose', '#f3e8ff': 'Blek lavendel', '#fef9c3': 'Blek sitron', '#ffedd5': 'Blek fersken', '#cffafe': 'Blek cyan',
+    '#6143f7': 'Irisfiolett (Standard)', '#7c3aed': 'Kongelig lilla', '#38bdf8': 'Himmelblå', '#3b82f6': 'Elektrisk blå', '#6366f1': 'Kongelig indigo', '#a855f7': 'Fiolett lilla', '#ec4899': 'Rosarød', '#f43f5e': 'Korallrød', '#f97316': 'Sterk oransje', '#eab308': 'Gyllen sol',
+    '#000000': 'Beksvart', '#0f172a': 'Mørk skifer', '#1e293b': 'Mørkt kull', '#172554': 'Dyp marineblå', '#451a03': 'Dyp bronse', '#4c0519': 'Dyp rubin', '#064e3b': 'Dyp skog', '#3b0764': 'Dyp fiolett', '#292524': 'Mørk stein', '#020617': 'Midnatt',
+    '#facc15': 'Neongul', '#4ade80': 'Neonlime', '#2dd4bf': 'Lys aqua', '#67e8f9': 'Lys cyan', '#c084fc': 'Neonlilla', '#f472b6': 'Neonrosa', '#fb7185': 'Neonkorall', '#fb923c': 'Neontangerin', '#93c5fd': 'Lys asur', '#e2e8f0': 'Sølvtåke',
+  },
+  Thai: {
+    default: 'ค่าเริ่มต้น (#6143f7)',
+    '#ffffff': 'ขาวบริสุทธิ์', '#f8fafc': 'ขาวหิมะ', '#fffbeb': 'ครีมอบอุ่น', '#e0f2fe': 'ฟ้าอ่อนจาง', '#dcfce7': 'มินต์อ่อน', '#ffe4e6': 'ชมพูกุหลาบอ่อน', '#f3e8ff': 'ลาเวนเดอร์อ่อน', '#fef9c3': 'เลมอนอ่อน', '#ffedd5': 'พีชอ่อน', '#cffafe': 'ฟ้าอมเขียวอ่อน',
+    '#6143f7': 'ม่วงไอริส (ค่าเริ่มต้น)', '#7c3aed': 'ม่วงหลวง', '#38bdf8': 'ฟ้าสดใส', '#3b82f6': 'น้ำเงินอิเล็กทริก', '#6366f1': 'ครามหลวง', '#a855f7': 'ม่วงไวโอเล็ต', '#ec4899': 'ชมพูกุหลาบ', '#f43f5e': 'แดงปะการัง', '#f97316': 'ส้มสดใส', '#eab308': 'เหลืองทองตะวัน',
+    '#000000': 'ดำสนิท', '#0f172a': 'เทาหินชนวนเข้ม', '#1e293b': 'ถ่านเข้ม', '#172554': 'กรมท่าเข้ม', '#451a03': 'บรอนซ์เข้ม', '#4c0519': 'ทับทิมเข้ม', '#064e3b': 'เขียวป่าเข้ม', '#3b0764': 'ม่วงเข้ม', '#292524': 'เทาหินเข้ม', '#020617': 'ดำเที่ยงคืน',
+    '#facc15': 'เหลืองนีออน', '#4ade80': 'เขียวมะนาวนีออน', '#2dd4bf': 'อะควาสว่าง', '#67e8f9': 'ไซแอนสว่าง', '#c084fc': 'ไลแลคนีออน', '#f472b6': 'ชมพูนีออน', '#fb7185': 'ปะการังนีออน', '#fb923c': 'ส้มแทงเจอรีนนีออน', '#93c5fd': 'ฟ้าอาซูร์อ่อน', '#e2e8f0': 'หมอกเงิน',
+  },
+  Portuguese: {
+    default: 'Predefinido (#6143f7)',
+    '#ffffff': 'Branco puro', '#f8fafc': 'Branco neve', '#fffbeb': 'Creme quente', '#e0f2fe': 'Céu pálido', '#dcfce7': 'Menta pálida', '#ffe4e6': 'Rosa pálido', '#f3e8ff': 'Lavanda pálida', '#fef9c3': 'Limão pálido', '#ffedd5': 'Pêssego pálido', '#cffafe': 'Ciano pálido',
+    '#6143f7': 'Violeta íris (Predef.)', '#7c3aed': 'Roxo real', '#38bdf8': 'Azul céu', '#3b82f6': 'Azul elétrico', '#6366f1': 'Índigo real', '#a855f7': 'Roxo violeta', '#ec4899': 'Rosa vivo', '#f43f5e': 'Vermelho coral', '#f97316': 'Laranja vibrante', '#eab308': 'Sol dourado',
+    '#000000': 'Preto absoluto', '#0f172a': 'Ardósia escuro', '#1e293b': 'Carvão escuro', '#172554': 'Azul-marinho profundo', '#451a03': 'Bronze profundo', '#4c0519': 'Rubi profundo', '#064e3b': 'Floresta profunda', '#3b0764': 'Violeta profundo', '#292524': 'Pedra escura', '#020617': 'Meia-noite',
+    '#facc15': 'Amarelo néon', '#4ade80': 'Lima néon', '#2dd4bf': 'Água brilhante', '#67e8f9': 'Ciano brilhante', '#c084fc': 'Lilás néon', '#f472b6': 'Rosa néon', '#fb7185': 'Coral néon', '#fb923c': 'Tangerina néon', '#93c5fd': 'Azul-celeste claro', '#e2e8f0': 'Névoa prateada',
+  },
+  Vietnamese: {
+    default: 'Mặc định (#6143f7)',
+    '#ffffff': 'Trắng tinh khiết', '#f8fafc': 'Trắng tuyết', '#fffbeb': 'Kem ấm', '#e0f2fe': 'Xanh trời nhạt', '#dcfce7': 'Bạc hà nhạt', '#ffe4e6': 'Hồng phấn nhạt', '#f3e8ff': 'Oải hương nhạt', '#fef9c3': 'Chanh nhạt', '#ffedd5': 'Đào nhạt', '#cffafe': 'Lục lam nhạt',
+    '#6143f7': 'Tím diên vĩ (Mặc định)', '#7c3aed': 'Tím hoàng gia', '#38bdf8': 'Xanh da trời', '#3b82f6': 'Xanh điện', '#6366f1': 'Chàm hoàng gia', '#a855f7': 'Tím violet', '#ec4899': 'Hồng rực', '#f43f5e': 'Đỏ san hô', '#f97316': 'Cam rực rỡ', '#eab308': 'Nắng vàng',
+    '#000000': 'Đen tuyền', '#0f172a': 'Xám đá đậm', '#1e293b': 'Than đậm', '#172554': 'Xanh hải quân sâu', '#451a03': 'Đồng đậm', '#4c0519': 'Hồng ngọc đậm', '#064e3b': 'Rừng sâu', '#3b0764': 'Tím sâu', '#292524': 'Đá tối', '#020617': 'Nửa đêm',
+    '#facc15': 'Vàng neon', '#4ade80': 'Chanh neon', '#2dd4bf': 'Ngọc lam sáng', '#67e8f9': 'Lục lam sáng', '#c084fc': 'Tử đinh hương neon', '#f472b6': 'Hồng neon', '#fb7185': 'San hô neon', '#fb923c': 'Quýt neon', '#93c5fd': 'Thiên thanh nhạt', '#e2e8f0': 'Sương bạc',
+  },
+  Polish: {
+    default: 'Domyślny (#6143f7)',
+    '#ffffff': 'Czysta biel', '#f8fafc': 'Śnieżna biel', '#fffbeb': 'Ciepły kremowy', '#e0f2fe': 'Blady błękit nieba', '#dcfce7': 'Blada mięta', '#ffe4e6': 'Blady róż', '#f3e8ff': 'Blada lawenda', '#fef9c3': 'Blada cytryna', '#ffedd5': 'Blada brzoskwinia', '#cffafe': 'Blady cyjan',
+    '#6143f7': 'Fiolet irysowy (Domyślny)', '#7c3aed': 'Królewska purpura', '#38bdf8': 'Błękit nieba', '#3b82f6': 'Elektryczny błękit', '#6366f1': 'Królewskie indygo', '#a855f7': 'Fioletowy purpurowy', '#ec4899': 'Różany róż', '#f43f5e': 'Koralowa czerwień', '#f97316': 'Żywy pomarańcz', '#eab308': 'Złote słońce',
+    '#000000': 'Głęboka czerń', '#0f172a': 'Ciemny łupkowy', '#1e293b': 'Ciemny grafit', '#172554': 'Głęboki granat', '#451a03': 'Głęboki brąz', '#4c0519': 'Głęboki rubin', '#064e3b': 'Głęboki las', '#3b0764': 'Głęboki fiolet', '#292524': 'Ciemny kamień', '#020617': 'Północ',
+    '#facc15': 'Neonowy żółty', '#4ade80': 'Neonowa limonka', '#2dd4bf': 'Jasny turkus', '#67e8f9': 'Jasny cyjan', '#c084fc': 'Neonowy bez', '#f472b6': 'Neonowy róż', '#fb7185': 'Neonowy koral', '#fb923c': 'Neonowa mandarynka', '#93c5fd': 'Jasny lazur', '#e2e8f0': 'Srebrna mgła',
+  },
+  Danish: {
+    default: 'Standard (#6143f7)',
+    '#ffffff': 'Ren hvid', '#f8fafc': 'Snehvid', '#fffbeb': 'Varm creme', '#e0f2fe': 'Bleg himmel', '#dcfce7': 'Bleg mynte', '#ffe4e6': 'Bleg rose', '#f3e8ff': 'Bleg lavendel', '#fef9c3': 'Bleg citron', '#ffedd5': 'Bleg fersken', '#cffafe': 'Bleg cyan',
+    '#6143f7': 'Irisviolet (Standard)', '#7c3aed': 'Kongelig lilla', '#38bdf8': 'Himmelblå', '#3b82f6': 'Elektrisk blå', '#6366f1': 'Kongelig indigo', '#a855f7': 'Violet lilla', '#ec4899': 'Rosapink', '#f43f5e': 'Koralrød', '#f97316': 'Stærk orange', '#eab308': 'Gylden sol',
+    '#000000': 'Kulsort', '#0f172a': 'Mørk skifer', '#1e293b': 'Mørkt kul', '#172554': 'Dyb marineblå', '#451a03': 'Dyb bronze', '#4c0519': 'Dyb rubin', '#064e3b': 'Dyb skov', '#3b0764': 'Dyb violet', '#292524': 'Mørk sten', '#020617': 'Midnat',
+    '#facc15': 'Neongul', '#4ade80': 'Neonlime', '#2dd4bf': 'Klar akva', '#67e8f9': 'Klar cyan', '#c084fc': 'Neonlilla', '#f472b6': 'Neonpink', '#fb7185': 'Neonkoral', '#fb923c': 'Neontangerin', '#93c5fd': 'Lys azur', '#e2e8f0': 'Sølvtåge',
+  },
+  Turkish: {
+    default: 'Varsayılan (#6143f7)',
+    '#ffffff': 'Saf Beyaz', '#f8fafc': 'Kar Beyazı', '#fffbeb': 'Sıcak Krem', '#e0f2fe': 'Soluk Gökyüzü', '#dcfce7': 'Soluk Nane', '#ffe4e6': 'Soluk Gül', '#f3e8ff': 'Soluk Lavanta', '#fef9c3': 'Soluk Limon', '#ffedd5': 'Soluk Şeftali', '#cffafe': 'Soluk Camgöbeği',
+    '#6143f7': 'İris Menekşe (Varsayılan)', '#7c3aed': 'Kraliyet Moru', '#38bdf8': 'Gök Mavisi', '#3b82f6': 'Elektrik Mavisi', '#6366f1': 'Kraliyet Çivit', '#a855f7': 'Menekşe Moru', '#ec4899': 'Pembe Gül', '#f43f5e': 'Mercan Kırmızısı', '#f97316': 'Canlı Turuncu', '#eab308': 'Altın Güneş',
+    '#000000': 'Simsiyah', '#0f172a': 'Koyu Arduvaz', '#1e293b': 'Koyu Kömür', '#172554': 'Koyu Lacivert', '#451a03': 'Koyu Bronz', '#4c0519': 'Koyu Yakut', '#064e3b': 'Koyu Orman', '#3b0764': 'Koyu Menekşe', '#292524': 'Koyu Taş', '#020617': 'Gece Yarısı',
+    '#facc15': 'Neon Sarı', '#4ade80': 'Neon Lime', '#2dd4bf': 'Parlak Su Yeşili', '#67e8f9': 'Parlak Camgöbeği', '#c084fc': 'Neon Leylak', '#f472b6': 'Neon Pembe', '#fb7185': 'Neon Mercan', '#fb923c': 'Neon Mandalina', '#93c5fd': 'Açık Azur', '#e2e8f0': 'Gümüş Sisi',
+  },
+  Greek: {
+    default: 'Προεπιλογή (#6143f7)',
+    '#ffffff': 'Καθαρό Λευκό', '#f8fafc': 'Λευκό του Χιονιού', '#fffbeb': 'Ζεστό Κρεμ', '#e0f2fe': 'Απαλό Γαλάζιο', '#dcfce7': 'Απαλή Μέντα', '#ffe4e6': 'Απαλό Τριανταφυλλί', '#f3e8ff': 'Απαλή Λεβάντα', '#fef9c3': 'Απαλό Λεμονί', '#ffedd5': 'Απαλό Ροδακινί', '#cffafe': 'Απαλό Κυανό',
+    '#6143f7': 'Ίριδα Βιολετί (Προεπιλογή)', '#7c3aed': 'Βασιλικό Μωβ', '#38bdf8': 'Μπλε του Ουρανού', '#3b82f6': 'Ηλεκτρικό Μπλε', '#6366f1': 'Βασιλικό Λουλακί', '#a855f7': 'Βιολετί Μωβ', '#ec4899': 'Ροζ Τριαντάφυλλο', '#f43f5e': 'Κοραλλί Κόκκινο', '#f97316': 'Ζωηρό Πορτοκαλί', '#eab308': 'Χρυσός Ήλιος',
+    '#000000': 'Κατάμαυρο', '#0f172a': 'Σκούρος Σχιστόλιθος', '#1e293b': 'Σκούρο Ανθρακί', '#172554': 'Βαθύ Ναυτικό Μπλε', '#451a03': 'Βαθύ Χάλκινο', '#4c0519': 'Βαθύ Ρουμπινί', '#064e3b': 'Βαθύ Δάσος', '#3b0764': 'Βαθύ Βιολετί', '#292524': 'Σκούρα Πέτρα', '#020617': 'Μεσάνυχτα',
+    '#facc15': 'Νέον Κίτρινο', '#4ade80': 'Νέον Λάιμ', '#2dd4bf': 'Φωτεινό Άκουα', '#67e8f9': 'Φωτεινό Κυανό', '#c084fc': 'Νέον Λιλά', '#f472b6': 'Νέον Ροζ', '#fb7185': 'Νέον Κοραλλί', '#fb923c': 'Νέον Μανταρίνι', '#93c5fd': 'Ανοιχτό Γαλάζιο', '#e2e8f0': 'Ασημί Ομίχλη',
+  },
+};
+
+const TEXT_PICK_CUSTOM_T: Record<string, string> = {
+  English: 'Pick custom color',
+  Chinese: '选择自定义颜色',
+  'Chinese Traditional': '選擇自訂顏色',
+  Spanish: 'Elegir color personalizado',
+  French: 'Choisir une couleur personnalisée',
+  German: 'Benutzerdefinierte Farbe wählen',
+  Japanese: 'カスタムカラーを選択',
+  Korean: '사용자 지정 색상 선택',
+  Italian: 'Scegli colore personalizzato',
+  Russian: 'Выбрать свой цвет',
+  Luxembourgish: 'Eegen Faarf wielen',
+  Dutch: 'Kies aangepaste kleur',
+  Swedish: 'Välj anpassad färg',
+  Finnish: 'Valitse mukautettu väri',
+  Hindi: 'कस्टम रंग चुनें',
+  Norwegian: 'Velg egendefinert farge',
+  Thai: 'เลือกสีกำหนดเอง',
+  Portuguese: 'Escolher cor personalizada',
+  Vietnamese: 'Chọn màu tùy chỉnh',
+  Polish: 'Wybierz własny kolor',
+  Danish: 'Vælg brugerdefineret farve',
+  Turkish: 'Özel renk seç',
+  Greek: 'Επιλογή προσαρμοσμένου χρώματος',
+};
+
 export default function TextTab({
   textColor,
   setTextColor,
@@ -526,6 +716,8 @@ export default function TextTab({
   cardBgMode = 'white'
 }: TextTabProps) {
   const tData = TEXT_T[language] || TEXT_T['English'];
+  const presetNames = TEXT_PRESET_NAMES[language] || TEXT_PRESET_NAMES['English'];
+  const pickCustomColorTitle = TEXT_PICK_CUSTOM_T[language] || TEXT_PICK_CUSTOM_T['English'];
   const [customHex, setCustomHex] = useState(
     textColor && textColor !== 'default' && textColor.startsWith('#') ? textColor : '#38bdf8'
   );
@@ -677,7 +869,7 @@ export default function TextTab({
                 key={p.id}
                 onClick={() => setTextColor(p.id)}
                 className="group w-full min-h-[44px] min-w-[44px] lg:min-h-0 lg:min-w-0 flex flex-col items-center justify-center transition-all duration-300 relative focus:outline-none cursor-pointer py-1"
-                title={p.name}
+                title={presetNames[p.id] || p.name}
               >
                 <div
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 flex items-center justify-center relative shrink-0 ${
@@ -773,7 +965,7 @@ export default function TextTab({
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
-                {textColor === 'default' ? 'Default (Auto)' : (textColor.startsWith('#') ? textColor.toUpperCase() : `#${textColor.toUpperCase()}`)}
+                {textColor === 'default' ? tData.groupDefault : (textColor.startsWith('#') ? textColor.toUpperCase() : `#${textColor.toUpperCase()}`)}
               </span>
               <div
                 className="w-4 h-4 rounded-full border border-black/20 shadow-xs"
@@ -851,7 +1043,7 @@ export default function TextTab({
                   setTextColor(e.target.value);
                 }}
                 className="w-7 h-7 rounded-lg cursor-pointer border-0 p-0 bg-transparent shrink-0"
-                title="Pick custom color"
+                title={pickCustomColorTitle}
               />
               <input
                 type="text"

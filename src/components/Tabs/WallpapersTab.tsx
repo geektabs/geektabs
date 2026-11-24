@@ -702,6 +702,39 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
   }
 };
 
+const WALLPAPER_EXTRA_T: Record<string, {
+  enhancing8k: string;
+  videoBadge: string;
+  previewAlt: string;
+  uhdAuto: string;
+  uhdLabel: string;
+  confirmDelete: string;
+}> = {
+  English: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Preview', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Delete' },
+  Chinese: { enhancing8k: '正在优化 8K...', videoBadge: '4K 视频', previewAlt: '预览', uhdAuto: '8K 超清自动增强', uhdLabel: '8K 超清', confirmDelete: '删除' },
+  'Chinese Traditional': { enhancing8k: '正在最佳化 8K...', videoBadge: '4K 影片', previewAlt: '預覽', uhdAuto: '8K 超清自動增強', uhdLabel: '8K 超清', confirmDelete: '刪除' },
+  Spanish: { enhancing8k: '8K UHD...', videoBadge: 'VIDEO 4K', previewAlt: 'Vista previa', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Eliminar' },
+  French: { enhancing8k: '8K UHD...', videoBadge: 'VIDÉO 4K', previewAlt: 'Aperçu', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Supprimer' },
+  German: { enhancing8k: '8K UHD...', videoBadge: '4K-VIDEO', previewAlt: 'Vorschau', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Löschen' },
+  Japanese: { enhancing8k: '8K 処理中...', videoBadge: '4K 動画', previewAlt: 'プレビュー', uhdAuto: '8K UHD 自動補正', uhdLabel: '8K UHD', confirmDelete: '削除' },
+  Korean: { enhancing8k: '8K 변환 중...', videoBadge: '4K 동영상', previewAlt: '미리보기', uhdAuto: '8K UHD 자동', uhdLabel: '8K UHD', confirmDelete: '삭제' },
+  Italian: { enhancing8k: '8K UHD...', videoBadge: 'VIDEO 4K', previewAlt: 'Anteprima', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Elimina' },
+  Russian: { enhancing8k: '8K UHD...', videoBadge: '4K ВИДЕО', previewAlt: 'Предпросмотр', uhdAuto: '8K UHD АВТО', uhdLabel: '8K UHD', confirmDelete: 'Удалить' },
+  Luxembourgish: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Virschau', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Läschen' },
+  Dutch: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Voorbeeld', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Verwijderen' },
+  Swedish: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Förhandsvisning', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Ta bort' },
+  Finnish: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Esikatselu', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Poista' },
+  Hindi: { enhancing8k: '8K UHD...', videoBadge: '4K वीडियो', previewAlt: 'पूर्वावलोकन', uhdAuto: '8K UHD ऑटो', uhdLabel: '8K UHD', confirmDelete: 'हटाएं' },
+  Norwegian: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Forhåndsvisning', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Slett' },
+  Thai: { enhancing8k: 'กำลังปรับ 8K...', videoBadge: 'วิดีโอ 4K', previewAlt: 'ตัวอย่าง', uhdAuto: '8K UHD อัตโนมัติ', uhdLabel: '8K UHD', confirmDelete: 'ลบ' },
+  Portuguese: { enhancing8k: '8K UHD...', videoBadge: 'VÍDEO 4K', previewAlt: 'Pré-visualização', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Eliminar' },
+  Vietnamese: { enhancing8k: '8K UHD...', videoBadge: 'VIDEO 4K', previewAlt: 'Xem trước', uhdAuto: '8K UHD TỰ ĐỘNG', uhdLabel: '8K UHD', confirmDelete: 'Xóa' },
+  Polish: { enhancing8k: '8K UHD...', videoBadge: 'WIDEO 4K', previewAlt: 'Podgląd', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Usuń' },
+  Danish: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Forhåndsvisning', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Slet' },
+  Turkish: { enhancing8k: '8K UHD...', videoBadge: '4K VİDEO', previewAlt: 'Önizleme', uhdAuto: '8K UHD OTOMATİK', uhdLabel: '8K UHD', confirmDelete: 'Sil' },
+  Greek: { enhancing8k: '8K UHD...', videoBadge: 'ΒΙΝΤΕΟ 4K', previewAlt: 'Προεπισκόπηση', uhdAuto: '8K UHD ΑΥΤΟΜ.', uhdLabel: '8K UHD', confirmDelete: 'Διαγραφή' },
+};
+
 export default function WallpapersTab({ 
   currentTheme, 
   setTheme, 
@@ -731,6 +764,7 @@ export default function WallpapersTab({
   const categoryBtnRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [uniformCategoryWidth, setUniformCategoryWidth] = useState<number | null>(null);
   const tData = WALLPAPER_T[language] || WALLPAPER_T['English'];
+  const extraT = WALLPAPER_EXTRA_T[language] || WALLPAPER_EXTRA_T['English'];
 
   useEffect(() => {
     setActiveCategory(initialCategory);
@@ -1044,7 +1078,7 @@ export default function WallpapersTab({
               )}
             </div>
             <span className="wallpaper-upload-text font-extrabold text-[11px] uppercase tracking-wider transition-colors text-slate-800 group-hover:text-indigo-600 px-2 text-center">
-              {isEnhancing8K ? '8K UHD...' : tData.uploadImage}
+              {isEnhancing8K ? extraT.enhancing8k : tData.uploadImage}
             </span>
             <input
               type="file"
@@ -1131,7 +1165,7 @@ export default function WallpapersTab({
                         >
                           <Video size={10} className="wallpaper-card-badge text-white stroke-white" />
                           <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
-                            4K VIDEO
+                            {extraT.videoBadge}
                           </span>
                         </div>
                       ) : (
@@ -1179,10 +1213,10 @@ export default function WallpapersTab({
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            className="relative z-10 GeekTabs-card p-6 sm:p-8 rounded-3xl w-full max-w-md shadow-2xl border border-indigo-200 dark:border-white/10"
+            className="relative z-10 GeekTabs-card p-6 sm:p-8 rounded-3xl w-full max-w-md shadow-2xl border border-indigo-200"
           >
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">{tData.saveWallpaper}</h2>
-            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-white/50 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-1">{tData.saveWallpaper}</h2>
+            <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 mb-6">
               {uploadMode === 'file' ? tData.chooseCategory : tData.enterUrl}
             </p>
 
@@ -1190,7 +1224,7 @@ export default function WallpapersTab({
               {/* URL Input if Add via URL */}
               {uploadMode === 'url' ? (
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 font-bold">
+                  <label className="block text-[10px] uppercase tracking-widest text-indigo-600 mb-2 font-bold">
                     {tData.enterUrl}
                   </label>
                   <input
@@ -1211,7 +1245,7 @@ export default function WallpapersTab({
                       }
                     }}
                     placeholder={tData.urlPlaceholder}
-                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-xs font-mono shadow-inner"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-xs font-mono shadow-inner"
                   />
                   {uploadError && (
                     <p className="mt-2 text-xs font-semibold text-red-600">{uploadError}</p>
@@ -1219,7 +1253,7 @@ export default function WallpapersTab({
                 </div>
               ) : (
                 pendingUploadData && (
-                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-300 dark:border-white/10 shadow-inner">
+                  <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-300 shadow-inner">
                     {pendingMediaType === 'video' ? (
                       <video
                         src={pendingUploadData}
@@ -1230,7 +1264,7 @@ export default function WallpapersTab({
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <img src={pendingUploadData} alt="Preview" className="w-full h-full object-cover" />
+                      <img src={pendingUploadData} alt={extraT.previewAlt} className="w-full h-full object-cover" />
                     )}
                     <div
                       className="wallpaper-card-badge absolute bottom-2.5 right-2.5 bg-indigo-600/90 backdrop-blur-md text-white text-[9px] font-extrabold uppercase tracking-wider px-2 py-1 rounded-lg border border-white/25 shadow-md flex items-center gap-1"
@@ -1238,7 +1272,7 @@ export default function WallpapersTab({
                     >
                       <Sparkles size={10} className="wallpaper-card-badge text-white stroke-white" />
                       <span className="wallpaper-card-badge text-white" style={{ color: '#ffffff' }}>
-                        {pendingWasUpscaled ? '8K UHD AUTO' : '8K UHD'}
+                        {pendingWasUpscaled ? extraT.uhdAuto : extraT.uhdLabel}
                       </span>
                     </div>
                   </div>
@@ -1247,14 +1281,14 @@ export default function WallpapersTab({
 
               {/* Category Selector */}
               <div>
-                <label className="block text-[10px] uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 font-bold">
+                <label className="block text-[10px] uppercase tracking-widest text-indigo-600 mb-2 font-bold">
                   {tData.categoryName}
                 </label>
                 <div className="relative">
                   <select
                     value={uploadCategory}
                     onChange={(e) => setUploadCategory(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/15 rounded-2xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer pr-10 text-base sm:text-xs font-semibold shadow-inner"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer pr-10 text-base sm:text-xs font-semibold shadow-inner"
                   >
                     {categories
                       .filter((c) => c !== 'All' && c !== 'My Uploads')
@@ -1264,7 +1298,7 @@ export default function WallpapersTab({
                         </option>
                       ))}
                   </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 dark:text-white/40">
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
                       <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path>
                     </svg>
@@ -1277,7 +1311,7 @@ export default function WallpapersTab({
                 <button
                   type="button"
                   onClick={() => setShowUploadModal(false)}
-                  className="flex-1 px-4 py-3 min-h-[44px] lg:min-h-0 bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 text-slate-700 dark:text-white rounded-2xl transition-all font-bold cursor-pointer"
+                  className="flex-1 px-4 py-3 min-h-[44px] lg:min-h-0 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-2xl transition-all font-bold cursor-pointer"
                 >
                   {tData.cancel}
                 </button>
@@ -1297,6 +1331,8 @@ export default function WallpapersTab({
         isOpen={!!confirmDeleteWallpaper}
         title={tData.deleteTitle}
         message={tData.deleteMsg}
+        confirmText={extraT.confirmDelete}
+        cancelText={tData.cancel}
         onConfirm={() => confirmDeleteWallpaper && handleDeleteWallpaper(confirmDeleteWallpaper)}
         onCancel={() => setConfirmDeleteWallpaper(null)}
       />

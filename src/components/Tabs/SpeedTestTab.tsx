@@ -1240,9 +1240,36 @@ const NQS_T: Record<string, {
   }
 };
 
-function QualityStars({ score, rated }: { score: number; rated: boolean }) {
+const ST_EXTRA_T: Record<string, { carrierRx: string; carrierTx: string; starsLabel: (s: string) => string; notRated: string }> = {
+  English: { carrierRx: 'CARRIER RX', carrierTx: 'CARRIER TX', starsLabel: (s) => `${s} out of 5 stars`, notRated: 'Not rated yet' },
+  Spanish: { carrierRx: 'RECEPCIÓN RX', carrierTx: 'ENVÍO TX', starsLabel: (s) => `${s} de 5 estrellas`, notRated: 'Sin valorar aún' },
+  French: { carrierRx: 'RÉCEPTION RX', carrierTx: 'ÉMISSION TX', starsLabel: (s) => `${s} sur 5 étoiles`, notRated: 'Pas encore noté' },
+  German: { carrierRx: 'EMPFANG RX', carrierTx: 'SENDEN TX', starsLabel: (s) => `${s} von 5 Sternen`, notRated: 'Noch nicht bewertet' },
+  Chinese: { carrierRx: '下行接收', carrierTx: '上行发送', starsLabel: (s) => `${s} / 5 星`, notRated: '暂无评分' },
+  'Chinese Traditional': { carrierRx: '下行接收', carrierTx: '上行傳送', starsLabel: (s) => `${s} / 5 星`, notRated: '尚未評分' },
+  Japanese: { carrierRx: '受信 RX', carrierTx: '送信 TX', starsLabel: (s) => `5つ星中 ${s}`, notRated: '未評価' },
+  Korean: { carrierRx: '수신 RX', carrierTx: '송신 TX', starsLabel: (s) => `5점 만점에 ${s}점`, notRated: '아직 평가되지 않음' },
+  Italian: { carrierRx: 'RICEZIONE RX', carrierTx: 'INVIO TX', starsLabel: (s) => `${s} su 5 stelle`, notRated: 'Non ancora valutato' },
+  Russian: { carrierRx: 'ПРИЁМ RX', carrierTx: 'ПЕРЕДАЧА TX', starsLabel: (s) => `${s} из 5 звёзд`, notRated: 'Пока не оценено' },
+  Luxembourgish: { carrierRx: 'EMPFANK RX', carrierTx: 'SCHÉCKEN TX', starsLabel: (s) => `${s} vu 5 Stären`, notRated: 'Nach net bewäert' },
+  Dutch: { carrierRx: 'ONTVANGST RX', carrierTx: 'ZENDEN TX', starsLabel: (s) => `${s} van de 5 sterren`, notRated: 'Nog niet beoordeeld' },
+  Swedish: { carrierRx: 'MOTTAGNING RX', carrierTx: 'SÄNDNING TX', starsLabel: (s) => `${s} av 5 stjärnor`, notRated: 'Inte betygsatt än' },
+  Finnish: { carrierRx: 'VASTAANOTTO RX', carrierTx: 'LÄHETYS TX', starsLabel: (s) => `${s} / 5 tähteä`, notRated: 'Ei vielä arvioitu' },
+  Hindi: { carrierRx: 'डाउनलोड RX', carrierTx: 'अपलोड TX', starsLabel: (s) => `5 में से ${s} स्टार`, notRated: 'अभी तक रेट नहीं किया गया' },
+  Norwegian: { carrierRx: 'MOTTAK RX', carrierTx: 'SENDING TX', starsLabel: (s) => `${s} av 5 stjerner`, notRated: 'Ikke vurdert ennå' },
+  Thai: { carrierRx: 'ภาครับ RX', carrierTx: 'ภาคส่ง TX', starsLabel: (s) => `${s} จาก 5 ดาว`, notRated: 'ยังไม่มีคะแนน' },
+  Portuguese: { carrierRx: 'RECEPÇÃO RX', carrierTx: 'TRANSMISSÃO TX', starsLabel: (s) => `${s} de 5 estrelas`, notRated: 'Ainda não avaliado' },
+  Vietnamese: { carrierRx: 'TẢI XUỐNG RX', carrierTx: 'TẢI LÊN TX', starsLabel: (s) => `${s} trên 5 sao`, notRated: 'Chưa đánh giá' },
+  Polish: { carrierRx: 'ODBIÓR RX', carrierTx: 'NADAWANIE TX', starsLabel: (s) => `${s} z 5 gwiazdek`, notRated: 'Jeszcze nie oceniono' },
+  Danish: { carrierRx: 'MODTAGELSE RX', carrierTx: 'AFSENDELSE TX', starsLabel: (s) => `${s} ud af 5 stjerner`, notRated: 'Ikke bedømt endnu' },
+  Turkish: { carrierRx: 'ALIM RX', carrierTx: 'GÖNDERİM TX', starsLabel: (s) => `5 üzerinden ${s} yıldız`, notRated: 'Henüz puanlanmadı' },
+  Greek: { carrierRx: 'ΛΗΨΗ RX', carrierTx: 'ΑΠΟΣΤΟΛΗ TX', starsLabel: (s) => `${s} από 5 αστέρια`, notRated: 'Δεν έχει βαθμολογηθεί ακόμα' },
+};
+
+function QualityStars({ score, rated, language = 'English' }: { score: number; rated: boolean; language?: string }) {
+  const extra = ST_EXTRA_T[language] || ST_EXTRA_T.English;
   return (
-    <div className="flex items-center gap-1 mt-1" aria-label={rated ? `${score.toFixed(1)} out of 5 stars` : 'Not rated yet'}>
+    <div className="flex items-center gap-1 mt-1" aria-label={rated ? extra.starsLabel(score.toFixed(1)) : extra.notRated}>
       {[1, 2, 3, 4, 5].map((idx) => {
         const fillRatio = !rated ? 0 : Math.max(0, Math.min(1, score - (idx - 1)));
         const gradId = `nqs-half-${idx}-${Math.round(score * 10)}`;
@@ -1288,6 +1315,7 @@ function QualityStars({ score, rated }: { score: number; rated: boolean }) {
 export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps = {}) {
   const d = ST_T[language] || ST_T['English'];
   const nqs = NQS_T[language] || NQS_T['English'];
+  const extra = ST_EXTRA_T[language] || ST_EXTRA_T['English'];
   const [speed, setSpeed] = useState<string | null>(null);
   const [uploadSpeed, setUploadSpeed] = useState<string | null>(null);
   const [latency, setLatency] = useState<number | null>(null);
@@ -1640,7 +1668,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto speedtest-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
+    <div className="w-full max-w-6xl mx-auto speedtest-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
       
       {/* Broadband Speed Diagnostics Webcard Header */}
       <div className="w-full GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -1768,7 +1796,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
                 <span>{d.downloadSpeed}</span>
               </span>
-              <span className="text-xs font-mono font-medium word-color opacity-40">CARRIER RX</span>
+              <span className="text-xs font-mono font-medium word-color opacity-40">{extra.carrierRx}</span>
             </div>
             <div className="flex items-baseline gap-1.5">
               <span className="speedtest-metric-val text-4xl md:text-5xl font-black tracking-tighter font-mono word-color">
@@ -1786,7 +1814,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
                 <span>{d.uploadSpeed}</span>
               </span>
-              <span className="text-xs font-mono font-medium word-color opacity-40">CARRIER TX</span>
+              <span className="text-xs font-mono font-medium word-color opacity-40">{extra.carrierTx}</span>
             </div>
             <div className="flex items-baseline gap-1.5">
               <span className="speedtest-metric-val text-4xl md:text-5xl font-black tracking-tighter font-mono word-color">
@@ -1823,10 +1851,10 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
             onClick={runSpeedTest}
             disabled={isTestingSpeed}
             style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}
-            className={`speedtest-action-button sm:col-span-2 lg:col-span-1 w-full min-h-[48px] py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 cursor-pointer !text-white text-white ${
+            className={`speedtest-action-button sm:col-span-2 lg:col-span-1 w-full min-h-[48px] py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 !text-white text-white ${
               isTestingSpeed
-                ? 'bg-black/10 dark:bg-white/11 !text-white text-white cursor-not-allowed border border-black/5 dark:border-white/5 opacity-80'
-                : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 !text-white text-white shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25'
+                ? 'bg-gradient-to-r from-purple-600/80 to-indigo-600/80 cursor-not-allowed shadow-md opacity-90'
+                : 'cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25'
             }`}
           >
             <RefreshCw size={16} className={`!text-white text-white ${isTestingSpeed ? 'animate-spin' : ''}`} style={{ color: '#ffffff', stroke: '#ffffff' }} />
@@ -1872,7 +1900,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
                   {hasQualityScore ? `${qualityScores.streaming.toFixed(1)} / 5` : '— / 5'}
                 </span>
               </div>
-              <QualityStars score={qualityScores.streaming} rated={hasQualityScore} />
+              <QualityStars score={qualityScores.streaming} rated={hasQualityScore} language={language} />
             </div>
           </div>
 
@@ -1894,7 +1922,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
                   {hasQualityScore ? `${qualityScores.gaming.toFixed(1)} / 5` : '— / 5'}
                 </span>
               </div>
-              <QualityStars score={qualityScores.gaming} rated={hasQualityScore} />
+              <QualityStars score={qualityScores.gaming} rated={hasQualityScore} language={language} />
             </div>
           </div>
 
@@ -1913,7 +1941,7 @@ export default function SpeedTestTab({ language = 'English' }: SpeedTestTabProps
                   {hasQualityScore ? `${qualityScores.videoCalls.toFixed(1)} / 5` : '— / 5'}
                 </span>
               </div>
-              <QualityStars score={qualityScores.videoCalls} rated={hasQualityScore} />
+              <QualityStars score={qualityScores.videoCalls} rated={hasQualityScore} language={language} />
             </div>
           </div>
         </div>

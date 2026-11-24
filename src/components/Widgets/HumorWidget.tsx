@@ -154,6 +154,32 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
     Greek: 'Χιούμορ Ημέρας',
   }[language] || 'Daily Humor';
 
+  const humorTooltips = {
+    English: { refresh: 'Refresh joke', next: 'Click to get new joke' },
+    Chinese: { refresh: '换一条幽默', next: '点击查看新笑话' },
+    'Chinese Traditional': { refresh: '換一則幽默', next: '點擊查看新笑話' },
+    Spanish: { refresh: 'Actualizar chiste', next: 'Haz clic para ver otro chiste' },
+    French: { refresh: 'Actualiser la blague', next: 'Cliquez pour une nouvelle blague' },
+    German: { refresh: 'Witz aktualisieren', next: 'Für einen neuen Witz klicken' },
+    Japanese: { refresh: 'ジョークを更新', next: 'クリックして新しいジョークを表示' },
+    Korean: { refresh: '유머 새로고침', next: '클릭하여 새 유머 보기' },
+    Italian: { refresh: 'Aggiorna battuta', next: 'Clicca per una nuova battuta' },
+    Russian: { refresh: 'Обновить шутку', next: 'Нажмите для новой шутки' },
+    Luxembourgish: { refresh: 'Witz aktualiséieren', next: 'Klickt fir en neie Witz' },
+    Dutch: { refresh: 'Grap vernieuwen', next: 'Klik voor een nieuwe grap' },
+    Swedish: { refresh: 'Uppdatera skämt', next: 'Klicka för ett nytt skämt' },
+    Finnish: { refresh: 'Päivitä vitsi', next: 'Napsauta saadaksesi uuden vitsin' },
+    Hindi: { refresh: 'चुटकुला रीफ़्रेश करें', next: 'नया चुटकुला पाने के लिए क्लिक करें' },
+    Norwegian: { refresh: 'Oppdater vits', next: 'Klikk for å få en ny vits' },
+    Thai: { refresh: 'รีเฟรชเรื่องขำขัน', next: 'คลิกเพื่อดูเรื่องขำขันใหม่' },
+    Portuguese: { refresh: 'Atualizar piada', next: 'Clique para obter uma nova piada' },
+    Vietnamese: { refresh: 'Làm mới truyện cười', next: 'Nhấp để xem truyện cười mới' },
+    Polish: { refresh: 'Odśwież żart', next: 'Kliknij, aby zobaczyć nowy żart' },
+    Danish: { refresh: 'Opdater vittighed', next: 'Klik for at få en ny vittighed' },
+    Turkish: { refresh: 'Fıkrayı yenile', next: 'Yeni fıkra için tıklayın' },
+    Greek: { refresh: 'Ανανέωση αστείου', next: 'Κάντε κλικ για νέο αστείο' },
+  }[language] || { refresh: 'Refresh joke', next: 'Click to get new joke' };
+
   return (
     <div className="weather-huawei-style daily-webcard rounded-[2rem] h-full flex flex-col justify-between relative overflow-hidden transition-colors group">
       {/* Top Header: Squircle icon + Title + Refresh Button with Regular Blue Background */}
@@ -173,7 +199,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
             fetchHumor();
           }}
           className="p-2.5 lg:p-2 min-w-[40px] min-h-[40px] lg:min-w-0 lg:min-h-0 flex items-center justify-center rounded-xl text-slate-500 hover:text-[#c8102e] dark:text-slate-300 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/10 transition-all shrink-0 cursor-pointer"
-          title="Refresh joke"
+          title={humorTooltips.refresh}
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : 'transition-transform group-hover:rotate-45'} />
         </button>
@@ -186,7 +212,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
       <div 
         onClick={fetchHumor}
         className="flex-1 flex flex-col justify-center px-4 sm:px-5 py-4 sm:py-5 cursor-pointer select-none"
-        title="Click to get new joke"
+        title={humorTooltips.next}
       >
         <p 
           className="daily-card-content-text text-sm sm:text-[15px] lg:text-base xl:text-[17px] font-normal leading-relaxed line-clamp-none sm:line-clamp-5 lg:line-clamp-5 select-text"

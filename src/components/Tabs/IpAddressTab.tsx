@@ -1423,6 +1423,924 @@ const MAP_T: Record<string, {
   }
 };
 
+const IP_LOCALES: Record<string, string> = {
+  English: 'en-US',
+  Spanish: 'es-ES',
+  French: 'fr-FR',
+  German: 'de-DE',
+  Chinese: 'zh-CN',
+  'Chinese Traditional': 'zh-TW',
+  Japanese: 'ja-JP',
+  Korean: 'ko-KR',
+  Italian: 'it-IT',
+  Russian: 'ru-RU',
+  Luxembourgish: 'lb-LU',
+  Dutch: 'nl-NL',
+  Swedish: 'sv-SE',
+  Finnish: 'fi-FI',
+  Hindi: 'hi-IN',
+  Norwegian: 'nb-NO',
+  Thai: 'th-TH',
+  Portuguese: 'pt-PT',
+  Vietnamese: 'vi-VN',
+  Polish: 'pl-PL',
+  Danish: 'da-DK',
+  Turkish: 'tr-TR',
+  Greek: 'el-GR',
+};
+
+interface DiagStrings {
+  na: string;
+  unavailable: string;
+  ispLabel: string;
+  probing: string;
+  zoomIn: string;
+  zoomOut: string;
+  close: string;
+  ianaPrivate: string;
+  ianaCgnat: string;
+  ianaDualStack: string;
+  ianaIpv4: string;
+  ianaIpv6: string;
+  dohVerified: string;
+  dnssecReady: string;
+  systemDns: string;
+  dohBlocked: string;
+  webrtcDisabled: string;
+  peerConnUnavailable: string;
+  iceExposed: string;
+  differsPublicIp: string;
+  matchedPublicStun: string;
+  mdnsLanMasked: string;
+  sameAsPublicIp: string;
+  mdnsIsolated: string;
+  maskedLocalHost: string;
+  lanIpExposed: string;
+  localIceVisible: string;
+  noStunLeaks: string;
+  zeroExposedHosts: string;
+  httpsTls: string;
+  httpUnencrypted: string;
+  secureContext: string;
+  insecureContext: string;
+  proxyVpnRelay: string;
+  directIspRouting: string;
+}
+
+const DIAG_T: Record<string, DiagStrings> = {
+  English: {
+    na: 'N/A',
+    unavailable: 'Unavailable',
+    ispLabel: 'ISP',
+    probing: 'Probing...',
+    zoomIn: 'Zoom in',
+    zoomOut: 'Zoom out',
+    close: 'Close',
+    ianaPrivate: 'Private RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH Verified (1.1.1.1)',
+    dnssecReady: 'DNSSEC Ready',
+    systemDns: 'Standard System DNS',
+    dohBlocked: 'DoH probe blocked or offline',
+    webrtcDisabled: 'WebRTC Disabled',
+    peerConnUnavailable: 'PeerConnection API unavailable',
+    iceExposed: 'ICE Exposed',
+    differsPublicIp: 'Differs from HTTP public IP',
+    matchedPublicStun: 'Matched Public STUN',
+    mdnsLanMasked: 'mDNS LAN masked',
+    sameAsPublicIp: 'Same as public IP',
+    mdnsIsolated: 'mDNS Isolated',
+    maskedLocalHost: 'masked .local ICE host',
+    lanIpExposed: 'LAN IP Exposed',
+    localIceVisible: 'Local host ICE candidate visible',
+    noStunLeaks: 'No STUN Leaks',
+    zeroExposedHosts: 'Zero exposed host candidates',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP Unencrypted',
+    secureContext: 'Secure Browser Context Verified',
+    insecureContext: 'Insecure Origin Context',
+    proxyVpnRelay: 'Proxy / VPN Relay',
+    directIspRouting: 'Direct ISP Routing',
+  },
+  Chinese: {
+    na: '暂无',
+    unavailable: '不可用',
+    ispLabel: '运营商',
+    probing: '检测中...',
+    zoomIn: '放大',
+    zoomOut: '缩小',
+    close: '关闭',
+    ianaPrivate: '私有网段 RFC 1918',
+    ianaCgnat: '运营商级 NAT RFC 6598',
+    ianaDualStack: '双栈公网单播',
+    ianaIpv4: 'IPv4 公网单播',
+    ianaIpv6: 'IPv6 公网单播',
+    dohVerified: 'DoH 已验证 (1.1.1.1)',
+    dnssecReady: '支持 DNSSEC',
+    systemDns: '标准系统 DNS',
+    dohBlocked: 'DoH 探测受阻或离线',
+    webrtcDisabled: 'WebRTC 已禁用',
+    peerConnUnavailable: 'PeerConnection 接口不可用',
+    iceExposed: 'ICE 地址暴露',
+    differsPublicIp: '与 HTTP 公网 IP 不一致',
+    matchedPublicStun: '已匹配公网 STUN',
+    mdnsLanMasked: 'mDNS 局域网已隐藏',
+    sameAsPublicIp: '与公网 IP 一致',
+    mdnsIsolated: 'mDNS 已隔离',
+    maskedLocalHost: '个已屏蔽的 .local ICE 主机',
+    lanIpExposed: '局域网 IP 暴露',
+    localIceVisible: '检测到本地主机 ICE 候选地址',
+    noStunLeaks: '无 STUN 泄漏',
+    zeroExposedHosts: '无暴露的主机候选地址',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP 未加密',
+    secureContext: '安全浏览器上下文已验证',
+    insecureContext: '不安全源上下文',
+    proxyVpnRelay: '代理 / VPN 中继',
+    directIspRouting: '运营商直连路由',
+  },
+  'Chinese Traditional': {
+    na: '暫無',
+    unavailable: '無法使用',
+    ispLabel: '電信業者',
+    probing: '偵測中...',
+    zoomIn: '放大',
+    zoomOut: '縮小',
+    close: '關閉',
+    ianaPrivate: '私有網段 RFC 1918',
+    ianaCgnat: '電信商級 NAT RFC 6598',
+    ianaDualStack: '雙堆疊公網單播',
+    ianaIpv4: 'IPv4 公網單播',
+    ianaIpv6: 'IPv6 公網單播',
+    dohVerified: 'DoH 已驗證 (1.1.1.1)',
+    dnssecReady: '支援 DNSSEC',
+    systemDns: '標準系統 DNS',
+    dohBlocked: 'DoH 探測受阻或離線',
+    webrtcDisabled: 'WebRTC 已停用',
+    peerConnUnavailable: 'PeerConnection API 不可用',
+    iceExposed: 'ICE 位址暴露',
+    differsPublicIp: '與 HTTP 公網 IP 不同',
+    matchedPublicStun: '符合公網 STUN',
+    mdnsLanMasked: 'mDNS 區網已遮罩',
+    sameAsPublicIp: '與公網 IP 相同',
+    mdnsIsolated: 'mDNS 已隔離',
+    maskedLocalHost: '個已遮罩的 .local ICE 主機',
+    lanIpExposed: '區網 IP 暴露',
+    localIceVisible: '可見本機 ICE 候選位址',
+    noStunLeaks: '無 STUN 洩漏',
+    zeroExposedHosts: '零個暴露的主機候選位址',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP 未加密',
+    secureContext: '已驗證安全瀏覽器環境',
+    insecureContext: '不安全的來源環境',
+    proxyVpnRelay: '代理 / VPN 中繼',
+    directIspRouting: '電信商直連路由',
+  },
+  Spanish: {
+    na: 'N/D',
+    unavailable: 'No disponible',
+    ispLabel: 'ISP',
+    probing: 'Analizando...',
+    zoomIn: 'Acercar',
+    zoomOut: 'Alejar',
+    close: 'Cerrar',
+    ianaPrivate: 'Privada RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Unicast global Dual-Stack',
+    ianaIpv4: 'Unicast global IPv4',
+    ianaIpv6: 'Unicast global IPv6',
+    dohVerified: 'DoH verificado (1.1.1.1)',
+    dnssecReady: 'Compatible con DNSSEC',
+    systemDns: 'DNS estándar del sistema',
+    dohBlocked: 'Sonda DoH bloqueada o sin conexión',
+    webrtcDisabled: 'WebRTC desactivado',
+    peerConnUnavailable: 'API PeerConnection no disponible',
+    iceExposed: 'ICE expuesto',
+    differsPublicIp: 'Difiere de la IP pública HTTP',
+    matchedPublicStun: 'STUN público coincidente',
+    mdnsLanMasked: 'LAN mDNS enmascarada',
+    sameAsPublicIp: 'Igual que la IP pública',
+    mdnsIsolated: 'mDNS aislado',
+    maskedLocalHost: 'hosts ICE .local enmascarados',
+    lanIpExposed: 'IP LAN expuesta',
+    localIceVisible: 'Candidato ICE local visible',
+    noStunLeaks: 'Sin fugas STUN',
+    zeroExposedHosts: 'Cero candidatos expuestos',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP sin cifrar',
+    secureContext: 'Contexto seguro verificado',
+    insecureContext: 'Contexto de origen inseguro',
+    proxyVpnRelay: 'Retransmisión Proxy / VPN',
+    directIspRouting: 'Enrutamiento ISP directo',
+  },
+  French: {
+    na: 'N/D',
+    unavailable: 'Indisponible',
+    ispLabel: 'FAI',
+    probing: 'Analyse...',
+    zoomIn: 'Zoom avant',
+    zoomOut: 'Zoom arrière',
+    close: 'Fermer',
+    ianaPrivate: 'Privée RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Unicast global double pile',
+    ianaIpv4: 'Unicast global IPv4',
+    ianaIpv6: 'Unicast global IPv6',
+    dohVerified: 'DoH vérifié (1.1.1.1)',
+    dnssecReady: 'Compatible DNSSEC',
+    systemDns: 'DNS système standard',
+    dohBlocked: 'Sonde DoH bloquée ou hors ligne',
+    webrtcDisabled: 'WebRTC désactivé',
+    peerConnUnavailable: 'API PeerConnection indisponible',
+    iceExposed: 'ICE exposé',
+    differsPublicIp: "Diffère de l'IP publique HTTP",
+    matchedPublicStun: 'STUN public concordant',
+    mdnsLanMasked: 'LAN mDNS masqué',
+    sameAsPublicIp: "Identique à l'IP publique",
+    mdnsIsolated: 'mDNS isolé',
+    maskedLocalHost: 'hôtes ICE .local masqués',
+    lanIpExposed: 'IP LAN exposée',
+    localIceVisible: 'Candidat ICE local visible',
+    noStunLeaks: 'Aucune fuite STUN',
+    zeroExposedHosts: 'Zéro candidat exposé',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP non chiffré',
+    secureContext: 'Contexte navigateur sécurisé vérifié',
+    insecureContext: "Contexte d'origine non sécurisé",
+    proxyVpnRelay: 'Relais Proxy / VPN',
+    directIspRouting: 'Routage FAI direct',
+  },
+  German: {
+    na: 'k. A.',
+    unavailable: 'Nicht verfügbar',
+    ispLabel: 'ISP',
+    probing: 'Wird geprüft...',
+    zoomIn: 'Vergrößern',
+    zoomOut: 'Verkleinern',
+    close: 'Schließen',
+    ianaPrivate: 'Privat RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH verifiziert (1.1.1.1)',
+    dnssecReady: 'DNSSEC-bereit',
+    systemDns: 'Standard-System-DNS',
+    dohBlocked: 'DoH-Test blockiert oder offline',
+    webrtcDisabled: 'WebRTC deaktiviert',
+    peerConnUnavailable: 'PeerConnection-API nicht verfügbar',
+    iceExposed: 'ICE offengelegt',
+    differsPublicIp: 'Weicht von öffentlicher HTTP-IP ab',
+    matchedPublicStun: 'Öffentliches STUN abgeglichen',
+    mdnsLanMasked: 'mDNS-LAN maskiert',
+    sameAsPublicIp: 'Identisch mit öffentlicher IP',
+    mdnsIsolated: 'mDNS isoliert',
+    maskedLocalHost: 'maskierte .local-ICE-Hosts',
+    lanIpExposed: 'LAN-IP offengelegt',
+    localIceVisible: 'Lokaler ICE-Kandidat sichtbar',
+    noStunLeaks: 'Keine STUN-Leaks',
+    zeroExposedHosts: 'Keine offengelegten Host-Kandidaten',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP unverschlüsselt',
+    secureContext: 'Sicherer Browserkontext bestätigt',
+    insecureContext: 'Unsicherer Ursprungskontext',
+    proxyVpnRelay: 'Proxy- / VPN-Relay',
+    directIspRouting: 'Direktes ISP-Routing',
+  },
+  Japanese: {
+    na: '該当なし',
+    unavailable: '利用不可',
+    ispLabel: 'ISP',
+    probing: '診断中...',
+    zoomIn: '拡大',
+    zoomOut: '縮小',
+    close: '閉じる',
+    ianaPrivate: 'プライベート RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'デュアルスタック・グローバルユニキャスト',
+    ianaIpv4: 'IPv4 グローバルユニキャスト',
+    ianaIpv6: 'IPv6 グローバルユニキャスト',
+    dohVerified: 'DoH 検証済み (1.1.1.1)',
+    dnssecReady: 'DNSSEC 対応',
+    systemDns: '標準システム DNS',
+    dohBlocked: 'DoH プローブがブロックまたはオフライン',
+    webrtcDisabled: 'WebRTC 無効',
+    peerConnUnavailable: 'PeerConnection API 利用不可',
+    iceExposed: 'ICE 露出',
+    differsPublicIp: 'HTTP グローバル IP と異なります',
+    matchedPublicStun: 'パブリック STUN 一致',
+    mdnsLanMasked: 'mDNS LAN マスク済み',
+    sameAsPublicIp: 'パブリック IP と同一',
+    mdnsIsolated: 'mDNS 分離済み',
+    maskedLocalHost: '件のマスク済み .local ICE ホスト',
+    lanIpExposed: 'LAN IP 露出',
+    localIceVisible: 'ローカルホスト ICE 候補が検出されました',
+    noStunLeaks: 'STUN リークなし',
+    zeroExposedHosts: '露出したホスト候補はありません',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP 非暗号化',
+    secureContext: '安全なブラウザコンテキスト確認済み',
+    insecureContext: '安全でないオリジンコンテキスト',
+    proxyVpnRelay: 'プロキシ / VPN リレー',
+    directIspRouting: 'ISP 直接ルーティング',
+  },
+  Korean: {
+    na: '해당 없음',
+    unavailable: '사용 불가',
+    ispLabel: 'ISP',
+    probing: '점검 중...',
+    zoomIn: '확대',
+    zoomOut: '축소',
+    close: '닫기',
+    ianaPrivate: '사설 대역 RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: '듀얼 스택 공인 유니캐스트',
+    ianaIpv4: 'IPv4 공인 유니캐스트',
+    ianaIpv6: 'IPv6 공인 유니캐스트',
+    dohVerified: 'DoH 검증됨 (1.1.1.1)',
+    dnssecReady: 'DNSSEC 지원',
+    systemDns: '표준 시스템 DNS',
+    dohBlocked: 'DoH 프로브 차단됨 또는 오프라인',
+    webrtcDisabled: 'WebRTC 비활성화됨',
+    peerConnUnavailable: 'PeerConnection API 사용 불가',
+    iceExposed: 'ICE 노출됨',
+    differsPublicIp: 'HTTP 공인 IP와 다름',
+    matchedPublicStun: '공인 STUN 일치',
+    mdnsLanMasked: 'mDNS LAN 마스킹됨',
+    sameAsPublicIp: '공인 IP와 동일',
+    mdnsIsolated: 'mDNS 격리됨',
+    maskedLocalHost: '개의 마스킹된 .local ICE 호스트',
+    lanIpExposed: 'LAN IP 노출됨',
+    localIceVisible: '로컬 호스트 ICE 후보 노출됨',
+    noStunLeaks: 'STUN 유출 없음',
+    zeroExposedHosts: '노출된 호스트 후보 없음',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP 암호화되지 않음',
+    secureContext: '보안 브라우저 컨텍스트 확인됨',
+    insecureContext: '안전하지 않은 출처 컨텍스트',
+    proxyVpnRelay: '프록시 / VPN 중계',
+    directIspRouting: 'ISP 직접 라우팅',
+  },
+  Italian: {
+    na: 'N/D',
+    unavailable: 'Non disponibile',
+    ispLabel: 'ISP',
+    probing: 'Verifica in corso...',
+    zoomIn: 'Ingrandisci',
+    zoomOut: 'Riduci',
+    close: 'Chiudi',
+    ianaPrivate: 'Privato RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Unicast globale Dual-Stack',
+    ianaIpv4: 'Unicast globale IPv4',
+    ianaIpv6: 'Unicast globale IPv6',
+    dohVerified: 'DoH verificato (1.1.1.1)',
+    dnssecReady: 'Pronto per DNSSEC',
+    systemDns: 'DNS di sistema standard',
+    dohBlocked: 'Probe DoH bloccato o offline',
+    webrtcDisabled: 'WebRTC disabilitato',
+    peerConnUnavailable: 'API PeerConnection non disponibile',
+    iceExposed: 'ICE esposto',
+    differsPublicIp: "Diverso dall'IP pubblico HTTP",
+    matchedPublicStun: 'STUN pubblico corrispondente',
+    mdnsLanMasked: 'LAN mDNS mascherata',
+    sameAsPublicIp: "Uguale all'IP pubblico",
+    mdnsIsolated: 'mDNS isolato',
+    maskedLocalHost: 'host ICE .local mascherati',
+    lanIpExposed: 'IP LAN esposto',
+    localIceVisible: 'Candidato ICE locale visibile',
+    noStunLeaks: 'Nessuna perdita STUN',
+    zeroExposedHosts: 'Zero candidati esposti',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP non crittografato',
+    secureContext: 'Contesto browser sicuro verificato',
+    insecureContext: 'Contesto di origine non sicuro',
+    proxyVpnRelay: 'Relay Proxy / VPN',
+    directIspRouting: 'Instradamento ISP diretto',
+  },
+  Russian: {
+    na: 'Н/Д',
+    unavailable: 'Недоступно',
+    ispLabel: 'Провайдер',
+    probing: 'Проверка...',
+    zoomIn: 'Увеличить',
+    zoomOut: 'Уменьшить',
+    close: 'Закрыть',
+    ianaPrivate: 'Частная сеть RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Двухстековый глобальный unicast',
+    ianaIpv4: 'IPv4 глобальный unicast',
+    ianaIpv6: 'IPv6 глобальный unicast',
+    dohVerified: 'DoH подтверждён (1.1.1.1)',
+    dnssecReady: 'Поддержка DNSSEC',
+    systemDns: 'Стандартный системный DNS',
+    dohBlocked: 'Зонд DoH заблокирован или офлайн',
+    webrtcDisabled: 'WebRTC отключён',
+    peerConnUnavailable: 'API PeerConnection недоступен',
+    iceExposed: 'Утечка ICE',
+    differsPublicIp: 'Отличается от публичного HTTP IP',
+    matchedPublicStun: 'Совпадает с публичным STUN',
+    mdnsLanMasked: 'mDNS LAN скрыт',
+    sameAsPublicIp: 'Совпадает с публичным IP',
+    mdnsIsolated: 'mDNS изолирован',
+    maskedLocalHost: 'скрытых .local ICE-хостов',
+    lanIpExposed: 'Раскрыт локальный IP',
+    localIceVisible: 'Виден локальный ICE-кандидат',
+    noStunLeaks: 'Утечек STUN нет',
+    zeroExposedHosts: 'Нет раскрытых хост-кандидатов',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP без шифрования',
+    secureContext: 'Защищённый контекст подтверждён',
+    insecureContext: 'Незащищённый контекст источника',
+    proxyVpnRelay: 'Прокси / VPN-ретранслятор',
+    directIspRouting: 'Прямая маршрутизация провайдера',
+  },
+  Luxembourgish: {
+    na: 'N/A',
+    unavailable: 'Net verfügbar',
+    ispLabel: 'ISP',
+    probing: 'Prüfung leeft...',
+    zoomIn: 'Eranzoomen',
+    zoomOut: 'Erauszoomen',
+    close: 'Zoumaachen',
+    ianaPrivate: 'Privat RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH verifizéiert (1.1.1.1)',
+    dnssecReady: 'DNSSEC-bereet',
+    systemDns: 'Standard-System-DNS',
+    dohBlocked: 'DoH-Test blockéiert oder offline',
+    webrtcDisabled: 'WebRTC ausgeschalt',
+    peerConnUnavailable: 'PeerConnection-API net verfügbar',
+    iceExposed: 'ICE opgedeckt',
+    differsPublicIp: 'Ënnerscheet sech vun der HTTP-IP',
+    matchedPublicStun: 'Ëffentlech STUN stëmmt iwwereneen',
+    mdnsLanMasked: 'mDNS-LAN maskéiert',
+    sameAsPublicIp: 'Selwecht wéi ëffentlech IP',
+    mdnsIsolated: 'mDNS isoléiert',
+    maskedLocalHost: 'maskéiert .local ICE-Hosten',
+    lanIpExposed: 'LAN-IP opgedeckt',
+    localIceVisible: 'Lokalen ICE-Kandidat siichtbar',
+    noStunLeaks: 'Keng STUN-Leaks',
+    zeroExposedHosts: 'Keng opgedeckt Host-Kandidaten',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP onverschlësselt',
+    secureContext: 'Séchere Browser-Kontext bestätegt',
+    insecureContext: 'Onsécheren Originn-Kontext',
+    proxyVpnRelay: 'Proxy- / VPN-Relay',
+    directIspRouting: 'Direkt ISP-Routing',
+  },
+  Dutch: {
+    na: 'N.v.t.',
+    unavailable: 'Niet beschikbaar',
+    ispLabel: 'Provider',
+    probing: 'Controleren...',
+    zoomIn: 'Inzoomen',
+    zoomOut: 'Uitzoomen',
+    close: 'Sluiten',
+    ianaPrivate: 'Privé RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH geverifieerd (1.1.1.1)',
+    dnssecReady: 'DNSSEC gereed',
+    systemDns: 'Standaard systeem-DNS',
+    dohBlocked: 'DoH-meting geblokkeerd of offline',
+    webrtcDisabled: 'WebRTC uitgeschakeld',
+    peerConnUnavailable: 'PeerConnection API niet beschikbaar',
+    iceExposed: 'ICE blootgesteld',
+    differsPublicIp: 'Wijkt af van openbaar HTTP-IP',
+    matchedPublicStun: 'Komt overeen met openbare STUN',
+    mdnsLanMasked: 'mDNS LAN gemaskeerd',
+    sameAsPublicIp: 'Gelijk aan openbaar IP',
+    mdnsIsolated: 'mDNS geïsoleerd',
+    maskedLocalHost: 'gemaskeerde .local ICE-hosts',
+    lanIpExposed: 'LAN-IP blootgesteld',
+    localIceVisible: 'Lokale ICE-kandidaat zichtbaar',
+    noStunLeaks: 'Geen STUN-lekken',
+    zeroExposedHosts: 'Geen blootgestelde hostkandidaten',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP niet versleuteld',
+    secureContext: 'Beveiligde browsercontext geverifieerd',
+    insecureContext: 'Onveilige oorsprongcontext',
+    proxyVpnRelay: 'Proxy / VPN-relay',
+    directIspRouting: 'Directe providerroutering',
+  },
+  Swedish: {
+    na: 'Ej tillg.',
+    unavailable: 'Ej tillgänglig',
+    ispLabel: 'Operatör',
+    probing: 'Testar...',
+    zoomIn: 'Zooma in',
+    zoomOut: 'Zooma ut',
+    close: 'Stäng',
+    ianaPrivate: 'Privat RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH verifierad (1.1.1.1)',
+    dnssecReady: 'DNSSEC redo',
+    systemDns: 'Standard system-DNS',
+    dohBlocked: 'DoH-test blockerad eller offline',
+    webrtcDisabled: 'WebRTC inaktiverad',
+    peerConnUnavailable: 'PeerConnection API ej tillgängligt',
+    iceExposed: 'ICE exponerad',
+    differsPublicIp: 'Skiljer sig från publik HTTP-IP',
+    matchedPublicStun: 'Matchar publik STUN',
+    mdnsLanMasked: 'mDNS LAN maskerad',
+    sameAsPublicIp: 'Samma som publik IP',
+    mdnsIsolated: 'mDNS isolerad',
+    maskedLocalHost: 'maskerade .local ICE-värdar',
+    lanIpExposed: 'LAN-IP exponerad',
+    localIceVisible: 'Lokal ICE-kandidat synlig',
+    noStunLeaks: 'Inga STUN-läckor',
+    zeroExposedHosts: 'Inga exponerade värdkandidater',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Okrypterad HTTP',
+    secureContext: 'Säker webbläsarkontext verifierad',
+    insecureContext: 'Osäker ursprungskontext',
+    proxyVpnRelay: 'Proxy / VPN-relä',
+    directIspRouting: 'Direkt ISP-dirigering',
+  },
+  Finnish: {
+    na: 'Ei saatavilla',
+    unavailable: 'Ei käytettävissä',
+    ispLabel: 'Palveluntarjoaja',
+    probing: 'Tutkitaan...',
+    zoomIn: 'Lähennä',
+    zoomOut: 'Loitonna',
+    close: 'Sulje',
+    ianaPrivate: 'Yksityinen RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH vahvistettu (1.1.1.1)',
+    dnssecReady: 'DNSSEC valmis',
+    systemDns: 'Tavallinen järjestelmän DNS',
+    dohBlocked: 'DoH-testi estetty tai offline',
+    webrtcDisabled: 'WebRTC pois käytöstä',
+    peerConnUnavailable: 'PeerConnection-rajapinta ei käytettävissä',
+    iceExposed: 'ICE paljastunut',
+    differsPublicIp: 'Poikkeaa julkisesta HTTP-IP:stä',
+    matchedPublicStun: 'Vastaa julkista STUN-osoitetta',
+    mdnsLanMasked: 'mDNS LAN suojattu',
+    sameAsPublicIp: 'Sama kuin julkinen IP',
+    mdnsIsolated: 'mDNS eristetty',
+    maskedLocalHost: 'suojattua .local ICE-isäntää',
+    lanIpExposed: 'LAN-IP paljastunut',
+    localIceVisible: 'Paikallinen ICE-ehdokas näkyvissä',
+    noStunLeaks: 'Ei STUN-vuotoja',
+    zeroExposedHosts: 'Ei paljastuneita isäntäehdokkaita',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Salaamaton HTTP',
+    secureContext: 'Suojattu selainympäristö vahvistettu',
+    insecureContext: 'Suojaamaton lähdeympäristö',
+    proxyVpnRelay: 'Välityspalvelin / VPN',
+    directIspRouting: 'Suora palveluntarjoajan reititys',
+  },
+  Hindi: {
+    na: 'लागू नहीं',
+    unavailable: 'अनुपलब्ध',
+    ispLabel: 'ISP',
+    probing: 'जाँच हो रही है...',
+    zoomIn: 'ज़ूम इन',
+    zoomOut: 'ज़ूम आउट',
+    close: 'बंद करें',
+    ianaPrivate: 'निजी RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'डुअल-स्टैक ग्लोबल यूनिकास्ट',
+    ianaIpv4: 'IPv4 ग्लोबल यूनिकास्ट',
+    ianaIpv6: 'IPv6 ग्लोबल यूनिकास्ट',
+    dohVerified: 'DoH सत्यापित (1.1.1.1)',
+    dnssecReady: 'DNSSEC तैयार',
+    systemDns: 'मानक सिस्टम DNS',
+    dohBlocked: 'DoH जांच अवरुद्ध या ऑफ़लाइन',
+    webrtcDisabled: 'WebRTC अक्षम',
+    peerConnUnavailable: 'PeerConnection API अनुपलब्ध',
+    iceExposed: 'ICE उजागर',
+    differsPublicIp: 'HTTP सार्वजनिक IP से भिन्न',
+    matchedPublicStun: 'सार्वजनिक STUN से मेल खाता है',
+    mdnsLanMasked: 'mDNS LAN छिपा हुआ',
+    sameAsPublicIp: 'सार्वजनिक IP के समान',
+    mdnsIsolated: 'mDNS पृथक',
+    maskedLocalHost: 'मास्क किए गए .local ICE होस्ट',
+    lanIpExposed: 'LAN IP उजागर',
+    localIceVisible: 'स्थानीय ICE कैंडिडेट दृश्यमान',
+    noStunLeaks: 'कोई STUN लीक नहीं',
+    zeroExposedHosts: 'कोई उजागर होस्ट नहीं',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'असुरक्षित HTTP',
+    secureContext: 'सुरक्षित ब्राउज़र संदर्भ सत्यापित',
+    insecureContext: 'असुरक्षित मूल संदर्भ',
+    proxyVpnRelay: 'प्रॉक्सी / VPN रिले',
+    directIspRouting: 'सीधी ISP रूटिंग',
+  },
+  Norwegian: {
+    na: 'I/T',
+    unavailable: 'Utilgjengelig',
+    ispLabel: 'ISP',
+    probing: 'Tester...',
+    zoomIn: 'Zoom inn',
+    zoomOut: 'Zoom ut',
+    close: 'Lukk',
+    ianaPrivate: 'Privat RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH bekreftet (1.1.1.1)',
+    dnssecReady: 'DNSSEC klar',
+    systemDns: 'Standard system-DNS',
+    dohBlocked: 'DoH-probe blokkert eller frakoblet',
+    webrtcDisabled: 'WebRTC deaktivert',
+    peerConnUnavailable: 'PeerConnection API utilgjengelig',
+    iceExposed: 'ICE eksponert',
+    differsPublicIp: 'Avviker fra offentlig HTTP-IP',
+    matchedPublicStun: 'Samsvarer med offentlig STUN',
+    mdnsLanMasked: 'mDNS LAN maskert',
+    sameAsPublicIp: 'Samme som offentlig IP',
+    mdnsIsolated: 'mDNS isolert',
+    maskedLocalHost: 'maskerte .local ICE-verter',
+    lanIpExposed: 'LAN-IP eksponert',
+    localIceVisible: 'Lokal ICE-kandidat synlig',
+    noStunLeaks: 'Ingen STUN-lekkasjer',
+    zeroExposedHosts: 'Ingen eksponerte vertskandidater',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Ukryptert HTTP',
+    secureContext: 'Sikker nettleserkontekst bekreftet',
+    insecureContext: 'Usikker opprinnelseskontekst',
+    proxyVpnRelay: 'Proxy / VPN-relé',
+    directIspRouting: 'Direkte ISP-ruting',
+  },
+  Thai: {
+    na: 'ไม่มีข้อมูล',
+    unavailable: 'ไม่พร้อมใช้งาน',
+    ispLabel: 'ผู้ให้บริการ',
+    probing: 'กำลังตรวจสอบ...',
+    zoomIn: 'ซูมเข้า',
+    zoomOut: 'ซูมออก',
+    close: 'ปิด',
+    ianaPrivate: 'เครือข่ายส่วนตัว RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'ยืนยัน DoH แล้ว (1.1.1.1)',
+    dnssecReady: 'รองรับ DNSSEC',
+    systemDns: 'DNS ระบบมาตรฐาน',
+    dohBlocked: 'การทดสอบ DoH ถูกบล็อกหรือออฟไลน์',
+    webrtcDisabled: 'ปิดใช้งาน WebRTC',
+    peerConnUnavailable: 'ไม่พบ PeerConnection API',
+    iceExposed: 'พบการเปิดเผย ICE',
+    differsPublicIp: 'ต่างจาก IP สาธารณะ HTTP',
+    matchedPublicStun: 'ตรงกับ STUN สาธารณะ',
+    mdnsLanMasked: 'ซ่อน LAN mDNS แล้ว',
+    sameAsPublicIp: 'ตรงกับ IP สาธารณะ',
+    mdnsIsolated: 'แยก mDNS แล้ว',
+    maskedLocalHost: 'โฮสต์ ICE .local ที่ซ่อนไว้',
+    lanIpExposed: 'พบการเปิดเผย LAN IP',
+    localIceVisible: 'ตรวจพบแคนดิเดต ICE ภายในเครื่อง',
+    noStunLeaks: 'ไม่พบการรั่วไหล STUN',
+    zeroExposedHosts: 'ไม่มีโฮสต์แคนดิเดตที่ถูกเปิดเผย',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP ไม่ได้เข้ารหัส',
+    secureContext: 'ยืนยันบริบทเบราว์เซอร์ที่ปลอดภัยแล้ว',
+    insecureContext: 'บริบทต้นทางไม่ปลอดภัย',
+    proxyVpnRelay: 'พร็อกซี / VPN รีเลย์',
+    directIspRouting: 'เส้นทาง ISP โดยตรง',
+  },
+  Portuguese: {
+    na: 'N/D',
+    unavailable: 'Indisponível',
+    ispLabel: 'ISP',
+    probing: 'A analisar...',
+    zoomIn: 'Ampliar',
+    zoomOut: 'Reduzir',
+    close: 'Fechar',
+    ianaPrivate: 'Privada RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Unicast Global Dual-Stack',
+    ianaIpv4: 'Unicast Global IPv4',
+    ianaIpv6: 'Unicast Global IPv6',
+    dohVerified: 'DoH Verificado (1.1.1.1)',
+    dnssecReady: 'Compatível com DNSSEC',
+    systemDns: 'DNS Padrão do Sistema',
+    dohBlocked: 'Sonda DoH bloqueada ou offline',
+    webrtcDisabled: 'WebRTC Desativado',
+    peerConnUnavailable: 'API PeerConnection indisponível',
+    iceExposed: 'ICE Exposto',
+    differsPublicIp: 'Difere do IP público HTTP',
+    matchedPublicStun: 'STUN Público Correspondente',
+    mdnsLanMasked: 'LAN mDNS mascarada',
+    sameAsPublicIp: 'Igual ao IP público',
+    mdnsIsolated: 'mDNS Isolado',
+    maskedLocalHost: 'hosts ICE .local mascarados',
+    lanIpExposed: 'IP LAN Exposto',
+    localIceVisible: 'Candidato ICE local visível',
+    noStunLeaks: 'Sem Fugas STUN',
+    zeroExposedHosts: 'Zero candidatos expostos',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP Não Encriptado',
+    secureContext: 'Contexto Seguro Verificado',
+    insecureContext: 'Contexto de Origem Inseguro',
+    proxyVpnRelay: 'Retransmissão Proxy / VPN',
+    directIspRouting: 'Encaminhamento Direto do ISP',
+  },
+  Vietnamese: {
+    na: 'Không có',
+    unavailable: 'Không khả dụng',
+    ispLabel: 'Nhà mạng',
+    probing: 'Đang kiểm tra...',
+    zoomIn: 'Phóng to',
+    zoomOut: 'Thu nhỏ',
+    close: 'Đóng',
+    ianaPrivate: 'Mạng riêng RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Unicast toàn cầu Dual-Stack',
+    ianaIpv4: 'Unicast toàn cầu IPv4',
+    ianaIpv6: 'Unicast toàn cầu IPv6',
+    dohVerified: 'DoH đã xác minh (1.1.1.1)',
+    dnssecReady: 'Sẵn sàng DNSSEC',
+    systemDns: 'DNS hệ thống tiêu chuẩn',
+    dohBlocked: 'Kiểm tra DoH bị chặn hoặc ngoại tuyến',
+    webrtcDisabled: 'Đã tắt WebRTC',
+    peerConnUnavailable: 'API PeerConnection không khả dụng',
+    iceExposed: 'ICE bị lộ',
+    differsPublicIp: 'Khác với IP công khai HTTP',
+    matchedPublicStun: 'Khớp STUN công khai',
+    mdnsLanMasked: 'LAN mDNS đã được ẩn',
+    sameAsPublicIp: 'Trùng với IP công khai',
+    mdnsIsolated: 'mDNS đã được cô lập',
+    maskedLocalHost: 'máy chủ ICE .local đã ẩn',
+    lanIpExposed: 'IP mạng LAN bị lộ',
+    localIceVisible: 'Hiển thị ứng viên ICE cục bộ',
+    noStunLeaks: 'Không rò rỉ STUN',
+    zeroExposedHosts: 'Không có ứng viên máy chủ bị lộ',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'HTTP chưa mã hóa',
+    secureContext: 'Ngữ cảnh trình duyệt an toàn đã xác minh',
+    insecureContext: 'Ngữ cảnh nguồn không an toàn',
+    proxyVpnRelay: 'Chuyển tiếp Proxy / VPN',
+    directIspRouting: 'Định tuyến trực tiếp qua nhà mạng',
+  },
+  Polish: {
+    na: 'Brak',
+    unavailable: 'Niedostępny',
+    ispLabel: 'Dostawca',
+    probing: 'Sprawdzanie...',
+    zoomIn: 'Powiększ',
+    zoomOut: 'Pomniejsz',
+    close: 'Zamknij',
+    ianaPrivate: 'Prywatny RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH zweryfikowano (1.1.1.1)',
+    dnssecReady: 'Obsługa DNSSEC',
+    systemDns: 'Standardowy DNS systemu',
+    dohBlocked: 'Test DoH zablokowany lub offline',
+    webrtcDisabled: 'WebRTC wyłączone',
+    peerConnUnavailable: 'API PeerConnection niedostępne',
+    iceExposed: 'Ujawniono ICE',
+    differsPublicIp: 'Różni się od publicznego IP HTTP',
+    matchedPublicStun: 'Zgodny z publicznym STUN',
+    mdnsLanMasked: 'Sieć LAN mDNS zamaskowana',
+    sameAsPublicIp: 'Taki sam jak publiczny IP',
+    mdnsIsolated: 'mDNS odizolowane',
+    maskedLocalHost: 'zamaskowanych hostów ICE .local',
+    lanIpExposed: 'Ujawniono lokalne IP',
+    localIceVisible: 'Widoczny lokalny kandydat ICE',
+    noStunLeaks: 'Brak wycieków STUN',
+    zeroExposedHosts: 'Brak ujawnionych hostów',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Nieszyfrowany HTTP',
+    secureContext: 'Zweryfikowano bezpieczny kontekst przeglądarki',
+    insecureContext: 'Niezabezpieczony kontekst źródła',
+    proxyVpnRelay: 'Przekaźnik Proxy / VPN',
+    directIspRouting: 'Bezpośredni routing ISP',
+  },
+  Danish: {
+    na: 'Ikke tilg.',
+    unavailable: 'Utilgængelig',
+    ispLabel: 'Udbyder',
+    probing: 'Undersøger...',
+    zoomIn: 'Zoom ind',
+    zoomOut: 'Zoom ud',
+    close: 'Luk',
+    ianaPrivate: 'Privat RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'DoH bekræftet (1.1.1.1)',
+    dnssecReady: 'DNSSEC klar',
+    systemDns: 'Standard system-DNS',
+    dohBlocked: 'DoH-probe blokeret eller offline',
+    webrtcDisabled: 'WebRTC deaktiveret',
+    peerConnUnavailable: 'PeerConnection API utilgængeligt',
+    iceExposed: 'ICE eksponeret',
+    differsPublicIp: 'Afviger fra offentlig HTTP-IP',
+    matchedPublicStun: 'Matcher offentlig STUN',
+    mdnsLanMasked: 'mDNS LAN maskeret',
+    sameAsPublicIp: 'Samme som offentlig IP',
+    mdnsIsolated: 'mDNS isoleret',
+    maskedLocalHost: 'maskerede .local ICE-værter',
+    lanIpExposed: 'LAN-IP eksponeret',
+    localIceVisible: 'Lokal ICE-kandidat synlig',
+    noStunLeaks: 'Ingen STUN-lækager',
+    zeroExposedHosts: 'Ingen eksponerede værtskandidater',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Ukrypteret HTTP',
+    secureContext: 'Sikker browserkontekst bekræftet',
+    insecureContext: 'Usikker oprindelseskontekst',
+    proxyVpnRelay: 'Proxy / VPN-relæ',
+    directIspRouting: 'Direkte udbyderrouting',
+  },
+  Turkish: {
+    na: 'Yok',
+    unavailable: 'Kullanılamıyor',
+    ispLabel: 'İSS',
+    probing: 'Kontrol ediliyor...',
+    zoomIn: 'Yakınlaştır',
+    zoomOut: 'Uzaklaştır',
+    close: 'Kapat',
+    ianaPrivate: 'Özel RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Çift Yığın Genel Unicast',
+    ianaIpv4: 'IPv4 Genel Unicast',
+    ianaIpv6: 'IPv6 Genel Unicast',
+    dohVerified: 'DoH Doğrulandı (1.1.1.1)',
+    dnssecReady: 'DNSSEC Hazır',
+    systemDns: 'Standart Sistem DNS',
+    dohBlocked: 'DoH testi engellendi veya çevrimdışı',
+    webrtcDisabled: 'WebRTC Devre Dışı',
+    peerConnUnavailable: 'PeerConnection API kullanılamıyor',
+    iceExposed: 'ICE İfşa Oldu',
+    differsPublicIp: 'Genel HTTP IP adresinden farklı',
+    matchedPublicStun: 'Genel STUN ile Eşleşti',
+    mdnsLanMasked: 'mDNS LAN maskelendi',
+    sameAsPublicIp: 'Genel IP ile aynı',
+    mdnsIsolated: 'mDNS Yalıtılmış',
+    maskedLocalHost: 'maskelenmiş .local ICE ana bilgisayarı',
+    lanIpExposed: 'Yerel Ağ IP İfşa Oldu',
+    localIceVisible: 'Yerel ICE adayı görünür durumda',
+    noStunLeaks: 'STUN Sızıntısı Yok',
+    zeroExposedHosts: 'İfşa olmuş ana bilgisayar adayı yok',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Şifrelenmemiş HTTP',
+    secureContext: 'Güvenli Tarayıcı Bağlamı Doğrulandı',
+    insecureContext: 'Güvenli Olmayan Kaynak Bağlamı',
+    proxyVpnRelay: 'Proxy / VPN Aktarımı',
+    directIspRouting: 'Doğrudan İSS Yönlendirmesi',
+  },
+  Greek: {
+    na: 'Μ/Δ',
+    unavailable: 'Μη διαθέσιμο',
+    ispLabel: 'Πάροχος',
+    probing: 'Έλεγχος...',
+    zoomIn: 'Μεγέθυνση',
+    zoomOut: 'Σμίκρυνση',
+    close: 'Κλείσιμο',
+    ianaPrivate: 'Ιδιωτικό RFC 1918',
+    ianaCgnat: 'CGNAT RFC 6598',
+    ianaDualStack: 'Dual-Stack Global Unicast',
+    ianaIpv4: 'IPv4 Global Unicast',
+    ianaIpv6: 'IPv6 Global Unicast',
+    dohVerified: 'Επαληθεύτηκε DoH (1.1.1.1)',
+    dnssecReady: 'Έτοιμο DNSSEC',
+    systemDns: 'Τυπικό DNS Συστήματος',
+    dohBlocked: 'Ο έλεγχος DoH αποκλείστηκε ή εκτός σύνδεσης',
+    webrtcDisabled: 'WebRTC Απενεργοποιημένο',
+    peerConnUnavailable: 'Το PeerConnection API δεν είναι διαθέσιμο',
+    iceExposed: 'Εκτεθειμένο ICE',
+    differsPublicIp: 'Διαφέρει από τη δημόσια HTTP IP',
+    matchedPublicStun: 'Αντιστοιχήθηκε Δημόσιο STUN',
+    mdnsLanMasked: 'mDNS LAN καλυμμένο',
+    sameAsPublicIp: 'Ίδιο με τη δημόσια IP',
+    mdnsIsolated: 'Απομονωμένο mDNS',
+    maskedLocalHost: 'καλυμμένοι κεντρικοί ICE .local',
+    lanIpExposed: 'Εκτεθειμένη τοπική IP LAN',
+    localIceVisible: 'Ορατός τοπικός υποψήφιος ICE',
+    noStunLeaks: 'Καμία Διαρροή STUN',
+    zeroExposedHosts: 'Κανένας εκτεθειμένος υποψήφιος',
+    httpsTls: 'HTTPS / TLS',
+    httpUnencrypted: 'Μη κρυπτογραφημένο HTTP',
+    secureContext: 'Ασφαλές περιβάλλον προγράμματος περιήγησης',
+    insecureContext: 'Μη ασφαλές περιβάλλον προέλευσης',
+    proxyVpnRelay: 'Αναμετάδοση Proxy / VPN',
+    directIspRouting: 'Άμεση δρομολόγηση παρόχου',
+  },
+};
+
 interface NormalizedIpData {
   ip: string;
   country_name: string;
@@ -1459,17 +2377,18 @@ interface SecurityDiagnostics {
   reputationOk: boolean;
 }
 
-function resolveCountryName(code?: string, fallbackName?: string): string {
-  if (fallbackName && fallbackName.length > 2) return fallbackName;
+function resolveCountryName(code?: string, fallbackName?: string, locale = 'en-US'): string {
   if (code && code.length === 2) {
     try {
-      const display = new Intl.DisplayNames(['en'], { type: 'region' });
-      return display.of(code.toUpperCase()) || code.toUpperCase();
+      const display = new Intl.DisplayNames([locale], { type: 'region' });
+      const localized = display.of(code.toUpperCase());
+      if (localized) return localized;
     } catch {
-      return code.toUpperCase();
+      // fall through
     }
   }
-  return fallbackName || 'N/A';
+  if (fallbackName && fallbackName.length > 2) return fallbackName;
+  return code ? code.toUpperCase() : '';
 }
 
 function computeUtcOffsetFromTimezone(tz?: string, rawOffset?: string): string {
@@ -1478,7 +2397,7 @@ function computeUtcOffsetFromTimezone(tz?: string, rawOffset?: string): string {
     const formatted = clean.includes(':') ? clean : `${clean.slice(0, 3)}:${clean.slice(3)}`;
     return `UTC${formatted}`;
   }
-  if (!tz) return 'N/A';
+  if (!tz) return '';
   try {
     const parts = new Intl.DateTimeFormat('en-US', {
       timeZone: tz,
@@ -1491,30 +2410,30 @@ function computeUtcOffsetFromTimezone(tz?: string, rawOffset?: string): string {
   } catch {
     // ignore invalid timezone
   }
-  return 'N/A';
+  return '';
 }
 
-function classifyIanaRange(ipv4: string | null, ipv6: string | null, networkCidr?: string): string {
+function classifyIanaRange(ipv4: string | null, ipv6: string | null, networkCidr: string | undefined, diag: DiagStrings): string {
   if (networkCidr) {
     return networkCidr;
   }
   if (ipv4 && ipv4.includes('.')) {
     const parts = ipv4.split('.').map(Number);
     if (parts[0] === 10 || (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31) || (parts[0] === 192 && parts[1] === 168)) {
-      return 'Private RFC 1918';
+      return diag.ianaPrivate;
     }
     if (parts[0] === 100 && parts[1] >= 64 && parts[1] <= 127) {
-      return 'CGNAT RFC 6598';
+      return diag.ianaCgnat;
     }
-    if (ipv6) return 'Dual-Stack Global Unicast';
-    return 'IPv4 Global Unicast';
+    if (ipv6) return diag.ianaDualStack;
+    return diag.ianaIpv4;
   }
-  if (ipv6) return 'IPv6 Global Unicast';
-  return 'N/A';
+  if (ipv6) return diag.ianaIpv6;
+  return diag.na;
 }
 
-function formatCoord(val: number | null | undefined, posDir: string, negDir: string): string {
-  if (val === null || val === undefined || !Number.isFinite(val)) return 'N/A';
+function formatCoord(val: number | null | undefined, posDir: string, negDir: string, naLabel: string): string {
+  if (val === null || val === undefined || !Number.isFinite(val)) return naLabel;
   const dir = val >= 0 ? posDir : negDir;
   return `${Math.abs(val).toFixed(4)}° ${dir}`;
 }
@@ -1530,7 +2449,7 @@ function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: num
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
-async function probeDnsOverHttps(): Promise<{ ok: boolean; status: string; detail: string }> {
+async function probeDnsOverHttps(diag: DiagStrings): Promise<{ ok: boolean; status: string; detail: string }> {
   try {
     const t0 = performance.now();
     const res = await fetchWithTimeout(
@@ -1544,8 +2463,8 @@ async function probeDnsOverHttps(): Promise<{ ok: boolean; status: string; detai
       if (json && json.Status === 0) {
         return {
           ok: true,
-          status: 'DoH Verified (1.1.1.1)',
-          detail: `DNSSEC Ready • ${rtt} ms RTT`,
+          status: diag.dohVerified,
+          detail: `${diag.dnssecReady} • ${rtt} ms RTT`,
         };
       }
     }
@@ -1554,17 +2473,17 @@ async function probeDnsOverHttps(): Promise<{ ok: boolean; status: string; detai
   }
   return {
     ok: true,
-    status: 'Standard System DNS',
-    detail: 'DoH probe blocked or offline',
+    status: diag.systemDns,
+    detail: diag.dohBlocked,
   };
 }
 
-async function probeWebRtcLeak(publicV4: string | null, publicV6: string | null): Promise<{ ok: boolean; status: string; detail: string }> {
+async function probeWebRtcLeak(publicV4: string | null, publicV6: string | null, diag: DiagStrings): Promise<{ ok: boolean; status: string; detail: string }> {
   if (typeof window === 'undefined' || typeof RTCPeerConnection === 'undefined') {
     return {
       ok: true,
-      status: 'WebRTC Disabled',
-      detail: 'PeerConnection API unavailable',
+      status: diag.webrtcDisabled,
+      detail: diag.peerConnUnavailable,
     };
   }
   return new Promise((resolve) => {
@@ -1586,32 +2505,32 @@ async function probeWebRtcLeak(publicV4: string | null, publicV6: string | null)
       if (externalCandidates.length > 0) {
         resolve({
           ok: false,
-          status: `ICE Exposed (${externalCandidates[0]})`,
-          detail: 'Differs from HTTP public IP',
+          status: `${diag.iceExposed} (${externalCandidates[0]})`,
+          detail: diag.differsPublicIp,
         });
       } else if (foundPublic.size > 0) {
         resolve({
           ok: true,
-          status: 'Matched Public STUN',
-          detail: `${foundMdns.size > 0 ? 'mDNS LAN masked' : 'Same as public IP'}`,
+          status: diag.matchedPublicStun,
+          detail: `${foundMdns.size > 0 ? diag.mdnsLanMasked : diag.sameAsPublicIp}`,
         });
       } else if (foundMdns.size > 0) {
         resolve({
           ok: true,
-          status: 'mDNS Isolated',
-          detail: `${foundMdns.size} masked .local ICE host`,
+          status: diag.mdnsIsolated,
+          detail: `${foundMdns.size} ${diag.maskedLocalHost}`,
         });
       } else if (foundLocal.size > 0) {
         resolve({
           ok: false,
-          status: `LAN IP Exposed (${Array.from(foundLocal)[0]})`,
-          detail: 'Local host ICE candidate visible',
+          status: `${diag.lanIpExposed} (${Array.from(foundLocal)[0]})`,
+          detail: diag.localIceVisible,
         });
       } else {
         resolve({
           ok: true,
-          status: 'No STUN Leaks',
-          detail: 'Zero exposed host candidates',
+          status: diag.noStunLeaks,
+          detail: diag.zeroExposedHosts,
         });
       }
     };
@@ -1659,10 +2578,12 @@ function IpRouteMapInner({
   userPos,
   edgeNode,
   mapLabels,
+  diagLabels,
 }: {
   userPos: { lat: number; lng: number };
   edgeNode: { code: string; city: string; lat: number; lng: number } | null;
   mapLabels: typeof MAP_T['English'];
+  diagLabels: DiagStrings;
 }) {
   const map = useMap();
   const mapsLib = useMapsLibrary('maps');
@@ -1788,8 +2709,8 @@ function IpRouteMapInner({
           <button
             type="button"
             onClick={handleZoomIn}
-            title="Zoom in"
-            aria-label="Zoom in"
+            title={diagLabels.zoomIn}
+            aria-label={diagLabels.zoomIn}
             className="ip-map-control-btn w-8 h-8 flex items-center justify-center cursor-pointer transition-colors"
           >
             <Plus size={15} strokeWidth={2.5} />
@@ -1798,8 +2719,8 @@ function IpRouteMapInner({
           <button
             type="button"
             onClick={handleZoomOut}
-            title="Zoom out"
-            aria-label="Zoom out"
+            title={diagLabels.zoomOut}
+            aria-label={diagLabels.zoomOut}
             className="ip-map-control-btn w-8 h-8 flex items-center justify-center cursor-pointer transition-colors"
           >
             <Minus size={15} strokeWidth={2.5} />
@@ -1819,14 +2740,14 @@ function IpRouteMapInner({
       </div>
 
       {showInfo && (
-        <div className="absolute top-2.5 left-2.5 right-12 z-20 rounded-xl bg-white/95 text-slate-800 border border-slate-200 shadow-lg p-3 text-left text-[11px] leading-snug backdrop-blur-sm">
+        <div className="ip-map-info-popup absolute top-2.5 left-2.5 right-12 z-20 rounded-xl bg-white/95 text-slate-800 border border-slate-200 shadow-lg p-3 text-left text-[11px] leading-snug backdrop-blur-sm">
           <div className="flex items-center justify-between gap-2 font-bold text-slate-900 mb-1">
             <span>{mapLabels.liveMap}</span>
             <button
               type="button"
               onClick={() => setShowInfo(false)}
               className="text-slate-400 hover:text-slate-700 text-xs font-bold px-1 cursor-pointer"
-              aria-label="Close"
+              aria-label={diagLabels.close}
             >
               ×
             </button>
@@ -1858,6 +2779,8 @@ function IpRouteMapInner({
 export default function IpAddressTab({ language = 'English' }: IpAddressTabProps = {}) {
   const d = IP_T[language] || IP_T['English'];
   const mT = MAP_T[language] || MAP_T['English'];
+  const diagT = DIAG_T[language] || DIAG_T['English'];
+  const ipLocale = IP_LOCALES[language] || 'en-US';
   const [ipv4Address, setIpv4Address] = useState<string | null>(null);
   const [ipv6Address, setIpv6Address] = useState<string | null>(null);
   const [ipData, setIpData] = useState<NormalizedIpData | null>(null);
@@ -1997,20 +2920,20 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
           } else if (!resolvedV4) {
             resolvedV4 = String(data.ip);
           }
-          const asnRaw = data.connection?.asn ? `AS${String(data.connection.asn).replace(/^AS/i, '')}` : 'N/A';
+          const asnRaw = data.connection?.asn ? `AS${String(data.connection.asn).replace(/^AS/i, '')}` : diagT.na;
           const orgRaw = data.connection?.isp || data.connection?.org || '';
           const tzId = data.timezone?.id || '';
           auxGeo = {
             ip: data.ip,
             country_code: (data.country_code || traceLoc || '').toUpperCase(),
-            country_name: resolveCountryName(data.country_code || traceLoc, data.country),
-            region: data.region || 'N/A',
-            city: data.city || 'N/A',
-            postal: data.postal || 'N/A',
+            country_name: resolveCountryName(data.country_code || traceLoc, data.country, ipLocale) || diagT.na,
+            region: data.region || diagT.na,
+            city: data.city || diagT.na,
+            postal: data.postal || diagT.na,
             org: orgRaw,
             asn: asnRaw,
-            timezone: tzId || 'N/A',
-            utc_offset: computeUtcOffsetFromTimezone(tzId, data.timezone?.utc),
+            timezone: tzId || diagT.na,
+            utc_offset: computeUtcOffsetFromTimezone(tzId, data.timezone?.utc) || diagT.na,
             latitude: typeof data.latitude === 'number' && Number.isFinite(data.latitude) ? data.latitude : null,
             longitude: typeof data.longitude === 'number' && Number.isFinite(data.longitude) ? data.longitude : null,
             colo: traceColo,
@@ -2043,15 +2966,15 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
             auxGeo = {
               ip: data.ip,
               country_code: (data.country_code || traceLoc || '').toUpperCase(),
-              country_name: resolveCountryName(data.country_code || traceLoc, data.country_name),
-              region: data.region || 'N/A',
-              city: data.city || 'N/A',
-              postal: data.postal || 'N/A',
+              country_name: resolveCountryName(data.country_code || traceLoc, data.country_name, ipLocale) || diagT.na,
+              region: data.region || diagT.na,
+              city: data.city || diagT.na,
+              postal: data.postal || diagT.na,
               org: data.org || '',
-              asn: data.asn || 'N/A',
+              asn: data.asn || diagT.na,
               network: data.network || undefined,
-              timezone: data.timezone || 'N/A',
-              utc_offset: computeUtcOffsetFromTimezone(data.timezone, data.utc_offset),
+              timezone: data.timezone || diagT.na,
+              utc_offset: computeUtcOffsetFromTimezone(data.timezone, data.utc_offset) || diagT.na,
               latitude: Number.isFinite(lat) ? lat : null,
               longitude: Number.isFinite(lng) ? lng : null,
               colo: traceColo,
@@ -2088,14 +3011,14 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
             auxGeo = {
               ip: data.ip,
               country_code: cc,
-              country_name: resolveCountryName(cc),
-              region: data.region || 'N/A',
-              city: data.city || 'N/A',
-              postal: data.postal || 'N/A',
+              country_name: resolveCountryName(cc, undefined, ipLocale) || diagT.na,
+              region: data.region || diagT.na,
+              city: data.city || diagT.na,
+              postal: data.postal || diagT.na,
               org: asnMatch ? asnMatch[2] || orgStr : orgStr,
-              asn: asnMatch ? asnMatch[1].toUpperCase() : 'N/A',
-              timezone: data.timezone || 'N/A',
-              utc_offset: computeUtcOffsetFromTimezone(data.timezone),
+              asn: asnMatch ? asnMatch[1].toUpperCase() : diagT.na,
+              timezone: data.timezone || diagT.na,
+              utc_offset: computeUtcOffsetFromTimezone(data.timezone) || diagT.na,
               latitude: Number.isFinite(lat) ? lat : null,
               longitude: Number.isFinite(lng) ? lng : null,
               colo: traceColo,
@@ -2119,20 +3042,20 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
     if (hasCfGeo && cfMeta) {
       const cfCountryCode = (cfMeta.country || traceLoc || auxGeo?.country_code || '').toUpperCase();
       const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      const tz = auxGeo?.timezone && auxGeo.timezone !== 'N/A' ? auxGeo.timezone : browserTz || 'N/A';
+      const tz = auxGeo?.timezone && auxGeo.timezone !== diagT.na ? auxGeo.timezone : browserTz || diagT.na;
       const utcOffset =
-        auxGeo?.utc_offset && auxGeo.utc_offset !== 'N/A'
+        auxGeo?.utc_offset && auxGeo.utc_offset !== diagT.na
           ? auxGeo.utc_offset
-          : computeUtcOffsetFromTimezone(tz !== 'N/A' ? tz : undefined);
-      const cfAsn = cfMeta.asn ? `AS${String(cfMeta.asn).replace(/^AS/i, '')}` : auxGeo?.asn || 'N/A';
+          : computeUtcOffsetFromTimezone(tz !== diagT.na ? tz : undefined) || diagT.na;
+      const cfAsn = cfMeta.asn ? `AS${String(cfMeta.asn).replace(/^AS/i, '')}` : auxGeo?.asn || diagT.na;
 
       normalized = {
         ip: resolvedV4 || resolvedV6 || cfMeta.clientIp || auxGeo?.ip || '',
         country_code: cfCountryCode,
-        country_name: resolveCountryName(cfCountryCode, auxGeo?.country_code === cfCountryCode ? auxGeo?.country_name : undefined),
-        region: cfMeta.region || auxGeo?.region || 'N/A',
-        city: cfMeta.city || auxGeo?.city || 'N/A',
-        postal: cfMeta.postalCode || auxGeo?.postal || 'N/A',
+        country_name: resolveCountryName(cfCountryCode, auxGeo?.country_code === cfCountryCode ? auxGeo?.country_name : undefined, ipLocale) || diagT.na,
+        region: cfMeta.region || auxGeo?.region || diagT.na,
+        city: cfMeta.city || auxGeo?.city || diagT.na,
+        postal: cfMeta.postalCode || auxGeo?.postal || diagT.na,
         org: cfMeta.asOrganization || auxGeo?.org || '',
         asn: cfAsn,
         network: auxGeo?.network,
@@ -2154,14 +3077,14 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
       normalized = {
         ip: resolvedV4 || resolvedV6 || '',
         country_code: cc,
-        country_name: resolveCountryName(cc),
-        region: 'N/A',
-        city: 'N/A',
-        postal: 'N/A',
+        country_name: resolveCountryName(cc, undefined, ipLocale) || diagT.na,
+        region: diagT.na,
+        city: diagT.na,
+        postal: diagT.na,
         org: '',
-        asn: 'N/A',
-        timezone: browserTz || 'N/A',
-        utc_offset: computeUtcOffsetFromTimezone(browserTz),
+        asn: diagT.na,
+        timezone: browserTz || diagT.na,
+        utc_offset: computeUtcOffsetFromTimezone(browserTz) || diagT.na,
         latitude: null,
         longitude: null,
         colo: traceColo,
@@ -2178,8 +3101,8 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
 
     // 3. Real Browser & Network Security Probes (DNS-over-HTTPS + WebRTC ICE + Navigation TLS)
     const [dohProbe, webrtcProbe] = await Promise.all([
-      probeDnsOverHttps(),
-      probeWebRtcLeak(resolvedV4, resolvedV6),
+      probeDnsOverHttps(diagT),
+      probeWebRtcLeak(resolvedV4, resolvedV6, diagT),
     ]);
 
     const navEntries = typeof performance !== 'undefined'
@@ -2188,7 +3111,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
     const navProto = navEntries?.[0]?.nextHopProtocol;
     const isHttps = typeof window !== 'undefined' && (window.location.protocol === 'https:' || window.isSecureContext);
     const liveProtoParts = [
-      traceTls || (isHttps ? 'HTTPS / TLS' : 'HTTP Unencrypted'),
+      traceTls || (isHttps ? diagT.httpsTls : diagT.httpUnencrypted),
       traceHttp || (navProto ? navProto.toUpperCase() : ''),
     ].filter(Boolean);
 
@@ -2200,17 +3123,17 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
       webrtcDetail: webrtcProbe.detail,
       webrtcOk: webrtcProbe.ok,
       transportStatus: liveProtoParts.join(' / '),
-      transportDetail: isHttps ? 'Secure Browser Context Verified' : 'Insecure Origin Context',
+      transportDetail: isHttps ? diagT.secureContext : diagT.insecureContext,
       transportOk: isHttps,
       reputationStatus: normalized?.isProxyOrVpn
-        ? 'Proxy / VPN Relay'
+        ? diagT.proxyVpnRelay
         : resolvedV4 && resolvedV6
         ? mT.dualStack
         : mT.ipv4Only,
-      reputationDetail: normalized?.org || normalized?.asn || 'Direct ISP Routing',
+      reputationDetail: normalized?.org || normalized?.asn || diagT.directIspRouting,
       reputationOk: !normalized?.isProxyOrVpn,
     });
-  }, [mT.dualStack, mT.ipv4Only]);
+  }, [mT.dualStack, mT.ipv4Only, diagT, ipLocale]);
 
   useEffect(() => {
     fetchIp();
@@ -2257,7 +3180,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
   );
 
   return (
-    <div className="w-full max-w-5xl mx-auto ipaddress-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
+    <div className="w-full max-w-6xl mx-auto ipaddress-tab-card relative z-10 transition-all duration-300 flex flex-col gap-6">
       {/* Global IP Identifier Webcard Header */}
       <div className="w-full GeekTabs-card weather-huawei-style webcard-light-grey-bg rounded-3xl p-6 sm:p-8 flex flex-col justify-center text-left">
         <div className="flex items-center gap-2 mb-1.5">
@@ -2301,7 +3224,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
 
                 {/* Row 3: Action Controls and details on another line */}
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-1">
-                  {ipv4Address && ipv4Address !== 'Unavailable' && ipv4Address !== d.notDetected && (
+                  {ipv4Address && ipv4Address !== 'Unavailable' && ipv4Address !== diagT.unavailable && ipv4Address !== d.notDetected && (
                     <button
                       onClick={copyV4}
                       className="flex items-center gap-2 min-h-[42px] lg:min-h-0 px-4 py-2.5 lg:py-2 bg-white dark:bg-white/10 shadow-sm dark:shadow-none hover:bg-black/5 dark:hover:bg-white/20 rounded-xl transition-all cursor-pointer text-xs font-bold word-color"
@@ -2321,7 +3244,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   )}
                   {ipData?.org && (
                     <div className="text-xs word-color opacity-60 break-words min-w-0">
-                      ISP: <span className="font-semibold">{ipData.org}</span>
+                      {diagT.ispLabel}: <span className="font-semibold">{ipData.org}</span>
                     </div>
                   )}
                 </div>
@@ -2391,21 +3314,21 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.country}</span>
                     <span className="font-bold word-color text-right break-words">
-                      {ipData?.country_name || 'N/A'}
+                      {ipData?.country_name || diagT.na}
                       {ipData?.country_code ? ` (${ipData.country_code})` : ''}
                     </span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.region}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.region || 'N/A'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.region || diagT.na}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.city}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.city || 'N/A'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.city || diagT.na}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 pb-1">
                     <span className="opacity-50 word-color shrink-0">{d.postal}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.postal || 'N/A'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.postal || diagT.na}</span>
                   </div>
                 </div>
               </div>
@@ -2426,21 +3349,21 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 <div className="flex flex-col gap-4 font-mono text-xs">
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.asn}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.asn || 'N/A'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.asn || diagT.na}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.iana}</span>
                     <span className="font-bold word-color text-right break-words">
-                      {classifyIanaRange(ipv4Address, ipv6Address, ipData?.network)}
+                      {classifyIanaRange(ipv4Address, ipv6Address, ipData?.network, diagT)}
                     </span>
                   </div>
                   <div className="flex justify-between items-center gap-3 border-b border-black/5 dark:border-white/5 pb-2.5">
                     <span className="opacity-50 word-color shrink-0">{d.timezone}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.timezone || 'N/A'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.timezone || diagT.na}</span>
                   </div>
                   <div className="flex justify-between items-center gap-3 pb-1">
                     <span className="opacity-50 word-color shrink-0">{d.utc}</span>
-                    <span className="font-bold word-color text-right break-words">{ipData?.utc_offset || 'N/A'}</span>
+                    <span className="font-bold word-color text-right break-words">{ipData?.utc_offset || diagT.na}</span>
                   </div>
                 </div>
               </div>
@@ -2468,7 +3391,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
               <div className="w-full h-[230px] sm:h-[250px] rounded-2xl overflow-hidden relative border border-black/10 dark:border-white/10 mb-4 bg-slate-100 dark:bg-slate-900/40">
                 {userPos && mapsApiKey ? (
                   <APIProvider apiKey={mapsApiKey}>
-                    <IpRouteMapInner userPos={userPos} edgeNode={edgeNode} mapLabels={mT} />
+                    <IpRouteMapInner userPos={userPos} edgeNode={edgeNode} mapLabels={mT} diagLabels={diagT} />
                   </APIProvider>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center p-4 text-center text-xs word-color opacity-60">
@@ -2481,11 +3404,11 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
               <div className="w-full grid grid-cols-2 gap-2 text-center font-mono text-[11px] border-t border-black/5 dark:border-white/5 pt-3">
                 <div>
                   <span className="opacity-40 word-color block">{d.lat}</span>
-                  <span className="font-bold word-color">{formatCoord(ipData?.latitude, 'N', 'S')}</span>
+                  <span className="font-bold word-color">{formatCoord(ipData?.latitude, 'N', 'S', diagT.na)}</span>
                 </div>
                 <div>
                   <span className="opacity-40 word-color block">{d.lon}</span>
-                  <span className="font-bold word-color">{formatCoord(ipData?.longitude, 'E', 'W')}</span>
+                  <span className="font-bold word-color">{formatCoord(ipData?.longitude, 'E', 'W', diagT.na)}</span>
                 </div>
               </div>
             </div>
@@ -2507,7 +3430,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
               {!secDiag ? (
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-500 text-xs font-bold self-start sm:self-auto shrink-0">
                   <Activity size={13} className="animate-pulse" />
-                  <span>Probing...</span>
+                  <span>{diagT.probing}</span>
                 </div>
               ) : allSecOk ? (
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold self-start sm:self-auto shrink-0">
@@ -2531,7 +3454,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.dnsOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
-                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.dnsStatus : 'Probing...'}</span>
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.dnsStatus : diagT.probing}</span>
                 </div>
                 <span className="text-[10px] font-mono opacity-40 word-color mt-2">{secDiag ? secDiag.dnsDetail : '--'}</span>
               </div>
@@ -2544,7 +3467,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.webrtcOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
-                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.webrtcStatus : 'Probing...'}</span>
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.webrtcStatus : diagT.probing}</span>
                 </div>
                 <span className="text-[10px] font-mono opacity-40 word-color mt-2">{secDiag ? secDiag.webrtcDetail : '--'}</span>
               </div>
@@ -2557,7 +3480,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.transportOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
-                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.transportStatus : 'Probing...'}</span>
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.transportStatus : diagT.probing}</span>
                 </div>
                 <span className="text-[10px] font-mono opacity-40 word-color mt-2">{secDiag ? secDiag.transportDetail : '--'}</span>
               </div>
@@ -2570,7 +3493,7 @@ export default function IpAddressTab({ language = 'English' }: IpAddressTabProps
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${secDiag ? (secDiag.reputationOk ? 'bg-emerald-500' : 'bg-amber-500') : 'bg-indigo-400 animate-pulse'}`} />
-                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.reputationStatus : 'Probing...'}</span>
+                  <span className="text-sm font-bold word-color">{secDiag ? secDiag.reputationStatus : diagT.probing}</span>
                 </div>
                 <span className="text-[10px] font-mono opacity-40 word-color mt-2 break-words">
                   {secDiag ? secDiag.reputationDetail : '--'}
