@@ -88,6 +88,7 @@ const NOTES_LOCALES: Record<string, string> = {
   Danish: 'da-DK',
   Turkish: 'tr-TR',
   Greek: 'el-GR',
+  Belgum: 'nl-BE',
 };
 
 interface NotesExtraLocale {
@@ -531,6 +532,24 @@ const NOTES_EXTRA_T: Record<string, NotesExtraLocale> = {
     chooseNoteHint: 'Επιλέξτε μια σημείωση από το μενού ή παρακάτω',
     deleteNoteModalTitle: 'Διαγραφή σημείωσης;', deleteNoteConfirmPrefix: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε', deleteNoteConfirmSuffix: '; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
     deleteModalCancel: 'Ακύρωση', deleteModalConfirm: 'Διαγραφή',
+  },
+  Belgum: {
+    sections: { 'sec-quick': 'Snelle Notities', 'sec-personal': 'Persoonlijk', 'sec-ideas': 'Creatieve Ideeën', 'sec-work': 'Werk', 'sec-recipes': 'Recepten', 'sec-travel': 'Reizen' },
+    descs: {
+      'sec-quick': 'Leg vlugge gedachten, dagelijkse herinneringen, korte fragmenten en plotse ingevingen vast.',
+      'sec-personal': 'Orden persoonlijke reflecties, dagboeknotities, doelen, gezondheidsnotities en dagelijkse logs.',
+      'sec-ideas': 'Verzamel brainstorms, verhaalschetsen, ontwerpinspiratie en creatieve projecten.',
+      'sec-work': 'Structureer vergaderverslagen, projectplannen, actiepunten, documenten en werkupdates.',
+      'sec-recipes': 'Bewaar favoriete gerechten, ingrediëntenlijsten, bereidingsstappen en weekmenu’s.',
+      'sec-travel': 'Plan toekomstige reizen, routes, paklijsten, reservaties en mooie reisherinneringen.',
+    },
+    customDesc: (name) => `Gebruik de sectie ${name} om notities, lijsten, foto’s en handige links te ordenen.`,
+    closeSidebar: 'Zijbalk sluiten', hideSidebar: 'Zijbalk verbergen', showSidebar: 'Zijbalk tonen', toggleSidebar: 'Zijbalk wisselen',
+    addSectionTitle: 'Sectie toevoegen', newBtn: 'Nieuw', sectionNamePlaceholder: 'Sectienaam...', saveSectionTitle: 'Sectie opslaan', cancelEditTitle: 'Bewerken annuleren',
+    deleteNoteTitle: 'Notitie verwijderen', cancelChangesTitle: 'Wijzigingen negeren', cancelBtn: 'Annuleren', saveNoteTitle: 'Notitie opslaan', saveBtn: 'Opslaan', savedBtn: 'Opgeslagen',
+    chooseNoteHint: 'Kies een notitie in het menu of hieronder',
+    deleteNoteModalTitle: 'Notitie verwijderen?', deleteNoteConfirmPrefix: 'Weet u zeker dat u', deleteNoteConfirmSuffix: ' definitief wilt verwijderen? Dit kan niet ongedaan worden gemaakt.',
+    deleteModalCancel: 'Annuleren', deleteModalConfirm: 'Verwijderen',
   },
 };
 
@@ -1058,6 +1077,27 @@ const NOTES_T: Record<string, Record<string, string>> = {
     manageSectionMsg: 'Θέλετε να επεξεργαστείτε ή να διαγράψετε αυτή την ενότητα;',
     editSectionBtn: 'Επεξεργασία',
     deleteSectionBtn: 'Διαγραφή'
+  },
+  Belgum: {
+    cancel: 'ANNULEREN',
+    create: 'AANMAKEN',
+    activeSpaces: 'actieve ruimten',
+    sheetsList: 'Notities',
+    filterSheets: 'Notities filteren...',
+    noPageEntries: 'Geen notities in deze sectie',
+    untitledPage: 'Naamloze notitie',
+    noAdditionalText: 'Geen extra tekst',
+    addNewPage: 'NOTITIE MAKEN',
+    oneNoteWorkspace: 'NOTITIE-WERKRUIMTE',
+    enterPageTitle: 'Geef een notitietitel in...',
+    noNotebook: 'Geen notitie gekozen',
+    createNotesDesc: 'Maak notities aan, orden mappen en bouw overzichtelijke pagina’s met opmaak.',
+    createPage: 'NOTITIE MAKEN',
+    sections: 'Secties',
+    manageSectionTitle: 'Sectie-opties',
+    manageSectionMsg: 'Wilt u deze sectie bewerken of verwijderen?',
+    editSectionBtn: 'Bewerken',
+    deleteSectionBtn: 'Verwijderen'
   }
 };
 

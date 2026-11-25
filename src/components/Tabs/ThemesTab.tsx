@@ -309,6 +309,19 @@ const THEME_T: Record<string, Record<string, string>> = {
     groupRegular: 'κανονικό',
     groupDark: 'σκούρο',
     groupGradient: 'Μείξη'
+  },
+  Belgum: {
+    title: 'Thema-engine',
+    subtitle: 'ACHTERGRONDKLEUREN & VOORINSTELLINGEN',
+    panelHeader: 'Standaard Kleurpaletten',
+    panelSub: 'kies een favoriete achtergrondtint',
+    resetButton: 'Herstellen naar Pastel Waves',
+    restoreWhiteButton: 'Standaardachtergrond herstellen',
+    groupDefault: 'standaard',
+    groupLight: 'licht',
+    groupRegular: 'normaal',
+    groupDark: 'donker',
+    groupGradient: 'Kleurenmix'
   }
 };
 
@@ -636,6 +649,17 @@ const THEME_PRESET_NAMES: Record<string, Record<string, string>> = {
     'dark-plum': 'Βαθύ Δαμασκηνί', 'dark-charcoal': 'Ανθρακί', 'dark-royal': 'Βασιλικό Λουλακί', 'dark-olive': 'Σκούρο Λαδί', 'dark-obsidian': 'Οψιδιανός',
     'mix-aurora': 'Σέλας', 'mix-sunset': 'Ηλιοβασίλεμα', 'mix-ocean': 'Ωκεανός', 'mix-cosmic': 'Κοσμικό', 'mix-fire': 'Φωτιά',
     'mix-cyber': 'Κυβερνο', 'mix-forest': 'Διακοσμημένο Λευκό', 'mix-violetteal': 'Βιολετί Πετρόλ', 'mix-cottoncandy': 'Μαλλί της Γριάς', 'mix-neonpurple': 'Παστέλ Κύματα',
+  },
+  Belgum: {
+    'default-earth': 'Standaardachtergrond', 'pastel-waves': 'Pastelgolven',
+    'light-grey': 'Lichtgrijs', 'light-blue': 'Lichtblauw', 'light-pink': 'Lichtroze', 'light-green': 'Lichtgroen', 'light-yellow': 'Lichtgeel',
+    'light-purple': 'Lichtpaars', 'light-orange': 'Lichtoranje', 'light-teal': 'Lichtturquoise', 'white-clean': 'Wit', 'light-indigo': 'Lichtindigo',
+    'reg-blue': 'Blauw', 'reg-rose': 'Rozenrood', 'reg-green': 'Groen', 'reg-yellow': 'Geel', 'reg-purple': 'Paars',
+    'reg-orange': 'Oranje', 'reg-teal': 'Zeegroen', 'reg-slate': 'Leigrijs', 'reg-indigo': 'Indigo', 'reg-pink': 'Roze',
+    'dark-navy': 'Diep marineblauw', 'dark-violet': 'Dieppaars', 'dark-crimson': 'Diep karmozijn', 'dark-forest': 'Diep bosgroen', 'dark-espresso': 'Donker espresso',
+    'dark-plum': 'Diep pruim', 'dark-charcoal': 'Antraciet', 'dark-royal': 'Koningsindigo', 'dark-olive': 'Donkerolijf', 'dark-obsidian': 'Obsidiaan',
+    'mix-aurora': 'Noorderlicht', 'mix-sunset': 'Zonsondergang', 'mix-ocean': 'Oceaan', 'mix-cosmic': 'Kosmisch', 'mix-fire': 'Vuur',
+    'mix-cyber': 'Cyber', 'mix-forest': 'Gedecoreerd wit', 'mix-violetteal': 'Paars-zeegroen', 'mix-cottoncandy': 'Suikerspin', 'mix-neonpurple': 'Pastelgolven',
   },
 };
 

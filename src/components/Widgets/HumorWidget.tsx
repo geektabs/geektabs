@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Smile, RefreshCw } from 'lucide-react';
-import humorsEnglish from '../../data/humors-English.json';
-import humorsSpanish from '../../data/humors-Spanish.json';
-import humorsFrench from '../../data/humors-French.json';
-import humorsGerman from '../../data/humors-German.json';
-import humorsChinese from '../../data/humors-Chinese.json';
-import humorsChineseTraditional from '../../data/humors-Chinese-Traditional.json';
-import humorsJapanese from '../../data/humors-Japanese.json';
-import humorsKorean from '../../data/humors-Korean.json';
-import humorsItalian from '../../data/humors-Italian.json';
-import humorsRussian from '../../data/humors-Russian.json';
-import humorsLuxembourgish from '../../data/humors-Luxembourgish.json';
-import humorsDutch from '../../data/humors-Dutch.json';
-import humorsSwedish from '../../data/humors-Swedish.json';
-import humorsFinnish from '../../data/humors-Finnish.json';
-import humorsHindi from '../../data/humors-Hindi.json';
-import humorsNorwegian from '../../data/humors-Norwegian.json';
-import humorsThai from '../../data/humors-Thai.json';
-import humorsPortuguese from '../../data/humors-Portuguese.json';
-import humorsVietnamese from '../../data/humors-Vietnamese.json';
-import humorsPolish from '../../data/humors-Polish.json';
-import humorsDanish from '../../data/humors-Danish.json';
-import humorsTurkish from '../../data/humors-Turkish.json';
-import humorsGreek from '../../data/humors-Greek.json';
+import humorsEnglish from '../../data/humor-English.json';
+import humorsSpanish from '../../data/humor-Spanish.json';
+import humorsFrench from '../../data/humor-French.json';
+import humorsGerman from '../../data/humor-German.json';
+import humorsChinese from '../../data/humor-Chinese.json';
+import humorsChineseTraditional from '../../data/humor-Chinese-Traditional.json';
+import humorsJapanese from '../../data/humor-Japanese.json';
+import humorsKorean from '../../data/humor-Korean.json';
+import humorsItalian from '../../data/humor-Italian.json';
+import humorsRussian from '../../data/humor-Russian.json';
+import humorsLuxembourgish from '../../data/humor-Luxembourgish.json';
+import humorsDutch from '../../data/humor-Dutch.json';
+import humorsSwedish from '../../data/humor-Swedish.json';
+import humorsFinnish from '../../data/humor-Finnish.json';
+import humorsHindi from '../../data/humor-Hindi.json';
+import humorsNorwegian from '../../data/humor-Norwegian.json';
+import humorsThai from '../../data/humor-Thai.json';
+import humorsPortuguese from '../../data/humor-Portuguese.json';
+import humorsVietnamese from '../../data/humor-Vietnamese.json';
+import humorsPolish from '../../data/humor-Polish.json';
+import humorsDanish from '../../data/humor-Danish.json';
+import humorsTurkish from '../../data/humor-Turkish.json';
+import humorsGreek from '../../data/humor-Greek.json';
+import humorsBelgum from '../../data/humor-Belgum.json';
 
 const humorsMap: Record<string, string[]> = {
   English: humorsEnglish,
@@ -48,6 +49,7 @@ const humorsMap: Record<string, string[]> = {
   Danish: humorsDanish,
   Turkish: humorsTurkish,
   Greek: humorsGreek,
+  Belgum: humorsBelgum,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_humor_history';
@@ -129,30 +131,31 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
   }, [language]);
 
   const widgetTitle = {
-    English: 'Daily Humor',
-    Spanish: 'Humor Diario',
-    French: 'Humour Quotidien',
-    German: 'Täglicher Humor',
-    Chinese: '每日幽默',
-    'Chinese Traditional': '每日幽默',
-    Japanese: '今日のジョーク',
-    Korean: '일일 유머',
-    Italian: 'Umorismo Giornaliero',
-    Russian: 'Юмор дня',
-    Luxembourgish: 'Deeglechen Humor',
-    Dutch: 'Dagelijkse Humor',
-    Swedish: 'Dagens Humor',
-    Finnish: 'Päivän Huumori',
-    Hindi: 'दैनिक हास्य',
-    Norwegian: 'Daglig Humor',
-    Thai: 'อารมณ์ขันประจำวัน',
-    Portuguese: 'Humor Diário',
-    Vietnamese: 'Hài Hước Hằng Ngày',
-    Polish: 'Dawka Humoru',
-    Danish: 'Dagens Humor',
-    Turkish: 'Günün Mizahı',
-    Greek: 'Χιούμορ Ημέρας',
-  }[language] || 'Daily Humor';
+    English: 'Humor',
+    Spanish: 'Humor',
+    French: 'Humour',
+    German: 'Humor',
+    Chinese: '幽默',
+    'Chinese Traditional': '幽默',
+    Japanese: 'ユーモア',
+    Korean: '유머',
+    Italian: 'Umorismo',
+    Russian: 'Юмор',
+    Luxembourgish: 'Humor',
+    Dutch: 'Humor',
+    Swedish: 'Humor',
+    Finnish: 'Huumori',
+    Hindi: 'हास्य',
+    Norwegian: 'Humor',
+    Thai: 'อารมณ์ขัน',
+    Portuguese: 'Humor',
+    Vietnamese: 'Hài hước',
+    Polish: 'Humor',
+    Danish: 'Humor',
+    Turkish: 'Mizah',
+    Greek: 'Χιούμορ',
+    Belgum: 'Humor',
+  }[language] || 'Humor';
 
   const humorTooltips = {
     English: { refresh: 'Refresh joke', next: 'Click to get new joke' },
@@ -178,6 +181,7 @@ export default function HumorWidget({ language = 'English' }: HumorWidgetProps) 
     Danish: { refresh: 'Opdater vittighed', next: 'Klik for at få en ny vittighed' },
     Turkish: { refresh: 'Fıkrayı yenile', next: 'Yeni fıkra için tıklayın' },
     Greek: { refresh: 'Ανανέωση αστείου', next: 'Κάντε κλικ για νέο αστείο' },
+    Belgum: { refresh: 'Grap vernieuwen', next: 'Klik voor een nieuwe grap' },
   }[language] || { refresh: 'Refresh joke', next: 'Click to get new joke' };
 
   return (

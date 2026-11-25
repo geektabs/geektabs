@@ -907,6 +907,43 @@ const CALC_T: Record<string, Record<string, string>> = {
     filterStates: 'Φιλτράρισμα πολιτειών ή κωδικών...',
     noMatchingStates: 'Δεν βρέθηκαν αντίστοιχες πολιτείες',
   },
+  Belgum: {
+    history: 'Geschiedenis',
+    noHistory: 'Nog geen geschiedenis',
+    simple: 'Eenvoudig',
+    tax: 'Btw',
+    tips: 'Fooi',
+    currency: 'Munteenheid',
+    shoppingAmount: 'Totaal winkelbedrag',
+    taxRate: 'Btw-tarief (%)',
+    subtotal: 'Subtotaal aankopen',
+    totalSalesTax: 'Totale btw',
+    totalToPay: 'Te betalen totaal',
+    spentAmount: 'Uitgegeven bedrag',
+    tipsRate: 'Fooipercentage (%)',
+    baseSpending: 'Basisbedrag',
+    totalTips: 'Totale fooi',
+    totalWithTips: 'Totaal inclusief fooi',
+    amount: 'Bedrag',
+    from: 'Van',
+    to: 'Naar',
+    convertedAmount: 'Omgerekend bedrag',
+    liveRate: 'Live koers',
+    majorPairs: 'Live belangrijkste munten',
+    refresh: 'Vernieuwen',
+    refreshed: 'Vernieuwd',
+    loadingRates: 'Live wisselkoersen laden...',
+    rateError: 'Kan wisselkoersen niet ophalen. Tik om opnieuw te proberen.',
+    reset: 'Herstellen',
+    sourceLabel: 'Investing.com Majors',
+    liveMode: 'Live',
+    manualMode: 'Handmatig',
+    exchangeRate: 'Wisselkoers',
+    manualRateLabel: 'Aangepaste koers',
+    usStateTaxRates: 'Amerikaanse staatsbelastingtarieven',
+    filterStates: 'Filter staten of codes...',
+    noMatchingStates: 'Geen overeenkomende staten gevonden',
+  },
 };
 
 const CALC_EXTRA_T: Record<string, { swapCurrencies: string; sourceLabel?: string }> = {
@@ -933,6 +970,7 @@ const CALC_EXTRA_T: Record<string, { swapCurrencies: string; sourceLabel?: strin
   Danish: { swapCurrencies: 'Byt valutaer', sourceLabel: 'Investing.com Vigtigste valutaer' },
   Turkish: { swapCurrencies: 'Para birimlerini değiştir', sourceLabel: 'Investing.com Majör Pariteler' },
   Greek: { swapCurrencies: 'Εναλλαγή νομισμάτων', sourceLabel: 'Investing.com Κύρια Ζεύγη' },
+  Belgum: { swapCurrencies: 'Munteenheden omwisselen', sourceLabel: 'Investing.com Belangrijkste valuta' },
 };
 
 const CALC_LOCALES: Record<string, string> = {
@@ -959,6 +997,7 @@ const CALC_LOCALES: Record<string, string> = {
   Danish: 'da-DK',
   Turkish: 'tr-TR',
   Greek: 'el-GR',
+  Belgum: 'nl-BE',
 };
 
 const TAX_PRESETS = ['2.90', '4', '5', '6', '6.25', '7'];

@@ -574,6 +574,31 @@ export const translations: Record<string, Record<string, string>> = {
     weather: 'Καιρός',
     menu: 'Μενού',
   },
+  Belgum: {
+    home: 'Startpagina',
+    calendar: 'Kalender',
+    links: 'Bladwijzers',
+    news: 'Nieuws',
+    todo: 'Takenlijst',
+    calculator: 'Rekenmachine',
+    notes: 'Notities',
+    settings: 'Instellingen',
+    search: 'Zoeken op het web...',
+    good_morning: 'Goedemorgen',
+    good_afternoon: 'Goedemiddag',
+    good_evening: 'Goedenavond',
+    general: 'Algemeen',
+    color: 'Kleur',
+    wallpaper: 'Achtergrond',
+    text: 'Tekst',
+    about_us: 'Over ons',
+    ip: 'IP-adres',
+    speed: 'Snelheidstest',
+    browser: 'Browser',
+    download_app: 'App',
+    weather: 'Weer',
+    menu: 'Menu',
+  },
 };
 
 export interface LanguageOption {
@@ -584,6 +609,7 @@ export interface LanguageOption {
 
 export const LANGUAGE_OPTIONS: LanguageOption[] = [
   { value: 'English', label: 'English' },
+  { value: 'Belgum', label: 'Belgum', nativeLabel: 'België' },
   { value: 'Chinese', label: 'Chinese (Simplified)', nativeLabel: '简体中文' },
   { value: 'Chinese Traditional', label: 'Chinese (Traditional)', nativeLabel: '繁體中文' },
   { value: 'Danish', label: 'Danish', nativeLabel: 'Dansk' },

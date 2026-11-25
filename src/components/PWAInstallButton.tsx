@@ -296,6 +296,18 @@ const LABELS: Record<string, {
     close: 'Εντάξει',
     offline: 'Λειτουργία εκτός σύνδεσης — Ενεργά δεδομένα cache',
   },
+  Belgum: {
+    installApp: 'App installeren',
+    installOnIOS: 'Zet op beginscherm',
+    installedBadge: 'Geïnstalleerd als app',
+    useAddressBar: 'Klik op het installatiepictogram in de adresbalk van uw browser',
+    iosModalTitle: 'GeekTabs installeren op iPhone / iPad',
+    iosStep1: 'Tik op de Deel-knop in de Safari-werkbalk.',
+    iosStep2: 'Scrol omlaag en tik op "Zet op beginscherm".',
+    iosStep3: 'Tik op "Voeg toe" om het GeekTabs-logo op uw scherm te bewaren.',
+    close: 'Begrepen',
+    offline: 'Offline modus — Gegevens uit cache actief',
+  },
 };
 
 export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({

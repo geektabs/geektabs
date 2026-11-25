@@ -262,6 +262,15 @@ const TIPTAP_T: Record<string, TipTapLocale> = {
     presets: { title: 'Τίτλος', subtitle: 'Υπότιτλος', heading: 'Κεφαλίδα', subheading: 'Υποκεφαλίδα', section: 'Ενότητα', subsection: 'Υποενότητα', body: 'Κυρίως κείμενο' },
     colors: { Default: 'Προεπιλογή', Slate: 'Σχιστόλιθος', Red: 'Κόκκινο', Orange: 'Πορτοκαλί', Amber: 'Κεχριμπαρί', Green: 'Πράσινο', Teal: 'Πετρόλ', Blue: 'Μπλε', Indigo: 'Λουλακί', Purple: 'Μωβ', Pink: 'Ροζ' },
   },
+  Belgum: {
+    fontSize: 'Tekengrootte', textColor: 'Tekstkleur', reset: 'Herstellen', customColor: 'Aangepaste kleur',
+    bold: 'Vet', italic: 'Cursief', underline: 'Onderlijnd', bulletList: 'Lijst met opsommingstekens', numberedList: 'Genummerde lijst',
+    alignLeft: 'Links uitlijnen', alignCenter: 'Centreren', alignRight: 'Rechts uitlijnen',
+    addPhoto: 'Foto toevoegen', uploadPhoto: 'Foto opladen', addLink: 'Link toevoegen',
+    enterLinkText: 'Linktekst invoeren', enterLink: 'Linkadres invoeren', remove: 'Verwijderen', cancel: 'Annuleren', apply: 'Toepassen', notePhotoAlt: 'Notitiefoto',
+    presets: { title: 'Titel', subtitle: 'Ondertitel', heading: 'Koptekst', subheading: 'Subkoptekst', section: 'Sectie', subsection: 'Subsectie', body: 'Hoofdtekst' },
+    colors: { Default: 'Standaard', Slate: 'Leigrijs', Red: 'Rood', Orange: 'Oranje', Amber: 'Amber', Green: 'Groen', Teal: 'Zeegroen', Blue: 'Blauw', Indigo: 'Indigo', Purple: 'Paars', Pink: 'Roze' },
+  },
 };
 
 export interface NotepadFontPreset {

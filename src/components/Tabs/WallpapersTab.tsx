@@ -699,6 +699,35 @@ const WALLPAPER_T: Record<string, Record<string, string>> = {
     catCreation: "Δημιουργικό",
     catHoliday: "Διακοπές",
     catAnimal: "Ζώα"
+  },
+  Belgum: {
+    title: "Achtergrondenbibliotheek",
+    subtitle: "UW PERSOONLIJKE BEELDGALERIJ",
+    uploadImage: "Bestand opladen",
+    addUrl: "Toevoegen via URL",
+    enterUrl: "Voer foto- of video-URL in",
+    urlPlaceholder: "https://... (.jpg, .png, .webp, .mp4, .webm)",
+    gifNotAllowed: "GIF-bestanden worden niet ondersteund als achtergrond. Gebruik een foto of video.",
+    categoryEmpty: "Deze categorie is nog leeg",
+    saveWallpaper: "Afbeelding opslaan",
+    chooseCategory: "Kies een categorie",
+    categoryName: "Categorienaam",
+    cancel: "Annuleren",
+    save: "Opslaan",
+    deleteTitle: "Achtergrond verwijderen",
+    deleteMsg: "Weet u zeker dat u deze achtergrond wilt verwijderen? Dit kan niet ongedaan worden gemaakt.",
+    catAll: "Alles",
+    catMyUploads: "Mijn uploads",
+    catFavorites: "Favorieten",
+    catTravel: "Reizen",
+    catVideo: "Video",
+    catNature: "Natuur",
+    catAbstract: "Abstract",
+    catScience: "Wetenschap",
+    catArchitecture: "Architectuur",
+    catCreation: "Creatief",
+    catHoliday: "Feestdagen",
+    catAnimal: "Dieren"
   }
 };
 
@@ -733,6 +762,7 @@ const WALLPAPER_EXTRA_T: Record<string, {
   Danish: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Forhåndsvisning', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Slet' },
   Turkish: { enhancing8k: '8K UHD...', videoBadge: '4K VİDEO', previewAlt: 'Önizleme', uhdAuto: '8K UHD OTOMATİK', uhdLabel: '8K UHD', confirmDelete: 'Sil' },
   Greek: { enhancing8k: '8K UHD...', videoBadge: 'ΒΙΝΤΕΟ 4K', previewAlt: 'Προεπισκόπηση', uhdAuto: '8K UHD ΑΥΤΟΜ.', uhdLabel: '8K UHD', confirmDelete: 'Διαγραφή' },
+  Belgum: { enhancing8k: '8K UHD...', videoBadge: '4K VIDEO', previewAlt: 'Voorbeeld', uhdAuto: '8K UHD AUTO', uhdLabel: '8K UHD', confirmDelete: 'Verwijderen' },
 };
 
 export default function WallpapersTab({ 

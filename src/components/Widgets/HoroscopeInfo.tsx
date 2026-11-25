@@ -147,6 +147,9 @@ export default function HoroscopeInfo({ language = 'English' }: HoroscopeInfoPro
     } else if (language === 'Greek') {
       l1 = `Ζώδιο Σήμερα: ${sign.name} (${sign.range})`;
       l2 = `Αυτή η εβδομάδα: ${weekNum} από 52 εβδομάδες, ${dayOfYear} από ${totalDays} ημέρες`;
+    } else if (language === 'Belgum') {
+      l1 = `Sterrenbeeld vandaag: ${sign.name} (${sign.range})`;
+      l2 = `Deze week: week ${weekNum} van 52, dag ${dayOfYear} van ${totalDays}`;
     }
 
     return { line1: l1, line2: l2 };

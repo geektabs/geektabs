@@ -30,6 +30,7 @@ const languageToLocale: Record<string, string> = {
   Danish: 'da-DK',
   Turkish: 'tr-TR',
   Greek: 'el-GR',
+  Belgum: 'nl-BE',
 };
 
 export default function Clock({ language = 'English', customTextColor }: ClockProps) {

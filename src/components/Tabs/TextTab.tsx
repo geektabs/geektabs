@@ -450,6 +450,25 @@ const TEXT_T: Record<string, Record<string, string>> = {
     sampleGreeting: 'Καλημέρα, GeekTabs',
     sampleDate: 'Πέμπτη, 10 Σεπτεμβρίου',
     sampleClock: '08:45'
+  },
+  Belgum: {
+    title: 'Tekstkleur-engine',
+    subtitle: 'AANGEPASTE TEKSTKLEUREN INSTELLEN',
+    panelHeader: 'Tekstkleurpaletten',
+    panelSub: 'kies een tekstkleur die mooi contrasteert met uw achtergrond',
+    resetButton: 'Standaard tekstkleur herstellen',
+    groupDefault: 'standaard (automatisch)',
+    groupLight: 'lichte tinten',
+    groupRegular: 'normale tinten',
+    groupDark: 'donkere tinten',
+    groupVibrant: 'helder & hoog contrast',
+    previewTitle: '# Live Paginavoorbeeld',
+    previewSub: 'Visuele test op uw actieve achtergrond',
+    customColorTitle: 'Aangepaste Hex-kleur',
+    customColorApply: 'Kleur toepassen',
+    sampleGreeting: 'Goedemorgen, GeekTabs',
+    sampleDate: 'Donderdag 10 september',
+    sampleClock: '08:45'
   }
 };
 
@@ -679,6 +698,13 @@ const TEXT_PRESET_NAMES: Record<string, Record<string, string>> = {
     '#000000': 'Κατάμαυρο', '#0f172a': 'Σκούρος Σχιστόλιθος', '#1e293b': 'Σκούρο Ανθρακί', '#172554': 'Βαθύ Ναυτικό Μπλε', '#451a03': 'Βαθύ Χάλκινο', '#4c0519': 'Βαθύ Ρουμπινί', '#064e3b': 'Βαθύ Δάσος', '#3b0764': 'Βαθύ Βιολετί', '#292524': 'Σκούρα Πέτρα', '#020617': 'Μεσάνυχτα',
     '#facc15': 'Νέον Κίτρινο', '#4ade80': 'Νέον Λάιμ', '#2dd4bf': 'Φωτεινό Άκουα', '#67e8f9': 'Φωτεινό Κυανό', '#c084fc': 'Νέον Λιλά', '#f472b6': 'Νέον Ροζ', '#fb7185': 'Νέον Κοραλλί', '#fb923c': 'Νέον Μανταρίνι', '#93c5fd': 'Ανοιχτό Γαλάζιο', '#e2e8f0': 'Ασημί Ομίχλη',
   },
+  Belgum: {
+    default: 'Standaard (#6143f7)',
+    '#ffffff': 'Zuiver wit', '#f8fafc': 'Sneeuwwit', '#fffbeb': 'Warm crème', '#e0f2fe': 'Bleek hemelsblauw', '#dcfce7': 'Bleek munt', '#ffe4e6': 'Bleek roze', '#f3e8ff': 'Bleek lavendel', '#fef9c3': 'Bleek citroen', '#ffedd5': 'Bleek perzik', '#cffafe': 'Bleek cyaan',
+    '#6143f7': 'Irisviolet (Standaard)', '#7c3aed': 'Koningspaars', '#38bdf8': 'Hemelsblauw', '#3b82f6': 'Elektrisch blauw', '#6366f1': 'Koningsindigo', '#a855f7': 'Violetpaars', '#ec4899': 'Rozenrood', '#f43f5e': 'Koraalrood', '#f97316': 'Levendig oranje', '#eab308': 'Goudzon',
+    '#000000': 'Gitzwart', '#0f172a': 'Donker leisteen', '#1e293b': 'Donker antraciet', '#172554': 'Diep marineblauw', '#451a03': 'Diep brons', '#4c0519': 'Diep robijn', '#064e3b': 'Diep bosgroen', '#3b0764': 'Diep violet', '#292524': 'Donker steen', '#020617': 'Middernacht',
+    '#facc15': 'Neon geel', '#4ade80': 'Neon limoen', '#2dd4bf': 'Helder aqua', '#67e8f9': 'Helder cyaan', '#c084fc': 'Neon lila', '#f472b6': 'Neon roze', '#fb7185': 'Neon koraal', '#fb923c': 'Neon mandarijn', '#93c5fd': 'Licht azuur', '#e2e8f0': 'Zilvermist',
+  },
 };
 
 const TEXT_PICK_CUSTOM_T: Record<string, string> = {
@@ -705,6 +731,7 @@ const TEXT_PICK_CUSTOM_T: Record<string, string> = {
   Danish: 'Vælg brugerdefineret farve',
   Turkish: 'Özel renk seç',
   Greek: 'Επιλογή προσαρμοσμένου χρώματος',
+  Belgum: 'Aangepaste kleur kiezen',
 };
 
 export default function TextTab({
@@ -823,6 +850,7 @@ export default function TextTab({
     Danish: 'da-DK',
     Turkish: 'tr-TR',
     Greek: 'el-GR',
+    Belgum: 'nl-BE',
   };
 
   const locale = languageToLocale[language] || 'en-US';

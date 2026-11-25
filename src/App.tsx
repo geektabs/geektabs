@@ -102,6 +102,21 @@ const ROUTE_SEO: Record<string, Record<string, { title: string; description: str
     about: { title: '關於 GeekTabs – 極簡生產力工作空間', description: '認識集結書籤、行事曆、計算機、筆記與網路工具的 GeekTabs 效率平台。' },
     contact: { title: '聯絡我們 – GeekTabs', description: '聯絡 GeekTabs 團隊提供意見回饋、回報錯誤或諮詢隱私問題。' },
   },
+  Belgum: {
+    home: { title: 'GeekTabs Dashboard', description: 'Een minimalistisch, stijlvol productiviteitsdashboard met meeslepende achtergronden, slimme widgets en geïntegreerde zoekfunctie.' },
+    links: { title: 'Bladwijzers & Snelkoppelingen – GeekTabs', description: 'Organiseer favoriete websites, kantoorsuites, AI-tools en persoonlijke snelkoppelingen in overzichtelijke visuele categorieën.' },
+    calendar: { title: 'Kalender & Regionale Feestdagen – GeekTabs', description: 'Plan afspraken, tijdgebonden herinneringen en volg feestdagen uit meerdere landen in één heldere maandkalender.' },
+    calculator: { title: 'Rekenmachine & Live Valutaomzetter – GeekTabs', description: 'Voer wetenschappelijke berekeningen uit en reken valuta om met live wisselkoersen of handmatige vaste tarieven.' },
+    todo: { title: 'Takenlijst – GeekTabs', description: 'Beheer dagelijkse taken, prioriteiten en checklists overzichtelijk in uw GeekTabs-werkruimte.' },
+    notes: { title: 'Notities – GeekTabs', description: 'Schrijf en organiseer overzichtelijke notities met opmaak in aanpasbare secties.' },
+    ip: { title: 'IP-adres & Verbindingsdiagnose – GeekTabs', description: 'Bekijk uw publieke IPv4- en IPv6-adressen, providerlocatie, ASN-gegevens en beveiligingsdiagnose van uw verbinding.' },
+    speed: { title: 'Snelheidstest – GeekTabs', description: 'Meet uw werkelijke downloadsnelheid, uploadsnelheid, ping-vertraging, jitter en netwerkkwaliteitsscore.' },
+    settings: { title: 'Instellingen – GeekTabs', description: 'Pas GeekTabs-thema’s, achtergronden, kaartstijlen, taal en lokale gegevensback-ups aan.' },
+    privacy: { title: 'Privacybeleid – GeekTabs', description: 'Lees hoe GeekTabs omgaat met lokale browseropslag, netwerkaanvragen, cookies en advertentiemeldingen.' },
+    terms: { title: 'Gebruiksvoorwaarden – GeekTabs', description: 'Lees de gebruiksvoorwaarden van GeekTabs over aanvaardbaar gebruik, lokale back-ups en externe links.' },
+    about: { title: 'Over GeekTabs – Minimalistische Productiviteitswerkruimte', description: 'Ontdek GeekTabs: een alles-in-één productiviteitsdashboard met bladwijzers, kalender, rekenmachine, notities en netwerktools.' },
+    contact: { title: 'Contact – GeekTabs', description: 'Neem contact op met het GeekTabs-team voor ondersteuning, feedback, bugmeldingen of privacyvragen.' },
+  },
 };
 
 const TAB_TITLE_KEYS: Record<string, string> = {
@@ -288,6 +303,13 @@ const FOOTER_T: Record<string, {
     poweredBy: 'Με την υποστήριξη και ασφάλεια της Geektabs.',
     privacy: 'Απόρρητο', terms: 'Όροι', about: 'Σχετικά', contact: 'Επικοινωνία',
     footerNavAria: 'Πλοήγηση υποσέλιδου', heroAria: 'Κύριος χώρος εργασίας', weatherAria: 'Πρόγνωση καιρού',
+  },
+  Belgum: {
+    tagline: 'Uw dagelijkse plek voor handige websites, tools en productiviteit.',
+    copyright: '© 2026 GeekTabs. Alle rechten voorbehouden.',
+    poweredBy: 'Aangedreven en beveiligd door Geektabs.',
+    privacy: 'Privacy', terms: 'Voorwaarden', about: 'Over ons', contact: 'Contact',
+    footerNavAria: 'Voettekstnavigatie', heroAria: 'Werkruimte', weatherAria: 'Weersverwachting',
   },
 };
 
@@ -534,24 +556,85 @@ export default function App() {
   const ft = FOOTER_T[language] || FOOTER_T.English;
 
   React.useEffect(() => {
+    const LANG_TO_BCP47: Record<string, string> = {
+      English: 'en',
+      Belgum: 'nl-BE',
+      Chinese: 'zh-CN',
+      'Chinese Traditional': 'zh-TW',
+      Danish: 'da',
+      Dutch: 'nl',
+      Finnish: 'fi',
+      French: 'fr',
+      German: 'de',
+      Greek: 'el',
+      Hindi: 'hi',
+      Italian: 'it',
+      Japanese: 'ja',
+      Korean: 'ko',
+      Luxembourgish: 'lb',
+      Norwegian: 'nb',
+      Polish: 'pl',
+      Portuguese: 'pt',
+      Russian: 'ru',
+      Spanish: 'es',
+      Swedish: 'sv',
+      Thai: 'th',
+      Turkish: 'tr',
+      Vietnamese: 'vi',
+    };
+    document.documentElement.lang = LANG_TO_BCP47[language] || 'en';
+
     const langSeo = ROUTE_SEO[language];
+    let resolvedTitle = 'GeekTabs Dashboard';
+    let resolvedDesc = ROUTE_SEO.English.home.description;
+
     if (langSeo && langSeo[activeTab]) {
-      document.title = langSeo[activeTab].title;
-      const descMeta = document.querySelector('meta[name="description"]');
-      if (descMeta) descMeta.setAttribute('content', langSeo[activeTab].description);
+      resolvedTitle = langSeo[activeTab].title;
+      resolvedDesc = langSeo[activeTab].description;
     } else if (TAB_TITLE_KEYS[activeTab]) {
-      document.title = `${t(language, TAB_TITLE_KEYS[activeTab])} – GeekTabs`;
+      resolvedTitle = `${t(language, TAB_TITLE_KEYS[activeTab])} – GeekTabs`;
       const enSeo = ROUTE_SEO.English[activeTab] || ROUTE_SEO.English.home;
-      const descMeta = document.querySelector('meta[name="description"]');
-      if (descMeta) descMeta.setAttribute('content', enSeo.description);
+      resolvedDesc = enSeo.description;
     } else {
       const legalLabel =
         activeTab === 'privacy' ? ft.privacy :
         activeTab === 'terms' ? ft.terms :
         activeTab === 'about' ? ft.about :
         activeTab === 'contact' ? ft.contact : 'GeekTabs';
-      document.title = `${legalLabel} – GeekTabs`;
+      resolvedTitle = `${legalLabel} – GeekTabs`;
+      const enSeo = ROUTE_SEO.English[activeTab] || ROUTE_SEO.English.home;
+      resolvedDesc = enSeo.description;
     }
+
+    document.title = resolvedTitle;
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) descMeta.setAttribute('content', resolvedDesc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', resolvedTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', resolvedDesc);
+
+    const isNoIndexRoute = activeTab === 'todo' || activeTab === 'notes' || activeTab === 'settings';
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.setAttribute('name', 'robots');
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute('content', isNoIndexRoute ? 'noindex, nofollow' : 'index, follow');
+
+    if (typeof window !== 'undefined') {
+      const targetPath = TAB_TO_PATH[activeTab] || '/';
+      const canonicalHref = `${window.location.origin}${targetPath}`;
+      let canonicalLink = document.querySelector('link[rel="canonical"]');
+      if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalLink);
+      }
+      canonicalLink.setAttribute('href', canonicalHref);
+    }
+
     window.scrollTo(0, 0);
   }, [activeTab, language, ft.privacy, ft.terms, ft.about, ft.contact]);
 
@@ -587,6 +670,7 @@ export default function App() {
       Danish: 'Dagligt overblik',
       Turkish: 'Günlük Özet',
       Greek: 'Ημερήσια Σύνοψη',
+      Belgum: 'Dagelijks Overzicht',
     }[language] || 'Daily Digest';
 
   const dailySectionHumorDesc =
@@ -637,6 +721,8 @@ export default function App() {
         'Günlük düzeni kolaylaştıran pratik ipuçları, zihni sakinleştiren nazik hatırlatmalar, kahveniz soğumadan kısa bir tebessüm ve gününüze ilham veren zamansız sözler.',
       Greek:
         'Πρακτικές συμβουλές για πιο απλή καθημερινότητα, ήπιες υπενθυμίσεις για ήρεμο νου, ένα γρήγορο χαμόγελο πριν κρυώσει ο καφές και διαχρονικά αποφθέγματα που εμπνέουν τη μέρα σας.',
+      Belgum:
+        'Praktische levenstips om uw routine te vereenvoudigen, zachte herinneringen voor een rustiger gemoed, een snelle glimlach nog voor uw koffie afkoelt en tijdloze citaten ter inspiratie.',
     }[language] ||
     'Practical life tips to simplify your routine, gentle reminders for a calmer mind, a quick laugh before your coffee cools, and timeless quotes to inspire your day.';
 

@@ -971,6 +971,48 @@ const ST_T: Record<string, Record<string, string>> = {
     backupStandard: "Γρήγορο & Σταθερό",
     backupBasic: "Τυπική Ταχύτητα",
     backupDesc: "Ταχύς συγχρονισμός με Google Drive & iCloud"
+  },
+  Belgum: {
+    broadband: "Breedbandsnelheidstest",
+    analyzer: "Netwerkprestatie-analysator",
+    subtitle: "Meet uw downloadsnelheid, uploadsnelheid, jitter en pakketlatentie in realtime met grote nauwkeurigheid.",
+    hostServer: "Hostserver",
+    autoOptimized: "Automatisch geoptimaliseerd",
+    start: "START",
+    beginTest: "Test starten",
+    running: "Diagnose uitvoeren...",
+    clickStart: "Klik op de centrale startknop om uw netwerkprestaties in realtime te meten.",
+    downloadSpeed: "Downloadsnelheid",
+    uploadSpeed: "Uploadsnelheid",
+    pingParams: "Ping-parameters",
+    latency: "Latentie",
+    jitter: "Jitter",
+    diagnosticsRunning: "Diagnose loopt...",
+    retryBenchmark: "Test herhalen",
+    runBenchmark: "Snelheidstest uitvoeren",
+    latencyPhase: "Latentie",
+    downloadPhase: "Download",
+    uploadPhase: "Upload",
+    completePhase: "Voltooid",
+    serviceReadiness: "Prestaties & Dienstbereidheid",
+    serviceSubtitle: "Live metingen op basis van uw huidige bandbreedte en latentie.",
+    broadbandGrade: "Providerklasse A+",
+    streaming4k: "4K / 8K Streaming",
+    streamingDesc: "Vloeiende weergave op YouTube & Netflix",
+    cloudGaming: "Online & Cloud Gaming",
+    gamingExcellent: "Pro-niveau",
+    gamingGood: "Vloeiend gamen",
+    gamingAverage: "Casual gamen",
+    gamingDesc: "Geoptimaliseerd voor multiplayer met lage latentie",
+    latencyTag: "latentie",
+    videoConference: "Videovergaderingen",
+    conferenceGrade: "Meerdere HD-streams",
+    conferenceDesc: "Naadloos voor Zoom, Teams & Google Meet",
+    cloudBackup: "Cloudsynchronisatie & Grote Bestanden",
+    backupFast: "Ultrasnel",
+    backupStandard: "Snel & Stabiel",
+    backupBasic: "Standaardsnelheid",
+    backupDesc: "Snelle synchronisatie met Google Drive & iCloud"
   }
 };
 
@@ -1237,6 +1279,17 @@ const NQS_T: Record<string, {
     streamingHint: "Βασίζεται στην ταχύτητα λήψης και το jitter για ομαλή αναπαραγωγή 4K.",
     gamingHint: "Βασίζεται στην καθυστέρηση και το jitter για άμεση απόκριση multiplayer.",
     videoCallsHint: "Βασίζεται στη συμμετρία αποστολής/λήψης και την καθυστέρηση για HD κλήσεις."
+  },
+  Belgum: {
+    title: "Netwerkkwaliteitsscore",
+    streaming: "Streaming",
+    gaming: "Gaming",
+    videoCalls: "Videogesprekken",
+    desc: "Beoordeelt uw praktijkervaring op een schaal van 1 tot 5 sterren (5 / 5 = uitstekend) op basis van download, upload, ping en jitter.",
+    pending: "Voer de snelheidstest hierboven uit om uw live netwerkkwaliteitsscore te berekenen.",
+    streamingHint: "Gebaseerd op downloadsnelheid en jitter voor vloeiende 4K-weergave.",
+    gamingHint: "Gebaseerd op latentie en jitter voor vlotte reacties bij online gamen.",
+    videoCallsHint: "Gebaseerd op symmetrie van upload/download en latentie voor HD-gesprekken."
   }
 };
 
@@ -1264,6 +1317,7 @@ const ST_EXTRA_T: Record<string, { carrierRx: string; carrierTx: string; starsLa
   Danish: { carrierRx: 'MODTAGELSE RX', carrierTx: 'AFSENDELSE TX', starsLabel: (s) => `${s} ud af 5 stjerner`, notRated: 'Ikke bedømt endnu' },
   Turkish: { carrierRx: 'ALIM RX', carrierTx: 'GÖNDERİM TX', starsLabel: (s) => `5 üzerinden ${s} yıldız`, notRated: 'Henüz puanlanmadı' },
   Greek: { carrierRx: 'ΛΗΨΗ RX', carrierTx: 'ΑΠΟΣΤΟΛΗ TX', starsLabel: (s) => `${s} από 5 αστέρια`, notRated: 'Δεν έχει βαθμολογηθεί ακόμα' },
+  Belgum: { carrierRx: 'ONTVANGST RX', carrierTx: 'ZENDEN TX', starsLabel: (s) => `${s} op 5 sterren`, notRated: 'Nog niet beoordeeld' },
 };
 
 function QualityStars({ score, rated, language = 'English' }: { score: number; rated: boolean; language?: string }) {

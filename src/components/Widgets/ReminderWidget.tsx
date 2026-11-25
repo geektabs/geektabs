@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { BellRing, RefreshCw } from 'lucide-react';
-import remindersEnglish from '../../data/daily-reminders-English.json';
-import remindersSpanish from '../../data/daily-reminders-Spanish.json';
-import remindersFrench from '../../data/daily-reminders-French.json';
-import remindersGerman from '../../data/daily-reminders-German.json';
-import remindersChinese from '../../data/daily-reminders-Chinese.json';
-import remindersChineseTraditional from '../../data/daily-reminders-Chinese-Traditional.json';
-import remindersJapanese from '../../data/daily-reminders-Japanese.json';
-import remindersKorean from '../../data/daily-reminders-Korean.json';
-import remindersItalian from '../../data/daily-reminders-Italian.json';
-import remindersRussian from '../../data/daily-reminders-Russian.json';
-import remindersLuxembourgish from '../../data/daily-reminders-Luxembourgish.json';
-import remindersDutch from '../../data/daily-reminders-Dutch.json';
-import remindersSwedish from '../../data/daily-reminders-Swedish.json';
-import remindersFinnish from '../../data/daily-reminders-Finnish.json';
-import remindersHindi from '../../data/daily-reminders-Hindi.json';
-import remindersNorwegian from '../../data/daily-reminders-Norwegian.json';
-import remindersThai from '../../data/daily-reminders-Thai.json';
-import remindersPortuguese from '../../data/daily-reminders-Portuguese.json';
-import remindersVietnamese from '../../data/daily-reminders-Vietnamese.json';
-import remindersPolish from '../../data/daily-reminders-Polish.json';
-import remindersDanish from '../../data/daily-reminders-Danish.json';
-import remindersTurkish from '../../data/daily-reminders-Turkish.json';
-import remindersGreek from '../../data/daily-reminders-Greek.json';
+import remindersEnglish from '../../data/reminder-English.json';
+import remindersSpanish from '../../data/reminder-Spanish.json';
+import remindersFrench from '../../data/reminder-French.json';
+import remindersGerman from '../../data/reminder-German.json';
+import remindersChinese from '../../data/reminder-Chinese.json';
+import remindersChineseTraditional from '../../data/reminder-Chinese-Traditional.json';
+import remindersJapanese from '../../data/reminder-Japanese.json';
+import remindersKorean from '../../data/reminder-Korean.json';
+import remindersItalian from '../../data/reminder-Italian.json';
+import remindersRussian from '../../data/reminder-Russian.json';
+import remindersLuxembourgish from '../../data/reminder-Luxembourgish.json';
+import remindersDutch from '../../data/reminder-Dutch.json';
+import remindersSwedish from '../../data/reminder-Swedish.json';
+import remindersFinnish from '../../data/reminder-Finnish.json';
+import remindersHindi from '../../data/reminder-Hindi.json';
+import remindersNorwegian from '../../data/reminder-Norwegian.json';
+import remindersThai from '../../data/reminder-Thai.json';
+import remindersPortuguese from '../../data/reminder-Portuguese.json';
+import remindersVietnamese from '../../data/reminder-Vietnamese.json';
+import remindersPolish from '../../data/reminder-Polish.json';
+import remindersDanish from '../../data/reminder-Danish.json';
+import remindersTurkish from '../../data/reminder-Turkish.json';
+import remindersGreek from '../../data/reminder-Greek.json';
+import remindersBelgum from '../../data/reminder-Belgum.json';
 
 const remindersMap: Record<string, string[]> = {
   English: remindersEnglish,
@@ -48,6 +49,7 @@ const remindersMap: Record<string, string[]> = {
   Danish: remindersDanish,
   Turkish: remindersTurkish,
   Greek: remindersGreek,
+  Belgum: remindersBelgum,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_reminder_history';
@@ -130,30 +132,31 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
 
   const widgetTitle =
     {
-      English: 'Daily Reminder',
-      Spanish: 'Recordatorio Diario',
-      French: 'Rappel Quotidien',
-      German: 'Tägliche Erinnerung',
-      Chinese: '日常觉悟提醒',
-      'Chinese Traditional': '日常覺察提醒',
-      Japanese: '毎日のリマインダー',
-      Korean: '오늘의 깨달음',
-      Italian: 'Promemoria Quotidiano',
-      Russian: 'Напоминание дня',
-      Luxembourgish: 'Deeglech Erënnerung',
-      Dutch: 'Dagelijkse Herinnering',
-      Swedish: 'Daglig Påminnelse',
-      Finnish: 'Päivän Muistutus',
-      Hindi: 'दैनिक अनुस्मारक',
-      Norwegian: 'Daglig Påminnelse',
-      Thai: 'ข้อคิดเตือนใจประจำวัน',
-      Portuguese: 'Lembrete Diário',
-      Vietnamese: 'Nhắc Nhở Hằng Ngày',
-      Polish: 'Codzienne Przypomnienie',
-      Danish: 'Daglig Påmindelse',
-      Turkish: 'Günlük Hatırlatma',
-      Greek: 'Ημερήσια Υπενθύμιση',
-    }[language] || 'Daily Reminder';
+      English: 'Reminder',
+      Spanish: 'Recordatorio',
+      French: 'Rappel',
+      German: 'Erinnerung',
+      Chinese: '提醒',
+      'Chinese Traditional': '提醒',
+      Japanese: 'リマインダー',
+      Korean: '리마인더',
+      Italian: 'Promemoria',
+      Russian: 'Напоминание',
+      Luxembourgish: 'Erënnerung',
+      Dutch: 'Herinnering',
+      Swedish: 'Påminnelse',
+      Finnish: 'Muistutus',
+      Hindi: 'अनुस्मारक',
+      Norwegian: 'Påminnelse',
+      Thai: 'ข้อคิดเตือนใจ',
+      Portuguese: 'Lembrete',
+      Vietnamese: 'Nhắc nhở',
+      Polish: 'Przypomnienie',
+      Danish: 'Påmindelse',
+      Turkish: 'Hatırlatma',
+      Greek: 'Υπενθύμιση',
+      Belgum: 'Herinnering',
+    }[language] || 'Reminder';
 
   const reminderTooltips = {
     English: { refresh: 'Refresh reminder', next: 'Click to get new reminder' },
@@ -179,6 +182,7 @@ export default function ReminderWidget({ language = 'English' }: ReminderWidgetP
     Danish: { refresh: 'Opdater påmindelse', next: 'Klik for at få en ny påmindelse' },
     Turkish: { refresh: 'Hatırlatmayı yenile', next: 'Yeni hatırlatma için tıklayın' },
     Greek: { refresh: 'Ανανέωση υπενθύμισης', next: 'Κάντε κλικ για νέα υπενθύμιση' },
+    Belgum: { refresh: 'Herinnering vernieuwen', next: 'Klik voor een nieuwe herinnering' },
   }[language] || { refresh: 'Refresh reminder', next: 'Click to get new reminder' };
 
   return (

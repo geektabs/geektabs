@@ -793,6 +793,38 @@ const TODO_T: Record<string, Record<string, string>> = {
     addNotes: 'Προσθήκη σημειώσεων ή περιγραφής...',
     allLists: 'Όλες οι λίστες',
   },
+  Belgum: {
+    title: 'Takenruimte',
+    subtitle: 'Cloud-planner',
+    inbox: 'Postvak IN',
+    today: 'Vandaag',
+    personal: 'Persoonlijk',
+    shopping: 'Boodschappen',
+    work: 'Werk',
+    meetings: 'Vergaderingen',
+    events: 'Afspraken',
+    addTask: 'TAAK TOEVOEGEN',
+    pending: 'openstaande taken',
+    noTasks: 'Geen taken in deze lijst.',
+    addPlaceholder: 'Wat moet er gebeuren?',
+    descriptionPlaceholder: 'Beschrijving (optioneel)',
+    addDescOptional: 'Beschrijving toevoegen (optioneel)',
+    cancel: 'ANNULEREN',
+    save: 'OPSLAAN',
+    priority: 'Prioriteit',
+    sidebarHeader: 'Categorieën',
+    remaining: 'resterend',
+    taskSingular: 'taak',
+    taskPlural: 'taken',
+    noGoals: 'Geen taken in',
+    clickToCreate: 'Klik op "TAAK TOEVOEGEN" om er een aan te maken!',
+    deleteTitle: 'Taak verwijderen',
+    deleteMessage: 'Weet u zeker dat u deze taak definitief wilt verwijderen?',
+    taskName: 'Taaknaam',
+    description: 'Beschrijving',
+    addNotes: 'Notities of beschrijving toevoegen...',
+    allLists: 'Alle lijsten',
+  },
 };
 
 const TODO_EXTRA_T: Record<string, {
@@ -831,6 +863,7 @@ const TODO_EXTRA_T: Record<string, {
   Danish: { closeSidebar: 'Luk sidebjælke', hideSidebar: 'Skjul sidebjælke', showSidebar: 'Vis sidebjælke', toggleSidebar: 'Skift sidebjælke', markComplete: 'Marker som fuldført', markIncomplete: 'Marker som ufuldført', editTaskTitle: 'Rediger opgave', editTaskBtn: 'Rediger opgave', deleteTaskBtn: 'Slet opgave', closeEditModal: 'Luk redigeringsvindue', deleteConfirmBtn: 'Slet' },
   Turkish: { closeSidebar: 'Kenar çubuğunu kapat', hideSidebar: 'Kenar çubuğunu gizle', showSidebar: 'Kenar çubuğunu göster', toggleSidebar: 'Kenar çubuğunu aç/kapat', markComplete: 'Tamamlandı olarak işaretle', markIncomplete: 'Tamamlanmadı olarak işaretle', editTaskTitle: 'Görevi Düzenle', editTaskBtn: 'Görevi düzenle', deleteTaskBtn: 'Görevi sil', closeEditModal: 'Düzenleme penceresini kapat', deleteConfirmBtn: 'Sil' },
   Greek: { closeSidebar: 'Κλείσιμο πλευρικής μπάρας', hideSidebar: 'Απόκρυψη πλευρικής μπάρας', showSidebar: 'Εμφάνιση πλευρικής μπάρας', toggleSidebar: 'Εναλλαγή πλευρικής μπάρας', markComplete: 'Σήμανση ως ολοκληρωμένη', markIncomplete: 'Σήμανση ως ημιτελής', editTaskTitle: 'Επεξεργασία Εργασίας', editTaskBtn: 'Επεξεργασία εργασίας', deleteTaskBtn: 'Διαγραφή εργασίας', closeEditModal: 'Κλείσιμο παραθύρου επεξεργασίας', deleteConfirmBtn: 'Διαγραφή' },
+  Belgum: { closeSidebar: 'Zijbalk sluiten', hideSidebar: 'Zijbalk verbergen', showSidebar: 'Zijbalk tonen', toggleSidebar: 'Zijbalk wisselen', markComplete: 'Markeren als voltooid', markIncomplete: 'Markeren als niet voltooid', editTaskTitle: 'Taak bewerken', editTaskBtn: 'Taak bewerken', deleteTaskBtn: 'Taak verwijderen', closeEditModal: 'Bewerkvenster sluiten', deleteConfirmBtn: 'Verwijderen' },
 };
 
 const getProjectName = (id: string, lang: string) => {

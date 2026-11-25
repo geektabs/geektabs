@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Lightbulb, RefreshCw } from 'lucide-react';
-import tipsEnglish from '../../data/life-tips-English.json';
-import tipsSpanish from '../../data/life-tips-Spanish.json';
-import tipsFrench from '../../data/life-tips-French.json';
-import tipsGerman from '../../data/life-tips-German.json';
-import tipsChinese from '../../data/life-tips-Chinese.json';
-import tipsChineseTraditional from '../../data/life-tips-Chinese-Traditional.json';
-import tipsJapanese from '../../data/life-tips-Japanese.json';
-import tipsKorean from '../../data/life-tips-Korean.json';
-import tipsItalian from '../../data/life-tips-Italian.json';
-import tipsRussian from '../../data/life-tips-Russian.json';
-import tipsLuxembourgish from '../../data/life-tips-Luxembourgish.json';
-import tipsDutch from '../../data/life-tips-Dutch.json';
-import tipsSwedish from '../../data/life-tips-Swedish.json';
-import tipsFinnish from '../../data/life-tips-Finnish.json';
-import tipsHindi from '../../data/life-tips-Hindi.json';
-import tipsNorwegian from '../../data/life-tips-Norwegian.json';
-import tipsThai from '../../data/life-tips-Thai.json';
-import tipsPortuguese from '../../data/life-tips-Portuguese.json';
-import tipsVietnamese from '../../data/life-tips-Vietnamese.json';
-import tipsPolish from '../../data/life-tips-Polish.json';
-import tipsDanish from '../../data/life-tips-Danish.json';
-import tipsTurkish from '../../data/life-tips-Turkish.json';
-import tipsGreek from '../../data/life-tips-Greek.json';
+import tipsEnglish from '../../data/tips-English.json';
+import tipsSpanish from '../../data/tips-Spanish.json';
+import tipsFrench from '../../data/tips-French.json';
+import tipsGerman from '../../data/tips-German.json';
+import tipsChinese from '../../data/tips-Chinese.json';
+import tipsChineseTraditional from '../../data/tips-Chinese-Traditional.json';
+import tipsJapanese from '../../data/tips-Japanese.json';
+import tipsKorean from '../../data/tips-Korean.json';
+import tipsItalian from '../../data/tips-Italian.json';
+import tipsRussian from '../../data/tips-Russian.json';
+import tipsLuxembourgish from '../../data/tips-Luxembourgish.json';
+import tipsDutch from '../../data/tips-Dutch.json';
+import tipsSwedish from '../../data/tips-Swedish.json';
+import tipsFinnish from '../../data/tips-Finnish.json';
+import tipsHindi from '../../data/tips-Hindi.json';
+import tipsNorwegian from '../../data/tips-Norwegian.json';
+import tipsThai from '../../data/tips-Thai.json';
+import tipsPortuguese from '../../data/tips-Portuguese.json';
+import tipsVietnamese from '../../data/tips-Vietnamese.json';
+import tipsPolish from '../../data/tips-Polish.json';
+import tipsDanish from '../../data/tips-Danish.json';
+import tipsTurkish from '../../data/tips-Turkish.json';
+import tipsGreek from '../../data/tips-Greek.json';
+import tipsBelgum from '../../data/tips-Belgum.json';
 
 const tipsMap: Record<string, string[]> = {
   English: tipsEnglish,
@@ -48,6 +49,7 @@ const tipsMap: Record<string, string[]> = {
   Danish: tipsDanish,
   Turkish: tipsTurkish,
   Greek: tipsGreek,
+  Belgum: tipsBelgum,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_tip_history';
@@ -129,30 +131,31 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
   }, [language]);
 
   const widgetTitle = {
-    English: 'Daily Tips',
-    Spanish: 'Consejos Diarios',
-    French: 'Conseils Quotidiens',
-    German: 'Tägliche Tipps',
-    Chinese: '每日小贴士',
-    'Chinese Traditional': '每日小撇步',
-    Japanese: '今日のヒント',
-    Korean: '일일 팁',
-    Italian: 'Consigli Giornalieri',
-    Russian: 'Совет дня',
-    Luxembourgish: 'Deeglech Tipps',
-    Dutch: 'Dagelijkse Tips',
-    Swedish: 'Dagliga Tips',
-    Finnish: 'Päivän Vinkit',
-    Hindi: 'दैनिक सुझाव',
-    Norwegian: 'Daglige Tips',
-    Thai: 'เคล็ดลับประจำวัน',
-    Portuguese: 'Dicas Diárias',
-    Vietnamese: 'Mẹo Hằng Ngày',
-    Polish: 'Codzienne Porady',
-    Danish: 'Daglige Tips',
-    Turkish: 'Günlük İpuçları',
-    Greek: 'Ημερήσιες Συμβουλές',
-  }[language] || 'Daily Tips';
+    English: 'Tips',
+    Spanish: 'Consejos',
+    French: 'Conseils',
+    German: 'Tipps',
+    Chinese: '小贴士',
+    'Chinese Traditional': '小撇步',
+    Japanese: 'ヒント',
+    Korean: '팁',
+    Italian: 'Consigli',
+    Russian: 'Советы',
+    Luxembourgish: 'Tipps',
+    Dutch: 'Tips',
+    Swedish: 'Tips',
+    Finnish: 'Vinkit',
+    Hindi: 'सुझाव',
+    Norwegian: 'Tips',
+    Thai: 'เคล็ดลับ',
+    Portuguese: 'Dicas',
+    Vietnamese: 'Mẹo',
+    Polish: 'Porady',
+    Danish: 'Tips',
+    Turkish: 'İpuçları',
+    Greek: 'Συμβουλές',
+    Belgum: 'Tips',
+  }[language] || 'Tips';
 
   const tipTooltips = {
     English: { refresh: 'Refresh tip', next: 'Click to get new tip' },
@@ -178,6 +181,7 @@ export default function TipsWidget({ language = 'English' }: TipsWidgetProps) {
     Danish: { refresh: 'Opdater tip', next: 'Klik for at få et nyt tip' },
     Turkish: { refresh: 'İpucunu yenile', next: 'Yeni ipucu için tıklayın' },
     Greek: { refresh: 'Ανανέωση συμβουλής', next: 'Κάντε κλικ για νέα συμβουλή' },
+    Belgum: { refresh: 'Tip vernieuwen', next: 'Klik voor een nieuwe tip' },
   }[language] || { refresh: 'Refresh tip', next: 'Click to get new tip' };
 
   return (

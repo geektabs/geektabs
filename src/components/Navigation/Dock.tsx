@@ -257,6 +257,14 @@ const DOCK_T: Record<string, {
     shareOn: 'Κοινοποίηση στο', shareLinkUrl: 'Διεύθυνση URL κοινοποίησης', copied: 'Αντιγράφηκε!', copyLink: 'Αντιγραφή συνδέσμου',
     language: 'Γλώσσα', languageSelection: 'Επιλογή γλώσσας', closeMenu: 'Κλείσιμο μενού', primaryNav: 'Κύρια πλοήγηση',
   },
+  Belgum: {
+    about: 'Over ons', privacy: 'Privacybeleid', terms: 'Gebruiksvoorwaarden', contact: 'Contact',
+    share: 'Delen', shareTitle: 'GeekTabs delen', shareHeading: 'Deel ons',
+    shareSubtitle: 'Deel GeekTabs met vrienden en collega’s',
+    shareDesc: 'Een minimalistisch productiviteitsdashboard voor bladwijzers, kalender, notities, taken en handige tools met sfeervolle achtergronden.',
+    shareOn: 'Delen op', shareLinkUrl: 'URL van deellink', copied: 'Gekopieerd!', copyLink: 'Link kopiëren',
+    language: 'Taal', languageSelection: 'Taalkeuze', closeMenu: 'Menu sluiten', primaryNav: 'Hoofdnavigatie',
+  },
 };
 
 export default function Dock({ activeTab, setActiveTab, currentTheme, setTheme, isDarkMode, language, setLanguage }: DockProps) {

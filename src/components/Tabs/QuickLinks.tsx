@@ -848,6 +848,29 @@ const LINKS_T: Record<string, Record<string, string>> = {
     deleteBookmarkTitle: 'Διαγραφή σελιδοδείκτη',
     deleteBookmarkMsg: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον σελιδοδείκτη;',
   },
+  Belgum: {
+    addBookmark: 'Bladwijzer toevoegen',
+    saveTo: 'Opslaan in',
+    titleLabel: 'Titel',
+    urlLabel: 'URL',
+    placeholderTitle: 'bv. Werkdashboard',
+    placeholderUrl: 'bv. app.werk.be',
+    cancel: 'Annuleren',
+    save: 'Opslaan',
+    delete: 'Verwijderen',
+    newCategory: 'Nieuwe categorie',
+    createCategoryDesc: 'Een nieuwe categorie aanmaken',
+    categoryName: 'Categorienaam',
+    placeholderCategory: 'bv. Winkelen',
+    create: 'Aanmaken',
+    editCategoryTitle: 'Categorie bewerken',
+    editCategoryDesc: 'Deze categorie hernoemen of verwijderen',
+    editBookmarkTitle: 'Bladwijzer bewerken',
+    deleteCategoryTitle: 'Categorie verwijderen',
+    deleteCategoryMsg: 'Weet u zeker dat u deze categorie en alle bijbehorende links wilt verwijderen? Dit kan niet ongedaan worden gemaakt.',
+    deleteBookmarkTitle: 'Bladwijzer verwijderen',
+    deleteBookmarkMsg: 'Weet u zeker dat u deze bladwijzer wilt verwijderen?',
+  },
 };
 
 const DEFAULT_CAT_EN_BY_ID: Record<string, string> = {
@@ -1129,6 +1152,18 @@ const DEFAULT_CAT_NAMES: Record<string, Record<string, string>> = {
     shopping: 'Αγορές',
     tools: 'Εργαλεία',
   },
+  Belgum: {
+    default: 'Start',
+    'my-folders': 'AI-apps',
+    'google-apps': 'Google',
+    'ms-office': 'Microsoft',
+    tech: 'Technologie',
+    music: 'Muziek',
+    finance: 'Financiën',
+    travel: 'Reizen',
+    shopping: 'Winkelen',
+    tools: 'Hulpmiddelen',
+  },
 };
 
 const LINKS_EXTRA_T: Record<string, { addCategory: string; editOrDelete: string }> = {
@@ -1155,6 +1190,7 @@ const LINKS_EXTRA_T: Record<string, { addCategory: string; editOrDelete: string 
   Danish: { addCategory: 'Tilføj kategori', editOrDelete: 'Rediger eller slet' },
   Turkish: { addCategory: 'Kategori Ekle', editOrDelete: 'Düzenle veya sil' },
   Greek: { addCategory: 'Προσθήκη κατηγορίας', editOrDelete: 'Επεξεργασία ή διαγραφή' },
+  Belgum: { addCategory: 'Categorie toevoegen', editOrDelete: 'Bewerken of verwijderen' },
 };
 
 const getCategoryDisplayName = (cat: Category, language: string): string => {
@@ -2598,7 +2634,12 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
         </AnimatePresence>
       </div>
 
-      <div ref={cardsGridRef} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-3.5 lg:gap-4 w-full max-w-6xl mx-auto">
+      <div
+        ref={cardsGridRef}
+        className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-3.5 lg:gap-4 w-full max-w-6xl mx-auto lg:h-[784px] lg:min-h-[784px] lg:max-h-[784px] lg:grid-rows-[repeat(10,64px)] lg:auto-rows-[64px] lg:content-start ${
+          (activeCategory?.links.length || 0) >= 50 ? 'lg:overflow-y-auto lg:pr-1 custom-scrollbar' : 'lg:overflow-visible'
+        }`}
+      >
         <AnimatePresence mode="popLayout">
           {activeCategory?.links.map((link) => {
             const isLinkSelected = selectedLinkId === link.id;

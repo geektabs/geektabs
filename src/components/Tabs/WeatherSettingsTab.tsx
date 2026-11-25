@@ -421,6 +421,24 @@ const WEATHER_SETTINGS_T: Record<string, Record<string, string>> = {
     dailyDesc: 'Εμφανίζει τις επόμενες 7 ημέρες με ημερήσιες μέγιστες και ελάχιστες θερμοκρασίες',
     previewTitle: 'Ζωντανή Προεπισκόπηση Ρυθμίσεων',
     previewDesc: 'Οι αλλαγές αποθηκεύονται αυτόματα και εφαρμόζονται στο widget της αρχικής σελίδας.'
+  },
+  Belgum: {
+    title: 'Weerinstellingen',
+    subtitle: 'TEMPERATUUREENHEID & VERWACHTINGSWEERGAVE',
+    unitTitle: 'Temperatuureenheid',
+    unitDesc: 'Kies Celsius (°C) of Fahrenheit (°F) voor het actuele weer en de weersverwachting.',
+    celsius: 'Celsius (°C)',
+    celsiusDesc: 'Standaard metrische eenheid in België en de meeste landen',
+    fahrenheit: 'Fahrenheit (°F)',
+    fahrenheitDesc: 'Standaardeenheid die vooral in de Verenigde Staten wordt gebruikt',
+    forecastModeTitle: 'Weergave van de verwachting',
+    forecastModeDesc: 'Kies of u weersdetails per uur of per dag wilt bekijken.',
+    hourly: 'Per uur',
+    hourlyDesc: 'Toont de komende 12 uur met weersomstandigheden en temperatuur',
+    daily: 'Dagelijkse verwachting',
+    dailyDesc: 'Toont de komende 7 dagen met minimum- en maximumtemperaturen',
+    previewTitle: 'Live instellingsvoorbeeld',
+    previewDesc: 'Wijzigingen worden automatisch bewaard en meteen toegepast op de startpagina.'
   }
 };
 
@@ -807,6 +825,22 @@ const WEATHER_SETTINGS_EXTRA_T: Record<string, {
     viewLabel: 'Προβολή',
     hourlyShort: 'Ωριαία (12ω)',
     dailyShort: 'Ημερήσια (7η)',
+  },
+  Belgum: {
+    weatherLocation: 'Weerlocatie',
+    weatherLocationDesc: 'Stel uw stad, gemeente of postcode wereldwijd in om nauwkeurige live weergegevens voor de startpagina op te halen.',
+    currentLocation: 'Huidige locatie',
+    detectTitle: 'Huidige locatie detecteren',
+    autoDetect: 'Automatisch bepalen',
+    close: 'Sluiten',
+    change: 'Wijzigen',
+    searchPlaceholder: 'Zoek stad, postcode of land (bv. Brussel, Antwerpen, Gent, 1000)...',
+    searching: 'Wereldwijde weerlocaties zoeken...',
+    detectError: 'Kan locatie niet bepalen. Controleer de browsermachtigingen.',
+    unitLabel: 'Eenheid',
+    viewLabel: 'Weergave',
+    hourlyShort: 'Per uur (12u)',
+    dailyShort: 'Per dag (7d)',
   },
 };
 

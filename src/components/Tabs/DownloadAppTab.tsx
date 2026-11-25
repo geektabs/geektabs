@@ -772,6 +772,39 @@ const appInstallGuides: Record<string, {
         'Χρησιμοποιήστε το GeekTabs στο δικό του παράθυρο εφαρμογής απευθείας από την αρχική οθόνη του tablet.'
       ]
     }
+  },
+  Belgum: {
+    pageTitle: 'Downloaden als App (PC / Gsm / Tablet)',
+    pageSubtitle: 'Installeer GeekTabs als zelfstandige toepassing met een eigen pictogram op uw bureaublad of startscherm.',
+    addressBarHint: 'Tip voor computer: zoek het installatiepictogram rechts in de adresbalk van uw browser.',
+    pc: {
+      label: 'PC / Mac (Desktop)',
+      heading: 'Downloaden op PC / Mac (Chrome, Edge, Brave)',
+      steps: [
+        'Open GeekTabs in Chrome, Edge of Brave op uw computer.',
+        'Klik op het pictogram "GeekTabs Dashboard installeren" rechts in de adresbalk.',
+        'Of klik hierboven op "App installeren", of open het menu ⋮ → Opslaan en delen → Pagina installeren als app.',
+        'Klik op "Installeren" om het GeekTabs-pictogram op uw bureaublad of in uw Dock te plaatsen.'
+      ]
+    },
+    phone: {
+      label: 'Gsm (iOS & Android)',
+      heading: 'App-pictogram toevoegen op smartphone',
+      steps: [
+        'iPhone (Safari): tik onderaan op Delen → "Zet op beginscherm" → "Voeg toe".',
+        'Android (Chrome / Edge): tik hierboven op "App installeren" of op menu (⋮) → "App installeren".',
+        'Start GeekTabs rechtstreeks vanaf uw beginscherm in volledig scherm zonder adresbalk.'
+      ]
+    },
+    tablet: {
+      label: 'Tablet (iPad & Android)',
+      heading: 'App-pictogram toevoegen op tablet',
+      steps: [
+        'iPad (Safari): tik rechtsboven op Delen → "Zet op beginscherm" → "Voeg toe".',
+        'Android-tablet (Chrome / Edge): tik op het installatiepictogram in de adresbalk of via ⋮ → "App installeren".',
+        'Gebruik GeekTabs in een eigen venster rechtstreeks vanaf het startscherm van uw tablet.'
+      ]
+    }
   }
 };
 

@@ -456,6 +456,14 @@ async function startServer() {
         );
     }
 
+    const isNoIndexRoute = ["/todo", "/notes", "/settings"].includes(normalizedPath);
+    if (!/name=["']robots["']/i.test(updated)) {
+      updated = updated.replace(
+        "</head>",
+        `    <meta name="robots" content="${isNoIndexRoute ? "noindex, nofollow" : "index, follow"}" />\n  </head>`
+      );
+    }
+
     if (origin) {
       const cleanOrigin = origin.replace(/\/+$/, "");
       const canonicalUrl = `${cleanOrigin}${normalizedPath}`;

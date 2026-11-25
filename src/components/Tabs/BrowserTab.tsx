@@ -1178,6 +1178,57 @@ const browserGuides: Record<string, any> = {
         'Επικολλήστε το URL που αντιγράψατε παραπάνω και κάντε κλικ στο «Προσθήκη».'
       ]
     }
+  },
+  Belgum: {
+    title: 'Instellen als startpagina',
+    subtitle: 'Stel dit dashboard in als uw startpagina of standaard nieuwe tabblad zodat alles geordend klaarstaat zodra u uw browser opent.',
+    copyButton: 'URL kopiëren',
+    copiedText: 'Gekopieerd!',
+    chrome: {
+      title: 'Google Chrome',
+      steps: [
+        'Open Chrome, klik rechtsboven op het menu met de drie puntjes en kies Instellingen.',
+        'Ga in de linkerzijbalk naar "Bij opstarten".',
+        'Selecteer "Een specifieke pagina of reeks pagina’s openen" en klik op "Een nieuwe pagina toevoegen".',
+        'Plak de hierboven gekopieerde URL en klik op "Toevoegen".'
+      ]
+    },
+    edge: {
+      title: 'Microsoft Edge',
+      steps: [
+        'Open Edge, klik rechtsboven op het menu en selecteer Instellingen.',
+        'Klik links op "Start, startpagina en nieuwe tabbladen".',
+        'Kies onder "Wanneer Edge wordt opgestart" voor "Deze pagina’s openen".',
+        'Klik op "Een nieuwe pagina toevoegen", plak de URL en klik op "Toevoegen".'
+      ]
+    },
+    firefox: {
+      title: 'Mozilla Firefox',
+      steps: [
+        'Open Firefox, klik rechtsboven op de menuknop en kies Instellingen.',
+        'Klik op "Startpagina" in het linkermenu.',
+        'Kies bij "Startpagina en nieuwe vensters" voor "Aangepaste URL’s...".',
+        'Plak de hierboven gekopieerde URL en druk op Enter om op te slaan.'
+      ]
+    },
+    safari: {
+      title: 'Apple Safari',
+      steps: [
+        'Open Safari en kies "Safari > Instellingen" in de menubalk.',
+        'Zoek op het tabblad "Algemeen" het veld "Startpagina".',
+        'Stel "Nieuwe vensters openen met" in op "Startpagina".',
+        'Plak de URL van deze startpagina en bevestig.'
+      ]
+    },
+    brave: {
+      title: 'Brave',
+      steps: [
+        'Open Brave, klik rechtsboven op het menu en selecteer Instellingen.',
+        'Ga in het linkermenu naar "Bij opstarten".',
+        'Selecteer "Een specifieke pagina of reeks pagina’s openen" en klik op "Een nieuwe pagina toevoegen".',
+        'Plak de hierboven gekopieerde URL en klik op "Toevoegen".'
+      ]
+    }
   }
 };
 

@@ -1575,6 +1575,71 @@ const GUIDE_TRANSLATIONS: Record<string, LocalizedGuides> = {
       },
     },
   },
+  Belgum: {
+    faqHeading: 'Veelgestelde vragen',
+    tools: {
+      links: {
+        title: 'Organiseer uw dagelijkse bladwijzers',
+        overview: 'GeekTabs Bladwijzers bundelt favoriete websites, kantoortools, AI-assistenten, muziekdiensten en persoonlijke snelkoppelingen in overzichtelijke visuele categorieën.',
+        highlights: [
+          { heading: 'Eigen categorieën & directe bewerking', body: 'Maak nieuwe verzamelingen aan, hernoem rubrieken, voeg eigen URL’s toe of wijzig pictogrammen zonder de startpagina te verlaten.' },
+          { heading: 'Lokale privacy & eenvoudige back-up', body: 'Uw bladwijzers blijven lokaal bewaard in uw browser en kunnen op elk moment via Instellingen worden geëxporteerd of hersteld.' },
+        ],
+        faqs: [
+          { q: 'Kan ik mijn eigen websites toevoegen?', a: 'Ja. Klik binnen eender welke categorie op Bladwijzer toevoegen om een titel en URL op te slaan, of maak eerst een nieuwe rubriek.' },
+          { q: 'Worden persoonlijke bladwijzers automatisch bewaard?', a: 'Elke wijziging wordt meteen lokaal opgeslagen in uw browser en u kunt via Instellingen > Algemeen altijd een volledige back-up downloaden.' },
+        ],
+      },
+      calendar: {
+        title: 'Slimme maandkalender & feestdagen wereldwijd',
+        overview: 'Volg deadlines op, plan persoonlijke herinneringen en raadpleeg officiële feestdagen van meerdere landen in één helder maandoverzicht.',
+        highlights: [
+          { heading: 'Afspraken & getimede herinneringen', body: 'Voeg op elke datum afspraken of herinneringen met tijdstip toe zodat vergaderingen en verjaardagen altijd zichtbaar blijven.' },
+          { heading: 'Feestdagen van meerdere regio’s', body: 'Toon verschillende landenkalenders naast uw eigen planning voor vlotte internationale afstemming.' },
+        ],
+        faqs: [
+          { q: 'Hoe voeg ik een afspraak of herinnering toe?', a: 'Klik op een dag in het kalenderrooster, kies Afspraak of Herinnering, vul de titel en het tijdstip in en klik op Opslaan.' },
+          { q: 'Kan ik feestdagen van meerdere landen tegelijk bekijken?', a: 'Ja. Via de landenselector bovenaan de kalender kunt u meerdere landen tegelijk inschakelen.' },
+        ],
+      },
+      calculator: {
+        title: 'Precisierekenmachine & wisselkoersomzetter',
+        overview: 'Schakel moeiteloos tussen dagelijkse berekeningen, wetenschappelijke functies en live muntomrekening met actuele koersen of een eigen vast tarief.',
+        highlights: [
+          { heading: 'Standaard & wetenschappelijke modus', body: 'Bereken snel totalen, btw, fooien, goniometrie, machten en logaritmen met directe geschiedenis.' },
+          { heading: 'Live & handmatige valuta-omrekening', body: 'Vergelijk belangrijke munten met actuele marktkoersen of schakel naar handmatig voor een vaste bank- of factuurkoers.' },
+        ],
+        faqs: [
+          { q: 'Waar komen de live wisselkoersen vandaan?', a: 'De live modus haalt actuele referentiekoersen op uit publieke financiële bronnen en laat u meteen vernieuwen.' },
+          { q: 'Wanneer gebruik ik de handmatige modus?', a: 'Handig wanneer u bedragen wilt omrekenen tegen de vaste koers van uw bank, betaalkaart of contract.' },
+        ],
+      },
+      ip: {
+        title: 'Publieke IPv4 / IPv6-opzoeking & verbindingsdiagnose',
+        overview: 'Inspecteer in enkele seconden uw actieve publieke IPv4- en IPv6-adres, geschatte providerlocatie, ASN en beveiligingscontroles.',
+        highlights: [
+          { heading: 'Dual-Stack IP-detectie', body: 'Controleer meteen of uw internetprovider enkel IPv4 routeert of zowel IPv4 als IPv6 ondersteunt.' },
+          { heading: 'Routering & privacycontroles', body: 'Bekijk uw geschatte stad of regio, tijdzone, DNS-versleuteling, WebRTC-lekcontrole en HTTPS-transportstatus.' },
+        ],
+        faqs: [
+          { q: 'Waarom toont IP-geolocatie soms een nabijgelegen stad?', a: 'Een IP-opzoeking bepaalt de regio via het dichtstbijzijnde knooppunt (PoP) van uw provider en niet via gps.' },
+          { q: 'Wat betekent het als er geen IPv6 wordt gevonden?', a: 'Uw router, VPN of provider gebruikt momenteel alleen IPv4-routering, wat op veel netwerken heel gebruikelijk is.' },
+        ],
+      },
+      speed: {
+        title: 'Realtime breedbandsnelheidstest & kwaliteitsscore',
+        overview: 'Meet uw werkelijke downloadsnelheid, uploadsnelheid, ping en jitter om meteen te zien hoe geschikt uw lijn is voor 4K-streaming, gaming en videogesprekken.',
+        highlights: [
+          { heading: 'Latentie, jitter & bandbreedte', body: 'Voert meerdere metingen uit naar edge-servers om reactiesnelheid en duurzame doorvoer betrouwbaar te bepalen.' },
+          { heading: 'Netwerkkwaliteitsscore', body: 'Vertaalt Mbps en milliseconden naar duidelijke scores van 1 tot 5 sterren voor Streaming, Gaming en Videovergaderen.' },
+        ],
+        faqs: [
+          { q: 'Hoe krijg ik het nauwkeurigste snelheidsresultaat?', a: 'Sluit zware downloads of streams op de achtergrond, test dicht bij de router of met een netwerkkabel en probeer eventueel opnieuw.' },
+          { q: 'Waarom zijn ping en jitter naast Mbps zo belangrijk?', a: 'Een lage ping en stabiele jitter zorgen voor vloeiende videogesprekken en snelle responstijden in online spellen.' },
+        ],
+      },
+    },
+  },
 };
 
 export default function ToolGuideSection({
@@ -1587,6 +1652,8 @@ export default function ToolGuideSection({
   const bundle = GUIDE_TRANSLATIONS[language] || GUIDE_TRANSLATIONS.English;
   const guide = bundle.tools[tool];
   const HeadingTag = tool === 'ip' || tool === 'speed' ? 'h2' : 'h1';
+  const SubHeadingTag = HeadingTag === 'h1' ? 'h2' : 'h3';
+  const FaqItemTag = HeadingTag === 'h1' ? 'h3' : 'h4';
 
   return (
     <section
@@ -1608,20 +1675,20 @@ export default function ToolGuideSection({
             key={item.heading}
             className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1.5"
           >
-            <h3 className="text-sm font-bold word-color">{item.heading}</h3>
+            <SubHeadingTag className="text-sm font-bold word-color">{item.heading}</SubHeadingTag>
             <p className="text-xs sm:text-sm word-color opacity-75 leading-relaxed">{item.body}</p>
           </div>
         ))}
       </div>
 
       <div className="space-y-3 pt-1">
-        <h3 className="text-xs font-bold uppercase tracking-widest word-color opacity-65">
+        <SubHeadingTag className="text-xs font-bold uppercase tracking-widest word-color opacity-65">
           {bundle.faqHeading}
-        </h3>
+        </SubHeadingTag>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {guide.faqs.map((faq) => (
             <div key={faq.q} className="space-y-1">
-              <h4 className="text-xs sm:text-sm font-bold word-color">{faq.q}</h4>
+              <FaqItemTag className="text-xs sm:text-sm font-bold word-color">{faq.q}</FaqItemTag>
               <p className="text-xs sm:text-sm word-color opacity-75 leading-relaxed">{faq.a}</p>
             </div>
           ))}

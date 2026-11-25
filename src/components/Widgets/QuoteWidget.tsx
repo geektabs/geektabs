@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Quote, RefreshCw } from 'lucide-react';
-import quotesEnglish from '../../data/quotes-English.json';
-import quotesSpanish from '../../data/quotes-Spanish.json';
-import quotesFrench from '../../data/quotes-French.json';
-import quotesGerman from '../../data/quotes-German.json';
-import quotesChinese from '../../data/quotes-Chinese.json';
-import quotesChineseTraditional from '../../data/quotes-Chinese-Traditional.json';
-import quotesJapanese from '../../data/quotes-Japanese.json';
-import quotesKorean from '../../data/quotes-Korean.json';
-import quotesItalian from '../../data/quotes-Italian.json';
-import quotesRussian from '../../data/quotes-Russian.json';
-import quotesLuxembourgish from '../../data/quotes-Luxembourgish.json';
-import quotesDutch from '../../data/quotes-Dutch.json';
-import quotesSwedish from '../../data/quotes-Swedish.json';
-import quotesFinnish from '../../data/quotes-Finnish.json';
-import quotesHindi from '../../data/quotes-Hindi.json';
-import quotesNorwegian from '../../data/quotes-Norwegian.json';
-import quotesThai from '../../data/quotes-Thai.json';
-import quotesPortuguese from '../../data/quotes-Portuguese.json';
-import quotesVietnamese from '../../data/quotes-Vietnamese.json';
-import quotesPolish from '../../data/quotes-Polish.json';
-import quotesDanish from '../../data/quotes-Danish.json';
-import quotesTurkish from '../../data/quotes-Turkish.json';
-import quotesGreek from '../../data/quotes-Greek.json';
+import quotesEnglish from '../../data/quote-English.json';
+import quotesSpanish from '../../data/quote-Spanish.json';
+import quotesFrench from '../../data/quote-French.json';
+import quotesGerman from '../../data/quote-German.json';
+import quotesChinese from '../../data/quote-Chinese.json';
+import quotesChineseTraditional from '../../data/quote-Chinese-Traditional.json';
+import quotesJapanese from '../../data/quote-Japanese.json';
+import quotesKorean from '../../data/quote-Korean.json';
+import quotesItalian from '../../data/quote-Italian.json';
+import quotesRussian from '../../data/quote-Russian.json';
+import quotesLuxembourgish from '../../data/quote-Luxembourgish.json';
+import quotesDutch from '../../data/quote-Dutch.json';
+import quotesSwedish from '../../data/quote-Swedish.json';
+import quotesFinnish from '../../data/quote-Finnish.json';
+import quotesHindi from '../../data/quote-Hindi.json';
+import quotesNorwegian from '../../data/quote-Norwegian.json';
+import quotesThai from '../../data/quote-Thai.json';
+import quotesPortuguese from '../../data/quote-Portuguese.json';
+import quotesVietnamese from '../../data/quote-Vietnamese.json';
+import quotesPolish from '../../data/quote-Polish.json';
+import quotesDanish from '../../data/quote-Danish.json';
+import quotesTurkish from '../../data/quote-Turkish.json';
+import quotesGreek from '../../data/quote-Greek.json';
+import quotesBelgum from '../../data/quote-Belgum.json';
 
 const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   English: quotesEnglish,
@@ -48,6 +49,7 @@ const quotesMap: Record<string, Array<{ quote: string; author: string }>> = {
   Danish: quotesDanish,
   Turkish: quotesTurkish,
   Greek: quotesGreek,
+  Belgum: quotesBelgum,
 };
 
 const STORAGE_KEY = 'GeekTabs_daily_quote_history';
@@ -121,30 +123,31 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
   }, [language]);
 
   const widgetTitle = {
-    English: 'Daily Quote',
-    Spanish: 'Cita Diaria',
-    French: 'Citation Quotidienne',
-    German: 'Tägliches Zitat',
-    Chinese: '每日名言',
-    'Chinese Traditional': '每日名言',
-    Japanese: '今日の名言',
-    Korean: '오늘의 명언',
-    Italian: 'Citazione Giornaliera',
-    Russian: 'Цитата дня',
-    Luxembourgish: 'Deeglecht Zitat',
-    Dutch: 'Dagelijks Citaat',
-    Swedish: 'Dagens Citat',
-    Finnish: 'Päivän Sitaatti',
-    Hindi: 'दैनिक सुविचार',
-    Norwegian: 'Dagens Sitat',
-    Thai: 'คำคมประจำวัน',
-    Portuguese: 'Citação Diária',
-    Vietnamese: 'Danh Ngôn Hằng Ngày',
-    Polish: 'Cytat Dnia',
-    Danish: 'Dagens Citat',
-    Turkish: 'Günün Sözü',
-    Greek: 'Απόφθεγμα Ημέρας',
-  }[language] || 'Daily Quote';
+    English: 'Quote',
+    Spanish: 'Cita',
+    French: 'Citation',
+    German: 'Zitat',
+    Chinese: '名言',
+    'Chinese Traditional': '名言',
+    Japanese: '名言',
+    Korean: '명언',
+    Italian: 'Citazione',
+    Russian: 'Цитата',
+    Luxembourgish: 'Zitat',
+    Dutch: 'Citaat',
+    Swedish: 'Citat',
+    Finnish: 'Sitaatti',
+    Hindi: 'सुविचार',
+    Norwegian: 'Sitat',
+    Thai: 'คำคม',
+    Portuguese: 'Citação',
+    Vietnamese: 'Danh ngôn',
+    Polish: 'Cytat',
+    Danish: 'Citat',
+    Turkish: 'Özlü Söz',
+    Greek: 'Απόφθεγμα',
+    Belgum: 'Citaat',
+  }[language] || 'Quote';
 
   const quoteTooltips = {
     English: { refresh: 'Refresh quote', next: 'Click to get new quote' },
@@ -170,6 +173,7 @@ export default function QuoteWidget({ language = 'English' }: QuoteWidgetProps) 
     Danish: { refresh: 'Opdater citat', next: 'Klik for at få et nyt citat' },
     Turkish: { refresh: 'Sözü yenile', next: 'Yeni söz için tıklayın' },
     Greek: { refresh: 'Ανανέωση αποφθέγματος', next: 'Κάντε κλικ για νέο απόφθεγμα' },
+    Belgum: { refresh: 'Citaat vernieuwen', next: 'Klik voor een nieuw citaat' },
   }[language] || { refresh: 'Refresh quote', next: 'Click to get new quote' };
 
   return (

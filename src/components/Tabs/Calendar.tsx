@@ -1206,6 +1206,31 @@ const COUNTRY_NAMES: Record<string, Record<string, string>> = {
     THA: 'Ταϊλάνδη',
     USA: 'Ηνωμένες Πολιτείες',
   },
+  Belgum: {
+    AUS: 'Australië',
+    CHN: 'China',
+    FIN: 'Finland',
+    FRA: 'Frankrijk',
+    DEU: 'Duitsland',
+    UK: 'Verenigd Koninkrijk',
+    IND: 'India',
+    ITA: 'Italië',
+    JPN: 'Japan',
+    KOR: 'Zuid-Korea',
+    LUX: 'Luxemburg',
+    MEX: 'Mexico',
+    NLD: 'Nederland',
+    NZL: 'Nieuw-Zeeland',
+    NOR: 'Noorwegen',
+    PRT: 'Portugal',
+    RUS: 'Rusland',
+    SGP: 'Singapore',
+    ESP: 'Spanje',
+    SWE: 'Zweden',
+    CHE: 'Zwitserland',
+    THA: 'Thailand',
+    USA: 'Verenigde Staten',
+  },
 };
 
 const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number, lang: string) => {
@@ -1234,6 +1259,7 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       Danish: 'Samme tidszone',
       Turkish: 'Aynı saat dilimi',
       Greek: 'Ίδια ζώνη ώρας',
+      Belgum: 'Zelfde tijdzone',
     };
     return sameMap[lang] || sameMap.English;
   }
@@ -1329,6 +1355,10 @@ const formatTimeDifference = (c1Name: string, c2Name: string, diffHours: number,
       return diffHours > 0
         ? `${c1Name} είναι ${formatted} ώρες μπροστά από ${c2Name}`
         : `${c1Name} είναι ${formatted} ώρες πίσω από ${c2Name}`;
+    case 'Belgum':
+      return diffHours > 0
+        ? `${c1Name} loopt ${formatted} uur voor op ${c2Name}`
+        : `${c1Name} loopt ${formatted} uur achter op ${c2Name}`;
     default:
       return diffHours > 0 
         ? `${c1Name} is ${formatted} hr ahead of ${c2Name}`
@@ -1539,6 +1569,7 @@ const WEEKDAYS: Record<string, string[]> = {
   Danish: ['Sø', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø'],
   Turkish: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
   Greek: ['Κυ', 'Δε', 'Τρ', 'Τε', 'Πε', 'Πα', 'Σα'],
+  Belgum: ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
 };
 
 const CAL_T: Record<string, Record<string, string>> = {
@@ -1956,6 +1987,24 @@ const CAL_T: Record<string, Record<string, string>> = {
     today: 'Σήμερα',
     ipLocation: 'Τοποθεσία IP',
   },
+  Belgum: {
+    worldDates: 'Wereldtijden',
+    events: 'Afspraken & Herinneringen',
+    holidaysMonth: 'Feestdagen deze maand',
+    noEvents: 'Geen afspraken',
+    addEvent: 'Toevoegen aan kalender',
+    event: 'Afspraak',
+    reminder: 'Herinnering',
+    title: 'Titel',
+    cancel: 'Annuleren',
+    save: 'Opslaan',
+    deleteEvent: 'Afspraak verwijderen',
+    deleteConfirm: 'Weet u zeker dat u deze afspraak wilt verwijderen?',
+    singleCalNone: '1 Land (Geen)',
+    globalDefault: 'Wereldwijde Officiële Kalender',
+    today: 'Vandaag',
+    ipLocation: 'IP-locatie',
+  },
 };
 
 const LOCALES: Record<string, string> = {
@@ -1982,6 +2031,7 @@ const LOCALES: Record<string, string> = {
   Danish: 'da-DK',
   Turkish: 'tr-TR',
   Greek: 'el-GR',
+  Belgum: 'nl-BE',
 };
 
 export default function Calendar({ language = 'English' }: CalendarProps) {
@@ -2033,6 +2083,7 @@ const CAL_EXTRA_T: Record<string, {
   Danish: { prevMonth: 'Forrige måned', nextMonth: 'Næste måned', countrySelector: 'Landevælger til kalender', addEventBtn: 'Tilføj begivenhed eller påmindelse', deleteEventPrefix: 'Slet', deleteConfirmBtn: 'Slet' },
   Turkish: { prevMonth: 'Önceki ay', nextMonth: 'Sonraki ay', countrySelector: 'Takvim ülke seçici', addEventBtn: 'Etkinlik veya hatırlatıcı ekle', deleteEventPrefix: 'Sil', deleteConfirmBtn: 'Sil' },
   Greek: { prevMonth: 'Προηγούμενος μήνας', nextMonth: 'Επόμενος μήνας', countrySelector: 'Επιλογέας χώρας ημερολογίου', addEventBtn: 'Προσθήκη εκδήλωσης ή υπενθύμισης', deleteEventPrefix: 'Διαγραφή', deleteConfirmBtn: 'Διαγραφή' },
+  Belgum: { prevMonth: 'Vorige maand', nextMonth: 'Volgende maand', countrySelector: 'Landselectie voor kalender', addEventBtn: 'Afspraak of herinnering toevoegen', deleteEventPrefix: 'Verwijderen', deleteConfirmBtn: 'Verwijderen' },
 };
 
   const calText = CAL_T[language] || CAL_T['English'];
