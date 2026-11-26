@@ -1201,16 +1201,182 @@ const getCategoryDisplayName = (cat: Category, language: string): string => {
   return cat.name;
 };
 
+const FAVICON_CACHE_STORAGE_KEY = 'GeekTabs_favicon_cache_v2';
+const FAVICON_CACHE_TTL = 7 * 24 * 60 * 60 * 1000;
+const faviconMemoryCache = new Map<string, { url: string | null; ts: number }>();
+const faviconInFlight = new Map<string, Promise<string | null>>();
+
+const loadFaviconFromStorage = (key: string): string | null | undefined => {
+  const mem = faviconMemoryCache.get(key);
+  if (mem && Date.now() - mem.ts < FAVICON_CACHE_TTL) return mem.url;
+  try {
+    const raw = localStorage.getItem(FAVICON_CACHE_STORAGE_KEY);
+    if (!raw) return undefined;
+    const parsed = JSON.parse(raw) as Record<string, { url: string | null; ts: number }>;
+    const entry = parsed?.[key];
+    if (entry && Date.now() - entry.ts < FAVICON_CACHE_TTL) {
+      faviconMemoryCache.set(key, entry);
+      return entry.url;
+    }
+  } catch {
+    // ignore storage read error
+  }
+  return undefined;
+};
+
+const saveFaviconToStorage = (key: string, iconUrl: string | null) => {
+  const entry = { url: iconUrl, ts: Date.now() };
+  faviconMemoryCache.set(key, entry);
+  try {
+    const raw = localStorage.getItem(FAVICON_CACHE_STORAGE_KEY);
+    const parsed: Record<string, { url: string | null; ts: number }> = raw ? JSON.parse(raw) : {};
+    parsed[key] = entry;
+    const keys = Object.keys(parsed);
+    if (keys.length > 300) {
+      keys.sort((a, b) => (parsed[a]?.ts || 0) - (parsed[b]?.ts || 0));
+      for (const oldKey of keys.slice(0, keys.length - 300)) {
+        delete parsed[oldKey];
+      }
+    }
+    localStorage.setItem(FAVICON_CACHE_STORAGE_KEY, JSON.stringify(parsed));
+  } catch {
+    // ignore storage write error
+  }
+};
+
+const getFaviconCacheKey = (rawUrl: string): string | null => {
+  try {
+    const parsed = new URL(/^https?:\/\//i.test(rawUrl) ? rawUrl : `https://${rawUrl}`);
+    return `${parsed.origin}${parsed.pathname === '/' ? '' : parsed.pathname}`;
+  } catch {
+    return null;
+  }
+};
+
+const resolveBookmarkFavicon = (rawUrl: string): Promise<string | null> => {
+  const key = getFaviconCacheKey(rawUrl);
+  if (!key) return Promise.resolve(null);
+
+  const cached = loadFaviconFromStorage(key);
+  if (cached !== undefined) return Promise.resolve(cached);
+
+  const existing = faviconInFlight.get(key);
+  if (existing) return existing;
+
+  const req = fetch(`/api/favicon?url=${encodeURIComponent(rawUrl)}`)
+    .then((r) => (r.ok ? r.json() : { iconUrl: null }))
+    .then((data) => {
+      const iconUrl = typeof data?.iconUrl === 'string' && data.iconUrl ? data.iconUrl : null;
+      saveFaviconToStorage(key, iconUrl);
+      return iconUrl;
+    })
+    .catch(() => null)
+    .finally(() => {
+      faviconInFlight.delete(key);
+    });
+
+  faviconInFlight.set(key, req);
+  return req;
+};
+
 const getFavicon = (url: string) => {
   try {
-    const domain = new URL(url).hostname;
+    const normalized = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+    const domain = new URL(normalized).hostname;
     if (domain.includes('alphawibes.com') || domain.includes('alphawibes')) {
       return '/assets/alphawibes.png';
     }
     return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${encodeURIComponent('https://' + domain)}&size=256`;
-  } catch (e) {
+  } catch {
     return null;
   }
+};
+
+const BookmarkFavicon: React.FC<{ link: Link }> = ({ link }) => {
+  const normalizedUrl = /^https?:\/\//i.test(link.url) ? link.url : `https://${link.url}`;
+  const lowerUrl = normalizedUrl.toLowerCase();
+  const title = (link.title || '').toLowerCase().trim();
+  const isRoundedIcon =
+    lowerUrl.includes('github.com') ||
+    lowerUrl.includes('tiktok.com') ||
+    lowerUrl.includes('netflix.com') ||
+    lowerUrl.includes('grok') ||
+    lowerUrl.includes('x.com') ||
+    lowerUrl.includes('twitter.com') ||
+    title === 'github' ||
+    title === 'tiktok' ||
+    title === 'netflix' ||
+    title === 'grok';
+
+  let domain = '';
+  try {
+    domain = new URL(normalizedUrl).hostname;
+  } catch {
+    domain = '';
+  }
+
+  const cacheKey = getFaviconCacheKey(normalizedUrl);
+  const initialCached = cacheKey ? loadFaviconFromStorage(cacheKey) : undefined;
+  const gstaticFallback = getFavicon(normalizedUrl);
+  const ddgFallback = domain ? `https://icons.duckduckgo.com/ip3/${encodeURIComponent(domain)}.ico` : null;
+
+  const [resolvedUrl, setResolvedUrl] = useState<string | null>(() =>
+    initialCached !== undefined ? initialCached : null
+  );
+  const [fallbackStep, setFallbackStep] = useState<number>(0);
+
+  useEffect(() => {
+    let active = true;
+    setFallbackStep(0);
+    const cachedNow = cacheKey ? loadFaviconFromStorage(cacheKey) : undefined;
+    if (cachedNow !== undefined) {
+      setResolvedUrl(cachedNow);
+      return;
+    }
+    setResolvedUrl(null);
+    resolveBookmarkFavicon(normalizedUrl).then((url) => {
+      if (active && url) {
+        setResolvedUrl(url);
+        setFallbackStep(0);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [normalizedUrl, cacheKey]);
+
+  const candidates: string[] = [];
+  if (resolvedUrl) candidates.push(resolvedUrl);
+  if (gstaticFallback && !candidates.includes(gstaticFallback)) candidates.push(gstaticFallback);
+  if (ddgFallback && !candidates.includes(ddgFallback)) candidates.push(ddgFallback);
+
+  const activeSrc = candidates[fallbackStep];
+
+  if (!activeSrc) {
+    const initial = (link.title?.trim()?.[0] || domain.replace(/^www\./, '')[0] || '?').toUpperCase();
+    return (
+      <div
+        className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold text-sm flex items-center justify-center shrink-0 transition-all group-hover:scale-110 duration-300"
+        aria-hidden="true"
+      >
+        {initial}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={activeSrc}
+      alt=""
+      className={`w-7 h-7 md:w-8 md:h-8 transition-all group-hover:scale-110 duration-300 ${
+        isRoundedIcon ? 'rounded-full object-cover' : 'object-contain'
+      }`}
+      referrerPolicy="no-referrer"
+      onError={() => {
+        setFallbackStep((prev) => prev + 1);
+      }}
+    />
+  );
 };
 
 const renderBookmarkBrandIcon = (link: Link) => {
@@ -1621,6 +1787,25 @@ const renderBookmarkBrandIcon = (link: Link) => {
     );
   }
 
+  // Google Flow (Official Logo)
+  if (url.includes('flow.google.com') || url.includes('labs.google/fx/tools/flow') || title === 'google flow') {
+    return (
+      <img
+        src="https://www.gstatic.com/aitestkitchen/website/flow/favicon/flow_icon_192.png"
+        alt="Google Flow"
+        className="w-7 h-7 md:w-8 md:h-8 rounded-lg object-contain transition-all group-hover:scale-110 duration-300"
+        referrerPolicy="no-referrer"
+        onError={(e) => {
+          const target = e.currentTarget;
+          const fallback = 'https://icons.duckduckgo.com/ip3/flow.google.com.ico';
+          if (target.src !== fallback) {
+            target.src = fallback;
+          }
+        }}
+      />
+    );
+  }
+
   // Google Store
   if (url.includes('store.google.com')) {
     return (
@@ -1680,30 +1865,9 @@ const renderBookmarkBrandIcon = (link: Link) => {
     );
   }
 
-  // Favicon fallback
-  const favicon = getFavicon(link.url);
-  if (favicon) {
-    return (
-      <img 
-        src={favicon} 
-        alt="" 
-        className={`w-7 h-7 md:w-8 md:h-8 transition-all group-hover:scale-110 duration-300 ${
-          (url.includes('github.com') || 
-           url.includes('tiktok.com') || 
-           url.includes('netflix.com') || 
-           url.includes('grok') || 
-           url.includes('x.com') || 
-           url.includes('twitter.com') || 
-           title === 'github' || 
-           title === 'tiktok' || 
-           title === 'netflix' || 
-           title === 'grok')
-            ? 'rounded-full object-cover'
-            : 'object-contain'
-        }`}
-        referrerPolicy="no-referrer"
-      />
-    );
+  // Smart multi-source Favicon & HTML icon resolver fallback
+  if (link.url) {
+    return <BookmarkFavicon link={link} />;
   }
 
   return <ExternalLink className="text-indigo-500" size={20} />;
@@ -2464,13 +2628,18 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
 
   const addLink = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newTitle || !newUrl) return;
+    const trimmedTitle = newTitle.trim();
+    const trimmedUrl = newUrl.trim();
+    if (!trimmedTitle || !trimmedUrl) return;
+    const normalizedUrl = /^https?:\/\//i.test(trimmedUrl) ? trimmedUrl : `https://${trimmedUrl}`;
     const link: Link = {
       id: Date.now().toString(),
-      title: newTitle,
-      url: newUrl.startsWith('http') ? newUrl : `https://${newUrl}`,
+      title: trimmedTitle,
+      url: normalizedUrl,
     };
-    
+
+    void resolveBookmarkFavicon(normalizedUrl);
+
     setCategories(categories.map(c => 
       c.id === activeCategoryId 
         ? { ...c, links: [...c.links, link] }
@@ -2494,6 +2663,8 @@ export default function QuickLinks({ language = 'English' }: QuickLinksProps) {
     const trimmedUrl = editLinkUrl.trim();
     if (!editingLinkId || !trimmedTitle || !trimmedUrl) return;
     const normalizedUrl = /^https?:\/\//i.test(trimmedUrl) ? trimmedUrl : `https://${trimmedUrl}`;
+
+    void resolveBookmarkFavicon(normalizedUrl);
 
     setCategories(categories.map(c =>
       c.id === activeCategoryId

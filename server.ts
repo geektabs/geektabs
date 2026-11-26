@@ -319,6 +319,193 @@ async function startServer() {
     }
   });
 
+  // Bookmark Favicon Resolver Cache & Endpoint
+  const faviconCache = new Map<string, { iconUrl: string | null; timestamp: number }>();
+  const FAVICON_CACHE_TTL_MS = 12 * 60 * 60 * 1000;
+
+  const isDisallowedHostname = (hostname: string): boolean => {
+    const h = hostname.toLowerCase().replace(/^\[|\]$/g, "");
+    if (!h || h === "localhost" || h === "0.0.0.0" || h === "::1" || h.endsWith(".local") || h.endsWith(".internal")) {
+      return true;
+    }
+    if (/^127\./.test(h) || /^10\./.test(h) || /^192\.168\./.test(h) || /^169\.254\./.test(h)) {
+      return true;
+    }
+    const m172 = h.match(/^172\.(\d+)\./);
+    if (m172) {
+      const second = Number(m172[1]);
+      if (second >= 16 && second <= 31) return true;
+    }
+    return false;
+  };
+
+  const verifyImageCandidate = async (candidateUrl: string): Promise<string | null> => {
+    try {
+      const parsed = new URL(candidateUrl);
+      if (!["http:", "https:"].includes(parsed.protocol) || isDisallowedHostname(parsed.hostname)) {
+        return null;
+      }
+      const res = await fetch(candidateUrl, {
+        method: "GET",
+        redirect: "follow",
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+          Accept: "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5",
+        },
+        signal: AbortSignal.timeout(3500),
+      });
+      if (!res.ok) return null;
+      const ct = (res.headers.get("content-type") || "").toLowerCase();
+      if (ct.includes("text/html") || ct.includes("application/json")) return null;
+      if (ct.startsWith("image/") || ct.includes("icon") || /\.(png|svg|ico|webp|jpg|jpeg|gif)(\?|$)/i.test(res.url)) {
+        const buf = await res.arrayBuffer();
+        if (buf.byteLength > 0) return res.url || candidateUrl;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  };
+
+  const extractHtmlIconCandidates = (html: string, baseUrl: string): string[] => {
+    const linkTags = html.match(/<link\b[^>]*>/gi) || [];
+    const scored: Array<{ url: string; score: number }> = [];
+
+    for (const tag of linkTags) {
+      const relMatch = tag.match(/\brel\s*=\s*["']([^"']+)["']/i) || tag.match(/\brel\s*=\s*([^\s>]+)/i);
+      const hrefMatch = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i) || tag.match(/\bhref\s*=\s*([^\s>]+)/i);
+      if (!relMatch || !hrefMatch) continue;
+
+      const rel = relMatch[1].toLowerCase();
+      if (!/\b(icon|apple-touch-icon|apple-touch-icon-precomposed|shortcut)\b/.test(rel)) continue;
+      if (rel.includes("mask-icon")) continue;
+
+      const rawHref = hrefMatch[1].trim();
+      if (!rawHref || rawHref.startsWith("data:text")) continue;
+
+      let resolved: string;
+      try {
+        resolved = new URL(rawHref, baseUrl).toString();
+      } catch {
+        continue;
+      }
+
+      let score = 10;
+      if (rel === "icon" || rel === "shortcut icon") score += 20;
+      if (rel.includes("apple-touch-icon")) score += 15;
+
+      const mediaMatch = tag.match(/\bmedia\s*=\s*["']([^"']+)["']/i);
+      if (mediaMatch && mediaMatch[1].toLowerCase().includes("prefers-color-scheme: dark")) {
+        score -= 5;
+      }
+
+      if (/\.svg(\?|$)/i.test(resolved)) score += 30;
+      else if (/\.png(\?|$)/i.test(resolved)) score += 25;
+      else if (/\.webp(\?|$)/i.test(resolved)) score += 20;
+
+      const sizesMatch = tag.match(/\bsizes\s*=\s*["']([^"']+)["']/i);
+      if (sizesMatch) {
+        const sizeNum = parseInt(sizesMatch[1], 10);
+        if (Number.isFinite(sizeNum)) {
+          if (sizeNum >= 128 && sizeNum <= 512) score += 25;
+          else if (sizeNum >= 48) score += 18;
+          else if (sizeNum >= 32) score += 10;
+        }
+      }
+
+      scored.push({ url: resolved, score });
+    }
+
+    scored.sort((a, b) => b.score - a.score);
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const item of scored) {
+      if (!seen.has(item.url)) {
+        seen.add(item.url);
+        out.push(item.url);
+      }
+    }
+    return out;
+  };
+
+  app.get("/api/favicon", async (req, res) => {
+    try {
+      const rawUrl = typeof req.query.url === "string" ? req.query.url.trim() : "";
+      if (!rawUrl) return res.status(400).json({ iconUrl: null });
+
+      let parsed: URL;
+      try {
+        parsed = new URL(/^https?:\/\//i.test(rawUrl) ? rawUrl : `https://${rawUrl}`);
+      } catch {
+        return res.status(400).json({ iconUrl: null });
+      }
+
+      if (!["http:", "https:"].includes(parsed.protocol) || isDisallowedHostname(parsed.hostname)) {
+        return res.status(400).json({ iconUrl: null });
+      }
+
+      const cacheKey = `${parsed.origin}${parsed.pathname === "/" ? "" : parsed.pathname}`;
+      const cached = faviconCache.get(cacheKey);
+      if (cached && Date.now() - cached.timestamp < FAVICON_CACHE_TTL_MS) {
+        res.setHeader("Cache-Control", "public, max-age=3600");
+        return res.json({ iconUrl: cached.iconUrl });
+      }
+
+      let resolvedIcon: string | null = null;
+
+      // 1. Inspect target page HTML <link rel="icon"> / <link rel="apple-touch-icon">
+      try {
+        const pageRes = await fetch(parsed.toString(), {
+          method: "GET",
+          redirect: "follow",
+          headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+          },
+          signal: AbortSignal.timeout(4500),
+        });
+        if (pageRes.ok && (pageRes.headers.get("content-type") || "").toLowerCase().includes("text/html")) {
+          const html = (await pageRes.text()).slice(0, 150_000);
+          const candidates = extractHtmlIconCandidates(html, pageRes.url || parsed.toString()).slice(0, 4);
+          for (const candidate of candidates) {
+            const verified = await verifyImageCandidate(candidate);
+            if (verified) {
+              resolvedIcon = verified;
+              break;
+            }
+          }
+        }
+      } catch {
+        // Proceed to fallbacks
+      }
+
+      // 2. Fallback to standard origin icon paths, HTTP-200 gstatic, and DuckDuckGo icon service
+      if (!resolvedIcon) {
+        const fallbackCandidates = [
+          `${parsed.origin}/favicon.svg`,
+          `${parsed.origin}/apple-touch-icon.png`,
+          `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${encodeURIComponent(parsed.origin)}&size=256`,
+          `https://icons.duckduckgo.com/ip3/${encodeURIComponent(parsed.hostname)}.ico`,
+          `${parsed.origin}/favicon.ico`,
+        ];
+        const results = await Promise.all(fallbackCandidates.map((c) => verifyImageCandidate(c)));
+        resolvedIcon = results.find((r) => Boolean(r)) || null;
+      }
+
+      if (faviconCache.size >= 1000) {
+        const firstKey = faviconCache.keys().next().value;
+        if (firstKey) faviconCache.delete(firstKey);
+      }
+      faviconCache.set(cacheKey, { iconUrl: resolvedIcon, timestamp: Date.now() });
+
+      res.setHeader("Cache-Control", "public, max-age=3600");
+      return res.json({ iconUrl: resolvedIcon });
+    } catch {
+      return res.json({ iconUrl: null });
+    }
+  });
+
   const ROUTE_META: Record<string, { title: string; description: string }> = {
     "/": {
       title: "GeekTabs Dashboard",
